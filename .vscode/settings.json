@@ -1,0 +1,10 @@
+{
+    "Lua.diagnostics.globals": [
+        "SlashCmdList",
+        "DEFAULT_CHAT_FRAME",
+        "StaticPopupDialogs",
+        "StaticPopup_Show",
+        "YES",
+        "NO"
+    ]
+}
