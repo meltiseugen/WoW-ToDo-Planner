@@ -1,8 +1,8 @@
-﻿## Interface: 120001
+## Interface: 120001
 ## Title: TODO Planner
-## Notes: Account-wide Kanban planner for achievements, mounts, collections, and more.
+## Notes: Character boards with shared Global tasks for achievements, mounts, collections, and more.
 ## Author: Eugen + Codex
-## Version: 0.1.0
+## Version: 0.2.0
 ## SavedVariables: TODOPlannerDB
 
 TODOPlanner.lua

@@ -1,6 +1,8 @@
-﻿local ADDON_NAME = ...
+local ADDON_NAME = ...
 
 local TDP = CreateFrame("Frame")
+
+local GLOBAL_BOARD_KEY = "GLOBAL"
 
 local STATUS_ORDER = { "TODO", "DOING", "DONE" }
 local STATUS_LABELS = {
@@ -27,11 +29,13 @@ local FILTER_CATEGORIES = {
 }
 
 local DEFAULT_DB = {
-    version = 1,
+    version = 2,
     nextTaskId = 1,
     tasks = {},
+    characters = {},
     settings = {
         filterCategory = "All",
+        selectedBoard = false,
         frame = {
             point = "CENTER",
             x = 0,
@@ -75,6 +79,159 @@ local function msg(text)
     end
 end
 
+local function indexOf(list, value)
+    for i, item in ipairs(list) do
+        if item == value then
+            return i
+        end
+    end
+    return nil
+end
+
+local function normalizeStatus(status)
+    if indexOf(STATUS_ORDER, status) then
+        return status
+    end
+    return "TODO"
+end
+
+local function getStatusIndex(status)
+    return indexOf(STATUS_ORDER, normalizeStatus(status)) or 1
+end
+
+local function getPlayerBoardKey()
+    local name, realm = UnitFullName("player")
+    if not name or name == "" then
+        name = UnitName("player") or "Unknown"
+    end
+
+    if not realm or realm == "" then
+        realm = GetRealmName() or ""
+    end
+
+    realm = trim(realm)
+    if realm ~= "" then
+        return name .. " - " .. realm
+    end
+
+    return name
+end
+
+local function normalizeBoardKey(boardKey)
+    if type(boardKey) ~= "string" then
+        return GLOBAL_BOARD_KEY
+    end
+
+    boardKey = trim(boardKey)
+    if boardKey == "" then
+        return GLOBAL_BOARD_KEY
+    end
+
+    return boardKey
+end
+
+local function getBoardDisplayName(boardKey)
+    boardKey = normalizeBoardKey(boardKey)
+    if boardKey == GLOBAL_BOARD_KEY then
+        return "Global"
+    end
+    return boardKey
+end
+
+local function sortCharacterBoards(characters)
+    local currentBoardKey = getPlayerBoardKey()
+
+    table.sort(characters, function(a, b)
+        if a == currentBoardKey and b ~= currentBoardKey then
+            return true
+        end
+        if b == currentBoardKey and a ~= currentBoardKey then
+            return false
+        end
+        return a < b
+    end)
+end
+
+local function isKnownBoard(boardKey)
+    boardKey = normalizeBoardKey(boardKey)
+    if boardKey == GLOBAL_BOARD_KEY then
+        return true
+    end
+
+    if type(TODOPlannerDB.characters) ~= "table" then
+        return false
+    end
+
+    return indexOf(TODOPlannerDB.characters, boardKey) ~= nil
+end
+
+local function ensureKnownCharacter(boardKey)
+    boardKey = normalizeBoardKey(boardKey)
+    if boardKey == GLOBAL_BOARD_KEY then
+        return
+    end
+
+    if type(TODOPlannerDB.characters) ~= "table" then
+        TODOPlannerDB.characters = {}
+    end
+
+    if not indexOf(TODOPlannerDB.characters, boardKey) then
+        table.insert(TODOPlannerDB.characters, boardKey)
+        sortCharacterBoards(TODOPlannerDB.characters)
+    end
+end
+
+local function getBoardOptions()
+    local boards = { GLOBAL_BOARD_KEY }
+    local characters = {}
+    local seen = {
+        [GLOBAL_BOARD_KEY] = true,
+    }
+
+    if type(TODOPlannerDB.characters) == "table" then
+        for _, boardKey in ipairs(TODOPlannerDB.characters) do
+            boardKey = normalizeBoardKey(boardKey)
+            if boardKey ~= GLOBAL_BOARD_KEY and not seen[boardKey] then
+                seen[boardKey] = true
+                characters[#characters + 1] = boardKey
+            end
+        end
+    end
+
+    sortCharacterBoards(characters)
+    for _, boardKey in ipairs(characters) do
+        boards[#boards + 1] = boardKey
+    end
+
+    return boards
+end
+
+local function setBackdrop(frame, r, g, b, a)
+    frame:SetBackdrop({
+        bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+        edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+        tile = true,
+        tileSize = 16,
+        edgeSize = 16,
+        insets = { left = 4, right = 4, top = 4, bottom = 4 },
+    })
+    frame:SetBackdropColor(r, g, b, a)
+end
+
+local function saveFramePosition(frame)
+    local point, _, _, x, y = frame:GetPoint(1)
+    TODOPlannerDB.settings.frame.point = point or "CENTER"
+    TODOPlannerDB.settings.frame.x = x or 0
+    TODOPlannerDB.settings.frame.y = y or 0
+end
+
+local function getDateStamp(timestamp)
+    if not timestamp then
+        return ""
+    end
+    return date("%Y-%m-%d", timestamp)
+end
+
 local function findTaskById(taskId)
     for index, task in ipairs(TODOPlannerDB.tasks) do
         if task.id == taskId then
@@ -109,21 +266,93 @@ end
 
 local function sortTasksStable(tasks)
     table.sort(tasks, function(a, b)
-        local aStatus = a.status or "TODO"
-        local bStatus = b.status or "TODO"
-        if aStatus ~= bStatus then
-            return aStatus < bStatus
+        local aIndex = getStatusIndex(a.status)
+        local bIndex = getStatusIndex(b.status)
+        if aIndex ~= bIndex then
+            return aIndex < bIndex
         end
         return (a.id or 0) < (b.id or 0)
     end)
 end
 
-local function getTasksForStatus(status)
+local function getTaskBoardKey(task)
+    return normalizeBoardKey(task and task.boardKey or GLOBAL_BOARD_KEY)
+end
+
+local function isTaskVisibleOnBoard(task, boardKey)
+    local taskBoardKey = getTaskBoardKey(task)
+    boardKey = normalizeBoardKey(boardKey)
+
+    if taskBoardKey == GLOBAL_BOARD_KEY then
+        return true
+    end
+
+    return boardKey ~= GLOBAL_BOARD_KEY and taskBoardKey == boardKey
+end
+
+local function getTaskStatus(task, boardKey)
+    local defaultStatus = normalizeStatus(task and task.status)
+    local taskBoardKey = getTaskBoardKey(task)
+    boardKey = normalizeBoardKey(boardKey)
+
+    if taskBoardKey == GLOBAL_BOARD_KEY and boardKey ~= GLOBAL_BOARD_KEY then
+        local overrides = type(task.statusByBoard) == "table" and task.statusByBoard or nil
+        if overrides and overrides[boardKey] then
+            return normalizeStatus(overrides[boardKey])
+        end
+    end
+
+    return defaultStatus
+end
+
+local function setTaskStatus(task, boardKey, status)
+    boardKey = normalizeBoardKey(boardKey)
+    status = normalizeStatus(status)
+    task.boardKey = getTaskBoardKey(task)
+
+    if task.boardKey == GLOBAL_BOARD_KEY and boardKey ~= GLOBAL_BOARD_KEY then
+        task.status = normalizeStatus(task.status)
+        task.statusByBoard = type(task.statusByBoard) == "table" and task.statusByBoard or {}
+
+        if status == task.status then
+            task.statusByBoard[boardKey] = nil
+        else
+            task.statusByBoard[boardKey] = status
+        end
+
+        if not next(task.statusByBoard) then
+            task.statusByBoard = nil
+        end
+    else
+        task.status = status
+        if task.boardKey ~= GLOBAL_BOARD_KEY then
+            task.statusByBoard = nil
+        end
+    end
+
+    task.updatedAt = time()
+end
+
+local function moveTaskToBoard(task, sourceBoardKey, targetBoardKey)
+    local visibleStatus = getTaskStatus(task, sourceBoardKey)
+
+    task.boardKey = normalizeBoardKey(targetBoardKey)
+    task.status = visibleStatus
+    task.statusByBoard = nil
+    task.updatedAt = time()
+
+    if task.boardKey ~= GLOBAL_BOARD_KEY then
+        ensureKnownCharacter(task.boardKey)
+    end
+end
+
+local function getTasksForStatus(status, boardKey)
     local filtered = {}
     local filterCategory = TODOPlannerDB.settings.filterCategory or "All"
+    boardKey = normalizeBoardKey(boardKey)
 
     for _, task in ipairs(TODOPlannerDB.tasks) do
-        if task.status == status then
+        if isTaskVisibleOnBoard(task, boardKey) and getTaskStatus(task, boardKey) == status then
             if filterCategory == "All" or task.category == filterCategory then
                 filtered[#filtered + 1] = task
             end
@@ -137,39 +366,31 @@ local function getTasksForStatus(status)
     return filtered
 end
 
-local function getDateStamp(timestamp)
-    if not timestamp then
-        return ""
+local function showSingleSelectMenu(owner, options, selectedValue, getLabel, onSelect)
+    if not TDP.menuFrame then
+        TDP.menuFrame = CreateFrame("Frame", "TODOPlannerMenuFrame", UIParent, "UIDropDownMenuTemplate")
     end
-    return date("%Y-%m-%d", timestamp)
-end
 
-local function indexOf(list, value)
-    for i, item in ipairs(list) do
-        if item == value then
-            return i
-        end
+    local menu = {}
+    for _, value in ipairs(options) do
+        local optionValue = value
+        menu[#menu + 1] = {
+            text = getLabel and getLabel(optionValue) or tostring(optionValue),
+            checked = optionValue == selectedValue,
+            func = function()
+                onSelect(optionValue)
+            end,
+            keepShownOnClick = false,
+            isNotRadio = false,
+        }
     end
-    return nil
+
+    EasyMenu(menu, TDP.menuFrame, owner, 0, 0, "MENU")
 end
 
-local function setBackdrop(frame, r, g, b, a)
-    frame:SetBackdrop({
-        bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-        edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
-        tile = true,
-        tileSize = 16,
-        edgeSize = 16,
-        insets = { left = 4, right = 4, top = 4, bottom = 4 },
-    })
-    frame:SetBackdropColor(r, g, b, a)
-end
-
-local function saveFramePosition(frame)
-    local point, _, _, x, y = frame:GetPoint(1)
-    TODOPlannerDB.settings.frame.point = point or "CENTER"
-    TODOPlannerDB.settings.frame.x = x or 0
-    TODOPlannerDB.settings.frame.y = y or 0
+local function updateButtonLabel(button, prefix, value, formatter)
+    local label = formatter and formatter(value) or tostring(value)
+    button:SetText(prefix .. ": " .. label)
 end
 
 local function resetEditor(ui)
@@ -177,7 +398,9 @@ local function resetEditor(ui)
     ui.inputTitle:SetText("")
     ui.inputNotes:SetText("")
     ui.selectedCategoryIndex = 1
-    ui.categoryButton:SetText("Category: " .. TASK_CATEGORIES[ui.selectedCategoryIndex])
+    ui.selectedLocationKey = ui:GetSelectedBoardKey()
+    updateButtonLabel(ui.categoryButton, "Category", TASK_CATEGORIES[ui.selectedCategoryIndex])
+    updateButtonLabel(ui.locationButton, "Location", ui.selectedLocationKey, getBoardDisplayName)
     ui.saveButton:SetText("Add Task")
 end
 
@@ -188,7 +411,10 @@ local function loadEditor(ui, task)
 
     local categoryIndex = indexOf(TASK_CATEGORIES, task.category or "") or 1
     ui.selectedCategoryIndex = categoryIndex
-    ui.categoryButton:SetText("Category: " .. TASK_CATEGORIES[ui.selectedCategoryIndex])
+    ui.selectedLocationKey = getTaskBoardKey(task)
+
+    updateButtonLabel(ui.categoryButton, "Category", TASK_CATEGORIES[ui.selectedCategoryIndex])
+    updateButtonLabel(ui.locationButton, "Location", ui.selectedLocationKey, getBoardDisplayName)
     ui.saveButton:SetText("Save Task")
 end
 
@@ -209,12 +435,13 @@ local function createTaskCard(parent, task, status, ui)
     meta:SetJustifyH("LEFT")
 
     local notes = task.notes and trim(task.notes) or ""
-    local notePreview = notes ~= "" and (" | " .. notes:sub(1, 45)) or ""
-    if #notes > 45 then
+    local notePreview = notes ~= "" and (" | " .. notes:sub(1, 36)) or ""
+    if #notes > 36 then
         notePreview = notePreview .. "..."
     end
 
-    meta:SetText(string.format("%s%s", task.category or "Other", notePreview))
+    local locationPrefix = getTaskBoardKey(task) == GLOBAL_BOARD_KEY and "Global | " or ""
+    meta:SetText(string.format("%s%s%s", locationPrefix, task.category or "Other", notePreview))
 
     local stamp = card:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     stamp:SetPoint("TOPLEFT", meta, "BOTTOMLEFT", 0, -4)
@@ -230,14 +457,14 @@ local function createTaskCard(parent, task, status, ui)
     rightBtn:SetPoint("LEFT", leftBtn, "RIGHT", 4, 0)
     rightBtn:SetText(">")
 
-    local editBtn = CreateFrame("Button", nil, card, "UIPanelButtonTemplate")
-    editBtn:SetSize(38, 20)
-    editBtn:SetPoint("BOTTOMRIGHT", -52, 10)
-    editBtn:SetText("Edit")
+    local openBtn = CreateFrame("Button", nil, card, "UIPanelButtonTemplate")
+    openBtn:SetSize(44, 20)
+    openBtn:SetPoint("BOTTOMRIGHT", -56, 10)
+    openBtn:SetText("Open")
 
     local deleteBtn = CreateFrame("Button", nil, card, "UIPanelButtonTemplate")
     deleteBtn:SetSize(40, 20)
-    deleteBtn:SetPoint("LEFT", editBtn, "RIGHT", 4, 0)
+    deleteBtn:SetPoint("LEFT", openBtn, "RIGHT", 4, 0)
     deleteBtn:SetText("Del")
 
     local statusIndex = indexOf(STATUS_ORDER, status) or 1
@@ -249,8 +476,10 @@ local function createTaskCard(parent, task, status, ui)
         if not dbTask then
             return
         end
-        dbTask.status = moveStatus(dbTask.status, -1)
-        dbTask.updatedAt = time()
+
+        local boardKey = ui:GetSelectedBoardKey()
+        local currentStatus = getTaskStatus(dbTask, boardKey)
+        setTaskStatus(dbTask, boardKey, moveStatus(currentStatus, -1))
         ui:Render()
     end)
 
@@ -259,13 +488,20 @@ local function createTaskCard(parent, task, status, ui)
         if not dbTask then
             return
         end
-        dbTask.status = moveStatus(dbTask.status, 1)
-        dbTask.updatedAt = time()
+
+        local boardKey = ui:GetSelectedBoardKey()
+        local currentStatus = getTaskStatus(dbTask, boardKey)
+        setTaskStatus(dbTask, boardKey, moveStatus(currentStatus, 1))
         ui:Render()
     end)
 
-    editBtn:SetScript("OnClick", function()
-        loadEditor(ui, task)
+    openBtn:SetScript("OnClick", function()
+        local dbTask = findTaskById(task.id)
+        if not dbTask then
+            return
+        end
+
+        loadEditor(ui, dbTask)
         ui.inputTitle:SetFocus()
     end)
 
@@ -296,10 +532,10 @@ local function createTaskCard(parent, task, status, ui)
     return card
 end
 
-local function createColumn(parent, titleText, offsetX)
+local function createColumn(parent, titleText, offsetX, offsetY)
     local column = CreateFrame("Frame", nil, parent, "BackdropTemplate")
-    column:SetSize(335, 470)
-    column:SetPoint("TOPLEFT", offsetX, -130)
+    column:SetSize(335, 442)
+    column:SetPoint("TOPLEFT", offsetX, offsetY)
     setBackdrop(column, 0.05, 0.05, 0.06, 0.95)
 
     local title = column:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
@@ -345,18 +581,22 @@ local function buildUI()
 
     local subtitle = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -4)
-    subtitle:SetText("Account-wide Kanban for achievements, mounts, collections, reputation, and more")
+    subtitle:SetText("Character boards with shared Global tasks")
 
     local close = CreateFrame("Button", nil, frame, "UIPanelCloseButton")
     close:SetPoint("TOPRIGHT", -6, -6)
 
+    local boardButton = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
+    boardButton:SetSize(260, 22)
+    boardButton:SetPoint("TOPLEFT", 16, -52)
+
     local filterButton = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
-    filterButton:SetSize(210, 22)
-    filterButton:SetPoint("TOPLEFT", 16, -52)
+    filterButton:SetSize(170, 22)
+    filterButton:SetPoint("LEFT", boardButton, "RIGHT", 8, 0)
 
     local inputTitle = CreateFrame("EditBox", nil, frame, "InputBoxTemplate")
-    inputTitle:SetSize(250, 20)
-    inputTitle:SetPoint("TOPLEFT", filterButton, "BOTTOMLEFT", 0, -14)
+    inputTitle:SetSize(190, 20)
+    inputTitle:SetPoint("TOPLEFT", boardButton, "BOTTOMLEFT", 0, -18)
     inputTitle:SetAutoFocus(false)
     inputTitle:SetMaxLetters(120)
 
@@ -365,7 +605,7 @@ local function buildUI()
     titleLabel:SetText("Task")
 
     local inputNotes = CreateFrame("EditBox", nil, frame, "InputBoxTemplate")
-    inputNotes:SetSize(360, 20)
+    inputNotes:SetSize(230, 20)
     inputNotes:SetPoint("LEFT", inputTitle, "RIGHT", 8, 0)
     inputNotes:SetAutoFocus(false)
     inputNotes:SetMaxLetters(160)
@@ -375,12 +615,16 @@ local function buildUI()
     notesLabel:SetText("Notes")
 
     local categoryButton = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
-    categoryButton:SetSize(160, 22)
+    categoryButton:SetSize(140, 22)
     categoryButton:SetPoint("LEFT", inputNotes, "RIGHT", 8, 0)
+
+    local locationButton = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
+    locationButton:SetSize(220, 22)
+    locationButton:SetPoint("LEFT", categoryButton, "RIGHT", 8, 0)
 
     local saveButton = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
     saveButton:SetSize(95, 22)
-    saveButton:SetPoint("LEFT", categoryButton, "RIGHT", 8, 0)
+    saveButton:SetPoint("LEFT", locationButton, "RIGHT", 8, 0)
     saveButton:SetText("Add Task")
 
     local clearButton = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
@@ -390,19 +634,32 @@ local function buildUI()
 
     local ui = {
         frame = frame,
+        boardButton = boardButton,
         filterButton = filterButton,
         inputTitle = inputTitle,
         inputNotes = inputNotes,
         categoryButton = categoryButton,
+        locationButton = locationButton,
         saveButton = saveButton,
         clearButton = clearButton,
         selectedCategoryIndex = 1,
+        selectedLocationKey = GLOBAL_BOARD_KEY,
         editingTaskId = nil,
     }
 
-    local colTodo = createColumn(frame, STATUS_LABELS.TODO, 16)
-    local colDoing = createColumn(frame, STATUS_LABELS.DOING, 372)
-    local colDone = createColumn(frame, STATUS_LABELS.DONE, 728)
+    function ui:GetSelectedBoardKey()
+        local boardKey = normalizeBoardKey(TODOPlannerDB.settings.selectedBoard)
+        if boardKey ~= GLOBAL_BOARD_KEY and not isKnownBoard(boardKey) then
+            boardKey = getPlayerBoardKey()
+            ensureKnownCharacter(boardKey)
+            TODOPlannerDB.settings.selectedBoard = boardKey
+        end
+        return boardKey
+    end
+
+    local colTodo = createColumn(frame, STATUS_LABELS.TODO, 16, -150)
+    local colDoing = createColumn(frame, STATUS_LABELS.DOING, 372, -150)
+    local colDone = createColumn(frame, STATUS_LABELS.DONE, 728, -150)
 
     ui.columns = {
         TODO = colTodo,
@@ -410,47 +667,34 @@ local function buildUI()
         DONE = colDone,
     }
 
-    local function cycleFilter(delta)
-        local current = TODOPlannerDB.settings.filterCategory or "All"
-        local index = indexOf(FILTER_CATEGORIES, current) or 1
-        index = index + delta
-        if index < 1 then
-            index = #FILTER_CATEGORIES
-        elseif index > #FILTER_CATEGORIES then
-            index = 1
-        end
-        TODOPlannerDB.settings.filterCategory = FILTER_CATEGORIES[index]
-        filterButton:SetText("Filter: " .. TODOPlannerDB.settings.filterCategory)
-        ui:Render()
-    end
-
-    local function cycleTaskCategory(delta)
-        ui.selectedCategoryIndex = ui.selectedCategoryIndex + delta
-        if ui.selectedCategoryIndex < 1 then
-            ui.selectedCategoryIndex = #TASK_CATEGORIES
-        elseif ui.selectedCategoryIndex > #TASK_CATEGORIES then
-            ui.selectedCategoryIndex = 1
-        end
-        categoryButton:SetText("Category: " .. TASK_CATEGORIES[ui.selectedCategoryIndex])
-    end
-
-    filterButton:SetScript("OnClick", function(_, button)
-        if button == "RightButton" then
-            cycleFilter(-1)
-        else
-            cycleFilter(1)
-        end
+    boardButton:SetScript("OnClick", function(self)
+        showSingleSelectMenu(self, getBoardOptions(), ui:GetSelectedBoardKey(), getBoardDisplayName, function(boardKey)
+            TODOPlannerDB.settings.selectedBoard = boardKey
+            resetEditor(ui)
+            ui:Render()
+        end)
     end)
-    filterButton:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 
-    categoryButton:SetScript("OnClick", function(_, button)
-        if button == "RightButton" then
-            cycleTaskCategory(-1)
-        else
-            cycleTaskCategory(1)
-        end
+    filterButton:SetScript("OnClick", function(self)
+        showSingleSelectMenu(self, FILTER_CATEGORIES, TODOPlannerDB.settings.filterCategory or "All", nil, function(category)
+            TODOPlannerDB.settings.filterCategory = category
+            ui:Render()
+        end)
     end)
-    categoryButton:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+
+    categoryButton:SetScript("OnClick", function(self)
+        showSingleSelectMenu(self, TASK_CATEGORIES, TASK_CATEGORIES[ui.selectedCategoryIndex], nil, function(category)
+            ui.selectedCategoryIndex = indexOf(TASK_CATEGORIES, category) or 1
+            updateButtonLabel(ui.categoryButton, "Category", TASK_CATEGORIES[ui.selectedCategoryIndex])
+        end)
+    end)
+
+    locationButton:SetScript("OnClick", function(self)
+        showSingleSelectMenu(self, getBoardOptions(), ui.selectedLocationKey, getBoardDisplayName, function(boardKey)
+            ui.selectedLocationKey = boardKey
+            updateButtonLabel(ui.locationButton, "Location", ui.selectedLocationKey, getBoardDisplayName)
+        end)
+    end)
 
     saveButton:SetScript("OnClick", function()
         local titleText = trim(inputTitle:GetText())
@@ -461,13 +705,21 @@ local function buildUI()
         end
 
         local category = TASK_CATEGORIES[ui.selectedCategoryIndex]
+        local targetBoardKey = normalizeBoardKey(ui.selectedLocationKey or ui:GetSelectedBoardKey())
+
         if ui.editingTaskId then
             local task = findTaskById(ui.editingTaskId)
             if task then
+                local originalBoardKey = getTaskBoardKey(task)
                 task.title = titleText
                 task.notes = notesText
                 task.category = category
-                task.updatedAt = time()
+
+                if originalBoardKey ~= targetBoardKey then
+                    moveTaskToBoard(task, ui:GetSelectedBoardKey(), targetBoardKey)
+                else
+                    task.updatedAt = time()
+                end
             end
         else
             local newTask = {
@@ -476,9 +728,15 @@ local function buildUI()
                 notes = notesText,
                 category = category,
                 status = "TODO",
+                boardKey = targetBoardKey,
                 createdAt = time(),
                 updatedAt = time(),
             }
+
+            if targetBoardKey ~= GLOBAL_BOARD_KEY then
+                ensureKnownCharacter(targetBoardKey)
+            end
+
             TODOPlannerDB.nextTaskId = TODOPlannerDB.nextTaskId + 1
             table.insert(TODOPlannerDB.tasks, newTask)
         end
@@ -497,7 +755,11 @@ local function buildUI()
     end)
 
     function ui:Render()
-        filterButton:SetText("Filter: " .. (TODOPlannerDB.settings.filterCategory or "All"))
+        local boardKey = self:GetSelectedBoardKey()
+        updateButtonLabel(boardButton, "Board", boardKey, getBoardDisplayName)
+        updateButtonLabel(filterButton, "Filter", TODOPlannerDB.settings.filterCategory or "All")
+        updateButtonLabel(categoryButton, "Category", TASK_CATEGORIES[self.selectedCategoryIndex])
+        updateButtonLabel(locationButton, "Location", self.selectedLocationKey or boardKey, getBoardDisplayName)
 
         for status, column in pairs(self.columns) do
             for _, oldCard in ipairs(column.cards) do
@@ -506,7 +768,7 @@ local function buildUI()
             end
             wipe(column.cards)
 
-            local tasks = getTasksForStatus(status)
+            local tasks = getTasksForStatus(status, boardKey)
             local y = -4
             for _, task in ipairs(tasks) do
                 local card = createTaskCard(column.content, task, status, self)
@@ -522,7 +784,6 @@ local function buildUI()
     end
 
     resetEditor(ui)
-    filterButton:SetText("Filter: " .. (TODOPlannerDB.settings.filterCategory or "All"))
     frame:Hide()
 
     return ui
@@ -605,24 +866,89 @@ local function initDatabase()
         TODOPlannerDB.tasks = {}
     end
 
+    if type(TODOPlannerDB.characters) ~= "table" then
+        TODOPlannerDB.characters = {}
+    end
+
     local highestId = 0
+    local currentBoardKey = getPlayerBoardKey()
+    local seenCharacters = {}
+    local characters = {}
+
+    local function trackCharacter(boardKey)
+        boardKey = normalizeBoardKey(boardKey)
+        if boardKey == GLOBAL_BOARD_KEY or seenCharacters[boardKey] then
+            return
+        end
+
+        seenCharacters[boardKey] = true
+        characters[#characters + 1] = boardKey
+    end
+
+    trackCharacter(currentBoardKey)
+
+    for _, boardKey in ipairs(TODOPlannerDB.characters) do
+        trackCharacter(boardKey)
+    end
+
     for _, task in ipairs(TODOPlannerDB.tasks) do
         if type(task.id) == "number" and task.id > highestId then
             highestId = task.id
         end
-        task.status = task.status or "TODO"
-        task.category = task.category or "Other"
+
+        task.boardKey = normalizeBoardKey(task.boardKey or GLOBAL_BOARD_KEY)
+        task.status = normalizeStatus(task.status)
+        task.category = indexOf(TASK_CATEGORIES, task.category) and task.category or "Other"
         task.title = task.title or "Untitled"
         task.notes = task.notes or ""
         task.createdAt = task.createdAt or time()
         task.updatedAt = task.updatedAt or task.createdAt
+
+        if task.boardKey ~= GLOBAL_BOARD_KEY then
+            trackCharacter(task.boardKey)
+        end
+
+        if type(task.statusByBoard) == "table" then
+            local cleanedStatusByBoard = {}
+            for boardKey, status in pairs(task.statusByBoard) do
+                local normalizedBoardKey = normalizeBoardKey(boardKey)
+                if normalizedBoardKey ~= GLOBAL_BOARD_KEY then
+                    cleanedStatusByBoard[normalizedBoardKey] = normalizeStatus(status)
+                    trackCharacter(normalizedBoardKey)
+                end
+            end
+
+            task.statusByBoard = next(cleanedStatusByBoard) and cleanedStatusByBoard or nil
+        else
+            task.statusByBoard = nil
+        end
     end
 
+    sortCharacterBoards(characters)
+    TODOPlannerDB.characters = characters
     sortTasksStable(TODOPlannerDB.tasks)
 
     if type(TODOPlannerDB.nextTaskId) ~= "number" or TODOPlannerDB.nextTaskId <= highestId then
         TODOPlannerDB.nextTaskId = highestId + 1
     end
+
+    if not indexOf(FILTER_CATEGORIES, TODOPlannerDB.settings.filterCategory) then
+        TODOPlannerDB.settings.filterCategory = "All"
+    end
+
+    local selectedBoard = TODOPlannerDB.settings.selectedBoard
+    if type(selectedBoard) ~= "string" or trim(selectedBoard) == "" then
+        selectedBoard = currentBoardKey
+    else
+        selectedBoard = normalizeBoardKey(selectedBoard)
+    end
+
+    if selectedBoard ~= GLOBAL_BOARD_KEY and not seenCharacters[selectedBoard] then
+        selectedBoard = currentBoardKey
+    end
+
+    TODOPlannerDB.settings.selectedBoard = selectedBoard
+    TODOPlannerDB.version = DEFAULT_DB.version
 end
 
 TDP:RegisterEvent("ADDON_LOADED")
