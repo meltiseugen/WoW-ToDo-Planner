@@ -5,4 +5,5 @@
 ## Version: 0.2.0
 ## SavedVariables: TODOPlannerDB
 
+Libs/JanisTheme-1.0/JanisTheme-1.0.lua
 TODOPlanner.lua
