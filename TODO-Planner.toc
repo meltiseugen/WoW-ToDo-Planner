@@ -2,7 +2,7 @@
 ## Title: TODO Planner
 ## Notes: Character boards with shared Global tasks for achievements, mounts, collections, and more.
 ## Author: Eugen
-## Version: 0.2.0
+## Version: 0.3.0
 ## SavedVariables: TODOPlannerDB
 
 Libs/JanisTheme-1.0/JanisTheme-1.0.lua
