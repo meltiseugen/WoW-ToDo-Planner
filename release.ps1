@@ -72,7 +72,7 @@ if ($dirtyTrackedFiles) {
     throw "Tracked files have uncommitted changes. Commit or stash them before releasing.`n$dirtyTrackedFiles"
 }
 
-$tocRelativePath = "InspectItemLevelReloaded.toc"
+$tocRelativePath = "TODO-Planner.toc"
 $tocPath = Join-Path $repoRoot $tocRelativePath
 if (-not (Test-Path -LiteralPath $tocPath)) {
     throw "Could not find $tocRelativePath."

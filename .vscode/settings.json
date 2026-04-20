@@ -5,6 +5,13 @@
         "StaticPopupDialogs",
         "StaticPopup_Show",
         "YES",
-        "NO"
+        "NO",
+        "UISpecialFrames",
+        "AchievementFrameAchievements",
+        "BaseScrollBoxEvents",
+        "AchievementFrame",
+        "ScrollBoxListViewMixin",
+        "OKAY",
+        "CRITERIA_TYPE_ACHIEVEMENT"
     ]
 }

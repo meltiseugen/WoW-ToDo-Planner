@@ -27,6 +27,13 @@ Base Kanban-style planner addon for World of Warcraft.
 - `/tdp resetpos`: reset window to center
 - `/tdp help`: print command help
 
+## Code layout
+- `TODOPlanner.lua`: addon namespace and event frame bootstrap.
+- `Core/`: constants, utility helpers, theme setup, slash commands, and load-event bootstrap.
+- `Data/`: board, task, and saved-variable database managers.
+- `UI/`: reusable widgets, task cards, task details, and the main planner window.
+- `Integrations/`: Blizzard UI integrations such as achievement task buttons and Wowhead detail helpers.
+
 ## Notes
 - Data is global/account-wide, but tasks can now live on `Global` or on individual character boards.
 - `Global` tasks are visible on every character board while keeping per-character progress state.

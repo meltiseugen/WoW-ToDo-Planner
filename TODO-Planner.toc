@@ -1,0 +1,22 @@
+## Interface: 120001
+## Title: TODO Planner
+## Notes: Character boards with shared Global tasks for achievements, mounts, collections, and more.
+## Author: Eugen
+## Version: 0.2.0
+## SavedVariables: TODOPlannerDB
+
+Libs/JanisTheme-1.0/JanisTheme-1.0.lua
+TODOPlanner.lua
+Core/Constants.lua
+Core/Utils.lua
+Core/Theme.lua
+Data/BoardManager.lua
+Data/TaskRepository.lua
+Data/Database.lua
+UI/Widgets.lua
+Integrations/Achievements.lua
+UI/TaskDetailWindow.lua
+UI/TaskCard.lua
+UI/MainWindow.lua
+Core/SlashCommands.lua
+Core/Bootstrap.lua
