@@ -8,13 +8,19 @@ local Widgets = TDP.Widgets
 local TaskCardFactory = {}
 TaskCardFactory.__index = TaskCardFactory
 
+local CARD_WIDTH = 286
+local MIN_CARD_HEIGHT = 104
+local CARD_INSET = 12
+local CARD_ACTION_GAP = 14
+local CARD_ACTION_HEIGHT = 22
+
 function TaskCardFactory:New()
     return setmetatable({}, self)
 end
 
 function TaskCardFactory:Create(parent, task, status, ui)
     local card = Widgets:CreatePanel(parent, "rowOdd", "goldBorder")
-    card:SetSize(286, 104)
+    card:SetSize(CARD_WIDTH, MIN_CARD_HEIGHT)
     Widgets:AddGoldTopAccent(card, 2, 0.18)
 
     local accent = card:CreateTexture(nil, "ARTWORK")
@@ -24,22 +30,31 @@ function TaskCardFactory:Create(parent, task, status, ui)
     Widgets:SetTextureColor(accent, C.STATUS_ACCENT_COLORS[status], { 1.0, 0.82, 0.18, 0.68 })
 
     local title = card:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    title:SetPoint("TOPLEFT", 12, -10)
-    title:SetPoint("TOPRIGHT", -12, -10)
+    title:SetPoint("TOPLEFT", CARD_INSET, -10)
+    title:SetPoint("TOPRIGHT", -CARD_INSET, -10)
+    title:SetWidth(CARD_WIDTH - (CARD_INSET * 2))
     title:SetJustifyH("LEFT")
     if title.SetWordWrap then
-        title:SetWordWrap(false)
+        title:SetWordWrap(true)
+    end
+    if title.SetNonSpaceWrap then
+        title:SetNonSpaceWrap(true)
     end
     title:SetText(task.title or "(Untitled)")
+    title:SetHeight(math.ceil(title:GetStringHeight() or 14))
 
     local meta = card:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     meta:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -6)
-    meta:SetPoint("RIGHT", card, "RIGHT", -12, 0)
+    meta:SetPoint("RIGHT", card, "RIGHT", -CARD_INSET, 0)
     meta:SetJustifyH("LEFT")
     meta:SetText(string.format("Category: %s", task.category or "Other"))
 
+    local contentBottom = 10 + (title:GetHeight() or 14) + 6 + math.ceil(meta:GetStringHeight() or 12)
+    local actionTop = 10 + CARD_ACTION_HEIGHT + CARD_ACTION_GAP
+    card:SetHeight(math.max(MIN_CARD_HEIGHT, contentBottom + actionTop))
+
     local leftBtn = Widgets:CreateButton(card, 26, 22, "<", "subtle")
-    leftBtn:SetPoint("BOTTOMLEFT", 12, 10)
+    leftBtn:SetPoint("BOTTOMLEFT", CARD_INSET, 10)
     leftBtn.tooltipText = "Move left"
 
     local rightBtn = Widgets:CreateButton(card, 26, 22, ">", "subtle")

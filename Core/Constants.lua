@@ -39,6 +39,7 @@ TDP.Constants = {
         settings = {
             filterCategory = "All",
             selectedBoard = false,
+            useProgressBars = true,
             frame = {
                 point = "CENTER",
                 x = 0,

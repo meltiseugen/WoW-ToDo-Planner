@@ -42,6 +42,10 @@ function BoardManager:NormalizeBoardKey(boardKey)
         return C.ALL_BOARD_KEY
     end
 
+    if boardKey:lower() == "global" then
+        return C.GLOBAL_BOARD_KEY
+    end
+
     if boardKey:lower() == "archive"
         or boardKey:lower() == "archives"
         or boardKey:lower() == "archived" then
@@ -49,6 +53,13 @@ function BoardManager:NormalizeBoardKey(boardKey)
     end
 
     return boardKey
+end
+
+function BoardManager:IsSpecialBoard(boardKey)
+    boardKey = self:NormalizeBoardKey(boardKey)
+    return boardKey == C.ALL_BOARD_KEY
+        or boardKey == C.ARCHIVED_BOARD_KEY
+        or boardKey == C.GLOBAL_BOARD_KEY
 end
 
 function BoardManager:GetDisplayName(boardKey)
@@ -63,6 +74,22 @@ function BoardManager:GetDisplayName(boardKey)
         return "Global"
     end
     return boardKey
+end
+
+function BoardManager:RemoveKnownBoard(boardKey)
+    boardKey = self:NormalizeBoardKey(boardKey)
+    if type(TODOPlannerDB.characters) ~= "table" then
+        return false
+    end
+
+    for index, knownBoardKey in ipairs(TODOPlannerDB.characters) do
+        if self:NormalizeBoardKey(knownBoardKey) == boardKey then
+            table.remove(TODOPlannerDB.characters, index)
+            return true
+        end
+    end
+
+    return false
 end
 
 function BoardManager:SortCharacterBoards(characters)
@@ -94,7 +121,7 @@ end
 
 function BoardManager:EnsureKnownCharacter(boardKey)
     boardKey = self:NormalizeBoardKey(boardKey)
-    if boardKey == C.ALL_BOARD_KEY or boardKey == C.ARCHIVED_BOARD_KEY or boardKey == C.GLOBAL_BOARD_KEY then
+    if self:IsSpecialBoard(boardKey) then
         return
     end
 
@@ -106,6 +133,82 @@ function BoardManager:EnsureKnownCharacter(boardKey)
         table.insert(TODOPlannerDB.characters, boardKey)
         self:SortCharacterBoards(TODOPlannerDB.characters)
     end
+end
+
+function BoardManager:CreateBoard(boardName)
+    if Utils:Trim(boardName) == "" then
+        return nil, "Board name is required."
+    end
+
+    local boardKey = self:NormalizeBoardKey(boardName)
+    if self:IsSpecialBoard(boardKey) then
+        return nil, "That board name is reserved."
+    end
+    if self:IsKnownBoard(boardKey) then
+        return nil, "That board already exists."
+    end
+
+    self:EnsureKnownCharacter(boardKey)
+    return boardKey, nil
+end
+
+function BoardManager:CanDeleteBoard(boardKey)
+    boardKey = self:NormalizeBoardKey(boardKey)
+    if self:IsSpecialBoard(boardKey) then
+        return false, "Built-in boards cannot be deleted."
+    end
+    if boardKey == self:GetPlayerBoardKey() then
+        return false, "The current character board cannot be deleted."
+    end
+    if not self:IsKnownBoard(boardKey) then
+        return false, "That board does not exist."
+    end
+
+    return true, nil
+end
+
+function BoardManager:CountBoardTasks(boardKey)
+    boardKey = self:NormalizeBoardKey(boardKey)
+    local count = 0
+
+    if type(TODOPlannerDB.tasks) ~= "table" then
+        return count
+    end
+
+    for _, task in ipairs(TODOPlannerDB.tasks) do
+        if self:NormalizeBoardKey(task.boardKey) == boardKey then
+            count = count + 1
+        end
+    end
+
+    return count
+end
+
+function BoardManager:DeleteBoard(boardKey)
+    boardKey = self:NormalizeBoardKey(boardKey)
+    local canDelete, reason = self:CanDeleteBoard(boardKey)
+    if not canDelete then
+        return false, reason, 0
+    end
+
+    local movedTasks = 0
+    if type(TODOPlannerDB.tasks) == "table" then
+        for _, task in ipairs(TODOPlannerDB.tasks) do
+            if self:NormalizeBoardKey(task.boardKey) == boardKey then
+                task.boardKey = C.GLOBAL_BOARD_KEY
+                task.updatedAt = time()
+                movedTasks = movedTasks + 1
+            end
+        end
+    end
+
+    self:RemoveKnownBoard(boardKey)
+
+    if self:NormalizeBoardKey(TODOPlannerDB.settings.selectedBoard) == boardKey then
+        TODOPlannerDB.settings.selectedBoard = C.GLOBAL_BOARD_KEY
+    end
+
+    return true, nil, movedTasks
 end
 
 function BoardManager:GetBoardOptions()

@@ -71,10 +71,16 @@ function SlashCommands:Init()
             return
         end
 
+        if cmd == "options" then
+            self.addon.ui:OpenOptions()
+            return
+        end
+
         if cmd == "help" then
             Utils:Msg("/tdp toggle - Show/hide planner")
             Utils:Msg("/tdp show - Show planner")
             Utils:Msg("/tdp hide - Hide planner")
+            Utils:Msg("/tdp options - Open options")
             Utils:Msg("/tdp resetpos - Reset window position")
             return
         end

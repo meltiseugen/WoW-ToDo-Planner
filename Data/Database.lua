@@ -102,6 +102,10 @@ function Database:Init()
         TODOPlannerDB.settings.filterCategory = "All"
     end
 
+    if type(TODOPlannerDB.settings.useProgressBars) ~= "boolean" then
+        TODOPlannerDB.settings.useProgressBars = true
+    end
+
     local selectedBoard = TODOPlannerDB.settings.selectedBoard
     if type(selectedBoard) ~= "string" or Utils:Trim(selectedBoard) == "" then
         selectedBoard = currentBoardKey

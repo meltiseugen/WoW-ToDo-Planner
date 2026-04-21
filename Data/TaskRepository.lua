@@ -159,6 +159,21 @@ function TaskRepository:CreateOnCurrentCharacterBoard(fields)
     return self:Create(fields)
 end
 
+function TaskRepository:GetSelectedCreationBoardKey()
+    local selectedBoard = Boards:NormalizeBoardKey(TODOPlannerDB.settings and TODOPlannerDB.settings.selectedBoard)
+    if selectedBoard == C.ALL_BOARD_KEY or selectedBoard == C.ARCHIVED_BOARD_KEY then
+        return Boards:GetPlayerBoardKey()
+    end
+
+    return selectedBoard
+end
+
+function TaskRepository:CreateOnSelectedBoard(fields)
+    fields = fields or {}
+    fields.boardKey = self:GetSelectedCreationBoardKey()
+    return self:Create(fields)
+end
+
 function TaskRepository:FindBySource(sourceType, sourceId, boardKey)
     boardKey = Boards:NormalizeBoardKey(boardKey or Boards:GetPlayerBoardKey())
 

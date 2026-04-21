@@ -14,11 +14,15 @@ function Bootstrap:OnAddonLoaded(addonName)
     if addonName == ADDON_NAME then
         self.addon.Database:Init()
         self.addon.ui = self.addon.MainWindow:New():Build()
+        self.addon.ui.optionsWindow = self.addon.OptionsWindow:New(self.addon.ui)
+        self.addon.ui.optionsWindow:Build()
         self.addon.SlashCommands:Init()
         self.addon.Achievements:Init()
+        self.frame:RegisterEvent("ACHIEVEMENT_EARNED")
+        self.frame:RegisterEvent("CRITERIA_UPDATE")
 
         self.addon.Utils:Msg("Loaded. Use /tdp to open your board.")
-    elseif addonName == "Blizzard_AchievementUI" then
+    elseif addonName == "Blizzard_AchievementUI" or addonName == "Krowi_AchievementFilter" then
         self.addon.Achievements:Init()
     end
 end
@@ -28,6 +32,8 @@ function Bootstrap:Init()
     self.frame:SetScript("OnEvent", function(_, event, ...)
         if event == "ADDON_LOADED" then
             self:OnAddonLoaded(...)
+        elseif event == "ACHIEVEMENT_EARNED" or event == "CRITERIA_UPDATE" then
+            self.addon.Achievements:ScheduleAutoCompleteRefresh()
         end
     end)
 end

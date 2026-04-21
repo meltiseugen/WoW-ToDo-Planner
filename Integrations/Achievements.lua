@@ -170,7 +170,7 @@ end
 
 function AchievementIntegration:CreateUrlDialog()
     local frame = CreateFrame("Frame", "TODOPlannerUrlDialog", UIParent, "BasicFrameTemplateWithInset")
-    frame:SetSize(560, 190)
+    frame:SetSize(560, 145)
     frame:SetPoint("CENTER")
     frame:SetFrameStrata("DIALOG")
     frame:SetClampedToScreen(true)
@@ -220,25 +220,6 @@ function AchievementIntegration:CreateUrlDialog()
     end)
     frame.urlEditBox = urlEditBox
 
-    local closeButton = Widgets:CreateButton(content, 76, 24, "Close", "neutral")
-    closeButton:SetPoint("TOPRIGHT", urlEditBox, "BOTTOMRIGHT", 0, -12)
-    closeButton:SetScript("OnClick", function()
-        frame:Hide()
-    end)
-
-    local openButton = Widgets:CreateButton(content, 116, 24, "Open Browser", "primary")
-    openButton:SetPoint("RIGHT", closeButton, "LEFT", -8, 0)
-    openButton:SetScript("OnClick", function()
-        local url = frame.urlEditBox:GetText()
-        if self:TryOpenExternalUrl(url) then
-            Utils:Msg("Requested browser open for Wowhead.")
-        else
-            Utils:Msg("Could not open the browser from WoW. Copy the URL with Ctrl+C.")
-        end
-        frame.urlEditBox:SetFocus()
-        frame.urlEditBox:HighlightText()
-    end)
-
     if Theme then
         Theme:RegisterSpecialFrame("TODOPlannerUrlDialog")
     end
@@ -272,6 +253,46 @@ function AchievementIntegration:CopyWowheadAchievementUrl(achievementId)
     else
         self:ShowCopyUrlDialog(url)
     end
+end
+
+function AchievementIntegration:OpenAchievement(achievementId)
+    achievementId = tonumber(achievementId)
+    if not achievementId then
+        return false
+    end
+
+    if C_AddOns and type(C_AddOns.IsAddOnLoaded) == "function" and type(C_AddOns.LoadAddOn) == "function" then
+        local ok, loaded = pcall(C_AddOns.IsAddOnLoaded, "Blizzard_AchievementUI")
+        if ok and not loaded then
+            pcall(C_AddOns.LoadAddOn, "Blizzard_AchievementUI")
+        end
+    end
+
+    if type(KrowiAF_SelectAchievementFromID) == "function" then
+        local ok = pcall(KrowiAF_SelectAchievementFromID, achievementId)
+        if ok then
+            return true
+        end
+    end
+
+    if type(AchievementFrame_ToggleAchievementFrame) == "function"
+        and AchievementFrame
+        and not AchievementFrame:IsShown() then
+        pcall(AchievementFrame_ToggleAchievementFrame)
+    elseif AchievementFrame and not AchievementFrame:IsShown() then
+        if type(ShowUIPanel) == "function" then
+            pcall(ShowUIPanel, AchievementFrame)
+        else
+            AchievementFrame:Show()
+        end
+    end
+
+    if type(AchievementFrame_SelectAchievement) == "function" then
+        local ok = pcall(AchievementFrame_SelectAchievement, achievementId)
+        return ok
+    end
+
+    return false
 end
 
 function AchievementIntegration:SafeGetAchievementCategory(achievementId)
@@ -388,6 +409,157 @@ function AchievementIntegration:GetProgressSummary(achievementId)
     return string.format("%d/%d criteria", completed, numCriteria)
 end
 
+function AchievementIntegration:ParseProgressRatio(progressText)
+    if type(progressText) ~= "string" then
+        return nil, nil
+    end
+
+    local current, maximum = progressText:match("(%d+)%s*/%s*(%d+)")
+    current = tonumber(current)
+    maximum = tonumber(maximum)
+    if not current or not maximum or maximum <= 1 then
+        return nil, nil
+    end
+
+    return current, maximum
+end
+
+function AchievementIntegration:IsSubAchievementCriteria(criteria)
+    return criteria
+        and CRITERIA_TYPE_ACHIEVEMENT
+        and criteria.criteriaType == CRITERIA_TYPE_ACHIEVEMENT
+        and criteria.assetId
+end
+
+function AchievementIntegration:GetAchievementCriteriaRows(achievementId)
+    local rows = {}
+    local numCriteria = self:SafeGetNumCriteria(achievementId)
+
+    for index = 1, numCriteria do
+        local criteria = self:SafeGetCriteriaInfo(achievementId, index)
+        if criteria then
+            if self:IsSubAchievementCriteria(criteria) then
+                local subAchievementId = tonumber(criteria.assetId)
+                local subInfo = subAchievementId and self:GetInfoSafe(subAchievementId)
+                local isCompleted = (subInfo and subInfo.completed == true) or criteria.completed == true
+                local progress = subAchievementId and self:GetProgressSummary(subAchievementId) or ""
+                local progressValue, progressMax = self:ParseProgressRatio(progress)
+
+                rows[#rows + 1] = {
+                    id = subAchievementId,
+                    order = index,
+                    name = subInfo and subInfo.name or criteria.criteriaString or "Unknown achievement",
+                    completed = isCompleted,
+                    progress = progress,
+                    progressValue = progressValue,
+                    progressMax = progressMax,
+                    canOpen = subAchievementId ~= nil,
+                }
+            else
+                local progress = ""
+                if criteria.quantityString and criteria.quantityString ~= "" then
+                    progress = criteria.quantityString
+                elseif criteria.reqQuantity and criteria.reqQuantity > 0 then
+                    progress = string.format("%s/%s", tostring(criteria.quantity or 0), tostring(criteria.reqQuantity))
+                end
+                if progress == "0" or progress == "1" then
+                    progress = ""
+                end
+                local progressValue, progressMax = self:ParseProgressRatio(progress)
+
+                rows[#rows + 1] = {
+                    order = index,
+                    name = criteria.criteriaString or ("Criteria " .. tostring(index)),
+                    completed = criteria.completed == true,
+                    progress = progress,
+                    progressValue = progressValue,
+                    progressMax = progressMax,
+                    canOpen = false,
+                }
+            end
+        end
+    end
+
+    table.sort(rows, function(left, right)
+        if left.completed ~= right.completed then
+            return left.completed == false
+        end
+        return (left.order or 0) < (right.order or 0)
+    end)
+
+    return rows
+end
+
+function AchievementIntegration:IsAchievementComplete(achievementId)
+    achievementId = tonumber(achievementId)
+    if not achievementId then
+        return false
+    end
+
+    local info = self:GetInfoSafe(achievementId)
+    if info and info.completed == true then
+        return true
+    end
+
+    local rows = self:GetAchievementCriteriaRows(achievementId)
+    if #rows == 0 then
+        return false
+    end
+
+    for _, row in ipairs(rows) do
+        if row.completed ~= true then
+            return false
+        end
+    end
+
+    return true
+end
+
+function AchievementIntegration:AutoCompleteTask(task)
+    if not task or Tasks:IsArchived(task) or Tasks:GetStatus(task) == "DONE" then
+        return false
+    end
+
+    local achievementId = self:GetTaskAchievementId(task)
+    if not achievementId or not self:IsAchievementComplete(achievementId) then
+        return false
+    end
+
+    Tasks:SetStatus(task, "DONE")
+    return true
+end
+
+function AchievementIntegration:AutoCompleteTasks()
+    if type(TODOPlannerDB) ~= "table" or type(TODOPlannerDB.tasks) ~= "table" then
+        return false
+    end
+
+    local changed = false
+    for _, task in ipairs(TODOPlannerDB.tasks) do
+        if self:AutoCompleteTask(task) then
+            changed = true
+        end
+    end
+
+    if changed then
+        Tasks:SortStable(TODOPlannerDB.tasks)
+    end
+
+    return changed
+end
+
+function AchievementIntegration:ScheduleAutoCompleteRefresh()
+    if C_Timer and C_Timer.After then
+        C_Timer.After(0, function()
+            if self:AutoCompleteTasks() and self.addon.ui then
+                self.addon.ui:Render()
+            end
+        end)
+    elseif self:AutoCompleteTasks() and self.addon.ui then
+        self.addon.ui:Render()
+    end
+end
+
 function AchievementIntegration:FormatDate(info)
     if not info or not info.completed then
         return "Not completed"
@@ -398,6 +570,24 @@ function AchievementIntegration:FormatDate(info)
     end
 
     return "Completed"
+end
+
+function AchievementIntegration:BuildSummaryFields(achievementId)
+    achievementId = tonumber(achievementId)
+    local info = achievementId and self:GetInfoSafe(achievementId)
+    if not info then
+        return nil
+    end
+
+    return {
+        achievementStatus = self:FormatDate(info),
+        progress = self:GetProgressSummary(achievementId),
+        achievementCategory = self:GetCategoryPath(achievementId),
+        guild = info.isGuild and "Yes" or nil,
+        earnedByMe = info.wasEarnedByMe and "Yes" or "No",
+        flags = tostring(info.flags or "Unknown"),
+        earnedBy = info.earnedBy ~= "" and info.earnedBy or nil,
+    }
 end
 
 function AchievementIntegration:AppendSeries(lines, achievementId)
@@ -436,14 +626,7 @@ function AchievementIntegration:AppendSeries(lines, achievementId)
         local info = self:GetInfoSafe(currentId)
         if info then
             local currentMarker = currentId == achievementId and " <- current" or ""
-            lines[#lines + 1] = string.format(
-                "%d. %s (#%s) - %s%s",
-                index,
-                info.name or "Unknown",
-                tostring(currentId),
-                info.completed and "Done" or "Not done",
-                currentMarker
-            )
+            lines[#lines + 1] = string.format("%d. %s%s", index, info.name or "Unknown", currentMarker)
         end
 
         if type(GetNextAchievement) ~= "function" then
@@ -466,101 +649,35 @@ function AchievementIntegration:BuildDetailText(task)
         return Utils:Trim(task.notes or "") ~= "" and Utils:Trim(task.notes or "") or "Achievement data is not available yet."
     end
 
-    local lines = {
-        "Achievement",
-        string.format("%s (#%s)", info.name or "Unknown", tostring(info.id)),
-        "",
-        "Summary",
-        "Status: " .. self:FormatDate(info),
-        "Progress: " .. self:GetProgressSummary(achievementId),
-        "Points: " .. tostring(info.points or 0),
-        "Category: " .. self:GetCategoryPath(achievementId),
-        "Guild achievement: " .. (info.isGuild and "Yes" or "No"),
-        "Earned by this character: " .. (info.wasEarnedByMe and "Yes" or "No"),
-        "Flags: " .. tostring(info.flags or "Unknown"),
-    }
+    local lines = {}
 
-    if info.earnedBy and info.earnedBy ~= "" then
-        lines[#lines + 1] = "Earned by: " .. info.earnedBy
-    end
     if info.description and info.description ~= "" then
-        lines[#lines + 1] = ""
-        lines[#lines + 1] = "Description"
         lines[#lines + 1] = info.description
     end
+
     if info.rewardText and info.rewardText ~= "" then
-        lines[#lines + 1] = ""
+        if #lines > 0 then
+            lines[#lines + 1] = ""
+        end
         lines[#lines + 1] = "Reward"
         lines[#lines + 1] = info.rewardText
     end
 
-    local numCriteria = self:SafeGetNumCriteria(achievementId)
-    lines[#lines + 1] = ""
-    lines[#lines + 1] = "Criteria"
-
-    if numCriteria == 0 then
-        lines[#lines + 1] = "No visible criteria."
-    else
-        for index = 1, numCriteria do
-            local criteria = self:SafeGetCriteriaInfo(achievementId, index)
-            if criteria then
-                local doneText = criteria.completed and "[x]" or "[ ]"
-                local text = criteria.criteriaString or ("Criteria " .. tostring(index))
-                local progress = ""
-                if criteria.quantityString and criteria.quantityString ~= "" then
-                    progress = " - " .. criteria.quantityString
-                elseif criteria.reqQuantity and criteria.reqQuantity > 0 then
-                    progress = string.format(" - %s/%s", tostring(criteria.quantity or 0), tostring(criteria.reqQuantity))
-                end
-
-                lines[#lines + 1] = string.format("%s %s%s", doneText, text, progress)
-
-                if CRITERIA_TYPE_ACHIEVEMENT
-                    and criteria.criteriaType == CRITERIA_TYPE_ACHIEVEMENT
-                    and criteria.assetId then
-                    local subInfo = self:GetInfoSafe(criteria.assetId)
-                    if subInfo then
-                        lines[#lines + 1] = string.format(
-                            "    Sub-achievement: %s (#%s) - %s, %s",
-                            subInfo.name or "Unknown",
-                            tostring(criteria.assetId),
-                            subInfo.completed and "Done" or "Not done",
-                            self:GetProgressSummary(criteria.assetId)
-                        )
-                    else
-                        lines[#lines + 1] = "    Sub-achievement ID: " .. tostring(criteria.assetId)
-                    end
-                end
-
-                if criteria.criteriaId then
-                    lines[#lines + 1] = "    Criteria ID: " .. tostring(criteria.criteriaId)
-                end
-                if criteria.eligible == false then
-                    lines[#lines + 1] = "    Eligible: No"
-                end
-                if criteria.charName and criteria.charName ~= "" then
-                    lines[#lines + 1] = "    Character: " .. criteria.charName
-                end
-            end
+    if self:SafeGetNumCriteria(achievementId) == 0 then
+        if #lines > 0 then
+            lines[#lines + 1] = ""
         end
+        lines[#lines + 1] = "Criteria"
+        lines[#lines + 1] = "No visible criteria."
     end
 
     self:AppendSeries(lines, achievementId)
 
-    local link = self:GetLinkSafe(achievementId)
-    if link then
-        lines[#lines + 1] = ""
-        lines[#lines + 1] = "In-game link"
-        lines[#lines + 1] = link
-    end
-
-    lines[#lines + 1] = ""
-    lines[#lines + 1] = "Wowhead"
-    lines[#lines + 1] = self:GetWowheadUrl(achievementId)
-
     local manualNotes = Utils:Trim(task.notes or "")
     if manualNotes ~= "" and not manualNotes:match("^Achievement ID:") then
-        lines[#lines + 1] = ""
+        if #lines > 0 then
+            lines[#lines + 1] = ""
+        end
         lines[#lines + 1] = "Task Notes"
         lines[#lines + 1] = manualNotes
     end
@@ -635,9 +752,7 @@ function AchievementIntegration:IsValidAchievementId(achievementId)
 end
 
 function AchievementIntegration:FormatTaskNotes(info)
-    local notes = {
-        "Achievement ID: " .. tostring(info.id),
-    }
+    local notes = {}
 
     local description = Utils:Trim(info.description)
     if description ~= "" then
@@ -647,11 +762,6 @@ function AchievementIntegration:FormatTaskNotes(info)
     local rewardText = Utils:Trim(info.rewardText)
     if rewardText ~= "" then
         notes[#notes + 1] = "Reward: " .. rewardText
-    end
-
-    local link = self:GetLinkSafe(info.id)
-    if link then
-        notes[#notes + 1] = "Link: " .. link
     end
 
     return table.concat(notes, "\n")
@@ -664,7 +774,7 @@ function AchievementIntegration:CreateTask(achievementId)
         return nil, false
     end
 
-    local targetBoardKey = Boards:GetPlayerBoardKey()
+    local targetBoardKey = Tasks:GetSelectedCreationBoardKey()
     local existingTask = Tasks:FindBySource("achievement", achievementId, targetBoardKey)
     if existingTask then
         TODOPlannerDB.settings.selectedBoard = targetBoardKey
@@ -681,19 +791,16 @@ function AchievementIntegration:CreateTask(achievementId)
         return nil, false
     end
 
-    local title = "Achievement: " .. info.name
-    if #title > 120 then
-        title = title:sub(1, 117) .. "..."
-    end
-
-    local task = Tasks:CreateOnCurrentCharacterBoard({
-        title = title,
+    local task = Tasks:CreateOnSelectedBoard({
+        title = "Achievement: " .. info.name,
         notes = self:FormatTaskNotes(info),
         category = "Achievements",
         status = "TODO",
         sourceType = "achievement",
         sourceId = achievementId,
     })
+    self:AutoCompleteTask(task)
+    Tasks:SortStable(TODOPlannerDB.tasks)
 
     if self.addon.ui then
         self.addon.ui:Render()
@@ -738,9 +845,11 @@ function AchievementIntegration:UpdateTaskButton(row)
     row.TODOPlannerAchievementId = achievementId
     button.achievementId = achievementId
 
-    local existingTask = Tasks:FindBySource("achievement", achievementId, Boards:GetPlayerBoardKey())
+    local targetBoardKey = Tasks:GetSelectedCreationBoardKey()
+    local existingTask = Tasks:FindBySource("achievement", achievementId, targetBoardKey)
     button.existingTaskId = existingTask and existingTask.id or nil
     button:SetText(existingTask and "Added" or "Add Task")
+    button.targetBoardName = Boards:GetDisplayName(targetBoardKey)
     button:Show()
     self:AnchorTaskButton(row)
 end
@@ -780,10 +889,10 @@ function AchievementIntegration:DecorateRow(row, elementData)
             GameTooltip:SetOwner(target, "ANCHOR_RIGHT")
             if target.existingTaskId then
                 GameTooltip:SetText("TODO Planner")
-                GameTooltip:AddLine("Task already exists on this character board.", 1, 1, 1, true)
+                GameTooltip:AddLine("Task already exists on " .. (target.targetBoardName or "this board") .. ".", 1, 1, 1, true)
             else
                 GameTooltip:SetText("Add to TODO Planner")
-                GameTooltip:AddLine("Create a task on the current character board.", 1, 1, 1, true)
+                GameTooltip:AddLine("Create a task on " .. (target.targetBoardName or "the selected board") .. ".", 1, 1, 1, true)
             end
             GameTooltip:Show()
         end)
@@ -875,6 +984,12 @@ function AchievementIntegration:CollectScrollBoxes()
         end
     end
 
+    local function addFrameScrollBox(frame)
+        if frame then
+            add(frame.ScrollBox)
+        end
+    end
+
     if AchievementFrameAchievements then
         add(AchievementFrameAchievements.ScrollBox)
     end
@@ -886,10 +1001,53 @@ function AchievementIntegration:CollectScrollBoxes()
         end
     end
 
+    addFrameScrollBox(KrowiAF_AchievementsFrame)
+    if KrowiAF_SummaryFrame then
+        addFrameScrollBox(KrowiAF_SummaryFrame.AchievementsFrame)
+    end
+
     return scrollBoxes
 end
 
+function AchievementIntegration:InstallKrowiRefreshHook(frame, updateHooks)
+    if not frame or frame.TODOPlannerRefreshHooksInstalled then
+        return
+    end
+
+    frame.TODOPlannerRefreshHooksInstalled = true
+    frame:HookScript("OnShow", function()
+        self:ScheduleRefresh()
+    end)
+
+    for _, hookName in ipairs(updateHooks) do
+        if type(frame[hookName]) == "function" then
+            hooksecurefunc(frame, hookName, function()
+                self:ScheduleRefresh()
+            end)
+        end
+    end
+end
+
+function AchievementIntegration:InstallKrowiHooks()
+    self:InstallKrowiRefreshHook(KrowiAF_AchievementsFrame, {
+        "Update",
+        "ForceUpdate",
+    })
+
+    if KrowiAF_SummaryFrame then
+        self:InstallKrowiRefreshHook(KrowiAF_SummaryFrame, {
+            "Update",
+            "UpdateAchievementsOnNextShow",
+        })
+        self:InstallKrowiRefreshHook(KrowiAF_SummaryFrame.AchievementsFrame, {
+            "Update",
+        })
+    end
+end
+
 function AchievementIntegration:RefreshButtons()
+    self:InstallKrowiHooks()
+
     for _, scrollBox in ipairs(self:CollectScrollBoxes()) do
         self:DecorateScrollBox(scrollBox)
         if scrollBox.ForEachFrame then

@@ -5,6 +5,7 @@ local Utils = TDP.Utils
 local Boards = TDP.Boards
 local Tasks = TDP.Tasks
 local Widgets = TDP.Widgets
+local Achievements = TDP.Achievements
 
 local MainWindow = {}
 MainWindow.__index = MainWindow
@@ -16,12 +17,16 @@ function MainWindow:New()
         toolbar = nil,
         boardButton = nil,
         filterButton = nil,
+        createBoardButton = nil,
+        deleteBoardButton = nil,
+        optionsButton = nil,
         inputTitle = nil,
         saveButton = nil,
         detailedButton = nil,
         columns = {},
         editingTaskId = nil,
         detailWindow = nil,
+        optionsWindow = nil,
     }
     return setmetatable(instance, self)
 end
@@ -29,7 +34,7 @@ end
 function MainWindow:ResetEditor()
     self.editingTaskId = nil
     self.inputTitle:SetText("")
-    self.saveButton:SetText("Add Task")
+    self.saveButton:SetText("+")
 end
 
 function MainWindow:LoadEditor(task)
@@ -83,11 +88,101 @@ function MainWindow:GetSelectedBoardKey()
 end
 
 function MainWindow:OpenTaskDetail(task)
+    if Achievements and Achievements:AutoCompleteTask(task) then
+        Tasks:SortStable(TODOPlannerDB.tasks)
+        self:Render()
+        task = Tasks:FindById(task.id)
+    end
+
     if not self.detailWindow then
         self.detailWindow = TDP.TaskDetailWindow:New(self)
     end
 
     self.detailWindow:Open(task)
+end
+
+function MainWindow:OpenOptions()
+    if not self.optionsWindow then
+        self.optionsWindow = TDP.OptionsWindow:New(self)
+    end
+
+    self.optionsWindow:Open()
+end
+
+function MainWindow:OpenCreateBoardDialog()
+    StaticPopupDialogs["TODO_PLANNER_CREATE_BOARD"] = {
+        text = "Create board",
+        button1 = "Create",
+        button2 = CANCEL,
+        hasEditBox = true,
+        maxLetters = 64,
+        OnShow = function(dialog)
+            local editBox = dialog.editBox or dialog.EditBox
+            if editBox then
+                editBox:SetText("")
+                editBox:SetFocus()
+            end
+        end,
+        OnAccept = function(dialog)
+            local editBox = dialog.editBox or dialog.EditBox
+            local boardName = editBox and Utils:Trim(editBox:GetText()) or ""
+            local boardKey, errorText = Boards:CreateBoard(boardName)
+            if not boardKey then
+                Utils:Msg(errorText or "Could not create board.")
+                return
+            end
+
+            TODOPlannerDB.settings.selectedBoard = boardKey
+            self:ResetEditor()
+            self:Render()
+        end,
+        EditBoxOnEnterPressed = function(editBox)
+            StaticPopup_OnClick(editBox:GetParent(), 1)
+        end,
+        EditBoxOnEscapePressed = function(editBox)
+            editBox:GetParent():Hide()
+        end,
+        timeout = 0,
+        whileDead = true,
+        hideOnEscape = true,
+        preferredIndex = 3,
+    }
+    StaticPopup_Show("TODO_PLANNER_CREATE_BOARD")
+end
+
+function MainWindow:ConfirmDeleteSelectedBoard()
+    local boardKey = self:GetSelectedBoardKey()
+    local canDelete, reason = Boards:CanDeleteBoard(boardKey)
+    if not canDelete then
+        Utils:Msg(reason or "That board cannot be deleted.")
+        return
+    end
+
+    local taskCount = Boards:CountBoardTasks(boardKey)
+    local taskText = taskCount == 1 and "1 task will move to Global." or tostring(taskCount) .. " tasks will move to Global."
+
+    StaticPopupDialogs["TODO_PLANNER_DELETE_BOARD"] = {
+        text = "Delete board \"" .. Boards:GetDisplayName(boardKey) .. "\"?\n" .. taskText,
+        button1 = YES,
+        button2 = NO,
+        OnAccept = function()
+            local ok, errorText, movedTasks = Boards:DeleteBoard(boardKey)
+            if not ok then
+                Utils:Msg(errorText or "Could not delete board.")
+                return
+            end
+
+            Tasks:SortStable(TODOPlannerDB.tasks)
+            self:ResetEditor()
+            self:Render()
+            Utils:Msg("Deleted board. Moved " .. tostring(movedTasks or 0) .. " task(s) to Global.")
+        end,
+        timeout = 0,
+        whileDead = true,
+        hideOnEscape = true,
+        preferredIndex = 3,
+    }
+    StaticPopup_Show("TODO_PLANNER_DELETE_BOARD")
 end
 
 function MainWindow:CreateColumn(parent, status, offsetX)
@@ -187,6 +282,15 @@ function MainWindow:Build()
     local filterButton = Widgets:CreateButton(toolbar, 180, 24, "", "neutral")
     filterButton:SetPoint("LEFT", boardButton, "RIGHT", 8, 0)
 
+    local createBoardButton = Widgets:CreateButton(toolbar, 94, 24, "New Board", "neutral")
+    createBoardButton:SetPoint("LEFT", filterButton, "RIGHT", 8, 0)
+
+    local deleteBoardButton = Widgets:CreateButton(toolbar, 104, 24, "Delete Board", "danger")
+    deleteBoardButton:SetPoint("LEFT", createBoardButton, "RIGHT", 8, 0)
+
+    local optionsButton = Widgets:CreateButton(toolbar, 96, 24, "Options", "neutral")
+    optionsButton:SetPoint("TOPRIGHT", toolbar, "TOPRIGHT", -12, -12)
+
     local inputTitle = Widgets:CreateEditBox(toolbar, 360, 24)
     inputTitle:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 12, -48)
     inputTitle:SetMaxLetters(120)
@@ -195,7 +299,7 @@ function MainWindow:Build()
     titleLabel:SetPoint("BOTTOMLEFT", inputTitle, "TOPLEFT", 4, 4)
     titleLabel:SetText("Task Name")
 
-    local saveButton = Widgets:CreateButton(toolbar, 104, 24, "Add Task", "primary")
+    local saveButton = Widgets:CreateButton(toolbar, 36, 24, "+", "primary")
     saveButton:SetPoint("LEFT", inputTitle, "RIGHT", 8, 0)
 
     local detailedButton = Widgets:CreateButton(toolbar, 132, 24, "Create Detailed", "neutral")
@@ -206,6 +310,9 @@ function MainWindow:Build()
     self.toolbar = toolbar
     self.boardButton = boardButton
     self.filterButton = filterButton
+    self.createBoardButton = createBoardButton
+    self.deleteBoardButton = deleteBoardButton
+    self.optionsButton = optionsButton
     self.inputTitle = inputTitle
     self.saveButton = saveButton
     self.detailedButton = detailedButton
@@ -233,6 +340,18 @@ function MainWindow:Build()
         end)
     end)
 
+    createBoardButton:SetScript("OnClick", function()
+        self:OpenCreateBoardDialog()
+    end)
+
+    deleteBoardButton:SetScript("OnClick", function()
+        self:ConfirmDeleteSelectedBoard()
+    end)
+
+    optionsButton:SetScript("OnClick", function()
+        self:OpenOptions()
+    end)
+
     saveButton:SetScript("OnClick", function()
         local titleText = Utils:Trim(inputTitle:GetText())
         if titleText == "" then
@@ -247,7 +366,7 @@ function MainWindow:Build()
                 task.updatedAt = time()
             end
         else
-            Tasks:CreateOnCurrentCharacterBoard({
+            Tasks:CreateOnSelectedBoard({
                 title = titleText,
                 notes = "",
                 category = "General",
@@ -274,11 +393,17 @@ function MainWindow:Build()
 end
 
 function MainWindow:Render()
+    if Achievements and Achievements:AutoCompleteTasks() then
+        Tasks:SortStable(TODOPlannerDB.tasks)
+    end
+
     local boardKey = self:GetSelectedBoardKey()
     Widgets:UpdateButtonLabel(self.boardButton, "Board", boardKey, function(value)
         return Boards:GetDisplayName(value)
     end)
     Widgets:UpdateButtonLabel(self.filterButton, "Filter", TODOPlannerDB.settings.filterCategory or "All")
+    local canDeleteBoard = Boards:CanDeleteBoard(boardKey)
+    Widgets:SetButtonEnabled(self.deleteBoardButton, canDeleteBoard == true)
 
     for status, column in pairs(self.columns) do
         for _, oldCard in ipairs(column.cards) do
@@ -294,7 +419,7 @@ function MainWindow:Render()
         for _, task in ipairs(tasks) do
             local card = TDP.TaskCards:Create(column.content, task, status, self)
             card:SetPoint("TOPLEFT", 4, y)
-            y = y - 112
+            y = y - card:GetHeight() - 8
             column.cards[#column.cards + 1] = card
         end
 
