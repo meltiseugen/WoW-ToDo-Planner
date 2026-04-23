@@ -8,6 +8,10 @@ local Widgets = TDP.Widgets
 local AchievementIntegration = {}
 AchievementIntegration.__index = AchievementIntegration
 
+local ADD_TASK_BUTTON_WIDTH = 28
+local ADDED_TASK_BUTTON_WIDTH = 58
+local TASK_BUTTON_HEIGHT = 22
+
 function AchievementIntegration:New(addon)
     return setmetatable({
         addon = addon,
@@ -580,12 +584,9 @@ function AchievementIntegration:BuildSummaryFields(achievementId)
     end
 
     return {
-        achievementStatus = self:FormatDate(info),
         progress = self:GetProgressSummary(achievementId),
         achievementCategory = self:GetCategoryPath(achievementId),
         guild = info.isGuild and "Yes" or nil,
-        earnedByMe = info.wasEarnedByMe and "Yes" or "No",
-        flags = tostring(info.flags or "Unknown"),
         earnedBy = info.earnedBy ~= "" and info.earnedBy or nil,
     }
 end
@@ -678,7 +679,7 @@ function AchievementIntegration:BuildDetailText(task)
         if #lines > 0 then
             lines[#lines + 1] = ""
         end
-        lines[#lines + 1] = "Task Notes"
+        lines[#lines + 1] = "Task Description"
         lines[#lines + 1] = manualNotes
     end
 
@@ -848,7 +849,8 @@ function AchievementIntegration:UpdateTaskButton(row)
     local targetBoardKey = Tasks:GetSelectedCreationBoardKey()
     local existingTask = Tasks:FindBySource("achievement", achievementId, targetBoardKey)
     button.existingTaskId = existingTask and existingTask.id or nil
-    button:SetText(existingTask and "Added" or "Add Task")
+    button:SetSize(existingTask and ADDED_TASK_BUTTON_WIDTH or ADD_TASK_BUTTON_WIDTH, TASK_BUTTON_HEIGHT)
+    button:SetText(existingTask and "Added" or "+")
     button.targetBoardName = Boards:GetDisplayName(targetBoardKey)
     button:Show()
     self:AnchorTaskButton(row)
@@ -878,7 +880,7 @@ function AchievementIntegration:DecorateRow(row, elementData)
 
     if not row.TODOPlannerTaskButton then
         local button = CreateFrame("Button", nil, row, "UIPanelButtonTemplate")
-        button:SetSize(82, 22)
+        button:SetSize(ADD_TASK_BUTTON_WIDTH, TASK_BUTTON_HEIGHT)
         button:SetFrameLevel((row:GetFrameLevel() or 0) + 20)
         button:RegisterForClicks("LeftButtonUp")
         button:SetScript("OnClick", function(target)

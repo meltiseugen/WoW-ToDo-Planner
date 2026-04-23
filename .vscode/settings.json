@@ -12,6 +12,12 @@
         "AchievementFrame",
         "ScrollBoxListViewMixin",
         "OKAY",
-        "CRITERIA_TYPE_ACHIEVEMENT"
+        "CRITERIA_TYPE_ACHIEVEMENT",
+        "AchievementFrame_ToggleAchievementFrame",
+        "AchievementFrame_SelectAchievement",
+        "CANCEL",
+        "StaticPopup_OnClick",
+        "Settings",
+        "SetItemRef"
     ]
 }

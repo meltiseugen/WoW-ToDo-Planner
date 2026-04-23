@@ -51,7 +51,7 @@ function Database:Init()
         trackCharacter(boardKey)
     end
 
-    for _, task in ipairs(TODOPlannerDB.tasks) do
+    for index, task in ipairs(TODOPlannerDB.tasks) do
         if type(task.id) == "number" and task.id > highestId then
             highestId = task.id
         end
@@ -66,6 +66,9 @@ function Database:Init()
         task.notes = task.notes or ""
         task.createdAt = task.createdAt or time()
         task.updatedAt = task.updatedAt or task.createdAt
+        if type(task.sortOrder) ~= "number" then
+            task.sortOrder = type(task.id) == "number" and task.id or index
+        end
         if task.archivedAt ~= nil and type(task.archivedAt) ~= "number" then
             task.archivedAt = nil
         end

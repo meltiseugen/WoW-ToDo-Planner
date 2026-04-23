@@ -16,6 +16,7 @@ Data/TaskRepository.lua
 Data/Database.lua
 UI/Widgets.lua
 Integrations/Achievements.lua
+UI/TaskEditWindow.lua
 UI/TaskDetailWindow.lua
 UI/TaskCard.lua
 UI/OptionsWindow.lua

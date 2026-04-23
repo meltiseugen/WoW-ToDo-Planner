@@ -103,11 +103,8 @@ function TaskDetailWindow:Build()
     frame.categoryValue = addDetailRow("category", "Category", true).value
     frame.createdValue = addDetailRow("created", "Created", true).value
     frame.updatedValue = addDetailRow("updated", "Updated", true).value
-    addDetailRow("achievementStatus", "Ach. Status")
     addDetailRow("progress", "Progress")
     addDetailRow("achievementCategory", "Ach. Category")
-    addDetailRow("earnedByMe", "Earned Here")
-    addDetailRow("flags", "Flags")
     addDetailRow("guild", "Guild")
     addDetailRow("earnedBy", "Earned By")
 
@@ -118,7 +115,7 @@ function TaskDetailWindow:Build()
 
     local notesLabel = notes:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     notesLabel:SetPoint("TOPLEFT", 12, -10)
-    notesLabel:SetText("Notes")
+    notesLabel:SetText("Description")
 
     local notesScroll = CreateFrame("ScrollFrame", nil, notes, "UIPanelScrollFrameTemplate")
     notesScroll:SetPoint("TOPLEFT", 10, -30)
@@ -200,14 +197,7 @@ function TaskDetailWindow:Build()
             return
         end
 
-        if not ui.frame:IsShown() then
-            ui:Render()
-            ui.frame:Show()
-        end
-
-        ui:LoadEditor(task)
-        ui.inputTitle:SetFocus()
-        frame:Hide()
+        ui:OpenTaskEdit(task)
     end)
 
     local archiveButton = Widgets:CreateButton(body, 86, 24, "Archive", "danger")
@@ -327,8 +317,10 @@ function TaskDetailWindow:Build()
 
         row.openButton = Widgets:CreateButton(row, 58, 22, "Open", "primary")
         row.openButton:SetPoint("RIGHT", row, "RIGHT", -6, 0)
-        row.title:SetPoint("RIGHT", row.openButton, "LEFT", -8, 0)
-        row.meta:SetPoint("RIGHT", row.openButton, "LEFT", -8, 0)
+        row.wowheadButton = Widgets:CreateButton(row, 76, 22, "Wowhead", "neutral")
+        row.wowheadButton:SetPoint("RIGHT", row.openButton, "LEFT", -6, 0)
+        row.title:SetPoint("RIGHT", row.wowheadButton, "LEFT", -8, 0)
+        row.meta:SetPoint("RIGHT", row.wowheadButton, "LEFT", -8, 0)
         row.openButton:SetScript("OnClick", function(target)
             local achievementId = target:GetParent().achievementId
             if not achievementId then
@@ -338,6 +330,14 @@ function TaskDetailWindow:Build()
             if not Achievements:OpenAchievement(achievementId) then
                 Utils:Msg("Could not open that achievement in the achievement window.")
             end
+        end)
+        row.wowheadButton:SetScript("OnClick", function(target)
+            local achievementId = target:GetParent().achievementId
+            if not achievementId then
+                return
+            end
+
+            Achievements:CopyWowheadAchievementUrl(achievementId)
         end)
 
         self.criteriaRows[index] = row
@@ -378,6 +378,7 @@ function TaskDetailWindow:Build()
                 local row = self:GetCriteriaRow(index)
                 row.achievementId = criteriaRow.id
                 Widgets:SetButtonEnabled(row.openButton, criteriaRow.canOpen == true)
+                Widgets:SetButtonEnabled(row.wowheadButton, criteriaRow.canOpen == true)
                 row:ClearAllPoints()
                 row:SetPoint("TOPLEFT", self.notesContent, "TOPLEFT", 0, nextY)
                 row:SetSize(contentWidth, 50)
@@ -394,10 +395,16 @@ function TaskDetailWindow:Build()
                 row.progressBar:ClearAllPoints()
                 if criteriaRow.canOpen then
                     row.openButton:Show()
-                    row.title:SetPoint("RIGHT", row.openButton, "LEFT", -8, 0)
-                    row.meta:SetPoint("RIGHT", row.openButton, "LEFT", -8, 0)
+                    row.wowheadButton:Show()
+                    row.openButton:ClearAllPoints()
+                    row.openButton:SetPoint("RIGHT", row, "RIGHT", -6, 0)
+                    row.wowheadButton:ClearAllPoints()
+                    row.wowheadButton:SetPoint("RIGHT", row.openButton, "LEFT", -6, 0)
+                    row.title:SetPoint("RIGHT", row.wowheadButton, "LEFT", -8, 0)
+                    row.meta:SetPoint("RIGHT", row.wowheadButton, "LEFT", -8, 0)
                 else
                     row.openButton:Hide()
+                    row.wowheadButton:Hide()
                     row.title:SetPoint("RIGHT", row, "RIGHT", -8, 0)
                     row.meta:SetPoint("RIGHT", row, "RIGHT", -8, 0)
                 end
@@ -415,7 +422,7 @@ function TaskDetailWindow:Build()
                 if TODOPlannerDB.settings.useProgressBars ~= false and criteriaRow.progressValue and criteriaRow.progressMax then
                     row.meta:Hide()
                     row.progressBar:SetPoint("TOPLEFT", row.title, "BOTTOMLEFT", 0, -6)
-                    row.progressBar:SetPoint("RIGHT", criteriaRow.canOpen and row.openButton or row, criteriaRow.canOpen and "LEFT" or "RIGHT", criteriaRow.canOpen and -8 or -8, 0)
+                    row.progressBar:SetPoint("RIGHT", criteriaRow.canOpen and row.wowheadButton or row, criteriaRow.canOpen and "LEFT" or "RIGHT", criteriaRow.canOpen and -8 or -8, 0)
                     row.progressBar:SetMinMaxValues(0, criteriaRow.progressMax)
                     row.progressBar:SetValue(criteriaRow.progressValue)
                     row.progressBar.text:SetText(string.format("%d / %d", criteriaRow.progressValue, criteriaRow.progressMax))
@@ -507,7 +514,7 @@ function TaskDetailWindow:Build()
 
         self.taskId = task.id
         self.titleText:SetText(task.title or "(Untitled)")
-        self.notesLabel:SetText(achievementId and "Achievement Details" or "Notes")
+        self.notesLabel:SetText(achievementId and "Achievement Details" or "Description")
         self.currentCriteriaRows = criteriaRows
         self.notesValue:SetFontObject(achievementId and GameFontHighlight or GameFontHighlightSmall)
 
@@ -533,7 +540,7 @@ function TaskDetailWindow:Build()
         end
         self:UpdateDetailRows()
 
-        self.notesValue:SetText(notesText ~= "" and notesText or (#criteriaRows > 0 and "" or "No notes."))
+        self.notesValue:SetText(notesText ~= "" and notesText or (#criteriaRows > 0 and "" or "No description."))
         self:UpdateNotesLayout()
 
         if Tasks:IsArchived(task) then
