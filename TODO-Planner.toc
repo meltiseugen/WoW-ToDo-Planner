@@ -2,7 +2,7 @@
 ## Title: TODO Planner
 ## Notes: Character boards with shared Global tasks for achievements, mounts, collections, and more.
 ## Author: Eugen
-## Version: 0.3.0
+## Version: 0.4.0
 ## SavedVariables: TODOPlannerDB
 ## OptionalDeps: Krowi_AchievementFilter
 
