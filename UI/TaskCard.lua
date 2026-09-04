@@ -91,8 +91,9 @@ function TaskCardFactory:Create(parent, task, status, ui)
             return
         end
 
-        local currentStatus = Tasks:GetStatus(dbTask)
-        Tasks:SetStatus(dbTask, Tasks:MoveStatus(currentStatus, -1))
+        local boardKey = ui:GetSelectedBoardKey()
+        local currentStatus = Tasks:GetStatus(dbTask, boardKey)
+        Tasks:SetStatus(dbTask, Tasks:MoveStatus(currentStatus, -1), boardKey)
         ui:Render()
     end)
 
@@ -102,8 +103,9 @@ function TaskCardFactory:Create(parent, task, status, ui)
             return
         end
 
-        local currentStatus = Tasks:GetStatus(dbTask)
-        Tasks:SetStatus(dbTask, Tasks:MoveStatus(currentStatus, 1))
+        local boardKey = ui:GetSelectedBoardKey()
+        local currentStatus = Tasks:GetStatus(dbTask, boardKey)
+        Tasks:SetStatus(dbTask, Tasks:MoveStatus(currentStatus, 1), boardKey)
         ui:Render()
     end)
 

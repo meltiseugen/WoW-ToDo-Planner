@@ -22,16 +22,35 @@ function TaskRepository:GetStatusIndex(status)
     return Utils:IndexOf(C.STATUS_ORDER, self:NormalizeStatus(status)) or 1
 end
 
-function TaskRepository:GetSortOrder(task)
+function TaskRepository:IsCharacterBoard(boardKey)
+    boardKey = Boards:NormalizeBoardKey(boardKey)
+    return boardKey ~= C.ALL_BOARD_KEY
+        and boardKey ~= C.ARCHIVED_BOARD_KEY
+        and boardKey ~= C.GLOBAL_BOARD_KEY
+end
+
+function TaskRepository:IsGlobalTask(task)
+    return self:GetBoardKey(task) == C.GLOBAL_BOARD_KEY
+end
+
+function TaskRepository:GetSortOrder(task, boardKey)
+    boardKey = Boards:NormalizeBoardKey(boardKey)
+    if self:IsGlobalTask(task)
+        and self:IsCharacterBoard(boardKey)
+        and type(task.sortOrderByBoard) == "table"
+        and type(task.sortOrderByBoard[boardKey]) == "number" then
+        return task.sortOrderByBoard[boardKey]
+    end
+
     if task and type(task.sortOrder) == "number" then
         return task.sortOrder
     end
     return task and task.id or 0
 end
 
-function TaskRepository:CompareTaskOrder(a, b)
-    local aOrder = self:GetSortOrder(a)
-    local bOrder = self:GetSortOrder(b)
+function TaskRepository:CompareTaskOrder(a, b, boardKey)
+    local aOrder = self:GetSortOrder(a, boardKey)
+    local bOrder = self:GetSortOrder(b, boardKey)
     if aOrder ~= bOrder then
         return aOrder < bOrder
     end
@@ -97,10 +116,26 @@ function TaskRepository:IsVisibleOnBoard(task, boardKey)
         return true
     end
 
+    if boardKey == C.GLOBAL_BOARD_KEY then
+        return taskBoardKey == C.GLOBAL_BOARD_KEY
+    end
+
+    if taskBoardKey == C.GLOBAL_BOARD_KEY then
+        return true
+    end
+
     return taskBoardKey == boardKey
 end
 
-function TaskRepository:GetStatus(task)
+function TaskRepository:GetStatus(task, boardKey)
+    boardKey = Boards:NormalizeBoardKey(boardKey)
+    if self:IsGlobalTask(task)
+        and self:IsCharacterBoard(boardKey)
+        and type(task.statusByBoard) == "table"
+        and task.statusByBoard[boardKey] then
+        return self:NormalizeStatus(task.statusByBoard[boardKey])
+    end
+
     return self:NormalizeStatus(task and task.status)
 end
 
@@ -110,8 +145,8 @@ function TaskRepository:GetNextSortOrder(boardKey, status)
 
     local maxOrder = 0
     for _, task in ipairs(TODOPlannerDB.tasks) do
-        if self:GetBoardKey(task) == boardKey and self:GetStatus(task) == status then
-            maxOrder = math.max(maxOrder, self:GetSortOrder(task))
+        if self:MatchesBoardView(task, boardKey) and self:GetStatus(task, boardKey) == status then
+            maxOrder = math.max(maxOrder, self:GetSortOrder(task, boardKey))
         end
     end
 
@@ -126,10 +161,35 @@ function TaskRepository:MatchesBoardView(task, boardKey)
     return archiveStateMatches and self:IsVisibleOnBoard(task, boardKey)
 end
 
-function TaskRepository:SetStatus(task, status)
+function TaskRepository:SetSortOrder(task, boardKey, sortOrder)
+    boardKey = Boards:NormalizeBoardKey(boardKey)
+
+    if self:IsGlobalTask(task) and self:IsCharacterBoard(boardKey) then
+        task.sortOrderByBoard = task.sortOrderByBoard or {}
+        task.sortOrderByBoard[boardKey] = sortOrder
+    else
+        task.sortOrder = sortOrder
+    end
+end
+
+function TaskRepository:SetStatus(task, status, boardKey)
     status = self:NormalizeStatus(status)
     task.boardKey = self:GetBoardKey(task)
-    task.statusByBoard = nil
+
+    boardKey = Boards:NormalizeBoardKey(boardKey or task.boardKey)
+    if self:IsGlobalTask(task) and self:IsCharacterBoard(boardKey) then
+        task.statusByBoard = task.statusByBoard or {}
+        if self:GetStatus(task, boardKey) ~= status
+            or type(task.sortOrderByBoard) ~= "table"
+            or type(task.sortOrderByBoard[boardKey]) ~= "number" then
+            self:SetSortOrder(task, boardKey, self:GetNextSortOrder(boardKey, status))
+        end
+        task.statusByBoard[boardKey] = status
+        Boards:EnsureKnownCharacter(boardKey)
+        task.updatedAt = time()
+        return
+    end
+
     if self:GetStatus(task) ~= status or type(task.sortOrder) ~= "number" then
         task.sortOrder = self:GetNextSortOrder(task.boardKey, status)
     end
@@ -137,14 +197,15 @@ function TaskRepository:SetStatus(task, status)
     task.updatedAt = time()
 end
 
-function TaskRepository:MoveToBoard(task, targetBoardKey)
-    local visibleStatus = self:GetStatus(task)
+function TaskRepository:MoveToBoard(task, targetBoardKey, sourceBoardKey)
+    local visibleStatus = self:GetStatus(task, sourceBoardKey)
     local normalizedTargetBoardKey = Boards:NormalizeBoardKey(targetBoardKey)
     local targetSortOrder = self:GetNextSortOrder(normalizedTargetBoardKey, visibleStatus)
 
     task.boardKey = normalizedTargetBoardKey
     task.status = visibleStatus
     task.statusByBoard = nil
+    task.sortOrderByBoard = nil
     task.sortOrder = targetSortOrder
     task.updatedAt = time()
 
@@ -160,31 +221,34 @@ function TaskRepository:MoveRelative(taskId, targetStatus, boardKey, anchorTaskI
     end
 
     boardKey = Boards:NormalizeBoardKey(boardKey)
+    if boardKey == C.ALL_BOARD_KEY or boardKey == C.ARCHIVED_BOARD_KEY then
+        return false
+    end
+
     targetStatus = self:NormalizeStatus(targetStatus)
     placement = placement == "before" and "before" or placement == "after" and "after" or "end"
 
-    if boardKey ~= C.ALL_BOARD_KEY and boardKey ~= C.ARCHIVED_BOARD_KEY then
+    if not self:IsGlobalTask(task) then
         task.boardKey = boardKey
         if boardKey ~= C.GLOBAL_BOARD_KEY then
             Boards:EnsureKnownCharacter(boardKey)
         end
     end
 
-    task.status = targetStatus
-    task.statusByBoard = nil
+    self:SetStatus(task, targetStatus, boardKey)
     task.updatedAt = time()
 
     local ordered = {}
     for _, candidate in ipairs(TODOPlannerDB.tasks) do
         if candidate.id ~= task.id
-            and self:GetStatus(candidate) == targetStatus
+            and self:GetStatus(candidate, boardKey) == targetStatus
             and self:MatchesBoardView(candidate, boardKey) then
             ordered[#ordered + 1] = candidate
         end
     end
 
     table.sort(ordered, function(a, b)
-        return self:CompareTaskOrder(a, b)
+        return self:CompareTaskOrder(a, b, boardKey)
     end)
 
     local reordered = {}
@@ -217,7 +281,7 @@ function TaskRepository:MoveRelative(taskId, targetStatus, boardKey, anchorTaskI
     end
 
     for index, candidate in ipairs(reordered) do
-        candidate.sortOrder = index
+        self:SetSortOrder(candidate, boardKey, index)
     end
 
     self:SortStable(TODOPlannerDB.tasks)
@@ -296,7 +360,8 @@ function TaskRepository:FindBySource(sourceType, sourceId, boardKey)
     for _, task in ipairs(TODOPlannerDB.tasks) do
         if task.sourceType == sourceType
             and tostring(task.sourceId or "") == tostring(sourceId or "")
-            and self:GetBoardKey(task) == boardKey
+            and (self:GetBoardKey(task) == boardKey
+                or self:IsCharacterBoard(boardKey) and self:IsGlobalTask(task))
             and not self:IsArchived(task) then
             return task
         end
@@ -315,7 +380,7 @@ function TaskRepository:GetForStatus(status, boardKey)
             or boardKey ~= C.ARCHIVED_BOARD_KEY and not self:IsArchived(task)
         if archiveStateMatches
             and self:IsVisibleOnBoard(task, boardKey)
-            and self:GetStatus(task) == status then
+            and self:GetStatus(task, boardKey) == status then
             if filterCategory == "All" or task.category == filterCategory then
                 filtered[#filtered + 1] = task
             end
@@ -323,7 +388,7 @@ function TaskRepository:GetForStatus(status, boardKey)
     end
 
     table.sort(filtered, function(a, b)
-        return self:CompareTaskOrder(a, b)
+        return self:CompareTaskOrder(a, b, boardKey)
     end)
 
     return filtered

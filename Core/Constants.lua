@@ -32,14 +32,17 @@ TDP.Constants = {
     },
 
     DEFAULT_DB = {
-        version = 2,
+        version = 3,
         nextTaskId = 1,
         tasks = {},
         characters = {},
+        favorites = {},
         settings = {
             filterCategory = "All",
             selectedBoard = false,
             useProgressBars = true,
+            collectionHideCollected = true,
+            collectionMountSourceFilters = {},
             frame = {
                 point = "CENTER",
                 x = 0,

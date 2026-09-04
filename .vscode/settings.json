@@ -18,6 +18,9 @@
         "CANCEL",
         "StaticPopup_OnClick",
         "Settings",
-        "SetItemRef"
+        "SetItemRef",
+        "UiMapPoint",
+        "WorldMapFrame",
+        "ToggleWorldMap"
     ]
 }

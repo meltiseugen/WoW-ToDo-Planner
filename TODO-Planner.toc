@@ -14,6 +14,9 @@ Core/Theme.lua
 Data/BoardManager.lua
 Data/TaskRepository.lua
 Data/Database.lua
+Data/PatchCatalog.lua
+Data/Favorites.lua
+Integrations/CollectionScanner.lua
 UI/Widgets.lua
 Integrations/Achievements.lua
 UI/TaskEditWindow.lua
@@ -21,5 +24,9 @@ UI/TaskDetailWindow.lua
 UI/TaskCard.lua
 UI/OptionsWindow.lua
 UI/MainWindow.lua
+UI/CollectionExplorerWindow.lua
+UI/FavoritesWindow.lua
+UI/CollectionMapWindow.lua
+UI/HomeWindow.lua
 Core/SlashCommands.lua
 Core/Bootstrap.lua

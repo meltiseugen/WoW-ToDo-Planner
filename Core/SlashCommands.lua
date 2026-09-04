@@ -17,11 +17,37 @@ function SlashCommands:ToggleMainFrame()
         return
     end
 
-    if ui.frame:IsShown() then
-        ui.frame:Hide()
+    if self:IsAnyWindowShown() then
+        self:HideAllWindows()
     else
-        ui:Render()
-        ui.frame:Show()
+        ui:Open()
+    end
+end
+
+function SlashCommands:GetManagedWindows()
+    return {
+        self.addon.ui,
+        self.addon.plannerWindow,
+        self.addon.explorerWindow,
+        self.addon.favoritesWindow,
+        self.addon.collectionMapWindow,
+    }
+end
+
+function SlashCommands:IsAnyWindowShown()
+    for _, window in ipairs(self:GetManagedWindows()) do
+        if window and window.frame and window.frame:IsShown() then
+            return true
+        end
+    end
+    return false
+end
+
+function SlashCommands:HideAllWindows()
+    for _, window in ipairs(self:GetManagedWindows()) do
+        if window and window.frame then
+            window.frame:Hide()
+        end
     end
 end
 
@@ -35,8 +61,12 @@ function SlashCommands:ResetWindowPosition()
     TODOPlannerDB.settings.frame.x = 0
     TODOPlannerDB.settings.frame.y = 0
 
-    ui.frame:ClearAllPoints()
-    ui.frame:SetPoint("CENTER")
+    for _, window in ipairs(self:GetManagedWindows()) do
+        if window and window.frame then
+            window.frame:ClearAllPoints()
+            window.frame:SetPoint("CENTER")
+        end
+    end
 end
 
 function SlashCommands:Init()
@@ -52,15 +82,41 @@ function SlashCommands:Init()
         end
 
         if cmd == "show" then
-            if not self.addon.ui.frame:IsShown() then
-                self:ToggleMainFrame()
-            end
+            self:HideAllWindows()
+            self.addon.ui:Open()
             return
         end
 
         if cmd == "hide" then
-            if self.addon.ui.frame:IsShown() then
-                self:ToggleMainFrame()
+            self:HideAllWindows()
+            return
+        end
+
+        if cmd == "planner" then
+            self:HideAllWindows()
+            self.addon.ui:OpenPlanner()
+            return
+        end
+
+        if cmd == "explorer" or cmd == "collections" then
+            self:HideAllWindows()
+            self.addon.ui:OpenExplorer()
+            return
+        end
+
+        if cmd == "favorites" or cmd == "favourites" then
+            self:HideAllWindows()
+            self.addon.ui:OpenFavorites()
+            return
+        end
+
+        if cmd == "maptest" then
+            self:HideAllWindows()
+            if self.addon.collectionMapWindow then
+                Utils:Msg("Opening map prototype...")
+                self.addon.collectionMapWindow:OpenTest()
+            else
+                Utils:Msg("Collection map prototype is unavailable.")
             end
             return
         end
@@ -77,9 +133,13 @@ function SlashCommands:Init()
         end
 
         if cmd == "help" then
-            Utils:Msg("/tdp toggle - Show/hide planner")
-            Utils:Msg("/tdp show - Show planner")
-            Utils:Msg("/tdp hide - Hide planner")
+            Utils:Msg("/tdp toggle - Show/hide TODO Planner")
+            Utils:Msg("/tdp show - Show home")
+            Utils:Msg("/tdp hide - Hide TODO Planner windows")
+            Utils:Msg("/tdp planner - Open task board")
+            Utils:Msg("/tdp explorer - Open collection explorer")
+            Utils:Msg("/tdp favorites - Open favorites")
+            Utils:Msg("/tdp maptest - Open standalone collection map prototype")
             Utils:Msg("/tdp options - Open options")
             Utils:Msg("/tdp resetpos - Reset window position")
             return

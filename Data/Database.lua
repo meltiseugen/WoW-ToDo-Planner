@@ -27,6 +27,10 @@ function Database:Init()
         TODOPlannerDB.characters = {}
     end
 
+    if type(TODOPlannerDB.favorites) ~= "table" then
+        TODOPlannerDB.favorites = {}
+    end
+
     local highestId = 0
     local currentBoardKey = Boards:GetPlayerBoardKey()
     local seenCharacters = {}
@@ -77,21 +81,50 @@ function Database:Init()
             trackCharacter(task.boardKey)
         end
 
-        if type(task.statusByBoard) == "table" then
+        local normalizedStatusByBoard = nil
+        if task.boardKey == C.GLOBAL_BOARD_KEY and type(task.statusByBoard) == "table" then
             for boardKey, status in pairs(task.statusByBoard) do
                 local normalizedBoardKey = Boards:NormalizeBoardKey(boardKey)
                 if normalizedBoardKey ~= C.ALL_BOARD_KEY
                     and normalizedBoardKey ~= C.ARCHIVED_BOARD_KEY
                     and normalizedBoardKey ~= C.GLOBAL_BOARD_KEY then
-                    if task.boardKey == C.GLOBAL_BOARD_KEY and normalizedBoardKey == currentBoardKey then
-                        task.status = Tasks:NormalizeStatus(status)
-                    end
+                    normalizedStatusByBoard = normalizedStatusByBoard or {}
+                    normalizedStatusByBoard[normalizedBoardKey] = Tasks:NormalizeStatus(status)
                     trackCharacter(normalizedBoardKey)
                 end
             end
         end
-        task.statusByBoard = nil
+        task.statusByBoard = normalizedStatusByBoard
+
+        local normalizedSortOrderByBoard = nil
+        if task.boardKey == C.GLOBAL_BOARD_KEY and type(task.sortOrderByBoard) == "table" then
+            for boardKey, sortOrder in pairs(task.sortOrderByBoard) do
+                local normalizedBoardKey = Boards:NormalizeBoardKey(boardKey)
+                if normalizedBoardKey ~= C.ALL_BOARD_KEY
+                    and normalizedBoardKey ~= C.ARCHIVED_BOARD_KEY
+                    and normalizedBoardKey ~= C.GLOBAL_BOARD_KEY
+                    and type(sortOrder) == "number" then
+                    normalizedSortOrderByBoard = normalizedSortOrderByBoard or {}
+                    normalizedSortOrderByBoard[normalizedBoardKey] = sortOrder
+                    trackCharacter(normalizedBoardKey)
+                end
+            end
+        end
+        task.sortOrderByBoard = normalizedSortOrderByBoard
     end
+
+    local normalizedFavorites = {}
+    for key, favorite in pairs(TODOPlannerDB.favorites) do
+        if type(favorite) == "table"
+            and type(favorite.patchKey) == "string"
+            and type(favorite.collectionType) == "string"
+            and favorite.entryId ~= nil then
+            favorite.key = string.format("%s:%s:%s", favorite.patchKey, favorite.collectionType, tostring(favorite.entryId))
+            favorite.addedAt = type(favorite.addedAt) == "number" and favorite.addedAt or time()
+            normalizedFavorites[favorite.key] = favorite
+        end
+    end
+    TODOPlannerDB.favorites = normalizedFavorites
 
     Boards:SortCharacterBoards(characters)
     TODOPlannerDB.characters = characters
@@ -107,6 +140,20 @@ function Database:Init()
 
     if type(TODOPlannerDB.settings.useProgressBars) ~= "boolean" then
         TODOPlannerDB.settings.useProgressBars = true
+    end
+
+    if type(TODOPlannerDB.settings.collectionHideCollected) ~= "boolean" then
+        TODOPlannerDB.settings.collectionHideCollected = true
+    end
+
+    if type(TODOPlannerDB.settings.collectionMountSourceFilters) ~= "table" then
+        TODOPlannerDB.settings.collectionMountSourceFilters = {}
+    else
+        for source, enabled in pairs(TODOPlannerDB.settings.collectionMountSourceFilters) do
+            if type(source) ~= "string" or enabled ~= true then
+                TODOPlannerDB.settings.collectionMountSourceFilters[source] = nil
+            end
+        end
     end
 
     local selectedBoard = TODOPlannerDB.settings.selectedBoard

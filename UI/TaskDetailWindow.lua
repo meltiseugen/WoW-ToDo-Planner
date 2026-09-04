@@ -264,7 +264,7 @@ function TaskDetailWindow:Build()
                 return
             end
 
-            Tasks:MoveToBoard(task, targetBoardKey)
+            Tasks:MoveToBoard(task, targetBoardKey, ui:GetSelectedBoardKey())
             TODOPlannerDB.settings.selectedBoard = targetBoardKey
             Tasks:SortStable(TODOPlannerDB.tasks)
             ui:Render()
@@ -507,7 +507,7 @@ function TaskDetailWindow:Build()
         if Achievements:AutoCompleteTask(task) then
             Tasks:SortStable(TODOPlannerDB.tasks)
         end
-        local visibleStatus = Tasks:GetStatus(task)
+        local visibleStatus = Tasks:GetStatus(task, ui:GetSelectedBoardKey())
         local achievementId = Achievements:GetTaskAchievementId(task)
         local notesText = achievementId and Achievements:BuildDetailText(task) or Utils:Trim(task.notes or "")
         local criteriaRows = achievementId and Achievements:GetAchievementCriteriaRows(achievementId) or {}

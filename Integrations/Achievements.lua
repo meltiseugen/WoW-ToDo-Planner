@@ -530,6 +530,11 @@ function AchievementIntegration:AutoCompleteTask(task)
     end
 
     Tasks:SetStatus(task, "DONE")
+    if Tasks:IsGlobalTask(task) and type(task.statusByBoard) == "table" then
+        for boardKey in pairs(task.statusByBoard) do
+            task.statusByBoard[boardKey] = "DONE"
+        end
+    end
     return true
 end
 
@@ -610,7 +615,10 @@ function AchievementIntegration:AppendSeries(lines, achievementId)
     end
 
     if firstId == achievementId then
-        local ok, nextId = type(GetNextAchievement) == "function" and pcall(GetNextAchievement, achievementId)
+        if type(GetNextAchievement) ~= "function" then
+            return
+        end
+        local ok, nextId = pcall(GetNextAchievement, achievementId)
         if not ok or not nextId then
             return
         end

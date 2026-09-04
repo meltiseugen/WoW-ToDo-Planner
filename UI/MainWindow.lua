@@ -22,6 +22,9 @@ function MainWindow:New()
         filterButton = nil,
         createBoardButton = nil,
         deleteBoardButton = nil,
+        collectionsButton = nil,
+        favoritesButton = nil,
+        homeButton = nil,
         optionsButton = nil,
         inputTitle = nil,
         saveButton = nil,
@@ -516,6 +519,15 @@ function MainWindow:Build()
     local optionsButton = Widgets:CreateButton(toolbar, 96, 24, "Options", "neutral")
     optionsButton:SetPoint("TOPRIGHT", toolbar, "TOPRIGHT", -12, -12)
 
+    local homeButton = Widgets:CreateButton(toolbar, 72, 24, "Home", "neutral")
+    homeButton:SetPoint("RIGHT", optionsButton, "LEFT", -8, 0)
+
+    local favoritesButton = Widgets:CreateButton(toolbar, 86, 24, "Favorites", "neutral")
+    favoritesButton:SetPoint("RIGHT", homeButton, "LEFT", -8, 0)
+
+    local collectionsButton = Widgets:CreateButton(toolbar, 92, 24, "Collections", "neutral")
+    collectionsButton:SetPoint("RIGHT", favoritesButton, "LEFT", -8, 0)
+
     local inputTitle = Widgets:CreateEditBox(toolbar, 360, 24)
     inputTitle:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 12, -48)
     inputTitle:SetMaxLetters(120)
@@ -537,6 +549,9 @@ function MainWindow:Build()
     self.filterButton = filterButton
     self.createBoardButton = createBoardButton
     self.deleteBoardButton = deleteBoardButton
+    self.collectionsButton = collectionsButton
+    self.favoritesButton = favoritesButton
+    self.homeButton = homeButton
     self.optionsButton = optionsButton
     self.inputTitle = inputTitle
     self.saveButton = saveButton
@@ -571,6 +586,32 @@ function MainWindow:Build()
 
     deleteBoardButton:SetScript("OnClick", function()
         self:ConfirmDeleteSelectedBoard()
+    end)
+
+    homeButton:SetScript("OnClick", function()
+        frame:Hide()
+        if self.homeWindow then
+            self.homeWindow:Open()
+        end
+    end)
+
+    favoritesButton:SetScript("OnClick", function()
+        frame:Hide()
+        if self.homeWindow then
+            self.homeWindow:OpenFavorites()
+        end
+    end)
+
+    collectionsButton:SetScript("OnClick", function()
+        frame:Hide()
+        local homeWindow = self.homeWindow or TDP.ui
+        if homeWindow then
+            homeWindow:OpenExplorer()
+        elseif TDP.explorerWindow then
+            TDP.explorerWindow:Open()
+        else
+            Utils:Msg("Collections window is unavailable.")
+        end
     end)
 
     optionsButton:SetScript("OnClick", function()
