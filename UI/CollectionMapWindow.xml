@@ -1,0 +1,27 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <Button name="TODOPlannerWorldMapPinTemplate" hidden="true" enableMouse="true" mixin="TODOPlannerWorldMapPinMixin" virtual="true">
+        <Size x="30" y="30"/>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture parentKey="ring" alphaMode="ADD">
+                    <Size x="40" y="40"/>
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                </Texture>
+                <Texture parentKey="icon">
+                    <Size x="22" y="22"/>
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+            <OnEnter method="OnMouseEnter"/>
+            <OnLeave method="OnMouseLeave"/>
+            <OnClick method="OnMouseClickAction"/>
+        </Scripts>
+    </Button>
+</Ui>

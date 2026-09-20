@@ -192,12 +192,38 @@ function BoardManager:DeleteBoard(boardKey)
     end
 
     local movedTasks = 0
+    local now = time()
     if type(TODOPlannerDB.tasks) == "table" then
         for _, task in ipairs(TODOPlannerDB.tasks) do
             if self:NormalizeBoardKey(task.boardKey) == boardKey then
                 task.boardKey = C.GLOBAL_BOARD_KEY
-                task.updatedAt = time()
+                task.statusByBoard = nil
+                task.sortOrderByBoard = nil
+                task.updatedAt = now
                 movedTasks = movedTasks + 1
+            elseif self:NormalizeBoardKey(task.boardKey) == C.GLOBAL_BOARD_KEY then
+                local removedOverride = false
+                local overrideFields = { "statusByBoard", "sortOrderByBoard" }
+
+                for _, fieldName in ipairs(overrideFields) do
+                    local overrides = task[fieldName]
+                    if type(overrides) == "table" then
+                        for overrideBoardKey in pairs(overrides) do
+                            if self:NormalizeBoardKey(overrideBoardKey) == boardKey then
+                                overrides[overrideBoardKey] = nil
+                                removedOverride = true
+                            end
+                        end
+
+                        if next(overrides) == nil then
+                            task[fieldName] = nil
+                        end
+                    end
+                end
+
+                if removedOverride then
+                    task.updatedAt = now
+                end
             end
         end
     end

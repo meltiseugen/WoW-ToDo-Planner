@@ -1,7 +1,6 @@
 local _, TDP = ...
 
 local Utils = TDP.Utils
-local Tasks = TDP.Tasks
 local Widgets = TDP.Widgets
 local PatchCatalog = TDP.PatchCatalog
 local CollectionScanner = TDP.CollectionScanner
@@ -33,13 +32,6 @@ local TYPE_LABELS = {
     mounts = "Mounts",
     pets = "Pets",
     toys = "Toys",
-    achievements = "Achievements",
-}
-
-local CATEGORY_BY_TYPE = {
-    mounts = "Mounts",
-    pets = "Collections",
-    toys = "Collections",
     achievements = "Achievements",
 }
 
@@ -317,22 +309,6 @@ function CollectionExplorerWindow:GetEntryId(collectionType, entry)
     return CollectionScanner:GetEntryKey(collectionType, entry)
 end
 
-function CollectionExplorerWindow:GetSourceType(collectionType)
-    if collectionType == "achievements" then
-        return "achievement"
-    end
-    return "patchCollection"
-end
-
-function CollectionExplorerWindow:GetSourceId(row)
-    local entryId = self:GetEntryId(row.collectionType, row.entry)
-    if row.collectionType == "achievements" then
-        return entryId
-    end
-
-    return string.format("%s:%s:%s", row.patchKey, row.collectionType, tostring(entryId or "unknown"))
-end
-
 function CollectionExplorerWindow:GetRowAchievementId(row)
     if not row or row.collectionType ~= "achievements" then
         return nil
@@ -382,11 +358,6 @@ end
 function CollectionExplorerWindow:AdjustPreviewModelZoom(delta)
     self.previewModelZoom = self:ClampPreviewModelZoom((self.previewModelZoom or MODEL_DEFAULT_ZOOM) + delta)
     self:ApplyPreviewModelTransform()
-end
-
-function CollectionExplorerWindow:FindTask(row)
-    local boardKey = Tasks:GetSelectedCreationBoardKey()
-    return Tasks:FindBySource(self:GetSourceType(row.collectionType), self:GetSourceId(row), boardKey)
 end
 
 function CollectionExplorerWindow:GetRowWowheadUrl(row)
@@ -517,6 +488,9 @@ function CollectionExplorerWindow:GetRowNotes(row)
             end
         end
     elseif row.collectionType == "achievements" then
+        local sourceSummary = PatchCatalog and PatchCatalog:GetAchievementSourceSummary(row.patchKey, row.entry)
+        local acquisition = PatchCatalog and PatchCatalog:GetAchievementAcquisitionText(row.patchKey, row.entry)
+        local waypoints = PatchCatalog and PatchCatalog:GetAchievementWaypoints(row.patchKey, row.entry)
         if row.achievementCategory then
             lines[#lines + 1] = "Achievement Type: " .. row.achievementCategory
         end
@@ -525,6 +499,23 @@ function CollectionExplorerWindow:GetRowNotes(row)
         end
         if row.state and row.state.parentCategoryName then
             lines[#lines + 1] = "WoW Parent Category: " .. row.state.parentCategoryName
+        end
+        if sourceSummary then
+            if #lines > 0 then
+                lines[#lines + 1] = ""
+            end
+            lines[#lines + 1] = "Source: " .. sourceSummary
+        end
+        if acquisition then
+            if #lines > 0 then
+                lines[#lines + 1] = ""
+            end
+            lines[#lines + 1] = "How to get: " .. acquisition
+        end
+        if waypoints then
+            for _, waypoint in ipairs(waypoints) do
+                lines[#lines + 1] = waypoint
+            end
         end
     end
 
@@ -538,40 +529,143 @@ function CollectionExplorerWindow:GetRowNotes(row)
     return table.concat(lines, "\n")
 end
 
-function CollectionExplorerWindow:CreateTask(row)
-    if not row or row.collected or self:FindTask(row) then
+function CollectionExplorerWindow:TryShowGameTooltip(methodName, ...)
+    if not GameTooltip or type(GameTooltip[methodName]) ~= "function" then
         return false
     end
 
-    Tasks:CreateOnSelectedBoard({
-        title = row.name,
-        notes = self:GetRowNotes(row),
-        category = CATEGORY_BY_TYPE[row.collectionType] or "Collections",
-        status = "TODO",
-        sourceType = self:GetSourceType(row.collectionType),
-        sourceId = self:GetSourceId(row),
-    })
-
-    return true
+    GameTooltip:ClearLines()
+    local ok = pcall(GameTooltip[methodName], GameTooltip, ...)
+    return ok and (type(GameTooltip.NumLines) ~= "function" or GameTooltip:NumLines() > 0)
 end
 
-function CollectionExplorerWindow:CreateTasksForVisibleMissing()
-    local created = 0
-    for _, row in ipairs(self.visibleRows) do
-        if not row.collected and self:CreateTask(row) then
-            created = created + 1
+function CollectionExplorerWindow:TryShowGameTooltipLink(link)
+    if not link or not GameTooltip or type(GameTooltip.SetHyperlink) ~= "function" then
+        return false
+    end
+
+    GameTooltip:ClearLines()
+    local ok = pcall(GameTooltip.SetHyperlink, GameTooltip, link)
+    return ok and (type(GameTooltip.NumLines) ~= "function" or GameTooltip:NumLines() > 0)
+end
+
+function CollectionExplorerWindow:GetBattlePetName(speciesId, row)
+    if C_PetJournal and type(C_PetJournal.GetPetInfoBySpeciesID) == "function" and speciesId then
+        local ok, name = pcall(C_PetJournal.GetPetInfoBySpeciesID, speciesId)
+        if ok and name then
+            return name
+        end
+    end
+    return row and row.name
+end
+
+function CollectionExplorerWindow:TryShowBattlePetTooltip(owner, speciesId, row)
+    speciesId = tonumber(speciesId)
+    if not speciesId then
+        return false
+    end
+
+    local tooltip = _G.FloatingBattlePetTooltip or _G.BattlePetTooltip
+    if tooltip and type(tooltip.SetOwner) == "function" then
+        tooltip:SetOwner(owner, "ANCHOR_RIGHT")
+    end
+
+    local showTooltip = _G.BattlePetTooltip_Show or _G.BattlePetToolTip_Show
+    if type(showTooltip) == "function" then
+        local ok = pcall(showTooltip, speciesId, 1, 3, 0, 0, 0, self:GetBattlePetName(speciesId, row))
+        if ok then
+            if GameTooltip then
+                GameTooltip:Hide()
+            end
+            return "battlepet"
         end
     end
 
-    if created > 0 then
-        Tasks:SortStable(TODOPlannerDB.tasks)
-        Utils:Msg("Added " .. tostring(created) .. " collection task(s).")
-        if self.homeWindow and self.homeWindow.plannerWindow then
-            self.homeWindow.plannerWindow:Render()
+    return self:TryShowGameTooltipLink("battlepet:" .. tostring(speciesId) .. ":1:3:0:0:0:0")
+end
+
+function CollectionExplorerWindow:ShowFallbackTooltip(row)
+    if not GameTooltip or not row then
+        return
+    end
+
+    GameTooltip:ClearLines()
+    GameTooltip:SetText(row.name or "Unknown", 1, 0.82, 0.18)
+    GameTooltip:AddLine(self:GetTypeLabel(row.collectionType), 0.86, 0.88, 0.94)
+    GameTooltip:AddLine(row.collected and "Collected" or "Missing", row.collected and 0.28 or 0.92, row.collected and 0.82 or 0.72, row.collected and 0.42 or 0.28)
+    local notes = self:GetRowNotes(row)
+    if notes and notes ~= "" then
+        GameTooltip:AddLine(" ")
+        GameTooltip:AddLine(notes, 0.86, 0.88, 0.94, true)
+    end
+    GameTooltip:Show()
+end
+
+function CollectionExplorerWindow:HideRowTooltip()
+    if GameTooltip then
+        GameTooltip:Hide()
+    end
+
+    local hideTooltip = _G.BattlePetTooltip_Hide or _G.BattlePetToolTip_Hide
+    if type(hideTooltip) == "function" then
+        pcall(hideTooltip)
+    end
+
+    if _G.FloatingBattlePetTooltip and _G.FloatingBattlePetTooltip.Hide then
+        _G.FloatingBattlePetTooltip:Hide()
+    end
+    if _G.BattlePetTooltip and _G.BattlePetTooltip.Hide then
+        _G.BattlePetTooltip:Hide()
+    end
+end
+
+function CollectionExplorerWindow:ShowRowTooltip(owner)
+    local row = owner and owner.rowData
+    if not row or not GameTooltip then
+        return
+    end
+
+    GameTooltip:SetOwner(owner, "ANCHOR_RIGHT")
+
+    local entry = row.entry
+    local state = row.state or {}
+    local itemId = type(entry) == "table" and tonumber(entry.itemId) or nil
+    local spellId = type(entry) == "table" and tonumber(entry.spellId) or nil
+    local speciesId = type(entry) == "table" and tonumber(entry.speciesId) or nil
+    local achievementId = self:GetRowAchievementId(row)
+    local shown = false
+
+    if row.collectionType == "mounts" then
+        shown = (itemId and self:TryShowGameTooltip("SetItemByID", itemId))
+            or (spellId and self:TryShowGameTooltip("SetMountBySpellID", spellId))
+            or (spellId and self:TryShowGameTooltip("SetSpellByID", spellId))
+            or (itemId and self:TryShowGameTooltipLink("item:" .. tostring(itemId)))
+            or (spellId and self:TryShowGameTooltipLink("spell:" .. tostring(spellId)))
+    elseif row.collectionType == "pets" then
+        shown = speciesId and self:TryShowBattlePetTooltip(owner, speciesId, row)
+    elseif row.collectionType == "toys" then
+        shown = (itemId and self:TryShowGameTooltip("SetToyByItemID", itemId))
+            or (itemId and self:TryShowGameTooltip("SetItemByID", itemId))
+            or (itemId and self:TryShowGameTooltipLink("item:" .. tostring(itemId)))
+    elseif row.collectionType == "achievements" then
+        shown = (achievementId and self:TryShowGameTooltip("SetAchievementByID", achievementId))
+    end
+
+    if not shown and state.linkType and state.linkId then
+        local linkType = tostring(state.linkType)
+        if linkType == "battle-pet" or linkType == "battlepet" then
+            shown = self:TryShowBattlePetTooltip(owner, state.linkId, row)
+        else
+            shown = self:TryShowGameTooltipLink(linkType .. ":" .. tostring(state.linkId))
         end
-        self:Render()
+    end
+
+    if shown and shown ~= "battlepet" then
+        GameTooltip:Show()
+    elseif shown == "battlepet" then
+        return
     else
-        Utils:Msg("No new missing entries to add.")
+        self:ShowFallbackTooltip(row)
     end
 end
 
@@ -593,7 +687,7 @@ function CollectionExplorerWindow:BuildRow(parent)
 
     local title = row:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     title:SetPoint("TOPLEFT", icon, "TOPRIGHT", 10, -6)
-    title:SetPoint("RIGHT", row, "RIGHT", -200, 0)
+    title:SetPoint("RIGHT", row, "RIGHT", -136, 0)
     title:SetJustifyH("LEFT")
     if title.SetWordWrap then
         title:SetWordWrap(false)
@@ -606,12 +700,8 @@ function CollectionExplorerWindow:BuildRow(parent)
     meta:SetJustifyH("LEFT")
     row.meta = meta
 
-    local addButton = Widgets:CreateButton(row, 62, 22, "Add", "primary")
-    addButton:SetPoint("RIGHT", row, "RIGHT", -10, 0)
-    row.addButton = addButton
-
     local favoriteButton = Widgets:CreateButton(row, 54, 22, "Fav", "neutral")
-    favoriteButton:SetPoint("RIGHT", addButton, "LEFT", -6, 0)
+    favoriteButton:SetPoint("RIGHT", row, "RIGHT", -10, 0)
     row.favoriteButton = favoriteButton
 
     local mapButton = Widgets:CreateButton(row, 54, 22, "Map", "neutral")
@@ -624,16 +714,16 @@ function CollectionExplorerWindow:BuildRow(parent)
         self:UpdateRowSelection()
     end)
 
-    addButton:SetScript("OnClick", function(target)
-        local rowData = target:GetParent().rowData
-        if self:CreateTask(rowData) then
-            Tasks:SortStable(TODOPlannerDB.tasks)
-            Utils:Msg("Added collection task: " .. rowData.name)
-            if self.homeWindow and self.homeWindow.plannerWindow then
-                self.homeWindow.plannerWindow:Render()
-            end
-            self:Render()
-        end
+    row:SetScript("OnEnter", function(target)
+        self:ShowRowTooltip(target)
+    end)
+
+    row:SetScript("OnLeave", function()
+        self:HideRowTooltip()
+    end)
+
+    row:SetScript("OnHide", function()
+        self:HideRowTooltip()
     end)
 
     favoriteButton:SetScript("OnClick", function(target)
@@ -665,11 +755,8 @@ function CollectionExplorerWindow:UpdateRow(row, rowData, index)
     row.meta:SetText(string.format("%s - %s", metaPrefix, rowData.collected and "Collected" or "Missing"))
     Widgets:SetTextureColor(row.accent, rowData.collected and { 0.28, 0.82, 0.42, 0.74 } or "accentGold")
 
-    local existingTask = self:FindTask(rowData)
     local isFavorite = self:IsFavoriteRow(rowData)
-    row.addButton:SetText(existingTask and "Added" or "Add")
     row.favoriteButton:SetText(isFavorite and "Unfav" or "Fav")
-    Widgets:SetButtonEnabled(row.addButton, not rowData.collected and existingTask == nil)
     Widgets:SetButtonEnabled(row.favoriteButton, true)
     if self:IsCollectionMapRow(rowData) then
         row.mapButton:Show()
@@ -946,13 +1033,20 @@ end
 function CollectionExplorerWindow:Build()
     local frame = CreateFrame("Frame", "TODOPlannerCollectionExplorerFrame", UIParent, "BasicFrameTemplateWithInset")
     frame:SetSize(1120, 700)
-    frame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+    Widgets:ApplyFramePosition(frame, "explorer")
     frame:SetClampedToScreen(true)
     frame:EnableMouse(true)
     frame:SetMovable(true)
     frame:RegisterForDrag("LeftButton")
     frame:SetScript("OnDragStart", frame.StartMoving)
-    frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
+    frame:SetScript("OnDragStop", function(target)
+        target:StopMovingOrSizing()
+        Widgets:SaveFramePosition(target, "explorer")
+    end)
+    Widgets:RegisterTopLevelWindow(frame)
+    Widgets:HookFrameScript(frame, "OnHide", function()
+        Widgets:HideDropdownMenus()
+    end)
 
     local body
     local Theme = TDP.Theme
@@ -995,9 +1089,6 @@ function CollectionExplorerWindow:Build()
 
     local refreshButton = Widgets:CreateButton(toolbar, 82, 24, "Refresh", "neutral")
     refreshButton:SetPoint("LEFT", mountCategoryButton, "RIGHT", 8, 0)
-
-    local addMissingButton = Widgets:CreateButton(toolbar, 128, 24, "Add Missing", "primary")
-    addMissingButton:SetPoint("LEFT", refreshButton, "RIGHT", 8, 0)
 
     local homeButton = Widgets:CreateButton(toolbar, 82, 24, "Home", "neutral")
     homeButton:SetPoint("TOPRIGHT", toolbar, "TOPRIGHT", -12, -12)
@@ -1124,7 +1215,6 @@ function CollectionExplorerWindow:Build()
     self.mountCategoryButton = mountCategoryButton
     self.achievementCategoryButton = achievementCategoryButton
     self.refreshButton = refreshButton
-    self.addMissingButton = addMissingButton
     self.homeButton = homeButton
     self.searchEdit = searchEdit
     self.summaryText = summaryText
@@ -1192,10 +1282,6 @@ function CollectionExplorerWindow:Build()
     refreshButton:SetScript("OnClick", function()
         CollectionScanner:ResetCache()
         self:Render()
-    end)
-
-    addMissingButton:SetScript("OnClick", function()
-        self:CreateTasksForVisibleMissing()
     end)
 
     homeButton:SetScript("OnClick", function()
@@ -1292,9 +1378,7 @@ function CollectionExplorerWindow:Open()
 
     CollectionScanner:ResetCache()
     self.frame:Show()
-    if TDP.Theme then
-        TDP.Theme:BringToFront(self.frame)
-    end
+    Widgets:BringToFront(self.frame)
 
     local ok, errorText = pcall(self.Render, self)
     if not ok then

@@ -41,6 +41,7 @@ TDP.Constants = {
             filterCategory = "All",
             selectedBoard = false,
             useProgressBars = true,
+            worldMapPinScale = 1.6,
             collectionHideCollected = true,
             collectionMountSourceFilters = {},
             frame = {
@@ -48,6 +49,7 @@ TDP.Constants = {
                 x = 0,
                 y = 0,
             },
+            framePositions = {},
         },
     },
 

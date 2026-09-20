@@ -37,20 +37,25 @@ function HomeWindow:GetSummaryText()
         return "Patch catalog unavailable"
     end
 
-    local launchSummary = PatchCatalog:GetSummary("12.0")
-    local patchSummary = PatchCatalog:GetSummary("12.1")
     local favoriteCount = 0
     if Favorites then
         favoriteCount = #Favorites:GetAll()
     end
-    return string.format(
-        "Catalogs: 12.0 has %d mounts/%d pets, 12.1 has %d mounts/%d pets  |  %d favorite(s)",
-        launchSummary.mounts or 0,
-        launchSummary.pets or 0,
-        patchSummary.mounts or 0,
-        patchSummary.pets or 0,
-        favoriteCount
-    )
+
+    local parts = {}
+    for _, patchKey in ipairs(PatchCatalog:GetPatchKeys()) do
+        if patchKey ~= "Unknown" then
+            local summary = PatchCatalog:GetSummary(patchKey)
+            parts[#parts + 1] = string.format(
+                "%s: %d mounts/%d pets",
+                patchKey,
+                summary.mounts or 0,
+                summary.pets or 0
+            )
+        end
+    end
+
+    return string.format("Catalogs: %s  |  %d favorite(s)", table.concat(parts, ", "), favoriteCount)
 end
 
 function HomeWindow:OpenPlanner()
@@ -66,9 +71,7 @@ function HomeWindow:OpenPlanner()
     if self.plannerWindow then
         self.plannerWindow:Render()
         self.plannerWindow.frame:Show()
-        if TDP.Theme then
-            TDP.Theme:BringToFront(self.plannerWindow.frame)
-        end
+        Widgets:BringToFront(self.plannerWindow.frame)
     end
 end
 
@@ -141,9 +144,7 @@ function HomeWindow:Open()
 
     self:Render()
     self.frame:Show()
-    if TDP.Theme then
-        TDP.Theme:BringToFront(self.frame)
-    end
+    Widgets:BringToFront(self.frame)
 end
 
 function HomeWindow:Build()
@@ -156,11 +157,11 @@ function HomeWindow:Build()
     frame:SetScript("OnDragStart", frame.StartMoving)
     frame:SetScript("OnDragStop", function(target)
         target:StopMovingOrSizing()
-        Widgets:SaveFramePosition(target)
+        Widgets:SaveFramePosition(target, "home")
     end)
+    Widgets:RegisterTopLevelWindow(frame)
 
-    local pos = TODOPlannerDB.settings.frame
-    frame:SetPoint(pos.point or "CENTER", UIParent, pos.point or "CENTER", pos.x or 0, pos.y or 0)
+    Widgets:ApplyFramePosition(frame, "home")
 
     local body
     local Theme = TDP.Theme

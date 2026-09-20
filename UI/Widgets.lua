@@ -1,6 +1,7 @@
 local _, TDP = ...
 
 local C = TDP.Constants
+local DEFAULT_WINDOW_STRATA = "DIALOG"
 
 local Widgets = {}
 Widgets.__index = Widgets
@@ -9,11 +10,130 @@ function Widgets:New(addon)
     return setmetatable({
         addon = addon,
         menuFrame = nil,
+        windowFrameLevel = 100,
+        windowFrames = {},
     }, self)
 end
 
 function Widgets:GetTheme()
     return self.addon.Theme
+end
+
+function Widgets:GetTopLevelWindow(frame)
+    local current = frame
+    while current do
+        if current.todoPlannerTopLevelWindow then
+            return current
+        end
+        if type(current.GetParent) ~= "function" then
+            break
+        end
+        current = current:GetParent()
+    end
+
+    return nil
+end
+
+function Widgets:BringToFront(frame, relativeFrame)
+    local window = self:GetTopLevelWindow(frame) or frame
+    if not window then
+        return
+    end
+
+    if type(window.SetFrameStrata) == "function" then
+        local strata = window.todoPlannerFrameStrata
+            or (type(window.GetFrameStrata) == "function" and window:GetFrameStrata())
+            or DEFAULT_WINDOW_STRATA
+        window:SetFrameStrata(strata)
+    end
+    if type(window.SetToplevel) == "function" then
+        window:SetToplevel(true)
+    end
+
+    self.windowFrameLevel = (tonumber(self.windowFrameLevel) or 100) + 20
+    if self.windowFrameLevel > 9000 then
+        self.windowFrameLevel = 120
+        for registeredWindow in pairs(self.windowFrames or {}) do
+            if registeredWindow ~= window and registeredWindow.IsShown and registeredWindow:IsShown() and registeredWindow.SetFrameLevel then
+                registeredWindow:SetFrameLevel(100)
+            end
+        end
+    end
+
+    local level = self.windowFrameLevel
+    if relativeFrame and relativeFrame ~= window and type(relativeFrame.GetFrameLevel) == "function" then
+        level = math.max(level, (tonumber(relativeFrame:GetFrameLevel()) or 0) + 20)
+    end
+
+    if type(window.SetFrameLevel) == "function" then
+        window:SetFrameLevel(level)
+    end
+    if type(window.Raise) == "function" then
+        window:Raise()
+    end
+end
+
+function Widgets:HookFrameScript(frame, scriptName, handler)
+    if not frame or type(handler) ~= "function" then
+        return
+    end
+
+    if type(frame.HookScript) == "function" then
+        frame:HookScript(scriptName, handler)
+        return
+    end
+
+    if type(frame.GetScript) == "function" and type(frame.SetScript) == "function" then
+        local previous = frame:GetScript(scriptName)
+        frame:SetScript(scriptName, function(...)
+            if previous then
+                previous(...)
+            end
+            handler(...)
+        end)
+    end
+end
+
+function Widgets:RegisterTopLevelWindow(frame, options)
+    if not frame then
+        return
+    end
+
+    options = type(options) == "table" and options or {}
+    self.windowFrames[frame] = true
+    frame.todoPlannerTopLevelWindow = true
+    frame.todoPlannerFrameStrata = options.strata or DEFAULT_WINDOW_STRATA
+
+    if type(frame.SetFrameStrata) == "function" then
+        frame:SetFrameStrata(frame.todoPlannerFrameStrata)
+    end
+    if type(frame.SetToplevel) == "function" then
+        frame:SetToplevel(true)
+    end
+
+    self:HookFrameScript(frame, "OnMouseDown", function(target)
+        self:BringToFront(target)
+    end)
+    self:HookFrameScript(frame, "OnDragStart", function(target)
+        self:BringToFront(target)
+    end)
+    self:HookFrameScript(frame, "OnShow", function(target)
+        self:BringToFront(target, options.relativeFrame)
+    end)
+end
+
+function Widgets:RaiseParentWindowOnInteraction(frame)
+    if not frame then
+        return frame
+    end
+
+    self:HookFrameScript(frame, "OnMouseDown", function(target)
+        local window = self:GetTopLevelWindow(target)
+        if window then
+            self:BringToFront(window)
+        end
+    end)
+    return frame
 end
 
 function Widgets:GetThemeColor(colorOrKey, fallback)
@@ -50,12 +170,12 @@ end
 function Widgets:CreatePanel(parent, bg, border)
     local Theme = self:GetTheme()
     if Theme then
-        return Theme:CreatePanel(parent, bg, border)
+        return self:RaiseParentWindowOnInteraction(Theme:CreatePanel(parent, bg, border))
     end
 
     local panel = CreateFrame("Frame", nil, parent, "BackdropTemplate")
     self:ApplyPanelBackdrop(panel, bg, border)
-    return panel
+    return self:RaiseParentWindowOnInteraction(panel)
 end
 
 function Widgets:CreateButton(parent, width, height, text, paletteKey)
@@ -83,7 +203,7 @@ function Widgets:CreateButton(parent, width, height, text, paletteKey)
         button:RegisterForClicks("LeftButtonUp")
     end
 
-    return button
+    return self:RaiseParentWindowOnInteraction(button)
 end
 
 function Widgets:SetButtonEnabled(button, enabled)
@@ -115,6 +235,14 @@ function Widgets:CreateEditBox(parent, width, height)
         target:ClearFocus()
     end)
 
+    self:RaiseParentWindowOnInteraction(editBox)
+    self:HookFrameScript(editBox, "OnEditFocusGained", function(target)
+        local window = self:GetTopLevelWindow(target)
+        if window then
+            self:BringToFront(window)
+        end
+    end)
+
     return editBox
 end
 
@@ -132,11 +260,84 @@ function Widgets:AddGoldTopAccent(frame, height, alpha)
     return accent
 end
 
-function Widgets:SaveFramePosition(frame)
+function Widgets:GetFramePositionTable()
+    if not TODOPlannerDB or not TODOPlannerDB.settings then
+        return nil
+    end
+
+    if type(TODOPlannerDB.settings.framePositions) ~= "table" then
+        TODOPlannerDB.settings.framePositions = {}
+    end
+
+    return TODOPlannerDB.settings.framePositions
+end
+
+function Widgets:NormalizeFramePosition(position, defaultX, defaultY)
+    position = type(position) == "table" and position or {}
+    return {
+        point = type(position.point) == "string" and position.point or "CENTER",
+        x = tonumber(position.x) or (defaultX or 0),
+        y = tonumber(position.y) or (defaultY or 0),
+    }
+end
+
+function Widgets:GetSavedFramePosition(windowKey, defaultX, defaultY)
+    local positions = self:GetFramePositionTable()
+    local position = positions and positions[windowKey]
+
+    if type(position) ~= "table"
+        and (windowKey == "home" or windowKey == "planner")
+        and TODOPlannerDB
+        and TODOPlannerDB.settings then
+        position = TODOPlannerDB.settings.frame
+    end
+
+    return self:NormalizeFramePosition(position, defaultX, defaultY)
+end
+
+function Widgets:ApplyFramePosition(frame, windowKey, defaultX, defaultY)
+    local position = self:GetSavedFramePosition(windowKey, defaultX, defaultY)
+    frame:ClearAllPoints()
+    frame:SetPoint(position.point, UIParent, position.point, position.x, position.y)
+end
+
+function Widgets:SaveFramePosition(frame, windowKey)
     local point, _, _, x, y = frame:GetPoint(1)
-    TODOPlannerDB.settings.frame.point = point or "CENTER"
-    TODOPlannerDB.settings.frame.x = x or 0
-    TODOPlannerDB.settings.frame.y = y or 0
+    local position = self:NormalizeFramePosition({
+        point = point,
+        x = x,
+        y = y,
+    })
+
+    if windowKey then
+        local positions = self:GetFramePositionTable()
+        if positions then
+            positions[windowKey] = position
+        end
+    else
+        TODOPlannerDB.settings.frame = position
+    end
+
+    if windowKey == "planner" then
+        TODOPlannerDB.settings.frame = position
+    end
+end
+
+function Widgets:ResetFramePosition(windowKey, frame, defaultX, defaultY)
+    local position = self:NormalizeFramePosition(nil, defaultX, defaultY)
+    local positions = self:GetFramePositionTable()
+    if positions and windowKey then
+        positions[windowKey] = position
+    end
+
+    if windowKey == "planner" or not windowKey then
+        TODOPlannerDB.settings.frame = position
+    end
+
+    if frame then
+        frame:ClearAllPoints()
+        frame:SetPoint(position.point, UIParent, position.point, position.x, position.y)
+    end
 end
 
 function Widgets:ShowSingleSelectMenu(owner, options, selectedValue, getLabel, onSelect)
@@ -197,6 +398,15 @@ function Widgets:ShowSingleSelectMenu(owner, options, selectedValue, getLabel, o
     local Theme = self:GetTheme()
     if Theme then
         Theme:BringToFront(menuFrame, owner)
+    end
+end
+
+function Widgets:HideDropdownMenus()
+    if self.menuFrame then
+        self.menuFrame:Hide()
+    end
+    if self.multiSelectMenuFrame then
+        self.multiSelectMenuFrame:Hide()
     end
 end
 

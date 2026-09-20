@@ -41,6 +41,7 @@ function TaskDetailWindow:Build()
     frame:RegisterForDrag("LeftButton")
     frame:SetScript("OnDragStart", frame.StartMoving)
     frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
+    Widgets:RegisterTopLevelWindow(frame)
 
     local body
     local Theme = TDP.Theme
@@ -582,9 +583,7 @@ function TaskDetailWindow:Build()
         self:ClearAllPoints()
         self:SetPoint("CENTER", ui.frame, "CENTER", 0, 0)
         self:Show()
-        if TDP.Theme then
-            TDP.Theme:BringToFront(self, ui.frame)
-        end
+        Widgets:BringToFront(self, ui.frame)
     end
 
     frame:Hide()

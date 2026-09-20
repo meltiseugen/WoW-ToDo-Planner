@@ -142,6 +142,34 @@ function Database:Init()
         TODOPlannerDB.settings.useProgressBars = true
     end
 
+    local function normalizeFramePosition(position)
+        position = type(position) == "table" and position or {}
+        position.point = type(position.point) == "string" and position.point or "CENTER"
+        position.x = tonumber(position.x) or 0
+        position.y = tonumber(position.y) or 0
+        return position
+    end
+
+    TODOPlannerDB.settings.frame = normalizeFramePosition(TODOPlannerDB.settings.frame)
+    if type(TODOPlannerDB.settings.framePositions) ~= "table" then
+        TODOPlannerDB.settings.framePositions = {}
+    else
+        for windowKey, position in pairs(TODOPlannerDB.settings.framePositions) do
+            if type(windowKey) ~= "string" or type(position) ~= "table" then
+                TODOPlannerDB.settings.framePositions[windowKey] = nil
+            else
+                TODOPlannerDB.settings.framePositions[windowKey] = normalizeFramePosition(position)
+            end
+        end
+    end
+
+    TODOPlannerDB.settings.worldMapPinScale = tonumber(TODOPlannerDB.settings.worldMapPinScale) or 1.6
+    if TODOPlannerDB.settings.worldMapPinScale < 0.75 then
+        TODOPlannerDB.settings.worldMapPinScale = 0.75
+    elseif TODOPlannerDB.settings.worldMapPinScale > 3 then
+        TODOPlannerDB.settings.worldMapPinScale = 3
+    end
+
     if type(TODOPlannerDB.settings.collectionHideCollected) ~= "boolean" then
         TODOPlannerDB.settings.collectionHideCollected = true
     end

@@ -6,6 +6,10 @@ local OptionsWindow = {}
 OptionsWindow.__index = OptionsWindow
 
 local TAB_ORDER = { "General", "Achievements" }
+local WORLD_MAP_PIN_DEFAULT_SCALE = 1.6
+local WORLD_MAP_PIN_MIN_SCALE = 0.75
+local WORLD_MAP_PIN_MAX_SCALE = 3
+local WORLD_MAP_PIN_SCALE_STEP = 0.25
 
 function OptionsWindow:New(ui)
     return setmetatable({
@@ -22,6 +26,12 @@ function OptionsWindow:EnsureSettings()
     TODOPlannerDB.settings = TODOPlannerDB.settings or {}
     if type(TODOPlannerDB.settings.useProgressBars) ~= "boolean" then
         TODOPlannerDB.settings.useProgressBars = true
+    end
+    TODOPlannerDB.settings.worldMapPinScale = tonumber(TODOPlannerDB.settings.worldMapPinScale) or WORLD_MAP_PIN_DEFAULT_SCALE
+    if TODOPlannerDB.settings.worldMapPinScale < WORLD_MAP_PIN_MIN_SCALE then
+        TODOPlannerDB.settings.worldMapPinScale = WORLD_MAP_PIN_MIN_SCALE
+    elseif TODOPlannerDB.settings.worldMapPinScale > WORLD_MAP_PIN_MAX_SCALE then
+        TODOPlannerDB.settings.worldMapPinScale = WORLD_MAP_PIN_MAX_SCALE
     end
 end
 
@@ -75,6 +85,9 @@ function OptionsWindow:Refresh()
     local useProgressBars = TODOPlannerDB.settings.useProgressBars ~= false
     self:ApplyTabVisualState(self.controls.progressBarsButton, useProgressBars)
     self:ApplyTabVisualState(self.controls.progressTextButton, not useProgressBars)
+    if self.controls.worldMapPinScaleText then
+        self.controls.worldMapPinScaleText:SetText(string.format("%d%%", math.floor((TODOPlannerDB.settings.worldMapPinScale * 100) + 0.5)))
+    end
 end
 
 function OptionsWindow:CreateTab(panel, key)
@@ -158,16 +171,36 @@ function OptionsWindow:SetProgressBarsEnabled(enabled)
     end
 end
 
-function OptionsWindow:ResetMainWindowPosition()
-    TODOPlannerDB.settings.frame = TODOPlannerDB.settings.frame or {}
-    TODOPlannerDB.settings.frame.point = "CENTER"
-    TODOPlannerDB.settings.frame.x = 0
-    TODOPlannerDB.settings.frame.y = 0
+function OptionsWindow:SetWorldMapPinScale(scale)
+    self:EnsureSettings()
+    scale = tonumber(scale) or WORLD_MAP_PIN_DEFAULT_SCALE
+    if scale < WORLD_MAP_PIN_MIN_SCALE then
+        scale = WORLD_MAP_PIN_MIN_SCALE
+    elseif scale > WORLD_MAP_PIN_MAX_SCALE then
+        scale = WORLD_MAP_PIN_MAX_SCALE
+    end
 
-    local ui = self.ui
-    if ui and ui.frame then
-        ui.frame:ClearAllPoints()
-        ui.frame:SetPoint("CENTER")
+    TODOPlannerDB.settings.worldMapPinScale = scale
+    self:Refresh()
+
+    local collectionMapWindow = TDP.collectionMapWindow
+    if collectionMapWindow and collectionMapWindow.projectedPayload then
+        collectionMapWindow:RefreshWorldMapProjection()
+    end
+end
+
+function OptionsWindow:ResetMainWindowPosition()
+    local positionedWindows = {
+        { key = "home", window = TDP.ui },
+        { key = "planner", window = self.ui or TDP.plannerWindow },
+        { key = "explorer", window = TDP.explorerWindow },
+        { key = "favorites", window = TDP.favoritesWindow },
+        { key = "collectionMap", window = TDP.collectionMapWindow },
+    }
+
+    for _, positionedWindow in ipairs(positionedWindows) do
+        local window = positionedWindow.window
+        Widgets:ResetFramePosition(positionedWindow.key, window and window.frame)
     end
 end
 
@@ -200,10 +233,6 @@ function OptionsWindow:Build()
     local frame = CreateFrame("Frame", "TODOPlannerOptionsWindow", UIParent, "BasicFrameTemplateWithInset")
     frame:SetSize(720, 500)
     frame:SetPoint("CENTER", UIParent, "CENTER", 0, 40)
-    frame:SetFrameStrata("DIALOG")
-    if frame.SetToplevel then
-        frame:SetToplevel(true)
-    end
     frame:SetMovable(true)
     if frame.SetResizable then
         frame:SetResizable(true)
@@ -228,6 +257,7 @@ function OptionsWindow:Build()
         target:StartMoving()
     end)
     frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
+    Widgets:RegisterTopLevelWindow(frame)
 
     local body
     local Theme = TDP.Theme
@@ -302,8 +332,43 @@ function OptionsWindow:Build()
     resetPositionText:SetPoint("LEFT", resetPositionButton, "RIGHT", 12, 0)
     resetPositionText:SetPoint("RIGHT", generalWindowSection, "RIGHT", -14, 0)
     resetPositionText:SetJustifyH("LEFT")
-    resetPositionText:SetText("Move the main planner window back to the center.")
-    generalContent:SetHeight(116)
+    resetPositionText:SetText("Move TODO Planner windows back to the center.")
+
+    local mapSection = self:CreateSection(generalContent, generalWindowSection, "Collection Map", "Adjust TODO pins projected onto the Blizzard world map.", 124)
+
+    local mapPinLabel = mapSection:CreateFontString(nil, "ARTWORK", "GameFontNormalSmall")
+    mapPinLabel:SetPoint("TOPLEFT", mapSection, "TOPLEFT", 14, mapSection.contentTopOffset)
+    mapPinLabel:SetText("Blizzard map pin size")
+
+    local pinScaleDownButton = Widgets:CreateButton(mapSection, 28, 24, "-", "neutral")
+    pinScaleDownButton:SetPoint("TOPLEFT", mapPinLabel, "BOTTOMLEFT", 0, -8)
+    pinScaleDownButton:SetScript("OnClick", function()
+        self:SetWorldMapPinScale((TODOPlannerDB.settings.worldMapPinScale or WORLD_MAP_PIN_DEFAULT_SCALE) - WORLD_MAP_PIN_SCALE_STEP)
+    end)
+
+    local pinScaleText = mapSection:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
+    pinScaleText:SetSize(58, 24)
+    pinScaleText:SetPoint("LEFT", pinScaleDownButton, "RIGHT", 8, 0)
+    pinScaleText:SetJustifyH("CENTER")
+
+    local pinScaleUpButton = Widgets:CreateButton(mapSection, 28, 24, "+", "neutral")
+    pinScaleUpButton:SetPoint("LEFT", pinScaleText, "RIGHT", 8, 0)
+    pinScaleUpButton:SetScript("OnClick", function()
+        self:SetWorldMapPinScale((TODOPlannerDB.settings.worldMapPinScale or WORLD_MAP_PIN_DEFAULT_SCALE) + WORLD_MAP_PIN_SCALE_STEP)
+    end)
+
+    local pinScaleResetButton = Widgets:CreateButton(mapSection, 72, 24, "Reset", "neutral")
+    pinScaleResetButton:SetPoint("LEFT", pinScaleUpButton, "RIGHT", 8, 0)
+    pinScaleResetButton:SetScript("OnClick", function()
+        self:SetWorldMapPinScale(WORLD_MAP_PIN_DEFAULT_SCALE)
+    end)
+
+    local mapPinHelp = mapSection:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+    mapPinHelp:SetPoint("LEFT", pinScaleResetButton, "RIGHT", 12, 0)
+    mapPinHelp:SetPoint("RIGHT", mapSection, "RIGHT", -14, 0)
+    mapPinHelp:SetJustifyH("LEFT")
+    mapPinHelp:SetText("Changes apply immediately to projected pins.")
+    generalContent:SetHeight(252)
 
     local achievementsContent = self.tabs.Achievements.content
     local progressSection = self:CreateSection(achievementsContent, nil, "Progress Display", "Choose how achievement criteria progress is shown in task details.", 126)
@@ -327,6 +392,7 @@ function OptionsWindow:Build()
     self.controls = {
         progressBarsButton = barsButton,
         progressTextButton = textButton,
+        worldMapPinScaleText = pinScaleText,
     }
     achievementsContent:SetHeight(138)
 
@@ -366,12 +432,7 @@ function OptionsWindow:Open()
     local frame = self:Build()
     self:Refresh()
     frame:Show()
-    if frame.Raise then
-        frame:Raise()
-    end
-    if TDP.Theme then
-        TDP.Theme:BringToFront(frame, self.ui and self.ui.frame)
-    end
+    Widgets:BringToFront(frame, self.ui and self.ui.frame)
 end
 
 TDP.OptionsWindow = OptionsWindow

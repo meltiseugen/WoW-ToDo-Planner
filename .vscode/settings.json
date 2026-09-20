@@ -21,6 +21,8 @@
         "SetItemRef",
         "UiMapPoint",
         "WorldMapFrame",
-        "ToggleWorldMap"
+        "ToggleWorldMap",
+        "MapCanvasDataProviderMixin",
+        "MapCanvasPinMixin"
     ]
 }

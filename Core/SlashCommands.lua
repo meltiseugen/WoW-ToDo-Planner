@@ -1,6 +1,7 @@
 local _, TDP = ...
 
 local Utils = TDP.Utils
+local Widgets = TDP.Widgets
 
 local SlashCommands = {}
 SlashCommands.__index = SlashCommands
@@ -34,6 +35,16 @@ function SlashCommands:GetManagedWindows()
     }
 end
 
+function SlashCommands:GetPositionedWindows()
+    return {
+        { key = "home", window = self.addon.ui },
+        { key = "planner", window = self.addon.plannerWindow },
+        { key = "explorer", window = self.addon.explorerWindow },
+        { key = "favorites", window = self.addon.favoritesWindow },
+        { key = "collectionMap", window = self.addon.collectionMapWindow },
+    }
+end
+
 function SlashCommands:IsAnyWindowShown()
     for _, window in ipairs(self:GetManagedWindows()) do
         if window and window.frame and window.frame:IsShown() then
@@ -57,15 +68,9 @@ function SlashCommands:ResetWindowPosition()
         return
     end
 
-    TODOPlannerDB.settings.frame.point = "CENTER"
-    TODOPlannerDB.settings.frame.x = 0
-    TODOPlannerDB.settings.frame.y = 0
-
-    for _, window in ipairs(self:GetManagedWindows()) do
-        if window and window.frame then
-            window.frame:ClearAllPoints()
-            window.frame:SetPoint("CENTER")
-        end
+    for _, positionedWindow in ipairs(self:GetPositionedWindows()) do
+        local window = positionedWindow.window
+        Widgets:ResetFramePosition(positionedWindow.key, window and window.frame)
     end
 end
 
@@ -113,10 +118,10 @@ function SlashCommands:Init()
         if cmd == "maptest" then
             self:HideAllWindows()
             if self.addon.collectionMapWindow then
-                Utils:Msg("Opening map prototype...")
+                Utils:Msg("Opening collection map...")
                 self.addon.collectionMapWindow:OpenTest()
             else
-                Utils:Msg("Collection map prototype is unavailable.")
+                Utils:Msg("Collection map is unavailable.")
             end
             return
         end
@@ -139,7 +144,7 @@ function SlashCommands:Init()
             Utils:Msg("/tdp planner - Open task board")
             Utils:Msg("/tdp explorer - Open collection explorer")
             Utils:Msg("/tdp favorites - Open favorites")
-            Utils:Msg("/tdp maptest - Open standalone collection map prototype")
+            Utils:Msg("/tdp maptest - Open collection map test")
             Utils:Msg("/tdp options - Open options")
             Utils:Msg("/tdp resetpos - Reset window position")
             return

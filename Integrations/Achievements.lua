@@ -176,13 +176,13 @@ function AchievementIntegration:CreateUrlDialog()
     local frame = CreateFrame("Frame", "TODOPlannerUrlDialog", UIParent, "BasicFrameTemplateWithInset")
     frame:SetSize(560, 145)
     frame:SetPoint("CENTER")
-    frame:SetFrameStrata("DIALOG")
     frame:SetClampedToScreen(true)
     frame:EnableMouse(true)
     frame:SetMovable(true)
     frame:RegisterForDrag("LeftButton")
     frame:SetScript("OnDragStart", frame.StartMoving)
     frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
+    Widgets:RegisterTopLevelWindow(frame)
 
     local Theme = self.addon.Theme
     if Theme then
@@ -244,10 +244,7 @@ function AchievementIntegration:ShowCopyUrlDialog(url)
     self.urlDialog.urlEditBox:SetFocus()
     self.urlDialog.urlEditBox:HighlightText()
 
-    local Theme = self.addon.Theme
-    if Theme then
-        Theme:BringToFront(self.urlDialog)
-    end
+    Widgets:BringToFront(self.urlDialog)
 end
 
 function AchievementIntegration:CopyWowheadAchievementUrl(achievementId)
@@ -520,7 +517,7 @@ function AchievementIntegration:IsAchievementComplete(achievementId)
 end
 
 function AchievementIntegration:AutoCompleteTask(task)
-    if not task or Tasks:IsArchived(task) or Tasks:GetStatus(task) == "DONE" then
+    if not task or Tasks:IsArchived(task) then
         return false
     end
 
@@ -529,13 +526,27 @@ function AchievementIntegration:AutoCompleteTask(task)
         return false
     end
 
-    Tasks:SetStatus(task, "DONE")
+    local changed = false
+    if Tasks:GetStatus(task) ~= "DONE" then
+        Tasks:SetStatus(task, "DONE")
+        changed = true
+    end
+
     if Tasks:IsGlobalTask(task) and type(task.statusByBoard) == "table" then
+        local boardKeys = {}
         for boardKey in pairs(task.statusByBoard) do
-            task.statusByBoard[boardKey] = "DONE"
+            boardKeys[#boardKeys + 1] = boardKey
+        end
+
+        for _, boardKey in ipairs(boardKeys) do
+            if Tasks:GetStatus(task, boardKey) ~= "DONE" then
+                Tasks:SetStatus(task, "DONE", boardKey)
+                changed = true
+            end
         end
     end
-    return true
+
+    return changed
 end
 
 function AchievementIntegration:AutoCompleteTasks()

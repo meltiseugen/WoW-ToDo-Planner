@@ -24,6 +24,7 @@ function TaskEditWindow:Build()
     frame:RegisterForDrag("LeftButton")
     frame:SetScript("OnDragStart", frame.StartMoving)
     frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
+    Widgets:RegisterTopLevelWindow(frame)
 
     local body
     local Theme = TDP.Theme
@@ -186,9 +187,7 @@ function TaskEditWindow:Build()
         self:Show()
         self.titleEdit:SetFocus()
 
-        if TDP.Theme then
-            TDP.Theme:BringToFront(self, anchor)
-        end
+        Widgets:BringToFront(self, anchor)
     end
 
     function frame:OpenCreate(fields)
@@ -210,9 +209,7 @@ function TaskEditWindow:Build()
         self:Show()
         self.titleEdit:SetFocus()
 
-        if TDP.Theme then
-            TDP.Theme:BringToFront(self, ui.frame)
-        end
+        Widgets:BringToFront(self, ui.frame)
     end
 
     frame:Hide()

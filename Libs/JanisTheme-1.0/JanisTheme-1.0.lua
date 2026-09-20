@@ -316,7 +316,11 @@ function JanisTheme:BringToFront(frame, relativeFrame)
         return
     end
 
-    frame:SetFrameStrata("FULLSCREEN_DIALOG")
+    frame:SetFrameStrata(
+        frame.todoPlannerFrameStrata
+            or (frame.GetFrameStrata and frame:GetFrameStrata())
+            or "DIALOG"
+    )
     if frame.SetToplevel then
         frame:SetToplevel(true)
     end

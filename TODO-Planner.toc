@@ -27,6 +27,7 @@ UI/MainWindow.lua
 UI/CollectionExplorerWindow.lua
 UI/FavoritesWindow.lua
 UI/CollectionMapWindow.lua
+UI/CollectionMapWindow.xml
 UI/HomeWindow.lua
 Core/SlashCommands.lua
 Core/Bootstrap.lua

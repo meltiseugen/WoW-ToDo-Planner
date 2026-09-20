@@ -289,8 +289,30 @@ function FavoritesWindow:GetRowNotes(row)
                 lines[#lines + 1] = waypoint
             end
         end
-    elseif row.collectionType == "achievements" and row.achievementCategory then
-        lines[#lines + 1] = "Achievement Type: " .. row.achievementCategory
+    elseif row.collectionType == "achievements" then
+        local sourceSummary = PatchCatalog and PatchCatalog:GetAchievementSourceSummary(row.patchKey, row.entry)
+        local acquisition = PatchCatalog and PatchCatalog:GetAchievementAcquisitionText(row.patchKey, row.entry)
+        local waypoints = PatchCatalog and PatchCatalog:GetAchievementWaypoints(row.patchKey, row.entry)
+        if row.achievementCategory then
+            lines[#lines + 1] = "Achievement Type: " .. row.achievementCategory
+        end
+        if sourceSummary then
+            if #lines > 0 then
+                lines[#lines + 1] = ""
+            end
+            lines[#lines + 1] = "Source: " .. sourceSummary
+        end
+        if acquisition then
+            if #lines > 0 then
+                lines[#lines + 1] = ""
+            end
+            lines[#lines + 1] = "How to get: " .. acquisition
+        end
+        if waypoints then
+            for _, waypoint in ipairs(waypoints) do
+                lines[#lines + 1] = waypoint
+            end
+        end
     end
 
     if row.reward then
@@ -645,13 +667,17 @@ end
 function FavoritesWindow:Build()
     local frame = CreateFrame("Frame", "TODOPlannerFavoritesFrame", UIParent, "BasicFrameTemplateWithInset")
     frame:SetSize(1120, 700)
-    frame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+    Widgets:ApplyFramePosition(frame, "favorites")
     frame:SetClampedToScreen(true)
     frame:EnableMouse(true)
     frame:SetMovable(true)
     frame:RegisterForDrag("LeftButton")
     frame:SetScript("OnDragStart", frame.StartMoving)
-    frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
+    frame:SetScript("OnDragStop", function(target)
+        target:StopMovingOrSizing()
+        Widgets:SaveFramePosition(target, "favorites")
+    end)
+    Widgets:RegisterTopLevelWindow(frame)
 
     local body
     local Theme = TDP.Theme
@@ -922,9 +948,7 @@ function FavoritesWindow:Open()
     CollectionScanner:ResetCache()
     self:Render()
     self.frame:Show()
-    if TDP.Theme then
-        TDP.Theme:BringToFront(self.frame)
-    end
+    Widgets:BringToFront(self.frame)
 end
 
 TDP.FavoritesWindow = FavoritesWindow

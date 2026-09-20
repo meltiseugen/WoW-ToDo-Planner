@@ -97,6 +97,11 @@ function MainWindow:GetSelectedBoardKey()
     return boardKey
 end
 
+function MainWindow:CanReorderSelectedBoard()
+    local boardKey = self:GetSelectedBoardKey()
+    return boardKey ~= C.ALL_BOARD_KEY and boardKey ~= C.ARCHIVED_BOARD_KEY
+end
+
 function MainWindow:OpenTaskDetail(task)
     if Achievements and Achievements:AutoCompleteTask(task) then
         Tasks:SortStable(TODOPlannerDB.tasks)
@@ -378,7 +383,7 @@ function MainWindow:GetIndicatorOffset(column, anchorTaskId, placement)
 end
 
 function MainWindow:UpdateDropIndicator()
-    if not self.draggingTaskId then
+    if not self.draggingTaskId or not self:CanReorderSelectedBoard() then
         self:HideDropIndicator()
         return
     end
@@ -411,7 +416,7 @@ function MainWindow:HideDropIndicator()
 end
 
 function MainWindow:BeginTaskDrag(card)
-    if not card or not card.taskId then
+    if not card or not card.taskId or not self:CanReorderSelectedBoard() then
         return
     end
 
@@ -425,7 +430,7 @@ function MainWindow:BeginTaskDrag(card)
 end
 
 function MainWindow:EndTaskDrag(card)
-    if not card or not card.taskId then
+    if not card or not card.taskId or self.draggingTaskId ~= card.taskId then
         if self.dragSourceCard then
             self.dragSourceCard:SetAlpha(1)
         end
@@ -437,7 +442,7 @@ function MainWindow:EndTaskDrag(card)
     end
 
     local targetColumn, anchorTaskId, placement = self:GetDropTarget(card.taskId)
-    if targetColumn then
+    if targetColumn and self:CanReorderSelectedBoard() then
         Tasks:MoveRelative(card.taskId, targetColumn.status, self:GetSelectedBoardKey(), anchorTaskId, placement)
     end
 
@@ -461,11 +466,11 @@ function MainWindow:Build()
     frame:SetScript("OnDragStart", frame.StartMoving)
     frame:SetScript("OnDragStop", function(target)
         target:StopMovingOrSizing()
-        Widgets:SaveFramePosition(target)
+        Widgets:SaveFramePosition(target, "planner")
     end)
+    Widgets:RegisterTopLevelWindow(frame)
 
-    local pos = TODOPlannerDB.settings.frame
-    frame:SetPoint(pos.point or "CENTER", UIParent, pos.point or "CENTER", pos.x or 0, pos.y or 0)
+    Widgets:ApplyFramePosition(frame, "planner")
 
     local body
     local Theme = TDP.Theme
