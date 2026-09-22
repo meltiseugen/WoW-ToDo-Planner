@@ -80,6 +80,9 @@ function HomeWindow:OpenExplorer()
         self.frame:Hide()
     end
     if self.plannerWindow and self.plannerWindow.frame then
+        if self.plannerWindow.HideChildWindows then
+            self.plannerWindow:HideChildWindows()
+        end
         self.plannerWindow.frame:Hide()
     end
     if self.favoritesWindow and self.favoritesWindow.frame then
@@ -106,6 +109,9 @@ function HomeWindow:OpenFavorites()
         self.frame:Hide()
     end
     if self.plannerWindow and self.plannerWindow.frame then
+        if self.plannerWindow.HideChildWindows then
+            self.plannerWindow:HideChildWindows()
+        end
         self.plannerWindow.frame:Hide()
     end
     if self.explorerWindow and self.explorerWindow.frame then

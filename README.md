@@ -5,8 +5,7 @@ Base Kanban-style planner addon for World of Warcraft.
 ## What this base includes
 - Account-wide data storage (`SavedVariables: TODOPlannerDB`)
 - Character board selector with a `Global` board
-- Global tasks that appear on every character board
-- Per-character `To Do`, `In Progress`, and `Done` tracking for shared global tasks
+- Board-isolated tasks: Global tasks stay on `Global`, and character tasks stay on their assigned board
 - 3 Kanban columns: `To Do`, `In Progress`, `Done`
 - Task fields: title, notes, category, board location, status, timestamps
 - Categories for planning goals:
@@ -55,5 +54,5 @@ Base Kanban-style planner addon for World of Warcraft.
 
 ## Notes
 - Data is global/account-wide, but tasks can now live on `Global` or on individual character boards.
-- `Global` tasks are visible on every character board while keeping per-character progress state.
+- `Global` tasks are visible on the `Global` board and aggregate views, not on character boards.
 - This is a starter foundation intended for iterative improvements.

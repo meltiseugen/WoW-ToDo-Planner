@@ -55,6 +55,42 @@ function BoardManager:NormalizeBoardKey(boardKey)
     return boardKey
 end
 
+function BoardManager:GetComparisonKey(boardKey)
+    local normalized = self:NormalizeBoardKey(boardKey)
+    if normalized == C.ALL_BOARD_KEY or normalized == C.ARCHIVED_BOARD_KEY or normalized == C.GLOBAL_BOARD_KEY then
+        return normalized
+    end
+
+    return normalized:lower()
+end
+
+function BoardManager:AreBoardKeysEqual(left, right)
+    return self:GetComparisonKey(left) == self:GetComparisonKey(right)
+end
+
+function BoardManager:FindKnownBoardKey(boardKey)
+    boardKey = self:NormalizeBoardKey(boardKey)
+    if self:IsSpecialBoard(boardKey) then
+        return boardKey
+    end
+    if type(TODOPlannerDB) ~= "table" or type(TODOPlannerDB.characters) ~= "table" then
+        return nil
+    end
+
+    for _, knownBoardKey in ipairs(TODOPlannerDB.characters) do
+        if self:AreBoardKeysEqual(knownBoardKey, boardKey) then
+            return self:NormalizeBoardKey(knownBoardKey)
+        end
+    end
+
+    return nil
+end
+
+function BoardManager:ResolveKnownBoardKey(boardKey)
+    local normalized = self:NormalizeBoardKey(boardKey)
+    return self:FindKnownBoardKey(normalized) or normalized
+end
+
 function BoardManager:IsSpecialBoard(boardKey)
     boardKey = self:NormalizeBoardKey(boardKey)
     return boardKey == C.ALL_BOARD_KEY
@@ -77,13 +113,13 @@ function BoardManager:GetDisplayName(boardKey)
 end
 
 function BoardManager:RemoveKnownBoard(boardKey)
-    boardKey = self:NormalizeBoardKey(boardKey)
+    boardKey = self:ResolveKnownBoardKey(boardKey)
     if type(TODOPlannerDB.characters) ~= "table" then
         return false
     end
 
     for index, knownBoardKey in ipairs(TODOPlannerDB.characters) do
-        if self:NormalizeBoardKey(knownBoardKey) == boardKey then
+        if self:AreBoardKeysEqual(knownBoardKey, boardKey) then
             table.remove(TODOPlannerDB.characters, index)
             return true
         end
@@ -96,13 +132,13 @@ function BoardManager:SortCharacterBoards(characters)
     local currentBoardKey = self:GetPlayerBoardKey()
 
     table.sort(characters, function(a, b)
-        if a == currentBoardKey and b ~= currentBoardKey then
+        if self:AreBoardKeysEqual(a, currentBoardKey) and not self:AreBoardKeysEqual(b, currentBoardKey) then
             return true
         end
-        if b == currentBoardKey and a ~= currentBoardKey then
+        if self:AreBoardKeysEqual(b, currentBoardKey) and not self:AreBoardKeysEqual(a, currentBoardKey) then
             return false
         end
-        return a < b
+        return a:lower() < b:lower()
     end)
 end
 
@@ -112,15 +148,11 @@ function BoardManager:IsKnownBoard(boardKey)
         return true
     end
 
-    if type(TODOPlannerDB) ~= "table" or type(TODOPlannerDB.characters) ~= "table" then
-        return false
-    end
-
-    return Utils:IndexOf(TODOPlannerDB.characters, boardKey) ~= nil
+    return self:FindKnownBoardKey(boardKey) ~= nil
 end
 
 function BoardManager:EnsureKnownCharacter(boardKey)
-    boardKey = self:NormalizeBoardKey(boardKey)
+    boardKey = self:ResolveKnownBoardKey(boardKey)
     if self:IsSpecialBoard(boardKey) then
         return
     end
@@ -129,7 +161,7 @@ function BoardManager:EnsureKnownCharacter(boardKey)
         TODOPlannerDB.characters = {}
     end
 
-    if not Utils:IndexOf(TODOPlannerDB.characters, boardKey) then
+    if not self:FindKnownBoardKey(boardKey) then
         table.insert(TODOPlannerDB.characters, boardKey)
         self:SortCharacterBoards(TODOPlannerDB.characters)
     end
@@ -153,11 +185,11 @@ function BoardManager:CreateBoard(boardName)
 end
 
 function BoardManager:CanDeleteBoard(boardKey)
-    boardKey = self:NormalizeBoardKey(boardKey)
+    boardKey = self:ResolveKnownBoardKey(boardKey)
     if self:IsSpecialBoard(boardKey) then
         return false, "Built-in boards cannot be deleted."
     end
-    if boardKey == self:GetPlayerBoardKey() then
+    if self:AreBoardKeysEqual(boardKey, self:GetPlayerBoardKey()) then
         return false, "The current character board cannot be deleted."
     end
     if not self:IsKnownBoard(boardKey) then
@@ -168,7 +200,7 @@ function BoardManager:CanDeleteBoard(boardKey)
 end
 
 function BoardManager:CountBoardTasks(boardKey)
-    boardKey = self:NormalizeBoardKey(boardKey)
+    boardKey = self:ResolveKnownBoardKey(boardKey)
     local count = 0
 
     if type(TODOPlannerDB.tasks) ~= "table" then
@@ -176,7 +208,7 @@ function BoardManager:CountBoardTasks(boardKey)
     end
 
     for _, task in ipairs(TODOPlannerDB.tasks) do
-        if self:NormalizeBoardKey(task.boardKey) == boardKey then
+        if self:AreBoardKeysEqual(task.boardKey, boardKey) then
             count = count + 1
         end
     end
@@ -185,7 +217,7 @@ function BoardManager:CountBoardTasks(boardKey)
 end
 
 function BoardManager:DeleteBoard(boardKey)
-    boardKey = self:NormalizeBoardKey(boardKey)
+    boardKey = self:ResolveKnownBoardKey(boardKey)
     local canDelete, reason = self:CanDeleteBoard(boardKey)
     if not canDelete then
         return false, reason, 0
@@ -195,7 +227,7 @@ function BoardManager:DeleteBoard(boardKey)
     local now = time()
     if type(TODOPlannerDB.tasks) == "table" then
         for _, task in ipairs(TODOPlannerDB.tasks) do
-            if self:NormalizeBoardKey(task.boardKey) == boardKey then
+            if self:AreBoardKeysEqual(task.boardKey, boardKey) then
                 task.boardKey = C.GLOBAL_BOARD_KEY
                 task.statusByBoard = nil
                 task.sortOrderByBoard = nil
@@ -209,7 +241,7 @@ function BoardManager:DeleteBoard(boardKey)
                     local overrides = task[fieldName]
                     if type(overrides) == "table" then
                         for overrideBoardKey in pairs(overrides) do
-                            if self:NormalizeBoardKey(overrideBoardKey) == boardKey then
+                            if self:AreBoardKeysEqual(overrideBoardKey, boardKey) then
                                 overrides[overrideBoardKey] = nil
                                 removedOverride = true
                             end
@@ -230,7 +262,7 @@ function BoardManager:DeleteBoard(boardKey)
 
     self:RemoveKnownBoard(boardKey)
 
-    if self:NormalizeBoardKey(TODOPlannerDB.settings.selectedBoard) == boardKey then
+    if self:AreBoardKeysEqual(TODOPlannerDB.settings.selectedBoard, boardKey) then
         TODOPlannerDB.settings.selectedBoard = C.GLOBAL_BOARD_KEY
     end
 
@@ -249,11 +281,12 @@ function BoardManager:GetBoardOptions()
     if type(TODOPlannerDB.characters) == "table" then
         for _, boardKey in ipairs(TODOPlannerDB.characters) do
             boardKey = self:NormalizeBoardKey(boardKey)
+            local comparisonKey = self:GetComparisonKey(boardKey)
             if boardKey ~= C.ALL_BOARD_KEY
                 and boardKey ~= C.ARCHIVED_BOARD_KEY
                 and boardKey ~= C.GLOBAL_BOARD_KEY
-                and not seen[boardKey] then
-                seen[boardKey] = true
+                and not seen[comparisonKey] then
+                seen[comparisonKey] = true
                 characters[#characters + 1] = boardKey
             end
         end

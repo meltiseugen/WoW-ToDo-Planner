@@ -34,19 +34,25 @@ function Database:Init()
     local highestId = 0
     local currentBoardKey = Boards:GetPlayerBoardKey()
     local seenCharacters = {}
+    local canonicalCharacters = {}
     local characters = {}
 
     local function trackCharacter(boardKey)
         boardKey = Boards:NormalizeBoardKey(boardKey)
+        local comparisonKey = Boards:GetComparisonKey(boardKey)
         if boardKey == C.ALL_BOARD_KEY
             or boardKey == C.ARCHIVED_BOARD_KEY
-            or boardKey == C.GLOBAL_BOARD_KEY
-            or seenCharacters[boardKey] then
-            return
+            or boardKey == C.GLOBAL_BOARD_KEY then
+            return boardKey
+        end
+        if seenCharacters[comparisonKey] then
+            return canonicalCharacters[comparisonKey]
         end
 
-        seenCharacters[boardKey] = true
+        seenCharacters[comparisonKey] = true
+        canonicalCharacters[comparisonKey] = boardKey
         characters[#characters + 1] = boardKey
+        return boardKey
     end
 
     trackCharacter(currentBoardKey)
@@ -78,7 +84,7 @@ function Database:Init()
         end
 
         if task.boardKey ~= C.GLOBAL_BOARD_KEY then
-            trackCharacter(task.boardKey)
+            task.boardKey = trackCharacter(task.boardKey)
         end
 
         local normalizedStatusByBoard = nil
@@ -88,9 +94,9 @@ function Database:Init()
                 if normalizedBoardKey ~= C.ALL_BOARD_KEY
                     and normalizedBoardKey ~= C.ARCHIVED_BOARD_KEY
                     and normalizedBoardKey ~= C.GLOBAL_BOARD_KEY then
+                    normalizedBoardKey = trackCharacter(normalizedBoardKey)
                     normalizedStatusByBoard = normalizedStatusByBoard or {}
                     normalizedStatusByBoard[normalizedBoardKey] = Tasks:NormalizeStatus(status)
-                    trackCharacter(normalizedBoardKey)
                 end
             end
         end
@@ -104,9 +110,9 @@ function Database:Init()
                     and normalizedBoardKey ~= C.ARCHIVED_BOARD_KEY
                     and normalizedBoardKey ~= C.GLOBAL_BOARD_KEY
                     and type(sortOrder) == "number" then
+                    normalizedBoardKey = trackCharacter(normalizedBoardKey)
                     normalizedSortOrderByBoard = normalizedSortOrderByBoard or {}
                     normalizedSortOrderByBoard[normalizedBoardKey] = sortOrder
-                    trackCharacter(normalizedBoardKey)
                 end
             end
         end
@@ -189,12 +195,17 @@ function Database:Init()
         selectedBoard = currentBoardKey
     else
         selectedBoard = Boards:NormalizeBoardKey(selectedBoard)
+        if selectedBoard ~= C.ALL_BOARD_KEY
+            and selectedBoard ~= C.ARCHIVED_BOARD_KEY
+            and selectedBoard ~= C.GLOBAL_BOARD_KEY then
+            selectedBoard = canonicalCharacters[Boards:GetComparisonKey(selectedBoard)] or selectedBoard
+        end
     end
 
     if selectedBoard ~= C.ALL_BOARD_KEY
         and selectedBoard ~= C.ARCHIVED_BOARD_KEY
         and selectedBoard ~= C.GLOBAL_BOARD_KEY
-        and not seenCharacters[selectedBoard] then
+        and not seenCharacters[Boards:GetComparisonKey(selectedBoard)] then
         selectedBoard = currentBoardKey
     end
 

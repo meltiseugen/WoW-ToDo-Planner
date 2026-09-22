@@ -11,6 +11,9 @@ local DEFAULT_PIN_Y = 41.4
 local MIN_ZOOM = 1
 local MAX_ZOOM = 3
 local ZOOM_STEP = 0.25
+local COLLECTION_MAP_PIN_SIZE = 28
+local COLLECTION_MAP_PIN_ICON_SIZE = 24
+local COLLECTION_MAP_PIN_RING_SIZE = 30
 local WORLD_MAP_PIN_BASE_SIZE = 30
 local WORLD_MAP_PIN_DEFAULT_SCALE = 1.6
 local WORLD_MAP_PIN_MIN_SCALE = 0.75
@@ -87,6 +90,9 @@ function CollectionMapWindow:New()
         sourceSummary = nil,
         acquisition = nil,
         effect = nil,
+        tips = nil,
+        description = nil,
+        criteria = nil,
         waypoints = nil,
         icon = nil,
         projectedPayload = nil,
@@ -202,6 +208,25 @@ function CollectionMapWindow:BuildDetailsText()
     self:AddDetailsSection(lines, "Source", self.sourceSummary)
     self:AddDetailsSection(lines, "How to get", self.acquisition)
     self:AddDetailsSection(lines, "Effect", self.effect)
+    self:AddDetailsSection(lines, "Tips", self.tips)
+    self:AddDetailsSection(lines, "Description", self.description)
+
+    if type(self.criteria) == "table" and #self.criteria > 0 then
+        if #lines > 0 then
+            lines[#lines + 1] = ""
+        end
+        lines[#lines + 1] = "Criteria:"
+        for _, criterion in ipairs(self.criteria) do
+            local marker = criterion.completed and "[Done] " or "[ ] "
+            local progress = ""
+            if IsNonEmptyText(criterion.quantityText) then
+                progress = " (" .. criterion.quantityText .. ")"
+            elseif tonumber(criterion.requiredQuantity) and criterion.requiredQuantity > 1 then
+                progress = string.format(" (%d/%d)", tonumber(criterion.quantity) or 0, criterion.requiredQuantity)
+            end
+            lines[#lines + 1] = marker .. tostring(criterion.text or "Objective") .. progress
+        end
+    end
 
     if type(self.pins) == "table" and #self.pins > 0 then
         if #lines > 0 then
@@ -229,6 +254,9 @@ function CollectionMapWindow:BuildDetailsText()
             if IsNonEmptyText(pinData.effect) and pinData.effect ~= self.effect then
                 lines[#lines + 1] = "   Effect: " .. pinData.effect
             end
+            if IsNonEmptyText(pinData.tips) and pinData.tips ~= self.tips then
+                lines[#lines + 1] = "   Tips: " .. pinData.tips
+            end
         end
     end
 
@@ -240,7 +268,7 @@ function CollectionMapWindow:BuildDetailsText()
         for _, waypoint in ipairs(self.waypoints) do
             lines[#lines + 1] = waypoint
         end
-    elseif not self.sourceSummary and not self.acquisition and not self.effect and (#(self.pins or {}) == 0) then
+    elseif not self.sourceSummary and not self.acquisition and not self.effect and not self.tips and (#(self.pins or {}) == 0) then
         lines[#lines + 1] = "No curated source details are available for this entry yet."
     end
 
@@ -304,16 +332,16 @@ function CollectionMapWindow:GetPin(index)
     local pin = self.pinFrames[index]
     if not pin then
         pin = CreateFrame("Button", nil, self.mapContent, "BackdropTemplate")
-        pin:SetSize(28, 28)
+        pin:SetSize(COLLECTION_MAP_PIN_SIZE, COLLECTION_MAP_PIN_SIZE)
         pin:EnableMouse(true)
         pin.icon = pin:CreateTexture(nil, "OVERLAY")
         pin.icon:SetPoint("CENTER")
-        pin.icon:SetSize(24, 24)
+        pin.icon:SetSize(COLLECTION_MAP_PIN_ICON_SIZE, COLLECTION_MAP_PIN_ICON_SIZE)
         pin.icon:SetTexture("Interface\\Icons\\INV_Misc_Map02")
         pin.icon:SetTexCoord(0, 1, 0, 1)
         pin.ring = pin:CreateTexture(nil, "ARTWORK")
         pin.ring:SetPoint("CENTER")
-        pin.ring:SetSize(30, 30)
+        pin.ring:SetSize(COLLECTION_MAP_PIN_RING_SIZE, COLLECTION_MAP_PIN_RING_SIZE)
         pin.ring:SetColorTexture(1.0, 0.82, 0.18, 0.18)
         pin:SetScript("OnEnter", function(target)
             self:ShowWorldMapPinTooltip(target)
@@ -327,6 +355,22 @@ function CollectionMapWindow:GetPin(index)
         self.pinFrames[index] = pin
     end
     return pin
+end
+
+function CollectionMapWindow:ApplyCollectionMapPinSize(pin, mapScale)
+    mapScale = tonumber(mapScale) or 1
+    if mapScale <= 0 then
+        mapScale = 1
+    end
+
+    -- The pin must keep its parent's scale so its anchor offsets remain in the
+    -- map art's coordinate system. Compensate only its dimensions to keep the
+    -- visible marker a constant size as the map zoom changes.
+    local sizeScale = 1 / mapScale
+    pin:SetScale(1)
+    pin:SetSize(COLLECTION_MAP_PIN_SIZE * sizeScale, COLLECTION_MAP_PIN_SIZE * sizeScale)
+    pin.icon:SetSize(COLLECTION_MAP_PIN_ICON_SIZE * sizeScale, COLLECTION_MAP_PIN_ICON_SIZE * sizeScale)
+    pin.ring:SetSize(COLLECTION_MAP_PIN_RING_SIZE * sizeScale, COLLECTION_MAP_PIN_RING_SIZE * sizeScale)
 end
 
 function CollectionMapWindow:SetUserWaypoint(mapID, x, y)
@@ -371,6 +415,7 @@ function CollectionMapWindow:CopyProjectionPayload()
                 source = pinData.source,
                 acquisition = pinData.acquisition,
                 effect = pinData.effect,
+                tips = pinData.tips,
             }
         end
     end
@@ -389,6 +434,9 @@ function CollectionMapWindow:CopyProjectionPayload()
         sourceSummary = self.sourceSummary,
         acquisition = self.acquisition,
         effect = self.effect,
+        tips = self.tips,
+        description = self.description,
+        criteria = self.criteria,
         waypoints = waypoints,
         pins = pins,
         mapID = self.mapID,
@@ -462,6 +510,9 @@ function CollectionMapWindow:ShowWorldMapPinTooltip(pin)
     if IsNonEmptyText(pin.effect) then
         GameTooltip:AddLine("Effect: " .. pin.effect, 0.86, 0.88, 0.94, true)
     end
+    if IsNonEmptyText(pin.tips) then
+        GameTooltip:AddLine("Tips: " .. pin.tips, 0.86, 0.88, 0.94, true)
+    end
     GameTooltip:AddLine("Click to set waypoint.", 1, 0.82, 0.18)
     GameTooltip:Show()
 end
@@ -476,6 +527,7 @@ function CollectionMapWindow:ConfigureWorldMapPin(pin, pinData, payload)
     pin.source = pinData.source or payload.sourceSummary
     pin.acquisition = pinData.acquisition or payload.acquisition
     pin.effect = pinData.effect or payload.effect
+    pin.tips = pinData.tips or payload.tips
     pin.coordinates = self:FormatPinCoordinates(pinData)
 
     local icon = pin.icon or pin.Icon
@@ -655,6 +707,7 @@ function CollectionMapWindow:RefreshMinimapProjection()
                     source = pinData.source,
                     acquisition = pinData.acquisition,
                     effect = pinData.effect,
+                    tips = pinData.tips,
                     icon = pinData.icon,
                 }, payload)
                 pin:ClearAllPoints()
@@ -833,6 +886,7 @@ function CollectionMapWindow:EnsureWorldMapProjectionMixins()
                             source = pinData.source,
                             acquisition = pinData.acquisition,
                             effect = pinData.effect,
+                            tips = pinData.tips,
                             icon = pinData.icon,
                         }
                         local pin = map:AcquirePin(WORLD_MAP_PIN_TEMPLATE, provider, projectedPinData)
@@ -1105,6 +1159,7 @@ function CollectionMapWindow:RefreshWorldMapProjection()
                     source = pinData.source,
                     acquisition = pinData.acquisition,
                     effect = pinData.effect,
+                    tips = pinData.tips,
                     icon = pinData.icon,
                 }, payload)
 
@@ -1301,6 +1356,7 @@ function CollectionMapWindow:RenderPins()
                 pin.source = pinData.source
                 pin.acquisition = pinData.acquisition
                 pin.effect = pinData.effect
+                pin.tips = pinData.tips
                 pin.coordinates = self:FormatPinCoordinates(pinData)
                 if pinData.icon then
                     pin.icon:SetTexture(pinData.icon)
@@ -1319,8 +1375,7 @@ function CollectionMapWindow:RenderPins()
                 pin.icon:Show()
                 pin.ring:Show()
                 pin:ClearAllPoints()
-                -- Counter the parent scale so pins stay readable while their map position scales.
-                pin:SetScale(scale > 0 and (1 / scale) or 1)
+                self:ApplyCollectionMapPinSize(pin, scale)
                 pin:SetFrameLevel((self.mapContent:GetFrameLevel() or 0) + 40)
                 pin:SetPoint("CENTER", self.mapContent, "TOPLEFT", x * layerWidth, -(y * layerHeight))
                 pin:Show()
@@ -1407,6 +1462,9 @@ function CollectionMapWindow:Open(options)
     self.sourceSummary = options.sourceSummary
     self.acquisition = options.acquisition
     self.effect = options.effect
+    self.tips = options.tips
+    self.description = options.description
+    self.criteria = options.criteria
     self.waypoints = options.waypoints
     self.icon = options.icon
     self.pins = options.pins or self.pins or {}

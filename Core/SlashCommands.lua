@@ -26,13 +26,25 @@ function SlashCommands:ToggleMainFrame()
 end
 
 function SlashCommands:GetManagedWindows()
-    return {
+    local windows = {
         self.addon.ui,
         self.addon.plannerWindow,
         self.addon.explorerWindow,
         self.addon.favoritesWindow,
         self.addon.collectionMapWindow,
     }
+
+    local plannerWindow = self.addon.plannerWindow
+    if plannerWindow then
+        for _, childKey in ipairs({ "detailWindow", "editWindow", "optionsWindow" }) do
+            local childWindow = plannerWindow[childKey]
+            if childWindow then
+                windows[#windows + 1] = childWindow
+            end
+        end
+    end
+
+    return windows
 end
 
 function SlashCommands:GetPositionedWindows()

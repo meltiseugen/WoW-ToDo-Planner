@@ -350,49 +350,100 @@ function Widgets:ShowSingleSelectMenu(owner, options, selectedValue, getLabel, o
         self.menuFrame:SetFrameStrata("FULLSCREEN_DIALOG")
         self.menuFrame:SetClampedToScreen(true)
         self.menuFrame:EnableMouse(true)
+        self.menuFrame:EnableMouseWheel(true)
         self.menuFrame.buttons = {}
+        self.menuFrame.scrollHint = self.menuFrame:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+        self.menuFrame.scrollHint:SetJustifyH("CENTER")
         self.menuFrame:Hide()
     end
 
     local menuFrame = self.menuFrame
     local optionHeight = 24
     local optionGap = 4
+    local maxVisibleOptions = 12
     local ownerWidth = owner and owner.GetWidth and owner:GetWidth() or 180
     local width = math.max(180, ownerWidth)
-    local height = (#options * optionHeight) + (math.max(#options - 1, 0) * optionGap) + 12
+    local visibleCount = math.min(#options, maxVisibleOptions)
+    local hasOverflow = #options > maxVisibleOptions
+    local hintHeight = hasOverflow and 20 or 0
+    local height = (visibleCount * optionHeight)
+        + (math.max(visibleCount - 1, 0) * optionGap)
+        + hintHeight
+        + 12
+
+    local selectedIndex
+    for index, value in ipairs(options) do
+        if value == selectedValue then
+            selectedIndex = index
+            break
+        end
+    end
+    local maxOffset = math.max(0, #options - visibleCount)
+    local scrollOffset = selectedIndex and math.max(0, selectedIndex - visibleCount) or 0
+    scrollOffset = math.min(scrollOffset, maxOffset)
 
     for _, button in ipairs(menuFrame.buttons) do
         button:Hide()
         button:SetParent(menuFrame)
     end
 
-    for optionIndex, value in ipairs(options) do
-        local optionValue = value
-        local button = menuFrame.buttons[optionIndex]
+    for slotIndex = 1, visibleCount do
+        local button = menuFrame.buttons[slotIndex]
         if not button then
             button = self:CreateButton(menuFrame, width - 12, optionHeight, "", "neutral")
-            menuFrame.buttons[optionIndex] = button
+            menuFrame.buttons[slotIndex] = button
         end
-
-        local label = getLabel and getLabel(optionValue) or tostring(optionValue)
-        local isSelected = optionValue == selectedValue
         button:SetSize(width - 12, optionHeight)
         button:ClearAllPoints()
-        button:SetPoint("TOPLEFT", menuFrame, "TOPLEFT", 6, -6 - ((optionIndex - 1) * (optionHeight + optionGap)))
-        button:SetText((isSelected and "* " or "") .. label)
-        if button.SetSelected then
-            button:SetSelected(isSelected)
-        end
-        button:SetScript("OnClick", function()
-            menuFrame:Hide()
-            onSelect(optionValue)
-        end)
-        button:Show()
+        button:SetPoint("TOPLEFT", menuFrame, "TOPLEFT", 6, -6 - ((slotIndex - 1) * (optionHeight + optionGap)))
     end
 
+    local function refreshVisibleOptions()
+        for slotIndex = 1, visibleCount do
+            local optionIndex = scrollOffset + slotIndex
+            local optionValue = options[optionIndex]
+            local button = menuFrame.buttons[slotIndex]
+            local label = getLabel and getLabel(optionValue) or tostring(optionValue)
+            local isSelected = optionValue == selectedValue
+            button:SetText((isSelected and "* " or "") .. label)
+            if button.SetSelected then
+                button:SetSelected(isSelected)
+            end
+            button:SetScript("OnClick", function()
+                menuFrame:Hide()
+                onSelect(optionValue)
+            end)
+            button:Show()
+        end
+
+        if hasOverflow then
+            menuFrame.scrollHint:SetText(string.format(
+                "Mouse wheel to scroll  |  %d-%d of %d",
+                scrollOffset + 1,
+                scrollOffset + visibleCount,
+                #options
+            ))
+            menuFrame.scrollHint:Show()
+        else
+            menuFrame.scrollHint:Hide()
+        end
+    end
+
+    menuFrame:SetScript("OnMouseWheel", function(_, delta)
+        if not hasOverflow then
+            return
+        end
+        scrollOffset = math.max(0, math.min(maxOffset, scrollOffset - delta))
+        refreshVisibleOptions()
+    end)
+
     menuFrame:SetSize(width, height)
+    menuFrame.scrollHint:ClearAllPoints()
+    menuFrame.scrollHint:SetPoint("BOTTOMLEFT", menuFrame, "BOTTOMLEFT", 6, 5)
+    menuFrame.scrollHint:SetPoint("BOTTOMRIGHT", menuFrame, "BOTTOMRIGHT", -6, 5)
     menuFrame:ClearAllPoints()
     menuFrame:SetPoint("TOPLEFT", owner, "BOTTOMLEFT", 0, -4)
+    refreshVisibleOptions()
     menuFrame:Show()
 
     local Theme = self:GetTheme()
@@ -499,6 +550,45 @@ end
 function Widgets:UpdateButtonLabel(button, prefix, value, formatter)
     local label = formatter and formatter(value) or tostring(value)
     button:SetText(prefix .. ": " .. label)
+end
+
+function Widgets:CreateBadge(parent)
+    local badge = CreateFrame("Frame", nil, parent)
+    badge:SetHeight(20)
+
+    badge.background = badge:CreateTexture(nil, "BACKGROUND")
+    badge.background:SetAllPoints(badge)
+
+    badge.accent = badge:CreateTexture(nil, "ARTWORK")
+    badge.accent:SetPoint("TOPLEFT", badge, "TOPLEFT", 0, 0)
+    badge.accent:SetPoint("BOTTOMLEFT", badge, "BOTTOMLEFT", 0, 0)
+    badge.accent:SetWidth(3)
+
+    badge.text = badge:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    badge.text:SetPoint("LEFT", badge, "LEFT", 9, 0)
+    badge.text:SetPoint("RIGHT", badge, "RIGHT", -6, 0)
+    badge.text:SetJustifyH("LEFT")
+    if badge.text.SetWordWrap then
+        badge.text:SetWordWrap(false)
+    end
+    if badge.text.SetMaxLines then
+        badge.text:SetMaxLines(1)
+    end
+
+    return badge
+end
+
+function Widgets:SetBadge(badge, text, backgroundColor, accentColor, textColor)
+    if not badge then
+        return
+    end
+
+    badge.text:SetText(text or "")
+    self:SetTextureColor(badge.background, backgroundColor, { 0.10, 0.11, 0.15, 0.92 })
+    self:SetTextureColor(badge.accent, accentColor, { 1.0, 0.82, 0.18, 1.0 })
+    if type(textColor) == "table" then
+        badge.text:SetTextColor(textColor[1] or 1, textColor[2] or 1, textColor[3] or 1, textColor[4] or 1)
+    end
 end
 
 function Widgets:ConfigureDetailText(fontString, allowWrap)

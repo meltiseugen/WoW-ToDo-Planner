@@ -34,7 +34,7 @@ function TaskRepository:IsGlobalTask(task)
 end
 
 function TaskRepository:GetSortOrder(task, boardKey)
-    boardKey = Boards:NormalizeBoardKey(boardKey)
+    boardKey = Boards:ResolveKnownBoardKey(boardKey)
     if self:IsGlobalTask(task)
         and self:IsCharacterBoard(boardKey)
         and type(task.sortOrderByBoard) == "table"
@@ -101,7 +101,16 @@ function TaskRepository:SortStable(tasks)
 end
 
 function TaskRepository:GetBoardKey(task)
-    return Boards:NormalizeBoardKey(task and task.boardKey or C.GLOBAL_BOARD_KEY)
+    return Boards:ResolveKnownBoardKey(task and task.boardKey or C.GLOBAL_BOARD_KEY)
+end
+
+function TaskRepository:GetOwnershipLabel(task)
+    local boardKey = self:GetBoardKey(task)
+    if boardKey == C.GLOBAL_BOARD_KEY then
+        return "Global"
+    end
+
+    return Boards:GetDisplayName(boardKey)
 end
 
 function TaskRepository:IsArchived(task)
@@ -110,17 +119,9 @@ end
 
 function TaskRepository:IsVisibleOnBoard(task, boardKey)
     local taskBoardKey = self:GetBoardKey(task)
-    boardKey = Boards:NormalizeBoardKey(boardKey)
+    boardKey = Boards:ResolveKnownBoardKey(boardKey)
 
     if boardKey == C.ALL_BOARD_KEY or boardKey == C.ARCHIVED_BOARD_KEY then
-        return true
-    end
-
-    if boardKey == C.GLOBAL_BOARD_KEY then
-        return taskBoardKey == C.GLOBAL_BOARD_KEY
-    end
-
-    if taskBoardKey == C.GLOBAL_BOARD_KEY then
         return true
     end
 
@@ -128,7 +129,7 @@ function TaskRepository:IsVisibleOnBoard(task, boardKey)
 end
 
 function TaskRepository:GetStatus(task, boardKey)
-    boardKey = Boards:NormalizeBoardKey(boardKey)
+    boardKey = Boards:ResolveKnownBoardKey(boardKey)
     if self:IsGlobalTask(task)
         and self:IsCharacterBoard(boardKey)
         and type(task.statusByBoard) == "table"
@@ -139,13 +140,15 @@ function TaskRepository:GetStatus(task, boardKey)
     return self:NormalizeStatus(task and task.status)
 end
 
-function TaskRepository:GetNextSortOrder(boardKey, status)
-    boardKey = Boards:NormalizeBoardKey(boardKey)
+function TaskRepository:GetNextSortOrder(boardKey, status, excludedTaskId)
+    boardKey = Boards:ResolveKnownBoardKey(boardKey)
     status = self:NormalizeStatus(status)
 
     local maxOrder = 0
     for _, task in ipairs(TODOPlannerDB.tasks) do
-        if self:MatchesBoardView(task, boardKey) and self:GetStatus(task, boardKey) == status then
+        if (excludedTaskId == nil or task.id ~= excludedTaskId)
+            and self:MatchesBoardView(task, boardKey)
+            and self:GetStatus(task, boardKey) == status then
             maxOrder = math.max(maxOrder, self:GetSortOrder(task, boardKey))
         end
     end
@@ -154,7 +157,7 @@ function TaskRepository:GetNextSortOrder(boardKey, status)
 end
 
 function TaskRepository:MatchesBoardView(task, boardKey)
-    boardKey = Boards:NormalizeBoardKey(boardKey)
+    boardKey = Boards:ResolveKnownBoardKey(boardKey)
     local archiveStateMatches = boardKey == C.ARCHIVED_BOARD_KEY and self:IsArchived(task)
         or boardKey ~= C.ARCHIVED_BOARD_KEY and not self:IsArchived(task)
 
@@ -162,7 +165,7 @@ function TaskRepository:MatchesBoardView(task, boardKey)
 end
 
 function TaskRepository:SetSortOrder(task, boardKey, sortOrder)
-    boardKey = Boards:NormalizeBoardKey(boardKey)
+    boardKey = Boards:ResolveKnownBoardKey(boardKey)
 
     if self:IsGlobalTask(task) and self:IsCharacterBoard(boardKey) then
         task.sortOrderByBoard = task.sortOrderByBoard or {}
@@ -176,7 +179,7 @@ function TaskRepository:SetStatus(task, status, boardKey)
     status = self:NormalizeStatus(status)
     task.boardKey = self:GetBoardKey(task)
 
-    boardKey = Boards:NormalizeBoardKey(boardKey or task.boardKey)
+    boardKey = Boards:ResolveKnownBoardKey(boardKey or task.boardKey)
     if self:IsGlobalTask(task) and self:IsCharacterBoard(boardKey) then
         task.statusByBoard = task.statusByBoard or {}
         if self:GetStatus(task, boardKey) ~= status
@@ -198,9 +201,20 @@ function TaskRepository:SetStatus(task, status, boardKey)
 end
 
 function TaskRepository:MoveToBoard(task, targetBoardKey, sourceBoardKey)
+    if not task then
+        return false, "Task not found."
+    end
+
     local visibleStatus = self:GetStatus(task, sourceBoardKey)
-    local normalizedTargetBoardKey = Boards:NormalizeBoardKey(targetBoardKey)
-    local targetSortOrder = self:GetNextSortOrder(normalizedTargetBoardKey, visibleStatus)
+    local normalizedTargetBoardKey = Boards:ResolveKnownBoardKey(targetBoardKey)
+    if normalizedTargetBoardKey == C.ALL_BOARD_KEY or normalizedTargetBoardKey == C.ARCHIVED_BOARD_KEY then
+        return false, "Tasks cannot be assigned to that board."
+    end
+    if normalizedTargetBoardKey == self:GetBoardKey(task) then
+        return false, "Task is already assigned to that board."
+    end
+
+    local targetSortOrder = self:GetNextSortOrder(normalizedTargetBoardKey, visibleStatus, task.id)
 
     task.boardKey = normalizedTargetBoardKey
     task.status = visibleStatus
@@ -212,6 +226,57 @@ function TaskRepository:MoveToBoard(task, targetBoardKey, sourceBoardKey)
     if task.boardKey ~= C.GLOBAL_BOARD_KEY then
         Boards:EnsureKnownCharacter(task.boardKey)
     end
+
+    return true, nil
+end
+
+function TaskRepository:Update(task, fields, sourceBoardKey)
+    if not task then
+        return false, "Task not found."
+    end
+
+    fields = fields or {}
+    local title = fields.title ~= nil and Utils:Trim(fields.title) or task.title
+    if title == "" then
+        return false, "Task title is required."
+    end
+
+    sourceBoardKey = Boards:ResolveKnownBoardKey(sourceBoardKey or self:GetBoardKey(task))
+    local currentBoardKey = self:GetBoardKey(task)
+    local targetBoardKey = fields.boardKey ~= nil
+        and Boards:ResolveKnownBoardKey(fields.boardKey)
+        or currentBoardKey
+    if targetBoardKey == C.ALL_BOARD_KEY or targetBoardKey == C.ARCHIVED_BOARD_KEY then
+        return false, "Tasks cannot be assigned to that board."
+    end
+
+    local boardChanged = currentBoardKey ~= targetBoardKey
+    if boardChanged then
+        local moved, errorText = self:MoveToBoard(task, targetBoardKey, sourceBoardKey)
+        if not moved then
+            return false, errorText
+        end
+        currentBoardKey = targetBoardKey
+    end
+
+    if fields.status ~= nil then
+        local statusBoardKey = boardChanged
+            and currentBoardKey
+            or self:IsGlobalTask(task) and self:IsCharacterBoard(sourceBoardKey) and sourceBoardKey
+            or currentBoardKey
+        self:SetStatus(task, fields.status, statusBoardKey)
+    end
+
+    task.title = title
+    if fields.notes ~= nil then
+        task.notes = fields.notes
+    end
+    if Utils:IndexOf(C.TASK_CATEGORIES, fields.category) then
+        task.category = fields.category
+    end
+    task.updatedAt = time()
+
+    return true, nil
 end
 
 function TaskRepository:MoveRelative(taskId, targetStatus, boardKey, anchorTaskId, placement)
@@ -220,7 +285,11 @@ function TaskRepository:MoveRelative(taskId, targetStatus, boardKey, anchorTaskI
         return false
     end
 
-    boardKey = Boards:NormalizeBoardKey(boardKey)
+    if TODOPlannerDB.settings.filterCategory and TODOPlannerDB.settings.filterCategory ~= "All" then
+        return false
+    end
+
+    boardKey = Boards:ResolveKnownBoardKey(boardKey)
     if boardKey == C.ALL_BOARD_KEY or boardKey == C.ARCHIVED_BOARD_KEY then
         return false
     end
@@ -291,7 +360,7 @@ end
 function TaskRepository:Create(fields)
     fields = fields or {}
 
-    local targetBoardKey = Boards:NormalizeBoardKey(fields.boardKey or Boards:GetPlayerBoardKey())
+    local targetBoardKey = Boards:ResolveKnownBoardKey(fields.boardKey or Boards:GetPlayerBoardKey())
     if targetBoardKey == C.ALL_BOARD_KEY or targetBoardKey == C.ARCHIVED_BOARD_KEY then
         targetBoardKey = Boards:GetPlayerBoardKey()
     end
@@ -340,7 +409,7 @@ function TaskRepository:CreateOnCurrentCharacterBoard(fields)
 end
 
 function TaskRepository:GetSelectedCreationBoardKey()
-    local selectedBoard = Boards:NormalizeBoardKey(TODOPlannerDB.settings and TODOPlannerDB.settings.selectedBoard)
+    local selectedBoard = Boards:ResolveKnownBoardKey(TODOPlannerDB.settings and TODOPlannerDB.settings.selectedBoard)
     if selectedBoard == C.ALL_BOARD_KEY or selectedBoard == C.ARCHIVED_BOARD_KEY then
         return Boards:GetPlayerBoardKey()
     end
@@ -355,13 +424,12 @@ function TaskRepository:CreateOnSelectedBoard(fields)
 end
 
 function TaskRepository:FindBySource(sourceType, sourceId, boardKey)
-    boardKey = Boards:NormalizeBoardKey(boardKey or Boards:GetPlayerBoardKey())
+    boardKey = Boards:ResolveKnownBoardKey(boardKey or Boards:GetPlayerBoardKey())
 
     for _, task in ipairs(TODOPlannerDB.tasks) do
         if task.sourceType == sourceType
             and tostring(task.sourceId or "") == tostring(sourceId or "")
-            and (self:GetBoardKey(task) == boardKey
-                or self:IsCharacterBoard(boardKey) and self:IsGlobalTask(task))
+            and self:GetBoardKey(task) == boardKey
             and not self:IsArchived(task) then
             return task
         end
@@ -373,7 +441,7 @@ end
 function TaskRepository:GetForStatus(status, boardKey)
     local filtered = {}
     local filterCategory = TODOPlannerDB.settings.filterCategory or "All"
-    boardKey = Boards:NormalizeBoardKey(boardKey)
+    boardKey = Boards:ResolveKnownBoardKey(boardKey)
 
     for _, task in ipairs(TODOPlannerDB.tasks) do
         local archiveStateMatches = boardKey == C.ARCHIVED_BOARD_KEY and self:IsArchived(task)
@@ -401,11 +469,22 @@ end
 
 function TaskRepository:Archive(task)
     if not task then
-        return
+        return false
     end
 
     task.archivedAt = time()
     task.updatedAt = task.archivedAt
+    return true
+end
+
+function TaskRepository:Unarchive(task)
+    if not task or not self:IsArchived(task) then
+        return false
+    end
+
+    task.archivedAt = nil
+    task.updatedAt = time()
+    return true
 end
 
 function TaskRepository:Delete(taskId)

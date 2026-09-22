@@ -12,6 +12,8 @@ MainWindow.__index = MainWindow
 
 local DROP_INDICATOR_WIDTH = 286
 local DROP_INDICATOR_HEIGHT = 18
+local COLUMN_GAP = 12
+local COLUMN_MARGIN = 12
 
 function MainWindow:New()
     local instance = {
@@ -30,7 +32,6 @@ function MainWindow:New()
         saveButton = nil,
         detailedButton = nil,
         columns = {},
-        editingTaskId = nil,
         detailWindow = nil,
         editWindow = nil,
         optionsWindow = nil,
@@ -42,15 +43,8 @@ function MainWindow:New()
 end
 
 function MainWindow:ResetEditor()
-    self.editingTaskId = nil
     self.inputTitle:SetText("")
     self.saveButton:SetText("+")
-end
-
-function MainWindow:LoadEditor(task)
-    self.editingTaskId = task.id
-    self.inputTitle:SetText(task.title or "")
-    self.saveButton:SetText("Save Task")
 end
 
 function MainWindow:ConfirmArchiveTask(taskRef)
@@ -58,8 +52,12 @@ function MainWindow:ConfirmArchiveTask(taskRef)
         return
     end
 
+    local scopeText = Tasks:IsGlobalTask(taskRef)
+        and "\nBoard: Global"
+        or "\nBoard: " .. Tasks:GetOwnershipLabel(taskRef)
+
     StaticPopupDialogs["TODO_PLANNER_ARCHIVE_TASK"] = {
-        text = "Archive task: \"" .. (taskRef.title or "") .. "\"?",
+        text = "Archive task: \"" .. (taskRef.title or "") .. "\"?" .. scopeText,
         button1 = YES,
         button2 = NO,
         OnAccept = function()
@@ -73,10 +71,6 @@ function MainWindow:ConfirmArchiveTask(taskRef)
             if self.detailWindow and self.detailWindow.frame and self.detailWindow.frame.taskId == task.id then
                 self.detailWindow.frame:Hide()
             end
-            if self.editingTaskId == task.id then
-                self:ResetEditor()
-            end
-
             self:Render()
         end,
         timeout = 0,
@@ -87,8 +81,38 @@ function MainWindow:ConfirmArchiveTask(taskRef)
     StaticPopup_Show("TODO_PLANNER_ARCHIVE_TASK")
 end
 
+function MainWindow:ConfirmRestoreTask(taskRef)
+    if not taskRef then
+        return
+    end
+
+    StaticPopupDialogs["TODO_PLANNER_RESTORE_TASK"] = {
+        text = "Restore task: \"" .. (taskRef.title or "") .. "\"?\nBoard: " .. Tasks:GetOwnershipLabel(taskRef),
+        button1 = YES,
+        button2 = NO,
+        OnAccept = function()
+            local task = Tasks:FindById(taskRef.id)
+            if not task then
+                return
+            end
+
+            Tasks:Unarchive(task)
+            Tasks:SortStable(TODOPlannerDB.tasks)
+            if self.detailWindow and self.detailWindow.frame and self.detailWindow.frame.taskId == task.id then
+                self.detailWindow.frame:Hide()
+            end
+            self:Render()
+        end,
+        timeout = 0,
+        whileDead = true,
+        hideOnEscape = true,
+        preferredIndex = 3,
+    }
+    StaticPopup_Show("TODO_PLANNER_RESTORE_TASK")
+end
+
 function MainWindow:GetSelectedBoardKey()
-    local boardKey = Boards:NormalizeBoardKey(TODOPlannerDB.settings.selectedBoard)
+    local boardKey = Boards:ResolveKnownBoardKey(TODOPlannerDB.settings.selectedBoard)
     if boardKey ~= C.GLOBAL_BOARD_KEY and not Boards:IsKnownBoard(boardKey) then
         boardKey = Boards:GetPlayerBoardKey()
         Boards:EnsureKnownCharacter(boardKey)
@@ -99,7 +123,43 @@ end
 
 function MainWindow:CanReorderSelectedBoard()
     local boardKey = self:GetSelectedBoardKey()
-    return boardKey ~= C.ALL_BOARD_KEY and boardKey ~= C.ARCHIVED_BOARD_KEY
+    local filterCategory = TODOPlannerDB.settings.filterCategory or "All"
+    return boardKey ~= C.ALL_BOARD_KEY
+        and boardKey ~= C.ARCHIVED_BOARD_KEY
+        and filterCategory == "All"
+end
+
+function MainWindow:HideChildWindows()
+    local childWindows = { self.detailWindow, self.editWindow, self.optionsWindow }
+    for _, childWindow in ipairs(childWindows) do
+        if childWindow and childWindow.frame then
+            childWindow.frame:Hide()
+        end
+    end
+    Widgets:HideDropdownMenus()
+end
+
+function MainWindow:LayoutColumns()
+    if not self.body or not self.columns then
+        return
+    end
+
+    local bodyWidth = self.body:GetWidth()
+    if not bodyWidth or bodyWidth < 900 then
+        bodyWidth = 964
+    end
+    local availableWidth = bodyWidth - (COLUMN_MARGIN * 2) - (COLUMN_GAP * 2)
+    local columnWidth = math.floor(availableWidth / 3)
+
+    for index, status in ipairs(C.STATUS_ORDER) do
+        local column = self.columns[status]
+        local offsetX = COLUMN_MARGIN + ((index - 1) * (columnWidth + COLUMN_GAP))
+        column:ClearAllPoints()
+        column:SetPoint("TOPLEFT", self.body, "TOPLEFT", offsetX, -108)
+        column:SetPoint("BOTTOMLEFT", self.body, "BOTTOMLEFT", offsetX, 12)
+        column:SetWidth(columnWidth)
+        column.content:SetWidth(math.max(1, columnWidth - 40))
+    end
 end
 
 function MainWindow:OpenTaskDetail(task)
@@ -251,6 +311,14 @@ function MainWindow:CreateColumn(parent, status, offsetX)
     column.content = content
     column.cards = {}
     column.cardPool = {}
+
+    local emptyText = column:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    emptyText:SetPoint("TOPLEFT", scroll, "TOPLEFT", 12, -18)
+    emptyText:SetPoint("TOPRIGHT", scroll, "TOPRIGHT", -12, -18)
+    emptyText:SetJustifyH("CENTER")
+    emptyText:SetText("No tasks.")
+    emptyText:Hide()
+    column.emptyText = emptyText
 
     return column
 end
@@ -405,7 +473,7 @@ function MainWindow:UpdateDropIndicator()
         4,
         self:GetIndicatorOffset(column, anchorTaskId, placement) + (DROP_INDICATOR_HEIGHT / 2)
     )
-    indicator:SetSize(DROP_INDICATOR_WIDTH, DROP_INDICATOR_HEIGHT)
+    indicator:SetSize(math.max(1, column.content:GetWidth() - 8), DROP_INDICATOR_HEIGHT)
     indicator:Show()
 end
 
@@ -459,6 +527,15 @@ end
 function MainWindow:Build()
     local frame = CreateFrame("Frame", "TODOPlannerMainFrame", UIParent, "BasicFrameTemplateWithInset")
     frame:SetSize(1100, 660)
+    frame:SetResizable(true)
+    if frame.SetResizeBounds then
+        frame:SetResizeBounds(1000, 580, 1500, 920)
+    elseif frame.SetMinResize then
+        frame:SetMinResize(1000, 580)
+        if frame.SetMaxResize then
+            frame:SetMaxResize(1500, 920)
+        end
+    end
     frame:SetClampedToScreen(true)
     frame:EnableMouse(true)
     frame:SetMovable(true)
@@ -479,7 +556,7 @@ function MainWindow:Build()
 
         local subtitle = frame.headerBar:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
         subtitle:SetPoint("LEFT", frame.headerBar, "LEFT", 15, -12)
-        subtitle:SetText("Character boards with shared Global tasks")
+        subtitle:SetText("Separate Global and character task boards")
 
         body = Widgets:CreatePanel(frame, "body", "goldBorder")
         body:SetPoint("TOPLEFT", chrome, "TOPLEFT", 12, -54)
@@ -495,7 +572,7 @@ function MainWindow:Build()
 
         local subtitle = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
         subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -4)
-        subtitle:SetText("Character boards with shared Global tasks")
+        subtitle:SetText("Separate Global and character task boards")
 
         local close = CreateFrame("Button", nil, frame, "UIPanelCloseButton")
         close:SetPoint("TOPRIGHT", -6, -6)
@@ -516,10 +593,10 @@ function MainWindow:Build()
     filterButton:SetPoint("LEFT", boardButton, "RIGHT", 8, 0)
 
     local createBoardButton = Widgets:CreateButton(toolbar, 94, 24, "New Board", "neutral")
-    createBoardButton:SetPoint("LEFT", filterButton, "RIGHT", 8, 0)
 
     local deleteBoardButton = Widgets:CreateButton(toolbar, 104, 24, "Delete Board", "danger")
-    deleteBoardButton:SetPoint("LEFT", createBoardButton, "RIGHT", 8, 0)
+    deleteBoardButton:SetPoint("BOTTOMRIGHT", toolbar, "BOTTOMRIGHT", -12, 12)
+    createBoardButton:SetPoint("RIGHT", deleteBoardButton, "LEFT", -8, 0)
 
     local optionsButton = Widgets:CreateButton(toolbar, 96, 24, "Options", "neutral")
     optionsButton:SetPoint("TOPRIGHT", toolbar, "TOPRIGHT", -12, -12)
@@ -567,6 +644,32 @@ function MainWindow:Build()
         DOING = self:CreateColumn(body, "DOING", 361),
         DONE = self:CreateColumn(body, "DONE", 710),
     }
+    self:LayoutColumns()
+
+    frame:SetScript("OnSizeChanged", function()
+        self:LayoutColumns()
+        if frame:IsShown() then
+            self:Render()
+        end
+    end)
+    frame:SetScript("OnHide", function()
+        self:HideChildWindows()
+    end)
+
+    local resizeButton = CreateFrame("Button", nil, frame)
+    resizeButton:SetSize(18, 18)
+    resizeButton:SetPoint("BOTTOMRIGHT", -5, 5)
+    resizeButton:SetFrameLevel((frame:GetFrameLevel() or 0) + 20)
+    resizeButton:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
+    resizeButton:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
+    resizeButton:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
+    resizeButton:SetScript("OnMouseDown", function()
+        frame:StartSizing("BOTTOMRIGHT")
+    end)
+    resizeButton:SetScript("OnMouseUp", function()
+        frame:StopMovingOrSizing()
+    end)
+    self.resizeButton = resizeButton
 
     boardButton:SetScript("OnClick", function(owner)
         Widgets:ShowSingleSelectMenu(owner, Boards:GetBoardOptions(), self:GetSelectedBoardKey(), function(boardKey)
@@ -630,20 +733,12 @@ function MainWindow:Build()
             return
         end
 
-        if self.editingTaskId then
-            local task = Tasks:FindById(self.editingTaskId)
-            if task then
-                task.title = titleText
-                task.updatedAt = time()
-            end
-        else
-            Tasks:CreateOnSelectedBoard({
-                title = titleText,
-                notes = "",
-                category = "General",
-                status = "TODO",
-            })
-        end
+        Tasks:CreateOnSelectedBoard({
+            title = titleText,
+            notes = "",
+            category = "General",
+            status = "TODO",
+        })
 
         Tasks:SortStable(TODOPlannerDB.tasks)
         self:ResetEditor()
@@ -691,6 +786,15 @@ function MainWindow:Render()
 
         local tasks = Tasks:GetForStatus(status, boardKey)
         column.count:SetText(tostring(#tasks))
+        if #tasks == 0 then
+            local filterCategory = TODOPlannerDB.settings.filterCategory or "All"
+            column.emptyText:SetText(filterCategory == "All"
+                and "No tasks in " .. C.STATUS_LABELS[status] .. "."
+                or "No tasks match the " .. filterCategory .. " filter.")
+            column.emptyText:Show()
+        else
+            column.emptyText:Hide()
+        end
 
         local y = -6
         for index, task in ipairs(tasks) do
@@ -719,7 +823,7 @@ function MainWindow:Render()
 
         local minHeight = column.scroll:GetHeight()
         local contentHeight = math.max(minHeight, math.abs(y) + 12)
-        column.content:SetSize(294, contentHeight)
+        column.content:SetSize(math.max(1, column:GetWidth() - 40), contentHeight)
     end
 
     if self.detailWindow and self.detailWindow.frame and self.detailWindow.frame:IsShown() and self.detailWindow.frame.taskId then

@@ -257,6 +257,8 @@ function CollectionScanner:GetAchievementState(achievementId)
     local categoryId
     local categoryName
     local parentCategoryName
+    local achievementDescription
+    local criteria = {}
 
     if achievementId then
         local ok,
@@ -278,6 +280,7 @@ function CollectionScanner:GetAchievementState(achievementId)
         if ok then
             name = achievementName
             icon = achievementIcon
+            achievementDescription = description
             completed = isCompleted == true
                 or wasEarnedByMe == true
                 or (type(earnedBy) == "string" and earnedBy ~= "")
@@ -307,6 +310,33 @@ function CollectionScanner:GetAchievementState(achievementId)
         if rewardOk then
             rewardText = reward
         end
+
+        if type(GetAchievementNumCriteria) == "function" and type(GetAchievementCriteriaInfo) == "function" then
+            local countOk, criteriaCount = self:Call(GetAchievementNumCriteria, achievementId)
+            if countOk then
+                for criteriaIndex = 1, tonumber(criteriaCount) or 0 do
+                    local criteriaOk,
+                        criteriaText,
+                        criteriaType,
+                        criteriaCompleted,
+                        quantity,
+                        requiredQuantity,
+                        characterName,
+                        criteriaFlags,
+                        assetId,
+                        quantityText = self:Call(GetAchievementCriteriaInfo, achievementId, criteriaIndex)
+                    if criteriaOk and type(criteriaText) == "string" and criteriaText ~= "" then
+                        criteria[#criteria + 1] = {
+                            text = criteriaText,
+                            completed = criteriaCompleted == true,
+                            quantity = tonumber(quantity),
+                            requiredQuantity = tonumber(requiredQuantity),
+                            quantityText = quantityText,
+                        }
+                    end
+                end
+            end
+        end
     end
 
     return {
@@ -316,6 +346,8 @@ function CollectionScanner:GetAchievementState(achievementId)
         categoryId = categoryId,
         categoryName = categoryName,
         parentCategoryName = parentCategoryName,
+        description = achievementDescription,
+        criteria = criteria,
         reward = rewardText,
         linkType = "achievement",
         linkId = achievementId,

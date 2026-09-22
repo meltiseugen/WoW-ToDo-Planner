@@ -71,9 +71,14 @@ function TaskDetailWindow:Build()
     Widgets:ConfigureDetailText(titleText, false)
     frame.titleText = titleText
 
+    local ownershipBadge = Widgets:CreateBadge(body)
+    ownershipBadge:SetPoint("TOPLEFT", body, "TOPLEFT", 16, -42)
+    ownershipBadge:SetPoint("TOPRIGHT", body, "TOPRIGHT", -16, -42)
+    frame.ownershipBadge = ownershipBadge
+
     local details = Widgets:CreatePanel(body, "section", "goldBorder")
-    details:SetPoint("TOPLEFT", 14, -54)
-    details:SetPoint("TOPRIGHT", -14, -54)
+    details:SetPoint("TOPLEFT", 14, -74)
+    details:SetPoint("TOPRIGHT", -14, -74)
     details:SetHeight(DETAIL_COMPACT_HEIGHT)
     details.topAccent = Widgets:AddGoldTopAccent(details, 2, 0.18)
     frame.detailsPanel = details
@@ -101,6 +106,7 @@ function TaskDetailWindow:Build()
 
     frame.idValue = addDetailRow("id", "ID", true).value
     frame.statusValue = addDetailRow("status", "Status", true).value
+    frame.boardValue = addDetailRow("board", "Board", true).value
     frame.categoryValue = addDetailRow("category", "Category", true).value
     frame.createdValue = addDetailRow("created", "Created", true).value
     frame.updatedValue = addDetailRow("updated", "Updated", true).value
@@ -210,7 +216,11 @@ function TaskDetailWindow:Build()
             return
         end
 
-        ui:ConfirmArchiveTask(task)
+        if Tasks:IsArchived(task) then
+            ui:ConfirmRestoreTask(task)
+        else
+            ui:ConfirmArchiveTask(task)
+        end
     end)
     frame.archiveButton = archiveButton
 
@@ -246,30 +256,69 @@ function TaskDetailWindow:Build()
     moveBoardButton:SetPoint("BOTTOMLEFT", 14, 16)
     moveBoardButton:SetScript("OnClick", function(owner)
         local task = Tasks:FindById(frame.taskId)
-        if not task or Tasks:GetBoardKey(task) ~= C.GLOBAL_BOARD_KEY then
+        if not task then
             return
         end
 
-        local boardOptions = Boards:GetCharacterBoardOptions()
+        local currentBoardKey = Tasks:GetBoardKey(task)
+        local boardOptions = {}
+        if currentBoardKey ~= C.GLOBAL_BOARD_KEY then
+            boardOptions[#boardOptions + 1] = C.GLOBAL_BOARD_KEY
+        end
+        for _, boardKey in ipairs(Boards:GetCharacterBoardOptions()) do
+            if boardKey ~= currentBoardKey then
+                boardOptions[#boardOptions + 1] = boardKey
+            end
+        end
+
         if #boardOptions == 0 then
-            Utils:Msg("No character boards are available.")
+            Utils:Msg("No other boards are available.")
             return
         end
 
         Widgets:ShowSingleSelectMenu(owner, boardOptions, nil, function(boardKey)
             return Boards:GetDisplayName(boardKey)
         end, function(targetBoardKey)
-            task = Tasks:FindById(frame.taskId)
-            if not task then
-                frame:Hide()
-                return
+            local taskId = frame.taskId
+            local sourceBoardKey = ui:GetSelectedBoardKey()
+            local function moveTask()
+                local currentTask = Tasks:FindById(taskId)
+                if not currentTask then
+                    frame:Hide()
+                    return
+                end
+
+                local moved, errorText = Tasks:MoveToBoard(currentTask, targetBoardKey, sourceBoardKey)
+                if not moved then
+                    Utils:Msg(errorText or "Could not move that task.")
+                    return
+                end
+
+                TODOPlannerDB.settings.selectedBoard = targetBoardKey
+                Tasks:SortStable(TODOPlannerDB.tasks)
+                ui:Render()
+                frame:UpdateTask(currentTask)
             end
 
-            Tasks:MoveToBoard(task, targetBoardKey, ui:GetSelectedBoardKey())
-            TODOPlannerDB.settings.selectedBoard = targetBoardKey
-            Tasks:SortStable(TODOPlannerDB.tasks)
-            ui:Render()
-            frame:UpdateTask(task)
+            if currentBoardKey == C.GLOBAL_BOARD_KEY and targetBoardKey ~= C.GLOBAL_BOARD_KEY then
+                StaticPopupDialogs["TODO_PLANNER_MOVE_GLOBAL_TASK"] = {
+                    text = string.format(
+                        "Move Global task \"%s\" to %s?\nIt will leave the Global board and appear on the selected character board.",
+                        task.title or "",
+                        Boards:GetDisplayName(targetBoardKey)
+                    ),
+                    button1 = YES,
+                    button2 = NO,
+                    OnAccept = moveTask,
+                    timeout = 0,
+                    whileDead = true,
+                    hideOnEscape = true,
+                    preferredIndex = 3,
+                }
+                StaticPopup_Show("TODO_PLANNER_MOVE_GLOBAL_TASK")
+            else
+                moveTask()
+            end
         end)
     end)
     frame.moveBoardButton = moveBoardButton
@@ -502,9 +551,11 @@ function TaskDetailWindow:Build()
         target:UpdateDetailRows()
         target:UpdateNotesLayout()
     end)
+    frame:SetScript("OnHide", function()
+        Widgets:HideDropdownMenus()
+    end)
 
     function frame:UpdateTask(task)
-        local taskBoardKey = Tasks:GetBoardKey(task)
         if Achievements:AutoCompleteTask(task) then
             Tasks:SortStable(TODOPlannerDB.tasks)
         end
@@ -519,9 +570,20 @@ function TaskDetailWindow:Build()
         self.currentCriteriaRows = criteriaRows
         self.notesValue:SetFontObject(achievementId and GameFontHighlight or GameFontHighlightSmall)
 
+        local boardKey = Tasks:GetBoardKey(task)
+        local isGlobal = boardKey == C.GLOBAL_BOARD_KEY
+        Widgets:SetBadge(
+            self.ownershipBadge,
+            isGlobal and "GLOBAL TASK" or "BOARD  |  " .. Boards:GetDisplayName(boardKey),
+            isGlobal and { 0.34, 0.23, 0.04, 0.94 } or { 0.02, 0.20, 0.24, 0.94 },
+            isGlobal and { 1.0, 0.82, 0.18, 1.0 } or { 0.0, 0.82, 0.70, 1.0 },
+            isGlobal and { 1.0, 0.90, 0.48, 1.0 } or { 0.62, 1.0, 0.92, 1.0 }
+        )
+
         local detailValues = {
             id = "#" .. tostring(task.id or "?"),
             status = Tasks:FormatStatus(visibleStatus),
+            board = Tasks:GetOwnershipLabel(task),
             category = task.category or "Other",
             created = Utils:GetDateTimeStamp(task.createdAt),
             updated = Utils:GetDateTimeStamp(task.updatedAt),
@@ -544,11 +606,12 @@ function TaskDetailWindow:Build()
         self.notesValue:SetText(notesText ~= "" and notesText or (#criteriaRows > 0 and "" or "No description."))
         self:UpdateNotesLayout()
 
-        if Tasks:IsArchived(task) then
-            self.archiveButton:Hide()
-        else
-            self.archiveButton:Show()
+        local isArchived = Tasks:IsArchived(task)
+        self.archiveButton:SetText(isArchived and "Restore" or "Archive")
+        if self.archiveButton.SetPalette then
+            self.archiveButton:SetPalette(isArchived and "neutral" or "danger")
         end
+        self.archiveButton:Show()
 
         if achievementId then
             self.wowheadButton:Show()
@@ -558,23 +621,15 @@ function TaskDetailWindow:Build()
             self.openAchievementButton:ClearAllPoints()
             self.openAchievementButton:SetPoint("LEFT", self.wowheadButton, "RIGHT", 8, 0)
 
-            if taskBoardKey == C.GLOBAL_BOARD_KEY then
-                self.moveBoardButton:Show()
-                self.moveBoardButton:ClearAllPoints()
-                self.moveBoardButton:SetPoint("BOTTOMLEFT", 14, 44)
-            else
-                self.moveBoardButton:Hide()
-            end
+            self.moveBoardButton:Show()
+            self.moveBoardButton:ClearAllPoints()
+            self.moveBoardButton:SetPoint("BOTTOMLEFT", 14, 44)
         else
             self.wowheadButton:Hide()
             self.openAchievementButton:Hide()
-            if taskBoardKey == C.GLOBAL_BOARD_KEY then
-                self.moveBoardButton:Show()
-                self.moveBoardButton:ClearAllPoints()
-                self.moveBoardButton:SetPoint("BOTTOMLEFT", 14, 16)
-            else
-                self.moveBoardButton:Hide()
-            end
+            self.moveBoardButton:Show()
+            self.moveBoardButton:ClearAllPoints()
+            self.moveBoardButton:SetPoint("BOTTOMLEFT", 14, 16)
         end
     end
 

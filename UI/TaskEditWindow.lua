@@ -1,6 +1,8 @@
 local _, TDP = ...
 
+local C = TDP.Constants
 local Utils = TDP.Utils
+local Boards = TDP.Boards
 local Tasks = TDP.Tasks
 local Widgets = TDP.Widgets
 
@@ -17,7 +19,7 @@ end
 function TaskEditWindow:Build()
     local ui = self.ui
     local frame = CreateFrame("Frame", "TODOPlannerTaskEditFrame", UIParent, "BasicFrameTemplateWithInset")
-    frame:SetSize(540, 430)
+    frame:SetSize(620, 520)
     frame:SetClampedToScreen(true)
     frame:EnableMouse(true)
     frame:SetMovable(true)
@@ -59,8 +61,33 @@ function TaskEditWindow:Build()
     titleEdit:SetMaxLetters(120)
     frame.titleEdit = titleEdit
 
+    local categoryLabel = body:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    categoryLabel:SetPoint("TOPLEFT", titleEdit, "BOTTOMLEFT", 0, -16)
+    categoryLabel:SetText("Category")
+
+    local categoryButton = Widgets:CreateButton(body, 150, 26, "", "neutral")
+    categoryButton:SetPoint("TOPLEFT", categoryLabel, "BOTTOMLEFT", 0, -6)
+    frame.categoryButton = categoryButton
+
+    local statusLabel = body:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    statusLabel:SetPoint("TOPLEFT", categoryLabel, "TOPLEFT", 164, 0)
+    statusLabel:SetText("Status")
+
+    local statusButton = Widgets:CreateButton(body, 140, 26, "", "neutral")
+    statusButton:SetPoint("TOPLEFT", statusLabel, "BOTTOMLEFT", 0, -6)
+    frame.statusButton = statusButton
+
+    local boardLabel = body:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    boardLabel:SetPoint("TOPLEFT", statusLabel, "TOPLEFT", 154, 0)
+    boardLabel:SetText("Board")
+
+    local boardButton = Widgets:CreateButton(body, 170, 26, "", "neutral")
+    boardButton:SetPoint("TOPLEFT", boardLabel, "BOTTOMLEFT", 0, -6)
+    boardButton:SetPoint("RIGHT", body, "RIGHT", -16, 0)
+    frame.boardButton = boardButton
+
     local descriptionLabel = body:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-    descriptionLabel:SetPoint("TOPLEFT", titleEdit, "BOTTOMLEFT", 0, -18)
+    descriptionLabel:SetPoint("TOPLEFT", categoryButton, "BOTTOMLEFT", 0, -18)
     descriptionLabel:SetText("Description")
 
     local descriptionPanel = Widgets:CreatePanel(body, "input", "inputBorder")
@@ -109,6 +136,9 @@ function TaskEditWindow:Build()
     end)
     descriptionEdit:SetScript("OnTextChanged", syncDescriptionLayout)
     frame:SetScript("OnSizeChanged", syncDescriptionLayout)
+    frame:SetScript("OnHide", function()
+        Widgets:HideDropdownMenus()
+    end)
 
     local cancelButton = Widgets:CreateButton(body, 82, 24, "Cancel", "neutral")
     cancelButton:SetPoint("BOTTOMRIGHT", -16, 18)
@@ -123,6 +153,45 @@ function TaskEditWindow:Build()
     end)
     frame.saveButton = saveButton
 
+    function frame:GetBoardOptions()
+        local options = { C.GLOBAL_BOARD_KEY }
+        for _, boardKey in ipairs(Boards:GetCharacterBoardOptions()) do
+            options[#options + 1] = boardKey
+        end
+        return options
+    end
+
+    function frame:UpdateFieldButtons()
+        self.categoryButton:SetText(self.selectedCategory or "General")
+        self.statusButton:SetText(Tasks:FormatStatus(self.selectedStatus))
+        self.boardButton:SetText(Boards:GetDisplayName(self.selectedBoardKey))
+    end
+
+    categoryButton:SetScript("OnClick", function(owner)
+        Widgets:ShowSingleSelectMenu(owner, C.TASK_CATEGORIES, frame.selectedCategory, nil, function(category)
+            frame.selectedCategory = category
+            frame:UpdateFieldButtons()
+        end)
+    end)
+
+    statusButton:SetScript("OnClick", function(owner)
+        Widgets:ShowSingleSelectMenu(owner, C.STATUS_ORDER, frame.selectedStatus, function(status)
+            return Tasks:FormatStatus(status)
+        end, function(status)
+            frame.selectedStatus = status
+            frame:UpdateFieldButtons()
+        end)
+    end)
+
+    boardButton:SetScript("OnClick", function(owner)
+        Widgets:ShowSingleSelectMenu(owner, frame:GetBoardOptions(), frame.selectedBoardKey, function(boardKey)
+            return Boards:GetDisplayName(boardKey)
+        end, function(boardKey)
+            frame.selectedBoardKey = boardKey
+            frame:UpdateFieldButtons()
+        end)
+    end)
+
     function frame:SaveTask()
         local titleText = Utils:Trim(self.titleEdit:GetText())
         if titleText == "" then
@@ -131,39 +200,88 @@ function TaskEditWindow:Build()
             return
         end
 
-        local task
-        if self.mode == "create" then
-            task = Tasks:CreateOnSelectedBoard({
-                title = titleText,
-                notes = self.descriptionEdit:GetText() or "",
-                category = "General",
-                status = "TODO",
-            })
-            ui:ResetEditor()
-        else
-            task = Tasks:FindById(self.taskId)
-            if not task then
-                self:Hide()
-                return
-            end
+        local category = Utils:IndexOf(C.TASK_CATEGORIES, self.selectedCategory) and self.selectedCategory or "General"
+        local status = Tasks:NormalizeStatus(self.selectedStatus)
+        local targetBoardKey = Boards:ResolveKnownBoardKey(self.selectedBoardKey)
+        if targetBoardKey == C.ALL_BOARD_KEY or targetBoardKey == C.ARCHIVED_BOARD_KEY then
+            Utils:Msg("Choose Global or a character board.")
+            return
+        end
 
-            task.title = titleText
-            task.notes = self.descriptionEdit:GetText() or ""
-            task.updatedAt = time()
+        local existingTask = self.mode ~= "create" and Tasks:FindById(self.taskId) or nil
+        if self.mode ~= "create" and not existingTask then
+            self:Hide()
+            return
+        end
 
-            if ui.editingTaskId == task.id then
+        local function persistTask()
+            local task
+            if self.mode == "create" then
+                task = Tasks:Create({
+                    title = titleText,
+                    notes = self.descriptionEdit:GetText() or "",
+                    category = category,
+                    status = status,
+                    boardKey = targetBoardKey,
+                })
                 ui:ResetEditor()
+            else
+                task = Tasks:FindById(self.taskId)
+                if not task then
+                    self:Hide()
+                    return
+                end
+
+                local sourceBoardKey = ui:GetSelectedBoardKey()
+                local currentBoardKey = Tasks:GetBoardKey(task)
+                local updated, errorText = Tasks:Update(task, {
+                    title = titleText,
+                    notes = self.descriptionEdit:GetText() or "",
+                    category = category,
+                    status = status,
+                    boardKey = targetBoardKey,
+                }, sourceBoardKey)
+                if not updated then
+                    Utils:Msg(errorText or "Could not update that task.")
+                    return
+                end
+                if currentBoardKey ~= targetBoardKey then
+                    TODOPlannerDB.settings.selectedBoard = targetBoardKey
+                end
             end
+
+            Tasks:SortStable(TODOPlannerDB.tasks)
+            ui:Render()
+
+            if self.mode ~= "create" and ui.detailWindow and ui.detailWindow.frame and ui.detailWindow.frame:IsShown() then
+                ui.detailWindow.frame:UpdateTask(task)
+            end
+
+            self:Hide()
         end
 
-        Tasks:SortStable(TODOPlannerDB.tasks)
-        ui:Render()
-
-        if self.mode ~= "create" and ui.detailWindow and ui.detailWindow.frame and ui.detailWindow.frame:IsShown() then
-            ui.detailWindow.frame:UpdateTask(task)
+        if existingTask
+            and Tasks:IsGlobalTask(existingTask)
+            and targetBoardKey ~= C.GLOBAL_BOARD_KEY then
+            StaticPopupDialogs["TODO_PLANNER_EDIT_MOVE_GLOBAL_TASK"] = {
+                text = string.format(
+                    "Move Global task \"%s\" to %s?\nIt will leave the Global board and appear on the selected character board.",
+                    existingTask.title or "",
+                    Boards:GetDisplayName(targetBoardKey)
+                ),
+                button1 = YES,
+                button2 = NO,
+                OnAccept = persistTask,
+                timeout = 0,
+                whileDead = true,
+                hideOnEscape = true,
+                preferredIndex = 3,
+            }
+            StaticPopup_Show("TODO_PLANNER_EDIT_MOVE_GLOBAL_TASK")
+            return
         end
 
-        self:Hide()
+        persistTask()
     end
 
     function frame:OpenTask(task)
@@ -177,6 +295,10 @@ function TaskEditWindow:Build()
         self.saveButton:SetText("Save")
         self.titleEdit:SetText(task.title or "")
         self.descriptionEdit:SetText(task.notes or "")
+        self.selectedCategory = task.category or "General"
+        self.selectedStatus = Tasks:GetStatus(task, ui:GetSelectedBoardKey())
+        self.selectedBoardKey = Tasks:GetBoardKey(task)
+        self:UpdateFieldButtons()
         syncDescriptionLayout()
 
         self:ClearAllPoints()
@@ -202,6 +324,10 @@ function TaskEditWindow:Build()
         self.saveButton:SetText("Create")
         self.titleEdit:SetText(fields.title or "")
         self.descriptionEdit:SetText(fields.notes or "")
+        self.selectedCategory = Utils:IndexOf(C.TASK_CATEGORIES, fields.category) and fields.category or "General"
+        self.selectedStatus = Tasks:NormalizeStatus(fields.status)
+        self.selectedBoardKey = Boards:ResolveKnownBoardKey(fields.boardKey or Tasks:GetSelectedCreationBoardKey())
+        self:UpdateFieldButtons()
         syncDescriptionLayout()
 
         self:ClearAllPoints()

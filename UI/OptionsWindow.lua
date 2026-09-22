@@ -291,7 +291,7 @@ function OptionsWindow:Build()
 
     local subtitle = body:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
     subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -8)
-    subtitle:SetText("Character boards with shared Global tasks.")
+    subtitle:SetText("Separate Global and character task boards.")
 
     self.tabs = {}
     local previousTabButton

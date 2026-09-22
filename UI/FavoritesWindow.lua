@@ -296,6 +296,30 @@ function FavoritesWindow:GetRowNotes(row)
         if row.achievementCategory then
             lines[#lines + 1] = "Achievement Type: " .. row.achievementCategory
         end
+        if row.state and row.state.categoryName then
+            lines[#lines + 1] = "WoW Category: " .. row.state.categoryName
+        end
+        if row.state and row.state.parentCategoryName then
+            lines[#lines + 1] = "WoW Parent Category: " .. row.state.parentCategoryName
+        end
+        if row.state and row.state.description and row.state.description ~= "" then
+            lines[#lines + 1] = ""
+            lines[#lines + 1] = "Description: " .. row.state.description
+        end
+        if row.state and type(row.state.criteria) == "table" and #row.state.criteria > 0 then
+            lines[#lines + 1] = ""
+            lines[#lines + 1] = "Criteria:"
+            for _, criterion in ipairs(row.state.criteria) do
+                local marker = criterion.completed and "[Done] " or "[ ] "
+                local progress = ""
+                if criterion.quantityText and criterion.quantityText ~= "" then
+                    progress = " (" .. criterion.quantityText .. ")"
+                elseif criterion.requiredQuantity and criterion.requiredQuantity > 1 then
+                    progress = string.format(" (%d/%d)", criterion.quantity or 0, criterion.requiredQuantity)
+                end
+                lines[#lines + 1] = marker .. criterion.text .. progress
+            end
+        end
         if sourceSummary then
             if #lines > 0 then
                 lines[#lines + 1] = ""
@@ -313,6 +337,14 @@ function FavoritesWindow:GetRowNotes(row)
                 lines[#lines + 1] = waypoint
             end
         end
+    end
+
+    local tips = PatchCatalog and PatchCatalog:GetCollectionTips(row.collectionType, row.patchKey, row.entry)
+    if tips then
+        if #lines > 0 then
+            lines[#lines + 1] = ""
+        end
+        lines[#lines + 1] = "Tips: " .. tips
     end
 
     if row.reward then
