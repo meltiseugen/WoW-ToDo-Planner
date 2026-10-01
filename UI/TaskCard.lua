@@ -1,7 +1,6 @@
 local _, TDP = ...
 
 local C = TDP.Constants
-local Utils = TDP.Utils
 local Boards = TDP.Boards
 local Tasks = TDP.Tasks
 local Widgets = TDP.Widgets
@@ -20,6 +19,16 @@ local TITLE_MEASURE_HEIGHT = 120
 
 function TaskCardFactory:New()
     return setmetatable({}, self)
+end
+
+function TaskCardFactory:ShouldShowOwnershipBadge(ui)
+    if not ui or type(ui.GetSelectedBoardKey) ~= "function" then
+        return false
+    end
+
+    local selectedBoardKey = ui:GetSelectedBoardKey()
+    return selectedBoardKey == C.ALL_BOARD_KEY
+        or selectedBoardKey == C.ARCHIVED_BOARD_KEY
 end
 
 function TaskCardFactory:Create(parent, task, status, ui)
@@ -68,13 +77,11 @@ function TaskCardFactory:Create(parent, task, status, ui)
     meta:SetJustifyH("LEFT")
     card.metaText = meta
 
-    local leftBtn = Widgets:CreateButton(card, 26, 22, "<", "subtle")
-    leftBtn:SetPoint("BOTTOMLEFT", CARD_INSET, 10)
-    leftBtn.tooltipText = "Move left"
-
-    local rightBtn = Widgets:CreateButton(card, 26, 22, ">", "subtle")
-    rightBtn:SetPoint("LEFT", leftBtn, "RIGHT", 4, 0)
-    rightBtn.tooltipText = "Move right"
+    local dragHint = card:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    dragHint:SetPoint("LEFT", card, "BOTTOMLEFT", CARD_INSET, 21)
+    dragHint:SetJustifyH("LEFT")
+    dragHint:SetText("Drag & drop")
+    card.dragHint = dragHint
 
     local openBtn = Widgets:CreateButton(card, 46, 22, "Open", "neutral")
 
@@ -86,35 +93,9 @@ function TaskCardFactory:Create(parent, task, status, ui)
     archiveBtn:SetPoint("RIGHT", deleteBtn, "LEFT", -4, 0)
     openBtn:SetPoint("RIGHT", archiveBtn, "LEFT", -4, 0)
 
-    card.leftBtn = leftBtn
-    card.rightBtn = rightBtn
     card.openBtn = openBtn
     card.archiveBtn = archiveBtn
     card.deleteBtn = deleteBtn
-
-    leftBtn:SetScript("OnClick", function()
-        local dbTask = Tasks:FindById(card.taskId)
-        if not dbTask then
-            return
-        end
-
-        local boardKey = ui:GetSelectedBoardKey()
-        local currentStatus = Tasks:GetStatus(dbTask, boardKey)
-        Tasks:SetStatus(dbTask, Tasks:MoveStatus(currentStatus, -1), boardKey)
-        ui:Render()
-    end)
-
-    rightBtn:SetScript("OnClick", function()
-        local dbTask = Tasks:FindById(card.taskId)
-        if not dbTask then
-            return
-        end
-
-        local boardKey = ui:GetSelectedBoardKey()
-        local currentStatus = Tasks:GetStatus(dbTask, boardKey)
-        Tasks:SetStatus(dbTask, Tasks:MoveStatus(currentStatus, 1), boardKey)
-        ui:Render()
-    end)
 
     openBtn:SetScript("OnClick", function()
         local dbTask = Tasks:FindById(card.taskId)
@@ -198,30 +179,50 @@ function TaskCardFactory:Update(card, task, status, ui)
 
     local boardKey = Tasks:GetBoardKey(task)
     local isGlobal = boardKey == C.GLOBAL_BOARD_KEY
-    local ownershipText = isGlobal
-        and "GLOBAL TASK"
-        or "BOARD  |  " .. Boards:GetDisplayName(boardKey)
-    Widgets:SetBadge(
-        card.ownershipBadge,
-        ownershipText,
-        isGlobal and { 0.34, 0.23, 0.04, 0.94 } or { 0.02, 0.20, 0.24, 0.94 },
-        isGlobal and { 1.0, 0.82, 0.18, 1.0 } or { 0.0, 0.82, 0.70, 1.0 },
-        isGlobal and { 1.0, 0.90, 0.48, 1.0 } or { 0.62, 1.0, 0.92, 1.0 }
-    )
+    local showOwnershipBadge = self:ShouldShowOwnershipBadge(ui)
+    if showOwnershipBadge then
+        local ownershipText = isGlobal
+            and "GLOBAL TASK"
+            or "BOARD  |  " .. Boards:GetDisplayName(boardKey)
+        Widgets:SetBadge(
+            card.ownershipBadge,
+            ownershipText,
+            isGlobal and { 0.34, 0.23, 0.04, 0.94 } or { 0.02, 0.20, 0.24, 0.94 },
+            isGlobal and { 1.0, 0.82, 0.18, 1.0 } or { 0.0, 0.82, 0.70, 1.0 },
+            isGlobal and { 1.0, 0.90, 0.48, 1.0 } or { 0.62, 1.0, 0.92, 1.0 }
+        )
+        card.ownershipBadge:Show()
+    else
+        card.ownershipBadge:Hide()
+    end
+
+    card.metaText:ClearAllPoints()
+    if showOwnershipBadge then
+        card.metaText:SetPoint("TOPLEFT", card.ownershipBadge, "BOTTOMLEFT", 0, -5)
+        card.metaText:SetPoint("TOPRIGHT", card.ownershipBadge, "BOTTOMRIGHT", 0, -5)
+    else
+        card.metaText:SetPoint("TOPLEFT", card.titleText, "BOTTOMLEFT", 0, -6)
+        card.metaText:SetPoint("TOPRIGHT", card.titleText, "BOTTOMRIGHT", 0, -6)
+    end
     card.metaText:SetText(string.format("Category: %s", task.category or "Other"))
 
     local contentBottom = 10
         + (card.titleText:GetHeight() or 14)
         + 6
-        + OWNERSHIP_BADGE_HEIGHT
-        + 5
+        + (showOwnershipBadge and OWNERSHIP_BADGE_HEIGHT + 5 or 0)
         + math.ceil(card.metaText:GetStringHeight() or 12)
     local actionTop = 10 + CARD_ACTION_HEIGHT + CARD_ACTION_GAP
     card:SetHeight(math.max(MIN_CARD_HEIGHT, contentBottom + actionTop))
 
-    local statusIndex = Utils:IndexOf(C.STATUS_ORDER, status) or 1
-    Widgets:SetButtonEnabled(card.leftBtn, statusIndex > 1)
-    Widgets:SetButtonEnabled(card.rightBtn, statusIndex < #C.STATUS_ORDER)
+    local canDrag = ui
+        and type(ui.CanReorderSelectedBoard) == "function"
+        and ui:CanReorderSelectedBoard()
+    if canDrag then
+        card.dragHint:Show()
+    else
+        card.dragHint:Hide()
+    end
+
     local isArchived = Tasks:IsArchived(task)
     card.archiveBtn:SetText(isArchived and "Restore" or "Archive")
     card.archiveBtn.tooltipText = isArchived and "Restore to active boards" or "Archive"

@@ -558,10 +558,9 @@ function MainWindow:Build()
         subtitle:SetPoint("LEFT", frame.headerBar, "LEFT", 15, -12)
         subtitle:SetText("Separate Global and character task boards")
 
-        body = Widgets:CreatePanel(frame, "body", "goldBorder")
+        body = CreateFrame("Frame", nil, frame)
         body:SetPoint("TOPLEFT", chrome, "TOPLEFT", 12, -54)
         body:SetPoint("BOTTOMRIGHT", chrome, "BOTTOMRIGHT", -12, 12)
-        body.topAccent = Widgets:AddGoldTopAccent(body, 3, 0.22)
         Theme:RegisterSpecialFrame("TODOPlannerMainFrame")
     else
         Widgets:ApplyPanelBackdrop(frame, { 0.02, 0.02, 0.03, 0.98 }, { 1, 1, 1, 0.10 })
@@ -580,11 +579,10 @@ function MainWindow:Build()
         body = frame
     end
 
-    local toolbar = Widgets:CreatePanel(body, "section", "goldBorder")
+    local toolbar = CreateFrame("Frame", nil, body)
     toolbar:SetPoint("TOPLEFT", 12, -12)
     toolbar:SetPoint("TOPRIGHT", -12, -12)
     toolbar:SetHeight(84)
-    toolbar.topAccent = Widgets:AddGoldTopAccent(toolbar, 2, 0.20)
 
     local boardButton = Widgets:CreateButton(toolbar, 270, 24, "", "neutral")
     boardButton:SetPoint("TOPLEFT", 12, -12)
@@ -601,14 +599,10 @@ function MainWindow:Build()
     local optionsButton = Widgets:CreateButton(toolbar, 96, 24, "Options", "neutral")
     optionsButton:SetPoint("TOPRIGHT", toolbar, "TOPRIGHT", -12, -12)
 
-    local homeButton = Widgets:CreateButton(toolbar, 72, 24, "Home", "neutral")
-    homeButton:SetPoint("RIGHT", optionsButton, "LEFT", -8, 0)
-
-    local favoritesButton = Widgets:CreateButton(toolbar, 86, 24, "Favorites", "neutral")
-    favoritesButton:SetPoint("RIGHT", homeButton, "LEFT", -8, 0)
-
-    local collectionsButton = Widgets:CreateButton(toolbar, 92, 24, "Collections", "neutral")
-    collectionsButton:SetPoint("RIGHT", favoritesButton, "LEFT", -8, 0)
+    local navigationButtons = Widgets:CreateWindowNavigation(frame.headerBar or toolbar, "planner", self, {
+        centered = frame.headerBar ~= nil,
+        anchorTo = frame.headerBar and nil or optionsButton,
+    })
 
     local inputTitle = Widgets:CreateEditBox(toolbar, 360, 24)
     inputTitle:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 12, -48)
@@ -631,9 +625,9 @@ function MainWindow:Build()
     self.filterButton = filterButton
     self.createBoardButton = createBoardButton
     self.deleteBoardButton = deleteBoardButton
-    self.collectionsButton = collectionsButton
-    self.favoritesButton = favoritesButton
-    self.homeButton = homeButton
+    self.collectionsButton = navigationButtons.collections
+    self.favoritesButton = navigationButtons.favorites
+    self.homeButton = navigationButtons.home
     self.optionsButton = optionsButton
     self.inputTitle = inputTitle
     self.saveButton = saveButton
@@ -694,32 +688,6 @@ function MainWindow:Build()
 
     deleteBoardButton:SetScript("OnClick", function()
         self:ConfirmDeleteSelectedBoard()
-    end)
-
-    homeButton:SetScript("OnClick", function()
-        frame:Hide()
-        if self.homeWindow then
-            self.homeWindow:Open()
-        end
-    end)
-
-    favoritesButton:SetScript("OnClick", function()
-        frame:Hide()
-        if self.homeWindow then
-            self.homeWindow:OpenFavorites()
-        end
-    end)
-
-    collectionsButton:SetScript("OnClick", function()
-        frame:Hide()
-        local homeWindow = self.homeWindow or TDP.ui
-        if homeWindow then
-            homeWindow:OpenExplorer()
-        elseif TDP.explorerWindow then
-            TDP.explorerWindow:Open()
-        else
-            Utils:Msg("Collections window is unavailable.")
-        end
     end)
 
     optionsButton:SetScript("OnClick", function()

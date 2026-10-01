@@ -124,8 +124,7 @@ function TaskEditWindow:Build()
             height = 240
         end
         local lineCount = descriptionEdit.GetNumLines and descriptionEdit:GetNumLines() or 1
-        descriptionEdit:SetWidth(width)
-        descriptionEdit:SetHeight(math.max(height, (lineCount * 16) + 16))
+        descriptionEdit:SetSize(width, math.max(height, (lineCount * 16) + 16))
     end
 
     descriptionPanel:SetScript("OnMouseDown", function()

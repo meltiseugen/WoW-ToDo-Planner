@@ -15,6 +15,7 @@ Core/MinimapButton.lua
 Data/BoardManager.lua
 Data/TaskRepository.lua
 Data/Database.lua
+Data/GeneratedPatchCollections.lua
 Data/PatchCatalog.lua
 Data/Favorites.lua
 Integrations/CollectionScanner.lua

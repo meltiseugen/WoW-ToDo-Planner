@@ -9,11 +9,19 @@ local Favorites = TDP.Favorites
 local CollectionExplorerWindow = {}
 CollectionExplorerWindow.__index = CollectionExplorerWindow
 
-local TYPE_OPTIONS = { "mounts", "pets", "toys", "achievements" }
+local TYPE_OPTIONS = { "mounts", "pets", "toys", "cosmetics", "achievements" }
 local STATUS_OPTIONS = { "missing", "all", "collected" }
+local EXPANSION_OPTIONS = { "9", "10", "11", "12" }
+local EXPANSION_LABELS = {
+    ["9"] = "Shadowlands (9)",
+    ["10"] = "Dragonflight (10)",
+    ["11"] = "The War Within (11)",
+    ["12"] = "Midnight (12)",
+}
+local ALL_PATCHES = "all"
 local MOUNT_CATEGORY_OPTIONS = { "all", "PvP", "Dungeon and Raids", "Quest Rewards", "Rare Drops", "Vendor", "Delves", "Achievements", "Trading Post", "Promotion", "Other" }
 local ACHIEVEMENT_CATEGORY_OPTIONS = { "all", "Questing", "Exploration", "Delves", "Dungeons", "Raids", "PvP", "Pet Battles", "Reputation", "Professions", "Events", "Collections", "Feats of Strength", "Other" }
-local COLLECTION_TYPES = { "mounts", "pets", "toys", "achievements" }
+local COLLECTION_TYPES = { "mounts", "pets", "toys", "cosmetics", "achievements" }
 local ROW_HEIGHT = 48
 local ROW_GAP = 5
 local LIST_WIDTH = 548
@@ -32,6 +40,7 @@ local TYPE_LABELS = {
     mounts = "Mounts",
     pets = "Pets",
     toys = "Toys",
+    cosmetics = "Cosmetics",
     achievements = "Achievements",
 }
 
@@ -39,6 +48,7 @@ function CollectionExplorerWindow:New(homeWindow)
     return setmetatable({
         homeWindow = homeWindow,
         frame = nil,
+        selectedExpansion = "12",
         selectedPatch = "12.1",
         selectedCollectionType = "mounts",
         selectedStatus = TODOPlannerDB and TODOPlannerDB.settings and TODOPlannerDB.settings.collectionHideCollected == false and "all" or "missing",
@@ -51,7 +61,57 @@ function CollectionExplorerWindow:New(homeWindow)
 end
 
 function CollectionExplorerWindow:GetPatchOptions()
-    return PatchCatalog and PatchCatalog:GetPatchKeys() or { "12.1" }
+    local options = { ALL_PATCHES }
+    if not PatchCatalog then
+        options[#options + 1] = "12.1"
+        return options
+    end
+
+    for _, patchKey in ipairs(PatchCatalog:GetPatchKeys()) do
+        if self:GetExpansionForPatch(patchKey) == self.selectedExpansion then
+            options[#options + 1] = patchKey
+        end
+    end
+    return options
+end
+
+function CollectionExplorerWindow:GetExpansionForPatch(patchKey)
+    return tostring(patchKey or ""):match("^(%d+)")
+end
+
+function CollectionExplorerWindow:GetExpansionLabel(value)
+    return EXPANSION_LABELS[value] or tostring(value)
+end
+
+function CollectionExplorerWindow:GetPatchLabel(value)
+    return value == ALL_PATCHES and "All Patches" or tostring(value)
+end
+
+function CollectionExplorerWindow:GetSelectedPatchKeys()
+    if self.selectedPatch ~= ALL_PATCHES
+        and self:GetExpansionForPatch(self.selectedPatch) == self.selectedExpansion then
+        return { self.selectedPatch }
+    end
+
+    local patchKeys = {}
+    for _, patchKey in ipairs(self:GetPatchOptions()) do
+        if patchKey ~= ALL_PATCHES then
+            patchKeys[#patchKeys + 1] = patchKey
+        end
+    end
+    return patchKeys
+end
+
+function CollectionExplorerWindow:SetSelectedExpansion(expansionKey)
+    if not EXPANSION_LABELS[expansionKey] then
+        return false
+    end
+
+    self.selectedExpansion = expansionKey
+    if self:GetExpansionForPatch(self.selectedPatch) ~= expansionKey then
+        self.selectedPatch = ALL_PATCHES
+    end
+    return true
 end
 
 function CollectionExplorerWindow:GetTypeLabel(value)
@@ -241,16 +301,30 @@ function CollectionExplorerWindow:BuildTypeTabs(parent)
         mounts = 82,
         pets = 64,
         toys = 64,
+        cosmetics = 96,
         achievements = 118,
     }
+    local gap = 6
+    local totalWidth = 0
+    for index, value in ipairs(TYPE_OPTIONS) do
+        totalWidth = totalWidth + (widths[value] or 82)
+        if index > 1 then
+            totalWidth = totalWidth + gap
+        end
+    end
+
+    local tabGroup = CreateFrame("Frame", nil, parent)
+    tabGroup:SetSize(totalWidth, 24)
+    tabGroup:SetPoint("TOP", parent, "TOP", 0, -12)
+
     local previous
 
     for _, value in ipairs(TYPE_OPTIONS) do
-        local button = Widgets:CreateButton(parent, widths[value] or 82, 24, self:GetTypeLabel(value), "neutral")
+        local button = Widgets:CreateButton(tabGroup, widths[value] or 82, 24, self:GetTypeLabel(value), "neutral")
         if previous then
-            button:SetPoint("LEFT", previous, "RIGHT", 6, 0)
+            button:SetPoint("LEFT", previous, "RIGHT", gap, 0)
         else
-            button:SetPoint("TOPLEFT", parent, "TOPLEFT", 12, -12)
+            button:SetPoint("LEFT", tabGroup, "LEFT", 0, 0)
         end
         button:SetScript("OnClick", function()
             self.selectedCollectionType = value
@@ -375,6 +449,49 @@ function CollectionExplorerWindow:IsCollectionMapRow(row)
         and PatchCatalog:HasCollectionMapPayload(row.collectionType, row.patchKey, row.entry)
 end
 
+function CollectionExplorerWindow:GetCosmeticItemLink(row)
+    if not row or row.collectionType ~= "cosmetics" then
+        return nil
+    end
+
+    local itemId = type(row.entry) == "table" and tonumber(row.entry.itemId) or nil
+    if not itemId then
+        return nil
+    end
+
+    if C_Item and type(C_Item.GetItemLinkByID) == "function" then
+        local ok, itemLink = pcall(C_Item.GetItemLinkByID, itemId)
+        if ok and itemLink then
+            return itemLink
+        end
+    end
+
+    if type(GetItemInfo) == "function" then
+        local ok, _, itemLink = pcall(GetItemInfo, itemId)
+        if ok and itemLink then
+            return itemLink
+        end
+    end
+
+    return "item:" .. tostring(itemId)
+end
+
+function CollectionExplorerWindow:TryDressUpCosmetic(row, button)
+    if button ~= "LeftButton"
+        or type(IsControlKeyDown) ~= "function"
+        or not IsControlKeyDown()
+        or type(DressUpItemLink) ~= "function" then
+        return false
+    end
+
+    local itemLink = self:GetCosmeticItemLink(row)
+    if not itemLink then
+        return false
+    end
+
+    return pcall(DressUpItemLink, itemLink)
+end
+
 function CollectionExplorerWindow:OpenCollectionMap(row)
     if not self:IsCollectionMapRow(row) then
         Utils:Msg("No curated map location is available for this collection entry.")
@@ -432,7 +549,6 @@ function CollectionExplorerWindow:GetRowNotes(row)
     if row.collectionType == "mounts" then
         local sourceSummary = self:GetMountSourceSummary(row)
         local acquisition = PatchCatalog and PatchCatalog:GetMountAcquisitionText(row.patchKey, row.entry)
-        local waypoints = PatchCatalog and PatchCatalog:GetMountWaypoints(row.patchKey, row.entry)
         if sourceSummary then
             lines[#lines + 1] = "Source: " .. sourceSummary
         end
@@ -441,16 +557,10 @@ function CollectionExplorerWindow:GetRowNotes(row)
                 lines[#lines + 1] = ""
             end
             lines[#lines + 1] = "How to get: " .. acquisition
-        end
-        if waypoints then
-            for _, waypoint in ipairs(waypoints) do
-                lines[#lines + 1] = waypoint
-            end
         end
     elseif row.collectionType == "pets" then
         local sourceSummary = PatchCatalog and PatchCatalog:GetPetSourceSummary(row.patchKey, row.entry)
         local acquisition = PatchCatalog and PatchCatalog:GetPetAcquisitionText(row.patchKey, row.entry)
-        local waypoints = PatchCatalog and PatchCatalog:GetPetWaypoints(row.patchKey, row.entry)
         if sourceSummary then
             lines[#lines + 1] = "Source: " .. sourceSummary
         end
@@ -459,17 +569,11 @@ function CollectionExplorerWindow:GetRowNotes(row)
                 lines[#lines + 1] = ""
             end
             lines[#lines + 1] = "How to get: " .. acquisition
-        end
-        if waypoints then
-            for _, waypoint in ipairs(waypoints) do
-                lines[#lines + 1] = waypoint
-            end
         end
     elseif row.collectionType == "toys" then
         local sourceSummary = PatchCatalog and PatchCatalog:GetToySourceSummary(row.patchKey, row.entry)
         local acquisition = PatchCatalog and PatchCatalog:GetToyAcquisitionText(row.patchKey, row.entry)
         local effect = PatchCatalog and PatchCatalog:GetToyUseText(row.patchKey, row.entry)
-        local waypoints = PatchCatalog and PatchCatalog:GetToyWaypoints(row.patchKey, row.entry)
         if sourceSummary then
             lines[#lines + 1] = "Source: " .. sourceSummary
         end
@@ -482,15 +586,54 @@ function CollectionExplorerWindow:GetRowNotes(row)
         if effect then
             lines[#lines + 1] = "Effect: " .. effect
         end
-        if waypoints then
-            for _, waypoint in ipairs(waypoints) do
-                lines[#lines + 1] = waypoint
+    elseif row.collectionType == "cosmetics" then
+        local details = PatchCatalog and PatchCatalog:GetCosmeticDetails(row.patchKey, row.entry) or {}
+        local sourceSummary = PatchCatalog and PatchCatalog:GetCosmeticSourceSummary(row.patchKey, row.entry)
+        local acquisition = PatchCatalog and PatchCatalog:GetCosmeticAcquisitionText(row.patchKey, row.entry)
+        local subtype = type(row.entry) == "table" and row.entry.subtype or "appearance"
+        local requirements = type(row.entry) == "table" and row.entry.requirements or nil
+        local cost = type(row.entry) == "table" and row.entry.cost or nil
+        local itemNotes = type(row.entry) == "table" and row.entry.notes or nil
+        requirements = requirements or details.requirements
+        cost = cost or details.cost
+        itemNotes = itemNotes or details.notes
+        lines[#lines + 1] = "Cosmetic Type: " .. tostring(subtype):gsub("^%l", string.upper)
+        if row.state and (row.state.totalCount or 0) > 0 then
+            lines[#lines + 1] = string.format("Appearance Progress: %d/%d", row.state.collectedCount or 0, row.state.totalCount)
+        end
+        if sourceSummary then
+            lines[#lines + 1] = "Source: " .. sourceSummary
+        end
+        if acquisition then
+            if #lines > 0 then
+                lines[#lines + 1] = ""
             end
+            lines[#lines + 1] = "How to get: " .. acquisition
+        end
+        if requirements then
+            lines[#lines + 1] = "Requirements: " .. requirements
+        end
+        if cost then
+            lines[#lines + 1] = "Cost: " .. cost
+        end
+        if type(details.costs) == "table" and #details.costs > 0 then
+            lines[#lines + 1] = "Cost guide:"
+            for _, costLine in ipairs(details.costs) do
+                lines[#lines + 1] = "- " .. tostring(costLine)
+            end
+        end
+        if details.availability then
+            lines[#lines + 1] = "Availability: " .. details.availability
+        end
+        if itemNotes then
+            lines[#lines + 1] = "Item notes: " .. itemNotes
+        end
+        if details.researchNotes then
+            lines[#lines + 1] = "Research notes: " .. details.researchNotes
         end
     elseif row.collectionType == "achievements" then
         local sourceSummary = PatchCatalog and PatchCatalog:GetAchievementSourceSummary(row.patchKey, row.entry)
         local acquisition = PatchCatalog and PatchCatalog:GetAchievementAcquisitionText(row.patchKey, row.entry)
-        local waypoints = PatchCatalog and PatchCatalog:GetAchievementWaypoints(row.patchKey, row.entry)
         if row.achievementCategory then
             lines[#lines + 1] = "Achievement Type: " .. row.achievementCategory
         end
@@ -529,11 +672,6 @@ function CollectionExplorerWindow:GetRowNotes(row)
                 lines[#lines + 1] = ""
             end
             lines[#lines + 1] = "How to get: " .. acquisition
-        end
-        if waypoints then
-            for _, waypoint in ipairs(waypoints) do
-                lines[#lines + 1] = waypoint
-            end
         end
     end
 
@@ -673,6 +811,9 @@ function CollectionExplorerWindow:ShowRowTooltip(owner)
         shown = (itemId and self:TryShowGameTooltip("SetToyByItemID", itemId))
             or (itemId and self:TryShowGameTooltip("SetItemByID", itemId))
             or (itemId and self:TryShowGameTooltipLink("item:" .. tostring(itemId)))
+    elseif row.collectionType == "cosmetics" then
+        shown = (itemId and self:TryShowGameTooltip("SetItemByID", itemId))
+            or (itemId and self:TryShowGameTooltipLink("item:" .. tostring(itemId)))
     elseif row.collectionType == "achievements" then
         shown = (achievementId and self:TryShowGameTooltip("SetAchievementByID", achievementId))
     end
@@ -734,7 +875,11 @@ function CollectionExplorerWindow:BuildRow(parent)
     mapButton:SetPoint("RIGHT", favoriteButton, "LEFT", -6, 0)
     row.mapButton = mapButton
 
-    row:SetScript("OnMouseDown", function(target)
+    row:SetScript("OnMouseDown", function(target, button)
+        if self:TryDressUpCosmetic(target.rowData, button) then
+            return
+        end
+
         self.selectedRow = target.rowData
         self:RenderPreview()
         self:UpdateRowSelection()
@@ -775,10 +920,16 @@ function CollectionExplorerWindow:UpdateRow(row, rowData, index)
     local metaPrefix = self:GetTypeLabel(rowData.collectionType)
     if rowData.collectionType == "mounts" then
         metaPrefix = (rowData.mountCategory or "Other") .. " mount"
+    elseif rowData.collectionType == "cosmetics" then
+        metaPrefix = ((rowData.cosmeticSubtype or "appearance"):gsub("^%l", string.upper)) .. " cosmetic"
     elseif rowData.collectionType == "achievements" then
         metaPrefix = (rowData.achievementCategory or "Other") .. " achievement"
     end
-    row.meta:SetText(string.format("%s - %s", metaPrefix, rowData.collected and "Collected" or "Missing"))
+    local metaText = string.format("%s - %s", metaPrefix, rowData.collected and "Collected" or "Missing")
+    if self.selectedPatch == ALL_PATCHES then
+        metaText = string.format("Patch %s - %s", rowData.patchKey, metaText)
+    end
+    row.meta:SetText(metaText)
     Widgets:SetTextureColor(row.accent, rowData.collected and { 0.28, 0.82, 0.42, 0.74 } or "accentGold")
 
     local isFavorite = self:IsFavoriteRow(rowData)
@@ -838,77 +989,93 @@ function CollectionExplorerWindow:BuildVisibleRows()
     local collectedCount = 0
     local missingCount = 0
     local totalCount = 0
+    local selectedPatchKeys = self:GetSelectedPatchKeys()
+    local patchOrder = {}
+    for index, patchKey in ipairs(selectedPatchKeys) do
+        patchOrder[patchKey] = index
+    end
 
     for _, collectionType in ipairs(self:GetCollectionTypes()) do
-        for _, entry in ipairs(PatchCatalog:GetEntries(self.selectedPatch, collectionType)) do
-            local state = CollectionScanner:GetState(collectionType, entry)
-            local rewardEntry = collectionType == "achievements" and PatchCatalog:GetAchievementReward(self.selectedPatch, entry)
-            local name = CollectionScanner:GetDisplayName(collectionType, entry, state, self.selectedPatch)
-            local reward = (state and state.reward) or (rewardEntry and rewardEntry.reward)
-            local collected = state and state.collected == true
-            local mountCategory = collectionType == "mounts" and PatchCatalog:GetMountCategory(self.selectedPatch, entry) or nil
-            local mountSource = collectionType == "mounts" and PatchCatalog:GetMountSourceSummary(self.selectedPatch, entry) or nil
-            local mountAcquisition = collectionType == "mounts" and PatchCatalog:GetMountAcquisitionText(self.selectedPatch, entry) or nil
-            local achievementCategory = collectionType == "achievements" and self:GetAchievementCategoryForEntry(self.selectedPatch, entry, state) or nil
-            local petSource = collectionType == "pets" and PatchCatalog:GetPetSourceSummary(self.selectedPatch, entry) or nil
-            local petAcquisition = collectionType == "pets" and PatchCatalog:GetPetAcquisitionText(self.selectedPatch, entry) or nil
-            local toySource = collectionType == "toys" and PatchCatalog:GetToySourceSummary(self.selectedPatch, entry) or nil
-            local toyAcquisition = collectionType == "toys" and PatchCatalog:GetToyAcquisitionText(self.selectedPatch, entry) or nil
-            local toyEffect = collectionType == "toys" and PatchCatalog:GetToyUseText(self.selectedPatch, entry) or nil
-            totalCount = totalCount + 1
+        for _, patchKey in ipairs(selectedPatchKeys) do
+            for _, entry in ipairs(PatchCatalog:GetEntries(patchKey, collectionType)) do
+                local state = CollectionScanner:GetState(collectionType, entry)
+                local rewardEntry = collectionType == "achievements" and PatchCatalog:GetAchievementReward(patchKey, entry)
+                local name = CollectionScanner:GetDisplayName(collectionType, entry, state, patchKey)
+                local reward = (state and state.reward) or (rewardEntry and rewardEntry.reward)
+                local collected = state and state.collected == true
+                local mountCategory = collectionType == "mounts" and PatchCatalog:GetMountCategory(patchKey, entry) or nil
+                local mountSource = collectionType == "mounts" and PatchCatalog:GetMountSourceSummary(patchKey, entry) or nil
+                local mountAcquisition = collectionType == "mounts" and PatchCatalog:GetMountAcquisitionText(patchKey, entry) or nil
+                local achievementCategory = collectionType == "achievements" and self:GetAchievementCategoryForEntry(patchKey, entry, state) or nil
+                local petSource = collectionType == "pets" and PatchCatalog:GetPetSourceSummary(patchKey, entry) or nil
+                local petAcquisition = collectionType == "pets" and PatchCatalog:GetPetAcquisitionText(patchKey, entry) or nil
+                local toySource = collectionType == "toys" and PatchCatalog:GetToySourceSummary(patchKey, entry) or nil
+                local toyAcquisition = collectionType == "toys" and PatchCatalog:GetToyAcquisitionText(patchKey, entry) or nil
+                local toyEffect = collectionType == "toys" and PatchCatalog:GetToyUseText(patchKey, entry) or nil
+                local cosmeticSource = collectionType == "cosmetics" and PatchCatalog:GetCosmeticSourceSummary(patchKey, entry) or nil
+                local cosmeticAcquisition = collectionType == "cosmetics" and PatchCatalog:GetCosmeticAcquisitionText(patchKey, entry) or nil
+                local cosmeticSubtype = collectionType == "cosmetics" and type(entry) == "table" and entry.subtype or nil
+                totalCount = totalCount + 1
 
-            if collected then
-                collectedCount = collectedCount + 1
-            else
-                missingCount = missingCount + 1
-            end
+                if collected then
+                    collectedCount = collectedCount + 1
+                else
+                    missingCount = missingCount + 1
+                end
 
-            local statusMatches = self.selectedStatus == "all"
-                or self.selectedStatus == "collected" and collected
-                or self.selectedStatus == "missing" and not collected
-            local mountCategoryMatches = collectionType ~= "mounts"
-                or self.selectedCollectionType ~= "mounts"
-                or self:MountCategoryMatchesFilter(mountCategory)
-            local achievementCategoryMatches = collectionType ~= "achievements"
-                or self.selectedCollectionType ~= "achievements"
-                or self.selectedAchievementCategory == "all"
-                or achievementCategory == self.selectedAchievementCategory
+                local statusMatches = self.selectedStatus == "all"
+                    or self.selectedStatus == "collected" and collected
+                    or self.selectedStatus == "missing" and not collected
+                local mountCategoryMatches = collectionType ~= "mounts"
+                    or self.selectedCollectionType ~= "mounts"
+                    or self:MountCategoryMatchesFilter(mountCategory)
+                local achievementCategoryMatches = collectionType ~= "achievements"
+                    or self.selectedCollectionType ~= "achievements"
+                    or self.selectedAchievementCategory == "all"
+                    or achievementCategory == self.selectedAchievementCategory
 
-            local searchMatches = searchText == ""
-            if not searchMatches then
-                local haystack = string.lower(table.concat({
-                    name or "",
-                    reward or "",
-                    mountCategory or "",
-                    mountSource or "",
-                    mountAcquisition or "",
-                    achievementCategory or "",
-                    state and state.categoryName or "",
-                    state and state.parentCategoryName or "",
-                    petSource or "",
-                    petAcquisition or "",
-                    toySource or "",
-                    toyAcquisition or "",
-                    toyEffect or "",
-                    self:GetTypeLabel(collectionType),
-                    tostring(self:GetEntryId(collectionType, entry) or ""),
-                }, " "))
-                searchMatches = haystack:find(searchText, 1, true) ~= nil
-            end
+                local searchMatches = searchText == ""
+                if not searchMatches then
+                    local haystack = string.lower(table.concat({
+                        name or "",
+                        reward or "",
+                        patchKey,
+                        self:GetExpansionLabel(self.selectedExpansion),
+                        mountCategory or "",
+                        mountSource or "",
+                        mountAcquisition or "",
+                        achievementCategory or "",
+                        state and state.categoryName or "",
+                        state and state.parentCategoryName or "",
+                        petSource or "",
+                        petAcquisition or "",
+                        toySource or "",
+                        toyAcquisition or "",
+                        toyEffect or "",
+                        cosmeticSource or "",
+                        cosmeticAcquisition or "",
+                        cosmeticSubtype or "",
+                        self:GetTypeLabel(collectionType),
+                        tostring(self:GetEntryId(collectionType, entry) or ""),
+                    }, " "))
+                    searchMatches = haystack:find(searchText, 1, true) ~= nil
+                end
 
-            if statusMatches and mountCategoryMatches and achievementCategoryMatches and searchMatches then
-                self.visibleRows[#self.visibleRows + 1] = {
-                    patchKey = self.selectedPatch,
-                    collectionType = collectionType,
-                    entry = entry,
-                    state = state,
-                    name = name,
-                    icon = state and state.icon,
-                    collected = collected,
-                    reward = reward,
-                    mountCategory = mountCategory,
-                    achievementCategory = achievementCategory,
-                }
+                if statusMatches and mountCategoryMatches and achievementCategoryMatches and searchMatches then
+                    self.visibleRows[#self.visibleRows + 1] = {
+                        patchKey = patchKey,
+                        collectionType = collectionType,
+                        entry = entry,
+                        state = state,
+                        name = name,
+                        icon = state and state.icon,
+                        collected = collected,
+                        reward = reward,
+                        mountCategory = mountCategory,
+                        cosmeticSubtype = cosmeticSubtype,
+                        achievementCategory = achievementCategory,
+                    }
+                end
             end
         end
     end
@@ -916,6 +1083,9 @@ function CollectionExplorerWindow:BuildVisibleRows()
     table.sort(self.visibleRows, function(a, b)
         if a.collectionType ~= b.collectionType then
             return self:GetTypeLabel(a.collectionType) < self:GetTypeLabel(b.collectionType)
+        end
+        if a.patchKey ~= b.patchKey then
+            return (patchOrder[a.patchKey] or math.huge) < (patchOrder[b.patchKey] or math.huge)
         end
         return (a.name or "") < (b.name or "")
     end)
@@ -982,8 +1152,13 @@ function CollectionExplorerWindow:RenderPreview()
     local previewMeta = self:GetTypeLabel(row.collectionType)
     if row.collectionType == "mounts" then
         previewMeta = (row.mountCategory or "Other") .. " mount"
+    elseif row.collectionType == "cosmetics" then
+        previewMeta = ((row.cosmeticSubtype or "appearance"):gsub("^%l", string.upper)) .. " cosmetic"
     elseif row.collectionType == "achievements" then
         previewMeta = (row.achievementCategory or "Other") .. " achievement"
+    end
+    if self.selectedPatch == ALL_PATCHES then
+        previewMeta = string.format("Patch %s - %s", row.patchKey, previewMeta)
     end
     self.previewMeta:SetText(previewMeta)
     self.previewStatus:SetText("")
@@ -1017,7 +1192,12 @@ function CollectionExplorerWindow:Render()
     end
 
     local totalCount, collectedCount, missingCount = self:BuildVisibleRows()
-    Widgets:UpdateButtonLabel(self.patchButton, "Patch", self.selectedPatch)
+    Widgets:UpdateButtonLabel(self.expansionButton, "Expansion", self.selectedExpansion, function(value)
+        return self:GetExpansionLabel(value)
+    end)
+    Widgets:UpdateButtonLabel(self.patchButton, "Patch", self.selectedPatch, function(value)
+        return self:GetPatchLabel(value)
+    end)
     Widgets:UpdateButtonLabel(self.statusButton, "Status", self.selectedStatus, function(value)
         return self:GetStatusLabel(value)
     end)
@@ -1082,26 +1262,33 @@ function CollectionExplorerWindow:Build()
         subtitle:SetPoint("LEFT", frame.headerBar, "LEFT", 15, -12)
         subtitle:SetText("Patch collection scanner")
 
-        body = Widgets:CreatePanel(frame, "body", "goldBorder")
+        body = CreateFrame("Frame", nil, frame)
         body:SetPoint("TOPLEFT", chrome, "TOPLEFT", 12, -54)
         body:SetPoint("BOTTOMRIGHT", chrome, "BOTTOMRIGHT", -12, 12)
-        body.topAccent = Widgets:AddGoldTopAccent(body, 3, 0.22)
         Theme:RegisterSpecialFrame("TODOPlannerCollectionExplorerFrame")
     else
         Widgets:ApplyPanelBackdrop(frame, { 0.02, 0.02, 0.03, 0.98 }, { 1, 1, 1, 0.10 })
         body = frame
     end
 
-    local toolbar = Widgets:CreatePanel(body, "section", "goldBorder")
+    local toolbar = CreateFrame("Frame", nil, body)
     toolbar:SetPoint("TOPLEFT", 12, -12)
     toolbar:SetPoint("TOPRIGHT", -12, -12)
-    toolbar:SetHeight(112)
-    toolbar.topAccent = Widgets:AddGoldTopAccent(toolbar, 2, 0.20)
+    toolbar:SetHeight(124)
 
     self:BuildTypeTabs(toolbar)
 
-    local patchButton = Widgets:CreateButton(toolbar, 150, 24, "", "neutral")
-    patchButton:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 12, -44)
+    local filterDivider = toolbar:CreateTexture(nil, "ARTWORK")
+    filterDivider:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 12, -44)
+    filterDivider:SetPoint("TOPRIGHT", toolbar, "TOPRIGHT", -12, -44)
+    filterDivider:SetHeight(1)
+    Widgets:SetTextureColor(filterDivider, { 1.0, 0.82, 0.18, 0.24 })
+
+    local expansionButton = Widgets:CreateButton(toolbar, 220, 24, "", "neutral")
+    expansionButton:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 12, -52)
+
+    local patchButton = Widgets:CreateButton(toolbar, 130, 24, "", "neutral")
+    patchButton:SetPoint("LEFT", expansionButton, "RIGHT", 8, 0)
 
     local statusButton = Widgets:CreateButton(toolbar, 150, 24, "", "neutral")
     statusButton:SetPoint("LEFT", patchButton, "RIGHT", 8, 0)
@@ -1116,15 +1303,16 @@ function CollectionExplorerWindow:Build()
     local refreshButton = Widgets:CreateButton(toolbar, 82, 24, "Refresh", "neutral")
     refreshButton:SetPoint("LEFT", mountCategoryButton, "RIGHT", 8, 0)
 
-    local homeButton = Widgets:CreateButton(toolbar, 82, 24, "Home", "neutral")
-    homeButton:SetPoint("TOPRIGHT", toolbar, "TOPRIGHT", -12, -12)
+    local navigationButtons = Widgets:CreateWindowNavigation(frame.headerBar or toolbar, "collections", self, {
+        centered = frame.headerBar ~= nil,
+    })
 
     local searchLabel = toolbar:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    searchLabel:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 16, -68)
+    searchLabel:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 16, -80)
     searchLabel:SetText("Search")
 
     local searchEdit = Widgets:CreateEditBox(toolbar, 360, 24)
-    searchEdit:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 12, -84)
+    searchEdit:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 12, -96)
     searchEdit:SetMaxLetters(80)
 
     local summaryText = toolbar:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
@@ -1133,7 +1321,7 @@ function CollectionExplorerWindow:Build()
     summaryText:SetJustifyH("LEFT")
 
     local listPanel = Widgets:CreatePanel(body, "section", "goldBorder")
-    listPanel:SetPoint("TOPLEFT", body, "TOPLEFT", 12, -136)
+    listPanel:SetPoint("TOPLEFT", body, "TOPLEFT", 12, -148)
     listPanel:SetPoint("BOTTOMLEFT", body, "BOTTOMLEFT", 12, 12)
     listPanel:SetWidth(LIST_WIDTH)
     listPanel.topAccent = Widgets:AddGoldTopAccent(listPanel, 2, 0.18)
@@ -1208,8 +1396,18 @@ function CollectionExplorerWindow:Build()
     detailPanel:SetPoint("TOPLEFT", previewPanel, "TOPLEFT", 18, PREVIEW_DETAIL_TOP_OFFSET)
     detailPanel:SetPoint("BOTTOMRIGHT", previewPanel, "BOTTOMRIGHT", -18, 58)
 
+    local detailHeading = detailPanel:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    detailHeading:SetPoint("TOPLEFT", detailPanel, "TOPLEFT", 12, -10)
+    detailHeading:SetText("Collection Details")
+
+    local detailDivider = detailPanel:CreateTexture(nil, "ARTWORK")
+    detailDivider:SetPoint("TOPLEFT", detailHeading, "BOTTOMLEFT", 0, -7)
+    detailDivider:SetPoint("RIGHT", detailPanel, "RIGHT", -12, 0)
+    detailDivider:SetHeight(1)
+    Widgets:SetTextureColor(detailDivider, { 1.0, 0.82, 0.18, 0.20 })
+
     local previewDetailsScroll = CreateFrame("ScrollFrame", nil, detailPanel, "UIPanelScrollFrameTemplate")
-    previewDetailsScroll:SetPoint("TOPLEFT", detailPanel, "TOPLEFT", 12, -12)
+    previewDetailsScroll:SetPoint("TOPLEFT", detailPanel, "TOPLEFT", 12, -38)
     previewDetailsScroll:SetPoint("BOTTOMRIGHT", detailPanel, "BOTTOMRIGHT", -28, 12)
 
     local previewDetailsContent = CreateFrame("Frame", nil, previewDetailsScroll)
@@ -1236,12 +1434,15 @@ function CollectionExplorerWindow:Build()
 
     self.frame = frame
     self.body = body
+    self.expansionButton = expansionButton
     self.patchButton = patchButton
     self.statusButton = statusButton
     self.mountCategoryButton = mountCategoryButton
     self.achievementCategoryButton = achievementCategoryButton
     self.refreshButton = refreshButton
-    self.homeButton = homeButton
+    self.homeButton = navigationButtons.home
+    self.favoritesButton = navigationButtons.favorites
+    self.plannerButton = navigationButtons.planner
     self.searchEdit = searchEdit
     self.summaryText = summaryText
     self.listScroll = listScroll
@@ -1264,8 +1465,20 @@ function CollectionExplorerWindow:Build()
     self.previewFavoriteButton = previewFavoriteButton
     self.previewMapButton = previewMapButton
 
+    expansionButton:SetScript("OnClick", function(owner)
+        Widgets:ShowSingleSelectMenu(owner, EXPANSION_OPTIONS, self.selectedExpansion, function(value)
+            return self:GetExpansionLabel(value)
+        end, function(expansionKey)
+            self:SetSelectedExpansion(expansionKey)
+            self.selectedRow = nil
+            self:Render()
+        end)
+    end)
+
     patchButton:SetScript("OnClick", function(owner)
-        Widgets:ShowSingleSelectMenu(owner, self:GetPatchOptions(), self.selectedPatch, nil, function(patchKey)
+        Widgets:ShowSingleSelectMenu(owner, self:GetPatchOptions(), self.selectedPatch, function(value)
+            return self:GetPatchLabel(value)
+        end, function(patchKey)
             self.selectedPatch = patchKey
             self.selectedRow = nil
             self:Render()
@@ -1308,13 +1521,6 @@ function CollectionExplorerWindow:Build()
     refreshButton:SetScript("OnClick", function()
         CollectionScanner:ResetCache()
         self:Render()
-    end)
-
-    homeButton:SetScript("OnClick", function()
-        frame:Hide()
-        if self.homeWindow then
-            self.homeWindow:Open()
-        end
     end)
 
     searchEdit:SetScript("OnTextChanged", function()

@@ -10,8 +10,8 @@ local Favorites = TDP.Favorites
 local FavoritesWindow = {}
 FavoritesWindow.__index = FavoritesWindow
 
-local TYPE_OPTIONS = { "all", "mounts", "pets", "toys", "achievements" }
-local COLLECTION_TYPES = { "mounts", "pets", "toys", "achievements" }
+local TYPE_OPTIONS = { "all", "mounts", "pets", "toys", "cosmetics", "achievements" }
+local COLLECTION_TYPES = { "mounts", "pets", "toys", "cosmetics", "achievements" }
 local ROW_HEIGHT = 48
 local ROW_GAP = 5
 local LIST_WIDTH = 548
@@ -30,6 +30,7 @@ local TYPE_LABELS = {
     mounts = "Mounts",
     pets = "Pets",
     toys = "Toys",
+    cosmetics = "Cosmetics",
     achievements = "Achievements",
 }
 
@@ -37,6 +38,7 @@ local CATEGORY_BY_TYPE = {
     mounts = "Mounts",
     pets = "Collections",
     toys = "Collections",
+    cosmetics = "Collections",
     achievements = "Achievements",
 }
 
@@ -62,6 +64,7 @@ function FavoritesWindow:BuildTypeTabs(parent)
         mounts = 82,
         pets = 64,
         toys = 64,
+        cosmetics = 96,
         achievements = 118,
     }
     local previous
@@ -111,6 +114,8 @@ function FavoritesWindow:GetFallbackEntry(favorite)
         return { speciesId = entryId, name = "Pet #" .. tostring(entryId) }
     elseif favorite.collectionType == "toys" then
         return { itemId = entryId, name = "Toy #" .. tostring(entryId) }
+    elseif favorite.collectionType == "cosmetics" then
+        return { itemId = entryId, name = "Cosmetic #" .. tostring(entryId), subtype = "appearance" }
     elseif favorite.collectionType == "achievements" then
         return tonumber(entryId) or entryId
     end
@@ -234,7 +239,6 @@ function FavoritesWindow:GetRowNotes(row)
     if row.collectionType == "mounts" then
         local sourceSummary = PatchCatalog and PatchCatalog:GetMountSourceSummary(row.patchKey, row.entry)
         local acquisition = PatchCatalog and PatchCatalog:GetMountAcquisitionText(row.patchKey, row.entry)
-        local waypoints = PatchCatalog and PatchCatalog:GetMountWaypoints(row.patchKey, row.entry)
         if sourceSummary then
             lines[#lines + 1] = "Source: " .. sourceSummary
         end
@@ -243,16 +247,10 @@ function FavoritesWindow:GetRowNotes(row)
                 lines[#lines + 1] = ""
             end
             lines[#lines + 1] = "How to get: " .. acquisition
-        end
-        if waypoints then
-            for _, waypoint in ipairs(waypoints) do
-                lines[#lines + 1] = waypoint
-            end
         end
     elseif row.collectionType == "pets" then
         local sourceSummary = PatchCatalog and PatchCatalog:GetPetSourceSummary(row.patchKey, row.entry)
         local acquisition = PatchCatalog and PatchCatalog:GetPetAcquisitionText(row.patchKey, row.entry)
-        local waypoints = PatchCatalog and PatchCatalog:GetPetWaypoints(row.patchKey, row.entry)
         if sourceSummary then
             lines[#lines + 1] = "Source: " .. sourceSummary
         end
@@ -261,17 +259,11 @@ function FavoritesWindow:GetRowNotes(row)
                 lines[#lines + 1] = ""
             end
             lines[#lines + 1] = "How to get: " .. acquisition
-        end
-        if waypoints then
-            for _, waypoint in ipairs(waypoints) do
-                lines[#lines + 1] = waypoint
-            end
         end
     elseif row.collectionType == "toys" then
         local sourceSummary = PatchCatalog and PatchCatalog:GetToySourceSummary(row.patchKey, row.entry)
         local acquisition = PatchCatalog and PatchCatalog:GetToyAcquisitionText(row.patchKey, row.entry)
         local effect = PatchCatalog and PatchCatalog:GetToyUseText(row.patchKey, row.entry)
-        local waypoints = PatchCatalog and PatchCatalog:GetToyWaypoints(row.patchKey, row.entry)
         if sourceSummary then
             lines[#lines + 1] = "Source: " .. sourceSummary
         end
@@ -284,15 +276,26 @@ function FavoritesWindow:GetRowNotes(row)
         if effect then
             lines[#lines + 1] = "Effect: " .. effect
         end
-        if waypoints then
-            for _, waypoint in ipairs(waypoints) do
-                lines[#lines + 1] = waypoint
+    elseif row.collectionType == "cosmetics" then
+        local sourceSummary = PatchCatalog and PatchCatalog:GetCosmeticSourceSummary(row.patchKey, row.entry)
+        local acquisition = PatchCatalog and PatchCatalog:GetCosmeticAcquisitionText(row.patchKey, row.entry)
+        local subtype = type(row.entry) == "table" and row.entry.subtype or "appearance"
+        lines[#lines + 1] = "Cosmetic Type: " .. tostring(subtype):gsub("^%l", string.upper)
+        if row.state and (row.state.totalCount or 0) > 0 then
+            lines[#lines + 1] = string.format("Appearance Progress: %d/%d", row.state.collectedCount or 0, row.state.totalCount)
+        end
+        if sourceSummary then
+            lines[#lines + 1] = "Source: " .. sourceSummary
+        end
+        if acquisition then
+            if #lines > 0 then
+                lines[#lines + 1] = ""
             end
+            lines[#lines + 1] = "How to get: " .. acquisition
         end
     elseif row.collectionType == "achievements" then
         local sourceSummary = PatchCatalog and PatchCatalog:GetAchievementSourceSummary(row.patchKey, row.entry)
         local acquisition = PatchCatalog and PatchCatalog:GetAchievementAcquisitionText(row.patchKey, row.entry)
-        local waypoints = PatchCatalog and PatchCatalog:GetAchievementWaypoints(row.patchKey, row.entry)
         if row.achievementCategory then
             lines[#lines + 1] = "Achievement Type: " .. row.achievementCategory
         end
@@ -331,11 +334,6 @@ function FavoritesWindow:GetRowNotes(row)
                 lines[#lines + 1] = ""
             end
             lines[#lines + 1] = "How to get: " .. acquisition
-        end
-        if waypoints then
-            for _, waypoint in ipairs(waypoints) do
-                lines[#lines + 1] = waypoint
-            end
         end
     end
 
@@ -414,6 +412,9 @@ function FavoritesWindow:BuildVisibleRows()
             local mountCategory = favorite.collectionType == "mounts" and PatchCatalog:GetMountCategory(favorite.patchKey, entry) or nil
             local mountSource = favorite.collectionType == "mounts" and PatchCatalog:GetMountSourceSummary(favorite.patchKey, entry) or nil
             local mountAcquisition = favorite.collectionType == "mounts" and PatchCatalog:GetMountAcquisitionText(favorite.patchKey, entry) or nil
+            local cosmeticSource = favorite.collectionType == "cosmetics" and PatchCatalog:GetCosmeticSourceSummary(favorite.patchKey, entry) or nil
+            local cosmeticAcquisition = favorite.collectionType == "cosmetics" and PatchCatalog:GetCosmeticAcquisitionText(favorite.patchKey, entry) or nil
+            local cosmeticSubtype = favorite.collectionType == "cosmetics" and type(entry) == "table" and entry.subtype or nil
 
             local searchMatches = searchText == ""
             if not searchMatches then
@@ -423,6 +424,9 @@ function FavoritesWindow:BuildVisibleRows()
                     mountCategory or "",
                     mountSource or "",
                     mountAcquisition or "",
+                    cosmeticSource or "",
+                    cosmeticAcquisition or "",
+                    cosmeticSubtype or "",
                     self:GetTypeLabel(favorite.collectionType),
                     tostring(self:GetEntryId(favorite.collectionType, entry) or favorite.entryId or ""),
                 }, " "))
@@ -441,6 +445,7 @@ function FavoritesWindow:BuildVisibleRows()
                     collected = collected,
                     reward = reward,
                     mountCategory = mountCategory,
+                    cosmeticSubtype = cosmeticSubtype,
                     addedAt = favorite.addedAt,
                 }
             end
@@ -534,6 +539,8 @@ function FavoritesWindow:UpdateRow(row, rowData, index)
     local metaPrefix = self:GetTypeLabel(rowData.collectionType)
     if rowData.collectionType == "mounts" then
         metaPrefix = (rowData.mountCategory or "Other") .. " mount"
+    elseif rowData.collectionType == "cosmetics" then
+        metaPrefix = ((rowData.cosmeticSubtype or "appearance"):gsub("^%l", string.upper)) .. " cosmetic"
     end
     row.meta:SetText(string.format("%s - %s", metaPrefix, rowData.collected and "Collected" or "Missing"))
     Widgets:SetTextureColor(row.accent, rowData.collected and { 0.28, 0.82, 0.42, 0.74 } or "accentGold")
@@ -646,6 +653,8 @@ function FavoritesWindow:RenderPreview()
     local previewMeta = self:GetTypeLabel(row.collectionType)
     if row.collectionType == "mounts" then
         previewMeta = (row.mountCategory or "Other") .. " mount"
+    elseif row.collectionType == "cosmetics" then
+        previewMeta = ((row.cosmeticSubtype or "appearance"):gsub("^%l", string.upper)) .. " cosmetic"
     end
     self.previewMeta:SetText(previewMeta)
     self.previewStatus:SetText("")
@@ -738,10 +747,11 @@ function FavoritesWindow:Build()
     self:BuildTypeTabs(toolbar)
 
     local refreshButton = Widgets:CreateButton(toolbar, 82, 24, "Refresh", "neutral")
-    refreshButton:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 410, -12)
+    refreshButton:SetPoint("TOPRIGHT", toolbar, "TOPRIGHT", -12, -12)
 
-    local homeButton = Widgets:CreateButton(toolbar, 82, 24, "Home", "neutral")
-    homeButton:SetPoint("TOPRIGHT", toolbar, "TOPRIGHT", -12, -12)
+    local navigationButtons = Widgets:CreateWindowNavigation(frame.headerBar or toolbar, "favorites", self, {
+        centered = frame.headerBar ~= nil,
+    })
 
     local searchLabel = toolbar:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     searchLabel:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 16, -36)
@@ -832,8 +842,18 @@ function FavoritesWindow:Build()
     detailPanel:SetPoint("TOPLEFT", previewPanel, "TOPLEFT", 18, PREVIEW_DETAIL_TOP_OFFSET)
     detailPanel:SetPoint("BOTTOMRIGHT", previewPanel, "BOTTOMRIGHT", -18, 58)
 
+    local detailHeading = detailPanel:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    detailHeading:SetPoint("TOPLEFT", detailPanel, "TOPLEFT", 12, -10)
+    detailHeading:SetText("Collection Details")
+
+    local detailDivider = detailPanel:CreateTexture(nil, "ARTWORK")
+    detailDivider:SetPoint("TOPLEFT", detailHeading, "BOTTOMLEFT", 0, -7)
+    detailDivider:SetPoint("RIGHT", detailPanel, "RIGHT", -12, 0)
+    detailDivider:SetHeight(1)
+    Widgets:SetTextureColor(detailDivider, { 1.0, 0.82, 0.18, 0.20 })
+
     local previewDetailsScroll = CreateFrame("ScrollFrame", nil, detailPanel, "UIPanelScrollFrameTemplate")
-    previewDetailsScroll:SetPoint("TOPLEFT", detailPanel, "TOPLEFT", 12, -12)
+    previewDetailsScroll:SetPoint("TOPLEFT", detailPanel, "TOPLEFT", 12, -38)
     previewDetailsScroll:SetPoint("BOTTOMRIGHT", detailPanel, "BOTTOMRIGHT", -28, 12)
 
     local previewDetailsContent = CreateFrame("Frame", nil, previewDetailsScroll)
@@ -861,7 +881,9 @@ function FavoritesWindow:Build()
     self.frame = frame
     self.body = body
     self.refreshButton = refreshButton
-    self.homeButton = homeButton
+    self.homeButton = navigationButtons.home
+    self.collectionsButton = navigationButtons.collections
+    self.plannerButton = navigationButtons.planner
     self.searchEdit = searchEdit
     self.summaryText = summaryText
     self.emptyText = emptyText
@@ -887,13 +909,6 @@ function FavoritesWindow:Build()
     refreshButton:SetScript("OnClick", function()
         CollectionScanner:ResetCache()
         self:Render()
-    end)
-
-    homeButton:SetScript("OnClick", function()
-        frame:Hide()
-        if self.homeWindow then
-            self.homeWindow:Open()
-        end
     end)
 
     searchEdit:SetScript("OnTextChanged", function()

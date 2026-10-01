@@ -17,6 +17,10 @@ on:
     - .idea/**
     - check.sh
     - release.ps1
+    - .codex/**
+    - .codex_*
+    - BACKLOG.md
+    - Tests/**
 
 jobs:
   build:

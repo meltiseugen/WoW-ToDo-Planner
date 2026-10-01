@@ -24,7 +24,7 @@ function Favorites:GetEntryId(collectionType, entry)
         return entry and (entry.spellId or entry.itemId)
     elseif collectionType == "pets" then
         return entry and entry.speciesId
-    elseif collectionType == "toys" then
+    elseif collectionType == "toys" or collectionType == "cosmetics" then
         return entry and entry.itemId
     elseif collectionType == "achievements" then
         return type(entry) == "table" and entry.achievementId or entry

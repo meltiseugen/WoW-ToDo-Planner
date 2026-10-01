@@ -137,20 +137,7 @@ function TaskDetailWindow:Build()
     notesValue:SetWidth(532)
     Widgets:ConfigureDetailText(notesValue, true)
     notesValue:SetJustifyV("TOP")
-    if notesValue.SetHyperlinksEnabled then
-        notesValue:SetHyperlinksEnabled(true)
-    end
-    local canHandleHyperlinkClick = notesValue.GetScript
-        and notesValue.SetScript
-        and pcall(notesValue.GetScript, notesValue, "OnHyperlinkClick")
-    if canHandleHyperlinkClick then
-        notesValue:SetScript("OnHyperlinkClick", function(_, link, text, button)
-            if type(SetItemRef) == "function" then
-                SetItemRef(link, text, button)
-            end
-        end)
-    end
-    local criteriaLabel = notesContent:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    local criteriaLabel = notesContent:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
     criteriaLabel:SetText("Criteria")
     criteriaLabel:SetJustifyH("LEFT")
     criteriaLabel:Hide()
@@ -330,7 +317,7 @@ function TaskDetailWindow:Build()
         end
 
         row = CreateFrame("Frame", nil, self.notesContent)
-        row:SetHeight(50)
+        row:SetHeight(30)
         row.bg = row:CreateTexture(nil, "BACKGROUND")
         row.bg:SetAllPoints(row)
         row.bg:SetColorTexture(1, 1, 1, 0.035)
@@ -408,9 +395,21 @@ function TaskDetailWindow:Build()
         local criteriaRows = self.currentCriteriaRows or {}
 
         if #criteriaRows > 0 then
+            local completedCriteria = 0
+            for _, criteriaRow in ipairs(criteriaRows) do
+                if criteriaRow.completed then
+                    completedCriteria = completedCriteria + 1
+                end
+            end
+
             self.criteriaLabel:ClearAllPoints()
             self.criteriaLabel:SetPoint("TOPLEFT", self.notesContent, "TOPLEFT", 0, nextY)
             self.criteriaLabel:SetWidth(contentWidth)
+            self.criteriaLabel:SetText(string.format(
+                "Criteria  %d/%d complete",
+                completedCriteria,
+                #criteriaRows
+            ))
             self.criteriaLabel:Show()
             nextY = nextY - 20
 
@@ -429,9 +428,17 @@ function TaskDetailWindow:Build()
                 row.achievementId = criteriaRow.id
                 Widgets:SetButtonEnabled(row.openButton, criteriaRow.canOpen == true)
                 Widgets:SetButtonEnabled(row.wowheadButton, criteriaRow.canOpen == true)
+                local meta = criteriaRow.progress or ""
+                local showProgressBar = TODOPlannerDB.settings.useProgressBars ~= false
+                    and criteriaRow.progressValue
+                    and criteriaRow.progressMax
+                local hasSecondaryLine = showProgressBar or meta ~= ""
+                local rowHeight = showProgressBar and 46 or (hasSecondaryLine and 38 or 30)
+                local rightInset = criteriaRow.canOpen and 154 or 8
+                local textWidth = math.max(1, contentWidth - 8 - rightInset)
                 row:ClearAllPoints()
                 row:SetPoint("TOPLEFT", self.notesContent, "TOPLEFT", 0, nextY)
-                row:SetSize(contentWidth, 50)
+                row:SetSize(contentWidth, rowHeight)
                 if criteriaRow.completed then
                     row.bg:SetColorTexture(0.08, 0.34, 0.12, 0.24)
                 else
@@ -439,9 +446,15 @@ function TaskDetailWindow:Build()
                 end
 
                 row.title:ClearAllPoints()
-                row.title:SetPoint("TOPLEFT", row, "TOPLEFT", 8, -6)
+                if hasSecondaryLine then
+                    row.title:SetPoint("TOPLEFT", row, "TOPLEFT", 8, -5)
+                else
+                    row.title:SetPoint("LEFT", row, "LEFT", 8, 0)
+                end
+                row.title:SetWidth(textWidth)
                 row.meta:ClearAllPoints()
                 row.meta:SetPoint("TOPLEFT", row.title, "BOTTOMLEFT", 0, -4)
+                row.meta:SetWidth(textWidth)
                 row.progressBar:ClearAllPoints()
                 if criteriaRow.canOpen then
                     row.openButton:Show()
@@ -450,29 +463,20 @@ function TaskDetailWindow:Build()
                     row.openButton:SetPoint("RIGHT", row, "RIGHT", -6, 0)
                     row.wowheadButton:ClearAllPoints()
                     row.wowheadButton:SetPoint("RIGHT", row.openButton, "LEFT", -6, 0)
-                    row.title:SetPoint("RIGHT", row.wowheadButton, "LEFT", -8, 0)
-                    row.meta:SetPoint("RIGHT", row.wowheadButton, "LEFT", -8, 0)
                 else
                     row.openButton:Hide()
                     row.wowheadButton:Hide()
-                    row.title:SetPoint("RIGHT", row, "RIGHT", -8, 0)
-                    row.meta:SetPoint("RIGHT", row, "RIGHT", -8, 0)
                 end
 
-                row.title:SetText(string.format(
-                    "%s %s",
-                    criteriaRow.completed and "[x]" or "[ ]",
-                    criteriaRow.name or "Unknown"
-                ))
-                local meta = ""
-                if criteriaRow.progress and criteriaRow.progress ~= "" then
-                    meta = criteriaRow.progress
-                end
+                local statusText = criteriaRow.completed
+                    and "|cff63d58aDONE|r"
+                    or "|cff99a3b5TODO|r"
+                row.title:SetText(string.format("%s  %s", statusText, criteriaRow.name or "Unknown"))
                 row.meta:SetText(meta)
-                if TODOPlannerDB.settings.useProgressBars ~= false and criteriaRow.progressValue and criteriaRow.progressMax then
+                if showProgressBar then
                     row.meta:Hide()
                     row.progressBar:SetPoint("TOPLEFT", row.title, "BOTTOMLEFT", 0, -6)
-                    row.progressBar:SetPoint("RIGHT", criteriaRow.canOpen and row.wowheadButton or row, criteriaRow.canOpen and "LEFT" or "RIGHT", criteriaRow.canOpen and -8 or -8, 0)
+                    row.progressBar:SetWidth(textWidth)
                     row.progressBar:SetMinMaxValues(0, criteriaRow.progressMax)
                     row.progressBar:SetValue(criteriaRow.progressValue)
                     row.progressBar.text:SetText(string.format("%d / %d", criteriaRow.progressValue, criteriaRow.progressMax))
@@ -482,7 +486,7 @@ function TaskDetailWindow:Build()
                     row.progressBar:Hide()
                 end
                 row:Show()
-                nextY = nextY - 56
+                nextY = nextY - rowHeight - 6
             end
 
             for index = #criteriaRows + 1, #self.criteriaRows do
@@ -499,10 +503,24 @@ function TaskDetailWindow:Build()
             end
         end
 
-        self.notesContent:SetSize(
-            notesWidth,
-            math.max(self.notesScroll:GetHeight(), math.abs(nextY) + 8)
-        )
+        local scrollHeight = self.notesScroll:GetHeight() or 1
+        local contentHeight = math.max(scrollHeight, math.abs(nextY) + 8)
+        self.notesContent:SetSize(notesWidth, contentHeight)
+        if self.notesScroll.UpdateScrollChildRect then
+            self.notesScroll:UpdateScrollChildRect()
+        end
+
+        local scrollBar = self.notesScroll.ScrollBar or self.notesScroll.scrollBar
+        if scrollBar then
+            local hasOverflow = contentHeight > scrollHeight
+            if scrollBar.SetShown then
+                scrollBar:SetShown(hasOverflow)
+            elseif hasOverflow then
+                scrollBar:Show()
+            else
+                scrollBar:Hide()
+            end
+        end
     end
 
     function frame:UpdateDetailRows()
@@ -566,6 +584,7 @@ function TaskDetailWindow:Build()
 
         self.taskId = task.id
         self.titleText:SetText(task.title or "(Untitled)")
+        self.notesLabel:SetFontObject(achievementId and GameFontNormal or GameFontDisableSmall)
         self.notesLabel:SetText(achievementId and "Achievement Details" or "Description")
         self.currentCriteriaRows = criteriaRows
         self.notesValue:SetFontObject(achievementId and GameFontHighlight or GameFontHighlightSmall)
@@ -604,6 +623,7 @@ function TaskDetailWindow:Build()
         self:UpdateDetailRows()
 
         self.notesValue:SetText(notesText ~= "" and notesText or (#criteriaRows > 0 and "" or "No description."))
+        self.notesScroll:SetVerticalScroll(0)
         self:UpdateNotesLayout()
 
         local isArchived = Tasks:IsArchived(task)

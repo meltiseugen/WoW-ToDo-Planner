@@ -31,6 +31,7 @@ local TYPE_LABELS = {
     mounts = "Mount",
     pets = "Pet",
     toys = "Toy",
+    cosmetics = "Cosmetic",
     achievements = "Achievement",
 }
 
@@ -39,7 +40,7 @@ local function IsNonEmptyText(value)
 end
 
 local function IsCollectionType(value)
-    return value == "mounts" or value == "pets" or value == "toys" or value == "achievements"
+    return value == "mounts" or value == "pets" or value == "toys" or value == "cosmetics" or value == "achievements"
 end
 
 local function CopyTableContents(target, source)
@@ -78,6 +79,7 @@ function CollectionMapWindow:New()
     return setmetatable({
         frame = nil,
         mapID = DEFAULT_MAP_ID,
+        initialMapID = nil,
         pins = {},
         tileTextures = {},
         exploredTileTextures = {},
@@ -91,8 +93,17 @@ function CollectionMapWindow:New()
         acquisition = nil,
         effect = nil,
         tips = nil,
+        requirements = nil,
+        cost = nil,
+        costs = nil,
+        availability = nil,
+        notes = nil,
+        researchNotes = nil,
         description = nil,
         criteria = nil,
+        mapAchievementId = nil,
+        showCompletedCriteriaPins = false,
+        hasCriteriaPins = false,
         waypoints = nil,
         icon = nil,
         projectedPayload = nil,
@@ -103,6 +114,7 @@ function CollectionMapWindow:New()
         worldMapDataProvider = nil,
         worldMapControls = nil,
         worldMapEventFrame = nil,
+        criteriaEventFrame = nil,
         worldMapHooksInstalled = false,
     }, self)
 end
@@ -125,6 +137,30 @@ function CollectionMapWindow:GetMapName(mapID)
         end
     end
     return "Map " .. tostring(mapID)
+end
+
+function CollectionMapWindow:NavigateToParentMap()
+    local mapInfo = nil
+    if C_Map and C_Map.GetMapInfo then
+        local ok, result = pcall(C_Map.GetMapInfo, self.mapID)
+        if ok then
+            mapInfo = result
+        end
+    end
+
+    local parentMapID = mapInfo and tonumber(mapInfo.parentMapID)
+    if not parentMapID or parentMapID <= 0 or parentMapID == tonumber(self.mapID) then
+        self:SetStatus("This map has no parent map.")
+        return false
+    end
+
+    self.mapID = parentMapID
+    self.zoom = 1
+    self.panX = 0
+    self.panY = 0
+    self.dragging = false
+    self:RenderMap()
+    return true
 end
 
 function CollectionMapWindow:GetDefaultMapID()
@@ -209,6 +245,20 @@ function CollectionMapWindow:BuildDetailsText()
     self:AddDetailsSection(lines, "How to get", self.acquisition)
     self:AddDetailsSection(lines, "Effect", self.effect)
     self:AddDetailsSection(lines, "Tips", self.tips)
+    self:AddDetailsSection(lines, "Requirements", self.requirements)
+    self:AddDetailsSection(lines, "Cost", self.cost)
+    if type(self.costs) == "table" and #self.costs > 0 then
+        if #lines > 0 then
+            lines[#lines + 1] = ""
+        end
+        lines[#lines + 1] = "Cost guide:"
+        for _, costLine in ipairs(self.costs) do
+            lines[#lines + 1] = "- " .. tostring(costLine)
+        end
+    end
+    self:AddDetailsSection(lines, "Availability", self.availability)
+    self:AddDetailsSection(lines, "Item notes", self.notes)
+    self:AddDetailsSection(lines, "Research notes", self.researchNotes)
     self:AddDetailsSection(lines, "Description", self.description)
 
     if type(self.criteria) == "table" and #self.criteria > 0 then
@@ -228,12 +278,13 @@ function CollectionMapWindow:BuildDetailsText()
         end
     end
 
-    if type(self.pins) == "table" and #self.pins > 0 then
+    local visiblePins = self:GetVisiblePins()
+    if #visiblePins > 0 then
         if #lines > 0 then
             lines[#lines + 1] = ""
         end
         lines[#lines + 1] = "Locations:"
-        for index, pinData in ipairs(self.pins) do
+        for index, pinData in ipairs(visiblePins) do
             local mapName = pinData.mapName or self:GetMapName(pinData.mapID)
             local label = IsNonEmptyText(pinData.label) and pinData.label or (self.title or "Collection location")
             lines[#lines + 1] = string.format("%d. %s", index, label)
@@ -260,15 +311,7 @@ function CollectionMapWindow:BuildDetailsText()
         end
     end
 
-    if type(self.waypoints) == "table" and #self.waypoints > 0 then
-        if #lines > 0 then
-            lines[#lines + 1] = ""
-        end
-        lines[#lines + 1] = "Waypoints:"
-        for _, waypoint in ipairs(self.waypoints) do
-            lines[#lines + 1] = waypoint
-        end
-    elseif not self.sourceSummary and not self.acquisition and not self.effect and not self.tips and (#(self.pins or {}) == 0) then
+    if not self.sourceSummary and not self.acquisition and not self.effect and not self.tips and (#(self.pins or {}) == 0) then
         lines[#lines + 1] = "No curated source details are available for this entry yet."
     end
 
@@ -334,6 +377,7 @@ function CollectionMapWindow:GetPin(index)
         pin = CreateFrame("Button", nil, self.mapContent, "BackdropTemplate")
         pin:SetSize(COLLECTION_MAP_PIN_SIZE, COLLECTION_MAP_PIN_SIZE)
         pin:EnableMouse(true)
+        pin:RegisterForClicks("LeftButtonUp", "RightButtonUp")
         pin.icon = pin:CreateTexture(nil, "OVERLAY")
         pin.icon:SetPoint("CENTER")
         pin.icon:SetSize(COLLECTION_MAP_PIN_ICON_SIZE, COLLECTION_MAP_PIN_ICON_SIZE)
@@ -349,12 +393,122 @@ function CollectionMapWindow:GetPin(index)
         pin:SetScript("OnLeave", function()
             GameTooltip:Hide()
         end)
-        pin:SetScript("OnClick", function(target)
+        pin:SetScript("OnClick", function(target, button)
+            if button == "RightButton" then
+                self:NavigateToParentMap()
+                return
+            end
             self:SetUserWaypoint(target.mapID, target.x, target.y)
         end)
         self.pinFrames[index] = pin
     end
     return pin
+end
+
+function CollectionMapWindow:RefreshCriteriaProgress()
+    local scanner = TDP.CollectionScanner
+    local criteriaByAchievement = {}
+
+    local function BuildCriteriaIndex(criteria)
+        local criteriaByIndex = {}
+        for fallbackIndex, criterion in ipairs(criteria or {}) do
+            local criterionIndex = tonumber(criterion.index) or fallbackIndex
+            criteriaByIndex[criterionIndex] = criterion
+        end
+        return criteriaByIndex
+    end
+
+    local function LoadAchievementCriteria(achievementId, fallbackCriteria)
+        achievementId = tonumber(achievementId)
+        if not achievementId or criteriaByAchievement[achievementId] then
+            return fallbackCriteria
+        end
+
+        local criteria = fallbackCriteria
+        if scanner and scanner.GetAchievementState then
+            local state = scanner:GetAchievementState(achievementId)
+            if state and type(state.criteria) == "table" and #state.criteria > 0 then
+                criteria = state.criteria
+            end
+        end
+        criteriaByAchievement[achievementId] = BuildCriteriaIndex(criteria)
+        return criteria
+    end
+
+    local defaultAchievementId = tonumber(self.mapAchievementId)
+    local fallbackCriteriaByIndex
+    if defaultAchievementId then
+        self.criteria = LoadAchievementCriteria(defaultAchievementId, self.criteria)
+    else
+        fallbackCriteriaByIndex = BuildCriteriaIndex(self.criteria)
+    end
+
+    for _, pinData in ipairs(self.pins or {}) do
+        local achievementId = tonumber(pinData.criterionAchievementId)
+        if achievementId and not criteriaByAchievement[achievementId] then
+            LoadAchievementCriteria(achievementId)
+        end
+    end
+
+    self.hasCriteriaPins = false
+    for _, pinData in ipairs(self.pins or {}) do
+        pinData.criterionCompleted = nil
+        pinData.criterionText = nil
+        local criterionIndex = tonumber(pinData.criterionIndex)
+        if criterionIndex then
+            self.hasCriteriaPins = true
+            local achievementId = tonumber(pinData.criterionAchievementId) or defaultAchievementId
+            local criteriaByIndex = achievementId and criteriaByAchievement[achievementId] or fallbackCriteriaByIndex
+            criteriaByIndex = criteriaByIndex or {}
+            local criterion = criteriaByIndex[criterionIndex]
+            if criterion then
+                pinData.criterionCompleted = criterion.completed == true
+                pinData.criterionText = criterion.text
+            end
+        end
+    end
+end
+
+function CollectionMapWindow:GetVisiblePins()
+    local pins = {}
+    for _, pinData in ipairs(self.pins or {}) do
+        if self.showCompletedCriteriaPins or pinData.criterionCompleted ~= true then
+            pins[#pins + 1] = pinData
+        end
+    end
+    return pins
+end
+
+function CollectionMapWindow:UpdateCriteriaFilterControl()
+    if not self.completedPinsCheck then
+        return
+    end
+
+    self.completedPinsCheck:SetChecked(self.showCompletedCriteriaPins == true)
+    if self.hasCriteriaPins then
+        self.completedPinsCheck:Show()
+    else
+        self.completedPinsCheck:Hide()
+    end
+end
+
+function CollectionMapWindow:RefreshProjectedCriteriaPins()
+    if not self.projectedPayload
+        or not self.mapAchievementId
+        or tonumber(self.projectedPayload.mapAchievementId) ~= tonumber(self.mapAchievementId) then
+        return
+    end
+
+    self.projectedPayload = self:CopyProjectionPayload()
+    self:RefreshWorldMapProjection()
+    self:RefreshMinimapProjection()
+end
+
+function CollectionMapWindow:SetShowCompletedCriteriaPins(showCompleted)
+    self.showCompletedCriteriaPins = showCompleted == true
+    self:UpdateCriteriaFilterControl()
+    self:RefreshProjectedCriteriaPins()
+    self:RenderMap()
 end
 
 function CollectionMapWindow:ApplyCollectionMapPinSize(pin, mapScale)
@@ -401,10 +555,12 @@ end
 
 function CollectionMapWindow:CopyProjectionPayload()
     local pins = {}
-    for _, pinData in ipairs(self.pins or {}) do
+    local allPins = {}
+
+    local function copyPin(pinData)
         local x, y = GetPinCoordinates(pinData)
         if x and y then
-            pins[#pins + 1] = {
+            return {
                 mapID = pinData.mapID,
                 mapName = pinData.mapName,
                 x = x,
@@ -416,7 +572,25 @@ function CollectionMapWindow:CopyProjectionPayload()
                 acquisition = pinData.acquisition,
                 effect = pinData.effect,
                 tips = pinData.tips,
+                criterionAchievementId = pinData.criterionAchievementId,
+                criterionIndex = pinData.criterionIndex,
+                criterionCompleted = pinData.criterionCompleted,
+                criterionText = pinData.criterionText,
             }
+        end
+        return nil
+    end
+
+    for _, pinData in ipairs(self.pins or {}) do
+        local copiedPin = copyPin(pinData)
+        if copiedPin then
+            allPins[#allPins + 1] = copiedPin
+        end
+    end
+    for _, pinData in ipairs(self:GetVisiblePins()) do
+        local copiedPin = copyPin(pinData)
+        if copiedPin then
+            pins[#pins + 1] = copiedPin
         end
     end
 
@@ -437,8 +611,11 @@ function CollectionMapWindow:CopyProjectionPayload()
         tips = self.tips,
         description = self.description,
         criteria = self.criteria,
+        mapAchievementId = self.mapAchievementId,
+        showCompletedCriteriaPins = self.showCompletedCriteriaPins,
         waypoints = waypoints,
         pins = pins,
+        allPins = allPins,
         mapID = self.mapID,
         icon = self.icon,
     }
@@ -500,6 +677,11 @@ function CollectionMapWindow:ShowWorldMapPinTooltip(pin)
     if IsNonEmptyText(pin.label) and pin.label ~= pin.title then
         GameTooltip:AddLine("Location: " .. pin.label, 0.86, 0.88, 0.94, true)
     end
+    if pin.criterionIndex then
+        local criterionLabel = pin.criterionText or ("Achievement criterion " .. tostring(pin.criterionIndex))
+        local marker = pin.criterionCompleted and "[Done] " or "[ ] "
+        GameTooltip:AddLine(marker .. criterionLabel, 0.72, 0.86, 0.72, true)
+    end
     GameTooltip:AddLine(pin.coordinates or "", 0.82, 0.86, 0.92)
     if IsNonEmptyText(pin.source) then
         GameTooltip:AddLine("Source: " .. pin.source, 0.86, 0.88, 0.94, true)
@@ -528,6 +710,10 @@ function CollectionMapWindow:ConfigureWorldMapPin(pin, pinData, payload)
     pin.acquisition = pinData.acquisition or payload.acquisition
     pin.effect = pinData.effect or payload.effect
     pin.tips = pinData.tips or payload.tips
+    pin.criterionAchievementId = pinData.criterionAchievementId
+    pin.criterionIndex = pinData.criterionIndex
+    pin.criterionCompleted = pinData.criterionCompleted
+    pin.criterionText = pinData.criterionText
     pin.coordinates = self:FormatPinCoordinates(pinData)
 
     local icon = pin.icon or pin.Icon
@@ -709,6 +895,10 @@ function CollectionMapWindow:RefreshMinimapProjection()
                     effect = pinData.effect,
                     tips = pinData.tips,
                     icon = pinData.icon,
+                    criterionAchievementId = pinData.criterionAchievementId,
+                    criterionIndex = pinData.criterionIndex,
+                    criterionCompleted = pinData.criterionCompleted,
+                    criterionText = pinData.criterionText,
                 }, payload)
                 pin:ClearAllPoints()
                 pin:SetPoint("CENTER", Minimap, "CENTER", math.cos(angle) * offsetDistance, math.sin(angle) * offsetDistance)
@@ -888,6 +1078,10 @@ function CollectionMapWindow:EnsureWorldMapProjectionMixins()
                             effect = pinData.effect,
                             tips = pinData.tips,
                             icon = pinData.icon,
+                            criterionAchievementId = pinData.criterionAchievementId,
+                            criterionIndex = pinData.criterionIndex,
+                            criterionCompleted = pinData.criterionCompleted,
+                            criterionText = pinData.criterionText,
                         }
                         local pin = map:AcquirePin(WORLD_MAP_PIN_TEMPLATE, provider, projectedPinData)
                         pin:SetPosition(x, y)
@@ -977,24 +1171,9 @@ function CollectionMapWindow:HookWorldMap(worldMap)
         return
     end
 
-    local function raiseWorldMap(target)
-        target = target or worldMap
-        if target.SetFrameStrata then
-            target:SetFrameStrata("DIALOG")
-        end
-        if target.SetToplevel then
-            target:SetToplevel(true)
-        end
-        if target.Raise then
-            target:Raise()
-        end
-    end
-
     self.worldMapHooksInstalled = true
-    worldMap:HookScript("OnMouseDown", raiseWorldMap)
     worldMap:HookScript("OnShow", function()
         self:RefreshWorldMapProjection()
-        raiseWorldMap(worldMap)
     end)
     worldMap:HookScript("OnHide", function()
         self:HideWorldMapPins()
@@ -1010,9 +1189,6 @@ function CollectionMapWindow:HookWorldMap(worldMap)
     end
 
     if worldMap.ScrollContainer then
-        worldMap.ScrollContainer:HookScript("OnMouseDown", function()
-            raiseWorldMap(worldMap)
-        end)
         worldMap.ScrollContainer:HookScript("OnSizeChanged", function()
             self:RefreshWorldMapProjection()
         end)
@@ -1159,8 +1335,12 @@ function CollectionMapWindow:RefreshWorldMapProjection()
                     source = pinData.source,
                     acquisition = pinData.acquisition,
                     effect = pinData.effect,
-                    tips = pinData.tips,
-                    icon = pinData.icon,
+                   tips = pinData.tips,
+                   icon = pinData.icon,
+                    criterionAchievementId = pinData.criterionAchievementId,
+                   criterionIndex = pinData.criterionIndex,
+                    criterionCompleted = pinData.criterionCompleted,
+                    criterionText = pinData.criterionText,
                 }, payload)
 
                 pin:ClearAllPoints()
@@ -1341,7 +1521,7 @@ function CollectionMapWindow:RenderPins()
     local layerHeight = self.layer.layerHeight or 1
     local pinIndex = 1
     local totalPins = 0
-    for _, pinData in ipairs(self.pins or {}) do
+    for _, pinData in ipairs(self:GetVisiblePins()) do
         if PinMatchesMap(pinData, self.mapID) then
             totalPins = totalPins + 1
             local x, y = GetPinCoordinates(pinData)
@@ -1357,6 +1537,10 @@ function CollectionMapWindow:RenderPins()
                 pin.acquisition = pinData.acquisition
                 pin.effect = pinData.effect
                 pin.tips = pinData.tips
+                pin.criterionAchievementId = pinData.criterionAchievementId
+                pin.criterionIndex = pinData.criterionIndex
+                pin.criterionCompleted = pinData.criterionCompleted
+                pin.criterionText = pinData.criterionText
                 pin.coordinates = self:FormatPinCoordinates(pinData)
                 if pinData.icon then
                     pin.icon:SetTexture(pinData.icon)
@@ -1407,11 +1591,22 @@ function CollectionMapWindow:RenderMap()
     self:RenderTiles()
     self:RenderExploredTiles()
     local renderedPinCount, pinCount = self:RenderPins()
+    local allPinCount = 0
+    for _, pinData in ipairs(self.pins or {}) do
+        if PinMatchesMap(pinData, self.mapID) then
+            allPinCount = allPinCount + 1
+        end
+    end
+    local hiddenCompletedPinCount = math.max(allPinCount - pinCount, 0)
     if self.projectButton then
         Widgets:SetButtonEnabled(self.projectButton, renderedPinCount > 0)
     end
 
-    if pinCount > 0 and renderedPinCount > 0 then
+    if hiddenCompletedPinCount > 0 and pinCount == 0 then
+        self:SetStatus(string.format("All %d completed location pin(s) are hidden. Enable Show completed to display them. Zoom %.2fx", hiddenCompletedPinCount, self.zoom or 1))
+    elseif hiddenCompletedPinCount > 0 and renderedPinCount > 0 then
+        self:SetStatus(string.format("%d incomplete location pin(s) rendered; %d completed hidden. Click a pin to set a waypoint. Zoom %.2fx", renderedPinCount, hiddenCompletedPinCount, self.zoom or 1))
+    elseif pinCount > 0 and renderedPinCount > 0 then
         self:SetStatus(string.format("%d of %d location pin(s) rendered. Click a pin to set your user waypoint or project them to the Blizzard map. Zoom %.2fx", renderedPinCount, pinCount, self.zoom or 1))
     elseif pinCount > 0 then
         self:SetStatus(string.format("%d of %d location pin(s) rendered. Valid coordinates are required before pins can be used as waypoints. Zoom %.2fx", renderedPinCount, pinCount, self.zoom or 1))
@@ -1430,6 +1625,18 @@ function CollectionMapWindow:ResetView()
     self.panX = 0
     self.panY = 0
     self:RenderMap()
+end
+
+function CollectionMapWindow:ResetToInitialMap()
+    if not self.initialMapID then
+        self:SetStatus("No initial map is available.")
+        return false
+    end
+
+    self.mapID = self.initialMapID
+    self.dragging = false
+    self:ResetView()
+    return true
 end
 
 function CollectionMapWindow:OpenTest()
@@ -1463,12 +1670,23 @@ function CollectionMapWindow:Open(options)
     self.acquisition = options.acquisition
     self.effect = options.effect
     self.tips = options.tips
+    self.requirements = options.requirements
+    self.cost = options.cost
+    self.costs = options.costs
+    self.availability = options.availability
+    self.notes = options.notes
+    self.researchNotes = options.researchNotes
     self.description = options.description
     self.criteria = options.criteria
+    self.mapAchievementId = tonumber(options.mapAchievementId)
+    self.showCompletedCriteriaPins = options.showCompletedCriteriaPins == true
     self.waypoints = options.waypoints
     self.icon = options.icon
-    self.pins = options.pins or self.pins or {}
+    self.pins = options.allPins or options.pins or {}
     self.mapID = options.mapID or (self.pins[1] and self.pins[1].mapID) or self:GetDefaultMapID()
+    self.initialMapID = self.mapID
+    self:RefreshCriteriaProgress()
+    self:UpdateCriteriaFilterControl()
     self.zoom = 1
     self.panX = 0
     self.panY = 0
@@ -1515,7 +1733,7 @@ function CollectionMapWindow:Build()
 
     local mapTitle = toolbar:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     mapTitle:SetPoint("LEFT", toolbar, "LEFT", 12, 0)
-    mapTitle:SetPoint("RIGHT", toolbar, "RIGHT", -328, 0)
+    mapTitle:SetPoint("RIGHT", toolbar, "RIGHT", -540, 0)
     mapTitle:SetJustifyH("LEFT")
     if mapTitle.SetWordWrap then
         mapTitle:SetWordWrap(false)
@@ -1530,11 +1748,23 @@ function CollectionMapWindow:Build()
     local zoomOutButton = Widgets:CreateButton(toolbar, 28, 24, "-", "neutral")
     zoomOutButton:SetPoint("RIGHT", resetButton, "LEFT", -6, 0)
 
+    local initialMapButton = Widgets:CreateButton(toolbar, 82, 24, "Initial Map", "neutral")
+    initialMapButton:SetPoint("RIGHT", zoomOutButton, "LEFT", -6, 0)
+
     local clearProjectButton = Widgets:CreateButton(toolbar, 70, 24, "Clear", "neutral")
-    clearProjectButton:SetPoint("RIGHT", zoomOutButton, "LEFT", -6, 0)
+    clearProjectButton:SetPoint("RIGHT", initialMapButton, "LEFT", -6, 0)
 
     local projectButton = Widgets:CreateButton(toolbar, 86, 24, "Project", "primary")
     projectButton:SetPoint("RIGHT", clearProjectButton, "LEFT", -6, 0)
+
+    local completedPinsCheck = CreateFrame("CheckButton", nil, toolbar, "UICheckButtonTemplate")
+    completedPinsCheck:SetSize(22, 22)
+    completedPinsCheck:SetPoint("RIGHT", projectButton, "LEFT", -108, 0)
+    completedPinsCheck:SetHitRectInsets(0, -102, 0, 0)
+    completedPinsCheck.label = completedPinsCheck:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    completedPinsCheck.label:SetPoint("LEFT", completedPinsCheck, "RIGHT", 3, 0)
+    completedPinsCheck.label:SetText("Show completed")
+    completedPinsCheck:Hide()
 
     local mapViewport = Widgets:CreatePanel(body, "input", "inputBorder")
     mapViewport:SetPoint("TOPLEFT", toolbar, "BOTTOMLEFT", 0, -10)
@@ -1598,6 +1828,10 @@ function CollectionMapWindow:Build()
     end)
 
     mapViewport:SetScript("OnMouseDown", function(_, button)
+        if button == "RightButton" then
+            self:NavigateToParentMap()
+            return
+        end
         if button ~= "LeftButton" or type(GetCursorPosition) ~= "function" then
             return
         end
@@ -1643,12 +1877,35 @@ function CollectionMapWindow:Build()
         self:ResetView()
     end)
 
+    initialMapButton:SetScript("OnClick", function()
+        self:ResetToInitialMap()
+    end)
+
     projectButton:SetScript("OnClick", function()
         self:ProjectToWorldMap()
     end)
 
     clearProjectButton:SetScript("OnClick", function()
         self:ClearWorldMapProjection()
+    end)
+
+    completedPinsCheck:SetScript("OnClick", function(target)
+        self:SetShowCompletedCriteriaPins(target:GetChecked() == true)
+    end)
+
+    local criteriaEventFrame = CreateFrame("Frame")
+    pcall(criteriaEventFrame.RegisterEvent, criteriaEventFrame, "CRITERIA_UPDATE")
+    pcall(criteriaEventFrame.RegisterEvent, criteriaEventFrame, "ACHIEVEMENT_EARNED")
+    criteriaEventFrame:SetScript("OnEvent", function()
+        if not self.mapAchievementId then
+            return
+        end
+        self:RefreshCriteriaProgress()
+        self:UpdateCriteriaFilterControl()
+        self:RefreshProjectedCriteriaPins()
+        if self.frame and self.frame:IsShown() then
+            self:RenderMap()
+        end
     end)
 
     self.frame = frame
@@ -1667,8 +1924,11 @@ function CollectionMapWindow:Build()
     self.zoomOutButton = zoomOutButton
     self.zoomInButton = zoomInButton
     self.resetButton = resetButton
+    self.initialMapButton = initialMapButton
     self.projectButton = projectButton
     self.clearProjectButton = clearProjectButton
+    self.completedPinsCheck = completedPinsCheck
+    self.criteriaEventFrame = criteriaEventFrame
 
     frame:Hide()
     self:UpdateProjectionControls()

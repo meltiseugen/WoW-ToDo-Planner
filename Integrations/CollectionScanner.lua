@@ -248,6 +248,198 @@ function CollectionScanner:GetToyState(entry)
     }
 end
 
+function CollectionScanner:GetItemNameAndIcon(entry)
+    local itemId = entry and tonumber(entry.itemId)
+    local name = entry and entry.name
+    local icon
+
+    if itemId and C_Item then
+        if type(C_Item.GetItemNameByID) == "function" then
+            local ok, itemName = self:Call(C_Item.GetItemNameByID, itemId)
+            if ok then
+                name = itemName or name
+            end
+        end
+        if type(C_Item.GetItemIconByID) == "function" then
+            local ok, itemIcon = self:Call(C_Item.GetItemIconByID, itemId)
+            if ok then
+                icon = itemIcon
+            end
+        end
+        if (not name or not icon) and type(C_Item.RequestLoadItemDataByID) == "function" then
+            self:Call(C_Item.RequestLoadItemDataByID, itemId)
+        end
+    end
+
+    if itemId and type(GetItemInfo) == "function" and (not name or not icon) then
+        local ok, itemName, _, _, _, _, _, _, _, _, itemIcon = self:Call(GetItemInfo, itemId)
+        if ok then
+            name = itemName or name
+            icon = itemIcon or icon
+        end
+    end
+
+    return name, icon
+end
+
+function CollectionScanner:GetCosmeticSetState(entry, name, icon)
+    local itemId = entry and tonumber(entry.itemId)
+    local setId = entry and tonumber(entry.transmogSetId)
+    if not setId and itemId and C_Item and type(C_Item.GetItemLearnTransmogSet) == "function" then
+        local ok, learnedSetId = self:Call(C_Item.GetItemLearnTransmogSet, itemId)
+        if ok then
+            setId = tonumber(learnedSetId)
+        end
+    end
+
+    local sourceIds
+    if setId and C_TransmogSets and type(C_TransmogSets.GetAllSourceIDs) == "function" then
+        local ok, returnedSourceIds = self:Call(C_TransmogSets.GetAllSourceIDs, setId)
+        if ok and type(returnedSourceIds) == "table" then
+            sourceIds = returnedSourceIds
+        end
+    end
+
+    local collectedCount = 0
+    local totalCount = 0
+    local appearanceStates = {}
+    if sourceIds then
+        for _, sourceId in ipairs(sourceIds) do
+            local appearanceId = tonumber(sourceId) or tostring(sourceId)
+            local isCollected = false
+            if C_TransmogCollection and type(C_TransmogCollection.GetAppearanceInfoBySource) == "function" then
+                local ok, appearanceInfo = self:Call(C_TransmogCollection.GetAppearanceInfoBySource, sourceId)
+                if ok and type(appearanceInfo) == "table" then
+                    appearanceId = tonumber(appearanceInfo.appearanceID) or appearanceId
+                    isCollected = appearanceInfo.appearanceIsCollected == true or appearanceInfo.isCollected == true
+                end
+            end
+            if not isCollected and C_TransmogCollection and type(C_TransmogCollection.PlayerHasTransmogItemModifiedAppearance) == "function" then
+                local ok, hasAppearance = self:Call(C_TransmogCollection.PlayerHasTransmogItemModifiedAppearance, sourceId)
+                isCollected = ok and hasAppearance == true
+            end
+
+            appearanceStates[appearanceId] = appearanceStates[appearanceId] == true or isCollected
+        end
+    end
+
+    for _, isCollected in pairs(appearanceStates) do
+        totalCount = totalCount + 1
+        if isCollected then
+            collectedCount = collectedCount + 1
+        end
+    end
+
+    local collected = totalCount > 0 and collectedCount == totalCount
+    local unknown = totalCount == 0
+    if unknown and setId and C_TransmogSets and type(C_TransmogSets.GetSetInfo) == "function" then
+        local ok, setInfo = self:Call(C_TransmogSets.GetSetInfo, setId)
+        if ok and type(setInfo) == "table" and type(setInfo.collected) == "boolean" then
+            collected = setInfo.collected
+            unknown = false
+        end
+    end
+
+    return {
+        collected = collected,
+        unknown = unknown,
+        name = name,
+        icon = icon,
+        setId = setId,
+        collectedCount = collectedCount,
+        totalCount = totalCount,
+        linkType = "item",
+        linkId = itemId,
+    }
+end
+
+function CollectionScanner:GetCosmeticState(entry)
+    local itemId = entry and tonumber(entry.itemId)
+    local subtype = entry and entry.subtype or "appearance"
+    local name, icon = self:GetItemNameAndIcon(entry)
+
+    if subtype == "ensemble" or subtype == "arsenal" then
+        return self:GetCosmeticSetState(entry, name, icon)
+    elseif subtype == "illusion" then
+        local illusionId = entry and tonumber(entry.illusionId)
+        local collected = false
+        local unknown = true
+        if illusionId and C_TransmogCollection and type(C_TransmogCollection.GetIllusionInfo) == "function" then
+            local ok, visualId, sourceId, illusionIcon, isCollected, illusionName = self:Call(C_TransmogCollection.GetIllusionInfo, illusionId)
+            if ok then
+                if type(visualId) == "table" then
+                    local info = visualId
+                    icon = info.icon or icon
+                    name = info.name or name
+                    collected = info.isCollected == true
+                    unknown = type(info.isCollected) ~= "boolean"
+                else
+                    icon = illusionIcon or icon
+                    name = illusionName or name
+                    collected = isCollected == true
+                    unknown = type(isCollected) ~= "boolean"
+                end
+            end
+        end
+        return {
+            collected = collected,
+            unknown = unknown,
+            name = name,
+            icon = icon,
+            illusionId = illusionId,
+            linkType = "item",
+            linkId = itemId,
+        }
+    elseif subtype == "effect" then
+        local questId = entry and tonumber(entry.questId)
+        local collected = false
+        local unknown = true
+        if questId and C_QuestLog then
+            if type(C_QuestLog.IsQuestFlaggedCompletedOnAccount) == "function" then
+                local ok, isCompleted = self:Call(C_QuestLog.IsQuestFlaggedCompletedOnAccount, questId)
+                if ok then
+                    collected = isCompleted == true
+                    unknown = false
+                end
+            end
+            if not collected and type(C_QuestLog.IsQuestFlaggedCompleted) == "function" then
+                local ok, isCompleted = self:Call(C_QuestLog.IsQuestFlaggedCompleted, questId)
+                if ok then
+                    collected = isCompleted == true
+                    unknown = false
+                end
+            end
+        end
+        return {
+            collected = collected,
+            unknown = unknown,
+            name = name,
+            icon = icon,
+            linkType = "item",
+            linkId = itemId,
+        }
+    end
+
+    local collected = false
+    local unknown = true
+    if itemId and C_TransmogCollection and type(C_TransmogCollection.PlayerHasTransmogByItemInfo) == "function" then
+        local ok, hasAppearance = self:Call(C_TransmogCollection.PlayerHasTransmogByItemInfo, itemId)
+        if ok then
+            collected = hasAppearance == true
+            unknown = false
+        end
+    end
+
+    return {
+        collected = collected,
+        unknown = unknown,
+        name = name,
+        icon = icon,
+        linkType = "item",
+        linkId = itemId,
+    }
+end
+
 function CollectionScanner:GetAchievementState(achievementId)
     achievementId = tonumber(achievementId)
     local name
@@ -327,6 +519,8 @@ function CollectionScanner:GetAchievementState(achievementId)
                         quantityText = self:Call(GetAchievementCriteriaInfo, achievementId, criteriaIndex)
                     if criteriaOk and type(criteriaText) == "string" and criteriaText ~= "" then
                         criteria[#criteria + 1] = {
+                            index = criteriaIndex,
+                            assetId = tonumber(assetId) or assetId,
                             text = criteriaText,
                             completed = criteriaCompleted == true,
                             quantity = tonumber(quantity),
@@ -361,6 +555,8 @@ function CollectionScanner:GetState(collectionType, entry)
         return self:GetPetState(entry)
     elseif collectionType == "toys" then
         return self:GetToyState(entry)
+    elseif collectionType == "cosmetics" then
+        return self:GetCosmeticState(entry)
     elseif collectionType == "achievements" then
         return self:GetAchievementState(entry)
     end
@@ -374,6 +570,8 @@ function CollectionScanner:GetEntryKey(collectionType, entry)
     elseif collectionType == "pets" then
         return entry and entry.speciesId
     elseif collectionType == "toys" then
+        return entry and entry.itemId
+    elseif collectionType == "cosmetics" then
         return entry and entry.itemId
     elseif collectionType == "achievements" then
         return type(entry) == "table" and entry.achievementId or entry

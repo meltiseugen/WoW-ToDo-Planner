@@ -694,6 +694,27 @@ function AchievementIntegration:BuildDetailText(task)
     self:AppendSeries(lines, achievementId)
 
     local manualNotes = Utils:Trim(task.notes or "")
+    local function removeGeneratedPrefix(prefix)
+        prefix = Utils:Trim(prefix or "")
+        if prefix == "" then
+            return
+        end
+
+        if manualNotes == prefix then
+            manualNotes = ""
+            return
+        end
+
+        if manualNotes:sub(1, #prefix) == prefix then
+            local nextCharacter = manualNotes:sub(#prefix + 1, #prefix + 1)
+            if nextCharacter == "" or nextCharacter:match("%s") then
+                manualNotes = Utils:Trim(manualNotes:sub(#prefix + 1))
+            end
+        end
+    end
+
+    removeGeneratedPrefix(self:FormatTaskNotes(info))
+    removeGeneratedPrefix(info.description)
     if manualNotes ~= "" and not manualNotes:match("^Achievement ID:") then
         if #lines > 0 then
             lines[#lines + 1] = ""

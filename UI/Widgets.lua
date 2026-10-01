@@ -10,6 +10,7 @@ function Widgets:New(addon)
     return setmetatable({
         addon = addon,
         menuFrame = nil,
+        dropdownDismissFrame = nil,
         windowFrameLevel = 100,
         windowFrames = {},
     }, self)
@@ -206,6 +207,92 @@ function Widgets:CreateButton(parent, width, height, text, paletteKey)
     return self:RaiseParentWindowOnInteraction(button)
 end
 
+function Widgets:CreateWindowNavigation(parent, currentWindow, ownerWindow, options)
+    options = type(options) == "table" and options or {}
+
+    local destinations = {
+        { key = "home", label = "Home", width = 72, method = "Open" },
+        { key = "favorites", label = "Favorites", width = 86, method = "OpenFavorites" },
+        { key = "collections", label = "Collections", width = 92, method = "OpenExplorer" },
+        { key = "planner", label = "Planner", width = 78, method = "OpenPlanner" },
+    }
+    local visibleDestinations = {}
+    for _, destination in ipairs(destinations) do
+        if destination.key ~= currentWindow then
+            visibleDestinations[#visibleDestinations + 1] = destination
+        end
+    end
+
+    local buttons = {}
+    local rightAnchor = options.anchorTo
+    local gap = options.gap or 8
+
+    local function createNavigationButton(buttonParent, destination)
+        local button = self:CreateButton(buttonParent, destination.width, 24, destination.label, "neutral")
+        button:SetScript("OnClick", function()
+            local sourceWindow = self:GetTopLevelWindow(button)
+            if sourceWindow then
+                sourceWindow:Hide()
+            end
+
+            local homeWindow = (ownerWindow and ownerWindow.homeWindow) or self.addon.ui
+            local openMethod = homeWindow and homeWindow[destination.method]
+            if type(openMethod) == "function" then
+                openMethod(homeWindow)
+            elseif self.addon.Utils then
+                self.addon.Utils:Msg(destination.label .. " window is unavailable.")
+            end
+        end)
+        buttons[destination.key] = button
+        return button
+    end
+
+    if options.centered then
+        local totalWidth = 0
+        for _, destination in ipairs(visibleDestinations) do
+            totalWidth = totalWidth + destination.width
+        end
+        totalWidth = totalWidth + (math.max(#visibleDestinations - 1, 0) * gap)
+
+        local navigationFrame = CreateFrame("Frame", nil, parent)
+        navigationFrame:SetSize(totalWidth, 24)
+        navigationFrame:SetPoint(
+            "CENTER",
+            parent,
+            "CENTER",
+            options.centerOffsetX or 0,
+            options.centerOffsetY or 0
+        )
+
+        local previousButton
+        for _, destination in ipairs(visibleDestinations) do
+            local button = createNavigationButton(navigationFrame, destination)
+            if previousButton then
+                button:SetPoint("LEFT", previousButton, "RIGHT", gap, 0)
+            else
+                button:SetPoint("LEFT", navigationFrame, "LEFT", 0, 0)
+            end
+            previousButton = button
+        end
+
+        buttons.frame = navigationFrame
+        return buttons
+    end
+
+    for index = #visibleDestinations, 1, -1 do
+        local destination = visibleDestinations[index]
+        local button = createNavigationButton(parent, destination)
+        if rightAnchor then
+            button:SetPoint("RIGHT", rightAnchor, "LEFT", -gap, 0)
+        else
+            button:SetPoint("TOPRIGHT", parent, "TOPRIGHT", options.rightOffset or -12, options.topOffset or -12)
+        end
+        rightAnchor = button
+    end
+
+    return buttons
+end
+
 function Widgets:SetButtonEnabled(button, enabled)
     button:SetEnabled(enabled)
     button:SetAlpha(enabled and 1 or 0.48)
@@ -340,6 +427,34 @@ function Widgets:ResetFramePosition(windowKey, frame, defaultX, defaultY)
     end
 end
 
+function Widgets:ShowDropdownDismissFrame(menuFrame)
+    if not self.dropdownDismissFrame then
+        local dismissFrame = CreateFrame("Frame", nil, UIParent)
+        dismissFrame:SetAllPoints(UIParent)
+        dismissFrame:EnableMouse(true)
+        dismissFrame:SetScript("OnMouseDown", function()
+            self:HideDropdownMenus()
+        end)
+        dismissFrame:Hide()
+        self.dropdownDismissFrame = dismissFrame
+    end
+
+    local dismissFrame = self.dropdownDismissFrame
+    local menuLevel = menuFrame.GetFrameLevel and (tonumber(menuFrame:GetFrameLevel()) or 0) or 0
+    if menuLevel < 1 and menuFrame.SetFrameLevel then
+        menuLevel = 1
+        menuFrame:SetFrameLevel(menuLevel)
+    end
+
+    if dismissFrame.SetFrameStrata and menuFrame.GetFrameStrata then
+        dismissFrame:SetFrameStrata(menuFrame:GetFrameStrata())
+    end
+    if dismissFrame.SetFrameLevel then
+        dismissFrame:SetFrameLevel(math.max(0, menuLevel - 1))
+    end
+    dismissFrame:Show()
+end
+
 function Widgets:ShowSingleSelectMenu(owner, options, selectedValue, getLabel, onSelect)
     if self.multiSelectMenuFrame then
         self.multiSelectMenuFrame:Hide()
@@ -354,6 +469,11 @@ function Widgets:ShowSingleSelectMenu(owner, options, selectedValue, getLabel, o
         self.menuFrame.buttons = {}
         self.menuFrame.scrollHint = self.menuFrame:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
         self.menuFrame.scrollHint:SetJustifyH("CENTER")
+        self:HookFrameScript(self.menuFrame, "OnHide", function()
+            if self.dropdownDismissFrame then
+                self.dropdownDismissFrame:Hide()
+            end
+        end)
         self.menuFrame:Hide()
     end
 
@@ -450,6 +570,7 @@ function Widgets:ShowSingleSelectMenu(owner, options, selectedValue, getLabel, o
     if Theme then
         Theme:BringToFront(menuFrame, owner)
     end
+    self:ShowDropdownDismissFrame(menuFrame)
 end
 
 function Widgets:HideDropdownMenus()
@@ -458,6 +579,9 @@ function Widgets:HideDropdownMenus()
     end
     if self.multiSelectMenuFrame then
         self.multiSelectMenuFrame:Hide()
+    end
+    if self.dropdownDismissFrame then
+        self.dropdownDismissFrame:Hide()
     end
 end
 
@@ -472,6 +596,11 @@ function Widgets:ShowMultiSelectMenu(owner, options, isSelected, getLabel, onTog
         self.multiSelectMenuFrame:SetClampedToScreen(true)
         self.multiSelectMenuFrame:EnableMouse(true)
         self.multiSelectMenuFrame.checkboxes = {}
+        self:HookFrameScript(self.multiSelectMenuFrame, "OnHide", function()
+            if self.dropdownDismissFrame then
+                self.dropdownDismissFrame:Hide()
+            end
+        end)
         self.multiSelectMenuFrame:Hide()
     end
 
@@ -480,8 +609,7 @@ function Widgets:ShowMultiSelectMenu(owner, options, isSelected, getLabel, onTog
     local optionGap = 4
     local ownerWidth = owner and owner.GetWidth and owner:GetWidth() or 220
     local width = math.max(220, ownerWidth)
-    local doneHeight = 24
-    local height = (#options * optionHeight) + (math.max(#options - 1, 0) * optionGap) + doneHeight + 20
+    local height = (#options * optionHeight) + (math.max(#options - 1, 0) * optionGap) + 16
 
     local function updateChecks()
         for optionIndex, value in ipairs(options) do
@@ -524,18 +652,6 @@ function Widgets:ShowMultiSelectMenu(owner, options, isSelected, getLabel, onTog
         checkbox:Show()
     end
 
-    if not menuFrame.doneButton then
-        menuFrame.doneButton = self:CreateButton(menuFrame, width - 16, doneHeight, "Done", "primary")
-        menuFrame.doneButton:SetScript("OnClick", function()
-            menuFrame:Hide()
-        end)
-    end
-
-    menuFrame.doneButton:SetSize(width - 16, doneHeight)
-    menuFrame.doneButton:ClearAllPoints()
-    menuFrame.doneButton:SetPoint("BOTTOMLEFT", menuFrame, "BOTTOMLEFT", 8, 8)
-    menuFrame.doneButton:Show()
-
     menuFrame:SetSize(width, height)
     menuFrame:ClearAllPoints()
     menuFrame:SetPoint("TOPLEFT", owner, "BOTTOMLEFT", 0, -4)
@@ -545,6 +661,7 @@ function Widgets:ShowMultiSelectMenu(owner, options, isSelected, getLabel, onTog
     if Theme then
         Theme:BringToFront(menuFrame, owner)
     end
+    self:ShowDropdownDismissFrame(menuFrame)
 end
 
 function Widgets:UpdateButtonLabel(button, prefix, value, formatter)
@@ -619,16 +736,86 @@ function Widgets:ConfigurePreviewDetailText(fontString)
     end
 end
 
+local PREVIEW_FIELD_LABELS = {
+    ["Collection Type"] = "Type",
+    ["Mount Source Category"] = "Source Category",
+    ["Cosmetic Type"] = "Cosmetic Type",
+    ["Appearance Progress"] = "Appearance Progress",
+    ["Achievement Type"] = "Achievement Type",
+    ["WoW Category"] = "WoW Category",
+    ["WoW Parent Category"] = "WoW Parent Category",
+    ["Description"] = "Description",
+    ["Criteria"] = "Criteria",
+    ["Source"] = "Source",
+    ["How to get"] = "How to Get",
+    ["Effect"] = "Effect",
+    ["Requirements"] = "Requirements",
+    ["Cost"] = "Cost",
+    ["Cost guide"] = "Cost Guide",
+    ["Availability"] = "Availability",
+    ["Item notes"] = "Item Notes",
+    ["Research notes"] = "Research Notes",
+    ["Tips"] = "Tips",
+    ["Reward"] = "Reward",
+    ["Wowhead"] = "Wowhead",
+}
+
+local PREVIEW_HEADING_COLOR = "|cffffd15c"
+local PREVIEW_BODY_COLOR = "|cffe1e5ee"
+local PREVIEW_MUTED_COLOR = "|cff99a3b5"
+local PREVIEW_SUCCESS_COLOR = "|cff63d58a"
+local COLOR_END = "|r"
+
 function Widgets:FormatPreviewNotes(text)
-    text = tostring(text or "")
-    text = text:gsub("\nCollection Type:", "\nType:")
-    text = text:gsub("\nMount Source Category:", "\nSource Category:")
-    text = text:gsub("\nSource:", "\n\nSource:")
-    text = text:gsub("\nHow to get:%s*", "\n\nHow to get:\n")
-    text = text:gsub("\nEffect:%s*", "\n\nEffect:\n")
-    text = text:gsub("\nReward:", "\n\nReward:")
-    text = text:gsub("\nWowhead:%s*", "\n\nWowhead:\n")
-    return text
+    local formatted = {}
+    local hasContent = false
+
+    local function addSpacer()
+        if hasContent and formatted[#formatted] ~= "" then
+            formatted[#formatted + 1] = ""
+        end
+    end
+
+    local function addBodyLine(line)
+        local completedText = line:match("^%[Done%]%s*(.*)$")
+        local pendingText = line:match("^%[ %]%s*(.*)$")
+        local bulletText = line:match("^%-%s+(.*)$")
+
+        if completedText then
+            formatted[#formatted + 1] = PREVIEW_SUCCESS_COLOR .. "DONE" .. COLOR_END
+                .. "  " .. PREVIEW_BODY_COLOR .. completedText .. COLOR_END
+        elseif pendingText then
+            formatted[#formatted + 1] = PREVIEW_MUTED_COLOR .. "TODO" .. COLOR_END
+                .. "  " .. PREVIEW_BODY_COLOR .. pendingText .. COLOR_END
+        elseif bulletText then
+            formatted[#formatted + 1] = PREVIEW_HEADING_COLOR .. "-" .. COLOR_END
+                .. "  " .. PREVIEW_BODY_COLOR .. bulletText .. COLOR_END
+        else
+            formatted[#formatted + 1] = PREVIEW_BODY_COLOR .. line .. COLOR_END
+        end
+        hasContent = true
+    end
+
+    text = tostring(text or ""):gsub("\r\n", "\n"):gsub("\r", "\n")
+    for line in (text .. "\n"):gmatch("(.-)\n") do
+        local trimmed = line:match("^%s*(.-)%s*$")
+        if trimmed ~= "" then
+            local label, value = trimmed:match("^([^:]+):%s*(.*)$")
+            local displayLabel = label and PREVIEW_FIELD_LABELS[label]
+            if displayLabel then
+                addSpacer()
+                formatted[#formatted + 1] = PREVIEW_HEADING_COLOR .. string.upper(displayLabel) .. COLOR_END
+                hasContent = true
+                if value and value ~= "" then
+                    addBodyLine(value)
+                end
+            else
+                addBodyLine(trimmed)
+            end
+        end
+    end
+
+    return table.concat(formatted, "\n")
 end
 
 function Widgets:UpdateScrollablePreviewText(scrollFrame, content, fontString, text)
@@ -643,10 +830,22 @@ function Widgets:UpdateScrollablePreviewText(scrollFrame, content, fontString, t
 
     local textHeight = fontString.GetStringHeight and fontString:GetStringHeight() or 1
     local scrollHeight = scrollFrame:GetHeight() or 1
+    local hasOverflow = textHeight + 12 > scrollHeight
     content:SetSize(width, math.max(scrollHeight, textHeight + 12))
     scrollFrame:SetVerticalScroll(0)
     if scrollFrame.UpdateScrollChildRect then
         scrollFrame:UpdateScrollChildRect()
+    end
+
+    local scrollBar = scrollFrame.ScrollBar or scrollFrame.scrollBar
+    if scrollBar then
+        if scrollBar.SetShown then
+            scrollBar:SetShown(hasOverflow)
+        elseif hasOverflow then
+            scrollBar:Show()
+        else
+            scrollBar:Hide()
+        end
     end
 end
 

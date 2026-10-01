@@ -1,8 +1,6 @@
 local _, TDP = ...
 
 local Widgets = TDP.Widgets
-local PatchCatalog = TDP.PatchCatalog
-local Favorites = TDP.Favorites
 
 local HomeWindow = {}
 HomeWindow.__index = HomeWindow
@@ -30,32 +28,6 @@ function HomeWindow:SetWindows(plannerWindow, explorerWindow, favoritesWindow)
     if self.favoritesWindow then
         self.favoritesWindow.homeWindow = self
     end
-end
-
-function HomeWindow:GetSummaryText()
-    if not PatchCatalog then
-        return "Patch catalog unavailable"
-    end
-
-    local favoriteCount = 0
-    if Favorites then
-        favoriteCount = #Favorites:GetAll()
-    end
-
-    local parts = {}
-    for _, patchKey in ipairs(PatchCatalog:GetPatchKeys()) do
-        if patchKey ~= "Unknown" then
-            local summary = PatchCatalog:GetSummary(patchKey)
-            parts[#parts + 1] = string.format(
-                "%s: %d mounts/%d pets",
-                patchKey,
-                summary.mounts or 0,
-                summary.pets or 0
-            )
-        end
-    end
-
-    return string.format("Catalogs: %s  |  %d favorite(s)", table.concat(parts, ", "), favoriteCount)
 end
 
 function HomeWindow:OpenPlanner()
@@ -129,9 +101,6 @@ function HomeWindow:OpenOptions()
 end
 
 function HomeWindow:Render()
-    if self.summaryText then
-        self.summaryText:SetText(self:GetSummaryText())
-    end
     if self.plannerWindow and self.plannerWindow.frame and self.plannerWindow.frame:IsShown() then
         self.plannerWindow:Render()
     end
@@ -187,14 +156,14 @@ function HomeWindow:Build()
         body = frame
     end
 
-    local explorerButton = Widgets:CreateButton(body, 220, 74, "Collections", "primary")
-    explorerButton:SetPoint("TOPLEFT", body, "TOPLEFT", 20, -34)
+    local favoritesButton = Widgets:CreateButton(body, 220, 74, "Favorites", "primary")
+    favoritesButton:SetPoint("TOPLEFT", body, "TOPLEFT", 20, -34)
+
+    local explorerButton = Widgets:CreateButton(body, 220, 74, "Collections", "neutral")
+    explorerButton:SetPoint("LEFT", favoritesButton, "RIGHT", 16, 0)
 
     local plannerButton = Widgets:CreateButton(body, 220, 74, "Planner", "neutral")
     plannerButton:SetPoint("LEFT", explorerButton, "RIGHT", 16, 0)
-
-    local favoritesButton = Widgets:CreateButton(body, 220, 74, "Favorites", "neutral")
-    favoritesButton:SetPoint("LEFT", plannerButton, "RIGHT", 16, 0)
 
     local explorerText = body:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     explorerText:SetPoint("TOPLEFT", explorerButton, "BOTTOMLEFT", 4, -10)
@@ -213,12 +182,6 @@ function HomeWindow:Build()
     favoritesText:SetPoint("RIGHT", favoritesButton, "RIGHT", -4, 0)
     favoritesText:SetJustifyH("CENTER")
     favoritesText:SetText("Saved collection targets")
-
-    local summaryText = body:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    summaryText:SetPoint("BOTTOMLEFT", body, "BOTTOMLEFT", 20, 28)
-    summaryText:SetPoint("BOTTOMRIGHT", body, "BOTTOMRIGHT", -20, 28)
-    summaryText:SetJustifyH("CENTER")
-    self.summaryText = summaryText
 
     explorerButton:SetScript("OnClick", function()
         self:OpenExplorer()

@@ -59,5 +59,3 @@ Add an “I have…” planning mode:
 - Group content
 - Current zone only
 Tasks would gain optional estimated duration, group size, and location metadata. The Planner could assemble a short session queue from eligible tasks.
-
-
