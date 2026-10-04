@@ -18,7 +18,7 @@ end
 
 function TaskEditWindow:Build()
     local ui = self.ui
-    local frame = CreateFrame("Frame", "TODOPlannerTaskEditFrame", UIParent, "BasicFrameTemplateWithInset")
+    local frame = CreateFrame("Frame", "TODOPlannerTaskEditFrame", UIParent, "BackdropTemplate")
     frame:SetSize(620, 520)
     frame:SetClampedToScreen(true)
     frame:EnableMouse(true)
@@ -40,7 +40,7 @@ function TaskEditWindow:Build()
     else
         Widgets:ApplyPanelBackdrop(frame, { 0.02, 0.02, 0.03, 0.98 }, { 1, 1, 1, 0.10 })
 
-        local title = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+        local title = Widgets:CreateFontString(frame, "OVERLAY", "GameFontNormalLarge")
         title:SetPoint("TOPLEFT", 16, -16)
         title:SetText("Edit Task")
         frame.windowTitleText = title
@@ -51,7 +51,7 @@ function TaskEditWindow:Build()
         body = frame
     end
 
-    local titleLabel = body:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    local titleLabel = Widgets:CreateFontString(body, "OVERLAY", "GameFontDisableSmall")
     titleLabel:SetPoint("TOPLEFT", 16, -18)
     titleLabel:SetText("Title")
 
@@ -61,32 +61,32 @@ function TaskEditWindow:Build()
     titleEdit:SetMaxLetters(120)
     frame.titleEdit = titleEdit
 
-    local categoryLabel = body:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    local categoryLabel = Widgets:CreateFontString(body, "OVERLAY", "GameFontDisableSmall")
     categoryLabel:SetPoint("TOPLEFT", titleEdit, "BOTTOMLEFT", 0, -16)
     categoryLabel:SetText("Category")
 
-    local categoryButton = Widgets:CreateButton(body, 150, 26, "", "neutral")
+    local categoryButton = Widgets:CreateSelectorButton(body, 150, 26, "")
     categoryButton:SetPoint("TOPLEFT", categoryLabel, "BOTTOMLEFT", 0, -6)
     frame.categoryButton = categoryButton
 
-    local statusLabel = body:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    local statusLabel = Widgets:CreateFontString(body, "OVERLAY", "GameFontDisableSmall")
     statusLabel:SetPoint("TOPLEFT", categoryLabel, "TOPLEFT", 164, 0)
     statusLabel:SetText("Status")
 
-    local statusButton = Widgets:CreateButton(body, 140, 26, "", "neutral")
+    local statusButton = Widgets:CreateSelectorButton(body, 140, 26, "")
     statusButton:SetPoint("TOPLEFT", statusLabel, "BOTTOMLEFT", 0, -6)
     frame.statusButton = statusButton
 
-    local boardLabel = body:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    local boardLabel = Widgets:CreateFontString(body, "OVERLAY", "GameFontDisableSmall")
     boardLabel:SetPoint("TOPLEFT", statusLabel, "TOPLEFT", 154, 0)
     boardLabel:SetText("Board")
 
-    local boardButton = Widgets:CreateButton(body, 170, 26, "", "neutral")
+    local boardButton = Widgets:CreateSelectorButton(body, 170, 26, "")
     boardButton:SetPoint("TOPLEFT", boardLabel, "BOTTOMLEFT", 0, -6)
     boardButton:SetPoint("RIGHT", body, "RIGHT", -16, 0)
     frame.boardButton = boardButton
 
-    local descriptionLabel = body:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    local descriptionLabel = Widgets:CreateFontString(body, "OVERLAY", "GameFontDisableSmall")
     descriptionLabel:SetPoint("TOPLEFT", categoryButton, "BOTTOMLEFT", 0, -18)
     descriptionLabel:SetText("Description")
 
@@ -111,6 +111,7 @@ function TaskEditWindow:Build()
     if GameFontHighlightSmall then
         descriptionEdit:SetFontObject(GameFontHighlightSmall)
     end
+    Widgets:ApplyTextColor(descriptionEdit, "text")
     descriptionScroll:SetScrollChild(descriptionEdit)
     frame.descriptionEdit = descriptionEdit
 

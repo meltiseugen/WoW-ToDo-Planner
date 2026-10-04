@@ -69,6 +69,10 @@ function Widgets:BringToFront(frame, relativeFrame)
     if type(window.SetFrameLevel) == "function" then
         window:SetFrameLevel(level)
     end
+    local Theme = self:GetTheme()
+    if Theme and type(Theme.RefreshArtFrameLevel) == "function" then
+        Theme:RefreshArtFrameLevel(window)
+    end
     if type(window.Raise) == "function" then
         window:Raise()
     end
@@ -148,6 +152,47 @@ function Widgets:GetThemeColor(colorOrKey, fallback)
     return fallback
 end
 
+function Widgets:ApplyTextColor(fontString, colorOrKey, fallback)
+    if not fontString or type(fontString.SetTextColor) ~= "function" then
+        return fontString
+    end
+
+    local Theme = self:GetTheme()
+    if Theme and type(Theme.ApplyFontTreatment) == "function" then
+        Theme:ApplyFontTreatment(fontString)
+    end
+
+    local color = self:GetThemeColor(colorOrKey, fallback or { 1, 1, 1, 1 })
+    if type(color) == "table" then
+        fontString:SetTextColor(color[1] or 1, color[2] or 1, color[3] or 1, color[4] or 1)
+    end
+    return fontString
+end
+
+function Widgets:CreateFontString(parent, layer, fontObject, colorKey)
+    local fontString = parent:CreateFontString(nil, layer, fontObject)
+    if colorKey == nil and type(fontObject) == "string" then
+        if fontObject:find("Disable", 1, true) then
+            colorKey = "textMuted"
+        elseif fontObject:find("Normal", 1, true) then
+            colorKey = "textStrong"
+        elseif fontObject:find("HighlightSmall", 1, true) then
+            colorKey = "textSoft"
+        else
+            colorKey = "text"
+        end
+    end
+    return self:ApplyTextColor(fontString, colorKey or "text")
+end
+
+function Widgets:GetColorCode(colorOrKey, fallback)
+    local color = self:GetThemeColor(colorOrKey, fallback or { 1, 1, 1, 1 })
+    local function byte(value)
+        return math.floor((math.max(0, math.min(1, tonumber(value) or 1)) * 255) + 0.5)
+    end
+    return string.format("|c%02x%02x%02x%02x", byte(color[4]), byte(color[1]), byte(color[2]), byte(color[3]))
+end
+
 function Widgets:ApplyPanelBackdrop(frame, bg, border)
     local Theme = self:GetTheme()
     if Theme then
@@ -207,6 +252,26 @@ function Widgets:CreateButton(parent, width, height, text, paletteKey)
     return self:RaiseParentWindowOnInteraction(button)
 end
 
+function Widgets:CreateSelectorButton(parent, width, height, text)
+    local button = self:CreateButton(parent, width, height, text, "neutral")
+    local Theme = self:GetTheme()
+    if Theme and type(Theme.ApplySelectorArt) == "function" then
+        Theme:ApplySelectorArt(button, { arrow = true })
+    end
+    button.isSelector = true
+    return button
+end
+
+function Widgets:CreateTabButton(parent, width, height, text)
+    local button = self:CreateButton(parent, width, height, text, "neutral")
+    local Theme = self:GetTheme()
+    if Theme and type(Theme.ApplySelectorArt) == "function" then
+        Theme:ApplySelectorArt(button, { arrow = false, centered = true })
+    end
+    button.isNavigationTab = true
+    return button
+end
+
 function Widgets:CreateWindowNavigation(parent, currentWindow, ownerWindow, options)
     options = type(options) == "table" and options or {}
 
@@ -228,7 +293,7 @@ function Widgets:CreateWindowNavigation(parent, currentWindow, ownerWindow, opti
     local gap = options.gap or 8
 
     local function createNavigationButton(buttonParent, destination)
-        local button = self:CreateButton(buttonParent, destination.width, 24, destination.label, "neutral")
+        local button = self:CreateTabButton(buttonParent, destination.width, 24, destination.label)
         button:SetScript("OnClick", function()
             local sourceWindow = self:GetTopLevelWindow(button)
             if sourceWindow then
@@ -309,6 +374,7 @@ function Widgets:CreateEditBox(parent, width, height)
     if GameFontHighlightSmall then
         editBox:SetFontObject(GameFontHighlightSmall)
     end
+    self:ApplyTextColor(editBox, "text")
 
     self:ApplyPanelBackdrop(editBox, "input", "inputBorder")
 
@@ -343,7 +409,8 @@ function Widgets:AddGoldTopAccent(frame, height, alpha)
     accent:SetPoint("TOPLEFT", frame, "TOPLEFT", 1, -1)
     accent:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -1, -1)
     accent:SetHeight(height or 2)
-    self:SetTextureColor(accent, { 1.0, 0.82, 0.18, alpha or 0.22 })
+    local color = self:GetThemeColor("accentGold", { 1.0, 0.82, 0.18, 0.68 })
+    accent:SetColorTexture(color[1] or 1, color[2] or 1, color[3] or 1, alpha or color[4] or 1)
     return accent
 end
 
@@ -461,14 +528,18 @@ function Widgets:ShowSingleSelectMenu(owner, options, selectedValue, getLabel, o
     end
 
     if not self.menuFrame then
-        self.menuFrame = self:CreatePanel(UIParent, "section", "goldBorder")
+        self.menuFrame = self:CreatePanel(UIParent, "popupChrome", "goldBorderStrong")
         self.menuFrame:SetFrameStrata("FULLSCREEN_DIALOG")
         self.menuFrame:SetClampedToScreen(true)
         self.menuFrame:EnableMouse(true)
         self.menuFrame:EnableMouseWheel(true)
         self.menuFrame.buttons = {}
-        self.menuFrame.scrollHint = self.menuFrame:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+        self.menuFrame.scrollHint = self:CreateFontString(self.menuFrame, "OVERLAY", "GameFontDisableSmall")
         self.menuFrame.scrollHint:SetJustifyH("CENTER")
+        local Theme = self:GetTheme()
+        if Theme and type(Theme.ApplyPopupArt) == "function" then
+            Theme:ApplyPopupArt(self.menuFrame)
+        end
         self:HookFrameScript(self.menuFrame, "OnHide", function()
             if self.dropdownDismissFrame then
                 self.dropdownDismissFrame:Hide()
@@ -479,7 +550,7 @@ function Widgets:ShowSingleSelectMenu(owner, options, selectedValue, getLabel, o
 
     local menuFrame = self.menuFrame
     local optionHeight = 24
-    local optionGap = 4
+    local optionGap = 0
     local maxVisibleOptions = 12
     local ownerWidth = owner and owner.GetWidth and owner:GetWidth() or 180
     local width = math.max(180, ownerWidth)
@@ -489,7 +560,7 @@ function Widgets:ShowSingleSelectMenu(owner, options, selectedValue, getLabel, o
     local height = (visibleCount * optionHeight)
         + (math.max(visibleCount - 1, 0) * optionGap)
         + hintHeight
-        + 12
+        + 20
 
     local selectedIndex
     for index, value in ipairs(options) do
@@ -510,12 +581,20 @@ function Widgets:ShowSingleSelectMenu(owner, options, selectedValue, getLabel, o
     for slotIndex = 1, visibleCount do
         local button = menuFrame.buttons[slotIndex]
         if not button then
-            button = self:CreateButton(menuFrame, width - 12, optionHeight, "", "neutral")
+            button = self:CreateButton(menuFrame, width - 20, optionHeight, "", "menu")
+            button.label:ClearAllPoints()
+            button.label:SetPoint("LEFT", button, "LEFT", 24, 0)
+            button.label:SetPoint("RIGHT", button, "RIGHT", -8, 0)
+            button.label:SetJustifyH("LEFT")
+            button.selectedMark = button:CreateTexture(nil, "OVERLAY")
+            button.selectedMark:SetTexture("Interface\\Buttons\\UI-CheckBox-Check")
+            button.selectedMark:SetSize(18, 18)
+            button.selectedMark:SetPoint("CENTER", button, "LEFT", 12, 0)
             menuFrame.buttons[slotIndex] = button
         end
-        button:SetSize(width - 12, optionHeight)
+        button:SetSize(width - 20, optionHeight)
         button:ClearAllPoints()
-        button:SetPoint("TOPLEFT", menuFrame, "TOPLEFT", 6, -6 - ((slotIndex - 1) * (optionHeight + optionGap)))
+        button:SetPoint("TOPLEFT", menuFrame, "TOPLEFT", 10, -10 - ((slotIndex - 1) * (optionHeight + optionGap)))
     end
 
     local function refreshVisibleOptions()
@@ -525,7 +604,8 @@ function Widgets:ShowSingleSelectMenu(owner, options, selectedValue, getLabel, o
             local button = menuFrame.buttons[slotIndex]
             local label = getLabel and getLabel(optionValue) or tostring(optionValue)
             local isSelected = optionValue == selectedValue
-            button:SetText((isSelected and "* " or "") .. label)
+            button:SetText(label)
+            button.selectedMark:SetShown(isSelected)
             if button.SetSelected then
                 button:SetSelected(isSelected)
             end
@@ -562,7 +642,7 @@ function Widgets:ShowSingleSelectMenu(owner, options, selectedValue, getLabel, o
     menuFrame.scrollHint:SetPoint("BOTTOMLEFT", menuFrame, "BOTTOMLEFT", 6, 5)
     menuFrame.scrollHint:SetPoint("BOTTOMRIGHT", menuFrame, "BOTTOMRIGHT", -6, 5)
     menuFrame:ClearAllPoints()
-    menuFrame:SetPoint("TOPLEFT", owner, "BOTTOMLEFT", 0, -4)
+    menuFrame:SetPoint("TOPLEFT", owner, "BOTTOMLEFT", -2, -6)
     refreshVisibleOptions()
     menuFrame:Show()
 
@@ -591,11 +671,15 @@ function Widgets:ShowMultiSelectMenu(owner, options, isSelected, getLabel, onTog
     end
 
     if not self.multiSelectMenuFrame then
-        self.multiSelectMenuFrame = self:CreatePanel(UIParent, "section", "goldBorder")
+        self.multiSelectMenuFrame = self:CreatePanel(UIParent, "popupChrome", "goldBorderStrong")
         self.multiSelectMenuFrame:SetFrameStrata("FULLSCREEN_DIALOG")
         self.multiSelectMenuFrame:SetClampedToScreen(true)
         self.multiSelectMenuFrame:EnableMouse(true)
         self.multiSelectMenuFrame.checkboxes = {}
+        local Theme = self:GetTheme()
+        if Theme and type(Theme.ApplyPopupArt) == "function" then
+            Theme:ApplyPopupArt(self.multiSelectMenuFrame)
+        end
         self:HookFrameScript(self.multiSelectMenuFrame, "OnHide", function()
             if self.dropdownDismissFrame then
                 self.dropdownDismissFrame:Hide()
@@ -606,16 +690,18 @@ function Widgets:ShowMultiSelectMenu(owner, options, isSelected, getLabel, onTog
 
     local menuFrame = self.multiSelectMenuFrame
     local optionHeight = 24
-    local optionGap = 4
+    local optionGap = 0
     local ownerWidth = owner and owner.GetWidth and owner:GetWidth() or 220
     local width = math.max(220, ownerWidth)
-    local height = (#options * optionHeight) + (math.max(#options - 1, 0) * optionGap) + 16
+    local height = (#options * optionHeight) + (math.max(#options - 1, 0) * optionGap) + 20
 
     local function updateChecks()
         for optionIndex, value in ipairs(options) do
             local checkbox = menuFrame.checkboxes[optionIndex]
             if checkbox then
-                checkbox:SetChecked(isSelected and isSelected(value) == true)
+                local checked = isSelected and isSelected(value) == true
+                checkbox:SetChecked(checked)
+                checkbox.Check:SetShown(checked)
             end
         end
     end
@@ -629,20 +715,33 @@ function Widgets:ShowMultiSelectMenu(owner, options, isSelected, getLabel, onTog
         local optionValue = value
         local checkbox = menuFrame.checkboxes[optionIndex]
         if not checkbox then
-            checkbox = CreateFrame("CheckButton", nil, menuFrame, "UICheckButtonTemplate")
-            checkbox:SetSize(24, 24)
+            checkbox = CreateFrame("CheckButton", nil, menuFrame, "BackdropTemplate")
+            checkbox:SetSize(18, 18)
             checkbox:EnableMouse(true)
-            checkbox.Text = checkbox.Text or checkbox:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-            checkbox.Text:SetPoint("LEFT", checkbox, "RIGHT", 4, 0)
-            checkbox.Text:SetTextColor(0.86, 0.88, 0.94)
+            self:ApplyPanelBackdrop(checkbox, "input", "goldBorderStrong")
+            checkbox.Check = checkbox:CreateTexture(nil, "OVERLAY")
+            checkbox.Check:SetTexture("Interface\\Buttons\\UI-CheckBox-Check")
+            checkbox.Check:SetPoint("CENTER")
+            checkbox.Check:SetSize(18, 18)
+            checkbox.Text = checkbox.Text or self:CreateFontString(checkbox, "OVERLAY", "GameFontHighlightSmall")
+            checkbox.Text:SetPoint("LEFT", checkbox, "RIGHT", 8, 0)
+            self:ApplyTextColor(checkbox.Text, "textSoft")
+            checkbox:SetScript("OnEnter", function(target)
+                self:ApplyPanelBackdrop(target, "inputFocus", "inputBorderFocus")
+            end)
+            checkbox:SetScript("OnLeave", function(target)
+                self:ApplyPanelBackdrop(target, "input", "goldBorderStrong")
+            end)
             menuFrame.checkboxes[optionIndex] = checkbox
         end
 
         checkbox:ClearAllPoints()
-        checkbox:SetPoint("TOPLEFT", menuFrame, "TOPLEFT", 8, -8 - ((optionIndex - 1) * (optionHeight + optionGap)))
+        checkbox:SetPoint("TOPLEFT", menuFrame, "TOPLEFT", 10, -10 - ((optionIndex - 1) * (optionHeight + optionGap)))
         checkbox:SetHitRectInsets(0, -(width - 34), 0, 0)
         checkbox.Text:SetText(getLabel and getLabel(optionValue) or tostring(optionValue))
-        checkbox:SetChecked(isSelected and isSelected(optionValue) == true)
+        local checked = isSelected and isSelected(optionValue) == true
+        checkbox:SetChecked(checked)
+        checkbox.Check:SetShown(checked)
         checkbox:SetScript("OnClick", function(target)
             if onToggle then
                 onToggle(optionValue, target:GetChecked() == true)
@@ -654,7 +753,7 @@ function Widgets:ShowMultiSelectMenu(owner, options, isSelected, getLabel, onTog
 
     menuFrame:SetSize(width, height)
     menuFrame:ClearAllPoints()
-    menuFrame:SetPoint("TOPLEFT", owner, "BOTTOMLEFT", 0, -4)
+    menuFrame:SetPoint("TOPLEFT", owner, "BOTTOMLEFT", -2, -6)
     menuFrame:Show()
 
     local Theme = self:GetTheme()
@@ -681,7 +780,7 @@ function Widgets:CreateBadge(parent)
     badge.accent:SetPoint("BOTTOMLEFT", badge, "BOTTOMLEFT", 0, 0)
     badge.accent:SetWidth(3)
 
-    badge.text = badge:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    badge.text = self:CreateFontString(badge, "OVERLAY", "GameFontHighlightSmall")
     badge.text:SetPoint("LEFT", badge, "LEFT", 9, 0)
     badge.text:SetPoint("RIGHT", badge, "RIGHT", -6, 0)
     badge.text:SetJustifyH("LEFT")
@@ -722,7 +821,7 @@ function Widgets:ConfigurePreviewDetailText(fontString)
     if GameFontHighlight then
         fontString:SetFontObject(GameFontHighlight)
     end
-    fontString:SetTextColor(0.86, 0.88, 0.94)
+    self:ApplyTextColor(fontString, "text")
     fontString:SetJustifyH("LEFT")
     fontString:SetJustifyV("TOP")
     if fontString.SetWordWrap then
@@ -760,15 +859,15 @@ local PREVIEW_FIELD_LABELS = {
     ["Wowhead"] = "Wowhead",
 }
 
-local PREVIEW_HEADING_COLOR = "|cffffd15c"
-local PREVIEW_BODY_COLOR = "|cffe1e5ee"
-local PREVIEW_MUTED_COLOR = "|cff99a3b5"
-local PREVIEW_SUCCESS_COLOR = "|cff63d58a"
 local COLOR_END = "|r"
 
 function Widgets:FormatPreviewNotes(text)
     local formatted = {}
     local hasContent = false
+    local previewHeadingColor = self:GetColorCode("previewHeading", { 1.0, 0.82, 0.36, 1.0 })
+    local previewBodyColor = self:GetColorCode("previewBody", { 0.88, 0.90, 0.94, 1.0 })
+    local previewMutedColor = self:GetColorCode("previewMuted", { 0.60, 0.64, 0.71, 1.0 })
+    local previewSuccessColor = self:GetColorCode("previewSuccess", { 0.39, 0.84, 0.54, 1.0 })
 
     local function addSpacer()
         if hasContent and formatted[#formatted] ~= "" then
@@ -782,16 +881,16 @@ function Widgets:FormatPreviewNotes(text)
         local bulletText = line:match("^%-%s+(.*)$")
 
         if completedText then
-            formatted[#formatted + 1] = PREVIEW_SUCCESS_COLOR .. "DONE" .. COLOR_END
-                .. "  " .. PREVIEW_BODY_COLOR .. completedText .. COLOR_END
+            formatted[#formatted + 1] = previewSuccessColor .. "DONE" .. COLOR_END
+                .. "  " .. previewBodyColor .. completedText .. COLOR_END
         elseif pendingText then
-            formatted[#formatted + 1] = PREVIEW_MUTED_COLOR .. "TODO" .. COLOR_END
-                .. "  " .. PREVIEW_BODY_COLOR .. pendingText .. COLOR_END
+            formatted[#formatted + 1] = previewMutedColor .. "TODO" .. COLOR_END
+                .. "  " .. previewBodyColor .. pendingText .. COLOR_END
         elseif bulletText then
-            formatted[#formatted + 1] = PREVIEW_HEADING_COLOR .. "-" .. COLOR_END
-                .. "  " .. PREVIEW_BODY_COLOR .. bulletText .. COLOR_END
+            formatted[#formatted + 1] = previewHeadingColor .. "-" .. COLOR_END
+                .. "  " .. previewBodyColor .. bulletText .. COLOR_END
         else
-            formatted[#formatted + 1] = PREVIEW_BODY_COLOR .. line .. COLOR_END
+            formatted[#formatted + 1] = previewBodyColor .. line .. COLOR_END
         end
         hasContent = true
     end
@@ -804,7 +903,7 @@ function Widgets:FormatPreviewNotes(text)
             local displayLabel = label and PREVIEW_FIELD_LABELS[label]
             if displayLabel then
                 addSpacer()
-                formatted[#formatted + 1] = PREVIEW_HEADING_COLOR .. string.upper(displayLabel) .. COLOR_END
+                formatted[#formatted + 1] = previewHeadingColor .. string.upper(displayLabel) .. COLOR_END
                 hasContent = true
                 if value and value ~= "" then
                     addBodyLine(value)

@@ -70,7 +70,7 @@ function FavoritesWindow:BuildTypeTabs(parent)
     local previous
 
     for _, value in ipairs(TYPE_OPTIONS) do
-        local button = Widgets:CreateButton(parent, widths[value] or 82, 24, self:GetTypeLabel(value), "neutral")
+        local button = Widgets:CreateTabButton(parent, widths[value] or 82, 24, self:GetTypeLabel(value))
         if previous then
             button:SetPoint("LEFT", previous, "RIGHT", 6, 0)
         else
@@ -473,7 +473,7 @@ function FavoritesWindow:BuildRow(parent)
     icon:SetSize(32, 32)
     row.icon = icon
 
-    local title = row:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    local title = Widgets:CreateFontString(row, "OVERLAY", "GameFontNormal")
     title:SetPoint("TOPLEFT", icon, "TOPRIGHT", 10, -6)
     title:SetPoint("RIGHT", row, "RIGHT", -206, 0)
     title:SetJustifyH("LEFT")
@@ -482,7 +482,7 @@ function FavoritesWindow:BuildRow(parent)
     end
     row.title = title
 
-    local meta = row:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    local meta = Widgets:CreateFontString(row, "OVERLAY", "GameFontHighlightSmall")
     meta:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -4)
     meta:SetPoint("RIGHT", title, "RIGHT", 0, 0)
     meta:SetJustifyH("LEFT")
@@ -565,9 +565,11 @@ function FavoritesWindow:UpdateRowSelection()
                 and self.selectedRow.favorite
                 and row.rowData.favorite.key == self.selectedRow.favorite.key
             if row.SetBackdropColor then
-                local color = isSelected and { 0.12, 0.11, 0.08, 0.92 } or { 0.07, 0.08, 0.11, 0.72 }
+                local color = Widgets:GetThemeColor(isSelected and "rowSelected" or "rowOdd")
                 row:SetBackdropColor(color[1], color[2], color[3], color[4])
             end
+            Widgets:ApplyTextColor(row.title, isSelected and "selectionText" or "textStrong")
+            Widgets:ApplyTextColor(row.meta, isSelected and "selectionTextSoft" or "textSoft")
         end
     end
 end
@@ -706,7 +708,7 @@ function FavoritesWindow:Render()
 end
 
 function FavoritesWindow:Build()
-    local frame = CreateFrame("Frame", "TODOPlannerFavoritesFrame", UIParent, "BasicFrameTemplateWithInset")
+    local frame = CreateFrame("Frame", "TODOPlannerFavoritesFrame", UIParent, "BackdropTemplate")
     frame:SetSize(1120, 700)
     Widgets:ApplyFramePosition(frame, "favorites")
     frame:SetClampedToScreen(true)
@@ -724,7 +726,7 @@ function FavoritesWindow:Build()
     local Theme = TDP.Theme
     if Theme then
         local chrome = Theme:ApplyWindowChrome(frame, "Favorites")
-        local subtitle = frame.headerBar:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        local subtitle = Widgets:CreateFontString(frame.headerBar, "OVERLAY", "GameFontHighlightSmall", "titleText")
         subtitle:SetPoint("LEFT", frame.headerBar, "LEFT", 15, -12)
         subtitle:SetText("Saved collection targets")
 
@@ -753,7 +755,7 @@ function FavoritesWindow:Build()
         centered = frame.headerBar ~= nil,
     })
 
-    local searchLabel = toolbar:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    local searchLabel = Widgets:CreateFontString(toolbar, "OVERLAY", "GameFontHighlightSmall")
     searchLabel:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 16, -36)
     searchLabel:SetText("Search")
 
@@ -761,7 +763,7 @@ function FavoritesWindow:Build()
     searchEdit:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 12, -52)
     searchEdit:SetMaxLetters(80)
 
-    local summaryText = toolbar:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    local summaryText = Widgets:CreateFontString(toolbar, "OVERLAY", "GameFontHighlightSmall")
     summaryText:SetPoint("LEFT", searchEdit, "RIGHT", 16, 0)
     summaryText:SetPoint("RIGHT", toolbar, "RIGHT", -110, 0)
     summaryText:SetJustifyH("LEFT")
@@ -772,7 +774,7 @@ function FavoritesWindow:Build()
     listPanel:SetWidth(LIST_WIDTH)
     listPanel.topAccent = Widgets:AddGoldTopAccent(listPanel, 2, 0.18)
 
-    local emptyText = listPanel:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+    local emptyText = Widgets:CreateFontString(listPanel, "OVERLAY", "GameFontHighlight")
     emptyText:SetPoint("CENTER", listPanel, "CENTER", 0, 0)
     emptyText:SetText("No favorites yet")
 
@@ -821,7 +823,7 @@ function FavoritesWindow:Build()
     local modelZoomInButton = Widgets:CreateButton(previewModelControls, 24, 20, "+", "neutral")
     modelZoomInButton:SetPoint("LEFT", modelResetButton, "RIGHT", 4, 0)
 
-    local previewTitle = previewPanel:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+    local previewTitle = Widgets:CreateFontString(previewPanel, "OVERLAY", "GameFontNormalLarge")
     previewTitle:SetPoint("TOPLEFT", previewVisual, "TOPRIGHT", 12, -8)
     previewTitle:SetPoint("RIGHT", previewPanel, "RIGHT", -18, 0)
     previewTitle:SetJustifyH("LEFT")
@@ -829,12 +831,12 @@ function FavoritesWindow:Build()
         previewTitle:SetWordWrap(true)
     end
 
-    local previewMeta = previewPanel:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    local previewMeta = Widgets:CreateFontString(previewPanel, "OVERLAY", "GameFontHighlightSmall")
     previewMeta:SetPoint("TOPLEFT", previewTitle, "BOTTOMLEFT", 0, -8)
     previewMeta:SetPoint("RIGHT", previewTitle, "RIGHT", 0, 0)
     previewMeta:SetJustifyH("LEFT")
 
-    local previewStatus = previewPanel:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    local previewStatus = Widgets:CreateFontString(previewPanel, "OVERLAY", "GameFontNormal")
     previewStatus:SetPoint("TOPLEFT", previewMeta, "BOTTOMLEFT", 0, -10)
     previewStatus:SetJustifyH("LEFT")
 
@@ -842,7 +844,7 @@ function FavoritesWindow:Build()
     detailPanel:SetPoint("TOPLEFT", previewPanel, "TOPLEFT", 18, PREVIEW_DETAIL_TOP_OFFSET)
     detailPanel:SetPoint("BOTTOMRIGHT", previewPanel, "BOTTOMRIGHT", -18, 58)
 
-    local detailHeading = detailPanel:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    local detailHeading = Widgets:CreateFontString(detailPanel, "OVERLAY", "GameFontNormal")
     detailHeading:SetPoint("TOPLEFT", detailPanel, "TOPLEFT", 12, -10)
     detailHeading:SetText("Collection Details")
 
@@ -860,7 +862,7 @@ function FavoritesWindow:Build()
     previewDetailsContent:SetSize(1, 1)
     previewDetailsScroll:SetScrollChild(previewDetailsContent)
 
-    local previewDetails = previewDetailsContent:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+    local previewDetails = Widgets:CreateFontString(previewDetailsContent, "OVERLAY", "GameFontHighlight")
     previewDetails:SetPoint("TOPLEFT", previewDetailsContent, "TOPLEFT", 0, 0)
     previewDetails:SetPoint("TOPRIGHT", previewDetailsContent, "TOPRIGHT", 0, 0)
     Widgets:ConfigurePreviewDetailText(previewDetails)

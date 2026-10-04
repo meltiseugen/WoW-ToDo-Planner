@@ -282,12 +282,12 @@ function MainWindow:CreateColumn(parent, status, offsetX)
     column:SetPoint("TOPLEFT", offsetX, -108)
     column.topAccent = Widgets:AddGoldTopAccent(column, 3, 0.30)
 
-    local title = column:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+    local title = Widgets:CreateFontString(column, "OVERLAY", "GameFontNormalLarge")
     title:SetPoint("TOPLEFT", 14, -12)
     title:SetJustifyH("LEFT")
     title:SetText(C.STATUS_LABELS[status])
 
-    local count = column:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    local count = Widgets:CreateFontString(column, "OVERLAY", "GameFontDisableSmall")
     count:SetPoint("TOPRIGHT", column, "TOPRIGHT", -14, -16)
     count:SetJustifyH("RIGHT")
 
@@ -312,7 +312,7 @@ function MainWindow:CreateColumn(parent, status, offsetX)
     column.cards = {}
     column.cardPool = {}
 
-    local emptyText = column:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    local emptyText = Widgets:CreateFontString(column, "OVERLAY", "GameFontDisableSmall")
     emptyText:SetPoint("TOPLEFT", scroll, "TOPLEFT", 12, -18)
     emptyText:SetPoint("TOPRIGHT", scroll, "TOPRIGHT", -12, -18)
     emptyText:SetJustifyH("CENTER")
@@ -525,7 +525,7 @@ function MainWindow:EndTaskDrag(card)
 end
 
 function MainWindow:Build()
-    local frame = CreateFrame("Frame", "TODOPlannerMainFrame", UIParent, "BasicFrameTemplateWithInset")
+    local frame = CreateFrame("Frame", "TODOPlannerMainFrame", UIParent, "BackdropTemplate")
     frame:SetSize(1100, 660)
     frame:SetResizable(true)
     if frame.SetResizeBounds then
@@ -554,7 +554,7 @@ function MainWindow:Build()
     if Theme then
         local chrome = Theme:ApplyWindowChrome(frame, "TODO Planner")
 
-        local subtitle = frame.headerBar:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        local subtitle = Widgets:CreateFontString(frame.headerBar, "OVERLAY", "GameFontHighlightSmall", "titleText")
         subtitle:SetPoint("LEFT", frame.headerBar, "LEFT", 15, -12)
         subtitle:SetText("Separate Global and character task boards")
 
@@ -565,11 +565,11 @@ function MainWindow:Build()
     else
         Widgets:ApplyPanelBackdrop(frame, { 0.02, 0.02, 0.03, 0.98 }, { 1, 1, 1, 0.10 })
 
-        local title = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+        local title = Widgets:CreateFontString(frame, "OVERLAY", "GameFontNormalLarge")
         title:SetPoint("TOPLEFT", 16, -16)
         title:SetText("TODO Planner")
 
-        local subtitle = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        local subtitle = Widgets:CreateFontString(frame, "OVERLAY", "GameFontHighlightSmall")
         subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -4)
         subtitle:SetText("Separate Global and character task boards")
 
@@ -584,10 +584,10 @@ function MainWindow:Build()
     toolbar:SetPoint("TOPRIGHT", -12, -12)
     toolbar:SetHeight(84)
 
-    local boardButton = Widgets:CreateButton(toolbar, 270, 24, "", "neutral")
+    local boardButton = Widgets:CreateSelectorButton(toolbar, 270, 24, "")
     boardButton:SetPoint("TOPLEFT", 12, -12)
 
-    local filterButton = Widgets:CreateButton(toolbar, 180, 24, "", "neutral")
+    local filterButton = Widgets:CreateSelectorButton(toolbar, 180, 24, "")
     filterButton:SetPoint("LEFT", boardButton, "RIGHT", 8, 0)
 
     local createBoardButton = Widgets:CreateButton(toolbar, 94, 24, "New Board", "neutral")
@@ -608,7 +608,7 @@ function MainWindow:Build()
     inputTitle:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 12, -48)
     inputTitle:SetMaxLetters(120)
 
-    local titleLabel = toolbar:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    local titleLabel = Widgets:CreateFontString(toolbar, "OVERLAY", "GameFontHighlightSmall")
     titleLabel:SetPoint("BOTTOMLEFT", inputTitle, "TOPLEFT", 4, 4)
     titleLabel:SetText("Task Name")
 

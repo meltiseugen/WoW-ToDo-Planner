@@ -53,7 +53,7 @@ function TaskCardFactory:Create(parent, task, status, ui)
     accent:SetWidth(3)
     card.accent = accent
 
-    local title = card:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    local title = Widgets:CreateFontString(card, "OVERLAY", "GameFontNormal")
     title:SetPoint("TOPLEFT", CARD_INSET, -10)
     title:SetPoint("TOPRIGHT", -CARD_INSET, -10)
     title:SetWidth(TITLE_WIDTH)
@@ -71,13 +71,13 @@ function TaskCardFactory:Create(parent, task, status, ui)
     ownershipBadge:SetPoint("TOPRIGHT", title, "BOTTOMRIGHT", 0, -6)
     card.ownershipBadge = ownershipBadge
 
-    local meta = card:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    local meta = Widgets:CreateFontString(card, "OVERLAY", "GameFontHighlightSmall")
     meta:SetPoint("TOPLEFT", ownershipBadge, "BOTTOMLEFT", 0, -5)
     meta:SetPoint("TOPRIGHT", ownershipBadge, "BOTTOMRIGHT", 0, -5)
     meta:SetJustifyH("LEFT")
     card.metaText = meta
 
-    local dragHint = card:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    local dragHint = Widgets:CreateFontString(card, "OVERLAY", "GameFontDisableSmall")
     dragHint:SetPoint("LEFT", card, "BOTTOMLEFT", CARD_INSET, 21)
     dragHint:SetJustifyH("LEFT")
     dragHint:SetText("Drag & drop")

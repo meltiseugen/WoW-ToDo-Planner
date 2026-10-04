@@ -1,6 +1,9 @@
-# JanisTheme-1.0
+# TODO Planner theme library
 
-Reusable flat dark/gold window theme for World of Warcraft addons.
+This is TODO Planner's private theme renderer. It deliberately uses
+`_G.TODOPlannerThemeLibrary` instead of the shared `_G.JanisTheme` global so
+another addon embedding a different JanisTheme build cannot replace its art
+and widget behavior according to addon load order.
 
 ## Embedded Usage
 
@@ -14,7 +17,7 @@ Then create an addon-local theme instance:
 
 ```lua
 local _, NS = ...
-NS.Theme = _G.JanisTheme:New({ addon = NS.MyAddon })
+NS.Theme = _G.TODOPlannerThemeLibrary:New({ addon = NS.MyAddon })
 ```
 
 Use it from windows:
@@ -39,13 +42,4 @@ body:SetPoint("BOTTOMRIGHT", chrome, "BOTTOMRIGHT", -12, 12)
 
 local button = Theme:CreateButton(body, 120, 24, "Run", "primary")
 button:SetPoint("TOPLEFT", body, "TOPLEFT", 14, -14)
-```
-
-## Standalone Addon Usage
-
-The folder can also be installed as a top-level addon named `JanisTheme-1.0`.
-Other addons can then declare it as an optional dependency and use `_G.JanisTheme`.
-
-```toc
-## OptionalDeps: JanisTheme-1.0
 ```

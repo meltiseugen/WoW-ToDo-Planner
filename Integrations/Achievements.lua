@@ -173,7 +173,7 @@ function AchievementIntegration:TryOpenExternalUrl(url)
 end
 
 function AchievementIntegration:CreateUrlDialog()
-    local frame = CreateFrame("Frame", "TODOPlannerUrlDialog", UIParent, "BasicFrameTemplateWithInset")
+    local frame = CreateFrame("Frame", "TODOPlannerUrlDialog", UIParent, "BackdropTemplate")
     frame:SetSize(560, 145)
     frame:SetPoint("CENTER")
     frame:SetClampedToScreen(true)

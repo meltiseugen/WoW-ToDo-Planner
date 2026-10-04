@@ -23,6 +23,7 @@
         "WorldMapFrame",
         "ToggleWorldMap",
         "MapCanvasDataProviderMixin",
-        "MapCanvasPinMixin"
+        "MapCanvasPinMixin",
+        "ReloadUI"
     ]
 }

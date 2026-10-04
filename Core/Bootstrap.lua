@@ -82,6 +82,7 @@ end
 function Bootstrap:OnAddonLoaded(addonName)
     if addonName == ADDON_NAME then
         self.addon.Database:Init()
+        self.addon.ThemeManager:Create()
         self.addon.plannerWindow = self.addon.MainWindow:New():Build()
         self.addon.plannerWindow.optionsWindow = self.addon.OptionsWindow:New(self.addon.plannerWindow)
         self.addon.plannerWindow.optionsWindow:Build()

@@ -123,7 +123,7 @@ function HomeWindow:Open()
 end
 
 function HomeWindow:Build()
-    local frame = CreateFrame("Frame", "TODOPlannerHomeFrame", UIParent, "BasicFrameTemplateWithInset")
+    local frame = CreateFrame("Frame", "TODOPlannerHomeFrame", UIParent, "BackdropTemplate")
     frame:SetSize(760, 300)
     frame:SetClampedToScreen(true)
     frame:EnableMouse(true)
@@ -142,7 +142,7 @@ function HomeWindow:Build()
     local Theme = TDP.Theme
     if Theme then
         local chrome = Theme:ApplyWindowChrome(frame, "TODO Planner")
-        local subtitle = frame.headerBar:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        local subtitle = Widgets:CreateFontString(frame.headerBar, "OVERLAY", "GameFontHighlightSmall", "titleText")
         subtitle:SetPoint("LEFT", frame.headerBar, "LEFT", 15, -12)
         subtitle:SetText("Choose where to start")
 
@@ -165,19 +165,19 @@ function HomeWindow:Build()
     local plannerButton = Widgets:CreateButton(body, 220, 74, "Planner", "neutral")
     plannerButton:SetPoint("LEFT", explorerButton, "RIGHT", 16, 0)
 
-    local explorerText = body:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    local explorerText = Widgets:CreateFontString(body, "OVERLAY", "GameFontHighlightSmall")
     explorerText:SetPoint("TOPLEFT", explorerButton, "BOTTOMLEFT", 4, -10)
     explorerText:SetPoint("RIGHT", explorerButton, "RIGHT", -4, 0)
     explorerText:SetJustifyH("CENTER")
     explorerText:SetText("Browse patch rewards")
 
-    local plannerText = body:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    local plannerText = Widgets:CreateFontString(body, "OVERLAY", "GameFontHighlightSmall")
     plannerText:SetPoint("TOPLEFT", plannerButton, "BOTTOMLEFT", 4, -10)
     plannerText:SetPoint("RIGHT", plannerButton, "RIGHT", -4, 0)
     plannerText:SetJustifyH("CENTER")
     plannerText:SetText("Open the task board")
 
-    local favoritesText = body:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    local favoritesText = Widgets:CreateFontString(body, "OVERLAY", "GameFontHighlightSmall")
     favoritesText:SetPoint("TOPLEFT", favoritesButton, "BOTTOMLEFT", 4, -10)
     favoritesText:SetPoint("RIGHT", favoritesButton, "RIGHT", -4, 0)
     favoritesText:SetJustifyH("CENTER")

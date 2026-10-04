@@ -148,6 +148,10 @@ function Database:Init()
         TODOPlannerDB.settings.useProgressBars = true
     end
 
+    if not C.VISUAL_THEME_KEYS[TODOPlannerDB.settings.visualTheme] then
+        TODOPlannerDB.settings.visualTheme = "parchment"
+    end
+
     local function normalizeFramePosition(position)
         position = type(position) == "table" and position or {}
         position.point = type(position.point) == "string" and position.point or "CENTER"

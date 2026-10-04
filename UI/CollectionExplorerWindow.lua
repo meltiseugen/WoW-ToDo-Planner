@@ -320,7 +320,7 @@ function CollectionExplorerWindow:BuildTypeTabs(parent)
     local previous
 
     for _, value in ipairs(TYPE_OPTIONS) do
-        local button = Widgets:CreateButton(tabGroup, widths[value] or 82, 24, self:GetTypeLabel(value), "neutral")
+        local button = Widgets:CreateTabButton(tabGroup, widths[value] or 82, 24, self:GetTypeLabel(value))
         if previous then
             button:SetPoint("LEFT", previous, "RIGHT", gap, 0)
         else
@@ -852,7 +852,7 @@ function CollectionExplorerWindow:BuildRow(parent)
     icon:SetSize(32, 32)
     row.icon = icon
 
-    local title = row:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    local title = Widgets:CreateFontString(row, "OVERLAY", "GameFontNormal")
     title:SetPoint("TOPLEFT", icon, "TOPRIGHT", 10, -6)
     title:SetPoint("RIGHT", row, "RIGHT", -136, 0)
     title:SetJustifyH("LEFT")
@@ -861,7 +861,7 @@ function CollectionExplorerWindow:BuildRow(parent)
     end
     row.title = title
 
-    local meta = row:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    local meta = Widgets:CreateFontString(row, "OVERLAY", "GameFontHighlightSmall")
     meta:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -4)
     meta:SetPoint("RIGHT", title, "RIGHT", 0, 0)
     meta:SetJustifyH("LEFT")
@@ -951,9 +951,11 @@ function CollectionExplorerWindow:UpdateRowSelection()
                 and row.rowData.collectionType == self.selectedRow.collectionType
                 and tostring(self:GetEntryId(row.rowData.collectionType, row.rowData.entry)) == tostring(self:GetEntryId(self.selectedRow.collectionType, self.selectedRow.entry))
             if row.SetBackdropColor then
-                local color = isSelected and { 0.12, 0.11, 0.08, 0.92 } or { 0.07, 0.08, 0.11, 0.72 }
+                local color = Widgets:GetThemeColor(isSelected and "rowSelected" or "rowOdd")
                 row:SetBackdropColor(color[1], color[2], color[3], color[4])
             end
+            Widgets:ApplyTextColor(row.title, isSelected and "selectionText" or "textStrong")
+            Widgets:ApplyTextColor(row.meta, isSelected and "selectionTextSoft" or "textSoft")
         end
     end
 end
@@ -1237,7 +1239,7 @@ function CollectionExplorerWindow:Render()
 end
 
 function CollectionExplorerWindow:Build()
-    local frame = CreateFrame("Frame", "TODOPlannerCollectionExplorerFrame", UIParent, "BasicFrameTemplateWithInset")
+    local frame = CreateFrame("Frame", "TODOPlannerCollectionExplorerFrame", UIParent, "BackdropTemplate")
     frame:SetSize(1120, 700)
     Widgets:ApplyFramePosition(frame, "explorer")
     frame:SetClampedToScreen(true)
@@ -1258,7 +1260,7 @@ function CollectionExplorerWindow:Build()
     local Theme = TDP.Theme
     if Theme then
         local chrome = Theme:ApplyWindowChrome(frame, "Collection Explorer")
-        local subtitle = frame.headerBar:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        local subtitle = Widgets:CreateFontString(frame.headerBar, "OVERLAY", "GameFontHighlightSmall", "titleText")
         subtitle:SetPoint("LEFT", frame.headerBar, "LEFT", 15, -12)
         subtitle:SetText("Patch collection scanner")
 
@@ -1284,19 +1286,19 @@ function CollectionExplorerWindow:Build()
     filterDivider:SetHeight(1)
     Widgets:SetTextureColor(filterDivider, { 1.0, 0.82, 0.18, 0.24 })
 
-    local expansionButton = Widgets:CreateButton(toolbar, 220, 24, "", "neutral")
+    local expansionButton = Widgets:CreateSelectorButton(toolbar, 220, 24, "")
     expansionButton:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 12, -52)
 
-    local patchButton = Widgets:CreateButton(toolbar, 130, 24, "", "neutral")
+    local patchButton = Widgets:CreateSelectorButton(toolbar, 130, 24, "")
     patchButton:SetPoint("LEFT", expansionButton, "RIGHT", 8, 0)
 
-    local statusButton = Widgets:CreateButton(toolbar, 150, 24, "", "neutral")
+    local statusButton = Widgets:CreateSelectorButton(toolbar, 150, 24, "")
     statusButton:SetPoint("LEFT", patchButton, "RIGHT", 8, 0)
 
-    local mountCategoryButton = Widgets:CreateButton(toolbar, 208, 24, "", "neutral")
+    local mountCategoryButton = Widgets:CreateSelectorButton(toolbar, 208, 24, "")
     mountCategoryButton:SetPoint("LEFT", statusButton, "RIGHT", 8, 0)
 
-    local achievementCategoryButton = Widgets:CreateButton(toolbar, 208, 24, "", "neutral")
+    local achievementCategoryButton = Widgets:CreateSelectorButton(toolbar, 208, 24, "")
     achievementCategoryButton:SetPoint("LEFT", statusButton, "RIGHT", 8, 0)
     achievementCategoryButton:Hide()
 
@@ -1307,7 +1309,7 @@ function CollectionExplorerWindow:Build()
         centered = frame.headerBar ~= nil,
     })
 
-    local searchLabel = toolbar:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    local searchLabel = Widgets:CreateFontString(toolbar, "OVERLAY", "GameFontHighlightSmall")
     searchLabel:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 16, -80)
     searchLabel:SetText("Search")
 
@@ -1315,7 +1317,7 @@ function CollectionExplorerWindow:Build()
     searchEdit:SetPoint("TOPLEFT", toolbar, "TOPLEFT", 12, -96)
     searchEdit:SetMaxLetters(80)
 
-    local summaryText = toolbar:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    local summaryText = Widgets:CreateFontString(toolbar, "OVERLAY", "GameFontHighlightSmall")
     summaryText:SetPoint("LEFT", searchEdit, "RIGHT", 16, 0)
     summaryText:SetPoint("RIGHT", toolbar, "RIGHT", -110, 0)
     summaryText:SetJustifyH("LEFT")
@@ -1371,7 +1373,7 @@ function CollectionExplorerWindow:Build()
     local modelZoomInButton = Widgets:CreateButton(previewModelControls, 24, 20, "+", "neutral")
     modelZoomInButton:SetPoint("LEFT", modelResetButton, "RIGHT", 4, 0)
 
-    local previewTitle = previewPanel:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+    local previewTitle = Widgets:CreateFontString(previewPanel, "OVERLAY", "GameFontNormalLarge")
     previewTitle:SetPoint("TOPLEFT", previewVisual, "TOPRIGHT", 12, -8)
     previewTitle:SetPoint("RIGHT", previewPanel, "RIGHT", -18, 0)
     previewTitle:SetJustifyH("LEFT")
@@ -1379,12 +1381,12 @@ function CollectionExplorerWindow:Build()
         previewTitle:SetWordWrap(true)
     end
 
-    local previewMeta = previewPanel:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    local previewMeta = Widgets:CreateFontString(previewPanel, "OVERLAY", "GameFontHighlightSmall")
     previewMeta:SetPoint("TOPLEFT", previewTitle, "BOTTOMLEFT", 0, -8)
     previewMeta:SetPoint("RIGHT", previewTitle, "RIGHT", 0, 0)
     previewMeta:SetJustifyH("LEFT")
 
-    local previewStatus = previewPanel:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    local previewStatus = Widgets:CreateFontString(previewPanel, "OVERLAY", "GameFontNormal")
     previewStatus:SetPoint("TOPLEFT", previewMeta, "BOTTOMLEFT", 0, -10)
     previewStatus:SetJustifyH("LEFT")
 
@@ -1396,7 +1398,7 @@ function CollectionExplorerWindow:Build()
     detailPanel:SetPoint("TOPLEFT", previewPanel, "TOPLEFT", 18, PREVIEW_DETAIL_TOP_OFFSET)
     detailPanel:SetPoint("BOTTOMRIGHT", previewPanel, "BOTTOMRIGHT", -18, 58)
 
-    local detailHeading = detailPanel:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    local detailHeading = Widgets:CreateFontString(detailPanel, "OVERLAY", "GameFontNormal")
     detailHeading:SetPoint("TOPLEFT", detailPanel, "TOPLEFT", 12, -10)
     detailHeading:SetText("Collection Details")
 
@@ -1414,7 +1416,7 @@ function CollectionExplorerWindow:Build()
     previewDetailsContent:SetSize(1, 1)
     previewDetailsScroll:SetScrollChild(previewDetailsContent)
 
-    local previewDetails = previewDetailsContent:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+    local previewDetails = Widgets:CreateFontString(previewDetailsContent, "OVERLAY", "GameFontHighlight")
     previewDetails:SetPoint("TOPLEFT", previewDetailsContent, "TOPLEFT", 0, 0)
     previewDetails:SetPoint("TOPRIGHT", previewDetailsContent, "TOPRIGHT", 0, 0)
     Widgets:ConfigurePreviewDetailText(previewDetails)

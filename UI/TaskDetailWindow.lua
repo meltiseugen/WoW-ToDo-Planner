@@ -22,7 +22,7 @@ end
 
 function TaskDetailWindow:Build()
     local ui = self.ui
-    local frame = CreateFrame("Frame", "TODOPlannerTaskDetailFrame", UIParent, "BasicFrameTemplateWithInset")
+    local frame = CreateFrame("Frame", "TODOPlannerTaskDetailFrame", UIParent, "BackdropTemplate")
     frame:SetSize(620, 620)
     frame:SetClampedToScreen(true)
     frame:EnableMouse(true)
@@ -55,7 +55,7 @@ function TaskDetailWindow:Build()
     else
         Widgets:ApplyPanelBackdrop(frame, { 0.02, 0.02, 0.03, 0.98 }, { 1, 1, 1, 0.10 })
 
-        local title = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+        local title = Widgets:CreateFontString(frame, "OVERLAY", "GameFontNormalLarge")
         title:SetPoint("TOPLEFT", 16, -16)
         title:SetText("Task Details")
 
@@ -65,7 +65,7 @@ function TaskDetailWindow:Build()
         body = frame
     end
 
-    local titleText = body:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+    local titleText = Widgets:CreateFontString(body, "OVERLAY", "GameFontNormalLarge")
     titleText:SetPoint("TOPLEFT", 16, -16)
     titleText:SetPoint("TOPRIGHT", -16, -16)
     Widgets:ConfigureDetailText(titleText, false)
@@ -85,12 +85,12 @@ function TaskDetailWindow:Build()
 
     frame.detailRows = {}
     local function addDetailRow(key, labelText, alwaysVisible, allowWrap)
-        local label = details:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+        local label = Widgets:CreateFontString(details, "OVERLAY", "GameFontDisableSmall")
         label:SetWidth(86)
         label:SetJustifyH("LEFT")
         label:SetText(labelText)
 
-        local value = details:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        local value = Widgets:CreateFontString(details, "OVERLAY", "GameFontHighlightSmall")
         Widgets:ConfigureDetailText(value, allowWrap == true)
         value:SetJustifyV("TOP")
 
@@ -120,7 +120,7 @@ function TaskDetailWindow:Build()
     notes:SetPoint("BOTTOMRIGHT", body, "BOTTOMRIGHT", -14, 82)
     notes.topAccent = Widgets:AddGoldTopAccent(notes, 2, 0.18)
 
-    local notesLabel = notes:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    local notesLabel = Widgets:CreateFontString(notes, "OVERLAY", "GameFontDisableSmall")
     notesLabel:SetPoint("TOPLEFT", 12, -10)
     notesLabel:SetText("Description")
 
@@ -132,12 +132,12 @@ function TaskDetailWindow:Build()
     notesContent:SetSize(1, 1)
     notesScroll:SetScrollChild(notesContent)
 
-    local notesValue = notesContent:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    local notesValue = Widgets:CreateFontString(notesContent, "OVERLAY", "GameFontHighlightSmall")
     notesValue:SetPoint("TOPLEFT", 0, 0)
     notesValue:SetWidth(532)
     Widgets:ConfigureDetailText(notesValue, true)
     notesValue:SetJustifyV("TOP")
-    local criteriaLabel = notesContent:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    local criteriaLabel = Widgets:CreateFontString(notesContent, "OVERLAY", "GameFontNormalSmall")
     criteriaLabel:SetText("Criteria")
     criteriaLabel:SetJustifyH("LEFT")
     criteriaLabel:Hide()
@@ -147,7 +147,8 @@ function TaskDetailWindow:Build()
     criteriaDivider.line:SetPoint("LEFT", 0, 0)
     criteriaDivider.line:SetPoint("RIGHT", 0, 0)
     criteriaDivider.line:SetHeight(1)
-    criteriaDivider.line:SetColorTexture(1, 0.82, 0.18, 0.22)
+    Widgets:SetTextureColor(criteriaDivider.line, "accentGold", { 1, 0.82, 0.18, 0.22 })
+    criteriaDivider.line:SetAlpha(0.32)
     criteriaDivider:Hide()
 
     frame.notesLabel = notesLabel
@@ -239,7 +240,7 @@ function TaskDetailWindow:Build()
     end)
     frame.openAchievementButton = openAchievementButton
 
-    local moveBoardButton = Widgets:CreateButton(body, 180, 24, "Move to Board", "neutral")
+    local moveBoardButton = Widgets:CreateSelectorButton(body, 180, 24, "Move to Board")
     moveBoardButton:SetPoint("BOTTOMLEFT", 14, 16)
     moveBoardButton:SetScript("OnClick", function(owner)
         local task = Tasks:FindById(frame.taskId)
@@ -322,14 +323,14 @@ function TaskDetailWindow:Build()
         row.bg:SetAllPoints(row)
         row.bg:SetColorTexture(1, 1, 1, 0.035)
 
-        row.title = row:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        row.title = Widgets:CreateFontString(row, "OVERLAY", "GameFontHighlightSmall")
         row.title:SetPoint("TOPLEFT", 8, -6)
         row.title:SetJustifyH("LEFT")
         if row.title.SetWordWrap then
             row.title:SetWordWrap(false)
         end
 
-        row.meta = row:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+        row.meta = Widgets:CreateFontString(row, "OVERLAY", "GameFontDisableSmall")
         row.meta:SetPoint("TOPLEFT", row.title, "BOTTOMLEFT", 0, -4)
         row.meta:SetJustifyH("LEFT")
         if row.meta.SetWordWrap then
@@ -348,7 +349,7 @@ function TaskDetailWindow:Build()
         row.progressBar.bg = row.progressBar:CreateTexture(nil, "BACKGROUND")
         row.progressBar.bg:SetAllPoints(row.progressBar)
         row.progressBar.bg:SetColorTexture(0.02, 0.08, 0.02, 0.88)
-        row.progressBar.text = row.progressBar:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        row.progressBar.text = Widgets:CreateFontString(row.progressBar, "OVERLAY", "GameFontHighlightSmall", "titleText")
         row.progressBar.text:SetPoint("CENTER", row.progressBar, "CENTER", 0, 0)
         row.progressBar:Hide()
 
@@ -585,9 +586,11 @@ function TaskDetailWindow:Build()
         self.taskId = task.id
         self.titleText:SetText(task.title or "(Untitled)")
         self.notesLabel:SetFontObject(achievementId and GameFontNormal or GameFontDisableSmall)
+        Widgets:ApplyTextColor(self.notesLabel, achievementId and "textStrong" or "textMuted")
         self.notesLabel:SetText(achievementId and "Achievement Details" or "Description")
         self.currentCriteriaRows = criteriaRows
         self.notesValue:SetFontObject(achievementId and GameFontHighlight or GameFontHighlightSmall)
+        Widgets:ApplyTextColor(self.notesValue, achievementId and "text" or "textSoft")
 
         local boardKey = Tasks:GetBoardKey(task)
         local isGlobal = boardKey == C.GLOBAL_BOARD_KEY

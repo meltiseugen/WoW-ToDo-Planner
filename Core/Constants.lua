@@ -31,6 +31,33 @@ TDP.Constants = {
         "Other",
     },
 
+    VISUAL_THEME_OPTIONS = {
+        "parchment",
+        "quietBotanical",
+        "quietArcane",
+        "fieldLedger",
+        "minimalVoidglass",
+        "midnight",
+    },
+
+    VISUAL_THEME_LABELS = {
+        parchment = "Ember Parchment",
+        quietBotanical = "Quiet Botanical",
+        quietArcane = "Quiet Arcane",
+        fieldLedger = "Field Ledger",
+        minimalVoidglass = "Minimal Voidglass",
+        midnight = "Midnight Classic",
+    },
+
+    VISUAL_THEME_KEYS = {
+        parchment = true,
+        quietBotanical = true,
+        quietArcane = true,
+        fieldLedger = true,
+        minimalVoidglass = true,
+        midnight = true,
+    },
+
     DEFAULT_DB = {
         version = 3,
         nextTaskId = 1,
@@ -38,6 +65,7 @@ TDP.Constants = {
         characters = {},
         favorites = {},
         settings = {
+            visualTheme = "parchment",
             filterCategory = "All",
             selectedBoard = false,
             useProgressBars = true,

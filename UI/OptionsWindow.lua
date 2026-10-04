@@ -1,11 +1,14 @@
 local _, TDP = ...
 
 local Widgets = TDP.Widgets
+local C = TDP.Constants
 
 local OptionsWindow = {}
 OptionsWindow.__index = OptionsWindow
 
 local TAB_ORDER = { "General", "Achievements" }
+local VISUAL_THEME_OPTIONS = C.VISUAL_THEME_OPTIONS
+local VISUAL_THEME_LABELS = C.VISUAL_THEME_LABELS
 local WORLD_MAP_PIN_DEFAULT_SCALE = 1.6
 local WORLD_MAP_PIN_MIN_SCALE = 0.75
 local WORLD_MAP_PIN_MAX_SCALE = 3
@@ -24,6 +27,9 @@ end
 
 function OptionsWindow:EnsureSettings()
     TODOPlannerDB.settings = TODOPlannerDB.settings or {}
+    if not C.VISUAL_THEME_KEYS[TODOPlannerDB.settings.visualTheme] then
+        TODOPlannerDB.settings.visualTheme = "parchment"
+    end
     if type(TODOPlannerDB.settings.useProgressBars) ~= "boolean" then
         TODOPlannerDB.settings.useProgressBars = true
     end
@@ -85,9 +91,33 @@ function OptionsWindow:Refresh()
     local useProgressBars = TODOPlannerDB.settings.useProgressBars ~= false
     self:ApplyTabVisualState(self.controls.progressBarsButton, useProgressBars)
     self:ApplyTabVisualState(self.controls.progressTextButton, not useProgressBars)
+    local visualTheme = TODOPlannerDB.settings.visualTheme
+    local displayName = VISUAL_THEME_LABELS[visualTheme] or VISUAL_THEME_LABELS.parchment
+    if self.controls.themeSelector then
+        self.controls.themeSelector:SetText(displayName)
+    end
+    local appliedTheme = TDP.Theme and TDP.Theme.key or visualTheme
+    local needsReload = appliedTheme ~= visualTheme
+    if self.controls.themeStatusText then
+        self.controls.themeStatusText:SetText(
+            needsReload and (displayName .. " selected - reload to apply.") or (displayName .. " is active.")
+        )
+    end
+    if self.controls.reloadThemeButton then
+        Widgets:SetButtonEnabled(self.controls.reloadThemeButton, needsReload)
+    end
     if self.controls.worldMapPinScaleText then
         self.controls.worldMapPinScaleText:SetText(string.format("%d%%", math.floor((TODOPlannerDB.settings.worldMapPinScale * 100) + 0.5)))
     end
+end
+
+function OptionsWindow:SetVisualTheme(themeKey)
+    self:EnsureSettings()
+    if not C.VISUAL_THEME_KEYS[themeKey] then
+        return
+    end
+    TODOPlannerDB.settings.visualTheme = themeKey
+    self:Refresh()
 end
 
 function OptionsWindow:CreateTab(panel, key)
@@ -142,18 +172,18 @@ function OptionsWindow:CreateSection(parent, previousSection, titleText, descrip
     section.topAccent = Widgets:AddGoldTopAccent(section, 2, 0.18)
     section.contentTopOffset = (type(descriptionText) == "string" and descriptionText ~= "") and -54 or -40
 
-    local title = section:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    local title = Widgets:CreateFontString(section, "OVERLAY", "GameFontNormal")
     title:SetPoint("TOPLEFT", section, "TOPLEFT", 14, -12)
     title:SetPoint("TOPRIGHT", section, "TOPRIGHT", -14, -12)
     title:SetJustifyH("LEFT")
     title:SetText(titleText or "")
 
     if type(descriptionText) == "string" and descriptionText ~= "" then
-        local description = section:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        local description = Widgets:CreateFontString(section, "OVERLAY", "GameFontHighlightSmall")
         description:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -4)
         description:SetPoint("TOPRIGHT", section, "TOPRIGHT", -14, 0)
         description:SetJustifyH("LEFT")
-        description:SetTextColor(0.62, 0.66, 0.74)
+        Widgets:ApplyTextColor(description, "textMuted")
         description:SetText(descriptionText)
     end
 
@@ -230,7 +260,7 @@ function OptionsWindow:Build()
         self:Open()
     end)
 
-    local frame = CreateFrame("Frame", "TODOPlannerOptionsWindow", UIParent, "BasicFrameTemplateWithInset")
+    local frame = CreateFrame("Frame", "TODOPlannerOptionsWindow", UIParent, "BackdropTemplate")
     frame:SetSize(720, 500)
     frame:SetPoint("CENTER", UIParent, "CENTER", 0, 40)
     frame:SetMovable(true)
@@ -258,6 +288,9 @@ function OptionsWindow:Build()
     end)
     frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
     Widgets:RegisterTopLevelWindow(frame)
+    Widgets:HookFrameScript(frame, "OnHide", function()
+        Widgets:HideDropdownMenus()
+    end)
 
     local body
     local Theme = TDP.Theme
@@ -273,7 +306,7 @@ function OptionsWindow:Build()
     else
         Widgets:ApplyPanelBackdrop(frame, { 0.02, 0.02, 0.03, 0.98 }, { 1, 1, 1, 0.10 })
 
-        local title = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+        local title = Widgets:CreateFontString(frame, "OVERLAY", "GameFontNormalLarge")
         title:SetPoint("TOPLEFT", 16, -16)
         title:SetText("Options")
 
@@ -285,18 +318,18 @@ function OptionsWindow:Build()
         body:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -12, 12)
     end
 
-    local title = body:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
+    local title = Widgets:CreateFontString(body, "ARTWORK", "GameFontNormalLarge")
     title:SetPoint("TOPLEFT", 16, -16)
     title:SetText("TODO Planner")
 
-    local subtitle = body:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+    local subtitle = Widgets:CreateFontString(body, "ARTWORK", "GameFontHighlightSmall")
     subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -8)
     subtitle:SetText("Separate Global and character task boards.")
 
     self.tabs = {}
     local previousTabButton
     for index, tabName in ipairs(TAB_ORDER) do
-        local tabButton = Widgets:CreateButton(body, 118, 24, tabName, "neutral")
+        local tabButton = Widgets:CreateTabButton(body, 118, 24, tabName)
         tabButton:SetID(index)
         tabButton:ClearAllPoints()
         if previousTabButton then
@@ -314,7 +347,8 @@ function OptionsWindow:Build()
     end
 
     local tabsUnderline = body:CreateTexture(nil, "ARTWORK")
-    tabsUnderline:SetColorTexture(1, 0.82, 0, 0.35)
+    Widgets:SetTextureColor(tabsUnderline, "accentGold", { 1, 0.82, 0, 0.35 })
+    tabsUnderline:SetAlpha(0.48)
     tabsUnderline:SetPoint("TOPLEFT", body, "TOPLEFT", 16, -112)
     tabsUnderline:SetPoint("TOPRIGHT", body, "TOPRIGHT", -16, -112)
     tabsUnderline:SetHeight(1)
@@ -328,15 +362,48 @@ function OptionsWindow:Build()
         self:ResetMainWindowPosition()
     end)
 
-    local resetPositionText = generalWindowSection:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+    local resetPositionText = Widgets:CreateFontString(generalWindowSection, "ARTWORK", "GameFontHighlightSmall")
     resetPositionText:SetPoint("LEFT", resetPositionButton, "RIGHT", 12, 0)
     resetPositionText:SetPoint("RIGHT", generalWindowSection, "RIGHT", -14, 0)
     resetPositionText:SetJustifyH("LEFT")
     resetPositionText:SetText("Move TODO Planner windows back to the center.")
 
-    local mapSection = self:CreateSection(generalContent, generalWindowSection, "Collection Map", "Adjust TODO pins projected onto the Blizzard world map.", 124)
+    local appearanceSection = self:CreateSection(
+        generalContent,
+        generalWindowSection,
+        "Appearance",
+        "Choose a visual system. The selection is applied safely after a UI reload.",
+        132
+    )
 
-    local mapPinLabel = mapSection:CreateFontString(nil, "ARTWORK", "GameFontNormalSmall")
+    local themeLabel = Widgets:CreateFontString(appearanceSection, "ARTWORK", "GameFontNormalSmall")
+    themeLabel:SetPoint("TOPLEFT", appearanceSection, "TOPLEFT", 14, appearanceSection.contentTopOffset)
+    themeLabel:SetText("Design")
+
+    local themeSelector = Widgets:CreateSelectorButton(appearanceSection, 210, 24, "")
+    themeSelector:SetPoint("TOPLEFT", themeLabel, "BOTTOMLEFT", 0, -8)
+    themeSelector:SetScript("OnClick", function(owner)
+        Widgets:ShowSingleSelectMenu(owner, VISUAL_THEME_OPTIONS, TODOPlannerDB.settings.visualTheme, function(themeKey)
+            return VISUAL_THEME_LABELS[themeKey] or tostring(themeKey)
+        end, function(themeKey)
+            self:SetVisualTheme(themeKey)
+        end)
+    end)
+
+    local reloadThemeButton = Widgets:CreateButton(appearanceSection, 86, 24, "Reload UI", "primary")
+    reloadThemeButton:SetPoint("LEFT", themeSelector, "RIGHT", 12, 0)
+    reloadThemeButton:SetScript("OnClick", function()
+        ReloadUI()
+    end)
+
+    local themeStatusText = Widgets:CreateFontString(appearanceSection, "ARTWORK", "GameFontHighlightSmall")
+    themeStatusText:SetPoint("TOPLEFT", themeSelector, "BOTTOMLEFT", 0, -10)
+    themeStatusText:SetPoint("RIGHT", appearanceSection, "RIGHT", -14, 0)
+    themeStatusText:SetJustifyH("LEFT")
+
+    local mapSection = self:CreateSection(generalContent, appearanceSection, "Collection Map", "Adjust TODO pins projected onto the Blizzard world map.", 124)
+
+    local mapPinLabel = Widgets:CreateFontString(mapSection, "ARTWORK", "GameFontNormalSmall")
     mapPinLabel:SetPoint("TOPLEFT", mapSection, "TOPLEFT", 14, mapSection.contentTopOffset)
     mapPinLabel:SetText("Blizzard map pin size")
 
@@ -346,7 +413,7 @@ function OptionsWindow:Build()
         self:SetWorldMapPinScale((TODOPlannerDB.settings.worldMapPinScale or WORLD_MAP_PIN_DEFAULT_SCALE) - WORLD_MAP_PIN_SCALE_STEP)
     end)
 
-    local pinScaleText = mapSection:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
+    local pinScaleText = Widgets:CreateFontString(mapSection, "ARTWORK", "GameFontHighlight")
     pinScaleText:SetSize(58, 24)
     pinScaleText:SetPoint("LEFT", pinScaleDownButton, "RIGHT", 8, 0)
     pinScaleText:SetJustifyH("CENTER")
@@ -363,17 +430,17 @@ function OptionsWindow:Build()
         self:SetWorldMapPinScale(WORLD_MAP_PIN_DEFAULT_SCALE)
     end)
 
-    local mapPinHelp = mapSection:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+    local mapPinHelp = Widgets:CreateFontString(mapSection, "ARTWORK", "GameFontHighlightSmall")
     mapPinHelp:SetPoint("LEFT", pinScaleResetButton, "RIGHT", 12, 0)
     mapPinHelp:SetPoint("RIGHT", mapSection, "RIGHT", -14, 0)
     mapPinHelp:SetJustifyH("LEFT")
     mapPinHelp:SetText("Changes apply immediately to projected pins.")
-    generalContent:SetHeight(252)
+    generalContent:SetHeight(396)
 
     local achievementsContent = self.tabs.Achievements.content
     local progressSection = self:CreateSection(achievementsContent, nil, "Progress Display", "Choose how achievement criteria progress is shown in task details.", 126)
 
-    local progressLabel = progressSection:CreateFontString(nil, "ARTWORK", "GameFontNormalSmall")
+    local progressLabel = Widgets:CreateFontString(progressSection, "ARTWORK", "GameFontNormalSmall")
     progressLabel:SetPoint("TOPLEFT", progressSection, "TOPLEFT", 14, progressSection.contentTopOffset)
     progressLabel:SetText("Criteria progress")
 
@@ -393,6 +460,9 @@ function OptionsWindow:Build()
         progressBarsButton = barsButton,
         progressTextButton = textButton,
         worldMapPinScaleText = pinScaleText,
+        themeSelector = themeSelector,
+        reloadThemeButton = reloadThemeButton,
+        themeStatusText = themeStatusText,
     }
     achievementsContent:SetHeight(138)
 
