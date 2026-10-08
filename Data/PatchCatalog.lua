@@ -11,8 +11,13 @@ local MAP_NAMES = {
     [18] = "Tirisfal Glades",
     [22] = "Western Plaguelands",
     [23] = "Eastern Plaguelands",
+    [27] = "Dun Morogh",
     [37] = "Elwynn Forest",
+    [42] = "Deadwind Pass",
+    [36] = "Burning Steppes",
     [50] = "Northern Stranglethorn",
+    [52] = "Westfall",
+    [62] = "Darkshore",
     [64] = "Thousand Needles",
     [71] = "Tanaris",
     [77] = "Felwood",
@@ -30,6 +35,8 @@ local MAP_NAMES = {
     [111] = "Shattrath City",
     [115] = "Dragonblight",
     [116] = "Grizzly Hills",
+    [118] = "Icecrown",
+    [120] = "The Storm Peaks",
     [198] = "Mount Hyjal",
     [207] = "Deepholm",
     [2248] = "Isle of Dorn",
@@ -41,13 +48,36 @@ local MAP_NAMES = {
     [388] = "Townlong Steppes",
     [390] = "Vale of Eternal Blossoms",
     [418] = "Krasarang Wilds",
+    [422] = "Dread Wastes",
     [539] = "Shadowmoon Valley (Draenor)",
     [554] = "Timeless Isle",
+    [622] = "Stormshield",
+    [624] = "Warspear",
     [627] = "Dalaran (Broken Isles)",
+    [630] = "Azsuna",
+    [634] = "Stormheim",
+    [641] = "Val'sharah",
+    [646] = "Broken Shore",
+    [648] = "Acherus: The Ebon Hold",
     [650] = "Highmountain",
+    [680] = "Suramar",
     [862] = "Zuldazar",
+    [864] = "Vol'dun",
     [895] = "Tiragarde Sound",
+    [942] = "Stormsong Valley",
+    [1355] = "Nazjatar",
+    [1462] = "Mechagon",
+    [1473] = "Chamber of Heart",
+    [1530] = "Vale of Eternal Blossoms (Battle for Azeroth)",
     [830] = "Krokuun",
+    [831] = "The Vindicaar",
+    [882] = "Eredath",
+    [885] = "Antoran Wastes",
+    [940] = "The Vindicaar",
+    [971] = "Telogrus Rift",
+    [863] = "Nazmir",
+    [896] = "Drustvar",
+    [1161] = "Boralus",
     [1519] = "Stormwind City",
     [1637] = "Orgrimmar",
     [1670] = "Oribos",
@@ -1075,6 +1105,203 @@ local function BuildCosmeticEntries(groups)
     end
     return entries
 end
+
+PatchCatalog.PATCH_8_0_0_COSMETICS = BuildCosmeticEntries({
+    { detailKey = "darkIronHeritage", subtype = "appearance", items = {
+        { 161008, "Dark Iron Helm" },
+        { 161009, "Dark Iron Pauldrons" },
+        { 161010, "Dark Iron Mantle" },
+        { 161015, "Dark Iron Bracers" },
+        { 161011, "Dark Iron Gloves" },
+        { 161012, "Dark Iron Belt" },
+        { 161013, "Dark Iron Leggings" },
+        { 161014, "Dark Iron Boots" },
+    } },
+    { detailKey = "magharHeritage", subtype = "appearance", items = {
+        { 161050, "Blackrock Clan Helm" },
+        { 161051, "Blackrock Clan Pauldrons" },
+        { 161052, "Blackrock Clan Harness" },
+        { 161058, "Blackrock Clan Bracers" },
+        { 161054, "Blackrock Clan Gloves" },
+        { 161055, "Blackrock Clan Belt" },
+        { 161056, "Blackrock Clan Leggings" },
+        { 161057, "Blackrock Clan Boots" },
+        { 161059, "Frostwolf Clan Helm" },
+        { 161060, "Frostwolf Clan Pauldrons" },
+        { 161061, "Frostwolf Clan Harness" },
+        { 161066, "Frostwolf Clan Bracers" },
+        { 161062, "Frostwolf Clan Gloves" },
+        { 161063, "Frostwolf Clan Belt" },
+        { 161064, "Frostwolf Clan Leggings" },
+        { 161065, "Frostwolf Clan Boots" },
+        { 160992, "Warsong Clan Helm" },
+        { 160993, "Warsong Clan Pauldrons" },
+        { 160994, "Warsong Clan Harness" },
+        { 161003, "Warsong Clan Bracers" },
+        { 160999, "Warsong Clan Gloves" },
+        { 161000, "Warsong Clan Belt" },
+        { 161001, "Warsong Clan Leggings" },
+        { 161002, "Warsong Clan Boots" },
+    } },
+    { detailKey = "alliedRaceTabards", subtype = "appearance", items = {
+        { 161328, "Tabard of the Mag'har Clans" },
+        { 161329, "Tabard of the Dark Iron" },
+    } },
+})
+
+PatchCatalog.PATCH_8_1_0_COSMETICS = BuildCosmeticEntries({
+    { detailKey = "bloodElfHeritage", subtype = "appearance", items = {
+        { 166348, "Sin'dorei Helm" },
+        { 166349, "Sin'dorei Pauldrons" },
+        { 166357, "Sin'dorei Cloak" },
+        { 166356, "Sin'dorei Raiment" },
+        { 166350, "Sin'dorei Tunic" },
+        { 166355, "Sin'dorei Bracers" },
+        { 166351, "Sin'dorei Gauntlets" },
+        { 166352, "Sin'dorei Belt" },
+        { 166353, "Sin'dorei Leggings" },
+        { 166354, "Sin'dorei Slippers" },
+    } },
+    { detailKey = "dwarfHeritage", subtype = "appearance", items = {
+        { 165931, "Bronzebeard Helm" },
+        { 165932, "Bronzebeard Pauldrons" },
+        { 165933, "Bronzebeard Tunic" },
+        { 165938, "Bronzebeard Wristclamps" },
+        { 165934, "Bronzebeard Mitts" },
+        { 165935, "Bronzebeard Cinch" },
+        { 165936, "Bronzebeard Leggings" },
+        { 165937, "Bronzebeard Stompers" },
+    } },
+})
+
+PatchCatalog.PATCH_8_1_5_COSMETICS = BuildCosmeticEntries({
+    { detailKey = "kulTiranHeritage", subtype = "appearance", items = {
+        { 165002, "Kul Tiran Bicorne" },
+        { 165003, "Kul Tiran Tasseled Pauldron" },
+        { 165004, "Kul Tiran Longcoat" },
+        { 165009, "Kul Tiran Bracers" },
+        { 165005, "Kul Tiran Gloves" },
+        { 165006, "Kul Tiran Cinch" },
+        { 165007, "Kul Tiran Britches" },
+        { 165008, "Kul Tiran Boots" },
+    } },
+    { detailKey = "zandalariHeritage", subtype = "appearance", items = {
+        { 164993, "Zandalari Mask" },
+        { 164994, "Zandalari Pauldrons" },
+        { 164995, "Zandalari Torque" },
+        { 165000, "Zandalari Bracers" },
+        { 164996, "Zandalari Blade-Turners" },
+        { 164997, "Zandalari Belt" },
+        { 164998, "Zandalari Leggings" },
+        { 164999, "Zandalari Shinguards" },
+    } },
+    { detailKey = "alliedRaceTabards", subtype = "appearance", items = {
+        { 165001, "Tabard of the Zandalari" },
+        { 165010, "Tabard of Kul Tiras" },
+    } },
+    { detailKey = "brawlersGarb", subtype = "ensemble", items = {
+        { 167891, "Ensemble: Brawler's Garb (Alliance)" },
+        { 167892, "Ensemble: Brawler's Garb (Horde)" },
+    } },
+})
+
+local PATCH_8_2_COSMETICS = BuildCosmeticEntries({
+    { detailKey = "gnomeHeritage", subtype = "appearance", items = {
+        { 168286, "G.E.A.R. Commander's Buckle" },
+        { 168284, "G.E.A.R. Commander's Chestpiece" },
+        { 168290, "G.E.A.R. Commander's Cloak" },
+        { 168282, "G.E.A.R. Commander's Goggles" },
+        { 168285, "G.E.A.R. Commander's Handgrips" },
+        { 168287, "G.E.A.R. Commander's Legguards" },
+        { 168283, "G.E.A.R. Commander's Shoulderguards" },
+        { 168288, "G.E.A.R. Commander's Stompers" },
+        { 168289, "G.E.A.R. Commander's Wristbands" },
+    } },
+    { detailKey = "taurenHeritage", subtype = "appearance", items = {
+        { 168298, "Ancestral Chieftain's Armor" },
+        { 168297, "Ancestral Chieftain's Grasps" },
+        { 168296, "Ancestral Chieftain's Greatbelt" },
+        { 168291, "Ancestral Chieftain's Headdress" },
+        { 168292, "Ancestral Chieftain's Hoofbands" },
+        { 168293, "Ancestral Chieftain's Loincloth" },
+        { 168294, "Ancestral Chieftain's Mantle" },
+        { 170063, "Ancestral Chieftain's Totem" },
+        { 168295, "Ancestral Chieftain's Wristbands" },
+    } },
+})
+
+local PATCH_8_3_0_COSMETICS = BuildCosmeticEntries({
+    { detailKey = "goblinHeritage", subtype = "appearance", items = {
+        { 174077, "X-52 Insulated Headgear" },
+        { 173978, "X-52 Precision Goggles" },
+        { 173979, "X-52 Reinforced Legguards" },
+        { 173981, "X-52 Utility Belt" },
+        { 173975, "X-52 Fireproof Stompers" },
+        { 173974, "X-52 Bomber Jacket" },
+        { 173980, "X-52 Sapper's Shoulderguards" },
+        { 173982, "X-52 Minesweeper Wristwraps" },
+        { 173977, "X-52 Extreme Handgrips" },
+    } },
+    { detailKey = "worgenHeritage", subtype = "appearance", items = {
+        { 173999, "Greyguard Buckle" },
+        { 174000, "Greyguard Ceremonial Shoulderguards" },
+        { 174003, "Greyguard Dueling Gloves" },
+        { 174005, "Greyguard Formal Overcoat" },
+        { 174006, "Greyguard Formal Robe" },
+        { 174001, "Greyguard Formal Trousers" },
+        { 174004, "Greyguard Stompers" },
+        { 174002, "Greyguard Tophat" },
+        { 173998, "Greyguard Wristbands" },
+    } },
+    { detailKey = "mechagnomeHeritage", subtype = "appearance", items = {
+        { 173961, "Mechagnome Heritage Helmet" },
+        { 173963, "Mechagnome Heritage Shoulderguards" },
+        { 173972, "Mechagnome Heritage Cloak" },
+        { 173958, "Mechagnome Heritage Chestpiece" },
+        { 173964, "Mechagnome Heritage Buckle" },
+        { 173962, "Mechagnome Heritage Girdle" },
+    } },
+    { detailKey = "vulperaHeritage", subtype = "appearance", items = {
+        { 173968, "Vulpera Heritage Shawl" },
+        { 173971, "Vulpera Heritage Shoulderpads" },
+        { 174376, "Vulpera Heritage Rucksack" },
+        { 173966, "Vulpera Heritage Vest" },
+        { 174355, "Vulpera Heritage Wristraps" },
+        { 173967, "Vulpera Heritage Handgrips" },
+        { 174354, "Vulpera Heritage Footwraps" },
+        { 173970, "Vulpera Heritage Utility Belt" },
+        { 173969, "Vulpera Heritage Legguards" },
+    } },
+    { detailKey = "horrificVisionMasks", subtype = "appearance", items = {
+        { 174342, "Mask of the Burned Bridge" },
+        { 173955, "Mask of the Daredevil" },
+        { 173953, "Mask of the Dark Imagination" },
+        { 172952, "Mask of the Long Night" },
+        { 173524, "Mask of the Pained" },
+    } },
+    { detailKey = "horrificVisionCosmetics", subtype = "appearance", items = {
+        { 174361, "Black Dragonscale Backpack" },
+    } },
+    { detailKey = "horrificVisionIllusion", subtype = "illusion", items = {
+        { 174932, "Illusion: Void Edge", { illusionId = 62 } },
+    } },
+    { detailKey = "ebonBladeWeapons", subtype = "appearance", items = {
+        { 174485, "Burning Greatsword of the Ebon Blade" },
+        { 174662, "Burning Saber of the Ebon Blade" },
+        { 174486, "Crimson Greatsword of the Ebon Blade" },
+        { 174659, "Crimson Saber of the Ebon Blade" },
+        { 174488, "Freezing Greatsword of the Ebon Blade" },
+        { 174660, "Freezing Saber of the Ebon Blade" },
+        { 174487, "Unholy Greatsword of the Ebon Blade" },
+        { 174661, "Unholy Saber of the Ebon Blade" },
+    } },
+    { detailKey = "assaultTabards", subtype = "appearance", items = {
+        { 174068, "Mechagonian Tabard" },
+        { 174069, "Tabard of the Vulpera" },
+        { 174647, "Rajani Tabard" },
+        { 174648, "Uldum Accord Tabard" },
+    } },
+})
 
 local PATCH_9_1_COSMETICS = BuildCosmeticEntries({
     { detailKey = "covenantEnsembles", subtype = "ensemble", items = {
@@ -2569,7 +2796,6 @@ local PATCH_11_1_COSMETICS = BuildCosmeticEntries({
 
 local PATCH_11_1_5_COSMETICS = BuildCosmeticEntries({
     { detailKey = "torieVisions", subtype = "appearance", items = {
-        { 174361, "Black Dragonscale Backpack", { cost = "2,000 Displaced Corrupted Mementos" } },
         { 238255, "Bronze Dragonscale Backpack", { cost = "5,000 Displaced Corrupted Mementos" } },
         { 238666, "Ashjra'kamas, the Corrupted", { cost = "1,000 Displaced Corrupted Mementos" } },
         { 238667, "Ashjra'kamas, the Purified", { cost = "1,500 Displaced Corrupted Mementos" } },
@@ -2610,13 +2836,6 @@ local PATCH_11_1_5_COSMETICS = BuildCosmeticEntries({
         { 237006, "Vision Tormentor's Tentacles", { cost = "400 Displaced Corrupted Mementos" } },
         { 237007, "Cloak of the Insatiable Vision", { cost = "400 Displaced Corrupted Mementos" } },
         { 237008, "Vision Manipulator's Cloak", { cost = "400 Displaced Corrupted Mementos" } },
-    } },
-    { detailKey = "facelessMasks", subtype = "appearance", items = {
-        { 174342, "Mask of the Burned Bridge", { requirements = "With one mask active, complete the Valley of Wisdom objective" } },
-        { 172952, "Mask of the Long Night", { requirements = "Complete all five objectives in a single Horrific Vision" } },
-        { 173524, "Mask of the Pained", { requirements = "With one mask active, complete the Old Town objective" } },
-        { 173955, "Mask of the Daredevil", { requirements = "With one mask active, complete the Valley of Honor objective" } },
-        { 173953, "Mask of the Dark Imagination", { requirements = "With one mask active, complete the Mage Quarter objective" } },
     } },
     { detailKey = "flamesRadiance", subtype = "appearance", items = {
         { 238824, "Radiant Traveler's Backpack", { requirements = "Flame's Radiance Renown 7", cost = "3,250 Resonance Crystals" } },
@@ -2730,6 +2949,404 @@ for _, achievementId in ipairs({
 end
 
 PatchCatalog.patches = {
+    ["7.0.0"] = {
+        label = "Legion (Initial Release)",
+        wowheadPatchId = 70000,
+        sourceNotes = {
+            "This launch audit includes the 7.0.3 pre-expansion systems and the initial Legion collection set available through the opening raid tier.",
+            "The catalogue reconciles the final Legion client database with contemporary collection guides and All The Things source metadata. It retains permanent and historically trackable in-game rewards while excluding store, Collector's Edition, calendar-event, test, NPC-only, hidden-statistic, and ordinary equipment records.",
+            "Wardrobe rows are stable ensemble, arsenal, and tabard item IDs. Individual quest, dungeon, raid, and PvP gear appearances remain outside the catalogue.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-gb/news/20151961/legion-pre-expansion-patch-notes",
+            mounts = "https://www.wowhead.com/guide/legion-mounts",
+            pets = "https://www.wowhead.com/guide/battle-pets/legion/overview",
+        },
+        mounts = GeneratedPatchCollections["7.0.0"] and GeneratedPatchCollections["7.0.0"].mounts or {},
+        pets = {}, toys = {},
+        cosmetics = GeneratedPatchCollections["7.0.0"] and GeneratedPatchCollections["7.0.0"].cosmetics or {},
+        cosmeticDetailGroups = {
+            legacyPvPEnsembles = { sourceType = "PvP ensemble", source = "Legacy PvP ensemble vendors", acquisition = "Purchase the matching historical armor ensemble with Marks of Honor from its legacy PvP vendor.", tips = "Alliance and Horde wrappers can share a display name while retaining different item IDs; check armor and class restrictions before purchase." },
+            legacyPvPArsenals = { sourceType = "PvP arsenal", source = "Legacy PvP ensemble vendors", acquisition = "Purchase the matching historical weapon arsenal with Marks of Honor from its legacy PvP vendor.", tips = "Check the arsenal tooltip for class restrictions and already-known appearances before purchase." },
+            reputationTabards = { sourceType = "Reputation reward", source = "Broken Isles faction quartermasters", acquisition = "Raise the matching Broken Isles faction reputation and purchase its tabard from the quartermaster.", tips = "Complete zone quests and world quests for reputation, then verify the required standing before visiting the vendor." },
+        },
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["7.1.0"] = {
+        label = "Patch 7.1: Return to Karazhan",
+        wowheadPatchId = 70100,
+        sourceNotes = {
+            "This bucket follows live availability: Return to Karazhan, Trial of Valor, Insurrection, Falcosaur content, Raiding with Leashes IV, and Legion PvP Season 2 are assigned to 7.1.",
+            "Nighthold records that existed in the 7.1 client data are assigned to 7.1.5 below because the raid opened after that patch went live.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-gb/news/20335228/notas-do-patch-71-de-world-of-warcraft-retorno-a-karazhan",
+            overview = "https://www.wowhead.com/news/patch-7-1-survival-guide-return-to-karazhan-suramar-campaign-raiding-with-257057?page=5",
+            alcaz = "https://www.wowhead.com/news/patch-7-1-new-adventures-in-the-broken-isles-and-alcaz-island-spotlight-257053",
+        },
+        mounts = GeneratedPatchCollections["7.1.0"] and GeneratedPatchCollections["7.1.0"].mounts or {},
+        pets = {}, toys = {},
+        cosmetics = GeneratedPatchCollections["7.1.0"] and GeneratedPatchCollections["7.1.0"].cosmetics or {},
+        cosmeticDetailGroups = {
+            chosenDeadEnsembles = { sourceType = "Raid ensemble", source = "Trial of Valor", acquisition = "Obtain the matching Chosen Dead ensemble from Trial of Valor's difficulty-specific reward path.", tips = "The four armor types and multiple difficulty colors use separate wrapper IDs; verify the intended color before farming." },
+        },
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["7.1.5"] = {
+        label = "Patch 7.1.5",
+        wowheadPatchId = 70105,
+        sourceNotes = {
+            "This bucket includes Nighthold because the raid opened during the 7.1.5 period, plus the renewed Brawler's Guild season and Mists of Pandaria Timewalking collection rewards.",
+            "Ordinary raid and PvP gear is excluded; stable ensemble, arsenal, shirt, mount, pet, toy, and visible achievement records remain directly trackable.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/20457780/patch-7-1-5-now-live",
+            notes = "https://worldofwarcraft.blizzard.com/en-gb/news/20457825/patch-notes-world-of-warcraft-patch-7-1-5",
+            overview = "https://www.wowhead.com/ptr/guide/patch-7-1-5-overview-5774",
+        },
+        mounts = GeneratedPatchCollections["7.1.5"] and GeneratedPatchCollections["7.1.5"].mounts or {},
+        pets = {}, toys = {},
+        cosmetics = GeneratedPatchCollections["7.1.5"] and GeneratedPatchCollections["7.1.5"].cosmetics or {},
+        cosmeticDetailGroups = {
+            legacyPvPEnsembles = { sourceType = "PvP ensemble", source = "Legacy PvP ensemble vendors", acquisition = "Purchase the matching historical armor ensemble with Marks of Honor.", tips = "Many rows have faction variants with the same display name but distinct wrapper IDs." },
+            legacyPvPArsenals = { sourceType = "PvP arsenal", source = "Legacy PvP ensemble vendors", acquisition = "Purchase the matching historical weapon arsenal with Marks of Honor.", tips = "Check class restrictions and already-known appearances before purchase." },
+            brawlerShirts = { sourceType = "Brawler's Guild cosmetic", source = "Brawler's Guild", acquisition = "Defeat the associated Brawler's Guild opponent or buy the unlocked shirt from the guild vendor.", tips = "Brawler's Guild seasons rotate and may be inactive; retained here for historical collection tracking.", waypoints = { "/way #85 70.6 31.6 Brawl'gar Arena entrance" } },
+        },
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["7.2.0"] = {
+        label = "Patch 7.2: The Tomb of Sargeras",
+        wowheadPatchId = 70200,
+        sourceNotes = {
+            "This audit combines the historical 7.3.5 client database with contemporary Patch 7.2 collection guides and the official patch notes.",
+            "The catalogue keeps permanent and historically trackable in-game collectibles and visible achievements. Store, Collector's Edition, calendar-event, test, NPC-only, hidden-statistic, and unused records are excluded.",
+            "The 7.2 wardrobe additions include actual ensemble and arsenal wrapper items. Ordinary raid, dungeon, quest, and PvP equipment is outside this collection catalogue; artifact appearances without a stable item ID are represented by their associated achievements instead.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/20629899",
+            overview = "https://www.wowhead.com/guide/patch-7-2-overview-5775",
+            brokenShore = "https://www.wowhead.com/news/everything-to-do-on-the-broken-shore-in-patch-7-2-260962",
+            classMounts = "https://www.wowhead.com/news/power-ascended-artifact-rewards-in-7-2-class-mounts-pets-toys-260678",
+            pets = "https://www.wowhead.com/guide/pet-battle-dungeon-and-7-2-pets-4993",
+        },
+        mounts = GeneratedPatchCollections["7.2.0"] and GeneratedPatchCollections["7.2.0"].mounts or {},
+        pets = {}, toys = {},
+        cosmetics = GeneratedPatchCollections["7.2.0"] and GeneratedPatchCollections["7.2.0"].cosmetics or {},
+        cosmeticDetailGroups = {
+            classArsenals = { sourceType = "Class campaign arsenal", source = "Broken Shore class campaign", acquisition = "Complete the matching class campaign requirements and obtain the arsenal on the eligible class.", tips = "These arsenals are class restricted. Finish the Order Hall campaign and Broken Shore progression before checking the class source.", waypoints = { "/way #646 44.5 63.2 Deliverance Point" } },
+            legacyPvPArsenals = { sourceType = "PvP arsenal", source = "Legacy PvP ensemble vendors", acquisition = "Purchase the matching historical weapon arsenal with Marks of Honor from its legacy PvP vendor.", tips = "Check the arsenal tooltip before purchase; class restrictions and already-known appearances can change its value." },
+            pvpEnsembles = { sourceType = "PvP ensemble", source = "Legacy PvP ensemble vendors", acquisition = "Purchase the matching historical armor ensemble with Marks of Honor from its legacy PvP vendor.", tips = "Many rows have Alliance and Horde item IDs with the same display name. Keep both IDs because the collection API tracks the wrapper items separately." },
+            legionfallTabard = { sourceType = "Reputation reward", source = "Armies of Legionfall", acquisition = "Reach Exalted with the Armies of Legionfall and purchase the Legionfall Tabard from the faction quartermaster.", tips = "Prioritize Broken Shore world quests, Legion Assaults, and reputation tokens.", waypoints = { "/way #646 44.5 63.2 Deliverance Point" } },
+            pvpTabards = { sourceType = "PvP season reward", source = "Legion rated PvP seasons", acquisition = "Earn the tabard during its rated PvP season; retained here for historical collection tracking.", tips = "Seasonal elite rewards may no longer be obtainable on a new character." },
+        },
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["7.2.5"] = {
+        label = "Patch 7.2.5",
+        wowheadPatchId = 70205,
+        sourceNotes = {
+            "This audit assigns content by live availability: Tomb of Sargeras opened during 7.2.5, even where its records existed in the earlier client data.",
+            "Permanent and historically trackable collectibles and visible achievements are retained. Calendar events, store items, promotions, test records, and ordinary stat gear are excluded.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/20812012/world-of-warcraft-725-patch-notes",
+            overview = "https://www.wowhead.com/guide/patch-7-2-5-overview-5771",
+            collections = "https://www.wowhead.com/news/patch-7-2-5-collectors-guide-pets-toys-titles-and-more-265853",
+        },
+        mounts = GeneratedPatchCollections["7.2.5"] and GeneratedPatchCollections["7.2.5"].mounts or {},
+        pets = {}, toys = {},
+        cosmetics = GeneratedPatchCollections["7.2.5"] and GeneratedPatchCollections["7.2.5"].cosmetics or {},
+        cosmeticDetailGroups = {
+            chromieEnsembles = { sourceType = "Scenario ensemble", source = "The Deaths of Chromie", acquisition = "Advance Chromie's scenario research and open its time-lost rewards for the four armor-type ensembles.", tips = "Raise Chromie's reputation and research scenario talents first; faster clears create more opportunities to open reward containers.", waypoints = { "/way #115 60.0 49.0 Wyrmrest Temple / Chromie" } },
+            pvpTabards = { sourceType = "PvP season reward", source = "Legion rated PvP Season 4", acquisition = "Earn the Ferocious Gladiator tabard during its rated PvP season; retained for historical tracking.", tips = "This elite seasonal reward may no longer be obtainable." },
+        },
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["7.3.0"] = {
+        label = "Patch 7.3: Shadows of Argus",
+        wowheadPatchId = 70300,
+        sourceNotes = {
+            "The Argus catalogue is reconciled against the official Shadows of Argus notes, contemporary collection guides, All The Things source data, and the final Legion client database.",
+            "Antorus rewards are placed in 7.3.5 below because the requested patch set has no 7.3.2 bucket and 7.3.5 is the first requested bucket after the raid became available.",
+            "Ordinary equipment appearances are excluded. Ensemble, arsenal, tabard, mount, pet, toy, and visible achievement records remain directly trackable.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/20947822/world-of-warcraft-73-patch-notes",
+            overview = "https://www.wowhead.com/guide/patch-7-3-shadows-of-argus-content-hub-5304",
+            rares = "https://www.wowhead.com/guide/argus-rares-mounts-pets-toys",
+            pets = "https://www.wowhead.com/news/battle-pet-updates-in-patch-7-3-40-new-pets-family-fighter-achievement-battle-270387",
+        },
+        mounts = GeneratedPatchCollections["7.3.0"] and GeneratedPatchCollections["7.3.0"].mounts or {},
+        pets = {}, toys = {},
+        cosmetics = GeneratedPatchCollections["7.3.0"] and GeneratedPatchCollections["7.3.0"].cosmetics or {},
+        cosmeticDetailGroups = {
+            pvpEnsembles = { sourceType = "PvP ensemble", source = "Legion Season 5 legacy PvP vendors", acquisition = "Purchase the matching Fierce Gladiator armor ensemble with Marks of Honor.", tips = "Alliance and Horde variants can share a name while retaining different item IDs." },
+            triumvirateEnsembles = { sourceType = "Dungeon ensemble", source = "Seat of the Triumvirate", acquisition = "Collect the matching armor-type ensemble associated with Seat of the Triumvirate rewards.", tips = "Use the dungeon entrance in Eredath and verify the ensemble's armor restriction before farming.", waypoints = { "/way #882 22.3 56.4 Seat of the Triumvirate entrance" } },
+            lightforgedArsenal = { sourceType = "Achievement arsenal", source = "Commander of Argus", acquisition = "Complete Commander of Argus to unlock the Lightforged weapon arsenal.", tips = "Track the Argus rare checklist by subzone and revisit the rotating rares after daily resets.", waypoints = { "/way #831 43.5 25.0 Vindicaar collection hub" } },
+            argusTabards = { sourceType = "Reputation reward", source = "Army of the Light and Argussian Reach quartermasters", acquisition = "Raise the matching Argus faction reputation and purchase its tabard from the quartermaster.", tips = "World quests, emissaries, and account-bound reputation tokens shorten the grind.", waypoints = { "/way #831 43.5 25.0 Vindicaar collection hub" } },
+            pvpTabards = { sourceType = "PvP season reward", source = "Legion rated PvP Season 5", acquisition = "Earn the Fierce Gladiator tabard during its rated PvP season; retained for historical tracking.", tips = "This elite seasonal reward may no longer be obtainable." },
+        },
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["7.3.5"] = {
+        label = "Patch 7.3.5",
+        wowheadPatchId = 70305,
+        sourceNotes = {
+            "This requested bucket includes Antorus collection records introduced in 7.3.2 and the four allied races made available during the 7.3.5 period.",
+            "The catalogue retains historical limited rewards but excludes store, calendar-event, test, hidden-statistic, NPC-only, and ordinary equipment records.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-gb/news/21365423/patch-7-3-5-now-live",
+            overview = "https://www.wowhead.com/guide/patch-7-3-5-content-hub-5751",
+            legionCollections = "https://worldofwarcraft.blizzard.com/en-us/news/23429409/legion-mounts-pets-and-more",
+        },
+        mounts = GeneratedPatchCollections["7.3.5"] and GeneratedPatchCollections["7.3.5"].mounts or {},
+        pets = {}, toys = {},
+        cosmetics = GeneratedPatchCollections["7.3.5"] and GeneratedPatchCollections["7.3.5"].cosmetics or {},
+        cosmeticDetailGroups = {
+            pvpTabards = { sourceType = "PvP season reward", source = "Legion rated PvP Seasons 6 and 7", acquisition = "Earn the matching Dominant or Demonic Gladiator tabard during its season; retained for historical tracking.", tips = "These elite seasonal rewards may no longer be obtainable." },
+            masterTrainerTabard = { sourceType = "Pet-battle achievement", source = "Family Brawler", acquisition = "Complete the Family Brawler meta-achievement to receive the Master Trainer's Tabard.", tips = "Build one reliable all-family team at a time and save successful lineups for repeated Legion master-tamer fights." },
+            alliedRaceTabards = { sourceType = "Allied race", source = "Highmountain Tauren, Lightforged Draenei, Nightborne, and Void Elf starting experiences", acquisition = "Create the corresponding allied-race character after unlocking the race; its tabard is awarded during the starting experience.", tips = "The four tabards span both factions, so more than one character is required.", waypoints = { "/way #84 52.7 13.1 Stormwind Embassy", "/way #85 37.8 81.0 Orgrimmar Embassy" } },
+            highmountainHeritage = { sourceType = "Heritage armor", source = "Highmountain Tauren heritage quest", acquisition = "Complete the Highmountain Tauren heritage quest on an eligible character to unlock all eight appearances.", tips = "Complete the requirements without race-changing the character, then check the Orgrimmar Embassy.", waypoints = { "/way #85 37.8 81.0 Orgrimmar Embassy" } },
+            lightforgedHeritage = { sourceType = "Heritage armor", source = "Lightforged Draenei heritage quest", acquisition = "Complete the Lightforged Draenei heritage quest on an eligible character to unlock all eight appearances.", tips = "Complete the requirements without race-changing the character, then check the Stormwind Embassy.", waypoints = { "/way #84 52.7 13.1 Stormwind Embassy" } },
+            nightborneHeritage = { sourceType = "Heritage armor", source = "Nightborne heritage quest", acquisition = "Complete the Nightborne heritage quest on an eligible character to unlock all eight appearances.", tips = "Complete the requirements without race-changing the character, then check the Orgrimmar Embassy.", waypoints = { "/way #85 37.8 81.0 Orgrimmar Embassy" } },
+            voidElfHeritage = { sourceType = "Heritage armor", source = "Void Elf heritage quest", acquisition = "Complete the Void Elf heritage quest on an eligible character to unlock all nine appearances.", tips = "Complete the requirements without race-changing the character, then check the Stormwind Embassy.", waypoints = { "/way #84 52.7 13.1 Stormwind Embassy", "/way #971 28.5 27.0 Telogrus Rift" } },
+        },
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["8.0.0"] = {
+        label = "Patch 8.0: Battle for Azeroth",
+        wowheadPatchId = 80001,
+        sourceNotes = {
+            "The launch catalogue is keyed as 8.0.0 in TODO Planner; its record audit compares the final Legion 7.3.5 snapshot with the Battle for Azeroth 8.0.1 launch client.",
+            "Permanent or historically trackable in-game mounts, pets, toys, Cosmetics, and visible achievements are retained. Shop, Collector's Edition, promotion, holiday, hidden-statistic, NPC-only pet, test, and unused records are excluded.",
+            "Cosmetics covers the launch Dark Iron Dwarf and Mag'har Orc heritage sets and allied-race tabards. Ordinary quest, dungeon, raid, island, warfront, and PvP stat gear is outside this collection catalogue.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-gb/news/21959894/battle-for-azeroth-patch-notes",
+            overview = "https://www.wowhead.com/guide/mount-collecting-battle-for-azeroth",
+            pets = "https://www.wowhead.com/guide/collectable-pets-and-pet-items-in-battle-for-azeroth",
+            collections = "https://www.wowhead.com/news/collection-updates-coming-in-the-8-0-battle-for-azeroth-pre-expansion-patch-285515",
+        },
+        mounts = GeneratedPatchCollections["8.0.0"] and GeneratedPatchCollections["8.0.0"].mounts or {},
+        pets = {},
+        toys = {},
+        cosmetics = PatchCatalog.PATCH_8_0_0_COSMETICS,
+        cosmeticDetailGroups = {
+            darkIronHeritage = {
+                sourceType = "Heritage Armor",
+                source = "Dark Iron Dwarf heritage questline",
+                acquisition = "Complete Heritage o' the Dark Iron on an eligible Dark Iron Dwarf to unlock all eight appearances.",
+                tips = "Check Moira Thaurissan at the Stormwind Embassy when the character meets the current heritage-quest requirements.",
+                waypoints = { "/way #84 52.7 13.1 Moira Thaurissan / Stormwind Embassy" },
+            },
+            magharHeritage = {
+                sourceType = "Heritage Armor",
+                source = "Mag'har Orc heritage questline",
+                acquisition = "Complete Heritage of the Mag'har on an eligible Mag'har Orc to unlock the Blackrock, Frostwolf, and Warsong variants.",
+                tips = "The reward grants three color variants at once; check the Orgrimmar Embassy when eligible.",
+                waypoints = { "/way #85 37.8 81.0 Orgrimmar Embassy" },
+            },
+            alliedRaceTabards = {
+                sourceType = "Allied Race",
+                source = "Dark Iron Dwarf and Mag'har Orc recruitment rewards",
+                acquisition = "Create the corresponding allied-race character after unlocking that race; its racial tabard is provided during the starting experience.",
+                tips = "Keep both faction variants in the tracker: one character cannot obtain both tabards.",
+                waypoints = { "/way #84 52.7 13.1 Stormwind Embassy", "/way #85 37.8 81.0 Orgrimmar Embassy" },
+            },
+        },
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["8.1.0"] = {
+        label = "Patch 8.1: Tides of Vengeance",
+        wowheadPatchId = 80100,
+        sourceNotes = {
+            "This audit compares the 8.0.1 and 8.1.0 client snapshots and reconciles records with contemporary Tides of Vengeance collection guides.",
+            "The catalogue retains permanent and historically trackable in-game collectibles and visible achievements. Shop, promotion, holiday, hidden-statistic, NPC-only pet, test, and unused records are excluded.",
+            "Cosmetics tracks the Blood Elf and Dwarf heritage sets. Ordinary raid, dungeon, warfront, island, and PvP stat gear is outside this collection catalogue.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/22926354/tides-of-vengeance-content-update-notes",
+            overview = "https://www.wowhead.com/guide/tides-of-vengeance-bfa-patch-8-1-overview",
+            mounts = "https://www.wowhead.com/news/the-mounts-of-tides-of-vengeance-mount-resources-updated-for-patch-8-1-289065",
+            pets = "https://www.wowhead.com/news/the-pet-smugglers-and-battle-pets-of-tides-of-vengeance-289323",
+        },
+        mounts = GeneratedPatchCollections["8.1.0"] and GeneratedPatchCollections["8.1.0"].mounts or {},
+        pets = {},
+        toys = {},
+        cosmetics = PatchCatalog.PATCH_8_1_0_COSMETICS,
+        cosmeticDetailGroups = {
+            bloodElfHeritage = {
+                sourceType = "Heritage Armor",
+                source = "Blood Elf heritage questline ending with The Pride of the Sin'dorei",
+                acquisition = "Complete the Blood Elf heritage questline on an eligible Blood Elf to unlock all ten Sin'dorei appearances.",
+                tips = "Begin at the Orgrimmar Embassy once the character meets the current heritage-quest requirements.",
+                waypoints = { "/way #85 39.2 79.0 Orgrimmar Embassy" },
+            },
+            dwarfHeritage = {
+                sourceType = "Heritage Armor",
+                source = "Dwarf heritage questline ending with Heritage o' the Bronzebeard",
+                acquisition = "Complete the Dwarf heritage questline on an eligible Dwarf to unlock all eight Bronzebeard appearances.",
+                tips = "Begin at the Stormwind Embassy, then follow the quest route through Ironforge and Dun Morogh.",
+                waypoints = { "/way #84 54.6 18.0 Stormwind Embassy" },
+            },
+        },
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["8.1.5"] = {
+        label = "Patch 8.1.5: Tides of Vengeance",
+        wowheadPatchId = 80105,
+        sourceNotes = {
+            "This audit compares the late 8.1 and 8.1.5 client snapshots, then assigns dormant records by when their content actually became obtainable.",
+            "The catalogue retains permanent and historically trackable in-game collectibles and visible achievements. Shop, promotion, holiday, Darkmoon Faire, hidden-statistic, NPC-only pet, test, and unused records are excluded.",
+            "Cosmetics tracks the Kul Tiran and Zandalari heritage sets, allied-race tabards, and the historical Brawler's Guild Season 4 faction ensembles; ordinary raid and dungeon stat gear is outside scope.",
+        },
+        sourceUrls = {
+            notes = "https://www.wowhead.com/news/official-patch-notes-for-tides-of-vengeance-patch-8-1-5-290635",
+            overview = "https://www.wowhead.com/news/patch-8-1-5-tides-of-vengeance-survival-guide-giveaway-290632",
+            collections = "https://www.wowhead.com/classic/news/new-collectible-mounts-pets-and-toys-in-patch-8-1-5-290618",
+            transmog = "https://www.wowhead.com/news/brawlers-guild-transmog-armor-in-patch-8-1-5-289622",
+        },
+        mounts = GeneratedPatchCollections["8.1.5"] and GeneratedPatchCollections["8.1.5"].mounts or {},
+        pets = {},
+        toys = {},
+        cosmetics = PatchCatalog.PATCH_8_1_5_COSMETICS,
+        cosmeticDetailGroups = {
+            kulTiranHeritage = {
+                sourceType = "Heritage Armor",
+                source = "Kul Tiran heritage questline",
+                acquisition = "Complete Heritage of the Kul Tirans on an eligible Kul Tiran to unlock all eight appearances.",
+                tips = "Check Katherine Proudmoore in Boralus when the character meets the current heritage-quest requirements.",
+                waypoints = { "/way #1161 67.8 21.8 Katherine Proudmoore / Boralus" },
+            },
+            zandalariHeritage = {
+                sourceType = "Heritage Armor",
+                source = "Zandalari Troll heritage questline",
+                acquisition = "Complete Heritage of the Zandalari on an eligible Zandalari Troll to unlock all eight appearances.",
+                tips = "Check Queen Talanji in Dazar'alor when the character meets the current heritage-quest requirements.",
+                waypoints = { "/way #1165 42.2 9.4 Queen Talanji / Dazar'alor" },
+            },
+            alliedRaceTabards = {
+                sourceType = "Allied Race",
+                source = "Kul Tiran and Zandalari Troll recruitment rewards",
+                acquisition = "Create the corresponding allied-race character after unlocking that race; its racial tabard is provided during the starting experience.",
+                tips = "Keep both faction variants in the tracker: one character cannot obtain both tabards.",
+                waypoints = { "/way #1161 67.8 21.8 Boralus", "/way #1165 42.2 9.4 Dazar'alor" },
+            },
+            brawlersGarb = {
+                sourceType = "Brawler's Guild",
+                source = "Brawler's Guild Season 4 faction quartermasters",
+                acquisition = "Historically purchased after progressing through Brawler's Guild Season 4; each faction used its own ensemble item.",
+                tips = "This is retained as a historical patch collectible. Season 4 ended with the Shadowlands pre-patch; verify the current reintroduction source before planning a live acquisition route.",
+                waypoints = { "/way #84 68.5 31.6 Bizmo's Brawlpub entrance", "/way #85 57.4 14.6 Brawl'gar Arena entrance" },
+            },
+        },
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["8.2"] = {
+        label = "Patch 8.2: Rise of Azshara",
+        wowheadPatchId = 80200,
+        sourceNotes = {
+            "This audited backfill compares the final 8.1.5 and 8.2.0 client snapshots, then checks collectible records against contemporary Rise of Azshara guides and current collection data.",
+            "The audit retains permanent and historically trackable in-game mounts, pets, toys, Cosmetics, and visible achievements. Shop, promotion, anniversary, holiday, hidden-statistic, NPC-only pet, and unused records are excluded.",
+            "Cosmetics tracks the eighteen Gnome and Tauren heritage wardrobe entries. Ordinary Benthic, raid, dungeon, and PvP stat gear is not duplicated.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/23014436/rise-of-azshara-content-update-notes",
+            overview = "https://www.wowhead.com/guide/patch-8-2-rise-of-azshara-bfa-wow-overview",
+            collections = "https://www.wowhead.com/news/new-mounts-pets-and-toys-in-rise-of-azshara-292173",
+            nazjatarPets = "https://www.wowhead.com/guide/nazjatar-battle-pets",
+            stratholmePets = "https://www.wowhead.com/guide/stratholme-pet-battle-challenge-dungeon",
+            transmog = "https://www.wowhead.com/news/transmog-updates-and-nazjatar-armor-sets-in-rise-of-azshara-292192",
+        },
+        mounts = GeneratedPatchCollections["8.2"] and GeneratedPatchCollections["8.2"].mounts or {},
+        pets = {},
+        toys = {},
+        cosmetics = PATCH_8_2_COSMETICS,
+        cosmeticDetailGroups = {
+            gnomeHeritage = {
+                sourceType = "Heritage Armor",
+                source = "Gnome heritage questline ending with G.E.A.R. Up",
+                acquisition = "Complete the Gnome heritage questline beginning with Shifting Gears; the finale unlocks all nine G.E.A.R. Commander appearances.",
+                requirements = "A level-eligible Gnome; the original Exalted Gnomeregan requirement was removed in patch 10.1.",
+                tips = "Start with Ace Pilot Stormcog at the Stormwind Embassy. The route continues through New Tinkertown, Borean Tundra, and the Storm Peaks.",
+                waypoints = { "/way #84 54.6 18.4 Ace Pilot Stormcog / Shifting Gears" },
+            },
+            taurenHeritage = {
+                sourceType = "Heritage Armor",
+                source = "Tauren heritage questline ending with Thank Your Guide",
+                acquisition = "Complete the Tauren heritage questline beginning with When Spirits Whisper; the finale unlocks all nine Ancestral Chieftain appearances.",
+                requirements = "A level-eligible Tauren; the original Exalted Thunder Bluff requirement was removed in patch 10.1.",
+                tips = "Begin at the Orgrimmar Embassy, then follow Baine and the Spiritwalkers through Thunder Bluff and Stonetalon Mountains.",
+                waypoints = { "/way #85 39.1 79.0 Spiritwalker Isahi / When Spirits Whisper" },
+            },
+        },
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["8.2.5"] = {
+        label = "Patch 8.2.5: Battle for Azeroth Content Update",
+        wowheadPatchId = 80205,
+        sourceNotes = {
+            "Patch 8.2.5 added the permanent Honeyback Hive collection, the Fourth War finale, and the Jenafur client record later solved by the Secret Finding community.",
+            "The time-limited anniversary battleground mounts, toys, and achievements, Recruit-a-Friend mounts, Winter Veil toys, promotions, and hidden records are excluded under the catalogue's standing policy.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/23156365/the-next-battle-for-azeroth-content-update-is-now-live",
+            honeyback = "https://www.wowhead.com/guide/honeyback-hive-reputation-bee-mount-rewards",
+            jenafur = "https://warcraft-secrets.com/guides/jenafur",
+        },
+        mounts = GeneratedPatchCollections["8.2.5"] and GeneratedPatchCollections["8.2.5"].mounts or {},
+        pets = {},
+        toys = {},
+        cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["8.3.0"] = {
+        label = "Patch 8.3: Visions of N'Zoth",
+        wowheadPatchId = 80300,
+        sourceNotes = {
+            "This audited backfill compares the final 8.2.5 and 8.3.0 client snapshots and cross-checks the result against Blizzard's notes, Visions, Assault, pet, and transmog guides.",
+            "The audit retains permanent and historically trackable in-game collections while excluding shop, promotion, BlizzCon, hidden-statistic, NPC-only pet, and unused records.",
+            "Cosmetics covers heritage wardrobe entries, the five original Faceless Mask appearances, Black Dragonscale Backpack, Void Edge, Death Knight starter swords, and the four patch tabards. Ordinary Black Empire and Ny'alotha stat gear is excluded.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/23227147/visions-of-n-zoth-content-update-notes",
+            overview = "https://www.wowhead.com/guide/visions-of-nzoth-content-overview-bfa",
+            pets = "https://www.wowhead.com/guide/battle-pets-visions-of-nzoth",
+            assaults = "https://www.wowhead.com/guide/visions-of-nzoth-assaults",
+            visions = "https://www.wowhead.com/guide/horrific-visions-of-nzoth-overview-objectives-sanity-masks",
+            transmog = "https://www.wowhead.com/news/transmog-and-character-customization-updates-in-patch-8-3-visions-of-nzoth-305615",
+        },
+        mounts = GeneratedPatchCollections["8.3.0"] and GeneratedPatchCollections["8.3.0"].mounts or {},
+        pets = {},
+        toys = {},
+        cosmetics = PATCH_8_3_0_COSMETICS,
+        cosmeticDetailGroups = {
+            goblinHeritage = { sourceType = "Heritage Armor", source = "Goblin heritage questline", acquisition = "Complete the Goblin heritage story from Old Friends, New Opportunities through A Fitting Reward to unlock all nine X-52 appearances.", requirements = "A level-eligible Goblin; the original Exalted Bilgewater Cartel requirement was removed in patch 10.1.", tips = "Start at the Orgrimmar Embassy and expect travel through the Cape of Stranglethorn and Kezan scenario maps.", waypoints = { "/way #85 38.0 80.2 Orgrimmar Embassy / Goblin heritage start" } },
+            worgenHeritage = { sourceType = "Heritage Armor", source = "Worgen heritage questline", acquisition = "Complete The Shadow of Gilneas through The New Guard to unlock the nine Greyguard appearances.", requirements = "A level-eligible Worgen; the original Exalted Gilneas requirement was removed in patch 10.1.", tips = "Start at the Stormwind Embassy; the story moves to Duskwood and a Gilneas scenario.", waypoints = { "/way #84 54.6 18.4 Stormwind Embassy / Worgen heritage start" } },
+            mechagnomeHeritage = { sourceType = "Allied Race Heritage Armor", source = "Heritage of the Mechagnome", acquisition = "Level a Mechagnome through the heritage requirement and complete Heritage of the Mechagnome to unlock the six visible armor entries.", requirements = "Mechagnome Allied Race unlocked; leveling restrictions apply to the heritage achievement.", tips = "Prince Erazmin offers the heritage quest in Rustbolt after the character meets the level condition.", waypoints = { "/way #1462 73.0 33.4 Prince Erazmin" } },
+            vulperaHeritage = { sourceType = "Allied Race Heritage Armor", source = "Heritage of the Vulpera", acquisition = "Level a Vulpera through the heritage requirement and complete Heritage of the Vulpera to unlock all nine appearances.", requirements = "Vulpera Allied Race unlocked; leveling restrictions apply to the heritage achievement.", tips = "Hagashi in the Vulpera Hideaway starts the final heritage hand-in after the character meets the level condition.", waypoints = { "/way #864 56.8 49.8 Hagashi / Heritage of the Vulpera" } },
+            horrificVisionMasks = { sourceType = "Horrific Vision Cosmetic", source = "Faceless Mask full-clear rewards", acquisition = "Complete the required Stormwind or Orgrimmar Horrific Vision objective with at least one Faceless Mask active, then loot the matching cosmetic from the end chests.", tips = "Each appearance is tied to its own objective: Old Town, Mage Quarter, Valley of Wisdom, Valley of Honor, or a full clear. Activate the relevant gameplay mask before entering.", waypoints = { "/way #1473 48.7 64.7 Chamber of Heart / Horrific Vision gateway" } },
+            horrificVisionCosmetics = { sourceType = "Horrific Vision Vendor", source = "Wrathion, Chamber of Heart", acquisition = "Unlock We Have the Technology in the Titanic Research Archive, then buy the Black Dragonscale Backpack from Wrathion for 5,000 Corrupted Mementos.", cost = "5,000 Corrupted Mementos", tips = "The original cost was reduced from its early PTR/listing value. The same appearance is also available from Revisited Horrific Visions, but this row preserves its 8.3 origin.", waypoints = { "/way #1473 48.7 64.7 Wrathion / Chamber of Heart" } },
+            horrificVisionIllusion = { sourceType = "Horrific Vision Drop", source = "Valeera's Corrupted Chest, Vision of Stormwind", acquisition = "Complete the Old Town objective in the Horrific Vision of Stormwind and loot Valeera's end chest for a chance at Illusion: Void Edge.", tips = "You do not need to defeat Alleria for the Old Town chest: after killing Shaw, deliberately ending the run sends you to the reward room. Masks are not required, and repeat runs are possible while you have vessels.", waypoints = { "/way #1473 48.7 64.7 Chamber of Heart / Stormwind Vision gateway" } },
+            ebonBladeWeapons = { sourceType = "Death Knight Vendor", source = "Quartermaster Ozorg, Acherus", acquisition = "After completing Death's Power Grows on an Allied Race or Pandaren Death Knight, buy the eight one- and two-handed Ebon Blade swords from Quartermaster Ozorg.", requirements = "Death Knight; complete the Allied Race or Pandaren Death Knight introduction.", tips = "The quest offers one weapon, but Ozorg sells the remaining color and weapon-size variants for trivial silver.", waypoints = { "/way #648 49.6 33.0 Quartermaster Ozorg / Acherus" } },
+            assaultTabards = { sourceType = "Faction and Allied Race Rewards", source = "Vulpera, Mechagnome, Rajani, and Uldum Accord", acquisition = "Create the unlocked Allied Race characters for their tabards, and reach Exalted with the Rajani and Uldum Accord to buy their faction tabards.", tips = "The Allied Race tabards arrive on a newly created character; the two assault tabards are conventional quartermaster purchases.", waypoints = { "/way #1530 84.0 30.8 Zhang Ku / Rajani", "/way #1527 55.1 32.9 Provisioner Qorra / Uldum Accord" } },
+        },
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["8.3.7"] = {
+        label = "Patch 8.3.7: Battle for Azeroth Client Update",
+        wowheadPatchId = 80307,
+        sourceNotes = {
+            "The final 8.3.7 snapshot adds no eligible permanent in-game collection record in the five supported categories.",
+            "The Steamscale Incinerator shop mount plus hidden account-wide Essence trackers and raid statistics are intentionally excluded.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_8.3.7",
+        },
+        mounts = {}, pets = {}, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
     ["9.1"] = {
         label = "Patch 9.1: Chains of Domination",
         wowheadPatchId = 90100,
@@ -5006,7 +5623,7 @@ PatchCatalog.patches = {
         sourceNotes = {
             "Mounts, battle pets, toys, Cosmetics, and achievements are audited against client snapshots and source metadata.",
             "Only learn-on-use appearance items and arsenals are included. Nightfall and Arathi item-level gear is ordinary equippable equipment and is excluded.",
-            "Trading Post rewards are excluded. The original five Faceless Mask appearances are included because Revisited Horrific Visions made their cosmetic tokens collectible again.",
+            "Trading Post rewards are excluded. Returning Black Dragonscale Backpack and Faceless Mask appearances stay catalogued under their original patch 8.3 rows; this patch keeps only genuinely new cosmetic IDs.",
             "Event records retain their historical windows and recurrence notes so unavailable rewards are not presented as permanently active.",
         },
         sourceUrls = {
@@ -5419,10 +6036,6 @@ PatchCatalog.patches = {
             { itemId = 241387, name = "Ensemble: Heritage of the Lightforged - Hologemmed", subtype = "ensemble", detailKey = "remixExclusive" },
             { itemId = 241386, name = "Ensemble: Heritage of the Lightforged - Crimson Vengeance", subtype = "ensemble", detailKey = "remixExclusive" },
             { itemId = 241385, name = "Ensemble: Heritage of the Shal'dorei - Vineyard Red", subtype = "ensemble", detailKey = "remixExclusive" },
-            { itemId = 139170, name = "Ensemble: Fel-Infused Cloth Armor", subtype = "ensemble", detailKey = "remixWorld" },
-            { itemId = 139169, name = "Ensemble: Felshroud Leather Armor", subtype = "ensemble", detailKey = "remixWorld" },
-            { itemId = 139168, name = "Ensemble: Fel-Chain Mail Armor", subtype = "ensemble", detailKey = "remixWorld" },
-            { itemId = 139167, name = "Ensemble: Felforged Plate Armor", subtype = "ensemble", detailKey = "remixWorld" },
             { itemId = 241440, name = "Ensemble: Vestments of the Manasinged", subtype = "ensemble", detailKey = "remixWorld" },
             { itemId = 241438, name = "Ensemble: Moonfall Robes", subtype = "ensemble", detailKey = "remixWorld" },
             { itemId = 241437, name = "Ensemble: Battlegear of the Dreadhide Stalker", subtype = "ensemble", detailKey = "remixWorld" },
@@ -6561,11 +7174,29 @@ PatchCatalog.patches = {
     },
 }
 
+PatchCatalog.PATCH_8_0_0_COSMETICS = nil
+PatchCatalog.PATCH_8_1_0_COSMETICS = nil
+PatchCatalog.PATCH_8_1_5_COSMETICS = nil
+
 -- Use the client-snapshot audit for the collection types that were previously
 -- left empty. The 10.0.5 and 10.0.7 rows retain their earlier hand-audited
 -- datasets; the 10.0 launch rows are refreshed because that audit found real
 -- omissions there as well.
 local GENERATED_COLLECTION_PATCHES = {
+    ["7.0.0"] = true,
+    ["7.1.0"] = true,
+    ["7.1.5"] = true,
+    ["7.2.0"] = true,
+    ["7.2.5"] = true,
+    ["7.3.0"] = true,
+    ["7.3.5"] = true,
+    ["8.0.0"] = true,
+    ["8.1.0"] = true,
+    ["8.1.5"] = true,
+    ["8.2"] = true,
+    ["8.2.5"] = true,
+    ["8.3.0"] = true,
+    ["8.3.7"] = true,
     ["10.0"] = true,
     ["10.1"] = true,
     ["10.1.5"] = true,
@@ -8123,6 +8754,10 @@ PatchCatalog.mountDetails["10.0.7"] = {
 -- keeps every row usable by the Explorer while individual route research is
 -- expanded separately.
 local AUDITED_MOUNT_PATCHES = {
+    "7.0.0", "7.1.0", "7.1.5",
+    "7.2.0", "7.2.5", "7.3.0", "7.3.5",
+    "8.0.0", "8.1.0", "8.1.5",
+    "8.2", "8.2.5", "8.3.0", "8.3.7",
     "10.1", "10.1.5", "10.1.7", "10.2", "10.2.5", "10.2.6", "10.2.7",
     "11.0", "11.0.5", "11.0.7", "11.1", "11.1.5", "11.1.7", "11.2", "11.2.5", "11.2.7",
 }
@@ -8163,6 +8798,10 @@ for _, patchKey in ipairs(AUDITED_MOUNT_PATCHES) do
             source = entry.source or patch.label,
             acquisition = entry.acquisition or "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
             availability = entry.availability or LIMITED_MOUNT_PATCHES[patchKey] or (LIMITED_MOUNT_SPELLS[entry.spellId] and "Limited-time reward; retained in its original patch catalog for historical collection tracking." or nil),
+            tips = entry.tips,
+            waypoints = entry.waypoints,
+            requirements = entry.requirements,
+            cost = entry.cost,
         }
     end
 end
@@ -8179,23 +8818,32 @@ for patchKey in pairs(GENERATED_COLLECTION_PATCHES) do
 
     for _, entry in ipairs(patch.pets or {}) do
         PatchCatalog.petDetails[patchKey][entry.name] = PatchCatalog.petDetails[patchKey][entry.name] or {
-            sourceType = "Pet Journal Source",
+            sourceType = entry.sourceType or "Pet Journal Source",
             source = entry.source and entry.source ~= "" and entry.source or patch.label,
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
+            acquisition = entry.acquisition or "Follow the in-game Pet Journal source for this permanent battle pet.",
+            tips = entry.tips,
+            waypoints = entry.waypoints,
+            requirements = entry.requirements,
+            cost = entry.cost,
         }
     end
     for _, entry in ipairs(patch.toys or {}) do
         PatchCatalog.toyDetails[patchKey][entry.name] = PatchCatalog.toyDetails[patchKey][entry.name] or {
-            sourceType = "Toy Box Source",
+            sourceType = entry.sourceType or "Toy Box Source",
             source = entry.source and entry.source ~= "" and entry.source or patch.label,
-            acquisition = "Follow the in-game Toy Box source for this permanent toy.",
+            acquisition = entry.acquisition or "Follow the in-game Toy Box source for this permanent toy.",
+            tips = entry.tips,
+            waypoints = entry.waypoints,
+            requirements = entry.requirements,
+            cost = entry.cost,
         }
     end
     for _, achievementId in ipairs(patch.achievements and patch.achievements.ids or {}) do
         PatchCatalog.achievementCategories[patchKey][achievementId] = PatchCatalog.achievementCategories[patchKey][achievementId]
             or generated and generated.achievementCategories and generated.achievementCategories[achievementId]
             or "Other"
-        PatchCatalog.achievementDetails[patchKey][achievementId] = PatchCatalog.achievementDetails[patchKey][achievementId] or {
+        local generatedDetails = generated and generated.achievementDetails and generated.achievementDetails[achievementId]
+        PatchCatalog.achievementDetails[patchKey][achievementId] = PatchCatalog.achievementDetails[patchKey][achievementId] or generatedDetails or {
             sourceType = "Achievement",
             source = patch.label,
             acquisition = "Complete the achievement's listed criteria.",

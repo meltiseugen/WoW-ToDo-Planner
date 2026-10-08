@@ -149,7 +149,7 @@ function Database:Init()
     end
 
     if not C.VISUAL_THEME_KEYS[TODOPlannerDB.settings.visualTheme] then
-        TODOPlannerDB.settings.visualTheme = "parchment"
+        TODOPlannerDB.settings.visualTheme = "midnight"
     end
 
     local function normalizeFramePosition(position)

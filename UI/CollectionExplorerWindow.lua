@@ -11,8 +11,10 @@ CollectionExplorerWindow.__index = CollectionExplorerWindow
 
 local TYPE_OPTIONS = { "mounts", "pets", "toys", "cosmetics", "achievements" }
 local STATUS_OPTIONS = { "missing", "all", "collected" }
-local EXPANSION_OPTIONS = { "9", "10", "11", "12" }
+local EXPANSION_OPTIONS = { "7", "8", "9", "10", "11", "12" }
 local EXPANSION_LABELS = {
+    ["7"] = "Legion (7)",
+    ["8"] = "Battle for Azeroth (8)",
     ["9"] = "Shadowlands (9)",
     ["10"] = "Dragonflight (10)",
     ["11"] = "The War Within (11)",

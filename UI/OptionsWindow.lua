@@ -28,7 +28,7 @@ end
 function OptionsWindow:EnsureSettings()
     TODOPlannerDB.settings = TODOPlannerDB.settings or {}
     if not C.VISUAL_THEME_KEYS[TODOPlannerDB.settings.visualTheme] then
-        TODOPlannerDB.settings.visualTheme = "parchment"
+        TODOPlannerDB.settings.visualTheme = "midnight"
     end
     if type(TODOPlannerDB.settings.useProgressBars) ~= "boolean" then
         TODOPlannerDB.settings.useProgressBars = true
@@ -92,7 +92,7 @@ function OptionsWindow:Refresh()
     self:ApplyTabVisualState(self.controls.progressBarsButton, useProgressBars)
     self:ApplyTabVisualState(self.controls.progressTextButton, not useProgressBars)
     local visualTheme = TODOPlannerDB.settings.visualTheme
-    local displayName = VISUAL_THEME_LABELS[visualTheme] or VISUAL_THEME_LABELS.parchment
+    local displayName = VISUAL_THEME_LABELS[visualTheme] or VISUAL_THEME_LABELS.midnight
     if self.controls.themeSelector then
         self.controls.themeSelector:SetText(displayName)
     end

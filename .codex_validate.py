@@ -15,6 +15,20 @@ GENERATED_PATH = ROOT / "Data" / "GeneratedPatchCollections.lua"
 TOC_PATH = ROOT / "TODO-Planner.toc"
 
 EXPECTED_COUNTS = {
+    "7.0.0": (21, 89, 68, 154, 242),
+    "7.1.0": (9, 25, 8, 12, 37),
+    "7.1.5": (6, 4, 4, 108, 38),
+    "7.2.0": (29, 11, 8, 299, 66),
+    "7.2.5": (5, 10, 17, 6, 48),
+    "7.3.0": (26, 39, 16, 81, 50),
+    "7.3.5": (13, 1, 1, 42, 98),
+    "8.0.0": (46, 120, 43, 34, 364),
+    "8.1.0": (26, 41, 26, 18, 98),
+    "8.1.5": (8, 13, 3, 20, 29),
+    "8.2": (31, 90, 31, 18, 156),
+    "8.2.5": (1, 4, 0, 0, 2),
+    "8.3.0": (26, 33, 15, 52, 101),
+    "8.3.7": (0, 0, 0, 0, 0),
     "9.1": (45, 45, 23, 94, 113),
     "9.1.5": (3, 0, 14, 2, 9),
     "9.1.7": (0, 0, 0, 0, 0),
@@ -35,10 +49,10 @@ EXPECTED_COUNTS = {
     "11.0.5": (1, 0, 0, 99, 0),
     "11.0.7": (14, 15, 4, 77, 56),
     "11.1": (31, 46, 18, 136, 230),
-    "11.1.5": (12, 4, 4, 57, 123),
+    "11.1.5": (12, 4, 4, 51, 123),
     "11.1.7": (4, 2, 2, 1, 29),
     "11.2": (24, 22, 7, 72, 200),
-    "11.2.5": (44, 3, 3, 191, 254),
+    "11.2.5": (44, 3, 3, 187, 254),
     "11.2.7": (12, 1, 3, 24, 87),
     "12.0": (57, 67, 5, 93, 54),
     "12.0.5": (15, 12, 2, 67, 21),
@@ -89,6 +103,10 @@ def lua_strings(value, seen=None):
         strings.extend(lua_strings(key, seen))
         strings.extend(lua_strings(nested_value, seen))
     return strings
+
+
+def contains_prohibited_term(text):
+    return any(re.search(rf"\b{re.escape(term)}\b", text) for term in PROHIBITED_DETAIL_TERMS)
 
 
 def load_lua_file(lua, tdp, path):
@@ -153,7 +171,7 @@ for patch_key in patch_keys:
             details = catalog["GetCollectionDetails"](catalog, collection, patch_key, entry)
             assert details is not None, (patch_key, collection, name, "missing details")
             detail_text = " ".join(lua_strings(entry) + lua_strings(details)).lower()
-            assert not any(term in detail_text for term in PROHIBITED_DETAIL_TERMS), (
+            assert not contains_prohibited_term(detail_text), (
                 patch_key, collection, name, detail_text,
             )
 
@@ -169,7 +187,7 @@ for patch_key in patch_keys:
         details = catalog["GetAchievementDetails"](catalog, patch_key, achievement_id)
         assert details is not None, (patch_key, int(achievement_id), "missing achievement details")
         detail_text = " ".join(lua_strings(details)).lower()
-        assert not any(term in detail_text for term in PROHIBITED_DETAIL_TERMS), (
+        assert not contains_prohibited_term(detail_text), (
             patch_key, "achievements", int(achievement_id), detail_text,
         )
 

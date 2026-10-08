@@ -70,7 +70,7 @@ function ThemeManager:GetSelectedThemeKey()
     if C.VISUAL_THEME_KEYS[selectedKey] then
         return selectedKey
     end
-    return "parchment"
+    return "midnight"
 end
 
 function ThemeManager:BuildMidnightSpec()

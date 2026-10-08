@@ -2083,8 +2083,28 @@ test("collection explorer expansion selection scopes patch options", function()
     end
 
     local window = TDP.CollectionExplorerWindow:New()
+    assertEqual(window:GetExpansionLabel("7"), "Legion (7)", "Legion expansion label")
+    assertEqual(window:GetExpansionLabel("8"), "Battle for Azeroth (8)", "Battle for Azeroth expansion label")
     assertEqual(window:GetExpansionLabel("9"), "Shadowlands (9)", "Shadowlands expansion label")
     assertEqual(window:GetPatchLabel("all"), "All Patches", "all-patches label")
+
+    window:SetSelectedExpansion("7")
+    local legionPatchOptions = window:GetPatchOptions()
+    assertEqual(legionPatchOptions[1], "all", "Legion all-patches option comes first")
+    assertEqual(legionPatchOptions[2], "7.0.0", "Legion patch options include the initial release")
+    assertEqual(legionPatchOptions[#legionPatchOptions], "7.3.5", "Legion patch options end at 7.3.5")
+    for index = 2, #legionPatchOptions do
+        assertEqual(window:GetExpansionForPatch(legionPatchOptions[index]), "7", "Legion options exclude other expansions")
+    end
+
+    window:SetSelectedExpansion("8")
+    local bfaPatchOptions = window:GetPatchOptions()
+    assertEqual(bfaPatchOptions[1], "all", "Battle for Azeroth all-patches option comes first")
+    assertEqual(bfaPatchOptions[2], "8.0.0", "Battle for Azeroth patch options include the initial release")
+    assertEqual(bfaPatchOptions[#bfaPatchOptions], "8.3.7", "Battle for Azeroth patch options end at 8.3.7")
+    for index = 2, #bfaPatchOptions do
+        assertEqual(window:GetExpansionForPatch(bfaPatchOptions[index]), "8", "Battle for Azeroth options exclude other expansions")
+    end
 
     window:SetSelectedExpansion("9")
     local patchOptions = window:GetPatchOptions()
