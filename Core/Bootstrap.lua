@@ -16,11 +16,24 @@ local COLLECTION_CACHE_EVENTS = {
     "ACHIEVEMENT_EARNED",
     "CRITERIA_UPDATE",
     "QUEST_LOG_UPDATE",
+    "PLAYER_ENTERING_WORLD",
 }
 
 local COLLECTION_CACHE_EVENT_LOOKUP = {}
 for _, eventName in ipairs(COLLECTION_CACHE_EVENTS) do
     COLLECTION_CACHE_EVENT_LOOKUP[eventName] = true
+end
+
+local LOCATION_EVENTS = {
+    "PLAYER_ENTERING_WORLD",
+    "ZONE_CHANGED",
+    "ZONE_CHANGED_INDOORS",
+    "ZONE_CHANGED_NEW_AREA",
+}
+
+local LOCATION_EVENT_LOOKUP = {}
+for _, eventName in ipairs(LOCATION_EVENTS) do
+    LOCATION_EVENT_LOOKUP[eventName] = true
 end
 
 local Bootstrap = {}
@@ -38,6 +51,11 @@ function Bootstrap:RegisterCollectionCacheEvents()
     for _, eventName in ipairs(COLLECTION_CACHE_EVENTS) do
         pcall(self.frame.RegisterEvent, self.frame, eventName)
     end
+    for _, eventName in ipairs(LOCATION_EVENTS) do
+        if not COLLECTION_CACHE_EVENT_LOOKUP[eventName] then
+            pcall(self.frame.RegisterEvent, self.frame, eventName)
+        end
+    end
 end
 
 function Bootstrap:RenderVisibleCollectionWindow(window)
@@ -54,6 +72,15 @@ end
 function Bootstrap:RefreshCollectionCache()
     if self.addon.CollectionScanner then
         self.addon.CollectionScanner:ResetCache()
+    end
+
+    local tasksChanged = self.addon.CollectionTaskProgress
+        and self.addon.CollectionTaskProgress:AutoCompleteTasks()
+    if self.addon.LocationAwareness then
+        self.addon.LocationAwareness:Refresh(false)
+    end
+    if tasksChanged and self.addon.ui then
+        self.addon.ui:Render()
     end
 
     self:RenderVisibleCollectionWindow(self.addon.explorerWindow)
@@ -95,6 +122,10 @@ function Bootstrap:OnAddonLoaded(addonName)
         self.addon.SlashCommands:Init()
         self.addon.Achievements:Init()
         self:RegisterCollectionCacheEvents()
+        self:ScheduleCollectionCacheRefresh()
+        if self.addon.LocationAwareness then
+            self.addon.LocationAwareness:ScheduleRefresh(true)
+        end
 
         self.addon.Utils:Msg("Loaded. Use /tdp to open your board.")
     elseif addonName == "Blizzard_AchievementUI" or addonName == "Krowi_AchievementFilter" then
@@ -107,12 +138,13 @@ function Bootstrap:Init()
     self.frame:SetScript("OnEvent", function(_, event, ...)
         if event == "ADDON_LOADED" then
             self:OnAddonLoaded(...)
-        elseif event == "ACHIEVEMENT_EARNED" or event == "CRITERIA_UPDATE" then
-            self.addon.Achievements:ScheduleAutoCompleteRefresh()
         end
 
         if COLLECTION_CACHE_EVENT_LOOKUP[event] then
             self:ScheduleCollectionCacheRefresh()
+        end
+        if LOCATION_EVENT_LOOKUP[event] and self.addon.LocationAwareness then
+            self.addon.LocationAwareness:ScheduleRefresh(true)
         end
     end)
 end

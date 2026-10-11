@@ -161,7 +161,12 @@ function TaskCardFactory:Update(card, task, status, ui)
     local cardWidth = math.max(252, parentWidth - 8)
     card:SetWidth(cardWidth)
 
-    Widgets:SetTextureColor(card.accent, C.STATUS_ACCENT_COLORS[status], { 1.0, 0.82, 0.18, 0.68 })
+    local isNearby = TDP.LocationAwareness and TDP.LocationAwareness:IsTaskNearby(task)
+    Widgets:SetTextureColor(
+        card.accent,
+        isNearby and { 0.00, 0.82, 0.70, 1.00 } or C.STATUS_ACCENT_COLORS[status],
+        { 1.0, 0.82, 0.18, 0.68 }
+    )
 
     card.titleText:SetWidth(math.max(1, cardWidth - (CARD_INSET * 2)))
     if card.titleText.SetWordWrap then
@@ -204,7 +209,11 @@ function TaskCardFactory:Update(card, task, status, ui)
         card.metaText:SetPoint("TOPLEFT", card.titleText, "BOTTOMLEFT", 0, -6)
         card.metaText:SetPoint("TOPRIGHT", card.titleText, "BOTTOMRIGHT", 0, -6)
     end
-    card.metaText:SetText(string.format("Category: %s", task.category or "Other"))
+    card.metaText:SetText(string.format(
+        "%sCategory: %s",
+        isNearby and "Nearby  |  " or "",
+        task.category or "Other"
+    ))
 
     local contentBottom = 10
         + (card.titleText:GetHeight() or 14)

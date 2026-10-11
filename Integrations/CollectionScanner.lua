@@ -48,6 +48,7 @@ function CollectionScanner:GetMountSpellIndex()
                         name = mountInfo.name,
                         icon = mountInfo.icon,
                         collected = mountInfo.collected == true,
+                        faction = mountInfo.isFactionSpecific and mountInfo.faction or nil,
                         modelId = modelId,
                     }
                 end
@@ -146,6 +147,7 @@ function CollectionScanner:GetMountState(entry)
                     name = mountInfo.name,
                     icon = mountInfo.icon,
                     collected = mountInfo.collected == true,
+                    faction = mountInfo.isFactionSpecific and mountInfo.faction or nil,
                     modelId = modelId,
                 }
             end
@@ -160,6 +162,7 @@ function CollectionScanner:GetMountState(entry)
             name = indexed.name or entry.name,
             icon = indexed.icon,
             modelId = indexed.modelId,
+            faction = indexed.faction,
             linkType = "spell",
             linkId = spellId,
         }

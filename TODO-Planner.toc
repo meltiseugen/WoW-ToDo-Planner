@@ -21,6 +21,8 @@ Data/Favorites.lua
 Integrations/CollectionScanner.lua
 UI/Widgets.lua
 Integrations/Achievements.lua
+Integrations/CollectionTaskProgress.lua
+Integrations/LocationAwareness.lua
 UI/TaskEditWindow.lua
 UI/TaskDetailWindow.lua
 UI/TaskCard.lua

@@ -78,6 +78,8 @@ loadAddonFile("Data/PatchCatalog.lua", TDP)
 loadAddonFile("Data/Favorites.lua", TDP)
 loadAddonFile("Integrations/CollectionScanner.lua", TDP)
 loadAddonFile("Integrations/Achievements.lua", TDP)
+loadAddonFile("Integrations/CollectionTaskProgress.lua", TDP)
+loadAddonFile("Integrations/LocationAwareness.lua", TDP)
 loadAddonFile("Core/MinimapButton.lua", TDP)
 loadAddonFile("UI/CollectionMapWindow.lua", TDP)
 loadAddonFile("UI/CollectionExplorerWindow.lua", TDP)
@@ -303,6 +305,293 @@ test("archived achievement tasks remain unchanged", function()
     assertEqual(archivedTask.status, "TODO", "archived task status")
 
     TDP.Achievements.IsAchievementComplete = originalCompletionCheck
+end)
+
+test("collected mounts pets toys and achievements automatically finish their tasks", function()
+    resetDatabase({
+        nextTaskId = 7,
+        characters = { "Alt A" },
+        favorites = {},
+        settings = {
+            selectedBoard = "Alt A",
+            filterCategory = "All",
+        },
+        tasks = {
+            {
+                id = 1,
+                title = "Collected mount",
+                notes = "",
+                category = "Mounts",
+                status = "TODO",
+                boardKey = "Alt A",
+                sortOrder = 1,
+                sourceType = "patchCollection",
+                sourceId = "12.1:mounts:910001",
+            },
+            {
+                id = 2,
+                title = "Collected pet",
+                notes = "",
+                category = "Collections",
+                status = "TODO",
+                boardKey = "GLOBAL",
+                sortOrder = 1,
+                statusByBoard = { ["Alt A"] = "DOING" },
+                sortOrderByBoard = { ["Alt A"] = 1 },
+                sourceType = "patchCollection",
+                sourceId = "12.1:pets:910002",
+            },
+            {
+                id = 3,
+                title = "Collected toy",
+                notes = "",
+                category = "Collections",
+                status = "DOING",
+                boardKey = "Alt A",
+                sortOrder = 1,
+                sourceType = "patchCollection",
+                sourceId = "12.1:toys:910003",
+            },
+            {
+                id = 4,
+                title = "Completed achievement",
+                notes = "",
+                category = "Achievements",
+                status = "TODO",
+                boardKey = "Alt A",
+                sortOrder = 2,
+                sourceType = "achievement",
+                sourceId = 910004,
+            },
+            {
+                id = 5,
+                title = "Missing mount",
+                notes = "",
+                category = "Mounts",
+                status = "TODO",
+                boardKey = "Alt A",
+                sortOrder = 3,
+                sourceType = "patchCollection",
+                sourceId = "12.1:mounts:910005",
+            },
+            {
+                id = 6,
+                title = "Collected cosmetic remains manual",
+                notes = "",
+                category = "Collections",
+                status = "TODO",
+                boardKey = "Alt A",
+                sortOrder = 4,
+                sourceType = "patchCollection",
+                sourceId = "12.1:cosmetics:910006",
+            },
+        },
+    })
+
+    local originalGetEntries = TDP.PatchCatalog.GetEntries
+    local originalGetState = TDP.CollectionScanner.GetState
+    local originalAchievementAutoComplete = TDP.Achievements.AutoCompleteTask
+
+    local entries = {
+        mounts = {
+            { spellId = 910001, name = "Collected mount" },
+            { spellId = 910005, name = "Missing mount" },
+        },
+        pets = {
+            { speciesId = 910002, name = "Collected pet" },
+        },
+        toys = {
+            { itemId = 910003, name = "Collected toy" },
+        },
+    }
+    TDP.PatchCatalog.GetEntries = function(_, patchKey, collectionType)
+        if patchKey == "12.1" then
+            return entries[collectionType] or {}
+        end
+        return {}
+    end
+    TDP.CollectionScanner.GetState = function(_, collectionType, entry)
+        local entryId = TDP.CollectionScanner:GetEntryKey(collectionType, entry)
+        return { collected = entryId ~= 910005 }
+    end
+    TDP.Achievements.AutoCompleteTask = function(_, task)
+        if task.sourceId == 910004 then
+            return TDP.CollectionTaskProgress:MarkTaskDone(task)
+        end
+        return false
+    end
+
+    assertTrue(TDP.CollectionTaskProgress:AutoCompleteTasks(), "collection tasks changed")
+    assertEqual(TDP.Tasks:FindById(1).status, "DONE", "mount task status")
+    assertEqual(TDP.Tasks:FindById(2).status, "DONE", "Global pet base status")
+    assertEqual(TDP.Tasks:FindById(2).statusByBoard["Alt A"], "DONE", "Global pet character status")
+    assertEqual(TDP.Tasks:FindById(3).status, "DONE", "toy task status")
+    assertEqual(TDP.Tasks:FindById(4).status, "DONE", "achievement task status")
+    assertEqual(TDP.Tasks:FindById(5).status, "TODO", "missing mount status")
+    assertEqual(TDP.Tasks:FindById(6).status, "TODO", "cosmetic task status")
+    assertEqual(TDP.CollectionTaskProgress:AutoCompleteTasks(), false, "completed tasks stay stable")
+
+    TDP.PatchCatalog.GetEntries = originalGetEntries
+    TDP.CollectionScanner.GetState = originalGetState
+    TDP.Achievements.AutoCompleteTask = originalAchievementAutoComplete
+end)
+
+test("archived collection tasks remain unchanged", function()
+    resetDatabase({
+        nextTaskId = 2,
+        characters = {},
+        favorites = {},
+        settings = {
+            selectedBoard = "GLOBAL",
+            filterCategory = "All",
+        },
+        tasks = {
+            {
+                id = 1,
+                title = "Archived mount",
+                notes = "",
+                category = "Mounts",
+                status = "TODO",
+                boardKey = "GLOBAL",
+                sortOrder = 1,
+                sourceType = "patchCollection",
+                sourceId = "12.1:mounts:910001",
+                archivedAt = 20,
+            },
+        },
+    })
+
+    local originalCompleteCheck = TDP.CollectionTaskProgress.IsCollectionTaskComplete
+    TDP.CollectionTaskProgress.IsCollectionTaskComplete = function()
+        return true
+    end
+
+    local task = TDP.Tasks:FindById(1)
+    assertEqual(TDP.CollectionTaskProgress:AutoCompleteTask(task), false, "archived collection task result")
+    assertEqual(task.status, "TODO", "archived collection task status")
+
+    TDP.CollectionTaskProgress.IsCollectionTaskComplete = originalCompleteCheck
+end)
+
+test("location awareness finds unfinished tasks on the current map and its zone", function()
+    resetDatabase({
+        nextTaskId = 7,
+        characters = { "Alt A", "Alt B" },
+        favorites = {},
+        settings = {
+            selectedBoard = "Alt A",
+            filterCategory = "All",
+        },
+        tasks = {
+            { id = 1, title = "Exact map", category = "Mounts", status = "TODO", boardKey = "Alt A", sortOrder = 1, sourceType = "patchCollection", sourceId = "12.1:mounts:920001" },
+            { id = 2, title = "Parent zone", category = "Collections", status = "DOING", boardKey = "Alt B", sortOrder = 1, sourceType = "patchCollection", sourceId = "12.1:pets:920002" },
+            { id = 3, title = "Other zone", category = "Collections", status = "TODO", boardKey = "Alt A", sortOrder = 2, sourceType = "patchCollection", sourceId = "12.1:toys:920003" },
+            { id = 4, title = "Done here", category = "Collections", status = "DONE", boardKey = "Alt A", sortOrder = 1, sourceType = "patchCollection", sourceId = "12.1:toys:920004" },
+            { id = 5, title = "Archived here", category = "Collections", status = "TODO", boardKey = "Alt A", sortOrder = 3, sourceType = "patchCollection", sourceId = "12.1:cosmetics:920005", archivedAt = 20 },
+            { id = 6, title = "Achievement here", category = "Achievements", status = "TODO", boardKey = "GLOBAL", sortOrder = 1, sourceType = "achievement", sourceId = 920006 },
+        },
+    })
+
+    local previousCMap = C_Map
+    local previousGetPatchKeys = TDP.PatchCatalog.GetPatchKeys
+    local previousGetEntries = TDP.PatchCatalog.GetEntries
+    local previousGetWaypoints = TDP.PatchCatalog.GetCollectionWaypoints
+
+    C_Map = {
+        GetBestMapForUnit = function()
+            return 200
+        end,
+        GetMapInfo = function(mapID)
+            if mapID == 200 then
+                return { name = "Test Subzone", parentMapID = 100 }
+            elseif mapID == 100 then
+                return { name = "Test Zone", parentMapID = 0 }
+            end
+            return { name = "Other Zone", parentMapID = 0 }
+        end,
+    }
+
+    local entries = {
+        mounts = { { spellId = 920001 } },
+        pets = { { speciesId = 920002 } },
+        toys = { { itemId = 920003 }, { itemId = 920004 } },
+        cosmetics = { { itemId = 920005 } },
+        achievements = { 920006 },
+    }
+    local waypointMapIDs = {
+        [920001] = 200,
+        [920002] = 100,
+        [920003] = 300,
+        [920004] = 200,
+        [920005] = 200,
+        [920006] = 100,
+    }
+    TDP.PatchCatalog.GetPatchKeys = function()
+        return { "12.1" }
+    end
+    TDP.PatchCatalog.GetEntries = function(_, patchKey, collectionType)
+        return patchKey == "12.1" and (entries[collectionType] or {}) or {}
+    end
+    TDP.PatchCatalog.GetCollectionWaypoints = function(_, collectionType, _, entry)
+        local entryId = collectionType == "achievements"
+            and entry
+            or TDP.CollectionScanner:GetEntryKey(collectionType, entry)
+        local mapID = waypointMapIDs[entryId]
+        return mapID and { string.format("/way #%d 50.0 50.0 Test", mapID) } or nil
+    end
+
+    TDP.LocationAwareness:ResetCache()
+    local mapChanged, nearbyCount = TDP.LocationAwareness:Refresh(false)
+    assertTrue(mapChanged, "current map changed")
+    assertEqual(nearbyCount, 3, "nearby unfinished task count")
+    assertTrue(TDP.LocationAwareness:IsTaskNearby(TDP.Tasks:FindById(1)), "exact map task")
+    assertTrue(TDP.LocationAwareness:IsTaskNearby(TDP.Tasks:FindById(2)), "parent zone task")
+    assertTrue(TDP.LocationAwareness:IsTaskNearby(TDP.Tasks:FindById(6)), "achievement task")
+    assertEqual(TDP.LocationAwareness:IsTaskNearby(TDP.Tasks:FindById(3)), false, "other zone task")
+    assertEqual(TDP.LocationAwareness:IsTaskNearby(TDP.Tasks:FindById(4)), false, "done task")
+    assertEqual(TDP.LocationAwareness:IsTaskNearby(TDP.Tasks:FindById(5)), false, "archived task")
+    assertEqual(TDP.LocationAwareness:GetSummaryText(), "Nearby in Test Subzone: 3 unfinished tasks", "nearby summary")
+
+    C_Map = previousCMap
+    TDP.PatchCatalog.GetPatchKeys = previousGetPatchKeys
+    TDP.PatchCatalog.GetEntries = previousGetEntries
+    TDP.PatchCatalog.GetCollectionWaypoints = previousGetWaypoints
+    TDP.LocationAwareness:ResetCache()
+end)
+
+test("location awareness announces once when entering a relevant map", function()
+    local previousCMap = C_Map
+    local previousMessage = TDP.Utils.Msg
+    local previousGetNearbyTasks = TDP.LocationAwareness.GetNearbyTasks
+    local messages = {}
+
+    C_Map = {
+        GetBestMapForUnit = function()
+            return 200
+        end,
+        GetMapInfo = function(mapID)
+            return { name = mapID == 200 and "Test Zone" or "Other Zone", parentMapID = 0 }
+        end,
+    }
+    TDP.Utils.Msg = function(_, message)
+        messages[#messages + 1] = message
+    end
+    TDP.LocationAwareness.currentMapID = nil
+    TDP.LocationAwareness.lastAnnouncedMapID = nil
+    TDP.LocationAwareness.GetNearbyTasks = function()
+        return {
+            { id = 91, title = "Nearby task", boardKey = "Alt A" },
+        }
+    end
+
+    TDP.LocationAwareness:Refresh(true)
+    TDP.LocationAwareness:Refresh(true)
+    assertEqual(#messages, 1, "one notification per map")
+    assertEqual(messages[1], "Nearby in Test Zone: Nearby task [Alt A]", "nearby notification")
+
+    TDP.LocationAwareness.GetNearbyTasks = previousGetNearbyTasks
+    C_Map = previousCMap
+    TDP.Utils.Msg = previousMessage
 end)
 
 test("achievement details do not repeat generated task notes", function()
@@ -2074,6 +2363,63 @@ test("collection previews omit raw waypoint commands", function()
     assertTrue(favoritesText:find("/way", 1, true) == nil, "Favorites omits raw waypoint commands")
 end)
 
+test("collection faction metadata covers every collection type", function()
+    local catalog = TDP.PatchCatalog
+
+    assertEqual(catalog:GetCollectionFaction("mounts", "12.1", { name = "API Mount" }, { faction = 1 }), "alliance", "mount API Alliance enum")
+    assertEqual(catalog:GetCollectionFaction("mounts", "12.1", { name = "API Mount" }, { faction = 0 }), "horde", "mount API Horde enum")
+    assertEqual(catalog:GetCollectionFaction("pets", "12.1", { name = "City Pet", source = "Vendor in Stormwind" }), "alliance", "pet source faction")
+    assertEqual(catalog:GetCollectionFaction("toys", "12.1", { name = "City Toy", source = "Vendor in Orgrimmar" }), "horde", "toy source faction")
+    assertEqual(catalog:GetCollectionFaction("cosmetics", "12.1", { name = "Faction Set", faction = "Alliance" }), "alliance", "cosmetic explicit faction")
+    assertEqual(catalog:GetCollectionFaction("achievements", "12.1", 999999, { name = "Hero of the Horde: Test" }), "horde", "achievement name faction")
+    assertEqual(catalog:GetCollectionFaction("achievements", "12.1", 999998, { name = "Team Deathmatch", description = "Slay all of the Horde champions listed below." }), "alliance", "enemy faction wording is inverted")
+    assertEqual(catalog:GetCollectionFaction("pets", "12.1", { name = "Neutral Pet", source = "Rare world drop" }), "all", "neutral collection entry")
+
+end)
+
+test("collection explorer rows retain faction markers without filtering", function()
+    local previousWipe = wipe
+    local previousGetEntries = TDP.PatchCatalog.GetEntries
+    local previousGetState = TDP.CollectionScanner.GetState
+    wipe = function(values)
+        for key in pairs(values) do
+            values[key] = nil
+        end
+    end
+
+    local entries = {
+        { spellId = 910001, name = "Neutral Test Mount" },
+        { spellId = 910002, name = "Alliance Test Mount", faction = "alliance" },
+        { spellId = 910003, name = "Horde Test Mount", faction = "horde" },
+    }
+    TDP.PatchCatalog.GetEntries = function(_, patchKey, collectionType)
+        if patchKey == "12.1" and collectionType == "mounts" then
+            return entries
+        end
+        return {}
+    end
+    TDP.CollectionScanner.GetState = function(_, _, entry)
+        return { collected = false, name = entry.name }
+    end
+
+    local window = TDP.CollectionExplorerWindow:New()
+    window.selectedExpansion = "12"
+    window.selectedPatch = "12.1"
+    window.selectedCollectionType = "mounts"
+    window.selectedStatus = "all"
+
+    local totalCount = window:BuildVisibleRows()
+    assertEqual(totalCount, 3, "row total includes every faction")
+    assertEqual(#window.visibleRows, 3, "faction markers do not filter rows")
+    assertEqual(window:GetFactionBadgeColor("alliance")[3], 1.00, "Alliance badge is blue")
+    assertEqual(window:GetFactionBadgeColor("horde")[1], 0.86, "Horde badge is red")
+    assertNil(window:GetFactionBadgeColor("all"), "neutral rows have no faction badge")
+
+    TDP.PatchCatalog.GetEntries = previousGetEntries
+    TDP.CollectionScanner.GetState = previousGetState
+    wipe = previousWipe
+end)
+
 test("collection explorer expansion selection scopes patch options", function()
     local previousWipe = wipe
     wipe = function(values)
@@ -2083,10 +2429,97 @@ test("collection explorer expansion selection scopes patch options", function()
     end
 
     local window = TDP.CollectionExplorerWindow:New()
+    assertEqual(window:GetExpansionLabel("1"), "Classic / Vanilla (1)", "Classic expansion label")
+    assertEqual(window:GetExpansionLabel("2"), "The Burning Crusade (2)", "Burning Crusade expansion label")
+    assertEqual(window:GetExpansionLabel("3"), "Wrath of the Lich King (3)", "Wrath expansion label")
+    assertEqual(window:GetExpansionLabel("4"), "Cataclysm (4)", "Cataclysm expansion label")
+    assertEqual(window:GetExpansionLabel("5"), "Mists of Pandaria (5)", "Mists of Pandaria expansion label")
+    assertEqual(window:GetExpansionLabel("6"), "Warlords of Draenor (6)", "Warlords of Draenor expansion label")
     assertEqual(window:GetExpansionLabel("7"), "Legion (7)", "Legion expansion label")
     assertEqual(window:GetExpansionLabel("8"), "Battle for Azeroth (8)", "Battle for Azeroth expansion label")
     assertEqual(window:GetExpansionLabel("9"), "Shadowlands (9)", "Shadowlands expansion label")
     assertEqual(window:GetPatchLabel("all"), "All Patches", "all-patches label")
+
+    window:SetSelectedExpansion("1")
+    local classicPatchOptions = window:GetPatchOptions()
+    assertEqual(classicPatchOptions[1], "all", "Classic all-patches option comes first")
+    assertEqual(classicPatchOptions[2], "1.0", "Classic patch options start at the base collection")
+    assertEqual(classicPatchOptions[3], "1.1", "Classic patch options include 1.1")
+    assertEqual(classicPatchOptions[4], "1.2", "Classic patch options include 1.2")
+    assertEqual(classicPatchOptions[5], "1.3", "Classic patch options include 1.3")
+    assertEqual(classicPatchOptions[6], "1.4", "Classic patch options include 1.4")
+    assertEqual(classicPatchOptions[7], "1.5", "Classic patch options include 1.5")
+    assertEqual(classicPatchOptions[8], "1.6", "Classic patch options include 1.6")
+    assertEqual(classicPatchOptions[9], "1.7", "Classic patch options include 1.7")
+    assertEqual(classicPatchOptions[10], "1.8", "Classic patch options include 1.8")
+    assertEqual(classicPatchOptions[11], "1.9", "Classic patch options include 1.9")
+    assertEqual(classicPatchOptions[12], "1.10", "Classic patch options include 1.10")
+    assertEqual(classicPatchOptions[13], "1.11", "Classic patch options include 1.11")
+    assertEqual(classicPatchOptions[14], "1.12", "Classic patch options end at 1.12")
+    for index = 2, #classicPatchOptions do
+        assertEqual(window:GetExpansionForPatch(classicPatchOptions[index]), "1", "Classic options exclude other expansions")
+    end
+
+    window:SetSelectedExpansion("2")
+    local burningCrusadePatchOptions = window:GetPatchOptions()
+    assertEqual(burningCrusadePatchOptions[1], "all", "Burning Crusade all-patches option comes first")
+    assertEqual(burningCrusadePatchOptions[2], "2.0", "Burning Crusade patch options start at the initial release")
+    assertEqual(burningCrusadePatchOptions[3], "2.1", "Burning Crusade patch options include 2.1")
+    assertEqual(burningCrusadePatchOptions[4], "2.2", "Burning Crusade patch options include 2.2")
+    assertEqual(burningCrusadePatchOptions[5], "2.3", "Burning Crusade patch options include 2.3")
+    assertEqual(burningCrusadePatchOptions[6], "2.4", "Burning Crusade patch options end at 2.4")
+    for index = 2, #burningCrusadePatchOptions do
+        assertEqual(window:GetExpansionForPatch(burningCrusadePatchOptions[index]), "2", "Burning Crusade options exclude other expansions")
+    end
+
+    window:SetSelectedExpansion("3")
+    local wrathPatchOptions = window:GetPatchOptions()
+    assertEqual(wrathPatchOptions[1], "all", "Wrath all-patches option comes first")
+    assertEqual(wrathPatchOptions[2], "3.0", "Wrath patch options start at the initial release")
+    assertEqual(wrathPatchOptions[3], "3.0.3", "Wrath patch options include 3.0.3")
+    assertEqual(wrathPatchOptions[4], "3.0.8", "Wrath patch options include 3.0.8")
+    assertEqual(wrathPatchOptions[5], "3.1.0", "Wrath patch options include 3.1.0")
+    assertEqual(wrathPatchOptions[6], "3.2.0", "Wrath patch options include 3.2.0")
+    assertEqual(wrathPatchOptions[7], "3.3.0", "Wrath patch options include 3.3.0")
+    assertEqual(wrathPatchOptions[8], "3.3.5", "Wrath patch options include 3.3.5")
+    assertEqual(wrathPatchOptions[9], "3.3.5a", "Wrath patch options end at 3.3.5a")
+    for index = 2, #wrathPatchOptions do
+        assertEqual(window:GetExpansionForPatch(wrathPatchOptions[index]), "3", "Wrath options exclude other expansions")
+    end
+
+    window:SetSelectedExpansion("4")
+    local cataclysmPatchOptions = window:GetPatchOptions()
+    assertEqual(cataclysmPatchOptions[1], "all", "Cataclysm all-patches option comes first")
+    assertEqual(cataclysmPatchOptions[2], "4.0.0", "Cataclysm patch options start at the initial release")
+    assertEqual(cataclysmPatchOptions[3], "4.1.0", "Cataclysm patch options include 4.1.0")
+    assertEqual(cataclysmPatchOptions[4], "4.2.0", "Cataclysm patch options include 4.2.0")
+    assertEqual(cataclysmPatchOptions[5], "4.3.0", "Cataclysm patch options end at 4.3.0")
+    for index = 2, #cataclysmPatchOptions do
+        assertEqual(window:GetExpansionForPatch(cataclysmPatchOptions[index]), "4", "Cataclysm options exclude other expansions")
+    end
+
+    window:SetSelectedExpansion("5")
+    local mistsPatchOptions = window:GetPatchOptions()
+    assertEqual(mistsPatchOptions[1], "all", "Mists all-patches option comes first")
+    assertEqual(mistsPatchOptions[2], "5.0", "Mists patch options start at the initial release")
+    assertEqual(mistsPatchOptions[3], "5.1", "Mists patch options include 5.1")
+    assertEqual(mistsPatchOptions[4], "5.2", "Mists patch options include 5.2")
+    assertEqual(mistsPatchOptions[5], "5.3", "Mists patch options include 5.3")
+    assertEqual(mistsPatchOptions[6], "5.4.0", "Mists patch options continue with 5.4.0")
+    assertEqual(mistsPatchOptions[#mistsPatchOptions], "5.4.8", "Mists patch options end at 5.4.8")
+    for index = 2, #mistsPatchOptions do
+        assertEqual(window:GetExpansionForPatch(mistsPatchOptions[index]), "5", "Mists options exclude other expansions")
+    end
+
+    window:SetSelectedExpansion("6")
+    local wodPatchOptions = window:GetPatchOptions()
+    assertEqual(wodPatchOptions[1], "all", "Warlords all-patches option comes first")
+    assertEqual(wodPatchOptions[2], "6.0.0", "Warlords patch options start at the initial release")
+    assertEqual(wodPatchOptions[3], "6.1.0", "Warlords patch options include 6.1.0")
+    assertEqual(wodPatchOptions[#wodPatchOptions], "6.2.4", "Warlords patch options end at 6.2.4")
+    for index = 2, #wodPatchOptions do
+        assertEqual(window:GetExpansionForPatch(wodPatchOptions[index]), "6", "Warlords options exclude other expansions")
+    end
 
     window:SetSelectedExpansion("7")
     local legionPatchOptions = window:GetPatchOptions()

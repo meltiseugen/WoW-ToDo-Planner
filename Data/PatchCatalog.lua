@@ -5,26 +5,43 @@ local GeneratedPatchCollections = TDP.GeneratedPatchCollections or {}
 
 local MAP_NAMES = {
     [1] = "Durotar",
+    [7] = "Mulgore",
     [10] = "Northern Barrens",
     [14] = "Arathi Highlands",
+    [15] = "Badlands",
     [17] = "Blasted Lands",
     [18] = "Tirisfal Glades",
     [22] = "Western Plaguelands",
     [23] = "Eastern Plaguelands",
+    [25] = "Hillsbrad Foothills",
     [27] = "Dun Morogh",
     [37] = "Elwynn Forest",
     [42] = "Deadwind Pass",
     [36] = "Burning Steppes",
     [50] = "Northern Stranglethorn",
+    [51] = "Swamp of Sorrows",
     [52] = "Westfall",
+    [56] = "Wetlands",
+    [57] = "Teldrassil",
     [62] = "Darkshore",
+    [63] = "Ashenvale",
+    [69] = "Feralas",
+    [70] = "Dustwallow Marsh",
     [64] = "Thousand Needles",
     [71] = "Tanaris",
     [77] = "Felwood",
+    [78] = "Un'Goro Crater",
+    [80] = "Moonglade",
+    [81] = "Silithus",
+    [83] = "Winterspring",
     [84] = "Stormwind City",
     [85] = "Orgrimmar",
     [87] = "Ironforge",
+    [89] = "Darnassus",
     [90] = "Undercity",
+    [94] = "Eversong Woods",
+    [95] = "Ghostlands",
+    [97] = "Azuremyst Isle",
     [100] = "Hellfire Peninsula",
     [102] = "Zangarmarsh",
     [104] = "Shadowmoon Valley (Outland)",
@@ -32,23 +49,52 @@ local MAP_NAMES = {
     [107] = "Nagrand (Outland)",
     [108] = "Terokkar Forest",
     [109] = "Netherstorm",
+    [110] = "Silvermoon City",
     [111] = "Shattrath City",
+    [114] = "Borean Tundra",
     [115] = "Dragonblight",
     [116] = "Grizzly Hills",
+    [117] = "Howling Fjord",
     [118] = "Icecrown",
+    [119] = "Sholazar Basin",
     [120] = "The Storm Peaks",
+    [121] = "Zul'Drak",
+    [122] = "Isle of Quel'Danas",
+    [123] = "Wintergrasp",
+    [125] = "Dalaran (Northrend)",
     [198] = "Mount Hyjal",
+    [201] = "Kelp'thar Forest",
+    [204] = "Abyssal Depths",
+    [205] = "Shimmering Expanse",
     [207] = "Deepholm",
+    [210] = "The Cape of Stranglethorn",
+    [76] = "Azshara",
+    [88] = "Thunder Bluff",
+    [103] = "The Exodar",
     [2248] = "Isle of Dorn",
     [241] = "Twilight Highlands",
+    [245] = "Tol Barad",
     [249] = "Uldum",
+    [327] = "Ahn'Qiraj: The Fallen Kingdom",
+    [338] = "Molten Front",
     [371] = "The Jade Forest",
     [376] = "Valley of the Four Winds",
     [379] = "Kun-Lai Summit",
     [388] = "Townlong Steppes",
     [390] = "Vale of Eternal Blossoms",
+    [407] = "Darkmoon Island",
     [418] = "Krasarang Wilds",
     [422] = "Dread Wastes",
+    [504] = "Isle of Thunder",
+    [507] = "Isle of Giants",
+    [525] = "Frostfire Ridge",
+    [534] = "Tanaan Jungle",
+    [535] = "Talador",
+    [543] = "Gorgrond",
+    [542] = "Spires of Arak",
+    [550] = "Nagrand (Draenor)",
+    [582] = "Lunarfall",
+    [590] = "Frostwall",
     [539] = "Shadowmoon Valley (Draenor)",
     [554] = "Timeless Isle",
     [622] = "Stormshield",
@@ -2949,6 +2995,904 @@ for _, achievementId in ipairs({
 end
 
 PatchCatalog.patches = {
+    ["1.0"] = {
+        label = "Original World of Warcraft Baseline",
+        wowheadPatchId = 10000,
+        sourceNotes = {
+            "This catalogue uses 1.0 as the base-game collection bucket for permanent collectibles already present before the commercial launch build. Blizzard's North American release itself was patch 1.1.0; client-build records identify 1.0.0 and 1.0.1 as the final open-beta builds.",
+            "The baseline contains the original racial and class mounts, Winterspring Frostsaber, Rivendare's Deathcharger, vendor, quest, drop, and Engineering companions, plus Orb of Deception and Piccolo of the Flaming Fire, the two launch-era items now tracked by the modern Toy Box.",
+            "Fourteen original level-60 racial mounts are retained as Legacy records because patch 1.4 removed them from vendors without deleting copies already owned. Collector's Edition, promotion, recurring-event, ordinary equipment, and later retroactive achievement records are excluded; achievements did not exist in 1.0.",
+        },
+        sourceUrls = {
+            builds = "https://warcraft.wiki.gg/wiki/World_of_Warcraft_client_builds",
+            mounts = "https://warcraft.wiki.gg/wiki/Mount",
+            companions = "https://warcraft.wiki.gg/wiki/Companions_by_source",
+            species = "https://warcraft.wiki.gg/wiki/BattlePetSpeciesID",
+            toys = "https://warcraft.wiki.gg/wiki/List_of_toys_by_source",
+            winterspring = "https://warcraft.wiki.gg/wiki/Reins_of_the_Winterspring_Frostsaber",
+            kodo = "https://warcraft.wiki.gg/wiki/Kodo_mounts",
+        },
+        mounts = GeneratedPatchCollections["1.0"].mounts,
+        pets = GeneratedPatchCollections["1.0"].pets,
+        toys = GeneratedPatchCollections["1.0"].toys,
+        cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = { "Original racial mounts", "Winterspring Frostsaber", "Rivendare's Deathcharger", "Original companion pets", "Original Toy Box sources" } },
+    },
+    ["1.1"] = {
+        label = "World of Warcraft Launch",
+        wowheadPatchId = 10100,
+        sourceNotes = {
+            "Patch 1.1.0 was the North American commercial release build. For catalogue attribution, the shared pre-release collection is kept in the 1.0 baseline while 1.1 records the patch's explicit new collection additions: the Paladin Warhorse and tauren kodo mounts replacing Plainsrunning.",
+            "Brown Kodo and Gray Kodo remain normal vendor mounts. Green Kodo and Teal Kodo were the original epic variants and became unobtainable when patch 1.4 introduced the Great Kodo replacements; original owners can still retain them.",
+            "Molten Core, Onyxia's Lair, racial traits, ordinary raid equipment, temporary test loot, and Collector's Edition promotions do not add eligible permanent collection records to this bucket. Achievements did not yet exist.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_1.1.0",
+            kodos = "https://warcraft.wiki.gg/wiki/Kodo_mounts",
+            builds = "https://warcraft.wiki.gg/wiki/World_of_Warcraft_client_builds",
+        },
+        mounts = GeneratedPatchCollections["1.1"].mounts,
+        pets = {}, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = { "Warhorse", "Brown Kodo", "Gray Kodo", "Green Kodo", "Teal Kodo" } },
+    },
+    ["1.2"] = {
+        label = "Mysteries of Maraudon",
+        wowheadPatchId = 10200,
+        sourceNotes = {
+            "Patch 1.2.0 opened Maraudon and added interface options for hiding helm and cloak graphics. Its dungeon loot is ordinary equipment rather than a mount, battle pet, Toy Box item, standalone cosmetic, or achievement reward.",
+            "The patch also began recurring seasonal and Gurubashi Arena content, which remains excluded under the catalogue-wide recurring-event rule. The Piccolo of the Flaming Fire received a behavior adjustment here but stays attributed to the 1.0 source collection rather than duplicated.",
+            "No eligible permanent collection records remain after those exclusions, and achievements did not yet exist.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_1.2.0",
+            maraudon = "https://warcraft.wiki.gg/wiki/Maraudon",
+            piccolo = "https://warcraft.wiki.gg/wiki/Piccolo_of_the_Flaming_Fire",
+        },
+        mounts = {}, pets = {}, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["1.3"] = {
+        label = "Ruins of the Dire Maul",
+        wowheadPatchId = 10300,
+        sourceNotes = {
+            "Patch 1.3.0 opened Dire Maul, introduced Azuregos and Lord Kazzak as outdoor raid encounters, added Meeting Stones, and imposed dungeon player caps.",
+            "Dire Maul books, class trinkets, tribute gear, recipes, consumables, and the outdoor bosses' equipment are ordinary equipment rather than eligible mount, battle-pet, Toy Box, standalone-cosmetic, or achievement records.",
+            "No eligible permanent collection records remain for this patch, and achievements did not yet exist. The later Dreadsteed ritual used Dire Maul but is correctly attributed to patch 1.4, when that class quest was added.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_1.3.0",
+            direMaul = "https://warcraft.wiki.gg/wiki/Dire_Maul_(original)",
+        },
+        mounts = {}, pets = {}, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["1.4"] = {
+        label = "The Call to War",
+        wowheadPatchId = 10400,
+        sourceNotes = {
+            "Patch 1.4.0 activated the original Honor system and added its eight racial war mounts, four rank tabards, and the epic Paladin Charger and Warlock Dreadsteed quest chains.",
+            "The patch also replaced vendor-sold level-60 racial mounts with twenty-two newly modeled swift mounts. Faster undead mounts already had distinct models, so Green Skeletal Warhorse remained while Purple Skeletal Warhorse joined the updated vendor set.",
+            "World Enlarger was also added in this patch as a rare Gnomish Engineering schematic from Blackrock Depths; it became a Toy Box collectible in Warlords of Draenor.",
+            "The PvP mounts and tabards remain obtainable from the Stormwind and Orgrimmar honor vendors without their retired rank requirements. The original class-mount quests were removed, so their current learning method and historical quest locations are both recorded.",
+            "The patch also introduced Children's Week and the Gurubashi Arena event. Their recurring-event rewards, ordinary PvP armor and weapons, engineering combat devices, and the consumable Heavy Leather Ball are outside this catalogue's permanent collection rules; achievements did not yet exist.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_1.4.0",
+            honor = "https://warcraft.wiki.gg/wiki/Honor_system_(pre-2.0)",
+            warMount = "https://warcraft.wiki.gg/wiki/Black_War_Steed",
+            charger = "https://warcraft.wiki.gg/wiki/Summon_Charger",
+            dreadsteed = "https://warcraft.wiki.gg/wiki/Dreadsteed",
+            racialMounts = "https://warcraft.wiki.gg/wiki/Patch_1.4.0",
+            worldEnlarger = "https://warcraft.wiki.gg/wiki/World_Enlarger",
+            privateTabard = "https://warcraft.wiki.gg/wiki/Private%27s_Tabard",
+            scoutTabard = "https://warcraft.wiki.gg/wiki/Scout%27s_Tabard",
+            knightTabard = "https://warcraft.wiki.gg/wiki/Knight%27s_Colors",
+        },
+        mounts = GeneratedPatchCollections["1.4"].mounts,
+        pets = {}, toys = GeneratedPatchCollections["1.4"].toys, cosmetics = GeneratedPatchCollections["1.4"].cosmetics,
+        cosmeticDetailGroups = {
+            honorEnlistedTabards = {
+                sourceType = "Honor vendor",
+                source = "Master Sergeant Biggins or Brave Stonehide",
+                acquisition = "Purchase the faction's enlisted Honor tabard for 50 Honor Points from the PvP accessories quartermaster or an eligible tabard vendor.",
+                tips = "Private's Tabard is Alliance-only and Scout's Tabard is Horde-only. Their original rank-one requirement was removed in patch 2.0.1.",
+                waypoints = { "/way #84 75.2 67.0 Master Sergeant Biggins", "/way #85 38.8 70.0 Brave Stonehide" },
+            },
+            honorOfficerTabards = {
+                sourceType = "Honor vendor",
+                source = "Master Sergeant Biggins or Brave Stonehide",
+                acquisition = "Purchase the faction's officer Honor tabard for 100 Honor Points from the PvP accessories quartermaster or an eligible tabard vendor.",
+                tips = "Knight's Colors is Alliance-only and Stone Guard's Herald is Horde-only. Their original rank-six requirement was removed in patch 2.0.1.",
+                waypoints = { "/way #84 75.2 67.0 Master Sergeant Biggins", "/way #85 38.8 70.0 Brave Stonehide" },
+            },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Charger", "Dreadsteed", "Black War mounts", "Swift racial mounts", "Honor rank tabards" } },
+    },
+    ["1.5"] = {
+        label = "Battlegrounds",
+        wowheadPatchId = 10500,
+        sourceNotes = {
+            "Patch 1.5.0 opened Warsong Gulch and Alterac Valley. Its permanent collection consists of the Frostwolf Howler, Stormpike Battle Charger, the four original battleground-faction tabards, and the two original Engineering transporters.",
+            "The Alterac Valley mounts still require Exalted reputation with Frostwolf Clan or Stormpike Guard. Current outdoor supply-officer pins are provided alongside the Warsong Gulch faction vendors for the tabards.",
+            "Goblin Engineers learn Dimensional Ripper - Everlook from Zap Farflinger, while Gnomish Engineers learn Ultrasafe Transporter: Gadgetzan from Jhordy Lapforge. Both items became Toy Box collectibles in later expansions but remain attributed to their patch 1.5 introduction.",
+            "Battleground armor, weapons, trinkets, standards, consumables, and later retroactive achievements are excluded under the catalogue's ordinary-equipment and achievement-attribution rules.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_1.5.0",
+            frostwolfHowler = "https://warcraft.wiki.gg/wiki/Frostwolf_Howler",
+            stormpikeCharger = "https://warcraft.wiki.gg/wiki/Stormpike_Battle_Charger",
+            frostwolfTabard = "https://warcraft.wiki.gg/wiki/Frostwolf_Battle_Tabard",
+            stormpikeTabard = "https://warcraft.wiki.gg/wiki/Stormpike_Battle_Tabard",
+            warsongTabard = "https://warcraft.wiki.gg/wiki/Warsong_Battle_Tabard",
+            silverwingTabard = "https://warcraft.wiki.gg/wiki/Silverwing_Battle_Tabard",
+            everlookRipper = "https://warcraft.wiki.gg/wiki/Dimensional_Ripper_-_Everlook",
+            gadgetzanTransporter = "https://warcraft.wiki.gg/wiki/Ultrasafe_Transporter:_Gadgetzan",
+        },
+        mounts = GeneratedPatchCollections["1.5"].mounts,
+        pets = {}, toys = GeneratedPatchCollections["1.5"].toys, cosmetics = GeneratedPatchCollections["1.5"].cosmetics,
+        cosmeticDetailGroups = {
+            alteracTabards = {
+                sourceType = "Battleground reputation vendor",
+                source = "Frostwolf or Stormpike supply officers",
+                acquisition = "Purchase the faction's Alterac Valley tabard after meeting its current reputation or currency requirement.",
+                tips = "Combine the tabard purchase with the Exalted mount grind. Jorek Ironside and Thanthaldis Snowgleam are accessible outside the battleground.",
+                waypoints = { "/way #25 58.0 33.4 Jorek Ironside", "/way #25 44.6 46.0 Thanthaldis Snowgleam" },
+            },
+            warsongTabards = {
+                sourceType = "Battleground reputation vendor",
+                source = "Kelm Hargunth or Illiyana Moonblaze",
+                acquisition = "Purchase the faction's Warsong Gulch tabard from its supply officer after meeting the current requirement.",
+                tips = "Warsong Gulch bonus weeks are efficient for reputation. Warsong Battle Tabard is Horde-only; Silverwing Battle Tabard is Alliance-only.",
+                waypoints = { "/way #10 39.4 20.0 Kelm Hargunth", "/way #63 61.5 83.9 Illiyana Moonblaze" },
+            },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Frostwolf Howler", "Stormpike Battle Charger", "Engineering transporters", "Battleground faction tabards" } },
+    },
+    ["1.6"] = {
+        label = "Assault on Blackwing Lair",
+        wowheadPatchId = 10600,
+        sourceNotes = {
+            "Patch 1.6.0 introduced Blackwing Lair and the Darkmoon Faire. The Faire's original permanent companions are Wood Frog, Tree Frog, and Jubling.",
+            "Flik sells both frog boxes during the Faire, with Wood Frog Box on limited stock. Jubling requires Dark Iron Ale from Blackrock Depths, the Spawn of Jubjub quest from Morja, and a seven-day egg hatch.",
+            "Blackwing Lair equipment, Darkmoon cards and consumable prizes, ordinary equipment, and later Faire additions are not attributed here. The Darkmoon Cannon arrived in patch 1.9 and Steam Tonks in patch 1.10; achievements did not yet exist.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_1.6.0",
+            faire = "https://warcraft.wiki.gg/wiki/Darkmoon_Faire",
+            treeFrog = "https://warcraft.wiki.gg/wiki/Tree_Frog_Box",
+            woodFrog = "https://warcraft.wiki.gg/wiki/Wood_Frog_Box",
+            jubling = "https://warcraft.wiki.gg/wiki/Spawn_of_Jubjub",
+        },
+        mounts = {}, pets = GeneratedPatchCollections["1.6"].pets, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = { "Wood Frog", "Tree Frog", "Jubling" } },
+    },
+    ["1.7"] = {
+        label = "Rise of the Blood God",
+        wowheadPatchId = 10700,
+        sourceNotes = {
+            "Patch 1.7.0 introduced the original Zul'Gurub raid and Arathi Basin. Its permanent collection records are the Swift Razzashi Raptor, Swift Zulian Tiger, and the two Exalted Arathi Basin faction tabards.",
+            "Both original Zul'Gurub mounts became unavailable when the raid was replaced in patch 4.0.3a, although they may appear on the Black Market Auction House. Their later replacement mounts remain attributed to Cataclysm.",
+            "The Stranglethorn Fishing Extravaganza and ordinary Zul'Gurub equipment are excluded under the catalogue's recurring-event and ordinary-equipment rules. Achievements did not yet exist.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_1.7.0",
+            tiger = "https://warcraft.wiki.gg/wiki/Swift_Zulian_Tiger",
+            removedMounts = "https://warcraft.wiki.gg/wiki/Removed_mounts",
+            arathorTabard = "https://warcraft.wiki.gg/wiki/Arathor_Battle_Tabard",
+            defilersTabard = "https://warcraft.wiki.gg/wiki/Battle_Tabard_of_the_Defilers",
+        },
+        mounts = GeneratedPatchCollections["1.7"].mounts,
+        pets = {}, toys = {}, cosmetics = GeneratedPatchCollections["1.7"].cosmetics,
+        cosmeticDetailGroups = {
+            arathorTabard = {
+                sourceType = "Reputation vendor",
+                source = "Samuel Hawke / League of Arathor",
+                acquisition = "Reach Exalted with the League of Arathor through Arathi Basin, then purchase the tabard from Samuel Hawke.",
+                tips = "Arathi Basin bonus weeks accelerate reputation. Modern acquisition no longer requires completing the historical five-base quest.",
+                waypoints = { "/way #14 40.2 46.5 Samuel Hawke / Refuge Pointe" },
+            },
+            defilersTabard = {
+                sourceType = "Reputation vendor",
+                source = "Rutherford Twing / The Defilers",
+                acquisition = "Reach Exalted with The Defilers through Arathi Basin, then purchase the tabard from Rutherford Twing.",
+                tips = "Arathi Basin bonus weeks accelerate reputation. Modern acquisition no longer requires completing the historical five-base quest.",
+                waypoints = { "/way #14 69.6 33.0 Rutherford Twing / Hammerfall" },
+            },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Swift Razzashi Raptor", "Swift Zulian Tiger", "Arathi Basin faction tabards" } },
+    },
+    ["1.8"] = {
+        label = "Dragons of Nightmare",
+        wowheadPatchId = 10800,
+        sourceNotes = {
+            "Patch 1.8.0 introduced the four outdoor Dragons of Nightmare, the Silithus revamp, and Hallow's End, but no eligible non-seasonal permanent mount, companion, toy, tabard, or achievement.",
+            "Dragon loot is ordinary equipment, while Hallow's End collectibles belong to a recurring seasonal event and remain excluded consistently with later patch buckets.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_1.8.0",
+            dragons = "https://warcraft.wiki.gg/wiki/Dragons_of_Nightmare_(Classic)",
+        },
+        mounts = {}, pets = {}, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["1.9"] = {
+        label = "The Gates of Ahn'Qiraj",
+        wowheadPatchId = 10900,
+        sourceNotes = {
+            "Patch 1.9.0 introduced Ahn'Qiraj and five collection mounts: four resonating-crystal battle tanks from Temple trash and the historical Black Qiraji Battle Tank from the realm gate-opening event.",
+            "Blue, green, red, and yellow tanks can only be summoned inside the Temple of Ahn'Qiraj; the red crystal is the rare variant. The black tank was usable elsewhere but required Bang a Gong! during the ten-hour window after the first gong strike and is no longer obtainable.",
+            "Ahn'Qiraj armor, weapons, quest rewards, the recurring Lunar Festival, and later retroactive achievements are excluded under the established catalogue rules.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_1.9.0",
+            gates = "https://warcraft.wiki.gg/wiki/Gates_of_Ahn%27Qiraj",
+            silithidMounts = "https://warcraft.wiki.gg/wiki/Silithid_mounts",
+            blackCrystal = "https://warcraft.wiki.gg/wiki/Black_Qiraji_Resonating_Crystal",
+            templeLoot = "https://warcraft.wiki.gg/wiki/Temple_of_Ahn%27Qiraj_loot",
+        },
+        mounts = GeneratedPatchCollections["1.9"].mounts,
+        pets = {}, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = { "Red Qiraji Battle Tank", "Black Qiraji Battle Tank" } },
+    },
+    ["1.10"] = {
+        label = "Storms of Azeroth",
+        wowheadPatchId = 11000,
+        sourceNotes = {
+            "Patch 1.10.0 introduced dynamic weather, Dungeon Set 2 quest lines, class changes, and high-level dungeon and profession updates, but no eligible permanent mount, companion, toy, tabard, or achievement record.",
+            "Dungeon Set 2 and the patch's other wearable rewards are ordinary equipment rather than standalone collection cosmetics under this catalogue's rules. Achievements did not exist until patch 3.0.2.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_1.10.0",
+            storyline = "https://warcraft.wiki.gg/wiki/World_of_Warcraft_endgame_and_patch_storylines#Patch_1.10.0_-_Storms_of_Azeroth",
+        },
+        mounts = {}, pets = {}, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["1.11"] = {
+        label = "Shadow of the Necropolis",
+        wowheadPatchId = 11100,
+        sourceNotes = {
+            "Patch 1.11.0 introduced original Naxxramas and its Scourge Invasion. Its two eligible permanent appearance records are the invasion's Tabard of the Argent Dawn and the newly added Tabard of the Scarlet Crusade.",
+            "The Argent Dawn tabard is retained as a limited historical reward and points to Light's Hope Chapel, while the Scarlet tabard points to Scarlet Monastery. The latter was removed in patch 5.0.4 and subsequently restored, but remains attributed to its original 1.11 introduction.",
+            "Naxxramas raid armor, Atiesh, Haunted Memento, temporary invasion effects, seasonal rewards, and ordinary equipment are not separate collection records here. Later Feats of Strength remain in the 3.0 achievement-system bucket.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_1.11.0",
+            invasion = "https://warcraft.wiki.gg/wiki/Scourge_Invasion",
+            argentTabard = "https://warcraft.wiki.gg/wiki/Tabard_of_the_Argent_Dawn",
+            scarletTabard = "https://warcraft.wiki.gg/wiki/Tabard_of_the_Scarlet_Crusade",
+        },
+        mounts = {}, pets = {}, toys = {}, cosmetics = GeneratedPatchCollections["1.11"].cosmetics,
+        cosmeticDetailGroups = {
+            argentDawnTabard = {
+                sourceType = "Historical world event",
+                source = "Original Scourge Invasion",
+                acquisition = "During the patch 1.11 Scourge Invasion, complete the Argent Dawn event quest or obtain the tabard from an Argent quartermaster.",
+                tips = "The original invasion has ended, so this tabard is retained for historical collection tracking. Light's Hope Chapel is the central Argent Dawn location associated with the event and Naxxramas attunement.",
+                availability = "No longer obtainable from the original patch 1.11 event.",
+                waypoints = { "/way #23 75.3 52.1 Light's Hope Chapel / Argent Dawn" },
+            },
+            scarletCrusadeTabard = {
+                sourceType = "Dungeon drop",
+                source = "Scarlet Trainees in Scarlet Monastery of Old",
+                acquisition = "Defeat Scarlet Trainees in the Scarlet Monastery of Old for a chance to loot the tabard. It can also drop from Armsmaster Harlan in Scarlet Halls.",
+                tips = "Use the old Scarlet Monastery entrance when targeting the restored original source. Equip the tabard before visiting the Scarlet Quartermaster at Darkmoon Faire if you also want the related modern appearances.",
+                waypoints = { "/way #18 85.6 30.8 Scarlet Monastery entrance" },
+            },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Tabard of the Argent Dawn", "Tabard of the Scarlet Crusade" } },
+    },
+    ["1.12"] = {
+        label = "Drums of War",
+        wowheadPatchId = 11200,
+        sourceNotes = {
+            "Patch 1.12.0 focused on cross-realm battlegrounds, outdoor PvP objectives, Rogue changes, and the final mechanical state of original World of Warcraft.",
+            "The documented and undocumented changes introduce no eligible permanent mount, companion, Toy Box item, tabard, or achievement. Changes to previously existing PvP rewards do not move those rewards into this patch.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_1.12.0",
+            undocumented = "https://warcraft.wiki.gg/wiki/Patch_1.12.0_(undocumented_changes)",
+        },
+        mounts = {}, pets = {}, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["2.0"] = {
+        label = "The Burning Crusade",
+        wowheadPatchId = 20000,
+        sourceNotes = {
+            "The launch bucket covers the permanent collection introduced by the 2.0 client and the January 2007 expansion release: Outland flying mounts, blood elf and draenei racial mounts and pets, talbuks, launch raids, reputation tabards, quests, fishing, and engineering devices later promoted into the Toy Box.",
+            "Fiery Warhorse and Ashes of Al'ar retain their original Karazhan and Tempest Keep entrances. Mr. Pinchy, Halaa, racial vendors, reputation quartermasters, and the two engineering transporter branches include practical farming or purchase pins.",
+            "Collector's Edition, trading-card, promotion, recurring holiday, unused, NPC-only, temporary, and ordinary equipment records are excluded. The one-time Tabard of the Protector remains as a historical collection appearance; achievements did not exist until patch 3.0.2.",
+        },
+        sourceUrls = {
+            expansion = "https://warcraft.wiki.gg/wiki/World_of_Warcraft:_The_Burning_Crusade",
+            patch = "https://warcraft.wiki.gg/wiki/Patch_2.0.3",
+            collections = "https://news.blizzard.com/en-us/article/23523203/burning-crusade-mounts-pets-and-more",
+            tabards = "https://warcraft.wiki.gg/wiki/Tabard#The_Burning_Crusade_tabards",
+            miniwing = "https://warcraft.wiki.gg/wiki/Miniwing",
+            powerConverter = "https://warcraft.wiki.gg/wiki/Power_Converter",
+        },
+        mounts = GeneratedPatchCollections["2.0"].mounts,
+        pets = {}, toys = {}, cosmetics = GeneratedPatchCollections["2.0"].cosmetics,
+        cosmeticDetailGroups = {
+            darkPortalTabard = { sourceType = "Historical launch event", source = "Into the Breach at the Dark Portal", acquisition = "Complete the pre-expansion Dark Portal event quest Into the Breach.", tips = "This one-time 2.0.1 event reward is no longer obtainable; keep it in the catalogue for historical appearance tracking.", waypoints = { "/way #17 58.0 55.8 Dark Portal event location" } },
+            racialTabards = { sourceType = "Racial quest", source = "Draenei starting campaign or blood elf Paladin class campaign", acquisition = "Complete the matching racial or class quest chain.", tips = "Tabard of the Hand is draenei-specific; Blood Knight Tabard belongs to the blood elf Paladin campaign.", waypoints = { "/way #97 47.0 50.0 Azuremyst quest campaign", "/way #110 92.6 36.8 Blood Knight headquarters" } },
+            hellfireTabards = { sourceType = "Reputation vendor", source = "Honor Hold or Thrallmar quartermaster", acquisition = "Reach Exalted with the matching Hellfire Peninsula faction and buy its tabard.", tips = "Hellfire Ramparts, Blood Furnace, and Shattered Halls runs combine reputation with transmog farming.", waypoints = { "/way #100 56.7 62.6 Logistics Officer Ulrike", "/way #100 54.9 37.8 Quartermaster Urgronn" } },
+            cenarionTabard = { sourceType = "Reputation vendor", source = "Fedryen Swiftspear", acquisition = "Reach Exalted with the Cenarion Expedition and buy the tabard.", tips = "Run Coilfang Reservoir dungeons and turn in eligible reputation items before finishing remaining quests.", waypoints = { "/way #102 79.3 63.8 Fedryen Swiftspear" } },
+            sporeggarTabard = { sourceType = "Reputation vendor", source = "Mycah in Sporeggar", acquisition = "Reach Exalted with Sporeggar and buy the tabard with Glowcaps.", tips = "Combine repeatable Zangarmarsh turn-ins with dungeon objectives, then gather extra Glowcaps near Sporeggar.", waypoints = { "/way #102 17.9 51.2 Mycah" } },
+            nagrandTabards = { sourceType = "Reputation vendor", source = "Kurenai or Mag'har quartermaster", acquisition = "Reach Exalted with the matching Nagrand faction and buy its tabard.", tips = "Farm ogre beads or warbeads while working toward the faction's talbuk mounts.", waypoints = { "/way #107 53.5 36.9 Provisioner Nasela / Garadar", "/way #107 54.3 75.0 Trader Narasu / Telaar" } },
+            shattrathTabards = { sourceType = "Reputation vendor", source = "Shattrath and Netherstorm faction quartermasters", acquisition = "Reach Exalted with the corresponding faction and buy its tabard.", tips = "Choose Aldor or Scryers carefully: changing allegiance requires rebuilding the opposing reputation. Lower City, Sha'tar, and Consortium can be advanced through their associated dungeons and turn-ins.", waypoints = { "/way #111 47.6 26.6 Aldor Rise", "/way #111 56.3 81.5 Scryer's Tier", "/way #111 54.0 44.8 Terrace of Light", "/way #109 43.5 35.2 Stormspire / Consortium" } },
+            keepersTabard = { sourceType = "Reputation vendor", source = "Alurmi in the Caverns of Time", acquisition = "Reach Exalted with the Keepers of Time and buy the tabard.", tips = "Repeated Old Hillsbrad and Black Morass clears provide the original reputation path.", waypoints = { "/way #71 63.6 57.6 Alurmi" } },
+            illidariTabards = { sourceType = "Quest reward", source = "Battle of the Crimson Watch", acquisition = "Complete the Shadowmoon Valley group quest Battle of the Crimson Watch.", tips = "Modern completion awards both colors; a tabard vendor can help reacquire or swap the historical versions.", waypoints = { "/way #104 51.4 72.8 Battle of the Crimson Watch" } },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Ashes of Al'ar", "Fiery Warhorse", "Magical Crawdad", "Tabard of the Protector" } },
+    },
+    ["2.1"] = {
+        label = "The Black Temple",
+        wowheadPatchId = 20100,
+        sourceNotes = {
+            "Patch 2.1 adds the Netherwing and Sha'tari Skyguard daily hubs, their eleven reputation drakes and nether rays, Raven Lord, the Arena Season 1 Swift Nether Drake, Captured Firefly, Time-Lost Figurine, and the Skyguard and Ogri'la tabards.",
+            "The Black Temple itself adds raid equipment but no separate permanent mount, pet, toy, or tabard record under this catalogue's rules. Swift Flight Form is a druid form rather than a Mount Journal collectible.",
+            "Achievements were not yet available. Trading-card, promotional, recurring holiday, unused, NPC-only, temporary, and ordinary equipment records remain excluded.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_2.1.0",
+            undocumented = "https://warcraft.wiki.gg/wiki/Patch_2.1.0_(undocumented_changes)",
+            swiftNetherDrake = "https://warcraft.wiki.gg/wiki/Swift_Nether_Drake",
+            capturedFirefly = "https://warcraft.wiki.gg/wiki/Captured_Firefly",
+            timeLostFigurine = "https://warcraft.wiki.gg/wiki/Time-Lost_Figurine",
+        },
+        mounts = GeneratedPatchCollections["2.1"].mounts,
+        pets = {}, toys = {}, cosmetics = GeneratedPatchCollections["2.1"].cosmetics,
+        cosmeticDetailGroups = {
+            skyguardTabard = { sourceType = "Reputation vendor", source = "Grella in Skettis", acquisition = "Reach Exalted with the Sha'tari Skyguard and buy the tabard.", tips = "Stack Skettis daily quests and Terokk summons with the nether-ray mount grind.", waypoints = { "/way #108 64.3 66.2 Grella" } },
+            ogrilaTabard = { sourceType = "Reputation vendor", source = "Jho'nass at Ogri'la", acquisition = "Reach Exalted with Ogri'la and buy the tabard with Apexis Shards.", tips = "Complete the Ogri'la daily circuit and keep spare Apexis Shards for the purchase.", waypoints = { "/way #105 27.6 58.8 Jho'nass" } },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Raven Lord", "Netherwing Drakes", "Time-Lost Figurine" } },
+    },
+    ["2.2"] = {
+        label = "Voice Chat",
+        wowheadPatchId = 20200,
+        sourceNotes = {
+            "Patch 2.2.0 focused on integrated voice chat, chat-interface changes, balance work, profession recipes, and corrections to existing items and companions.",
+            "The official and undocumented notes add no eligible permanent mount, companion, Toy Box item, tabard, or achievement. Existing collection items changed by the patch remain attributed to the patch in which they became obtainable.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_2.2.0",
+            undocumented = "https://warcraft.wiki.gg/wiki/Patch_2.2.0_(undocumented_changes)",
+        },
+        mounts = {}, pets = {}, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["2.3"] = {
+        label = "The Gods of Zul'Aman",
+        wowheadPatchId = 20300,
+        sourceNotes = {
+            "Patch 2.3 opens Zul'Aman and adds its timed Amani War Bear and Mojo rewards, the Cenarion War Hippogryph, Tiny Sporebat, engineering flying machines, and the Arena Season 2 mount.",
+            "Merciless Nether Drake uses the durable current mount spell 44744; an additional historical DB2 record with the same display name is not a separate player collection mount.",
+            "The Paper Flying Machine Kit and other trading-card, promotion, recurring holiday, unused, NPC-only, and ordinary equipment records are excluded. Achievements did not exist during patch 2.3; later retroactive Burning Crusade feats remain in the 3.0 achievement-system bucket.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/2.3",
+            undocumented = "https://warcraft.wiki.gg/wiki/Patch_2.3.0_(undocumented_changes)",
+            warBear = "https://warcraft.wiki.gg/wiki/Amani_War_Bear",
+            mojo = "https://warcraft.wiki.gg/wiki/Mojo_(companion)",
+            flyingMachine = "https://warcraft.wiki.gg/wiki/Flying_Machine",
+        },
+        mounts = GeneratedPatchCollections["2.3"].mounts,
+        pets = {}, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = { "Amani War Bear", "Mojo" } },
+    },
+    ["2.4"] = {
+        label = "Fury of the Sunwell",
+        wowheadPatchId = 20400,
+        sourceNotes = {
+            "The 2.4 bucket covers the complete 2.4.x line: Isle of Quel'Danas, Magisters' Terrace, Shattered Sun Offensive, Shattrath fishing rewards, the 2.4.3 Nether Ray Fry, and Arena Seasons 3 and 4.",
+            "The Black War Elekk is included at its documented patch 2.4.0 boundary rather than in the 2.0 racial launch set.",
+            "The Swift White Hawkstrider, Phoenix Hatchling, and Orb of the Sin'dorei retain the original Magisters' Terrace entrance and farming guidance; the Shattered Sun tabard points to its island quartermaster.",
+            "Trading-card, promotion, recurring holiday, unused, NPC-only, and ordinary equipment records are excluded. Achievements did not exist during patch 2.4; later retroactive Sunwell and arena feats remain in the 3.0 achievement-system bucket.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_2.4.0",
+            magistersTerrace = "https://warcraft.wiki.gg/wiki/Magisters%27_Terrace_loot",
+            orb = "https://warcraft.wiki.gg/wiki/Orb_of_the_Sin%27dorei",
+            tabard = "https://warcraft.wiki.gg/wiki/Tabard_of_the_Shattered_Sun",
+            burningCrusadeCollections = "https://news.blizzard.com/en-us/article/23523203/burning-crusade-mounts-pets-and-more",
+        },
+        mounts = GeneratedPatchCollections["2.4"].mounts,
+        pets = {}, toys = {}, cosmetics = GeneratedPatchCollections["2.4"].cosmetics,
+        cosmeticDetailGroups = {
+            shatteredSunTabard = { sourceType = "Reputation vendor", source = "Eldara Dawnrunner on the Isle of Quel'Danas", acquisition = "Reach Exalted with the Shattered Sun Offensive and buy the tabard for gold.", tips = "Run Magisters' Terrace and complete Isle daily quests together; both contribute reputation while you farm the dungeon collectibles.", waypoints = { "/way #122 47.2 30.6 Eldara Dawnrunner" } },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Swift White Hawkstrider", "Phoenix Hatchling", "Orb of the Sin'dorei" } },
+    },
+    ["3.0"] = {
+        label = "Wrath of the Lich King",
+        wowheadPatchId = 30000,
+        sourceNotes = {
+            "The 3.0 bucket is the catalogue's initial Wrath release set: Northrend launch rewards plus the achievement system's original permanent and historical records.",
+            "Mount, pet, toy, and cosmetic IDs were reconciled against a later client DB2 snapshot so retired rewards remain visible. Modern replacement ID 54437 is kept with 3.0.8, where the original Tiny Green Ragdoll was introduced.",
+            "Recurring holiday, shop, trading-card, Collector's Edition, convention, promotional, unused, NPC-only, hidden-statistic, and ordinary equipment records are excluded. One-time historical raid, PvP, realm-first, and launch-event achievements are retained.",
+        },
+        sourceUrls = {
+            expansion = "https://warcraft.wiki.gg/wiki/World_of_Warcraft:_Wrath_of_the_Lich_King",
+            patch = "https://warcraft.wiki.gg/wiki/Patch_3.0.2",
+            mounts = "https://www.wowhead.com/wotlk/guide/mount-collecting-the-completionist-guide",
+            pets = "https://www.wowhead.com/wotlk/guide/companion-pets-collectibles",
+        },
+        mounts = GeneratedPatchCollections["3.0"].mounts,
+        pets = {}, toys = {}, cosmetics = GeneratedPatchCollections["3.0"].cosmetics,
+        cosmeticDetailGroups = {
+            launchAchievementTabards = { sourceType = "Achievement reward", source = "Wrath launch achievement system", acquisition = "Complete the corresponding achievement and collect the mailed tabard reward.", tips = "Loremaster and Explorer are account-scale projects; finish one continent or zone group at a time." },
+            wrathReputationTabards = { sourceType = "Reputation vendor", source = "Argent Crusade, Knights of the Ebon Blade, Wyrmrest Accord, or Kirin Tor quartermaster", acquisition = "Reach Friendly with the matching Wrath faction and buy its tabard, then wear it in eligible dungeons to earn reputation.", tips = "Buying the tabard early lets dungeon runs contribute reputation while you pursue other launch achievements." },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Red Proto-Drake", "Black Proto-Drake", "Plagued Proto-Drake", "Albino Drake", "Black War Bear", "Kirin Tor Familiar" } },
+    },
+    ["3.0.3"] = {
+        label = "Patch 3.0.3",
+        wowheadPatchId = 30003,
+        sourceNotes = {
+            "Patch 3.0.3 was the corrective pre-launch client build used immediately before Wrath's release; the initial expansion collection is intentionally grouped under 3.0.",
+            "No separate permanent mount, pet, toy, cosmetic, or achievement introductions survived the catalogue audit for this bucket.",
+        },
+        sourceUrls = { patch = "https://warcraft.wiki.gg/wiki/Patch_3.0.3" },
+        mounts = {}, pets = {}, toys = {}, cosmetics = {}, achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["3.0.8"] = {
+        label = "Patch 3.0.8",
+        wowheadPatchId = 30008,
+        sourceNotes = {
+            "Patch 3.0.8 added the 75-pet and 100-mount collection milestones, two critter achievements, Wintergrasp vehicle achievements, and the original Tiny Green Ragdoll.",
+            "Tiny Green Ragdoll uses current Toy Box item ID 54437; its original 3.0.8 item ID 44849 was replaced in patch 3.3.3.",
+            "The limited Scourge Invasion Vampire Hunter feat is retained for historical completeness; recurring holiday and promotional rewards remain excluded.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_3.0.8",
+            undocumented = "https://wowpedia.fandom.com/wiki/Patch_3.0.8_(undocumented_changes)",
+            mountain = "https://warcraft.wiki.gg/wiki/Mountain_o%27_Mounts",
+            pets = "https://warcraft.wiki.gg/wiki/Lil%27_Game_Hunter",
+            ragdoll = "https://warcraft.wiki.gg/wiki/Tiny_Green_Ragdoll",
+        },
+        mounts = GeneratedPatchCollections["3.0.8"].mounts,
+        pets = {}, toys = {}, cosmetics = {}, achievements = { ids = {}, rewardHighlights = { "Little Fawn", "Blue Dragonhawk", "Red Dragonhawk" } },
+    },
+    ["3.1.0"] = {
+        label = "Secrets of Ulduar",
+        wowheadPatchId = 30100,
+        sourceNotes = {
+            "Patch 3.1 opens Ulduar, introduces the Argent Tournament and Dalaran fishing dailies, and adds their permanent mounts, pets, toys, city tabards, and achievements.",
+            "The PTR-only Blue Skeletal Warhorse and recurring Noblegarden collection are excluded. Deadly Gladiator rewards and removed Ulduar realm-first or challenge records remain for historical completeness.",
+            "Tournament rows point to the shared grounds because city vendors cluster in faction pavilions; each tip names the championship prerequisite so Seal spending can be planned efficiently.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_3.1.0",
+            ulduar = "https://www.wowhead.com/news/ulduar-timewalking-patch-3-1-features-and-patch-notes-spotlight-281916",
+            tournament = "https://www.wowhead.com/wotlk/guide/argent-tournament/rewards",
+            fishing = "https://warcraft.wiki.gg/wiki/Bag_of_Fishing_Treasures_(Dalaran)",
+            undocumented = "https://warcraft.wiki.gg/wiki/Patch_3.1.0_(undocumented_changes)",
+        },
+        mounts = GeneratedPatchCollections["3.1.0"].mounts,
+        pets = {}, toys = {}, cosmetics = GeneratedPatchCollections["3.1.0"].cosmetics,
+        cosmeticDetailGroups = {
+            argentCityTabards = { sourceType = "Argent Tournament vendor", source = "home-city quartermasters", acquisition = "Become Champion of the matching city, then buy its tabard with Champion's Seals.", tips = "Work through one city at a time and keep doing champion dailies; progress also unlocks the matching mount, pet, and banner.", waypoints = { "/way #118 75.8 24.4 Argent Tournament Grounds" } },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Rusted Proto-Drake", "Ironbound Proto-Drake", "Mimiron's Head", "Argent Squire", "Argent Gruntling" } },
+    },
+    ["3.2.0"] = {
+        label = "Call of the Crusade",
+        wowheadPatchId = 30200,
+        sourceNotes = {
+            "Patch 3.2 expands the Argent Tournament, opens Trial of the Champion and Trial of the Crusader, adds Isle of Conquest, revamps Onyxia's Lair, and covers Wrath Arena Seasons 6 and 7 collection rewards.",
+            "The eight original raptor hatchlings are retained with their historical sources and coordinates. Several nest or dungeon sources changed with Cataclysm, so their tips explicitly mark removed acquisition paths.",
+            "Shop, trading-card, convention, recurring holiday, unused, NPC-only, hidden-statistic, and ordinary equipment records are excluded. Faction duplicates and no-longer-obtainable ranked or tribute rewards remain for historical completeness.",
+        },
+        sourceUrls = {
+            patchNotes = "https://www.engadget.com/2009-08-04-world-of-warcraft-patch-3-2-release-patch-notes.html",
+            argentTournament = "https://www.wowhead.com/wotlk/guide/argent-tournament/rewards",
+            tournamentChanges = "https://www.wowhead.com/news/argent-tournament-changes-in-3-2-102771",
+            raidAchievements = "https://www.wowhead.com/guide/the-crusaders-coliseum-trial-of-the-crusader-achievements-828",
+        },
+        mounts = GeneratedPatchCollections["3.2.0"].mounts,
+        pets = {}, toys = {}, cosmetics = GeneratedPatchCollections["3.2.0"].cosmetics,
+        cosmeticDetailGroups = {
+            seasonSixTabard = { sourceType = "Ranked PvP", source = "Wrath Arena Season 6", acquisition = "Earn the original elite-rating Furious Gladiator tabard during Arena Season 6.", tips = "The original seasonal source is no longer obtainable." },
+            tournamentTabards = { sourceType = "Argent Tournament reputation", source = "Silver Covenant or Sunreavers quartermaster", acquisition = "Reach Exalted with the matching faction, unlock its tournament vendor, and purchase the tabard.", tips = "Champion every home city while doing the tournament dailies so Crusader rewards unlock in parallel.", waypoints = { "/way #118 75.8 24.4 Argent Tournament Grounds" } },
+            argentCrusaderTabard = { sourceType = "Argent Tournament vendor", source = "Dame Evniki Kapsalis", acquisition = "Earn the Crusader title and buy the tabard with Champion's Seals.", tips = "The tabard can teleport its wearer to the Argent Tournament Grounds.", waypoints = { "/way #118 75.8 24.4 Dame Evniki Kapsalis" } },
+            conquestTabards = { sourceType = "Battleground achievement", source = "Master of Isle of Conquest", acquisition = "Complete the faction-specific Isle of Conquest meta achievement.", tips = "Many criteria need active battleground coordination; track vehicle, node, bomb, and location requirements separately." },
+            seasonSevenTabard = { sourceType = "Ranked PvP", source = "Wrath Arena Season 7", acquisition = "Earn the original elite-rating Relentless Gladiator tabard during Arena Season 7.", tips = "The original seasonal source is no longer obtainable." },
+        },
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["3.3.0"] = {
+        label = "Fall of the Lich King",
+        wowheadPatchId = 30300,
+        sourceNotes = {
+            "This bucket covers patch 3.3.x before 3.3.5: Dungeon Finder, the Frozen Halls, Icecrown Citadel, the Ashen Verdict, Shadowmourne, Toravon, Arena Season 8, and the phased opening of the final raid tier.",
+            "Shadowmourne's sealed chest provides the Crimson Deathcharger, Tabard of the Lightbringer, Muradin's Favor, and Sylvanas' Music Box represented here. Jaina's Locket is useful but is not a Toy Box collectible and is therefore excluded.",
+            "Recurring holiday rewards, store and promotional collectibles, hidden statistics, and ordinary equipment are excluded. Historical realm-first, ranked-season, legendary, and mount feats remain listed.",
+        },
+        sourceUrls = {
+            overview = "https://warcraft.wiki.gg/wiki/Fall_of_the_Lich_King",
+            icecrown = "https://www.wowhead.com/wotlk/zone=4812/icecrown-citadel",
+            achievements = "https://www.wowhead.com/wotlk/guide/raids/icecrown-citadel/achievements",
+            shadowmourne = "https://www.wowhead.com/wotlk/guide/raids/icecrown-citadel/shadowmourne",
+            frozo = "https://warcraft.wiki.gg/wiki/Frozo_the_Renowned",
+            patch333Items = "https://warcraft.wiki.gg/wiki/Patch_3.3.3_(undocumented_changes)",
+        },
+        mounts = GeneratedPatchCollections["3.3.0"].mounts,
+        pets = {}, toys = {}, cosmetics = GeneratedPatchCollections["3.3.0"].cosmetics,
+        cosmeticDetailGroups = {
+            seasonEightTabard = { sourceType = "Ranked PvP", source = "Wrath Arena Season 8", acquisition = "Earn the original elite-rating Wrathful Gladiator tabard during Arena Season 8.", tips = "The original seasonal source is no longer obtainable." },
+            lightbringerTabard = { sourceType = "Shadowmourne quest reward", source = "The Lightbringer's Redemption", acquisition = "Complete Shadowmourne, defeat the Lich King with it equipped, open the sealed chest, and use the Badge of the Silver Hand to begin Uther's quest.", tips = "The sealed chest is awarded once per Shadowmourne completion; its quest-starting items and rewards can be traded.", waypoints = { "/way #118 53.5 85.5 Icecrown Citadel entrance" } },
+        },
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["3.3.5"] = {
+        label = "Defending the Ruby Sanctum",
+        wowheadPatchId = 30305,
+        sourceNotes = {
+            "Patch 3.3.5 adds the Ruby Sanctum raid below Wyrmrest Temple. Its permanent collection contribution is four Halion raid achievements rather than a new mount, pet, toy, or cosmetic drop.",
+            "The limited Operation: Gnomeregan and Zalazane's Fall events ran in the final Wrath client era before Cataclysm; their feats and faction toys are grouped here and marked unavailable from their original sources.",
+            "Cross-game Real ID and chat changes introduced by the patch do not create collection entries.",
+        },
+        sourceUrls = {
+            patchNotes = "https://warcraft.wiki.gg/wiki/Patch_3.3.5",
+            eventAdditions = "https://warcraft.wiki.gg/wiki/Patch_3.3.5_(undocumented_changes)",
+            rubySanctum = "https://www.wowhead.com/wotlk/guide/raids/ruby-sanctum/halion-strategy",
+            ptrOverview = "https://www.wowhead.com/news/patch-3-3-5-on-the-ptr-realms-155920",
+        },
+        mounts = GeneratedPatchCollections["3.3.5"].mounts,
+        pets = {}, toys = {}, cosmetics = GeneratedPatchCollections["3.3.5"].cosmetics,
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["3.3.5a"] = {
+        label = "Wrath 3.3.5a Client Update",
+        wowheadPatchId = 30305,
+        sourceNotes = {
+            "Patch 3.3.5a was a corrective client update following 3.3.5 and introduced no separately attributable permanent mounts, pets, toys, cosmetics, or achievements.",
+            "It remains selectable so the final historical Wrath build is represented without moving Ruby Sanctum or pre-Cataclysm event rewards out of their 3.3.5 bucket.",
+        },
+        sourceUrls = { patchNotes = "https://warcraft.wiki.gg/wiki/Patch_3.3.5a" },
+        mounts = {}, pets = {}, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["4.0.0"] = {
+        label = "Cataclysm (Initial Release)",
+        wowheadPatchId = 40003,
+        sourceNotes = {
+            "This launch bucket covers patch 4.0.x and the Cataclysm release: the shattered old world, level 80-85 zones, Archaeology, guild progression, Tol Barad, the original heroic dungeons and raid tier, and PvP Season 9.",
+            "Original live availability and current durable collection IDs are used. Shop, Collector's Edition, promotion, trading-card, recurring calendar-event, hidden-statistic, NPC-only, unused, and ordinary equipment records are excluded.",
+            "Historical guild, realm-first, launch-event, raid, rated-battleground, and ranked-PvP achievements remain listed. Later Toy Box conversions retain their modern item IDs while staying with their original Cataclysm source.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/23492555/cataclysm-mounts-pets-and-more",
+            overview = "https://www.wowhead.com/guide/cataclysm-wow-expansion",
+            archaeology = "https://www.wowhead.com/cata/guide/professions/archaeology/quests-and-rewards",
+            archaeologyRewards = "https://warcraft.wiki.gg/wiki/Template:Archaeology_rewards",
+        },
+        mounts = GeneratedPatchCollections["4.0.0"].mounts,
+        pets = {}, toys = {}, cosmetics = GeneratedPatchCollections["4.0.0"].cosmetics,
+        cosmeticDetailGroups = {
+            tolBaradTabards = { sourceType = "Tol Barad reputation tabard", source = "Baradin's Wardens or Hellscream's Reach quartermaster", acquisition = "Earn Tol Barad reputation and commendations, then purchase the faction tabard.", tips = "Combine the peninsula daily circuit with battleground wins when available.", waypoints = { "/way #245 47.5 39.0 Tol Barad Peninsula hub" } },
+            racialTabards = { sourceType = "Racial faction tabard", source = "Gilneas and Bilgewater Cartel quartermasters", acquisition = "Purchase the matching racial tabard from its faction vendor.", tips = "Use the capital-city faction vendors and enable trivial quests if the introductory faction access is incomplete." },
+            reputationTabards = { sourceType = "Cataclysm reputation tabard", source = "Original Cataclysm faction quartermasters", acquisition = "Reach Friendly with the matching faction and purchase its tabard, then wear it in eligible dungeons for reputation.", tips = "Quest through each faction's opening zone first; Therazane requires the Deepholm campaign before its quartermaster becomes available." },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Volcanic Stone Drake", "Drake of the East Wind", "Dark Phoenix", "Golden King", "Kor'kron Annihilator", "Vicious Gladiator's Twilight Drake" } },
+    },
+    ["4.1.0"] = {
+        label = "Patch 4.1: Rise of the Zandalari",
+        wowheadPatchId = 40100,
+        sourceNotes = {
+            "This bucket covers the rebuilt Zul'Aman and Zul'Gurub heroic dungeons, their timed rescue and boss rewards, the new Stranglethorn quest continuation, two Archaeology pets, and the guild challenge update.",
+            "The audit uses original live availability and current durable collection IDs. Trading-card, promotion, calendar-event, hidden-statistic, unused, and ordinary equipment records are excluded.",
+            "Retired guild-challenge and other historical achievements remain listed; the Zandalari dungeon mounts and pets retain their current collection identifiers.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/2514161/patch-41-content-preview-rise-of-the-zandalari",
+            live = "https://worldofwarcraft.blizzard.com/en-gb/news/9984237",
+            vanity = "https://www.wowhead.com/news/a-guide-to-patch-4-1s-vanity-items-and-a-wowhead-comic-188009",
+        },
+        mounts = GeneratedPatchCollections["4.1.0"].mounts,
+        pets = {}, toys = {}, cosmetics = GeneratedPatchCollections["4.1.0"].cosmetics,
+        cosmeticDetailGroups = {
+            guildTabards = { sourceType = "Guild reputation vendor", source = "Guild vendors in Stormwind and Orgrimmar", acquisition = "Reach the required guild reputation and purchase the matching guild tabard.", tips = "The tabards increase guild reputation gains rather than representing a specific guild design; check both reputation and vendor eligibility.", waypoints = { "/way #84 67.4 72.8 Guild vendor", "/way #85 48.4 75.6 Guild vendor" } },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Amani Battle Bear", "Thirty Tabards", "Guild Challenges" } },
+    },
+    ["4.2.0"] = {
+        label = "Patch 4.2: Rage of the Firelands",
+        wowheadPatchId = 40200,
+        sourceNotes = {
+            "This bucket covers the Regrowth and Molten Front campaign, Elemental Bonds, Firelands, Dragonwrath, revised companion-pet milestones, Baradin Hold's Occu'thar, and Cataclysm PvP Season 10.",
+            "Original live availability is used. Shop, trading-card, promotion, calendar-event, hidden-statistic, unused, and ordinary equipment records are excluded; retired raid, guild, realm-first, and ranked-PvP rewards remain visible.",
+            "Molten Front coordinates identify unlock hubs and vendors. The campaign is phased and requires Marks of the World Tree across multiple daily resets.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/2993743/rage-of-the-firelands-patch-42-notes-updated-628",
+            live = "https://worldofwarcraft.blizzard.com/en-gb/news/9993013/patch-42-rage-of-the-firelands-now-live",
+            moltenFront = "https://www.wowhead.com/guide/a-guide-to-the-molten-front-and-respective-quests-58",
+            vanity = "https://www.wowhead.com/news/vanity-roundup-and-guides-for-4-2-190985",
+        },
+        mounts = GeneratedPatchCollections["4.2.0"].mounts,
+        pets = {}, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = { "Flameward Hippogryph", "Corrupted Fire Hawk", "Dragonwrath, Tarecgosa's Rest", "Veteran of the Molten Front" } },
+    },
+    ["4.3.0"] = {
+        label = "Patch 4.3: Hour of Twilight",
+        wowheadPatchId = 40300,
+        sourceNotes = {
+            "This bucket covers End Time, Well of Eternity, Hour of Twilight, Dragon Soul, Raid Finder, Fangs of the Father, Worgen vendor mounts, Baradin Hold's Alizabal, and Cataclysm PvP Season 11.",
+            "Original live availability and current durable IDs are used. Darkmoon Faire and other calendar-event additions, shop and promotional rewards, trading-card records, hidden statistics, and ordinary equipment are excluded under the catalogue's established rules.",
+            "Historical guild, realm-first, heroic-raid, and ranked-PvP achievements remain available for collection-history tracking even when their original source has ended.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/3964563/43-hour-of-twilight-patch-notes",
+            guide = "https://www.wowhead.com/news/wowheads-patch-4-3-guide-197962",
+        },
+        mounts = GeneratedPatchCollections["4.3.0"].mounts,
+        pets = {}, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = { "Twilight Harbinger", "Life-Binder's Handmaiden", "Fangs of the Father", "Destroyer's End" } },
+    },
+    ["5.0"] = {
+        label = "Mists of Pandaria (Initial Release)",
+        wowheadPatchId = 50004,
+        sourceNotes = {
+            "This launch bucket includes patch 5.0.4, the Mists of Pandaria expansion launch, Pandaria's original zones and factions, Pet Battles, Challenge Modes, scenarios, Mists PvP Season 12, and the first raid tier.",
+            "The audit uses original live availability and current collection IDs. Shop, Collector's Edition, promotion, calendar-event, hidden-statistic, NPC-only, unused-beta, and ordinary equipment records are excluded.",
+            "Historical Theramore, Challenge Mode, realm-first, raid, guild, and Season 12 rewards remain listed even where the original acquisition path has ended.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-gb/news/10026010",
+            roundup = "https://worldofwarcraft.blizzard.com/en-us/news/7305448/world-of-warcraft-mists-of-pandaria-round-up",
+            launch = "https://www.wowhead.com/news/mists-of-pandaria-launch-guide-206705",
+            patch = "https://warcraft.wiki.gg/wiki/Patch_5.0.4",
+            pets = "https://us.forums.blizzard.com/en/wow/t/pandarian-pets-and-where-to-find-them/2077368",
+            toys = "https://us.forums.blizzard.com/en/wow/t/more-toys-for-your-toy-box-pandaria/2098920",
+        },
+        mounts = GeneratedPatchCollections["5.0"].mounts,
+        pets = {}, toys = {}, cosmetics = GeneratedPatchCollections["5.0"].cosmetics,
+        cosmeticDetailGroups = {
+            pandarenTabards = { sourceType = "Racial faction tabard", source = "Tushui Pandaren and Huojin Pandaren emissaries", acquisition = "Purchase the tabard from the matching faction emissary in Stormwind or Orgrimmar.", tips = "Wear the tabard in eligible dungeons if you still need its racial-faction reputation." },
+            pandariaTabards = { sourceType = "Reputation tabard", source = "Original Pandaria faction quartermasters", acquisition = "Reach Exalted with the matching Pandaria faction and purchase its tabard.", tips = "Work one daily hub at a time and buy Grand Commendations where available to accelerate account-wide reputation gains." },
+            theramoreTabard = { sourceType = "Historical scenario reward", source = "Alliance Theramore's Fall launch event", acquisition = "Originally awarded to Alliance characters during the Mists pre-launch Theramore's Fall event.", tips = "The original limited-time source is no longer obtainable; retained for historical tracking." },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Crimson Cloud Serpent", "Heavenly Crimson Cloud Serpent", "Pandaren Kite", "Jade Tentacle", "the Zookeeper" } },
+    },
+    ["5.1"] = {
+        label = "Patch 5.1: Landfall",
+        wowheadPatchId = 50100,
+        sourceNotes = {
+            "This bucket covers the Operation: Shieldwall and Dominance Offensive campaigns, Brawler's Guild Season 1, Pandaren Spirit Tamers, Raiding with Leashes, and the permanent pets and collection rewards introduced with Landfall.",
+            "Calendar-event, shop, promotion, hidden-statistic, NPC-only, and ordinary equipment records are excluded. Historical campaign, legendary, scenario, and Brawler achievements remain visible.",
+            "The original campaign mounts require the faction storyline; the armored gryphon and wyvern are separate Exalted reputation purchases.",
+        },
+        sourceUrls = {
+            patch = "https://warcraft.wiki.gg/wiki/Patch_5.1.0",
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/7540458/patch-51-ptr-patch-notes-november-8",
+            pets = "https://warcraft.wiki.gg/wiki/Raiding_with_Leashes",
+        },
+        mounts = GeneratedPatchCollections["5.1"].mounts,
+        pets = {}, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = { "Jade Pandaren Kite", "Grand Gryphon", "Grand Wyvern", "Mr. Bigglesworth", "Safari Hat" } },
+    },
+    ["5.2"] = {
+        label = "Patch 5.2: The Thunder King",
+        wowheadPatchId = 50200,
+        sourceNotes = {
+            "This bucket covers the Isle of Thunder, Isle of Giants, Throne of Thunder, Zandalari Warbringers, Beasts of Fable, the green-fire quest, and Mists PvP Season 13.",
+            "Original live availability is used for mounts and pets. Event, shop, TCG, promotion, hidden-statistic, NPC-only, and ordinary equipment records are excluded; historical raid and PvP rewards remain visible.",
+            "Toys use their current Toy Box item IDs even where the object was converted to a toy in a later expansion.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/8896363/52-the-thunder-king-patch-notes",
+            patch = "https://warcraft.wiki.gg/wiki/Patch_5.2.0",
+            thunder = "https://warcraft.wiki.gg/wiki/Isle_of_Thunder",
+            throne = "https://warcraft.wiki.gg/wiki/Throne_of_Thunder",
+        },
+        mounts = GeneratedPatchCollections["5.2"].mounts,
+        pets = {}, toys = {}, cosmetics = GeneratedPatchCollections["5.2"].cosmetics,
+        cosmeticDetailGroups = {
+            thunderTabards = { sourceType = "Reputation tabard", source = "Isle of Thunder factions", acquisition = "Reach Exalted with the matching faction and purchase its tabard.", tips = "Kirin Tor Offensive is Alliance, Sunreaver Onslaught is Horde, and Shado-Pan Assault reputation comes primarily from Throne of Thunder." },
+            pvpTabard = { sourceType = "Elite PvP season reward", source = "Mists PvP Season 13", acquisition = "Earn the elite Tyrannical Gladiator's Tabard during Mists PvP Season 13.", tips = "The original elite-season source is no longer obtainable." },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Armored Skyscreamer", "Tyrannical Gladiator's Cloud Serpent", "Stormbreaker" } },
+    },
+    ["5.3"] = {
+        label = "Patch 5.3: Escalation",
+        wowheadPatchId = 50300,
+        sourceNotes = {
+            "This bucket covers Battlefield: Barrens, the Escalation campaign, Heroic Scenarios, Deepwind Gorge, the Brawler's Guild update, Raiding with Leashes II, and new Throne of Thunder and world pets.",
+            "The retired Barrens campaign and original Brawler season remain represented through their historical rewards. Event, shop, promotion, hidden-statistic, NPC-only, and ordinary equipment records are excluded.",
+            "Several Barrens vanity rewards remain obtainable from legacy vendors even though their original Radical Mojo acquisition path ended.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-gb/news/10021220/53-escalation-patch-notes",
+            overview = "https://worldofwarcraft.blizzard.com/en-us/news/9679405/53-escalation-round-up",
+            patch = "https://warcraft.wiki.gg/wiki/Patch_5.3.0",
+            pets = "https://warcraft.wiki.gg/wiki/Raiding_with_Leashes_II:_Attunement_Edition",
+        },
+        mounts = GeneratedPatchCollections["5.3"].mounts,
+        pets = {}, toys = {}, cosmetics = GeneratedPatchCollections["5.3"].cosmetics,
+        cosmeticDetailGroups = {
+            brawlerShirts = { sourceType = "Brawler's Guild reward", source = "Original Brawler's Guild challenge cards", acquisition = "Complete the matching original challenge-card encounter and obtain its shirt reward.", tips = "These rewards are retained for historical tracking; original-season encounter and vendor availability has changed." },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Armored Blue Dragonhawk", "Armored Red Dragonhawk", "Stunted Direhorn", "Tito" } },
+    },
+    ["5.4.0"] = {
+        label = "Patch 5.4: Siege of Orgrimmar",
+        wowheadPatchId = 50400,
+        sourceNotes = {
+            "This bucket covers Siege of Orgrimmar, the Timeless Isle, Celestial Tournament, Proving Grounds, the legendary-cloak finale, and Mists PvP Season 14.",
+            "The audit uses original live availability. Calendar events, shop and promotional rewards, hidden statistics, NPC-only records, and ordinary equipment are excluded; retired raid, realm-best, and PvP rewards remain for historical tracking.",
+            "Timeless Isle coordinates identify practical farming hubs or spawn areas; moving rares and multi-point treasure objectives may require a local route rather than a single pin.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/10158897/patch-54-siege-of-orgrimmar",
+            patch = "https://warcraft.wiki.gg/wiki/Patch_5.4.0",
+            timeless = "https://warcraft.wiki.gg/wiki/Timeless_Isle",
+            siege = "https://warcraft.wiki.gg/wiki/Siege_of_Orgrimmar",
+            pets = "https://warcraft.wiki.gg/wiki/Celestial_Tournament",
+        },
+        mounts = GeneratedPatchCollections["5.4.0"].mounts,
+        pets = {}, toys = {}, cosmetics = GeneratedPatchCollections["5.4.0"].cosmetics,
+        cosmeticDetailGroups = {
+            pvpTabard = { sourceType = "Elite PvP season reward", source = "Mists PvP Season 14", acquisition = "Earn the elite Grievous Gladiator's Tabard during Mists PvP Season 14.", tips = "The original elite-season source is no longer obtainable." },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Spawn of Galakras", "Kor'kron War Wolf", "Grievous Gladiator's Cloud Serpent", "The Proven Defender" } },
+    },
+    ["5.4.1"] = {
+        label = "Patch 5.4.1",
+        wowheadPatchId = 50401,
+        sourceNotes = { "Audited as a maintenance and systems update with no qualifying permanent collection additions. Recruit-a-Friend and other promotional records are excluded." },
+        sourceUrls = { patch = "https://warcraft.wiki.gg/wiki/Patch_5.4.1" },
+        mounts = {}, pets = {}, toys = {}, cosmetics = {}, achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["5.4.2"] = {
+        label = "Patch 5.4.2",
+        wowheadPatchId = 50402,
+        sourceNotes = { "Audited as a systems and cross-realm-mail update with no qualifying permanent collection additions after calendar-event exclusions." },
+        sourceUrls = { patch = "https://warcraft.wiki.gg/wiki/Patch_5.4.2" },
+        mounts = {}, pets = {}, toys = {}, cosmetics = {}, achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["5.4.7"] = {
+        label = "Patch 5.4.7: Mists PvP Season 15",
+        wowheadPatchId = 50407,
+        sourceNotes = {
+            "This bucket records the Prideful Season 15 mount, tabard, conquest, combatant, ladder-title, rated-battleground, and gladiator-mount achievements that became available with the season.",
+            "The original ranked rewards are no longer obtainable; they remain visible for historical collection tracking.",
+        },
+        sourceUrls = { patch = "https://warcraft.wiki.gg/wiki/Patch_5.4.7" },
+        mounts = GeneratedPatchCollections["5.4.7"].mounts,
+        pets = {}, toys = {}, cosmetics = GeneratedPatchCollections["5.4.7"].cosmetics,
+        cosmeticDetailGroups = {
+            pvpTabard = { sourceType = "Elite PvP season reward", source = "Mists PvP Season 15", acquisition = "Earn the elite Prideful Gladiator's Tabard during Mists PvP Season 15.", tips = "The original elite-season source is no longer obtainable." },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Prideful Gladiator's Cloud Serpent", "Prideful Gladiator's Tabard" } },
+    },
+    ["5.4.8"] = {
+        label = "Patch 5.4.8",
+        wowheadPatchId = 50408,
+        sourceNotes = { "Audited as a balance, currency, and systems update with no qualifying new permanent collection records." },
+        sourceUrls = { patch = "https://warcraft.wiki.gg/wiki/Patch_5.4.8" },
+        mounts = {}, pets = {}, toys = {}, cosmetics = {}, achievements = { ids = {}, rewardHighlights = {} },
+    },
+    ["6.0.0"] = {
+        label = "Warlords of Draenor (Initial Release)",
+        wowheadPatchId = 60000,
+        sourceNotes = {
+            "This launch bucket includes the 6.0.2 Iron Tide systems update, the 6.0.3 expansion launch, Highmaul, and Blackrock Foundry—the complete initial Warlords collection tier before patch 6.1.",
+            "The audit reconciles the final Legion-era client database with contemporary collection guides and All The Things source metadata. Store, Collector's Edition, promotion, calendar-event, hidden, test, NPC-only, and ordinary equipment records are excluded.",
+            "Historical Challenge Mode, Brawler's Guild, Ashran, raid, and Warlords Season 1 rewards remain listed even when their original acquisition path has ended.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/15682579/the-iron-tide-602-patch-notes",
+            release = "https://worldofwarcraft.blizzard.com/en-us/news/16365525/patch-602-now-live-the-iron-tide-crashes-into-azeroth",
+            overview = "https://www.wowhead.com/guide/warlords-of-draenor-an-expansion-overview-6120",
+            mounts = "https://www.wowhead.com/guide/vanity-collections/mounts-from-the-garrison",
+            pets = "https://www.wowhead.com/guide/battle-pets/battle-pet-updates-in-warlords-of-draenor",
+            toys = "https://www.wowhead.com/guide/toy-box-a-look-inside-the-box-2381",
+        },
+        mounts = GeneratedPatchCollections["6.0.0"] and GeneratedPatchCollections["6.0.0"].mounts or {},
+        pets = {}, toys = {},
+        cosmetics = GeneratedPatchCollections["6.0.0"] and GeneratedPatchCollections["6.0.0"].cosmetics or {},
+        cosmeticDetailGroups = {
+            pvpTabards = { sourceType = "PvP season reward", source = "Warlords rated PvP Season 1", acquisition = "Earn the elite-season tabard during Warlords Season 1; retained for historical tracking.", tips = "The original elite-season source is no longer obtainable." },
+            reputationTabards = { sourceType = "Reputation reward", source = "Draenor faction quartermasters", acquisition = "Reach Exalted with the matching faction and purchase its tabard.", tips = "Combine daily objectives, quests, and Medallions of the Legion when available.", waypoints = { "/way #622 46.6 76.8 Stormshield", "/way #624 44.0 74.0 Warspear" } },
+            cityTabards = { sourceType = "Garrison vendor", source = "Dwarven Bunker or War Mill armor vendor", acquisition = "Build the matching faction building and purchase the city tabard.", tips = "Alliance uses the Dwarven Bunker; Horde uses the War Mill.", waypoints = { "/way #582 40.0 37.0 Lunarfall", "/way #590 52.0 50.0 Frostwall" } },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Felfire Hawk", "Gorestrider Gronnling", "Frostplains Battleboar", "Challenger's War Yeti" } },
+    },
+    ["6.1.0"] = {
+        label = "Patch 6.1: Garrisons Update",
+        wowheadPatchId = 60100,
+        sourceNotes = {
+            "This bucket follows live availability on February 24, 2015: the heirloom collection, Garrison visitors and missions, the S.E.L.F.I.E. camera, jukebox rewards, Raiding with Leashes III, and Edge of Reality portals.",
+            "Darkmoon Faire, Winter Veil, store, promotion, test, and ordinary equipment records are excluded under the catalogue-wide rules.",
+            "Blackrock Foundry itself remains in the initial-release bucket because the raid opened before patch 6.1; Chapter III is here because its legendary-quest achievement arrived with this client patch.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/news/17953992/patch-61-now-live",
+            garrison = "https://www.wowhead.com/guide/garrisons/upcoming-patch-6-1-garrison-changes",
+            pets = "https://www.wowhead.com/guide/battle-pets/6-1-battle-pet-updates",
+            toys = "https://www.wowhead.com/guide/toy-box-a-look-inside-the-box-2381",
+        },
+        mounts = GeneratedPatchCollections["6.1.0"] and GeneratedPatchCollections["6.1.0"].mounts or {},
+        pets = {}, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = { "Chauffeured Mechano-Hog", "Chauffeured Mekgineer's Chopper", "K'ute", "Trans-Dimensional Bird Whistle" } },
+    },
+    ["6.2.0"] = {
+        label = "Patch 6.2: Fury of Hellfire",
+        wowheadPatchId = 60200,
+        sourceNotes = {
+            "This catalogue covers Tanaan Jungle, Hellfire Citadel, the Garrison Shipyard and naval missions, Warlords PvP Season 2, and the permanent collection records released with Fury of Hellfire.",
+            "Records are assigned by live availability. Store, Collector's Edition, promotion, calendar-event, test, NPC-only, hidden-statistic, and ordinary equipment records are excluded; historical raid and PvP rewards remain visible.",
+            "Cosmetics are limited to durable tabards and packaged cosmetic sets. Ordinary Hellfire Citadel, quest, and PvP stat gear remains outside the catalogue.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/19803325/patch-6-2-fury-of-hellfire-arrives-june-23",
+            notes = "https://worldofwarcraft.blizzard.com/en-us/news/18539917",
+            overview = "https://www.wowhead.com/guide/tanaan-jungle",
+            pets = "https://www.wowhead.com/guide/battle-pets/new-6-2-pets",
+            toys = "https://www.wowhead.com/guide/vanity-collections/new-toys-in-patch-6-2",
+        },
+        mounts = GeneratedPatchCollections["6.2.0"] and GeneratedPatchCollections["6.2.0"].mounts or {},
+        pets = {}, toys = {},
+        cosmetics = GeneratedPatchCollections["6.2.0"] and GeneratedPatchCollections["6.2.0"].cosmetics or {},
+        cosmeticDetailGroups = {
+            pvpTabards = { sourceType = "PvP season reward", source = "Warlords rated PvP Season 2", acquisition = "Earn the faction tabard during Warlords PvP Season 2; retained for historical collection tracking.", tips = "This original elite-season reward is no longer obtainable." },
+            reputationTabards = { sourceType = "Reputation reward", source = "Tanaan Jungle faction quartermasters", acquisition = "Reach Exalted with the matching faction and purchase its tabard.", tips = "Combine Tanaan daily objectives with Medallions of the Legion.", waypoints = { "/way #534 57.6 59.4 Lion's Watch", "/way #534 61.0 45.8 Vol'mar" } },
+            campaignSets = { sourceType = "Campaign cosmetic set", source = "Faction Tanaan campaign", acquisition = "Complete the matching faction campaign reward path and open the packaged cosmetic set.", tips = "Alliance and Horde rewards require their respective campaign." },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Soaring Skyterror", "Infernal Direwolf", "Wild Gladiator's Felblood Gronnling" } },
+    },
+    ["6.2.2"] = {
+        label = "Patch 6.2.2: Draenor Flying",
+        wowheadPatchId = 60202,
+        sourceNotes = {
+            "This bucket includes Draenor flying availability, the Burning Crusade and Wrath Timewarped Badge vendors, the three flying-access Nagrand pets, and collection achievements introduced by the 6.2.2 client.",
+            "Season 3 and Cataclysm Timewalking records present in the client are moved to 6.2.3, when players could actually obtain them.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/19828438",
+            release = "https://worldofwarcraft.blizzard.com/en-us/news/19881984/prepare-for-lift-off-patch-622-takes-flight-september-1",
+            overview = "https://warcraft.wiki.gg/wiki/Patch_6.2.2",
+        },
+        mounts = GeneratedPatchCollections["6.2.2"] and GeneratedPatchCollections["6.2.2"].mounts or {},
+        pets = {}, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = { "Heavenly Azure Cloud Serpent" } },
+    },
+    ["6.2.3"] = {
+        label = "Patch 6.2.3",
+        wowheadPatchId = 60203,
+        sourceNotes = {
+            "This bucket follows live availability for Cataclysm Timewalking, the Infinite Timereaver, Warlords PvP Season 3, and the limited Grove Warden quest reward.",
+            "The Grove Warden and original Season 3 rewards are retained for historical tracking even though their original sources have ended.",
+        },
+        sourceUrls = {
+            official = "https://worldofwarcraft.blizzard.com/en-us/news/19913791",
+            hotfixes = "https://worldofwarcraft.blizzard.com/en-us/news/19991705/patch-623-hotfixes-january-6-29",
+            overview = "https://warcraft.wiki.gg/wiki/Patch_6.2.3",
+        },
+        mounts = GeneratedPatchCollections["6.2.3"] and GeneratedPatchCollections["6.2.3"].mounts or {},
+        pets = {}, toys = {},
+        cosmetics = GeneratedPatchCollections["6.2.3"] and GeneratedPatchCollections["6.2.3"].cosmetics or {},
+        cosmeticDetailGroups = {
+            pvpTabards = { sourceType = "PvP season reward", source = "Warlords rated PvP Season 3", acquisition = "Earn the faction tabard during Warlords PvP Season 3; retained for historical collection tracking.", tips = "This original elite-season reward is no longer obtainable." },
+        },
+        achievements = { ids = {}, rewardHighlights = { "Warmongering Gladiator's Felblood Gronnling" } },
+    },
+    ["6.2.4"] = {
+        label = "Patch 6.2.4",
+        wowheadPatchId = 60204,
+        sourceNotes = {
+            "The official 6.2.4 notes contain infrastructure, client, and bug-fix changes but no eligible permanent collection records.",
+            "Warcraft movie promotional weapon appearances are excluded by the catalogue's promotion rule, so this is an explicit audited empty bucket.",
+        },
+        sourceUrls = { official = "https://worldofwarcraft.blizzard.com/en-us/news/20095769/world-of-warcraft-patch-6-2-4" },
+        mounts = GeneratedPatchCollections["6.2.4"] and GeneratedPatchCollections["6.2.4"].mounts or {},
+        pets = {}, toys = {}, cosmetics = {},
+        achievements = { ids = {}, rewardHighlights = {} },
+    },
     ["7.0.0"] = {
         label = "Legion (Initial Release)",
         wowheadPatchId = 70000,
@@ -7183,6 +8127,51 @@ PatchCatalog.PATCH_8_1_5_COSMETICS = nil
 -- datasets; the 10.0 launch rows are refreshed because that audit found real
 -- omissions there as well.
 local GENERATED_COLLECTION_PATCHES = {
+    ["1.0"] = true,
+    ["1.1"] = true,
+    ["1.2"] = true,
+    ["1.3"] = true,
+    ["1.4"] = true,
+    ["1.5"] = true,
+    ["1.6"] = true,
+    ["1.7"] = true,
+    ["1.8"] = true,
+    ["1.9"] = true,
+    ["1.10"] = true,
+    ["1.11"] = true,
+    ["1.12"] = true,
+    ["2.0"] = true,
+    ["2.1"] = true,
+    ["2.2"] = true,
+    ["2.3"] = true,
+    ["2.4"] = true,
+    ["3.0"] = true,
+    ["3.0.3"] = true,
+    ["3.0.8"] = true,
+    ["3.1.0"] = true,
+    ["3.2.0"] = true,
+    ["3.3.0"] = true,
+    ["3.3.5"] = true,
+    ["3.3.5a"] = true,
+    ["4.0.0"] = true,
+    ["4.1.0"] = true,
+    ["4.2.0"] = true,
+    ["4.3.0"] = true,
+    ["5.0"] = true,
+    ["5.1"] = true,
+    ["5.2"] = true,
+    ["5.3"] = true,
+    ["5.4.0"] = true,
+    ["5.4.1"] = true,
+    ["5.4.2"] = true,
+    ["5.4.7"] = true,
+    ["5.4.8"] = true,
+    ["6.0.0"] = true,
+    ["6.1.0"] = true,
+    ["6.2.0"] = true,
+    ["6.2.2"] = true,
+    ["6.2.3"] = true,
+    ["6.2.4"] = true,
     ["7.0.0"] = true,
     ["7.1.0"] = true,
     ["7.1.5"] = true,
@@ -8749,11 +9738,18 @@ PatchCatalog.mountDetails["10.0.7"] = {
     ["Mossy Mammoth"] = { category = "Treasures", sourceType = "Zskera Vault puzzle", source = "Zskera Vaults", acquisition = "Combine the Zskera Vault mammoth-puzzle reagents in sequence, ending with the Sleeping Ancient Mammoth and Emerald Dragon Brooch.", waypoints = { "/way #2151 29.1 53.1 Zskera Vault entrance" } },
 }
 
--- Dragonflight 10.1 through The War Within 11.2.7 mount backfill. The
--- journal's spell ID is the durable collection key; the shared detail record
--- keeps every row usable by the Explorer while individual route research is
--- expanded separately.
+-- Audited generated mount collections. The journal's spell ID is the durable
+-- collection key; the shared detail record keeps every row usable by the
+-- Explorer while source-specific route research is expanded separately.
 local AUDITED_MOUNT_PATCHES = {
+    "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10", "1.11", "1.12",
+    "2.0", "2.1", "2.2", "2.3", "2.4",
+    "3.0", "3.0.3", "3.0.8", "3.1.0", "3.2.0", "3.3.0", "3.3.5", "3.3.5a",
+    "4.0.0", "4.1.0", "4.2.0", "4.3.0",
+    "5.0", "5.1", "5.2", "5.3",
+    "5.4.0", "5.4.1", "5.4.2", "5.4.7", "5.4.8",
+    "6.0.0", "6.1.0",
+    "6.2.0", "6.2.2", "6.2.3", "6.2.4",
     "7.0.0", "7.1.0", "7.1.5",
     "7.2.0", "7.2.5", "7.3.0", "7.3.5",
     "8.0.0", "8.1.0", "8.1.5",
@@ -8850,6 +9846,375 @@ for patchKey in pairs(GENERATED_COLLECTION_PATCHES) do
         }
     end
 end
+
+local function ApplyWarlordsAchievementGroup(patchKey, achievementIds, category, source, acquisition, tips, waypoints)
+    for _, achievementId in ipairs(achievementIds) do
+        PatchCatalog.achievementCategories[patchKey][achievementId] = category
+        PatchCatalog.achievementDetails[patchKey][achievementId] = {
+            sourceType = "Achievement",
+            source = source,
+            acquisition = acquisition,
+            tips = tips,
+            waypoints = waypoints,
+        }
+    end
+end
+
+ApplyWarlordsAchievementGroup("3.0", PatchCatalog.patches["3.0"].achievements.ids, "Legacy and Wrath Launch", "Wrath launch achievement system", "Complete the achievement's exact in-game criteria.", "This initial catalogue includes the permanent achievement system's Classic, Burning Crusade, and Wrath launch records. Historical realm-first, raid, PvP, and one-time launch-event criteria may no longer be obtainable.")
+ApplyWarlordsAchievementGroup("3.0", { 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2056, 2057, 2058, 2136, 2150, 2151, 2152, 2153, 2154, 2155, 2156, 2157 }, "Dungeons", "Wrath heroic dungeons", "Complete the listed heroic-dungeon encounter mechanic or Glory of the Hero criterion.", "Set Heroic and read the criterion before attacking; at high level, stop damage until required adds, debuffs, or timers register.")
+ApplyWarlordsAchievementGroup("3.0", { 2044, 2045, 2046 }, "Raids", "The Eye of Eternity", "Defeat Malygos while leaving the listed drake color unused.", "Assign drake roles before phase three and avoid the forbidden color for the whole attempt.", { "/way #114 27.5 26.6 Eye of Eternity entrance" })
+ApplyWarlordsAchievementGroup("3.0", { 2047, 2048, 2049, 2050, 2051, 2052, 2053, 2054 }, "Raids", "The Obsidian Sanctum", "Complete the listed lava-wave or twilight-drake challenge in the original raid size.", "For drake achievements, pull Sartharion while the required drakes remain alive.", { "/way #115 59.8 54.6 Obsidian Sanctum below Wyrmrest Temple" })
+ApplyWarlordsAchievementGroup("3.0", { 2137, 2138, 2139, 2140, 2146, 2147, 2148, 2149, 2176, 2177, 2178, 2179, 2180, 2181, 2182, 2183, 2184, 2185, 2186, 2187 }, "Raids", "Naxxramas", "Complete the listed Naxxramas meta, encounter, or immortality criterion in the original raid size.", "Control damage so mechanics register. The original Immortal and Undying requirements are historical and no longer obtainable in their original form.", { "/way #115 87.3 50.9 Naxxramas entrance" })
+ApplyWarlordsAchievementGroup("3.0", { 2076, 2077, 2078, 2080, 2081, 2082, 2083, 2097, 2141, 2142, 2143 }, "Collections", "Wrath mount collection", "Learn, buy, or earn the mount named by the achievement.", "Combine reputation and vendor mounts with dungeon and raid drops to advance the mount-count milestones.")
+ApplyWarlordsAchievementGroup("3.0", { 2094, 2095, 2096 }, "Fishing", "Dalaran fountain coins", "Fish the required copper, silver, or gold coins from the Dalaran fountain.", "Use enough Fishing skill to avoid junk catches; keep every unique coin until its criterion is credited.", { "/way #125 52.5 66.2 Dalaran fountain" })
+
+ApplyWarlordsAchievementGroup("3.0.8", { 2456 }, "Events", "Scourge Invasion", "Complete the historical Vampire Hunter criterion during the pre-Wrath invasion.", "This limited event achievement is no longer obtainable and remains for historical tracking.")
+ApplyWarlordsAchievementGroup("3.0.8", { 2476, 2496 }, "PvP", "Wintergrasp", "Complete the listed Wintergrasp vehicle or elemental-control criterion.", "Track the vehicle and elemental subcriteria across battles; control of the zone changes on the battle cycle.", { "/way #123 50.0 11.0 Wintergrasp Fortress" })
+ApplyWarlordsAchievementGroup("3.0.8", { 2516, 2536, 2537 }, "Collections", "Companion and mount milestones", "Collect 75 companion pets or 100 mounts under the original account rules.", "Use vendors, reputations, professions, and guaranteed achievement rewards before farming rare drops.")
+ApplyWarlordsAchievementGroup("3.0.8", { 2556, 2557 }, "Exploration", "Azeroth critters", "Find and love or defeat every critter listed in the achievement criteria.", "Track the list zone by zone and use a targeting macro for small critters.")
+
+ApplyWarlordsAchievementGroup("3.1.0", PatchCatalog.patches["3.1.0"].achievements.ids, "Raids", "Ulduar", "Complete the listed Ulduar clear, hard mode, meta, legendary, or realm-first criterion.", "Choose the original raid size where specified and set up hard modes before pulling. At high level, stop damage until every required mechanic registers.", { "/way #120 41.6 18.2 Ulduar entrance" })
+ApplyWarlordsAchievementGroup("3.1.0", { 2336 }, "Reputation", "Insane in the Membrane", "Reach the original required reputation standings with the Steamwheedle Cartel, Ravenholdt, Darkmoon Faire, and the removed Shen'dralar faction.", "This is a long reputation project; verify the current criteria before spending or turning in rare materials because the original list changed after Cataclysm.")
+ApplyWarlordsAchievementGroup("3.1.0", { 2357, 2358, 2359 }, "Class", "Legacy class mount questlines", "Have completed the original Warlock Dreadsteed, Paladin Charger, or Druid Swift Flight Form questline.", "These feats preserve retired class quest completion and cannot be newly earned through the original removed chains.")
+ApplyWarlordsAchievementGroup("3.1.0", { 2716 }, "Character", "Dual Talent Specialization", "Purchase and activate the original dual-specialization feature.", "This is a historical achievement retained from the original system; current talent systems no longer use the same unlock.")
+ApplyWarlordsAchievementGroup("3.1.0", { 2756, 2758, 2760, 2761, 2762, 2763, 2764, 2765, 2766, 2767, 2768, 2769, 2770, 2771, 2772, 2773, 2777, 2778, 2779, 2780, 2781, 2782, 2783, 2784, 2785, 2786, 2787, 2788, 2816, 2817, 2836 }, "Questing", "Argent Tournament", "Complete the listed aspirant, valiant, champion, reputation, jousting, or meta criterion.", "Progress one home city at a time, complete tournament dailies, and retain Champion's Seals for mounts, pets, banners, and tabards.", { "/way #118 75.8 24.4 Argent Tournament Grounds" })
+ApplyWarlordsAchievementGroup("3.1.0", { 3096, 3336 }, "PvP", "Wrath Arena Season 5", "Earn the original Deadly Gladiator title or Frost Wyrm.", "These seasonal ladder rewards are no longer obtainable and remain for historical tracking.")
+ApplyWarlordsAchievementGroup("3.1.0", { 3136, 3137 }, "Raids", "Emalon in the Vault of Archavon", "Defeat Emalon in the listed original raid size.", "Vault access historically required Wintergrasp control; defeat overcharged adds before their explosion.", { "/way #123 50.0 11.0 Vault of Archavon entrance" })
+ApplyWarlordsAchievementGroup("3.1.0", { 3217, 3218 }, "Fishing", "Dalaran fishing dailies and Northrend pools", "Complete every Marcia Chase daily or fish up a Sea Turtle from a Northrend pool.", "Do the Dalaran daily whenever available and pool-hop with Find Fish for the Sea Turtle.", { "/way #125 53.0 64.9 Marcia Chase" })
+ApplyWarlordsAchievementGroup("3.1.0", { 3296 }, "Cooking", "Chef's Hat", "Purchase and equip a Chef's Hat using Dalaran Cooking Awards.", "Complete Dalaran cooking dailies and save awards after buying recipes needed for other cooking achievements.", { "/way #125 40.6 65.8 Dalaran cooking daily hub" })
+ApplyWarlordsAchievementGroup("3.1.0", { 3356 }, "Collections", "Winterspring Frostsaber", "Earn and learn the Winterspring Frostsaber mount.", "Complete the Wintersaber Trainers reputation or modern replacement quest path in Winterspring.", { "/way #83 46.6 17.6 Wintersaber Trainers" })
+
+ApplyWarlordsAchievementGroup("3.2.0", { 3357 }, "Questing", "Venomhide Ravasaur", "Raise a Venomhide hatchling through the Horde-only daily chain.", "Keep the hatchling summoned for its daily and plan on 20 days of training.", { "/way #78 71.6 73.8 Mor'vek" })
+ApplyWarlordsAchievementGroup("3.2.0", { 3676, 3677, 3736 }, "Questing", "Argent Tournament", "Complete the listed faction-reputation, city-champion, or Argent Pony tournament criterion.", "Work toward every home-city champion rank while banking Champion's Seals; this unlocks Crusader vendors and the faction pavilion rewards together.", { "/way #118 75.8 24.4 Argent Tournament Grounds" })
+ApplyWarlordsAchievementGroup("3.2.0", { 3436, 3756, 3757, 3758 }, "PvP", "Wrath Arena Seasons 6 and 7", "Earn the listed Gladiator title or Frost Wyrm from its original ranked arena season.", "These seasonal ladder rewards are no longer obtainable and remain for historical collection tracking.")
+ApplyWarlordsAchievementGroup("3.2.0", {
+    3776, 3777, 3845, 3846, 3847, 3848, 3849, 3850, 3851, 3852, 3853, 3854,
+    3855, 3856, 3857, 3957, 4176, 4177, 4256,
+}, "PvP", "Isle of Conquest", "Complete the listed Isle of Conquest victory, vehicle, node, bomb, kill-location, or meta criterion.", "Track each objective separately and coordinate vehicle or node requirements with the team; some achievements require a single battleground.")
+ApplyWarlordsAchievementGroup("3.2.0", { 3778, 3802, 3803, 3804, 4296, 4297, 4298 }, "Dungeons", "Trial of the Champion", "Complete Trial of the Champion or its listed heroic encounter mechanic.", "Set Heroic where required. For Argent Confessor, the memory opponent varies between visits, so the achievement needs several clears.", { "/way #118 75.0 21.8 Crusaders' Coliseum entrance" })
+ApplyWarlordsAchievementGroup("3.2.0", {
+    3797, 3798, 3799, 3800, 3808, 3809, 3810, 3812, 3813, 3815, 3816, 3817,
+    3818, 3819, 3916, 3917, 3918, 3936, 3937, 3996, 3997, 4078, 4079, 4080, 4156,
+}, "Raids", "Trial of the Crusader and Trial of the Grand Crusader", "Complete the listed raid clear, limited-attempt tribute, realm-first, or special encounter criterion.", "Read the exact mechanic before dealing damage. The original attempt counter, realm-first, immortality, and item-level tribute requirements are historical and no longer obtainable.", { "/way #118 75.0 21.8 Trial of the Crusader entrance" })
+ApplyWarlordsAchievementGroup("3.2.0", { 3836, 3837, 4016, 4017 }, "Raids", "Vault of Archavon", "Defeat Koralon or complete the listed multi-Watcher timing criterion in the original raid size.", "Vault access historically required Wintergrasp control. Earth, Wind & Fire needs the three Watchers defeated within one minute.", { "/way #123 50.0 11.0 Vault of Archavon entrance" })
+ApplyWarlordsAchievementGroup("3.2.0", { 4396, 4397, 4402, 4403, 4404, 4405, 4406, 4407 }, "Raids", "Onyxia's Lair", "Defeat the level-80 Onyxia encounter or complete its listed speed, whelp, or Deep Breath criterion.", "For Many Whelps, allow the required eggs to hatch before killing Onyxia. For Deep Breath, avoid the center line during the air phase.", { "/way #70 52.0 76.0 Onyxia's Lair entrance" })
+ApplyWarlordsAchievementGroup("3.2.0", { 3844, 4316 }, "Feats of Strength", "Wrath dungeon and raid emblems", "Loot the listed historical total of Wrath emblems.", "Emblems were converted and retired; these feats can no longer be newly earned.")
+
+ApplyWarlordsAchievementGroup("3.3.0", { 4476, 4477, 4478 }, "Dungeons", "Dungeon Finder", "Finish random heroic dungeons until grouped with the listed number of different random players.", "Queue through Random Heroic rather than selecting one dungeon. Looking For Multitudes rewards the Perky Pug by mail.")
+ApplyWarlordsAchievementGroup("3.3.0", { 4516, 4517, 4518, 4519, 4520, 4521, 4522, 4523, 4524, 4525, 4526 }, "Dungeons", "The Frozen Halls", "Complete the listed Forge of Souls, Pit of Saron, or Halls of Reflection clear or heroic mechanic.", "Set Heroic for mechanic achievements and avoid excessive damage until adds, casts, or the timed escape criterion has registered.", { "/way #118 52.6 89.4 Frozen Halls entrance" })
+ApplyWarlordsAchievementGroup("3.3.0", {
+    4527, 4528, 4529, 4530, 4531, 4532, 4534, 4535, 4536, 4537, 4538, 4539,
+    4577, 4578, 4579, 4580, 4581, 4582, 4583, 4584, 4597, 4601, 4602, 4603,
+    4604, 4605, 4606, 4607, 4608, 4610, 4611, 4612, 4613, 4614, 4615, 4616,
+    4617, 4618, 4619, 4620, 4621, 4622, 4628, 4629, 4630, 4631, 4632, 4633,
+    4634, 4635, 4636, 4637,
+}, "Raids", "Icecrown Citadel", "Complete the listed Icecrown Citadel wing, difficulty, meta, or special encounter criterion.", "Verify raid size and difficulty first. At high level, stop damage until mechanics register; Once Bitten, Twice Shy requires two clears with opposite vampire states.", { "/way #118 53.5 85.5 Icecrown Citadel entrance" })
+ApplyWarlordsAchievementGroup("3.3.0", { 4585, 4586 }, "Raids", "Toravon in the Vault of Archavon", "Defeat Toravon in the listed original raid size.", "Vault access historically required Wintergrasp control.", { "/way #123 50.0 11.0 Vault of Archavon entrance" })
+ApplyWarlordsAchievementGroup("3.3.0", { 4596 }, "Questing", "Quel'Delar questline", "Recover, reforge, purify, and present Quel'Delar through the Battered Hilt questline.", "The Battered Hilt begins as a rare drop in the Frozen Halls and is tradeable; follow the chain through the Sunwell.", { "/way #118 52.6 89.4 Frozen Halls entrance", "/way #122 44.0 45.0 Sunwell Plateau" })
+ApplyWarlordsAchievementGroup("3.3.0", { 4598 }, "Reputation", "The Ashen Verdict", "Reach Exalted with the Ashen Verdict in Icecrown Citadel.", "Clear raid trash and bosses each week; the Shadowmourne chain also grants substantial reputation.", { "/way #118 53.5 85.5 Icecrown Citadel entrance" })
+ApplyWarlordsAchievementGroup("3.3.0", { 4599, 4600 }, "PvP", "Wrath Arena Season 8", "Earn the original Wrathful Gladiator title or Frost Wyrm.", "These seasonal ladder rewards are no longer obtainable and remain for historical tracking.")
+ApplyWarlordsAchievementGroup("3.3.0", { 4496 }, "Collections", "Achievement points", "Earn more than 9,000 achievement points.", "This is an account progression milestone; prioritize high-density expansion and dungeon metas.")
+ApplyWarlordsAchievementGroup("3.3.0", { 4576, 4623, 4625, 4626 }, "Feats of Strength", "Wrath raid and legendary feats", "Complete the listed realm-first, legendary, or rare raid-mount criterion.", "Realm First is historical. Shadowmourne requires repeated 25-player Icecrown clears; Invincible and Mimiron's Head use weekly raid lockouts.", { "/way #118 53.5 85.5 Icecrown Citadel entrance" })
+
+ApplyWarlordsAchievementGroup("3.3.5", { 4786 }, "Events", "Operation: Gnomeregan", "Complete the historical Alliance pre-Cataclysm liberation event.", "The original limited event and its Gnomeregan Pride reward are no longer obtainable.", { "/way #87 69.0 49.0 Historical event staging area" })
+ApplyWarlordsAchievementGroup("3.3.5", { 4790 }, "Events", "Zalazane's Fall", "Complete the historical Horde pre-Cataclysm liberation event.", "The original limited event and its Darkspear Pride reward are no longer obtainable.", { "/way #1 55.8 74.8 Historical event staging area" })
+ApplyWarlordsAchievementGroup("3.3.5", { 4815, 4816, 4817, 4818 }, "Raids", "The Ruby Sanctum", "Defeat Halion in the listed 10- or 25-player normal or Heroic mode.", "Defeat all three lieutenants to spawn Halion. In the final phase, balance damage between the physical and twilight realms.", { "/way #115 59.8 54.6 Ruby Sanctum entrance" })
+
+ApplyWarlordsAchievementGroup("4.0.0", PatchCatalog.patches["4.0.0"].achievements.ids, "Cataclysm", "Cataclysm launch and patch 4.0.x", "Complete the achievement's listed Cataclysm criterion.", "Open the achievement criteria before starting. Historical realm-first, guild-level, pre-launch, and ranked-season entries are retained even where the original requirement can no longer be earned.")
+ApplyWarlordsAchievementGroup("4.0.0", {
+    4854, 4855, 4856, 4857, 4858, 4859, 4919, 4920, 4921, 4922, 4923, 5191,
+    5192, 5193, 5301, 5315, 5469, 5470, 5511,
+}, "Archaeology", "Cataclysm Archaeology", "Train Archaeology, survey dig sites, restore artifacts, and complete the listed rare-project or collection criterion.", "A continent's active dig sites rotate. Use racial keystones to reduce fragment costs and focus the culture named by the criterion.", { "/way #84 82.6 25.5 Archaeology trainer", "/way #85 49.0 70.6 Archaeology trainer" })
+ApplyWarlordsAchievementGroup("4.0.0", {
+    4833, 4839, 4840, 4841, 4844, 4845, 4846, 4847, 4848, 5060, 5061, 5062,
+    5063, 5064, 5065, 5066, 5083, 5093, 5281, 5282, 5283, 5284, 5285, 5286,
+    5287, 5288, 5289, 5290, 5291, 5292, 5293, 5294, 5295, 5296, 5297, 5298,
+    5366, 5367, 5368, 5369, 5370, 5371, 5503, 5504, 5505, 5506,
+}, "Dungeons", "Original Cataclysm dungeons", "Complete the listed dungeon, heroic, meta, or special-mechanic criterion.", "Set Heroic where required and avoid burst damage until every criterion mechanic has resolved. Several achievements are easier with a second player.", { "/way #207 47.6 52.0 The Stonecore", "/way #249 76.7 84.4 The Vortex Pinnacle" })
+ApplyWarlordsAchievementGroup("4.0.0", {
+    4842, 4849, 4850, 4851, 4852, 4853, 5094, 5107, 5108, 5109, 5115, 5116,
+    5117, 5118, 5119, 5120, 5121, 5122, 5123, 5300, 5304, 5305, 5306, 5307,
+    5308, 5309, 5310, 5311, 5312, 5313, 5409, 5410, 5411, 5461, 5462, 5463, 5464,
+}, "Raids", "Blackwing Descent, Bastion of Twilight, Throne of the Four Winds, and Baradin Hold", "Complete the listed raid, heroic, guild, realm-first, or special-mechanic criterion.", "Verify difficulty before entering and use controlled damage on legacy mechanics. Realm-first and original guild requirements are historical.", { "/way #36 23.2 26.3 Blackwing Descent", "/way #241 34.8 78.0 Bastion of Twilight", "/way #249 38.4 80.6 Throne of the Four Winds", "/way #245 47.5 39.0 Baradin Hold" })
+ApplyWarlordsAchievementGroup("4.0.0", {
+    4825, 4827, 4863, 4864, 4865, 4866, 4868, 4975, 4995, 4996, 5518,
+}, "Exploration", "The shattered Eastern Kingdoms, Kalimdor, and Cataclysm zones", "Explore the listed zone or meet its special exploration criterion.", "Use the achievement's subzone list to find missing areas. Stood in the Fire depends on Deathwing's historical world attack and is retained as a legacy achievement.")
+ApplyWarlordsAchievementGroup("4.0.0", {
+    4881, 4882, 4883, 4884, 4885, 4886, 5374, 5375, 5376, 5723,
+}, "Reputation", "Cataclysm factions and reputation totals", "Reach the listed faction or total reputation threshold.", "Wear Cataclysm reputation tabards in eligible dungeons and complete Tol Barad dailies; Wildhammer and Dragonmaw are faction-specific.")
+ApplyWarlordsAchievementGroup("4.0.0", {
+    5208, 5209, 5210, 5211, 5213, 5214, 5215, 5216, 5219, 5220, 5221, 5222,
+    5223, 5226, 5227, 5228, 5229, 5230, 5231, 5245, 5246, 5247, 5248, 5249,
+    5250, 5251, 5252, 5253, 5254, 5255, 5256, 5257, 5258, 5262, 5266, 5267,
+    5268, 5269, 5322, 5323, 5324, 5325, 5327, 5328, 5330, 5331, 5332, 5333,
+    5334, 5335, 5336, 5337, 5338, 5339, 5340, 5341, 5342, 5343, 5344, 5345,
+    5346, 5347, 5348, 5349, 5350, 5351, 5352, 5353, 5354, 5355, 5356, 5357,
+    5358, 5359, 5363, 5412, 5415, 5416, 5417, 5418, 5486, 5487, 5488, 5489,
+    5490, 5552, 5718, 5719,
+}, "PvP", "Cataclysm battlegrounds, Tol Barad, rated battlegrounds, and PvP Season 9", "Complete the listed battleground, rating, rank, Tol Barad, or seasonal criterion.", "Coordinate objective achievements with a group. Original Season 9 ladders and legacy rank conversions may no longer be obtainable.", { "/way #245 47.5 39.0 Tol Barad" })
+ApplyWarlordsAchievementGroup("4.0.0", {
+    4887, 4998, 4999, 5000, 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008,
+    5313, 5381, 5382, 5383, 5384, 5385, 5386, 5387, 5388, 5389, 5390, 5391,
+    5392, 5393, 5394, 5395, 5396, 5407, 5408, 5409, 5410, 5411, 5533, 5535,
+    5536, 5537, 5538, 5539, 5540, 5541, 5542,
+}, "Feats of Strength", "Cataclysm launch, realm-first, guild-first, and retired currency feats", "Meet the listed historical launch, realm-first, guild-first, or currency criterion.", "Most realm-first and retired-currency criteria can no longer be earned; they remain here for complete historical tracking.")
+
+ApplyWarlordsAchievementGroup("4.1.0", {
+    5743, 5744, 5750, 5759, 5760, 5761, 5762, 5765, 5768, 5769, 5773, 5774,
+}, "Dungeons", "Zul'Aman and Zul'Gurub heroic dungeons", "Complete the listed dungeon, boss, timed rescue, or special-mechanic criterion.", "Set the instance to Heroic and read the exact criterion before pulling. Most mechanics are simple solo at high level, while Bear-ly Made It depends on the four-prisoner timer.", { "/way #50 72.1 32.9 Zul'Gurub entrance", "/way #95 81.5 64.4 Zul'Aman entrance" })
+ApplyWarlordsAchievementGroup("4.1.0", {
+    5749, 5751, 5752, 5753, 5754, 5755, 5779,
+}, "Collections", "Patch 4.1 profession, daily, food, drink, tabard, and character milestones", "Complete the listed collection, profession, consumption, quest-count, or character criterion.", "Track consumable criteria directly from the achievement and use the Auction House for missing tradeable entries. Vial of the Sands requires the crafted mount, while Thirty Tabards counts eligible learned tabards.")
+ApplyWarlordsAchievementGroup("4.1.0", {
+    5770, 5771, 5780, 5781, 5782, 5783, 5784, 5785,
+}, "Guild", "Zandalari guild runs and the original guild challenge system", "Complete the listed guild-group dungeon or weekly guild challenge criterion.", "Confirm the required guild-member proportion before entering. The original challenge system was later replaced, so several entries are retained as historical achievements.", { "/way #50 72.1 32.9 Zul'Gurub entrance", "/way #95 81.5 64.4 Zul'Aman entrance" })
+ApplyWarlordsAchievementGroup("4.1.0", { 5767, 5788 }, "Feats of Strength", "Cataclysm exploration and legacy reputation feats", "Meet the listed rare-exploration or legacy reputation requirement.", "These feats preserve historical accomplishments; Agent of the Shen'dralar cannot be newly earned, while the camel rare requires Uldum statue hunting.", { "/way #249 50.0 50.0 Uldum camel-statue search route" })
+ApplyWarlordsAchievementGroup("4.1.0", { 5326, 5329 }, "PvP", "Rated battleground victory milestones", "Win 300 rated battlegrounds on the matching faction for the original Warbringer or Warbound title achievement.", "These achievements were added with the rated-battleground update in 4.1. Queue with a coordinated team and work objectives rather than raw honorable kills.")
+
+ApplyWarlordsAchievementGroup("4.2.0", {
+    5799, 5802, 5803, 5804, 5805, 5806, 5807, 5808, 5809, 5810, 5813, 5828,
+    5829, 5830, 5839, 5855, 5983, 5984, 5985,
+}, "Raids", "Firelands and Dragonwrath", "Complete the listed Firelands boss, heroic, meta, legendary, guild, realm-first, or special-mechanic criterion.", "Set the required difficulty before entering and stop damage until every mechanic has resolved. Only the Penitent is most reliable with a partner; realm-first and original guild legendary criteria are historical.", { "/way #198 47.2 78.1 Firelands entrance" })
+ApplyWarlordsAchievementGroup("4.2.0", {
+    5821, 5827, 5859, 5860, 5861, 5862, 5864, 5865, 5866, 5867, 5868, 5869,
+    5870, 5871, 5872, 5873, 5874, 5879,
+}, "Questing", "The Regrowth and Molten Front campaign", "Complete the listed daily-hub unlock, quest, rare, rescue, bombing, or campaign meta criterion.", "Finish the Mount Hyjal story through Aessina's Miracle, then spend Marks of the World Tree to unlock every branch. Rotate daily variants because several criteria are not offered every day.", { "/way #198 27.4 62.6 Sanctuary of Malorne", "/way #338 47.0 90.0 Malfurion's Breach" })
+ApplyWarlordsAchievementGroup("4.2.0", { 5794, 5875, 5876, 5877 }, "Collections", "Patch 4.2 reputation-time and companion-pet milestones", "Complete the listed reputation-duration or companion-pet collection criterion.", "For pet milestones, learn distinct eligible pets rather than carrying duplicate items. Time Flies When You're Having Fun depends on sustained guild reputation history.")
+ApplyWarlordsAchievementGroup("4.2.0", {
+    5812, 5823, 5824, 5840, 5841, 5842, 5843, 5844, 5845, 5847, 5848, 5849,
+    5850, 5851, 5892,
+}, "Guild", "Guild reputation, legendary, rated-battleground, cooking, and fishing goals", "Complete the listed guild-group, guild-reputation, legendary, city-daily, cooking, fishing, or rated-battleground criterion.", "Work on each faction capital's cooking and fishing rotation separately. Guild legendary and original rated-battleground progression may require historical eligibility or a coordinated guild group.")
+ApplyWarlordsAchievementGroup("4.2.0", { 5858 }, "Dungeons", "Zul'Aman timed rescue", "Rescue every Zul'Aman prisoner before the timer expires.", "Follow the shortest route through the first four bosses and open each prisoner's reward before leaving the run.", { "/way #95 81.5 64.4 Zul'Aman entrance" })
+ApplyWarlordsAchievementGroup("4.2.0", { 6045 }, "Raids", "Occu'thar in Baradin Hold", "Defeat Occu'thar while your faction controls Tol Barad.", "Check Tol Barad control before traveling; Baradin Hold is accessible only to the faction that currently owns the zone.", { "/way #245 47.5 39.0 Baradin Hold entrance" })
+ApplyWarlordsAchievementGroup("4.2.0", { 6124, 6316, 6317, 6322 }, "PvP", "Cataclysm PvP Season 10", "Earn the listed Ruthless Gladiator, faction ladder, or Gladiator-mount result during Cataclysm PvP Season 10.", "These original ranked-season achievements and rewards are no longer obtainable; retained for historical tracking.")
+
+ApplyWarlordsAchievementGroup("4.3.0", {
+    5995, 6070, 6117, 6118, 6119, 6120, 6121, 6122, 6127, 6130, 6132,
+}, "Dungeons", "End Time, Well of Eternity, and Hour of Twilight", "Complete the listed heroic dungeon, guild run, or special-mechanic criterion.", "Queue or enter the three Caverns of Time dungeons on Heroic. Read each mechanic before the relevant boss and pause damage until its criterion is complete.", { "/way #71 64.4 50.0 Caverns of Time entrance" })
+ApplyWarlordsAchievementGroup("4.3.0", {
+    6084, 6105, 6106, 6107, 6109, 6110, 6111, 6112, 6113, 6114, 6115, 6116,
+    6123, 6125, 6126, 6128, 6129, 6133, 6169, 6174, 6175, 6177, 6180,
+}, "Raids", "Dragon Soul", "Complete the listed Dragon Soul wing, heroic boss, guild run, realm-first, meta, or special-mechanic criterion.", "Set Normal or Heroic as required and control damage for achievement mechanics. Holding Hands and several coordination criteria remain easier with extra players; realm-first achievements are historical.", { "/way #71 64.4 50.0 Dragon Soul entrance" })
+ApplyWarlordsAchievementGroup("4.3.0", { 6108 }, "Raids", "Alizabal in Baradin Hold", "Defeat Alizabal while your faction controls Tol Barad.", "Check zone ownership before traveling because only the controlling faction can enter Baradin Hold.", { "/way #245 47.5 39.0 Baradin Hold entrance" })
+ApplyWarlordsAchievementGroup("4.3.0", { 6181, 6182 }, "Collections", "Fangs of the Father legendary daggers", "Complete the rogue legendary questline or its original guild-edition criterion.", "The questline requires a Rogue and repeated Dragon Soul clears for its collection stages. The original guild criterion is retained for historical tracking.", { "/way #71 64.4 50.0 Dragon Soul entrance", "/way #42 70.6 45.8 Karazhan / legendary quest route" })
+ApplyWarlordsAchievementGroup("4.3.0", { 6741, 6938, 6939, 6940 }, "PvP", "Cataclysm PvP Season 11", "Earn the listed Cataclysmic Gladiator, faction ladder, or Gladiator-mount result during Cataclysm PvP Season 11.", "These original ranked-season achievements and rewards are no longer obtainable; retained for historical tracking.")
+
+ApplyWarlordsAchievementGroup("5.0", {
+    6193, 6348, 6349, 6350, 6629, 6753, 6924, 7329, 7330, 7380, 7383, 7384,
+    7386, 7410, 7411,
+}, "General and Collections", "Mists launch character and collection milestones", "Complete the listed level, equipment, currency, daily-quest, food, mount, or character-roster criterion.", "Open the exact criterion before starting: some totals are account-wide, while equipment and character-level checks must be completed on one eligible character.")
+ApplyWarlordsAchievementGroup("5.0", {
+    6300, 6301, 6366, 6534, 6535, 6536, 6537, 6538, 6539, 6540, 6541, 6543,
+    6544, 6545, 6546, 6547, 6548, 6550, 6551, 6552, 6827, 6828, 7285, 7286,
+    7287, 7288, 7289, 7290, 7291, 7292, 7293, 7294, 7295, 7296, 7297, 7298,
+    7299, 7307, 7308, 7309, 7310, 7312, 7313, 7314, 7315, 7316, 7317, 7318,
+    7319, 7320, 7321, 7322, 7323, 7324, 7479, 7502, 7533,
+}, "Questing and Reputation", "Pandaria zone stories, daily factions, friendships, and legendary Chapter I", "Complete the listed storyline, daily, reputation, friendship, faction, or legendary-campaign criteria.", "Finish each zone story before its daily hub, then combine related daily achievements with reputation progress. Several original Golden Lotus and legendary quests are historical or have changed.", { "/way #371 48.0 54.0 Jade Forest", "/way #376 53.0 51.8 Halfhill", "/way #379 65.0 61.8 Kun-Lai Summit", "/way #388 49.0 71.0 Townlong Steppes", "/way #422 55.0 35.5 Klaxxi'vess", "/way #390 84.2 62.4 Vale of Eternal Blossoms" })
+ApplyWarlordsAchievementGroup("5.0", {
+    6351, 6716, 6754, 6846, 6847, 6850, 6855, 6856, 6857, 6858, 6969, 6974,
+    6975, 6976, 6977, 6978, 6979, 7230, 7281, 7282, 7283, 7284, 7381, 7437,
+    7438, 7439, 7518,
+}, "Exploration", "Pandaria exploration, lore objects, treasures, and rare champions", "Explore the listed zones or complete the specified lore, treasure, festival, and rare-champion criteria.", "Work zone by zone with treasure and rare tracking enabled. Lore-object metas can be completed in compact routes and also accelerate Lorewalkers reputation.", { "/way #371 48.0 54.0 Jade Forest", "/way #376 53.0 51.8 Valley of the Four Winds", "/way #418 50.0 50.0 Krasarang Wilds", "/way #379 60.0 55.0 Kun-Lai Summit", "/way #388 49.0 71.0 Townlong Steppes", "/way #422 55.0 35.5 Dread Wastes", "/way #390 50.0 50.0 Vale of Eternal Blossoms" })
+ApplyWarlordsAchievementGroup("5.0", {
+    6089, 6394, 6396, 6400, 6402, 6420, 6427, 6456, 6457, 6460, 6469, 6470,
+    6471, 6472, 6475, 6476, 6477, 6478, 6479, 6485, 6531, 6671, 6684, 6688,
+    6713, 6715, 6736, 6755, 6756, 6757, 6758, 6759, 6760, 6761, 6762, 6763,
+    6821, 6822, 6925, 6926, 6927, 6928, 6929, 6932, 6945, 6946,
+}, "Dungeons", "Original Mists dungeons and Glory of the Pandaria Hero", "Complete the listed dungeon, heroic, meta, or special-encounter criteria.", "Set Heroic where required and review the mechanic before pulling; many criteria are easiest solo at high level, but mechanics that require multiple targets may still need a small group.")
+ApplyWarlordsAchievementGroup("5.0", {
+    6374, 6375, 6378, 6884, 6885, 6886, 6887, 6888, 6889, 6890, 6891, 6892,
+    6893, 6894, 6895, 6896, 6897, 6898, 6899, 6900, 6901, 6902, 6903, 6904,
+    6905, 6906, 6907, 6908, 6909, 6910, 6911, 6912, 6913, 6914, 6915, 6916,
+    6917, 6918, 6919, 6920,
+}, "Challenge Modes", "Original Mists of Pandaria Challenge Modes", "Earn the listed dungeon medal or complete the overall Challenge Mode meta.", "The original timed Challenge Modes and their phoenix, armor, title, teleport, and realm-best rewards were removed; retained for historical tracking.", { "/way #390 84.6 21.0 Original Challenge Mode vendors" })
+ApplyWarlordsAchievementGroup("5.0", {
+    6455, 6458, 6480, 6517, 6518, 6553, 6674, 6683, 6686, 6687, 6689, 6717,
+    6718, 6719, 6720, 6721, 6722, 6723, 6724, 6725, 6726, 6727, 6728, 6729,
+    6730, 6731, 6732, 6733, 6734, 6823, 6824, 6825, 6844, 6845, 6922, 6933,
+    6936, 6937, 7056, 7485, 7486, 7487,
+}, "Raids", "Mogu'shan Vaults, Heart of Fear, and Terrace of Endless Spring", "Complete the listed boss, difficulty, Cutting Edge, realm-first, or special-encounter criterion.", "Use the required difficulty and stop damage until every mechanic condition is met. Original realm-first and Cutting Edge achievements are historical.", { "/way #379 59.6 39.2 Mogu'shan Vaults", "/way #422 39.0 35.0 Heart of Fear", "/way #390 72.0 58.0 Terrace of Endless Spring" })
+ApplyWarlordsAchievementGroup("5.0", {
+    6874, 6923, 6930, 6931, 7231, 7232, 7239, 7248, 7249, 7252, 7257, 7258,
+    7261, 7265, 7266, 7267, 7268, 7269, 7270, 7271, 7272, 7273, 7275, 7276,
+    7385, 7509, 7522, 7523, 7524, 7526, 7527, 7529, 7530,
+}, "Scenarios", "Mists launch scenarios and Theramore's Fall", "Complete the listed scenario, faction variant, meta, or special-mechanic criterion.", "Review the mechanic before the final stage and pause damage when necessary. The original Theramore launch-event feat and faction rewards are historical.")
+ApplyWarlordsAchievementGroup("5.0", {
+    6462, 6554, 6555, 6556, 6557, 6558, 6559, 6560, 6566, 6567, 6568, 6569,
+    6570, 6571, 6578, 6579, 6580, 6581, 6582, 6583, 6584, 6585, 6586, 6587,
+    6588, 6589, 6590, 6591, 6592, 6593, 6594, 6595, 6596, 6597, 6598, 6599,
+    6600, 6602, 6603, 6604, 6605, 6606, 6607, 6608, 6609, 6610, 6611, 6612,
+    6613, 6614, 6615, 6616, 6618, 6619, 6620, 6621, 6622, 6851, 7433, 7436,
+    7462, 7463, 7464, 7465, 7482, 7483, 7498, 7499, 7500, 7501, 7521, 7525,
+}, "Pet Battles", "The original Pet Battle system", "Complete the listed capture, leveling, battle, tamer, safari, quality, PvP, or collection criterion.", "Build a varied level-25 team before the Pandaria tamers, capture rare-quality pets when possible, and combine zone safaris with tamer routes. PvP queues and long counters are best progressed over time.")
+ApplyWarlordsAchievementGroup("5.0", {
+    6624, 6625, 6626, 6628, 6632, 6633, 6634, 6641, 6642, 6643, 6644, 6664,
+    6666, 6668, 6669, 6670, 6675, 6676, 6677, 6678, 6679, 6680, 6681, 6682,
+    6700, 6701, 6702, 6703, 6708, 6709, 6764, 6766, 6767, 6768, 6769, 6770,
+    6771, 6772, 6921, 7444, 7445, 7446, 7447, 7448, 7449,
+}, "Guild", "Mists launch guild achievements", "Complete the listed guild-group dungeon, raid, scenario, profession, race, or Challenge Mode criterion.", "Confirm the required proportion of guild members before starting. Realm-first and original Challenge Mode guild achievements are historical.")
+ApplyWarlordsAchievementGroup("5.0", {
+    6365, 6830, 6835, 6836, 6837, 6838, 6839, 7274, 7300, 7301, 7302, 7303,
+    7304, 7305, 7306, 7325, 7326, 7327, 7328, 7331, 7332, 7333, 7334, 7335,
+    7336, 7337, 7338, 7339, 7340, 7341, 7342, 7343, 7344, 7345, 7346, 7347,
+    7348, 7349, 7350, 7351, 7352, 7353, 7354, 7355, 7356, 7357, 7358, 7360,
+    7361, 7362, 7363, 7364, 7365, 7366, 7367, 7368, 7369, 7370, 7371, 7372,
+    7373, 7374, 7375, 7376, 7377, 7378, 7379, 7611, 7612, 7614,
+}, "Professions", "Pandaria cooking, fishing, archaeology, and profession mastery", "Complete the listed skill, recipe, cooking-way, archaeology collection, fishing, or profession breadth criterion.", "For archaeology, focus Pandaria dig sites and solve one race at a time; for cooking, level every Halfhill Way concurrently and save Ironpaw Tokens for missing recipes.", { "/way #376 53.0 51.8 Halfhill cooking trainers", "/way #418 68.4 43.4 Anglers Wharf" })
+ApplyWarlordsAchievementGroup("5.0", {
+    6532, 6533, 6739, 6740, 6882, 6883, 6943, 6947, 6950, 6970, 6971, 6972,
+    6973, 6980, 6981, 7039, 7049, 7057, 7062, 7099, 7100, 7102, 7103, 7106,
+}, "PvP", "Mists PvP Season 12, Temple of Kotmogu, and Silvershard Mines", "Complete the listed battleground, rated-PvP, faction, or seasonal criterion.", "Coordinate orb and mine-cart objectives before pursuing kills. Original Season 12 rank and Gladiator rewards are historical and no longer obtainable.")
+
+ApplyWarlordsAchievementGroup("5.1", {
+    7908, 7934, 7936,
+}, "Pet Battles", "Pandaria pet battles and Raiding with Leashes", "Complete the listed pet-battle or classic raid-pet collection criteria.", "Use the Safari Hat while leveling pets; classic raid pets can be farmed once per difficulty lockout on eligible characters.", { "/way #81 30.0 11.0 Temple of Ahn'Qiraj", "/way #15 47.0 8.0 Blackwing Lair", "/way #23 39.0 26.0 Naxxramas" })
+ApplyWarlordsAchievementGroup("5.1", {
+    7860, 7862,
+}, "Collections", "Patch 5.1 collection milestones", "Complete the listed mount or reputation collection requirement.", "Check the achievement criteria on one character because faction restrictions and reputation totals can affect progress.")
+ApplyWarlordsAchievementGroup("5.1", {
+    7534, 7928, 7929, 7932, 8008, 8023, 8030, 8031, 8205, 8206,
+}, "Questing and Reputation", "Operation: Shieldwall and Dominance Offensive", "Complete the Landfall campaign, daily objectives, reputation, and related quest criteria.", "Advance the faction campaign as reputation unlocks new chapters; combine daily quests with rare and treasure checks in Krasarang Wilds.", { "/way #418 89.7 33.1 Lion's Landing", "/way #418 10.6 53.4 Domination Point" })
+ApplyWarlordsAchievementGroup("5.1", {
+    7984, 7986, 7987, 7988, 7989, 7990, 7991, 7992, 7993, 8009, 8010, 8011,
+    8012, 8013, 8014, 8015, 8016, 8017,
+}, "Scenarios", "Landfall scenarios", "Complete the listed scenario, guild-group, and special-mechanic criteria.", "Read each criterion before the final stage and pause damage when a mechanic needs time to spawn or resolve.")
+ApplyWarlordsAchievementGroup("5.1", {
+    7937, 7939, 7940, 7941, 7942, 7943, 7944, 7946, 7947, 7948, 8020, 8022,
+}, "Brawler's Guild", "Brawler's Guild Season 1", "Reach the listed rank or defeat the specified Brawler's Guild opponents.", "The original season is historical; these entries preserve patch attribution even when the exact achievement or reward can no longer be earned.", { "/way #84 65.5 31.6 Bizmo's Brawlpub", "/way #85 48.5 29.2 Brawl'gar Arena" })
+ApplyWarlordsAchievementGroup("5.1", {
+    7994, 7995, 7996, 7997,
+}, "Exploration", "Patch 5.1 outdoor exploration", "Complete the listed Pandaria exploration and rare-encounter criteria.", "Track one sub-zone at a time and verify phased Landfall areas after advancing the faction campaign.")
+
+ApplyWarlordsAchievementGroup("5.2", {
+    8056, 8057, 8058, 8059, 8060, 8061, 8062, 8063, 8064, 8065, 8066, 8067,
+    8068, 8069, 8070, 8071, 8072, 8094, 8097, 8098, 8123, 8124, 8137, 8138,
+    8139, 8140, 8238, 8249, 8257, 8258, 8260,
+}, "Raids", "Throne of Thunder", "Complete the listed boss, difficulty, guild, or special-encounter criteria in Throne of Thunder.", "Set the required difficulty before entering and avoid killing bosses until every mechanic condition is confirmed; several Glory criteria benefit from a coordinated group.", { "/way #504 63.7 32.4 Throne of Thunder entrance" })
+ApplyWarlordsAchievementGroup("5.2", {
+    7535, 8037, 8038, 8049, 8050, 8051, 8073, 8077, 8078, 8081, 8082, 8086,
+    8087, 8089, 8090, 8092, 8099, 8100, 8101, 8103, 8104, 8105, 8106, 8107,
+    8108, 8109, 8110, 8111, 8112, 8114, 8115, 8116, 8117, 8118, 8119, 8120,
+    8121, 8208, 8209, 8210, 8212,
+}, "Questing and Exploration", "Isle of Thunder and Isle of Giants", "Complete the listed campaign, reputation, rare, treasure, world-boss, and island exploration criteria.", "Progress the Isle of Thunder campaign to open later stages, then combine daily quests with rare and treasure circuits; bring a group for original world-boss mechanics.", { "/way #504 64.8 73.8 Alliance landing", "/way #504 33.2 69.6 Horde landing", "/way #507 50.0 50.0 Isle of Giants" })
+ApplyWarlordsAchievementGroup("5.2", { 8080 }, "Pet Battles", "Isle of Thunder pet battles", "Complete the listed Isle of Thunder battle-pet criterion.", "Carry multiple counter teams because island tamers and wild pets use varied families.", { "/way #504 50.0 50.0 Isle of Thunder" })
+ApplyWarlordsAchievementGroup("5.2", {
+    8052, 8055, 8093, 8218, 8652, 8653, 8678, 8791,
+}, "PvP", "Mists PvP Season 13 and Isle of Thunder PvP", "Meet the listed battleground, rated-PvP, seasonal, or island PvP requirement.", "Seasonal feats and their original rewards are historical; use the achievement criteria to distinguish rated, faction, and world-PvP requirements.")
+ApplyWarlordsAchievementGroup("5.2", {
+    8219, 8220, 8221, 8222, 8223, 8224, 8225, 8226, 8227, 8228, 8229, 8230,
+    8231, 8232, 8233, 8234, 8235,
+}, "Professions", "Pandaria archaeology and profession discoveries", "Complete the listed archaeology, crafting, discovery, or profession collection criteria.", "Use the achievement criteria to identify the exact race or recipe pool; archaeology progress is fastest when dig sites are concentrated on the required continent.")
+
+ApplyWarlordsAchievementGroup("5.3", {
+    8293, 8297, 8298, 8300, 8301, 8302, 8304, 8348,
+}, "Pet Battles and Collections", "Escalation pets and Raiding with Leashes II", "Complete the listed pet-battle, raid-pet collection, mount, or collection criteria.", "Farm eligible Burning Crusade raids on multiple characters per weekly lockout and learn each pet before checking the meta.", { "/way #104 71.0 46.0 Black Temple", "/way #122 44.0 45.0 Sunwell Plateau", "/way #108 51.0 33.0 Tempest Keep" })
+ApplyWarlordsAchievementGroup("5.3", {
+    7536, 8306, 8307,
+}, "Questing", "Battlefield: Barrens and the Darkspear Rebellion", "Complete the listed Escalation story and Battlefield: Barrens criteria.", "The original Battlefield: Barrens event was limited to patch 5.3; these achievements are retained for historical tracking.", { "/way #10 55.0 28.0 Northern Barrens", "/way #1 52.0 40.0 Durotar" })
+ApplyWarlordsAchievementGroup("5.3", {
+    8294, 8295, 8310, 8311, 8312, 8314, 8315, 8316, 8317, 8318, 8319, 8327,
+    8329, 8330, 8347, 8350, 8351, 8354, 8355, 8364, 8366, 8368,
+}, "Scenarios", "Escalation heroic scenarios", "Complete the listed scenario, heroic scenario, guild-group, and special-mechanic criteria.", "Queue with a premade group for heroic scenarios and review mechanic criteria before the last stage so the run is not invalidated by excess damage.")
+ApplyWarlordsAchievementGroup("5.3", {
+    8331, 8332, 8333, 8358, 8359, 8360, 8391, 8392,
+}, "PvP", "Deepwind Gorge and Mists PvP", "Meet the listed battleground, rated-PvP, or faction-ladder requirement.", "Seasonal feats may be unobtainable; for battleground criteria, coordinate objective timing before committing to the final score.")
+ApplyWarlordsAchievementGroup("5.3", {
+    7945, 7949, 7950, 8335, 8336, 8337, 8338, 8339, 8340, 8342, 8343,
+}, "Brawler's Guild", "Brawler's Guild Season 1 additions", "Reach the listed rank, collect challenge cards, or defeat the specified Brawler's Guild opponents.", "The original season is historical; retain challenge cards until their associated fights are complete and review each opponent's interrupt or positioning mechanic.", { "/way #84 65.5 31.6 Bizmo's Brawlpub", "/way #85 48.5 29.2 Brawl'gar Arena" })
+
+ApplyWarlordsAchievementGroup("6.0.0", {
+    8843, 8844, 8993, 9005, 9007, 9008, 9017, 9018, 9023, 9024, 9025, 9026,
+    9033, 9034, 9035, 9036, 9037, 9038, 9039, 9041, 9042, 9043, 9044, 9045,
+    9046, 9047, 9049, 9052, 9053, 9054, 9055, 9056, 9057, 9058, 9081, 9082,
+    9083, 9223, 9369, 9370, 9371, 9372, 9373, 9374, 9375, 9376, 9493, 9551, 9552,
+}, "Dungeons", "Warlords dungeons", "Complete the listed dungeon, difficulty, guild, or special-encounter criteria.", "Set the required difficulty before entering; many mechanic achievements are easiest with a small group that can stop damage on command.", { "/way #622 46.6 76.8 Stormshield", "/way #624 44.0 74.0 Warspear" })
+ApplyWarlordsAchievementGroup("6.0.0", {
+    8929, 8930, 8932, 8947, 8948, 8949, 8952, 8956, 8958, 8960, 8961, 8962,
+    8963, 8964, 8965, 8966, 8967, 8968, 8969, 8970, 8971, 8972, 8973, 8974,
+    8975, 8976, 8977, 8978, 8979, 8980, 8981, 8982, 8983, 8984, 8985, 8986,
+    8987, 8988, 8989, 8990, 8991, 8992, 9255, 9391, 9396, 9397, 9399, 9416,
+    9417, 9418, 9420, 9421, 9423, 9424, 9425, 9443, 9444, 9619, 9631,
+}, "Raids", "Highmaul and Blackrock Foundry", "Complete the listed raid wing, boss, difficulty, guild, or special-encounter criteria.", "Use the specified difficulty and avoid killing bosses before the mechanic is satisfied; several Glory criteria still benefit from a coordinated group.", { "/way #550 32.0 38.0 Highmaul entrance", "/way #543 51.6 28.7 Blackrock Foundry entrance" })
+ApplyWarlordsAchievementGroup("6.0.0", {
+    8871, 8872, 8873, 8874, 8875, 8876, 8877, 8878, 8879, 8880, 8881, 8882,
+    8883, 8884, 8885, 8886, 8887, 8888, 8889, 8890, 8891, 8892, 8893, 8894,
+    8895, 8897, 8898, 8899, 8997, 8998, 8999, 9000, 9001, 9002, 9003, 9004,
+    9168, 9169, 9170, 9171, 9172, 9173, 9174, 9175, 9176, 9177, 9572, 9573,
+    9574, 9575, 9576, 9577, 9578, 9579, 9580, 9581, 9582, 9583, 9584, 9585,
+    9586, 9587, 9588, 9589, 9590, 9597, 9620, 9621, 9622, 9623, 9624, 9625,
+    9626, 9627,
+}, "Challenges", "Warlords Challenge Modes, Proving Grounds, and Brawler's Guild Season 2", "Meet the listed medal, wave, rank, deck, or guild-group requirement.", "Challenge Mode and the original Brawler season are historical; retained here so unobtainable progress and rewards remain attributable to their release patch.")
+ApplyWarlordsAchievementGroup("6.0.0", {
+    8933, 9076, 9077, 9078, 9080, 9094, 9095, 9096, 9097, 9098, 9099, 9100,
+    9101, 9107, 9108, 9109, 9110, 9111, 9125, 9126, 9128, 9129, 9130, 9131,
+    9132, 9133, 9134, 9138, 9139, 9140, 9141, 9142, 9143, 9145, 9146, 9147,
+    9150, 9152, 9162, 9164, 9165, 9167, 9181, 9203, 9204, 9205, 9206, 9207,
+    9208, 9209, 9210, 9211, 9212, 9213, 9243, 9244, 9246, 9248, 9264, 9265,
+    9405, 9406, 9407, 9429, 9450, 9451, 9452, 9453, 9454, 9468, 9475, 9476,
+    9487, 9491, 9492, 9494, 9495, 9497, 9499, 9508, 9509, 9510, 9511, 9512,
+    9513, 9514, 9515, 9516, 9517, 9518, 9519, 9520, 9521, 9522, 9523, 9524,
+    9526, 9527, 9538, 9539, 9540, 9543, 9545, 9546, 9562, 9564, 9565, 9630,
+    9639, 9703, 9705, 9706, 9725, 9738,
+}, "Garrisons", "Draenor Garrison buildings, followers, missions, invasions, professions, and bodyguards", "Complete the listed Garrison construction, collection, mission, invasion, work-order, stable, or building activity.", "Upgrade the relevant building first and combine daily work orders, missions, invasions, and follower progression; many counters are character-specific.", { "/way #582 40.0 37.0 Lunarfall", "/way #590 52.0 50.0 Frostwall" })
+ApplyWarlordsAchievementGroup("6.0.0", {
+    9102, 9103, 9104, 9105, 9106, 9214, 9215, 9216, 9217, 9218, 9219, 9220,
+    9222, 9224, 9225, 9228, 9229, 9230, 9231, 9232, 9233, 9234, 9236, 9238,
+    9239, 9240, 9241, 9242, 9256, 9257, 9408, 9473, 9474, 9714, 9715, 9995,
+    9996, 9997, 9998, 10000, 10001,
+}, "PvP", "Ashran and Warlords PvP Season 1", "Meet the listed Ashran objective, Nemesis, conquest, rank, combatant, or faction-ladder requirement.", "Season 1 and original Ashran feats are retained for historical tracking; queue or reward availability may differ from the original release.", { "/way #622 46.6 76.8 Stormshield", "/way #624 44.0 74.0 Warspear" })
+ApplyWarlordsAchievementGroup("6.0.0", {
+    8671, 8845, 8919, 8920, 8921, 8922, 8923, 8924, 8925, 8926, 8927, 8928,
+    8935, 8937, 8938, 8939, 8940, 8941, 8942, 9072, 9400, 9401, 9402, 9432,
+    9433, 9434, 9435, 9436, 9437, 9469, 9470, 9471, 9472, 9477, 9478, 9479,
+    9481, 9483, 9486, 9528, 9529, 9530, 9531, 9533, 9534, 9535, 9536, 9537,
+    9541, 9548, 9571, 9600, 9601, 9602, 9605, 9606, 9607, 9610, 9612, 9613,
+    9615, 9617, 9618, 9632, 9633, 9634, 9635, 9636, 9637, 9638, 9654, 9655,
+    9656, 9658, 9659, 9663, 9667, 9674, 9678, 9685, 9710, 9711, 9724, 9728,
+}, "Questing and Exploration", "Draenor zones, quests, treasures, rares, reputations, and bonus objectives", "Complete the listed story chapter, exploration, treasure, rare, reputation, or zone-mechanic criteria.", "Work zone by zone with treasure and rare tracking enabled; finish the main story first because several criteria phase with quest progress.", { "/way #525 46.0 42.0 Frostfire Ridge", "/way #539 45.0 69.0 Shadowmoon Valley", "/way #543 45.0 76.0 Gorgrond", "/way #535 46.2 74.1 Talador", "/way #542 46.5 46.8 Spires of Arak", "/way #550 50.0 55.0 Nagrand" })
+ApplyWarlordsAchievementGroup("6.0.0", {
+    9016, 9060, 9070, 9071, 9388, 9463, 9640, 9641, 9648, 9649, 9650, 9651,
+    9669, 9670, 9671, 9672, 9707, 9708, 9712,
+}, "Collections", "Warlords character, guild, pet, toy, legendary, and collection milestones", "Complete the achievement's listed collection, level, equipment, guild, legendary-quest, pet, or toy criteria.", "Open the achievement criteria before starting; account-wide totals, guild groups, and character-only counters are evaluated differently.")
+
+ApplyWarlordsAchievementGroup("6.1.0", { 9906, 9908, 9909, 9911 }, "Collections", "Heirloom collection", "Collect and upgrade the listed number or level of heirlooms.", "Open the Heirlooms tab to confirm which appearances count; Heirloom Hoarder awards the faction-appropriate chauffeured mount.")
+ApplyWarlordsAchievementGroup("6.1.0", { 9824 }, "Pet Battles", "Raiding with Leashes III: Drinkin' From the Sunwell", "Collect all listed pets from Black Temple, Hyjal Summit, and Sunwell Plateau.", "Use eligible alts for additional weekly raid attempts and learn each pet before checking the meta.", { "/way #104 71.0 46.0 Black Temple", "/way #198 47.0 78.0 Hyjal Summit", "/way #122 44.0 45.0 Sunwell Plateau" })
+ApplyWarlordsAchievementGroup("6.1.0", { 9642, 9838 }, "Questing and Dungeons", "Patch 6.1 legendary and bodyguard adventures", "Complete Chapter III of Khadgar's legendary quest or the listed bodyguard dungeon journey.", "For the bodyguard achievement, keep the same level-3 bodyguard active through every required dungeon; Chapter III's original legendary quest is historical.", { "/way #582 40.0 37.0 Lunarfall", "/way #590 52.0 50.0 Frostwall" })
+ApplyWarlordsAchievementGroup("6.1.0", { 9825, 9827, 9828, 9833, 9836, 9858, 9897, 9900, 9901, 9912, 9914, 9923, 9924, 9928, 10015, 10016 }, "Garrisons", "Patch 6.1 Garrison collections, invasions, missions, relics, jukebox, and photography", "Complete the listed Garrison visitor, invasion, mission, music-roll, relic, follower, or S.E.L.F.I.E. criteria.", "Check rotating visitors and missions daily; use the achievement criteria to plan music-roll and Field Photographer travel efficiently.", { "/way #582 40.0 37.0 Lunarfall", "/way #590 52.0 50.0 Frostwall" })
+
+ApplyWarlordsAchievementGroup("6.2.0", {
+    9680, 9972, 9979, 10012, 10013, 10019, 10020, 10023, 10024, 10025,
+    10026, 10027, 10030, 10032, 10033, 10034, 10035, 10037, 10038, 10039,
+    10040, 10041, 10042, 10043, 10044, 10045, 10073, 10086, 10087, 10149,
+    10176, 10253,
+}, "Raids", "Hellfire Citadel", "Complete the listed Hellfire Citadel boss, difficulty, guild, or special-encounter criteria.", "Use the required difficulty and preserve the mechanic long enough to satisfy the criterion; several Glory criteria are easier with a small coordinated group.", { "/way #534 45.6 53.6 Hellfire Citadel entrance" })
+ApplyWarlordsAchievementGroup("6.2.0", {
+    10088, 10089, 10092, 10093, 10096, 10098, 10099, 10100, 10101, 10102,
+    10103, 10104, 10105, 10106, 10107, 10108, 10109, 10137,
+}, "PvP", "Warlords PvP Season 2", "Meet the listed rated-PvP rank, conquest, combatant, or faction-ladder requirement during Warlords Season 2.", "These seasonal feats and their original rewards are retained for historical tracking and may no longer be earned.")
+ApplyWarlordsAchievementGroup("6.2.0", {
+    10017, 10036, 10154, 10155, 10156, 10159, 10160, 10161, 10162, 10163,
+    10164, 10165, 10166, 10167, 10168, 10169, 10170, 10172, 10173, 10174,
+    10177, 10255, 10256, 10258, 10275, 10276, 10307,
+}, "Collections", "Garrison Shipyard and naval missions", "Build and upgrade the Shipyard, improve ships, and complete the listed number or type of naval missions.", "Maintain ships with varied counters, check the Fleet Command Table daily, and avoid sending rare-mission counters on low-success attempts.", { "/way #582 40.0 37.0 Lunarfall Shipyard", "/way #590 52.0 50.0 Frostwall Shipyard" })
+ApplyWarlordsAchievementGroup("6.2.0", {
+    10018, 10054, 10057, 10061, 10068, 10069, 10070, 10072, 10075, 10260,
+    10262, 10265, 10334, 10348,
+}, "Exploration", "Tanaan Jungle and Draenor outdoor content", "Complete the listed exploration, treasure, rare, assault, quest, or Draenor Pathfinder criteria.", "Combine the Tanaan daily circuit with rare and treasure checks; Draenor flying makes the remaining elevated objectives much faster.", { "/way #534 57.6 59.4 Lion's Watch", "/way #534 61.0 45.8 Vol'mar" })
+ApplyWarlordsAchievementGroup("6.2.0", { 10052 }, "Pet Battles", "Tiny Terrors in Tanaan", "Defeat every legendary battle pet in Tanaan Jungle.", "Use counter teams from the Pet Journal and complete the daily circuit for Fel-Touched Pet Supplies.", { "/way #534 57.6 59.4 Lion's Watch", "/way #534 61.0 45.8 Vol'mar" })
+ApplyWarlordsAchievementGroup("6.2.0", { 10349, 10350 }, "Reputation", "Tanaan Diplomat", "Reach Revered with the three required Tanaan Jungle factions on the matching faction.", "Complete faction dailies together and use Medallions of the Legion because each grants reputation with all Draenor factions.", { "/way #534 57.6 59.4 Lion's Watch", "/way #534 61.0 45.8 Vol'mar" })
+ApplyWarlordsAchievementGroup("6.2.0", { 9988, 9989, 10053, 10335 }, "Collections", "Fury of Hellfire collection activities", "Complete the achievement's listed collection or activity criteria.", "Check the achievement criteria before starting; some are account-wide while others require progress on the active character.")
+ApplyWarlordsAchievementGroup("6.2.0", { 10067, 10074 }, "Questing", "In Pursuit of Gul'dan", "Complete the matching faction's Tanaan campaign chapters.", "Finish the Shipyard introduction first, then follow the weekly-gated campaign chapters from the faction hub.", { "/way #534 57.6 59.4 Lion's Watch", "/way #534 61.0 45.8 Vol'mar" })
+ApplyWarlordsAchievementGroup("6.2.0", { 10071, 10175 }, "Raids", "Supreme Lord Kazzak", "Defeat Supreme Lord Kazzak, using a guild group where the achievement requires it.", "Kazzak is in northern Tanaan; verify the weekly world-boss lockout and guild-group requirement before the kill.", { "/way #534 47.0 21.8 Supreme Lord Kazzak" })
+ApplyWarlordsAchievementGroup("6.2.0", { 10076, 10079, 10080, 10081, 10082, 10083, 10084, 10085 }, "Dungeons", "Warlords Mythic dungeons", "Complete each listed Warlords dungeon on Mythic difficulty.", "Set the dungeon to Mythic before entering and verify the weekly character lockout.", { "/way #622 46.6 76.8 Stormshield", "/way #624 44.0 74.0 Warspear" })
+
+ApplyWarlordsAchievementGroup("6.2.2", { 10021, 10148 }, "Questing", "Chapter IV: Darkness Incarnate", "Finish Khadgar's legendary-ring campaign and acquire the legendary ring on the matching faction.", "The original Warlords legendary-ring questline was removed; these achievements remain for historical tracking.", { "/way #582 40.0 37.0 Lunarfall", "/way #590 52.0 50.0 Frostwall" })
+ApplyWarlordsAchievementGroup("6.2.2", { 10354 }, "Collections", "Crashin' Thrashin' Commander", "Collect 200 toys.", "Use the Toy Box missing filter and prioritize permanent vendors and guaranteed quest rewards before rare drops.")
+ApplyWarlordsAchievementGroup("6.2.2", { 10355, 10356 }, "Collections", "Lord of the Reins", "Collect 300 mounts usable by a single character.", "Check the usable total on one character because faction and class restrictions can change the count.")
+
+ApplyWarlordsAchievementGroup("6.2.3", {
+    10090, 10091, 10094, 10095, 10097, 10110, 10111, 10112, 10113, 10114,
+    10115, 10116, 10117, 10118, 10119, 10120, 10121, 10146,
+}, "PvP", "Warlords PvP Season 3", "Meet the listed rated-PvP rank, conquest, combatant, or faction-ladder requirement during Warlords Season 3.", "These seasonal feats and original rewards are retained for historical tracking and may no longer be earned.")
 
 -- Older checklist-style achievements use the same criterion-aware map contract
 -- as the Midnight routes above. Generic hub, vendor, raid entrance, and campaign
@@ -9541,6 +10906,118 @@ function PatchCatalog:GetCollectionDetails(collectionType, patchKey, entry)
         return self:GetAchievementDetails(patchKey, entry)
     end
     return nil
+end
+
+local ALLIANCE_FACTION_MARKERS = {
+    "alliance", "stormwind", "ironforge", "darnassus", "the exodar", "exodar",
+    "boralus", "kul tiras", "proudmoore admiralty", "7th legion",
+    "order of embers", "storm's wake", "lion's watch", "lunarfall", "stormshield",
+    "silverwing", "wildhammer stronghold", "honor hold", "violet rise",
+    "allied races: dark iron dwarf", "allied races: kul tiran", "allied races: lightforged draenei",
+    "allied races: mechagnome", "allied races: void elf",
+    "private's tabard", "knight's colors",
+}
+
+local HORDE_FACTION_MARKERS = {
+    "horde", "orgrimmar", "thunder bluff", "undercity", "silvermoon", "dazar'alor",
+    "zuldazar", "zandalari empire", "voldunai", "talanji's expedition", "the honorbound",
+    "warspear", "frostwall", "vol'mar", "thrallmar", "domination point", "echo isles",
+    "sen'jin", "bloodhoof village", "brill", "mor'shan", "garadar",
+    "allied races: highmountain tauren", "allied races: mag'har orc", "allied races: nightborne",
+    "allied races: vulpera", "allied races: zandalari troll",
+    "scout's tabard", "stone guard's herald", "venomhide ravasaur",
+}
+
+local function NormalizeCollectionFaction(value)
+    if value == 0 then
+        return "horde"
+    elseif value == 1 then
+        return "alliance"
+    end
+
+    value = string.lower(tostring(value or ""))
+    if value == "alliance" or value == "horde" then
+        return value
+    end
+    return nil
+end
+
+local function AppendFactionText(parts, value)
+    if type(value) == "string" and value ~= "" then
+        parts[#parts + 1] = value
+    elseif type(value) == "table" then
+        for _, nestedValue in ipairs(value) do
+            if type(nestedValue) == "string" then
+                parts[#parts + 1] = nestedValue
+            elseif type(nestedValue) == "table" then
+                AppendFactionText(parts, nestedValue.label or nestedValue.waypoint)
+            end
+        end
+    end
+end
+
+local function HasFactionMarker(text, markers)
+    for _, marker in ipairs(markers) do
+        if text:find(marker, 1, true) then
+            return true
+        end
+    end
+    return false
+end
+
+function PatchCatalog:GetCollectionFaction(collectionType, patchKey, entry, state)
+    local details = self:GetCollectionDetails(collectionType, patchKey, entry)
+    local rewardEntry = collectionType == "achievements" and self:GetAchievementReward(patchKey, entry) or nil
+    local explicitFaction = NormalizeCollectionFaction(type(entry) == "table" and entry.faction)
+        or NormalizeCollectionFaction(details and details.faction)
+        or NormalizeCollectionFaction(rewardEntry and rewardEntry.faction)
+        or NormalizeCollectionFaction(state and state.faction)
+    if explicitFaction then
+        return explicitFaction
+    end
+
+    local parts = {}
+    if type(entry) == "table" then
+        AppendFactionText(parts, entry.name)
+        AppendFactionText(parts, entry.source)
+        AppendFactionText(parts, entry.acquisition)
+        AppendFactionText(parts, entry.detailKey)
+        AppendFactionText(parts, entry.waypoints)
+    end
+    if details then
+        AppendFactionText(parts, details.source)
+        AppendFactionText(parts, details.acquisition)
+        AppendFactionText(parts, details.waypoints)
+    end
+    if rewardEntry then
+        AppendFactionText(parts, rewardEntry.name)
+        AppendFactionText(parts, rewardEntry.reward)
+        AppendFactionText(parts, rewardEntry.source)
+    end
+    AppendFactionText(parts, state and state.name)
+    AppendFactionText(parts, state and state.description)
+
+    local text = string.lower(table.concat(parts, " "))
+    local targetsAlliance = text:find("slay all of the alliance", 1, true)
+        or text:find("kill alliance players", 1, true)
+        or text:find("defeat alliance players", 1, true)
+        or text:find("alliance slayer", 1, true)
+    local targetsHorde = text:find("slay all of the horde", 1, true)
+        or text:find("kill horde players", 1, true)
+        or text:find("defeat horde players", 1, true)
+        or text:find("horde slayer", 1, true)
+    if targetsAlliance and not targetsHorde then
+        return "horde"
+    elseif targetsHorde and not targetsAlliance then
+        return "alliance"
+    end
+
+    local isAlliance = HasFactionMarker(text, ALLIANCE_FACTION_MARKERS)
+    local isHorde = HasFactionMarker(text, HORDE_FACTION_MARKERS)
+    if isAlliance ~= isHorde then
+        return isAlliance and "alliance" or "horde"
+    end
+    return "all"
 end
 
 function PatchCatalog:IsAchievementSourcedCollection(collectionType, patchKey, entry)

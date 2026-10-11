@@ -11,8 +11,14 @@ CollectionExplorerWindow.__index = CollectionExplorerWindow
 
 local TYPE_OPTIONS = { "mounts", "pets", "toys", "cosmetics", "achievements" }
 local STATUS_OPTIONS = { "missing", "all", "collected" }
-local EXPANSION_OPTIONS = { "7", "8", "9", "10", "11", "12" }
+local EXPANSION_OPTIONS = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }
 local EXPANSION_LABELS = {
+    ["1"] = "Classic / Vanilla (1)",
+    ["2"] = "The Burning Crusade (2)",
+    ["3"] = "Wrath of the Lich King (3)",
+    ["4"] = "Cataclysm (4)",
+    ["5"] = "Mists of Pandaria (5)",
+    ["6"] = "Warlords of Draenor (6)",
     ["7"] = "Legion (7)",
     ["8"] = "Battle for Azeroth (8)",
     ["9"] = "Shadowlands (9)",
@@ -36,6 +42,10 @@ local MODEL_ZOOM_STEP = 0.15
 local PREVIEW_VISUAL_WIDTH = 240
 local PREVIEW_VISUAL_HEIGHT = 176
 local PREVIEW_DETAIL_TOP_OFFSET = -190
+local FACTION_BADGE_COLORS = {
+    alliance = { 0.18, 0.48, 1.00, 1.00 },
+    horde = { 0.86, 0.12, 0.12, 1.00 },
+}
 
 local TYPE_LABELS = {
     all = "All",
@@ -127,6 +137,19 @@ function CollectionExplorerWindow:GetStatusLabel(value)
         return "Collected"
     end
     return "All"
+end
+
+function CollectionExplorerWindow:GetFactionLabel(value)
+    if value == "alliance" then
+        return "Alliance"
+    elseif value == "horde" then
+        return "Horde"
+    end
+    return "All"
+end
+
+function CollectionExplorerWindow:GetFactionBadgeColor(value)
+    return FACTION_BADGE_COLORS[value]
 end
 
 function CollectionExplorerWindow:GetMountCategoryLabel(value)
@@ -854,8 +877,15 @@ function CollectionExplorerWindow:BuildRow(parent)
     icon:SetSize(32, 32)
     row.icon = icon
 
+    local factionBadge = row:CreateTexture(nil, "OVERLAY")
+    factionBadge:SetTexture("Interface\\Buttons\\WHITE8X8")
+    factionBadge:SetPoint("LEFT", icon, "RIGHT", 8, 7)
+    factionBadge:SetSize(10, 10)
+    factionBadge:Hide()
+    row.factionBadge = factionBadge
+
     local title = Widgets:CreateFontString(row, "OVERLAY", "GameFontNormal")
-    title:SetPoint("TOPLEFT", icon, "TOPRIGHT", 10, -6)
+    title:SetPoint("TOPLEFT", factionBadge, "TOPRIGHT", 6, 1)
     title:SetPoint("RIGHT", row, "RIGHT", -136, 0)
     title:SetJustifyH("LEFT")
     if title.SetWordWrap then
@@ -919,6 +949,13 @@ function CollectionExplorerWindow:UpdateRow(row, rowData, index)
     local icon = rowData.icon or "Interface\\Icons\\INV_Misc_QuestionMark"
     row.icon:SetTexture(icon)
     row.title:SetText(rowData.name)
+    local factionColor = self:GetFactionBadgeColor(rowData.faction)
+    if factionColor then
+        row.factionBadge:SetVertexColor(factionColor[1], factionColor[2], factionColor[3], factionColor[4])
+        row.factionBadge:Show()
+    else
+        row.factionBadge:Hide()
+    end
     local metaPrefix = self:GetTypeLabel(rowData.collectionType)
     if rowData.collectionType == "mounts" then
         metaPrefix = (rowData.mountCategory or "Other") .. " mount"
@@ -1019,6 +1056,7 @@ function CollectionExplorerWindow:BuildVisibleRows()
                 local cosmeticSource = collectionType == "cosmetics" and PatchCatalog:GetCosmeticSourceSummary(patchKey, entry) or nil
                 local cosmeticAcquisition = collectionType == "cosmetics" and PatchCatalog:GetCosmeticAcquisitionText(patchKey, entry) or nil
                 local cosmeticSubtype = collectionType == "cosmetics" and type(entry) == "table" and entry.subtype or nil
+                local faction = PatchCatalog:GetCollectionFaction(collectionType, patchKey, entry, state)
                 totalCount = totalCount + 1
 
                 if collected then
@@ -1059,6 +1097,7 @@ function CollectionExplorerWindow:BuildVisibleRows()
                         cosmeticSource or "",
                         cosmeticAcquisition or "",
                         cosmeticSubtype or "",
+                        self:GetFactionLabel(faction),
                         self:GetTypeLabel(collectionType),
                         tostring(self:GetEntryId(collectionType, entry) or ""),
                     }, " "))
@@ -1078,6 +1117,7 @@ function CollectionExplorerWindow:BuildVisibleRows()
                         mountCategory = mountCategory,
                         cosmeticSubtype = cosmeticSubtype,
                         achievementCategory = achievementCategory,
+                        faction = faction,
                     }
                 end
             end

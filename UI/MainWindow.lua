@@ -20,6 +20,7 @@ function MainWindow:New()
         frame = nil,
         body = nil,
         toolbar = nil,
+        subtitle = nil,
         boardButton = nil,
         filterButton = nil,
         createBoardButton = nil,
@@ -557,6 +558,7 @@ function MainWindow:Build()
         local subtitle = Widgets:CreateFontString(frame.headerBar, "OVERLAY", "GameFontHighlightSmall", "titleText")
         subtitle:SetPoint("LEFT", frame.headerBar, "LEFT", 15, -12)
         subtitle:SetText("Separate Global and character task boards")
+        self.subtitle = subtitle
 
         body = CreateFrame("Frame", nil, frame)
         body:SetPoint("TOPLEFT", chrome, "TOPLEFT", 12, -54)
@@ -572,6 +574,7 @@ function MainWindow:Build()
         local subtitle = Widgets:CreateFontString(frame, "OVERLAY", "GameFontHighlightSmall")
         subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -4)
         subtitle:SetText("Separate Global and character task boards")
+        self.subtitle = subtitle
 
         local close = CreateFrame("Button", nil, frame, "UIPanelCloseButton")
         close:SetPoint("TOPRIGHT", -6, -6)
@@ -733,6 +736,16 @@ end
 function MainWindow:Render()
     if Achievements and Achievements:AutoCompleteTasks() then
         Tasks:SortStable(TODOPlannerDB.tasks)
+    end
+    if TDP.LocationAwareness then
+        TDP.LocationAwareness:Refresh(false)
+    end
+
+    if self.subtitle then
+        self.subtitle:SetText(
+            TDP.LocationAwareness and TDP.LocationAwareness:GetSummaryText()
+                or "Separate Global and character task boards"
+        )
     end
 
     local boardKey = self:GetSelectedBoardKey()
