@@ -17,6 +17,7 @@ Data/TaskRepository.lua
 Data/Database.lua
 Data/GeneratedPatchCollections.lua
 Data/PatchCatalog.lua
+Data/CollectionAvailability.lua
 Data/Favorites.lua
 Integrations/CollectionScanner.lua
 UI/Widgets.lua

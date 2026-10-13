@@ -10,7 +10,7 @@ local CollectionExplorerWindow = {}
 CollectionExplorerWindow.__index = CollectionExplorerWindow
 
 local TYPE_OPTIONS = { "mounts", "pets", "toys", "cosmetics", "achievements" }
-local STATUS_OPTIONS = { "missing", "all", "collected" }
+local STATUS_OPTIONS = { "missing", "all", "collected", "unobtainable" }
 local EXPANSION_OPTIONS = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }
 local EXPANSION_LABELS = {
     ["1"] = "Classic / Vanilla (1)",
@@ -63,7 +63,8 @@ function CollectionExplorerWindow:New(homeWindow)
         selectedExpansion = "12",
         selectedPatch = "12.1",
         selectedCollectionType = "mounts",
-        selectedStatus = TODOPlannerDB and TODOPlannerDB.settings and TODOPlannerDB.settings.collectionHideCollected == false and "all" or "missing",
+        selectedStatus = TODOPlannerDB and TODOPlannerDB.settings and TODOPlannerDB.settings.collectionStatusFilter
+            or (TODOPlannerDB and TODOPlannerDB.settings and TODOPlannerDB.settings.collectionHideCollected == false and "all" or "missing"),
         selectedAchievementCategory = "all",
         selectedRow = nil,
         visibleRows = {},
@@ -135,8 +136,42 @@ function CollectionExplorerWindow:GetStatusLabel(value)
         return "Missing"
     elseif value == "collected" then
         return "Collected"
+    elseif value == "unobtainable" then
+        return "Unobtainable"
     end
     return "All"
+end
+
+function CollectionExplorerWindow:GetRowStatusLabel(row)
+    if row.unobtainable then
+        return row.collected and "Collected - Unobtainable" or "Unobtainable"
+    end
+    return row.collected and "Collected" or "Missing"
+end
+
+function CollectionExplorerWindow:GetStatusOptions()
+    return STATUS_OPTIONS
+end
+
+function CollectionExplorerWindow:SetSelectedStatus(value)
+    local valid = false
+    for _, option in ipairs(STATUS_OPTIONS) do
+        if value == option then
+            valid = true
+            break
+        end
+    end
+    if not valid then
+        return false
+    end
+    self.selectedStatus = value
+    if TODOPlannerDB and TODOPlannerDB.settings then
+        TODOPlannerDB.settings.collectionHideCollected = value == "missing"
+        TODOPlannerDB.settings.collectionStatusFilter = value
+    end
+    self.selectedRow = nil
+    self:Render()
+    return true
 end
 
 function CollectionExplorerWindow:GetFactionLabel(value)
@@ -570,6 +605,11 @@ end
 
 function CollectionExplorerWindow:GetRowNotes(row)
     local lines = {}
+    local acquisitionLabel = row.unobtainable and "Original acquisition: " or "How to get: "
+    if row.unobtainable and row.availability then
+        lines[#lines + 1] = "Unobtainable: " .. row.availability.reason
+        lines[#lines + 1] = ""
+    end
 
     if row.collectionType == "mounts" then
         local sourceSummary = self:GetMountSourceSummary(row)
@@ -581,7 +621,7 @@ function CollectionExplorerWindow:GetRowNotes(row)
             if #lines > 0 then
                 lines[#lines + 1] = ""
             end
-            lines[#lines + 1] = "How to get: " .. acquisition
+            lines[#lines + 1] = acquisitionLabel .. acquisition
         end
     elseif row.collectionType == "pets" then
         local sourceSummary = PatchCatalog and PatchCatalog:GetPetSourceSummary(row.patchKey, row.entry)
@@ -593,7 +633,7 @@ function CollectionExplorerWindow:GetRowNotes(row)
             if #lines > 0 then
                 lines[#lines + 1] = ""
             end
-            lines[#lines + 1] = "How to get: " .. acquisition
+            lines[#lines + 1] = acquisitionLabel .. acquisition
         end
     elseif row.collectionType == "toys" then
         local sourceSummary = PatchCatalog and PatchCatalog:GetToySourceSummary(row.patchKey, row.entry)
@@ -606,7 +646,7 @@ function CollectionExplorerWindow:GetRowNotes(row)
             if #lines > 0 then
                 lines[#lines + 1] = ""
             end
-            lines[#lines + 1] = "How to get: " .. acquisition
+            lines[#lines + 1] = acquisitionLabel .. acquisition
         end
         if effect then
             lines[#lines + 1] = "Effect: " .. effect
@@ -633,7 +673,7 @@ function CollectionExplorerWindow:GetRowNotes(row)
             if #lines > 0 then
                 lines[#lines + 1] = ""
             end
-            lines[#lines + 1] = "How to get: " .. acquisition
+            lines[#lines + 1] = acquisitionLabel .. acquisition
         end
         if requirements then
             lines[#lines + 1] = "Requirements: " .. requirements
@@ -696,7 +736,7 @@ function CollectionExplorerWindow:GetRowNotes(row)
             if #lines > 0 then
                 lines[#lines + 1] = ""
             end
-            lines[#lines + 1] = "How to get: " .. acquisition
+            lines[#lines + 1] = acquisitionLabel .. acquisition
         end
     end
 
@@ -781,7 +821,7 @@ function CollectionExplorerWindow:ShowFallbackTooltip(row)
     GameTooltip:ClearLines()
     GameTooltip:SetText(row.name or "Unknown", 1, 0.82, 0.18)
     GameTooltip:AddLine(self:GetTypeLabel(row.collectionType), 0.86, 0.88, 0.94)
-    GameTooltip:AddLine(row.collected and "Collected" or "Missing", row.collected and 0.28 or 0.92, row.collected and 0.82 or 0.72, row.collected and 0.42 or 0.28)
+    GameTooltip:AddLine(self:GetRowStatusLabel(row), row.collected and 0.28 or 0.92, row.collected and 0.82 or 0.72, row.collected and 0.42 or 0.28)
     local notes = self:GetRowNotes(row)
     if notes and notes ~= "" then
         GameTooltip:AddLine(" ")
@@ -964,12 +1004,13 @@ function CollectionExplorerWindow:UpdateRow(row, rowData, index)
     elseif rowData.collectionType == "achievements" then
         metaPrefix = (rowData.achievementCategory or "Other") .. " achievement"
     end
-    local metaText = string.format("%s - %s", metaPrefix, rowData.collected and "Collected" or "Missing")
+    local metaText = string.format("%s - %s", metaPrefix, self:GetRowStatusLabel(rowData))
     if self.selectedPatch == ALL_PATCHES then
         metaText = string.format("Patch %s - %s", rowData.patchKey, metaText)
     end
     row.meta:SetText(metaText)
-    Widgets:SetTextureColor(row.accent, rowData.collected and { 0.28, 0.82, 0.42, 0.74 } or "accentGold")
+    Widgets:SetTextureColor(row.accent, rowData.collected and { 0.28, 0.82, 0.42, 0.74 }
+        or rowData.unobtainable and { 0.92, 0.36, 0.28, 0.74 } or "accentGold")
 
     local isFavorite = self:IsFavoriteRow(rowData)
     row.favoriteButton:SetText(isFavorite and "Unfav" or "Fav")
@@ -1029,6 +1070,7 @@ function CollectionExplorerWindow:BuildVisibleRows()
 
     local collectedCount = 0
     local missingCount = 0
+    local unobtainableCount = 0
     local totalCount = 0
     local selectedPatchKeys = self:GetSelectedPatchKeys()
     local patchOrder = {}
@@ -1044,6 +1086,10 @@ function CollectionExplorerWindow:BuildVisibleRows()
                 local name = CollectionScanner:GetDisplayName(collectionType, entry, state, patchKey)
                 local reward = (state and state.reward) or (rewardEntry and rewardEntry.reward)
                 local collected = state and state.collected == true
+                local availability = PatchCatalog.GetCollectionAvailability
+                    and PatchCatalog:GetCollectionAvailability(collectionType, patchKey, entry)
+                local unobtainable = PatchCatalog.IsCollectionUnobtainable
+                    and PatchCatalog:IsCollectionUnobtainable(collectionType, patchKey, entry) or false
                 local mountCategory = collectionType == "mounts" and PatchCatalog:GetMountCategory(patchKey, entry) or nil
                 local mountSource = collectionType == "mounts" and PatchCatalog:GetMountSourceSummary(patchKey, entry) or nil
                 local mountAcquisition = collectionType == "mounts" and PatchCatalog:GetMountAcquisitionText(patchKey, entry) or nil
@@ -1059,15 +1105,19 @@ function CollectionExplorerWindow:BuildVisibleRows()
                 local faction = PatchCatalog:GetCollectionFaction(collectionType, patchKey, entry, state)
                 totalCount = totalCount + 1
 
+                if unobtainable then
+                    unobtainableCount = unobtainableCount + 1
+                end
                 if collected then
                     collectedCount = collectedCount + 1
-                else
+                elseif not unobtainable then
                     missingCount = missingCount + 1
                 end
 
                 local statusMatches = self.selectedStatus == "all"
                     or self.selectedStatus == "collected" and collected
-                    or self.selectedStatus == "missing" and not collected
+                    or self.selectedStatus == "missing" and not collected and not unobtainable
+                    or self.selectedStatus == "unobtainable" and unobtainable
                 local mountCategoryMatches = collectionType ~= "mounts"
                     or self.selectedCollectionType ~= "mounts"
                     or self:MountCategoryMatchesFilter(mountCategory)
@@ -1097,6 +1147,8 @@ function CollectionExplorerWindow:BuildVisibleRows()
                         cosmeticSource or "",
                         cosmeticAcquisition or "",
                         cosmeticSubtype or "",
+                        unobtainable and "Unobtainable" or "",
+                        availability and availability.reason or "",
                         self:GetFactionLabel(faction),
                         self:GetTypeLabel(collectionType),
                         tostring(self:GetEntryId(collectionType, entry) or ""),
@@ -1113,6 +1165,8 @@ function CollectionExplorerWindow:BuildVisibleRows()
                         name = name,
                         icon = state and state.icon,
                         collected = collected,
+                        unobtainable = unobtainable,
+                        availability = availability,
                         reward = reward,
                         mountCategory = mountCategory,
                         cosmeticSubtype = cosmeticSubtype,
@@ -1134,7 +1188,7 @@ function CollectionExplorerWindow:BuildVisibleRows()
         return (a.name or "") < (b.name or "")
     end)
 
-    return totalCount, collectedCount, missingCount
+    return totalCount, collectedCount, missingCount, unobtainableCount
 end
 
 function CollectionExplorerWindow:RenderPreview()
@@ -1205,8 +1259,8 @@ function CollectionExplorerWindow:RenderPreview()
         previewMeta = string.format("Patch %s - %s", row.patchKey, previewMeta)
     end
     self.previewMeta:SetText(previewMeta)
-    self.previewStatus:SetText("")
-    self.previewStatus:Hide()
+    self.previewStatus:SetText(row.unobtainable and self:GetRowStatusLabel(row) or "")
+    self.previewStatus:SetShown(row.unobtainable == true)
     if self.previewAchievementButton then
         if self:GetRowAchievementId(row) then
             self.previewAchievementButton:Show()
@@ -1235,7 +1289,7 @@ function CollectionExplorerWindow:Render()
         return
     end
 
-    local totalCount, collectedCount, missingCount = self:BuildVisibleRows()
+    local totalCount, collectedCount, missingCount, unobtainableCount = self:BuildVisibleRows()
     Widgets:UpdateButtonLabel(self.expansionButton, "Expansion", self.selectedExpansion, function(value)
         return self:GetExpansionLabel(value)
     end)
@@ -1250,11 +1304,12 @@ function CollectionExplorerWindow:Render()
     self:UpdateAchievementCategoryControl()
 
     self.summaryText:SetText(string.format(
-        "%d shown  |  %d total  |  %d missing  |  %d collected",
+        "%d shown  |  %d total  |  %d missing\n%d collected  |  %d unobtainable",
         #self.visibleRows,
         totalCount,
         missingCount,
-        collectedCount
+        collectedCount,
+        unobtainableCount
     ))
 
     if self.selectedRow then
@@ -1334,7 +1389,7 @@ function CollectionExplorerWindow:Build()
     local patchButton = Widgets:CreateSelectorButton(toolbar, 130, 24, "")
     patchButton:SetPoint("LEFT", expansionButton, "RIGHT", 8, 0)
 
-    local statusButton = Widgets:CreateSelectorButton(toolbar, 150, 24, "")
+    local statusButton = Widgets:CreateSelectorButton(toolbar, 174, 24, "")
     statusButton:SetPoint("LEFT", patchButton, "RIGHT", 8, 0)
 
     local mountCategoryButton = Widgets:CreateSelectorButton(toolbar, 208, 24, "")
@@ -1530,15 +1585,10 @@ function CollectionExplorerWindow:Build()
     end)
 
     statusButton:SetScript("OnClick", function(owner)
-        Widgets:ShowSingleSelectMenu(owner, STATUS_OPTIONS, self.selectedStatus, function(value)
+        Widgets:ShowSingleSelectMenu(owner, self:GetStatusOptions(), self.selectedStatus, function(value)
             return self:GetStatusLabel(value)
         end, function(value)
-            self.selectedStatus = value
-            if TODOPlannerDB and TODOPlannerDB.settings then
-                TODOPlannerDB.settings.collectionHideCollected = value == "missing"
-            end
-            self.selectedRow = nil
-            self:Render()
+            self:SetSelectedStatus(value)
         end)
     end)
 

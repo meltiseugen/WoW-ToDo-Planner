@@ -184,6 +184,12 @@ function Database:Init()
         TODOPlannerDB.settings.collectionHideCollected = true
     end
 
+    local collectionStatus = TODOPlannerDB.settings.collectionStatusFilter
+    if collectionStatus ~= "missing" and collectionStatus ~= "all"
+        and collectionStatus ~= "collected" and collectionStatus ~= "unobtainable" then
+        TODOPlannerDB.settings.collectionStatusFilter = TODOPlannerDB.settings.collectionHideCollected and "missing" or "all"
+    end
+
     if type(TODOPlannerDB.settings.collectionMountSourceFilters) ~= "table" then
         TODOPlannerDB.settings.collectionMountSourceFilters = {}
     else
