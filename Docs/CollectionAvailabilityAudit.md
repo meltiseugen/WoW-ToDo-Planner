@@ -2,13 +2,15 @@
 
 Reviewed for Retail on **2026-10-13**. This covers the existing catalog; it does not add excluded shop, promotional, holiday, hidden, or never-released records.
 
+Catalogue coverage extended on **2026-10-15** for live patch 12.1.5. The 474 existing retirement records retain their original review date; new live rewards are not marked retired in advance. See [Patch 12.1.5 collection audit](Patch1215CollectionAudit.md) for the 65 additions, deadlines, sources, and remaining location refinement.
+
 | Collection | Catalog entries screened | Retirement records |
 | --- | ---: | ---: |
-| Mounts | 1,201 | 158 |
-| Pets | 1,548 | 5 |
-| Toys | 740 | 8 |
-| Cosmetics | 2,834 | 303 |
-| Total | 6,323 | 474 |
+| Mounts | 1,204 | 158 |
+| Pets | 1,551 | 5 |
+| Toys | 750 | 8 |
+| Cosmetics | 2,845 | 303 |
+| Total | 6,350 | 474 |
 
 These are curated retirement candidates. The number shown in game depends on the selected expansion/patch and the player's original unlocks. Unclassified or uncertain records remain unflagged; absence of a flag is not a guarantee of availability. Availability needs another review when rewards return or new seasons end.
 

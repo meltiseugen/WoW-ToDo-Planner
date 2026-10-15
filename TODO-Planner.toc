@@ -1,4 +1,4 @@
-## Interface: 120001
+## Interface: 120105
 ## Title: TODO Planner
 ## Notes: Separate Global and character task boards for achievements, mounts, collections, and more.
 ## Author: Eugen
@@ -16,6 +16,7 @@ Data/BoardManager.lua
 Data/TaskRepository.lua
 Data/Database.lua
 Data/GeneratedPatchCollections.lua
+Data/Patch1215Collections.lua
 Data/PatchCatalog.lua
 Data/CollectionAvailability.lua
 Data/Favorites.lua

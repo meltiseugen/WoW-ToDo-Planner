@@ -61,7 +61,7 @@ function CollectionExplorerWindow:New(homeWindow)
         homeWindow = homeWindow,
         frame = nil,
         selectedExpansion = "12",
-        selectedPatch = "12.1",
+        selectedPatch = "12.1.5",
         selectedCollectionType = "mounts",
         selectedStatus = TODOPlannerDB and TODOPlannerDB.settings and TODOPlannerDB.settings.collectionStatusFilter
             or (TODOPlannerDB and TODOPlannerDB.settings and TODOPlannerDB.settings.collectionHideCollected == false and "all" or "missing"),
@@ -76,7 +76,7 @@ end
 function CollectionExplorerWindow:GetPatchOptions()
     local options = { ALL_PATCHES }
     if not PatchCatalog then
-        options[#options + 1] = "12.1"
+        options[#options + 1] = "12.1.5"
         return options
     end
 

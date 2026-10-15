@@ -179,6 +179,7 @@ local MAP_NAMES = {
     [2636] = "Vault of Restless Bones",
     [2642] = "Tomb of the Forgotten Priest",
     [2646] = "Vilaldoun Crypt",
+    [2647] = "The Labyrinth of Kindo'jan",
 }
 
 local SILVERMOON_DELVES_WAYPOINTS = {
@@ -10552,6 +10553,24 @@ for _, patchKey in ipairs({ "12.0", "12.0.5", "12.0.7", "12.1" }) do
     end
 end
 
+-- Hand-researched live additions are loaded before the shared exclusions.
+local patch1215 = TDP.Patch1215Collections
+if patch1215 then
+    PatchCatalog.patches["12.1.5"] = patch1215.patch
+    PatchCatalog.mountDetails["12.1.5"] = patch1215.details.mounts
+    PatchCatalog.petDetails["12.1.5"] = patch1215.details.pets
+    PatchCatalog.toyDetails["12.1.5"] = patch1215.details.toys
+    PatchCatalog.cosmeticDetails["12.1.5"] = patch1215.details.cosmetics
+    PatchCatalog.achievementDetails["12.1.5"] = patch1215.details.achievements
+    PatchCatalog.achievementCategories["12.1.5"] = patch1215.achievementCategories
+end
+
+-- 12.1.5 removed these three criteria from the older BfA collection meta.
+-- Keep the reward and achievements in their original patch buckets.
+local wartornTips = "As of 12.1.5, Snake Eyes, Snake Eater, and Good Night, Sweet Prince are no longer required for Glory of the Wartorn Hero. Follow the remaining live meta criteria; the Obsidian Krolusk reward is still obtainable."
+PatchCatalog.mountDetails["8.0.0"]["Obsidian Krolusk"].tips = wartornTips
+PatchCatalog.achievementDetails["8.0.0"][12812].tips = wartornTips
+
 local PROHIBITED_DETAIL_TERMS = {
     "trading post", "traveler's log", "in-game shop", "battle.net shop",
     "promotion", "promotional", "twitch", "discord quest", "blizzcon",
@@ -10936,7 +10955,7 @@ local function NormalizeCollectionFaction(value)
     end
 
     value = string.lower(tostring(value or ""))
-    if value == "alliance" or value == "horde" then
+    if value == "alliance" or value == "horde" or value == "all" then
         return value
     end
     return nil

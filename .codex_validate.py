@@ -12,6 +12,7 @@ from lupa import LuaRuntime
 ROOT = Path(__file__).resolve().parent
 CATALOG_PATH = ROOT / "Data" / "PatchCatalog.lua"
 GENERATED_PATH = ROOT / "Data" / "GeneratedPatchCollections.lua"
+PATCH_1215_PATH = ROOT / "Data" / "Patch1215Collections.lua"
 TOC_PATH = ROOT / "TODO-Planner.toc"
 
 EXPECTED_COUNTS = {
@@ -103,6 +104,7 @@ EXPECTED_COUNTS = {
     "12.0.5": (15, 12, 2, 67, 21),
     "12.0.7": (7, 7, 6, 74, 21),
     "12.1": (24, 28, 14, 33, 327),
+    "12.1.5": (3, 3, 10, 11, 38),
 }
 
 COLLECTION_ID_FIELDS = {
@@ -164,9 +166,11 @@ toc = TOC_PATH.read_text(encoding="utf-8-sig")
 generated_index = toc.index("Data/GeneratedPatchCollections.lua")
 catalog_index = toc.index("Data/PatchCatalog.lua")
 assert generated_index < catalog_index, "generated collection data must load before PatchCatalog.lua"
+assert toc.index("Data/Patch1215Collections.lua") < catalog_index, "12.1.5 data must load before PatchCatalog.lua"
 
 catalog_text = CATALOG_PATH.read_text(encoding="utf-8-sig")
 generated_text = GENERATED_PATH.read_text(encoding="utf-8-sig")
+patch_1215_text = PATCH_1215_PATH.read_text(encoding="utf-8-sig")
 assert "remain intentionally empty" not in catalog_text
 assert "remains intentionally empty" not in catalog_text
 
@@ -178,12 +182,13 @@ known_maps = {
         re.MULTILINE,
     )
 }
-used_maps = {int(value) for value in re.findall(r"/way #(\d+)", catalog_text + generated_text)}
+used_maps = {int(value) for value in re.findall(r"/way #(\d+)", catalog_text + generated_text + patch_1215_text)}
 assert not used_maps - known_maps, ("unknown map IDs", sorted(used_maps - known_maps))
 
 lua = LuaRuntime(unpack_returned_tuples=True)
 tdp = lua.table()
 load_lua_file(lua, tdp, GENERATED_PATH)
+load_lua_file(lua, tdp, PATCH_1215_PATH)
 load_lua_file(lua, tdp, CATALOG_PATH)
 catalog = tdp["PatchCatalog"]
 
