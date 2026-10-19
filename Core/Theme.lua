@@ -70,7 +70,7 @@ function ThemeManager:GetSelectedThemeKey()
     if C.VISUAL_THEME_KEYS[selectedKey] then
         return selectedKey
     end
-    return "midnight"
+    return C.DEFAULT_DB.settings.visualTheme
 end
 
 function ThemeManager:BuildMidnightSpec()
@@ -107,7 +107,7 @@ function ThemeManager:BuildMidnightSpec()
 
     return {
         key = "midnight",
-        displayName = "Midnight",
+        displayName = C.VISUAL_THEME_LABELS.midnight,
         colors = colors,
         buttonPalettes = buttonPalettes,
         backdrop = ThemeLibrary.defaultBackdrop,
@@ -547,7 +547,7 @@ function ThemeManager:Create()
         minimalVoidglass = self.BuildMinimalVoidglassSpec,
         midnight = self.BuildMidnightSpec,
     }
-    local builder = builders[themeKey] or self.BuildParchmentSpec
+    local builder = builders[themeKey] or builders[C.DEFAULT_DB.settings.visualTheme]
     local spec = builder(self)
     self.theme = ThemeLibrary:New({
         addon = self.addon.EventFrame,

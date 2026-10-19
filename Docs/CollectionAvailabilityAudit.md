@@ -31,7 +31,7 @@ The summary's unobtainable count includes owned retired entries, so it can overl
 
 The retired-mount index was matched against all 1,201 catalog mount spell IDs and names, including individual retired pages to catch renamed rewards. This caught Breaker Bee, now listed as Magister's Spell Bee. The data records use explicit spell IDs, not name patterns.
 
-- Original epic racial mounts, ended Gladiator seasons through Midnight Season 1, removed challenge-mode mounts, removed Zul'Aman/tribute/Glory raid rewards, and discontinued launch-event mounts: [Warcraft Mounts retired index](https://www.warcraftmounts.com/retired.php). Individual references are beside the corresponding ID groups in `Data/CollectionAvailability.lua`.
+- Original epic racial mounts, ended Gladiator seasons through Midnight Season 1, removed challenge-mode mounts, removed Zul'Aman/tribute/Glory raid rewards, and discontinued launch-event mounts: [Warcraft Mounts retired index](https://www.warcraftmounts.com/retired.php). Individual references are beside the corresponding IDs in each patch's `Availability.lua` under `Data/Expansions/`.
 - Final-raid quest rewards include Kor'kron War Wolf, Grove Warden, Violet Spellwing, Uncorrupted Voidwing, Carcinized Zerethsteed, and Royal Voidwing. Royal Voidwing's removal is distinguished from reduced Mythic mount drop rates by [Blizzard's Midnight launch checklist](https://news.blizzard.com/en-us/article/24257262/what-to-tackle-in-the-war-within-before-the-launch-of-midnight).
 - Voyaging Wilderling, Pandaria Remix mounts, and Radiant Echoes mounts: [Blizzard's Dragonflight checklist](https://news.blizzard.com/en-us/article/24115317/what-to-tackle-in-dragonflight-before-the-war-within).
 - Legion Remix mounts: [Blizzard's event ending notice](https://worldofwarcraft.blizzard.com/en-gb/news/24242738), cross-checked with the retired index.
@@ -73,6 +73,6 @@ The retired-mount index was matched against all 1,201 catalog mount spell IDs an
 
 ## Validation
 
-Run `lua Tests/collection_availability_tests.lua` for ID coverage, metadata, eligibility exceptions, filter composition, ownership, preview text, migration, and persistence. Run `uv run .codex_validate.py` for unchanged catalog counts and data integrity. The new data file must load after `Data/PatchCatalog.lua` in the TOC.
+Run `lua Tests/collection_availability_tests.lua` for ID coverage, metadata, eligibility exceptions, filter composition, ownership, preview text, migration, and persistence. Run `uv run .codex_validate.py` for unchanged catalog counts and data integrity. Patch availability records load through `Data/Catalog.xml`; shared eligibility behavior lives in `Data/Catalog/Availability.lua`.
 
 An in-game `/reload` and visual check are still needed to confirm dropdown layout, badges, and preview rendering in the actual WoW client.

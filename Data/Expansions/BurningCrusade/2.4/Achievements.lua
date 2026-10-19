@@ -1,0 +1,3 @@
+local _, TDP = ...
+
+TDP.CatalogRegistry:RegisterCollection("2.4", "achievements", { entries = { ids = {}, rewardHighlights = { "Swift White Hawkstrider", "Phoenix Hatchling", "Orb of the Sin'dorei" } }, details = {}, categories = {} })

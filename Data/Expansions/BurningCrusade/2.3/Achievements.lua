@@ -1,0 +1,3 @@
+local _, TDP = ...
+
+TDP.CatalogRegistry:RegisterCollection("2.3", "achievements", { entries = { ids = {}, rewardHighlights = { "Amani War Bear", "Mojo" } }, details = {}, categories = {} })

@@ -1,0 +1,3 @@
+local _, TDP = ...
+
+TDP.CatalogRegistry:RegisterCollection("2.4", "cosmetics", { entries = { { detailKey = "shatteredSunTabard", itemId = 35221, name = "Tabard of the Shattered Sun", subtype = "tabard" } } })

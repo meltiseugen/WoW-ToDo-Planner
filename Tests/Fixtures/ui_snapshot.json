@@ -1,0 +1,34 @@
+{
+  "collection explorer construction and rendering": {
+    "operations": 1066,
+    "sha256": "afb63a382bd859d64319a0cf27024104a00f4f1a389a92c496bce938e4bd5718"
+  },
+  "collection map construction and reset": {
+    "operations": 321,
+    "sha256": "8537b3d01b01c8d7d81c8874b70773dd44f0243b9d68cd0f1bb4afa678ed9a59"
+  },
+  "favorites construction and rendering": {
+    "operations": 684,
+    "sha256": "ed71fd72b5a3771f243141811c40495367f89fcf364006ad330b64ff1b868c5b"
+  },
+  "home construction and rendering": {
+    "operations": 162,
+    "sha256": "e24bc59dd1e2d98ffea1a3b5816d55b3f0c88c069255d11753fd69c38109be50"
+  },
+  "options construction and tabs": {
+    "operations": 560,
+    "sha256": "69d26413c100e7e896696347f8ae7a7e4c8539b1826fb3578bd050b6ef76abdd"
+  },
+  "planner construction and rendering": {
+    "operations": 496,
+    "sha256": "31d83296b08b603bd5bcaeb0383b9585543bf6366245c111844a8ee39857e827"
+  },
+  "task details open layout and criteria": {
+    "operations": 802,
+    "sha256": "06a60b057bb82c04f085a405f55a211899fd9d8edb6517d61e673525d7ff8619"
+  },
+  "task editor create save and edit": {
+    "operations": 508,
+    "sha256": "4faff1d7fa7eb15b76f502f2958a5d8fef04138193ed4cf62ba9e65bd5e6298a"
+  }
+}

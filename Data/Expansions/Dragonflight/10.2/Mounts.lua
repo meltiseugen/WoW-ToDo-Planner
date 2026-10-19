@@ -1,0 +1,72 @@
+local _, TDP = ...
+
+local shared = {}
+shared["Patch 10.2: Guardians of the Dream"] = {
+    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
+    category = "Other",
+    source = "Patch 10.2: Guardians of the Dream",
+    sourceType = "Patch mount collection",
+}
+
+shared["Patch 10.2: Guardians of the Dream 2"] = {
+    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
+    category = "PvP",
+    source = "Patch 10.2: Guardians of the Dream",
+    sourceType = "Patch mount collection",
+}
+
+TDP.CatalogRegistry:RegisterCollection("10.2", "mounts", {
+    entries = {
+        { name = "Verdant Armoredon", spellId = 422486 },
+        { name = "Blossoming Dreamstag", spellId = 423871 },
+        { name = "Suntouched Dreamstag", spellId = 423873 },
+        { name = "Rekindled Dreamstag", spellId = 423877 },
+        { name = "Lunar Dreamstag", spellId = 423891 },
+        { name = "Shadow Dusk Dreamsaber", spellId = 424474 },
+        { name = "Winter Night Dreamsaber", spellId = 424476 },
+        { name = "Evening Sun Dreamsaber", spellId = 424479 },
+        { name = "Morning Flourish Dreamsaber", spellId = 424482 },
+        { name = "Anu'relos, Flame's Guidance", spellId = 424484 },
+        { name = "Vicious Moonbeast", spellId = 424534 },
+        { name = "Vicious Moonbeast", spellId = 424535 },
+        { name = "Flourishing Whimsydrake", spellId = 425338 },
+        { name = "Verdant Gladiator's Slitherdrake", spellId = 425416 },
+        { name = "Springtide Dreamtalon", spellId = 426955 },
+        { name = "Ochre Dreamtalon", spellId = 427041 },
+        { name = "Snowfluff Dreamtalon", spellId = 427043 },
+        { name = "Delugen", spellId = 427222 },
+        { name = "Talont", spellId = 427224 },
+        { name = "Stargrazer", spellId = 427226 },
+        { name = "Mammyth", spellId = 427546 },
+        { name = "Imagiwing", spellId = 427549 },
+        { name = "Salatrancer", spellId = 427724 },
+        { name = "Golden Regal Scarab", spellId = 428060 },
+        { name = "Grotto Netherwing Drake", spellId = 431049 },
+    },
+    details = {
+        ["Anu'relos, Flame's Guidance"] = shared["Patch 10.2: Guardians of the Dream"],
+        ["Blossoming Dreamstag"] = shared["Patch 10.2: Guardians of the Dream"],
+        Delugen = shared["Patch 10.2: Guardians of the Dream"],
+        ["Evening Sun Dreamsaber"] = shared["Patch 10.2: Guardians of the Dream"],
+        ["Flourishing Whimsydrake"] = shared["Patch 10.2: Guardians of the Dream"],
+        ["Golden Regal Scarab"] = shared["Patch 10.2: Guardians of the Dream"],
+        ["Grotto Netherwing Drake"] = shared["Patch 10.2: Guardians of the Dream"],
+        Imagiwing = shared["Patch 10.2: Guardians of the Dream"],
+        ["Lunar Dreamstag"] = shared["Patch 10.2: Guardians of the Dream"],
+        Mammyth = shared["Patch 10.2: Guardians of the Dream"],
+        ["Morning Flourish Dreamsaber"] = shared["Patch 10.2: Guardians of the Dream"],
+        ["Ochre Dreamtalon"] = shared["Patch 10.2: Guardians of the Dream"],
+        ["Rekindled Dreamstag"] = shared["Patch 10.2: Guardians of the Dream"],
+        Salatrancer = shared["Patch 10.2: Guardians of the Dream"],
+        ["Shadow Dusk Dreamsaber"] = shared["Patch 10.2: Guardians of the Dream"],
+        ["Snowfluff Dreamtalon"] = shared["Patch 10.2: Guardians of the Dream"],
+        ["Springtide Dreamtalon"] = shared["Patch 10.2: Guardians of the Dream"],
+        Stargrazer = shared["Patch 10.2: Guardians of the Dream"],
+        ["Suntouched Dreamstag"] = shared["Patch 10.2: Guardians of the Dream"],
+        Talont = shared["Patch 10.2: Guardians of the Dream"],
+        ["Verdant Armoredon"] = shared["Patch 10.2: Guardians of the Dream"],
+        ["Verdant Gladiator's Slitherdrake"] = shared["Patch 10.2: Guardians of the Dream 2"],
+        ["Vicious Moonbeast"] = shared["Patch 10.2: Guardians of the Dream 2"],
+        ["Winter Night Dreamsaber"] = shared["Patch 10.2: Guardians of the Dream"],
+    },
+})

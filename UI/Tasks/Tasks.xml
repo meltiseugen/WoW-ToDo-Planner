@@ -1,0 +1,5 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <Include file="Editor/Editor.xml"/>
+    <Include file="Details/Details.xml"/>
+    <Script file="Card.lua"/>
+</Ui>

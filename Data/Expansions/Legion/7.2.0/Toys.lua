@@ -1,0 +1,118 @@
+local _, TDP = ...
+
+TDP.CatalogRegistry:RegisterCollection("7.2.0", "toys", {
+    entries = {
+        {
+            acquisition = "Earn the Legion Season 3 Prestige pennant reward.",
+            itemId = 134032,
+            name = "Elite Pennant",
+            source = "Player vs. Player: Legion Season 3 Prestige reward",
+            tips = "This is a historical Prestige reward and may no longer be obtainable from its original source.",
+        },
+        {
+            acquisition = "Complete No Shellfish Endeavor and its shellfish collection route.",
+            itemId = 143660,
+            name = "Mrgrglhjorn",
+            source = "Achievement: No Shellfish Endeavor / Broken Isles shores",
+            tips = "Track the achievement before starting and combine shoreline world-quest progress with the required shellfish turn-ins.",
+        },
+        {
+            acquisition = "Obtain this toy from the listed source: Vendor: Warmage Kath'leen / Zone: Broken Shore / Faction: Armies of Legionfall - Revered / Cost: 1500 currency.",
+            itemId = 130199,
+            name = "Legion Pocket Portal",
+            source = "Vendor: Warmage Kath'leen / Zone: Broken Shore / Faction: Armies of Legionfall - Revered / Cost: 1500 currency",
+            tips = "Confirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.",
+            waypoints = { "/way #646 44.5 63.2 Deliverance Point" },
+        },
+        {
+            acquisition = "Obtain this toy from the listed source: Quest: Complete the Broken Shore portion of your class Order Campaign..",
+            itemId = 143727,
+            name = "Champion's Salute",
+            source = "Quest: Complete the Broken Shore portion of your class Order Campaign.",
+            tips = "Finish Breaching the Tomb and the class-specific mount questline. Extra class-mount colors may require additional class achievements or Order Hall purchases.",
+            waypoints = { "/way #646 44.5 63.2 Deliverance Point" },
+        },
+        {
+            acquisition = "Obtain this toy from the listed source: Vendor: Warmage Kath'leen / Zone: Broken Shore / Faction: Armies of Legionfall - Exalted / Cost: 5000 currency.",
+            itemId = 147708,
+            name = "Legion Invasion Simulator",
+            source = "Vendor: Warmage Kath'leen / Zone: Broken Shore / Faction: Armies of Legionfall - Exalted / Cost: 5000 currency",
+            tips = "Confirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.",
+            waypoints = { "/way #646 44.5 63.2 Deliverance Point" },
+        },
+        {
+            acquisition = "Obtain this toy from the listed source: Vendor: Uthel'nay / Zone: Hall of the Guardian / Cost: 10000 currency.",
+            itemId = 147832,
+            name = "Magical Saucer",
+            source = "Vendor: Uthel'nay / Zone: Hall of the Guardian / Cost: 10000 currency",
+            tips = "Confirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.",
+        },
+        {
+            acquisition = "Obtain this toy from the listed source: Quest: Down the Rabbit Hole - Mage Campaign / Zone: Hall of the Guardian.",
+            itemId = 147838,
+            name = "Akazamzarak's Spare Hat",
+            source = "Quest: Down the Rabbit Hole - Mage Campaign / Zone: Hall of the Guardian",
+            tips = "Check prerequisites and the source's daily or weekly lockout before starting; several Legion collectibles require campaign progress or repeat attempts.",
+        },
+        {
+            acquisition = "Obtain this toy from the listed source: Drop: Curious Wyrmtongue Cache.",
+            itemId = 147867,
+            name = "Pilfered Sweeper",
+            source = "Drop: Curious Wyrmtongue Cache",
+            tips = "Check the source's loot lockout before farming. Argus rares rotate and many drops are not guaranteed, so use eligible alts when practical.",
+        },
+    },
+    details = {
+        ["Akazamzarak's Spare Hat"] = {
+            acquisition = "Obtain this toy from the listed source: Quest: Down the Rabbit Hole - Mage Campaign / Zone: Hall of the Guardian.",
+            source = "Quest: Down the Rabbit Hole - Mage Campaign / Zone: Hall of the Guardian",
+            sourceType = "Toy Box Source",
+            tips = "Check prerequisites and the source's daily or weekly lockout before starting; several Legion collectibles require campaign progress or repeat attempts.",
+        },
+        ["Champion's Salute"] = {
+            acquisition = "Obtain this toy from the listed source: Quest: Complete the Broken Shore portion of your class Order Campaign..",
+            source = "Quest: Complete the Broken Shore portion of your class Order Campaign.",
+            sourceType = "Toy Box Source",
+            tips = "Finish Breaching the Tomb and the class-specific mount questline. Extra class-mount colors may require additional class achievements or Order Hall purchases.",
+            waypoints = { "/way #646 44.5 63.2 Deliverance Point" },
+        },
+        ["Elite Pennant"] = {
+            acquisition = "Earn the Legion Season 3 Prestige pennant reward.",
+            source = "Player vs. Player: Legion Season 3 Prestige reward",
+            sourceType = "Toy Box Source",
+            tips = "This is a historical Prestige reward and may no longer be obtainable from its original source.",
+        },
+        ["Legion Invasion Simulator"] = {
+            acquisition = "Obtain this toy from the listed source: Vendor: Warmage Kath'leen / Zone: Broken Shore / Faction: Armies of Legionfall - Exalted / Cost: 5000 currency.",
+            source = "Vendor: Warmage Kath'leen / Zone: Broken Shore / Faction: Armies of Legionfall - Exalted / Cost: 5000 currency",
+            sourceType = "Toy Box Source",
+            tips = "Confirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.",
+            waypoints = { "/way #646 44.5 63.2 Deliverance Point" },
+        },
+        ["Legion Pocket Portal"] = {
+            acquisition = "Obtain this toy from the listed source: Vendor: Warmage Kath'leen / Zone: Broken Shore / Faction: Armies of Legionfall - Revered / Cost: 1500 currency.",
+            source = "Vendor: Warmage Kath'leen / Zone: Broken Shore / Faction: Armies of Legionfall - Revered / Cost: 1500 currency",
+            sourceType = "Toy Box Source",
+            tips = "Confirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.",
+            waypoints = { "/way #646 44.5 63.2 Deliverance Point" },
+        },
+        ["Magical Saucer"] = {
+            acquisition = "Obtain this toy from the listed source: Vendor: Uthel'nay / Zone: Hall of the Guardian / Cost: 10000 currency.",
+            source = "Vendor: Uthel'nay / Zone: Hall of the Guardian / Cost: 10000 currency",
+            sourceType = "Toy Box Source",
+            tips = "Confirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.",
+        },
+        Mrgrglhjorn = {
+            acquisition = "Complete No Shellfish Endeavor and its shellfish collection route.",
+            source = "Achievement: No Shellfish Endeavor / Broken Isles shores",
+            sourceType = "Toy Box Source",
+            tips = "Track the achievement before starting and combine shoreline world-quest progress with the required shellfish turn-ins.",
+        },
+        ["Pilfered Sweeper"] = {
+            acquisition = "Obtain this toy from the listed source: Drop: Curious Wyrmtongue Cache.",
+            source = "Drop: Curious Wyrmtongue Cache",
+            sourceType = "Toy Box Source",
+            tips = "Check the source's loot lockout before farming. Argus rares rotate and many drops are not guaranteed, so use eligible alts when practical.",
+        },
+    },
+})

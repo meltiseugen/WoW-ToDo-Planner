@@ -34,13 +34,16 @@ Base Kanban-style planner addon for World of Warcraft.
 ## Code layout
 - `TODOPlanner.lua`: addon namespace and event frame bootstrap.
 - `Core/`: constants, utility helpers, theme setup, slash commands, and load-event bootstrap.
-- `Data/`: board, task, and saved-variable database managers.
-- `Data/PatchCatalog.lua`: static patch collection catalogs for mounts, pets, toys, cosmetics, and achievements.
-- `Data/Favorites.lua`: saved favorite collection references.
-- `UI/`: reusable widgets, task cards, task details, and the main planner window.
-- `UI/HomeWindow.lua`: default launcher for Explorer, Planner, and Favorites.
-- `UI/CollectionExplorerWindow.lua`: patch collection browser with filters, previews, and task creation.
-- `UI/FavoritesWindow.lua`: saved collection favorites browser.
+- `Data/Persistence/`: board, task, database, and favorite storage.
+- `Data/Expansions/<Expansion>/<patch>/`: patch metadata, collection records, research, and availability.
+- `Data/Catalog/`: shared registration, queries, faction rules, map payloads, and availability logic.
+- `Data/Catalog.xml`: ordered catalog manifest; see [Data/README.md](Data/README.md) for the content contract and validation commands.
+- `UI/Widgets/`: shared controls, window management, dropdowns, and preview text.
+- `UI/Planner/` and `UI/Tasks/`: board view, drag/drop, task cards, editor, and details.
+- `UI/Collections/`: Explorer, Favorites, and their shared model preview.
+- `UI/CollectionMap/`: map canvas, criteria, world-map projection, and minimap pins.
+- `UI/Options/` and `UI/Home/`: settings and the launcher.
+- `UI/Windows.xml`: feature load order; see [UI/README.md](UI/README.md) for module responsibilities and checks.
 - `Integrations/`: Blizzard UI integrations such as achievement task buttons and Wowhead detail helpers.
 
 ## Static collection catalog

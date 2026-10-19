@@ -1,0 +1,85 @@
+local _, TDP = ...
+
+TDP.CatalogRegistry:RegisterCollection("7.2.5", "mounts", {
+    entries = {
+        {
+            acquisition = "Obtain this mount from the listed source: Achievement: Gladiator: Legion Season 4 / Category: Player vs. Player.",
+            category = "Achievements",
+            name = "Ferocious Gladiator's Storm Dragon",
+            source = "Achievement: Gladiator: Legion Season 4 / Category: Player vs. Player",
+            spellId = 227991,
+            tips = "This is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.",
+        },
+        {
+            acquisition = "Obtain this mount from the listed source: PvP: Prestige Reward.",
+            category = "PvP",
+            name = "Prestigious Forest Courser",
+            source = "PvP: Prestige Reward",
+            spellId = 222237,
+            tips = "This is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.",
+        },
+        {
+            acquisition = "Obtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency.",
+            category = "Vendor",
+            name = "Vicious War Lion",
+            source = "Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency",
+            spellId = 229512,
+            tips = "This is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.",
+        },
+        {
+            acquisition = "Obtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency.",
+            category = "Vendor",
+            name = "Vicious War Scorpion",
+            source = "Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency",
+            spellId = 230988,
+            tips = "This is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.",
+        },
+        {
+            acquisition = "Obtain this mount from the listed source: Drop: Mistress Sassz'ine / Location: Tomb of Sargeras.",
+            category = "Drops",
+            name = "Abyss Worm",
+            source = "Drop: Mistress Sassz'ine / Location: Tomb of Sargeras",
+            spellId = 232519,
+            tips = "Check the required raid difficulty and weekly loot lockout before the run. Use eligible alts for additional attempts where the reward remains a random drop.",
+            waypoints = { "/way #646 64.0 21.4 Tomb of Sargeras entrance" },
+        },
+    },
+    details = {
+        ["Abyss Worm"] = {
+            acquisition = "Obtain this mount from the listed source: Drop: Mistress Sassz'ine / Location: Tomb of Sargeras.",
+            category = "Drops",
+            source = "Drop: Mistress Sassz'ine / Location: Tomb of Sargeras",
+            sourceType = "Patch mount collection",
+            tips = "Check the required raid difficulty and weekly loot lockout before the run. Use eligible alts for additional attempts where the reward remains a random drop.",
+            waypoints = { "/way #646 64.0 21.4 Tomb of Sargeras entrance" },
+        },
+        ["Ferocious Gladiator's Storm Dragon"] = {
+            acquisition = "Obtain this mount from the listed source: Achievement: Gladiator: Legion Season 4 / Category: Player vs. Player.",
+            category = "Achievements",
+            source = "Achievement: Gladiator: Legion Season 4 / Category: Player vs. Player",
+            sourceType = "Patch mount collection",
+            tips = "This is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.",
+        },
+        ["Prestigious Forest Courser"] = {
+            acquisition = "Obtain this mount from the listed source: PvP: Prestige Reward.",
+            category = "PvP",
+            source = "PvP: Prestige Reward",
+            sourceType = "Patch mount collection",
+            tips = "This is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.",
+        },
+        ["Vicious War Lion"] = {
+            acquisition = "Obtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency.",
+            category = "Vendor",
+            source = "Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency",
+            sourceType = "Patch mount collection",
+            tips = "This is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.",
+        },
+        ["Vicious War Scorpion"] = {
+            acquisition = "Obtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency.",
+            category = "Vendor",
+            source = "Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency",
+            sourceType = "Patch mount collection",
+            tips = "This is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.",
+        },
+    },
+})

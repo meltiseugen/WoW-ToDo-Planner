@@ -1,0 +1,27 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <Script file="4.0.0/Patch.lua"/>
+    <Script file="4.0.0/Mounts.lua"/>
+    <Script file="4.0.0/Pets.lua"/>
+    <Script file="4.0.0/Toys.lua"/>
+    <Script file="4.0.0/Cosmetics.lua"/>
+    <Script file="4.0.0/Achievements.lua"/>
+    <Script file="4.1.0/Patch.lua"/>
+    <Script file="4.1.0/Mounts.lua"/>
+    <Script file="4.1.0/Pets.lua"/>
+    <Script file="4.1.0/Toys.lua"/>
+    <Script file="4.1.0/Cosmetics.lua"/>
+    <Script file="4.1.0/Achievements.lua"/>
+    <Script file="4.2.0/Patch.lua"/>
+    <Script file="4.2.0/Mounts.lua"/>
+    <Script file="4.2.0/Pets.lua"/>
+    <Script file="4.2.0/Toys.lua"/>
+    <Script file="4.2.0/Achievements.lua"/>
+    <Script file="4.3.0/Patch.lua"/>
+    <Script file="4.3.0/Mounts.lua"/>
+    <Script file="4.3.0/Pets.lua"/>
+    <Script file="4.3.0/Toys.lua"/>
+    <Script file="4.3.0/Achievements.lua"/>
+    <Script file="4.3.0/Availability.lua"/>
+    <Script file="4.0.0/Availability.lua"/>
+    <Script file="4.2.0/Availability.lua"/>
+</Ui>

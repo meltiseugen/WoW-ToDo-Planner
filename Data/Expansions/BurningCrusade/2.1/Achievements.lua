@@ -1,0 +1,3 @@
+local _, TDP = ...
+
+TDP.CatalogRegistry:RegisterCollection("2.1", "achievements", { entries = { ids = {}, rewardHighlights = { "Raven Lord", "Netherwing Drakes", "Time-Lost Figurine" } }, details = {}, categories = {} })

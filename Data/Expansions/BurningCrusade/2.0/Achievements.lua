@@ -1,0 +1,3 @@
+local _, TDP = ...
+
+TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", { entries = { ids = {}, rewardHighlights = { "Ashes of Al'ar", "Fiery Warhorse", "Magical Crawdad", "Tabard of the Protector" } }, details = {}, categories = {} })

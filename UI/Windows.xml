@@ -1,0 +1,10 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <Include file="Tasks/Tasks.xml"/>
+    <Include file="Options/Options.xml"/>
+    <Include file="Planner/Planner.xml"/>
+    <Include file="Collections/Shared.xml"/>
+    <Include file="Collections/Explorer/Explorer.xml"/>
+    <Include file="Collections/Favorites/Favorites.xml"/>
+    <Include file="CollectionMap/CollectionMap.xml"/>
+    <Include file="Home/Home.xml"/>
+</Ui>

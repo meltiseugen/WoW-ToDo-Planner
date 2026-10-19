@@ -1,0 +1,60 @@
+local _, TDP = ...
+
+TDP.CatalogRegistry:RegisterCollection("9.2", "toys", {
+    entries = {
+        { itemId = 187793, name = "Personal Containment Trap" },
+        { itemId = 187860, name = "Mortis Mover" },
+        { itemId = 188952, name = "Dominated Hearthstone" },
+        { itemId = 190177, name = "Sphere of Enlightened Cogitation" },
+        { itemId = 190196, name = "Enlightened Hearthstone" },
+        { itemId = 190237, name = "Broker Translocation Matrix" },
+        { itemId = 190238, name = "Xy'rath's Booby-Trapped Cache" },
+        { itemId = 190333, name = "Jiro Circle of Song" },
+        { itemId = 190457, name = "Protopological Cube" },
+        { itemId = 190734, name = "Makaris's Satchel of Mines" },
+        { itemId = 190754, name = "Firim's Specimen Container" },
+        { itemId = 190853, name = "Bushel of Mysterious Fruit" },
+        { itemId = 190926, name = "Infested Automa Core" },
+    },
+    details = {
+        ["Broker Translocation Matrix"] = {
+            acquisition = "Reach Exalted with The Enlightened and buy the toy from Vilo.",
+            cost = "5,000 gold.",
+            source = "Vilo / Haven",
+            sourceType = "Vendor",
+            waypoints = { "/way #1970 34.8 64.8 Vilo / Haven" },
+        },
+        ["Bushel of Mysterious Fruit"] = {
+            acquisition = "Loot the toy from its Catalyst Gardens treasure source.",
+            source = "Catalyst Gardens",
+            sourceType = "Treasure",
+            waypoints = { "/way #1970 40.0 72.0 Catalyst Gardens" },
+        },
+        ["Dominated Hearthstone"] = { acquisition = "Complete Layer 2 of the Jailer's Gauntlet in Torghast.", source = "The Jailer's Gauntlet: Layer 2", sourceType = "Achievement" },
+        ["Enlightened Hearthstone"] = { acquisition = "Obtain the toy from its permanent Zereth Mortis Enlightened source.", source = "Enlightened content", sourceType = "Zereth Mortis" },
+        ["Firim's Specimen Container"] = { acquisition = "Complete Firim's matching Zereth Mortis activity.", source = "Firim / Zereth Mortis", sourceType = "Quest or Treasure" },
+        ["Infested Automa Core"] = { acquisition = "Loot the toy from its Catalyst Wards source.", source = "Catalyst Wards", sourceType = "Treasure", waypoints = { "/way #1970 48.0 25.0 Catalyst Wards" } },
+        ["Jiro Circle of Song"] = { acquisition = "Complete the matching Jiro and Cypher activity in Zereth Mortis.", source = "Zereth Mortis Jiro", sourceType = "Cypher Reward" },
+        ["Makaris's Satchel of Mines"] = { acquisition = "Obtain the satchel from its permanent Zereth Mortis source.", source = "Zereth Mortis", sourceType = "Quest or Treasure" },
+        ["Mortis Mover"] = {
+            acquisition = "Complete Traversing the Spheres in Zereth Mortis.",
+            source = "Traversing the Spheres",
+            sourceType = "Achievement",
+            waypoints = { "/way #1970 34.8 64.8 Haven / Zereth Mortis" },
+        },
+        ["Personal Containment Trap"] = {
+            acquisition = "Complete the Zereth Mortis cypher-console achievement Completing the Code.",
+            source = "Completing the Code",
+            sourceType = "Achievement",
+            waypoints = { "/way #1970 34.8 64.8 Haven / Zereth Mortis" },
+        },
+        ["Protopological Cube"] = { acquisition = "Open the Syntactic Vault treasure in Zereth Mortis.", source = "Syntactic Vault", sourceType = "Treasure" },
+        ["Sphere of Enlightened Cogitation"] = {
+            acquisition = "Open Enlightened paragon caches after Exalted for a chance at the toy.",
+            source = "Enlightened Broker Supplies",
+            sourceType = "Paragon Cache",
+            waypoints = { "/way #1970 34.8 64.8 Vilo / Haven" },
+        },
+        ["Xy'rath's Booby-Trapped Cache"] = { acquisition = "Defeat Xy'rath the Covetous in Zereth Mortis for a chance at the toy.", source = "Xy'rath the Covetous", sourceType = "Rare Drop" },
+    },
+})

@@ -1,0 +1,8 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <Script file="Init.lua"/>
+    <Script file="Tasks.lua"/>
+    <Script file="Boards.lua"/>
+    <Script file="Columns.lua"/>
+    <Script file="DragDrop.lua"/>
+    <Script file="View.lua"/>
+</Ui>

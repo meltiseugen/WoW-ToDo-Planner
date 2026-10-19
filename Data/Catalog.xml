@@ -1,0 +1,21 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <Script file="Catalog/Registry.lua"/>
+    <Script file="Catalog/MapNames.lua"/>
+    <Include file="Expansions/Classic/Expansion.xml"/>
+    <Include file="Expansions/BurningCrusade/Expansion.xml"/>
+    <Include file="Expansions/WrathOfTheLichKing/Expansion.xml"/>
+    <Include file="Expansions/Cataclysm/Expansion.xml"/>
+    <Include file="Expansions/MistsOfPandaria/Expansion.xml"/>
+    <Include file="Expansions/WarlordsOfDraenor/Expansion.xml"/>
+    <Include file="Expansions/Legion/Expansion.xml"/>
+    <Include file="Expansions/BattleForAzeroth/Expansion.xml"/>
+    <Include file="Expansions/Shadowlands/Expansion.xml"/>
+    <Include file="Expansions/Dragonflight/Expansion.xml"/>
+    <Include file="Expansions/TheWarWithin/Expansion.xml"/>
+    <Include file="Expansions/Midnight/Expansion.xml"/>
+    <Script file="Catalog/Policy.lua"/>
+    <Script file="Catalog/Queries.lua"/>
+    <Script file="Catalog/Factions.lua"/>
+    <Script file="Catalog/Maps.lua"/>
+    <Script file="Catalog/Availability.lua"/>
+</Ui>

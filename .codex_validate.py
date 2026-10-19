@@ -4,15 +4,17 @@
 # ///
 
 import re
+import sys
 from pathlib import Path
 
-from lupa import LuaRuntime
+from lupa.lua51 import LuaRuntime
 
 
 ROOT = Path(__file__).resolve().parent
-CATALOG_PATH = ROOT / "Data" / "PatchCatalog.lua"
-GENERATED_PATH = ROOT / "Data" / "GeneratedPatchCollections.lua"
-PATCH_1215_PATH = ROOT / "Data" / "Patch1215Collections.lua"
+sys.path.insert(0, str(ROOT / "tools"))
+from catalog_support import manifest_scripts
+
+CATALOG_MANIFEST = ROOT / "Data" / "Catalog.xml"
 TOC_PATH = ROOT / "TODO-Planner.toc"
 
 EXPECTED_COUNTS = {
@@ -163,14 +165,11 @@ def load_lua_file(lua, tdp, path):
 
 
 toc = TOC_PATH.read_text(encoding="utf-8-sig")
-generated_index = toc.index("Data/GeneratedPatchCollections.lua")
-catalog_index = toc.index("Data/PatchCatalog.lua")
-assert generated_index < catalog_index, "generated collection data must load before PatchCatalog.lua"
-assert toc.index("Data/Patch1215Collections.lua") < catalog_index, "12.1.5 data must load before PatchCatalog.lua"
-
-catalog_text = CATALOG_PATH.read_text(encoding="utf-8-sig")
-generated_text = GENERATED_PATH.read_text(encoding="utf-8-sig")
-patch_1215_text = PATCH_1215_PATH.read_text(encoding="utf-8-sig")
+assert toc.index("Data/Catalog.xml") < toc.index("Integrations/CollectionScanner.lua")
+catalog_paths = list(manifest_scripts(CATALOG_MANIFEST))
+assert len(catalog_paths) == len(set(catalog_paths)), "Duplicate catalog manifest scripts"
+assert set(catalog_paths) == set((ROOT / "Data/Expansions").rglob("*.lua")) | set((ROOT / "Data/Catalog").glob("*.lua")), "Unlisted catalog files"
+catalog_text = "\n".join(path.read_text(encoding="utf-8-sig") for path in catalog_paths)
 assert "remain intentionally empty" not in catalog_text
 assert "remains intentionally empty" not in catalog_text
 
@@ -178,18 +177,28 @@ known_maps = {
     int(value)
     for value in re.findall(
         r'^\s*\[(\d+)\] = "',
-        catalog_text[catalog_text.index("local MAP_NAMES"):catalog_text.index("local SILVERMOON_DELVES_WAYPOINTS")],
+        (ROOT / "Data/Catalog/MapNames.lua").read_text(encoding="utf-8"),
         re.MULTILINE,
     )
 }
-used_maps = {int(value) for value in re.findall(r"/way #(\d+)", catalog_text + generated_text + patch_1215_text)}
+used_maps = {int(value) for value in re.findall(r"/way #(\d+)", catalog_text)}
 assert not used_maps - known_maps, ("unknown map IDs", sorted(used_maps - known_maps))
 
 lua = LuaRuntime(unpack_returned_tuples=True)
+addon_scripts = []
+for line in toc.splitlines():
+    line = line.strip()
+    if line and not line.startswith("#"):
+        addon_scripts.extend(manifest_scripts(ROOT / line))
+assert len(addon_scripts) == len(set(addon_scripts)), "Duplicate scripts in addon load order"
+ui_root = ROOT / "UI"
+assert {path for path in addon_scripts if ui_root in path.parents} == set(ui_root.rglob("*.lua")), "Unlisted UI files"
+for path in addon_scripts:
+    lua.compile(path.read_text(encoding="utf-8-sig"), name=str(path.relative_to(ROOT)))
+print(f"Addon manifest and Lua 5.1 syntax passed: {len(addon_scripts)} scripts")
 tdp = lua.table()
-load_lua_file(lua, tdp, GENERATED_PATH)
-load_lua_file(lua, tdp, PATCH_1215_PATH)
-load_lua_file(lua, tdp, CATALOG_PATH)
+for path in catalog_paths:
+    load_lua_file(lua, tdp, path)
 catalog = tdp["PatchCatalog"]
 
 patch_keys = list(lua_entries(catalog["GetPatchKeys"](catalog)))

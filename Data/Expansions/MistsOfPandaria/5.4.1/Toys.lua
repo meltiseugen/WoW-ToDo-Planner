@@ -1,0 +1,3 @@
+local _, TDP = ...
+
+TDP.CatalogRegistry:RegisterCollection("5.4.1", "toys", { entries = {}, details = {} })

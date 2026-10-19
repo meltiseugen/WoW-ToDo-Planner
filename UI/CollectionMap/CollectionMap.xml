@@ -1,0 +1,13 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <Script file="Init.lua"/>
+    <Script file="Navigation.lua"/>
+    <Script file="Details.lua"/>
+    <Script file="Criteria.lua"/>
+    <Script file="Canvas.lua"/>
+    <Script file="Waypoints.lua"/>
+    <Script file="WorldMapPins.lua"/>
+    <Script file="WorldMap.lua"/>
+    <Script file="Minimap.lua"/>
+    <Script file="View.lua"/>
+    <Include file="WorldMapPin.xml"/>
+</Ui>

@@ -1,0 +1,75 @@
+local _, TDP = ...
+
+local shared = {}
+shared["Patch 11.2: Ghosts of K'aresh"] = {
+    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
+    category = "Other",
+    source = "Patch 11.2: Ghosts of K'aresh",
+    sourceType = "Patch mount collection",
+}
+
+shared["Patch 11.2: Ghosts of K'aresh 2"] = {
+    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
+    category = "PvP",
+    source = "Patch 11.2: Ghosts of K'aresh",
+    sourceType = "Patch mount collection",
+}
+
+TDP.CatalogRegistry:RegisterCollection("11.2", "mounts", {
+    entries = {
+        { name = "Xy Trustee's Gearglider", spellId = 353264 },
+        { name = "Vandal's Gearglider", spellId = 353265 },
+        { name = "Astral Gladiator's Fel Bat", spellId = 472157 },
+        { name = "Resplendent K'arroc", spellId = 1221132 },
+        { name = "Terror of the Wastes", spellId = 1223187 },
+        { name = "Terror of the Night", spellId = 1223191 },
+        { name = "Delver's Mana-Skimmer", spellId = 1224048 },
+        { name = "Umbral K'arroc", spellId = 1233511 },
+        { name = "Lavender K'arroc", spellId = 1233518 },
+        { name = "The Bone Freezer", spellId = 1233542 },
+        { name = "Ruby Void Creeper", spellId = 1233546 },
+        { name = "Acidic Void Creeper", spellId = 1233547 },
+        { name = "Blue Barry", spellId = 1233559 },
+        { name = "Curious Slateback", spellId = 1233561 },
+        { name = "Unbound Star-Eater", spellId = 1234573 },
+        { name = "Vicious Void Creeper", spellId = 1234820 },
+        { name = "Vicious Void Creeper", spellId = 1234821 },
+        { name = "Pearlescent Krolusk", spellId = 1240632 },
+        { name = "Translocated Gorger", spellId = 1241070 },
+        { name = "Sthaarbs's Last Lunch", spellId = 1241076 },
+        { name = "Royal Voidwing", spellId = 1242272 },
+        { name = "Scarlet Void Flyer", spellId = 1245517 },
+        { name = "Azure Void Flyer", spellId = 1246781 },
+        { name = "Phase-Lost Slateback", spellId = 1250578 },
+    },
+    details = {
+        ["Acidic Void Creeper"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Astral Gladiator's Fel Bat"] = shared["Patch 11.2: Ghosts of K'aresh 2"],
+        ["Azure Void Flyer"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Blue Barry"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Curious Slateback"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Delver's Mana-Skimmer"] = {
+            acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
+            category = "Delves",
+            source = "Patch 11.2: Ghosts of K'aresh",
+            sourceType = "Patch mount collection",
+        },
+        ["Lavender K'arroc"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Pearlescent Krolusk"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Phase-Lost Slateback"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Resplendent K'arroc"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Royal Voidwing"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Ruby Void Creeper"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Scarlet Void Flyer"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Sthaarbs's Last Lunch"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Terror of the Night"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Terror of the Wastes"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["The Bone Freezer"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Translocated Gorger"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Umbral K'arroc"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Unbound Star-Eater"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Vandal's Gearglider"] = shared["Patch 11.2: Ghosts of K'aresh"],
+        ["Vicious Void Creeper"] = shared["Patch 11.2: Ghosts of K'aresh 2"],
+        ["Xy Trustee's Gearglider"] = shared["Patch 11.2: Ghosts of K'aresh"],
+    },
+})

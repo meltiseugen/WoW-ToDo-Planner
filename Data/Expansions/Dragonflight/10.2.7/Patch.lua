@@ -1,0 +1,60 @@
+local _, TDP = ...
+
+TDP.CatalogRegistry:RegisterPatch("10.2.7", {
+    cosmeticDetailGroups = {
+        darkspearHeritage = {
+            acquisition = "On a level-50 or higher Darkspear Troll, speak with Zi'guma and complete the Darkspear heritage storyline. The finale grants the heritage ensemble; Loa's Blade-Blessing is a separate use-to-learn weapon token tied to the chain.",
+            requirements = "Level 50+ Darkspear Troll character.",
+            researchNotes = "Internal Darkspear armor and mask tokens—including Kevo ya Siti's Mask of Cunning and Lukou's Mask of Regeneration—are excluded because item 211446 teaches them. The separate Loa sword remains included because it has its own cosmetic item record and collection state.",
+            source = "Zi'guma / Valley of Spirits, Orgrimmar",
+            sourceType = "Heritage Questline",
+            tips = "The ensemble teaches both armor tints and the associated mask appearances, so do not hunt the mask records separately. At launch the sword was limited to Death Knights, Hunters, and Warriors; a May 16, 2024 hotfix granted it to any eligible Darkspear that completed the chain. Log into the character that completed it if the appearance is still missing.",
+            waypoints = { "/way #85 32.7 64.7 Zi'guma / Valley of Spirits" },
+        },
+        draeneiHeritage = {
+            acquisition = "On a level-50 or higher Draenei, accept An Artificer's Appeal from the Magically-Sealed Parcel at the Stormwind Embassy or through the Adventure Guide, then complete the Draenei heritage storyline.",
+            requirements = "Level 50+ Draenei character.",
+            researchNotes = "Track the ensemble wrapper only; its internal heritage armor records are not separate bag collectibles.",
+            source = "An Artificer's Appeal / Stormwind Embassy",
+            sourceType = "Heritage Questline",
+            tips = "The chain returns to Draenor and Argus-related locations, so allow travel time. If the parcel is missing, confirm the character is a standard Draenei—not Lightforged—and meets the level requirement.",
+            waypoints = { "/way #1519 54.5 18.4 Stormwind Embassy / Magically-Sealed Parcel" },
+        },
+        harbingerWeapons = {
+            acquisition = "Complete the Hunt for the Harbinger campaign through Null and Void. The finale supplies the Bow of the Ranger Captain and the four Voidtouched weapon appearance tokens together.",
+            requirements = "Complete Hunt for the Harbinger through Null and Void.",
+            researchNotes = "All five records are permanent consumable appearance tokens. Nearby quest weapons that equip normally are not included.",
+            source = "Hunt for the Harbinger / Null and Void",
+            sourceType = "Questline Reward",
+            tips = "Start from the Adventure Guide or Khadgar and Alleria in Dalaran. Finish the entire Telogrus Rift sequence before checking collection progress; the five tokens can arrive together and must be used from the bag.",
+            waypoints = { "/way #627 42.2 64.0 Khadgar / Hunt for the Harbinger start" },
+        },
+        missingDracthyrPieces = {
+            acquisition = "Reach High power with the Cobalt Assembly to buy the Cobalt Guardian's Cloak from Steiz. Buy the Emerald Winglord shoulder and chain tokens from Treysh on the Forbidden Reach for Elemental Overflow.",
+            requirements = "Cobalt Assembly High power for the cloak; Forbidden Reach access for Treysh.",
+            researchNotes = "These three use-to-learn items filled gaps in the earlier Dracthyr cosmetic families and were added to live data in 10.2.7.",
+            source = "Steiz / Cobalt Assembly and Treysh / Forbidden Reach",
+            sourceType = "Legacy Faction Vendors",
+            tips = "The cloak uses an Awakened Frost plus supplies, so bring the material before traveling. Treysh stands in the Morqut Village hub; Elemental Overflow is most efficiently gathered from Forbidden Reach rares and elemental events.",
+            waypoints = { "/way #2024 49.4 22.6 Steiz / Cobalt Assembly", "/way #2151 35.6 59.5 Treysh / Morqut Village" },
+        },
+    },
+    label = "Patch 10.2.7: Dark Heart",
+    sourceNotes = {
+        "Mounts, battle pets, toys, Cosmetics, and achievements are audited against client snapshots and source metadata.",
+        "Only permanent consumable appearance unlocks and heritage ensembles are included. Ordinary equippable gear and direct appearance grants are excluded.",
+        "Trading Post, unrelated Timewalking, crossover, and calendar-holiday rewards are excluded.",
+        "Pandaria Remix mounts are included as core 10.2.7 content; Midsummer and the Trading Post class recolor bundles remain excluded. The Exodar Peacekeeper arsenal is also excluded because it appeared on PTR but never became obtainable on live realms.",
+        "Darkspear masks and Draenei armor components are learned by their heritage ensemble wrappers and are not duplicated as independent collectibles.",
+    },
+    sourceUrls = {
+        cobaltCloak = "https://www.wowhead.com/item=217891/cobalt-guardians-cloak",
+        darkspear = "https://www.wowhead.com/guide/transmogrification/troll-heritage-armor",
+        draenei = "https://www.wowhead.com/guide/transmogrification/draenei-heritage-armor",
+        exodarPtrOnly = "https://warcraft.wiki.gg/wiki/Arsenal%3A_Exodar_Peacekeeper%27s_Armaments",
+        harbinger = "https://www.wowhead.com/news/voidtouched-weapon-appearances-from-hunt-the-harbinger-questline-339266",
+        official = "https://news.blizzard.com/en-us/article/24066682/dragonflight-dark-heart-content-update-notes",
+        overview = "https://www.wowhead.com/guide/dragonflight-10-2-7-patch-overview",
+    },
+    wowheadPatchId = 100207,
+})

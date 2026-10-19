@@ -1,5 +1,5 @@
 ## Interface: 120105
-## Title: TODO Planner
+## Title: Planner & Collection Tracker
 ## Notes: Separate Global and character task boards for achievements, mounts, collections, and more.
 ## Author: Eugen
 ## Version: 2.2.0
@@ -12,28 +12,16 @@ Core/Constants.lua
 Core/Utils.lua
 Core/Theme.lua
 Core/MinimapButton.lua
-Data/BoardManager.lua
-Data/TaskRepository.lua
-Data/Database.lua
-Data/GeneratedPatchCollections.lua
-Data/Patch1215Collections.lua
-Data/PatchCatalog.lua
-Data/CollectionAvailability.lua
-Data/Favorites.lua
+Data/Persistence/BoardManager.lua
+Data/Persistence/TaskRepository.lua
+Data/Persistence/Database.lua
+Data/Catalog.xml
+Data/Persistence/Favorites.lua
 Integrations/CollectionScanner.lua
-UI/Widgets.lua
+UI/Widgets/Widgets.xml
 Integrations/Achievements.lua
 Integrations/CollectionTaskProgress.lua
 Integrations/LocationAwareness.lua
-UI/TaskEditWindow.lua
-UI/TaskDetailWindow.lua
-UI/TaskCard.lua
-UI/OptionsWindow.lua
-UI/MainWindow.lua
-UI/CollectionExplorerWindow.lua
-UI/FavoritesWindow.lua
-UI/CollectionMapWindow.lua
-UI/CollectionMapWindow.xml
-UI/HomeWindow.lua
+UI/Windows.xml
 Core/SlashCommands.lua
 Core/Bootstrap.lua

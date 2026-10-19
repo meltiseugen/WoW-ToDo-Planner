@@ -1,0 +1,45 @@
+local _, TDP = ...
+
+TDP.CatalogRegistry:RegisterCollection("10.1", "cosmetics", {
+    entries = {
+        { detailKey = "blackDragonflightVestments", itemId = 204447, name = "Ensemble: Black Dragonflight's Vestments", subtype = "ensemble" },
+        {
+            cost = "250 Dragon Isles Supplies",
+            detailKey = "loammRenown",
+            itemId = 205363,
+            name = "Ensemble: Ornate Black Dragon Labwear",
+            requirements = "Loamm Niffen Renown 16",
+            subtype = "ensemble",
+        },
+        { cost = "200 Dragon Isles Supplies", detailKey = "loammRenown", itemId = 205971, name = "Rock Breaking Digger", requirements = "Loamm Niffen Renown 18", subtype = "appearance" },
+        {
+            cost = "200 Dragon Isles Supplies",
+            detailKey = "loammRenown",
+            itemId = 205972,
+            name = "Decorative Niffen Sword",
+            requirements = "Loamm Niffen Renown 18",
+            subtype = "appearance",
+        },
+        {
+            cost = "249 Barter Boulders after negotiating",
+            detailKey = "ponzoTopper",
+            itemId = 205421,
+            name = "Ponzo's Scheming Topper",
+            requirements = "Loamm Niffen Renown 12",
+            subtype = "appearance",
+        },
+        { detailKey = "azureRenewal", itemId = 205958, name = "Ensemble: Azure Renewal Finery", subtype = "ensemble" },
+        { detailKey = "moltenHoard", itemId = 205981, name = "Molten Primal Fang", subtype = "appearance" },
+        { detailKey = "obsidianEliteWeapons", itemId = 206044, name = "Obsidian Gladiator's Axe", subtype = "appearance" },
+        { detailKey = "obsidianEliteWeapons", itemId = 206137, name = "Obsidian Gladiator's Dagger", subtype = "appearance" },
+        { detailKey = "obsidianEliteWeapons", itemId = 206146, name = "Obsidian Gladiator's Warglaive", subtype = "appearance" },
+        { detailKey = "obsidianEliteWeapons", itemId = 206147, name = "Obsidian Gladiator's Polearm", subtype = "appearance" },
+        { detailKey = "obsidianEliteWeapons", itemId = 206148, name = "Obsidian Gladiator's Staff", subtype = "appearance" },
+        { detailKey = "obsidianEliteWeapons", itemId = 206149, name = "Obsidian Gladiator's Rifle", subtype = "appearance" },
+        { detailKey = "obsidianEliteWeapons", itemId = 206150, name = "Obsidian Gladiator's Mace", subtype = "appearance" },
+        { detailKey = "obsidianEliteWeapons", itemId = 206151, name = "Obsidian Gladiator's Rod", subtype = "appearance" },
+        { detailKey = "obsidianEliteWeapons", itemId = 206152, name = "Obsidian Gladiator's Shield", subtype = "appearance" },
+        { detailKey = "obsidianEliteWeapons", itemId = 206153, name = "Obsidian Gladiator's Claws", subtype = "appearance" },
+        { detailKey = "obsidianEliteWeapons", itemId = 206154, name = "Obsidian Gladiator's Bow", subtype = "appearance" },
+    },
+})

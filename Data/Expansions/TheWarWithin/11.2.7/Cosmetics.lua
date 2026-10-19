@@ -1,0 +1,30 @@
+local _, TDP = ...
+
+TDP.CatalogRegistry:RegisterCollection("11.2.7", "cosmetics", {
+    entries = {
+        { detailKey = "slTimewalking2200", itemId = 258527, name = "Greathammer of the Fallen Lightbringer", subtype = "appearance" },
+        { detailKey = "slTimewalking2200", itemId = 258528, name = "Greathammer of the Righteous Lightbringer", subtype = "appearance" },
+        { detailKey = "slTimewalking1500", itemId = 254845, name = "Hammer of the Fallen Lightbringer", subtype = "appearance" },
+        { detailKey = "slTimewalking1500", itemId = 254844, name = "Hammer of the Righteous Lightbringer", subtype = "appearance" },
+        { detailKey = "slTimewalking1500", itemId = 254866, name = "Progenitor's Fractured Smasher", subtype = "appearance" },
+        { detailKey = "slTimewalking1500", itemId = 254861, name = "Sinstone Cleaver", subtype = "appearance" },
+        { detailKey = "slTimewalking1500", itemId = 254857, name = "Maw Executioner's Guillotine", subtype = "appearance" },
+        { detailKey = "slTimewalking1500", itemId = 254856, name = "Soul Harvester's Scythe", subtype = "appearance" },
+        { detailKey = "slTimewalking1500", itemId = 254853, name = "Lance of the Architects", subtype = "appearance" },
+        { detailKey = "slTimewalking1500", itemId = 254872, name = "Creator's Rod of Origin", subtype = "appearance" },
+        { detailKey = "slTimewalking1500", itemId = 254858, name = "Crossbow of the First Ones", subtype = "appearance" },
+        { detailKey = "slTimewalking1500", itemId = 254865, name = "Shell of the Forbidden Land", subtype = "appearance" },
+        { detailKey = "slTimewalking1200", itemId = 254867, name = "Progenitor's Fix-It-Up", subtype = "appearance" },
+        { detailKey = "slTimewalking1200", itemId = 254860, name = "Longsword of the First Ones", subtype = "appearance" },
+        { detailKey = "slTimewalking1200", itemId = 254862, name = "Runeblade of the Maldraxxus Paragon", subtype = "appearance" },
+        { detailKey = "slTimewalking1200", itemId = 254873, name = "Zerith Vibroblade", subtype = "appearance" },
+        { detailKey = "slTimewalking1200", itemId = 258662, name = "Progenitor's Custodial Sentry", subtype = "appearance" },
+        { detailKey = "slTimewalking600", itemId = 254851, name = "Maw Stalker's Quiver", subtype = "appearance" },
+        { detailKey = "slTimewalking600", itemId = 254852, name = "Spirit Marksman's Quiver", subtype = "appearance" },
+        { detailKey = "slTimewalking600", itemId = 254864, name = "Oozeframe of the Mad Alchemist", subtype = "appearance" },
+        { detailKey = "slTimewalking450", itemId = 254855, name = "Amice of the Dark Necromancer", subtype = "appearance" },
+        { detailKey = "slTimewalking450", itemId = 254854, name = "Putrid Necromancer Mantle", subtype = "appearance" },
+        { detailKey = "pandarenHeritage", itemId = 258635, name = "Ensemble: Heritage of the Wandering Isle (Alliance)", subtype = "ensemble" },
+        { detailKey = "pandarenHeritage", itemId = 258657, name = "Ensemble: Heritage of the Wandering Isle (Horde)", subtype = "ensemble" },
+    },
+})

@@ -11,7 +11,7 @@ Reviewed **2026-10-15** against live client **12.1.5.70391**, compared with **12
 | Achievements | 38 | Campaign, invasions, raid/guild kills, Labyrinth, mount ownership, Keystone Myth |
 | Total | 65 | Separate durable IDs; no duplicates in earlier patches |
 
-The new data lives in `Data/Patch1215Collections.lua` and loads before `Data/PatchCatalog.lua`. The Explorer defaults to 12.1.5 and includes it in Midnight's patch selector. All new entries have source links, acquisition instructions, tips, and a research date. These shared rewards use explicit neutral faction metadata so a Silvermoon location does not create a misleading Horde badge.
+The data lives in `Data/Expansions/Midnight/12.1.5/` and loads through `Data/Catalog.xml` using the shared catalog registry. The Explorer defaults to 12.1.5 and includes it in Midnight's patch selector. All new entries have source links, acquisition instructions, tips, and a research date. These shared rewards use explicit neutral faction metadata so a Silvermoon location does not create a misleading Horde badge.
 
 ## Evidence and inclusion decisions
 

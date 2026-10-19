@@ -70,22 +70,19 @@ local TDP = {
 
 loadAddonFile("Core/Constants.lua", TDP)
 loadAddonFile("Core/Utils.lua", TDP)
-loadAddonFile("Data/BoardManager.lua", TDP)
-loadAddonFile("Data/TaskRepository.lua", TDP)
-loadAddonFile("Data/Database.lua", TDP)
-loadAddonFile("Data/GeneratedPatchCollections.lua", TDP)
-loadAddonFile("Data/Patch1215Collections.lua", TDP)
-loadAddonFile("Data/PatchCatalog.lua", TDP)
-loadAddonFile("Data/CollectionAvailability.lua", TDP)
-loadAddonFile("Data/Favorites.lua", TDP)
+loadAddonFile("Data/Persistence/BoardManager.lua", TDP)
+loadAddonFile("Data/Persistence/TaskRepository.lua", TDP)
+loadAddonFile("Data/Persistence/Database.lua", TDP)
+assert(loadfile(root .. "/Tests/load_catalog.lua"))(root, TDP)
+loadAddonFile("Data/Persistence/Favorites.lua", TDP)
 loadAddonFile("Integrations/CollectionScanner.lua", TDP)
 loadAddonFile("Integrations/Achievements.lua", TDP)
 loadAddonFile("Integrations/CollectionTaskProgress.lua", TDP)
 loadAddonFile("Integrations/LocationAwareness.lua", TDP)
 loadAddonFile("Core/MinimapButton.lua", TDP)
-loadAddonFile("UI/CollectionMapWindow.lua", TDP)
-loadAddonFile("UI/CollectionExplorerWindow.lua", TDP)
-loadAddonFile("UI/FavoritesWindow.lua", TDP)
+assert(loadfile(root .. "/Tests/load_manifest.lua"))(root, TDP, "UI/CollectionMap/CollectionMap.xml")
+assert(loadfile(root .. "/Tests/load_manifest.lua"))(root, TDP, "UI/Collections/Shared.xml", "UI/Collections/Explorer/Explorer.xml")
+assert(loadfile(root .. "/Tests/load_manifest.lua"))(root, TDP, "UI/Collections/Favorites/Favorites.xml")
 
 local tests = {}
 
@@ -1192,6 +1189,32 @@ test("collection map right-click navigation opens the parent map and resets the 
     assertEqual(status, "This map has no parent map.", "root map status")
 
     C_Map = previousMapAPI
+end)
+
+test("collection map reset cancels dragging before restoring zoom and centering", function()
+    local window = TDP.CollectionMapWindow:New()
+    window.mapID = 7
+    window.initialMapID = 42
+    window.zoom = 3
+    window.panX = 80
+    window.panY = -35
+    window.dragging = true
+    window.dragX = 400
+    window.dragY = 300
+    local renderCount = 0
+    window.RenderMap = function(self)
+        renderCount = renderCount + 1
+        assertEqual(self.dragging, false, "reset stops dragging before rendering")
+        assertNil(self.dragX, "reset clears previous cursor x")
+        assertNil(self.dragY, "reset clears previous cursor y")
+        assertEqual(self.zoom, 1, "reset restores fit zoom")
+        assertEqual(self.panX, 0, "reset centers horizontally")
+        assertEqual(self.panY, 0, "reset centers vertically")
+    end
+
+    window:ResetView()
+    assertEqual(renderCount, 1, "reset rerenders the map")
+    assertEqual(window.mapID, 7, "view reset preserves the current zone")
 end)
 
 test("collection map can return to its initial map", function()
@@ -2619,15 +2642,17 @@ test("cosmetic rows support control-click dress-up", function()
 end)
 
 local passed = 0
+local failed = 0
 for _, currentTest in ipairs(tests) do
     local ok, errorText = pcall(currentTest.callback)
     if not ok then
         io.stderr:write("FAIL: " .. currentTest.name .. "\n" .. tostring(errorText) .. "\n")
-        os.exit(1)
+        failed = failed + 1
+    else
+        passed = passed + 1
+        print("PASS: " .. currentTest.name)
     end
-
-    passed = passed + 1
-    print("PASS: " .. currentTest.name)
 end
 
-print(string.format("Planner data tests passed: %d", passed))
+print(string.format("Planner data tests: %d passed, %d failed", passed, failed))
+assert(failed == 0, string.format("Planner data test failures: %d", failed))

@@ -5,12 +5,9 @@ local function loadAddon(path)
 end
 function wipe(values) for key in pairs(values) do values[key] = nil end end
 loadAddon("Core/Utils.lua")
-loadAddon("Data/GeneratedPatchCollections.lua")
-loadAddon("Data/Patch1215Collections.lua")
-loadAddon("Data/PatchCatalog.lua")
-loadAddon("Data/CollectionAvailability.lua")
+assert(loadfile(root .. "/Tests/load_catalog.lua"))(root, TDP)
 loadAddon("Integrations/CollectionScanner.lua")
-loadAddon("UI/CollectionExplorerWindow.lua")
+assert(loadfile(root .. "/Tests/load_manifest.lua"))(root, TDP, "UI/Collections/Shared.xml", "UI/Collections/Explorer/Explorer.xml")
 
 local catalog = TDP.PatchCatalog
 local function equal(actual, expected, message)
