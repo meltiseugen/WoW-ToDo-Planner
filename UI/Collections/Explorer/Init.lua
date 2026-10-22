@@ -4,7 +4,7 @@ local _, TDP = ...
 local CollectionExplorerWindow = {}
 CollectionExplorerWindow.__index = CollectionExplorerWindow
 
-local TYPE_OPTIONS = { "mounts", "pets", "toys", "cosmetics", "achievements" }
+local TYPE_OPTIONS = { "all", "mounts", "pets", "toys", "cosmetics", "achievements" }
 local STATUS_OPTIONS = { "missing", "all", "collected", "unobtainable" }
 local EXPANSION_OPTIONS = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }
 local EXPANSION_LABELS = {

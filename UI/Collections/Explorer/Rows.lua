@@ -141,7 +141,7 @@ function CollectionExplorerWindow:UpdateRow(row, rowData, index)
         metaPrefix = (rowData.achievementCategory or "Other") .. " achievement"
     end
     local metaText = string.format("%s - %s", metaPrefix, self:GetRowStatusLabel(rowData))
-    if self.selectedPatch == ALL_PATCHES then
+    if self.nearbySnapshot or self.selectedPatch == ALL_PATCHES then
         metaText = string.format("Patch %s - %s", rowData.patchKey, metaText)
     end
     row.meta:SetText(metaText)
@@ -216,7 +216,7 @@ function CollectionExplorerWindow:BuildVisibleRows()
 
     for _, collectionType in ipairs(self:GetCollectionTypes()) do
         for _, patchKey in ipairs(selectedPatchKeys) do
-            for _, entry in ipairs(PatchCatalog:GetEntries(patchKey, collectionType)) do
+            for _, entry in ipairs(self:GetEntriesForView(patchKey, collectionType)) do
                 local state = CollectionScanner:GetState(collectionType, entry)
                 local rewardEntry = collectionType == "achievements" and PatchCatalog:GetAchievementReward(patchKey, entry)
                 local name = CollectionScanner:GetDisplayName(collectionType, entry, state, patchKey)
@@ -268,7 +268,7 @@ function CollectionExplorerWindow:BuildVisibleRows()
                         name or "",
                         reward or "",
                         patchKey,
-                        self:GetExpansionLabel(self.selectedExpansion),
+                        self:GetExpansionLabel(self:GetExpansionForPatch(patchKey)),
                         mountCategory or "",
                         mountSource or "",
                         mountAcquisition or "",

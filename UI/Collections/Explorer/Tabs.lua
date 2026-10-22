@@ -5,6 +5,7 @@ local TYPE_OPTIONS = CollectionExplorerWindow.Config.TYPE_OPTIONS
 
 function CollectionExplorerWindow:BuildTypeTabs(parent)
     local widths = {
+        all = 54,
         mounts = 82,
         pets = 64,
         toys = 64,

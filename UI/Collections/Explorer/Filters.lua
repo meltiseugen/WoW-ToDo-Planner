@@ -36,6 +36,9 @@ function CollectionExplorerWindow:GetPatchLabel(value)
 end
 
 function CollectionExplorerWindow:GetSelectedPatchKeys()
+    if self.nearbySnapshot then
+        return self.nearbySnapshot.patchKeys
+    end
     if self.selectedPatch ~= ALL_PATCHES
         and self:GetExpansionForPatch(self.selectedPatch) == self.selectedExpansion then
         return { self.selectedPatch }
@@ -48,6 +51,14 @@ function CollectionExplorerWindow:GetSelectedPatchKeys()
         end
     end
     return patchKeys
+end
+
+function CollectionExplorerWindow:GetEntriesForView(patchKey, collectionType)
+    if self.nearbySnapshot then
+        local entries = self.nearbySnapshot.entries[patchKey]
+        return entries and entries[collectionType] or {}
+    end
+    return PatchCatalog:GetEntries(patchKey, collectionType)
 end
 
 function CollectionExplorerWindow:SetSelectedExpansion(expansionKey)

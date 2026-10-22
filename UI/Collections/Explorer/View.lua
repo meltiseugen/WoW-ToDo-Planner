@@ -16,10 +16,10 @@ function CollectionExplorerWindow:Render()
 
     local totalCount, collectedCount, missingCount, unobtainableCount = self:BuildVisibleRows()
     Widgets:UpdateButtonLabel(self.expansionButton, "Expansion", self.selectedExpansion, function(value)
-        return self:GetExpansionLabel(value)
+        return self.nearbySnapshot and "All Expansions" or self:GetExpansionLabel(value)
     end)
     Widgets:UpdateButtonLabel(self.patchButton, "Patch", self.selectedPatch, function(value)
-        return self:GetPatchLabel(value)
+        return self.nearbySnapshot and "All Patches" or self:GetPatchLabel(value)
     end)
     Widgets:UpdateButtonLabel(self.statusButton, "Status", self.selectedStatus, function(value)
         return self:GetStatusLabel(value)
@@ -27,15 +27,29 @@ function CollectionExplorerWindow:Render()
     self:UpdateTypeTabs()
     self:UpdateMountCategoryControl()
     self:UpdateAchievementCategoryControl()
+    Widgets:SetButtonEnabled(self.expansionButton, self.nearbySnapshot == nil)
+    Widgets:SetButtonEnabled(self.patchButton, self.nearbySnapshot == nil)
+    self.browseButton:SetShown(self.nearbySnapshot ~= nil)
 
-    self.summaryText:SetText(string.format(
+    local summary = string.format(
         "%d shown  |  %d total  |  %d missing\n%d collected  |  %d unobtainable",
         #self.visibleRows,
         totalCount,
         missingCount,
         collectedCount,
         unobtainableCount
-    ))
+    )
+    if self.nearbySnapshot then
+        summary = self.nearbySnapshot.error or string.format(
+            "Nearby in %s: %d shown\n%d missing  |  %d collected  |  %d unobtainable",
+            self.nearbySnapshot.mapName, #self.visibleRows, missingCount, collectedCount, unobtainableCount
+        )
+    end
+    self.summaryText:SetText(summary)
+    self.emptyText:SetShown(#self.visibleRows == 0)
+    self.emptyText:SetText(self.nearbySnapshot and (self.nearbySnapshot.error
+        or (self.nearbySnapshot.total == 0 and "No catalog locations found for this area."
+            or "No nearby collections match these filters.")) or "No collections match these filters.")
 
     if self.selectedRow then
         local stillVisible = false
@@ -127,6 +141,13 @@ function CollectionExplorerWindow:Build()
     local refreshButton = Widgets:CreateButton(toolbar, 82, 24, "Refresh", "neutral")
     refreshButton:SetPoint("LEFT", mountCategoryButton, "RIGHT", 8, 0)
 
+    local nearbyButton = Widgets:CreateButton(toolbar, 88, 24, "Nearby", "primary")
+    nearbyButton:SetPoint("LEFT", refreshButton, "RIGHT", 8, 0)
+
+    local browseButton = Widgets:CreateButton(toolbar, 86, 24, "Browse", "neutral")
+    browseButton:SetPoint("LEFT", nearbyButton, "RIGHT", 8, 0)
+    browseButton:Hide()
+
     local navigationButtons = Widgets:CreateWindowNavigation(frame.headerBar or toolbar, "collections", self, {
         centered = frame.headerBar ~= nil,
     })
@@ -158,6 +179,12 @@ function CollectionExplorerWindow:Build()
     listContent:SetSize(LIST_CONTENT_WIDTH, 1)
     listScroll:SetScrollChild(listContent)
 
+    local emptyText = Widgets:CreateFontString(listPanel, "OVERLAY", "GameFontHighlightSmall")
+    emptyText:SetPoint("TOPLEFT", listPanel, "TOPLEFT", 20, -24)
+    emptyText:SetPoint("TOPRIGHT", listPanel, "TOPRIGHT", -34, -24)
+    emptyText:SetJustifyH("CENTER")
+    emptyText:Hide()
+
     local previewPanel = Widgets:CreatePanel(body, "section", "goldBorder")
     previewPanel:SetPoint("TOPLEFT", listPanel, "TOPRIGHT", 12, 0)
     previewPanel:SetPoint("BOTTOMRIGHT", body, "BOTTOMRIGHT", -12, 12)
@@ -182,6 +209,9 @@ function CollectionExplorerWindow:Build()
     self.mountCategoryButton = mountCategoryButton
     self.achievementCategoryButton = achievementCategoryButton
     self.refreshButton = refreshButton
+    self.nearbyButton = nearbyButton
+    self.browseButton = browseButton
+    self.emptyText = emptyText
     self.homeButton = navigationButtons.home
     self.favoritesButton = navigationButtons.favorites
     self.plannerButton = navigationButtons.planner
@@ -246,7 +276,18 @@ function CollectionExplorerWindow:Build()
         self:Render()
     end)
 
+    nearbyButton:SetScript("OnClick", function()
+        self:ScanNearby()
+    end)
+
+    browseButton:SetScript("OnClick", function()
+        self:BrowseCollections()
+    end)
+
     searchEdit:SetScript("OnTextChanged", function()
+        if self.changingView then
+            return
+        end
         self.selectedRow = nil
         self:Render()
     end)

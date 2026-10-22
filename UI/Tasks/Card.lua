@@ -161,10 +161,9 @@ function TaskCardFactory:Update(card, task, status, ui)
     local cardWidth = math.max(252, parentWidth - 8)
     card:SetWidth(cardWidth)
 
-    local isNearby = TDP.LocationAwareness and TDP.LocationAwareness:IsTaskNearby(task)
     Widgets:SetTextureColor(
         card.accent,
-        isNearby and { 0.00, 0.82, 0.70, 1.00 } or C.STATUS_ACCENT_COLORS[status],
+        C.STATUS_ACCENT_COLORS[status],
         { 1.0, 0.82, 0.18, 0.68 }
     )
 
@@ -210,8 +209,7 @@ function TaskCardFactory:Update(card, task, status, ui)
         card.metaText:SetPoint("TOPRIGHT", card.titleText, "BOTTOMRIGHT", 0, -6)
     end
     card.metaText:SetText(string.format(
-        "%sCategory: %s",
-        isNearby and "Nearby  |  " or "",
+        "Category: %s",
         task.category or "Other"
     ))
 

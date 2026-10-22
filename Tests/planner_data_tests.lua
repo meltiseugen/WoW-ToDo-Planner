@@ -78,7 +78,6 @@ loadAddonFile("Data/Persistence/Favorites.lua", TDP)
 loadAddonFile("Integrations/CollectionScanner.lua", TDP)
 loadAddonFile("Integrations/Achievements.lua", TDP)
 loadAddonFile("Integrations/CollectionTaskProgress.lua", TDP)
-loadAddonFile("Integrations/LocationAwareness.lua", TDP)
 loadAddonFile("Core/MinimapButton.lua", TDP)
 assert(loadfile(root .. "/Tests/load_manifest.lua"))(root, TDP, "UI/CollectionMap/CollectionMap.xml")
 assert(loadfile(root .. "/Tests/load_manifest.lua"))(root, TDP, "UI/Collections/Shared.xml", "UI/Collections/Explorer/Explorer.xml")
@@ -470,127 +469,6 @@ test("archived collection tasks remain unchanged", function()
     assertEqual(task.status, "TODO", "archived collection task status")
 
     TDP.CollectionTaskProgress.IsCollectionTaskComplete = originalCompleteCheck
-end)
-
-test("location awareness finds unfinished tasks on the current map and its zone", function()
-    resetDatabase({
-        nextTaskId = 7,
-        characters = { "Alt A", "Alt B" },
-        favorites = {},
-        settings = {
-            selectedBoard = "Alt A",
-            filterCategory = "All",
-        },
-        tasks = {
-            { id = 1, title = "Exact map", category = "Mounts", status = "TODO", boardKey = "Alt A", sortOrder = 1, sourceType = "patchCollection", sourceId = "12.1:mounts:920001" },
-            { id = 2, title = "Parent zone", category = "Collections", status = "DOING", boardKey = "Alt B", sortOrder = 1, sourceType = "patchCollection", sourceId = "12.1:pets:920002" },
-            { id = 3, title = "Other zone", category = "Collections", status = "TODO", boardKey = "Alt A", sortOrder = 2, sourceType = "patchCollection", sourceId = "12.1:toys:920003" },
-            { id = 4, title = "Done here", category = "Collections", status = "DONE", boardKey = "Alt A", sortOrder = 1, sourceType = "patchCollection", sourceId = "12.1:toys:920004" },
-            { id = 5, title = "Archived here", category = "Collections", status = "TODO", boardKey = "Alt A", sortOrder = 3, sourceType = "patchCollection", sourceId = "12.1:cosmetics:920005", archivedAt = 20 },
-            { id = 6, title = "Achievement here", category = "Achievements", status = "TODO", boardKey = "GLOBAL", sortOrder = 1, sourceType = "achievement", sourceId = 920006 },
-        },
-    })
-
-    local previousCMap = C_Map
-    local previousGetPatchKeys = TDP.PatchCatalog.GetPatchKeys
-    local previousGetEntries = TDP.PatchCatalog.GetEntries
-    local previousGetWaypoints = TDP.PatchCatalog.GetCollectionWaypoints
-
-    C_Map = {
-        GetBestMapForUnit = function()
-            return 200
-        end,
-        GetMapInfo = function(mapID)
-            if mapID == 200 then
-                return { name = "Test Subzone", parentMapID = 100 }
-            elseif mapID == 100 then
-                return { name = "Test Zone", parentMapID = 0 }
-            end
-            return { name = "Other Zone", parentMapID = 0 }
-        end,
-    }
-
-    local entries = {
-        mounts = { { spellId = 920001 } },
-        pets = { { speciesId = 920002 } },
-        toys = { { itemId = 920003 }, { itemId = 920004 } },
-        cosmetics = { { itemId = 920005 } },
-        achievements = { 920006 },
-    }
-    local waypointMapIDs = {
-        [920001] = 200,
-        [920002] = 100,
-        [920003] = 300,
-        [920004] = 200,
-        [920005] = 200,
-        [920006] = 100,
-    }
-    TDP.PatchCatalog.GetPatchKeys = function()
-        return { "12.1" }
-    end
-    TDP.PatchCatalog.GetEntries = function(_, patchKey, collectionType)
-        return patchKey == "12.1" and (entries[collectionType] or {}) or {}
-    end
-    TDP.PatchCatalog.GetCollectionWaypoints = function(_, collectionType, _, entry)
-        local entryId = collectionType == "achievements"
-            and entry
-            or TDP.CollectionScanner:GetEntryKey(collectionType, entry)
-        local mapID = waypointMapIDs[entryId]
-        return mapID and { string.format("/way #%d 50.0 50.0 Test", mapID) } or nil
-    end
-
-    TDP.LocationAwareness:ResetCache()
-    local mapChanged, nearbyCount = TDP.LocationAwareness:Refresh(false)
-    assertTrue(mapChanged, "current map changed")
-    assertEqual(nearbyCount, 3, "nearby unfinished task count")
-    assertTrue(TDP.LocationAwareness:IsTaskNearby(TDP.Tasks:FindById(1)), "exact map task")
-    assertTrue(TDP.LocationAwareness:IsTaskNearby(TDP.Tasks:FindById(2)), "parent zone task")
-    assertTrue(TDP.LocationAwareness:IsTaskNearby(TDP.Tasks:FindById(6)), "achievement task")
-    assertEqual(TDP.LocationAwareness:IsTaskNearby(TDP.Tasks:FindById(3)), false, "other zone task")
-    assertEqual(TDP.LocationAwareness:IsTaskNearby(TDP.Tasks:FindById(4)), false, "done task")
-    assertEqual(TDP.LocationAwareness:IsTaskNearby(TDP.Tasks:FindById(5)), false, "archived task")
-    assertEqual(TDP.LocationAwareness:GetSummaryText(), "Nearby in Test Subzone: 3 unfinished tasks", "nearby summary")
-
-    C_Map = previousCMap
-    TDP.PatchCatalog.GetPatchKeys = previousGetPatchKeys
-    TDP.PatchCatalog.GetEntries = previousGetEntries
-    TDP.PatchCatalog.GetCollectionWaypoints = previousGetWaypoints
-    TDP.LocationAwareness:ResetCache()
-end)
-
-test("location awareness announces once when entering a relevant map", function()
-    local previousCMap = C_Map
-    local previousMessage = TDP.Utils.Msg
-    local previousGetNearbyTasks = TDP.LocationAwareness.GetNearbyTasks
-    local messages = {}
-
-    C_Map = {
-        GetBestMapForUnit = function()
-            return 200
-        end,
-        GetMapInfo = function(mapID)
-            return { name = mapID == 200 and "Test Zone" or "Other Zone", parentMapID = 0 }
-        end,
-    }
-    TDP.Utils.Msg = function(_, message)
-        messages[#messages + 1] = message
-    end
-    TDP.LocationAwareness.currentMapID = nil
-    TDP.LocationAwareness.lastAnnouncedMapID = nil
-    TDP.LocationAwareness.GetNearbyTasks = function()
-        return {
-            { id = 91, title = "Nearby task", boardKey = "Alt A" },
-        }
-    end
-
-    TDP.LocationAwareness:Refresh(true)
-    TDP.LocationAwareness:Refresh(true)
-    assertEqual(#messages, 1, "one notification per map")
-    assertEqual(messages[1], "Nearby in Test Zone: Nearby task [Alt A]", "nearby notification")
-
-    TDP.LocationAwareness.GetNearbyTasks = previousGetNearbyTasks
-    C_Map = previousCMap
-    TDP.Utils.Msg = previousMessage
 end)
 
 test("achievement details do not repeat generated task notes", function()

@@ -4,6 +4,41 @@ local Utils = TDP.Utils
 local PatchCatalog = TDP.PatchCatalog
 local Favorites = TDP.Favorites
 
+function CollectionExplorerWindow:ScanNearby()
+    if not self.nearbySnapshot then
+        self.browseCollectionType = self.selectedCollectionType
+        self.browseSearchText = self.searchEdit and self.searchEdit:GetText() or ""
+    end
+    self.nearbySnapshot = TDP.NearbyCollections:Scan()
+    self.selectedCollectionType = "all"
+    self.selectedRow = nil
+    self.changingView = true
+    if self.searchEdit then
+        self.searchEdit:SetText("")
+    end
+    self.changingView = false
+    TDP.CollectionScanner:ResetCache()
+    if self.listScroll then
+        self.listScroll:SetVerticalScroll(0)
+    end
+    self:Render()
+end
+
+function CollectionExplorerWindow:BrowseCollections()
+    self.nearbySnapshot = nil
+    self.selectedCollectionType = self.browseCollectionType or "mounts"
+    self.selectedRow = nil
+    self.changingView = true
+    if self.searchEdit then
+        self.searchEdit:SetText(self.browseSearchText or "")
+    end
+    self.changingView = false
+    if self.listScroll then
+        self.listScroll:SetVerticalScroll(0)
+    end
+    self:Render()
+end
+
 function CollectionExplorerWindow:GetRowWowheadUrl(row)
     if not PatchCatalog or not row then
         return nil

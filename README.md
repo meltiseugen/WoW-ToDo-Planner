@@ -16,6 +16,7 @@ Base Kanban-style planner addon for World of Warcraft.
   - Other
 - Category filtering for the active board view
 - Favorites for patch collection entries
+- Collections **Nearby** button: scan your current map and parent zone for catalog mounts, pets, toys, cosmetics, and achievements across all expansions. Use the type tabs, status, and search to filter the results; **Browse** returns to your regular catalog. The location stays fixed until you click **Nearby** again, with no automatic location tracking or chat reminders.
 - Collection Explorer for static patch catalogs, with type tabs and mount source filtering
 - Open, delete, and status movement for tasks
 - Move any task between `Global` and a specific character board from the editor

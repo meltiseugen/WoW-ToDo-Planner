@@ -82,15 +82,8 @@ function MainWindow:Render()
     if Achievements and Achievements:AutoCompleteTasks() then
         Tasks:SortStable(TODOPlannerDB.tasks)
     end
-    if TDP.LocationAwareness then
-        TDP.LocationAwareness:Refresh(false)
-    end
-
     if self.subtitle then
-        self.subtitle:SetText(
-            TDP.LocationAwareness and TDP.LocationAwareness:GetSummaryText()
-                or "Separate Global and character task boards"
-        )
+        self.subtitle:SetText("Separate Global and character task boards")
     end
 
     local boardKey = self:GetSelectedBoardKey()
