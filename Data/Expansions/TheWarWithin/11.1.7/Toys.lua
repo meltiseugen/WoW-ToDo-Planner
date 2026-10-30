@@ -7,12 +7,10 @@ TDP.CatalogRegistry:RegisterCollection("11.1.7", "toys", {
     },
     details = {
         ["Lightning-Blessed Spire"] = {
-            acquisition = "Follow the in-game Toy Box source for this permanent toy.",
             source = "Vendor: Churbro / Zone: Zuldazar / Cost: 1000 / Vendor: Churbro / Zone: Boralus Harbor / Cost: 1000",
             sourceType = "Toy Box Source",
         },
         ["Sea-Blessed Shrine"] = {
-            acquisition = "Follow the in-game Toy Box source for this permanent toy.",
             source = "Vendor: Churbro / Zone: Boralus Harbor / Cost: 1000 / Vendor: Churbro / Zone: Zuldazar / Cost: 1000",
             sourceType = "Toy Box Source",
         },

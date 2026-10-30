@@ -9,6 +9,13 @@ shared["cosmetics 232681"] = {
 }
 
 TDP.CatalogRegistry:RegisterAvailability("11.1", {
+    pets = {
+        [4755] = { -- Gleam
+            kind = "Unconfirmed",
+            reason = "The hidden species has no verified collectible source; the old Gallagio Garbage journal association is not a confirmed acquisition route.",
+            reviewedAt = "2026-10-29",
+        },
+    },
     cosmetics = {
         [232681] = shared["cosmetics 232681"],
         [232682] = shared["cosmetics 232681"],

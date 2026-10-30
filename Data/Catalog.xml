@@ -1,6 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
     <Script file="Catalog/Registry.lua"/>
     <Script file="Catalog/MapNames.lua"/>
+    <Script file="Sources/CollectionAcquisitionGuides.lua"/>
     <Include file="Expansions/Classic/Expansion.xml"/>
     <Include file="Expansions/BurningCrusade/Expansion.xml"/>
     <Include file="Expansions/WrathOfTheLichKing/Expansion.xml"/>
@@ -15,7 +16,12 @@
     <Include file="Expansions/Midnight/Expansion.xml"/>
     <Script file="Catalog/Policy.lua"/>
     <Script file="Catalog/Queries.lua"/>
+    <Script file="Catalog/Acquisition.lua"/>
     <Script file="Catalog/Factions.lua"/>
     <Script file="Catalog/Maps.lua"/>
     <Script file="Catalog/Availability.lua"/>
+    <Script file="Sources/CollectionSourceIndex.lua"/>
+    <Script file="Sources/CollectionDescriptionLocations.lua"/>
+    <Script file="Sources/CollectionUIExclusions.lua"/>
+    <Script file="Catalog/Sources.lua"/>
 </Ui>

@@ -2,80 +2,11 @@ local _, TDP = ...
 local CollectionMapWindow = TDP.CollectionMapWindow
 local Widgets = TDP.Widgets
 local GetPinCoordinates = CollectionMapWindow.Helpers.GetPinCoordinates
-local PinMatchesMap = CollectionMapWindow.Helpers.PinMatchesMap
 
 function CollectionMapWindow:UpdateProjectionControls()
     if self.clearProjectButton then
-        Widgets:SetButtonEnabled(self.clearProjectButton, self.projectedPayload ~= nil)
+        Widgets:SetButtonEnabled(self.clearProjectButton, #self.projectedPayloads > 0)
     end
-end
-
-function CollectionMapWindow:CopyProjectionPayload()
-    local pins = {}
-    local allPins = {}
-
-    local function copyPin(pinData)
-        local x, y = GetPinCoordinates(pinData)
-        if x and y then
-            return {
-                mapID = pinData.mapID,
-                mapName = pinData.mapName,
-                x = x,
-                y = y,
-                label = pinData.label,
-                waypoint = pinData.waypoint,
-                icon = pinData.icon,
-                source = pinData.source,
-                acquisition = pinData.acquisition,
-                effect = pinData.effect,
-                tips = pinData.tips,
-                criterionAchievementId = pinData.criterionAchievementId,
-                criterionIndex = pinData.criterionIndex,
-                criterionCompleted = pinData.criterionCompleted,
-                criterionText = pinData.criterionText,
-            }
-        end
-        return nil
-    end
-
-    for _, pinData in ipairs(self.pins or {}) do
-        local copiedPin = copyPin(pinData)
-        if copiedPin then
-            allPins[#allPins + 1] = copiedPin
-        end
-    end
-    for _, pinData in ipairs(self:GetVisiblePins()) do
-        local copiedPin = copyPin(pinData)
-        if copiedPin then
-            pins[#pins + 1] = copiedPin
-        end
-    end
-
-    local waypoints = nil
-    if type(self.waypoints) == "table" then
-        waypoints = {}
-        for _, waypoint in ipairs(self.waypoints) do
-            waypoints[#waypoints + 1] = waypoint
-        end
-    end
-
-    return {
-        title = self.title,
-        collectionType = self.collectionType,
-        sourceSummary = self.sourceSummary,
-        acquisition = self.acquisition,
-        effect = self.effect,
-        tips = self.tips,
-        description = self.description,
-        criteria = self.criteria,
-        mapAchievementId = self.mapAchievementId,
-        showCompletedCriteriaPins = self.showCompletedCriteriaPins,
-        waypoints = waypoints,
-        pins = pins,
-        allPins = allPins,
-        mapID = self.mapID,
-        icon = self.icon,
-    }
 end
 
 function CollectionMapWindow:LoadWorldMap()
@@ -124,7 +55,7 @@ function CollectionMapWindow:CreateWorldMapControls(worldMap, canvas)
             self:OpenProjectedDetails()
         end)
 
-        local clearButton = Widgets:CreateButton(controls, 104, 24, "Clear Pins", "neutral")
+        local clearButton = Widgets:CreateButton(controls, 104, 24, "Clear All Pins", "neutral")
         clearButton:SetPoint("LEFT", detailsButton, "RIGHT", 6, 0)
         clearButton:SetScript("OnClick", function()
             self:ClearWorldMapProjection()
@@ -156,30 +87,9 @@ function CollectionMapWindow:HookWorldMap(worldMap)
         self:RefreshWorldMapProjection()
     end)
     worldMap:HookScript("OnHide", function()
-        self:HideWorldMapPins()
         if self.worldMapControls then
             self.worldMapControls:Hide()
         end
-    end)
-
-    if worldMap.SetMapID and hooksecurefunc then
-        pcall(hooksecurefunc, worldMap, "SetMapID", function()
-            self:RefreshWorldMapProjection()
-        end)
-    end
-
-    if worldMap.ScrollContainer then
-        worldMap.ScrollContainer:HookScript("OnSizeChanged", function()
-            self:RefreshWorldMapProjection()
-        end)
-    end
-
-    self.worldMapEventFrame = CreateFrame("Frame")
-    pcall(self.worldMapEventFrame.RegisterEvent, self.worldMapEventFrame, "WORLD_MAP_UPDATE")
-    pcall(self.worldMapEventFrame.RegisterEvent, self.worldMapEventFrame, "ZONE_CHANGED_NEW_AREA")
-    pcall(self.worldMapEventFrame.RegisterEvent, self.worldMapEventFrame, "PLAYER_ENTERING_WORLD")
-    self.worldMapEventFrame:SetScript("OnEvent", function()
-        self:RefreshWorldMapProjection()
     end)
 end
 
@@ -191,22 +101,27 @@ function CollectionMapWindow:OpenWorldMapToProjectedMap()
     end
 
     local targetMapID = self.projectedPayload and self.projectedPayload.mapID
-    if C_Map and C_Map.OpenWorldMap and targetMapID then
-        pcall(C_Map.OpenWorldMap, targetMapID)
-    end
-
-    if not worldMap:IsShown() then
-        if ToggleWorldMap then
-            ToggleWorldMap()
-        elseif ShowUIPanel then
-            ShowUIPanel(worldMap)
-        else
-            worldMap:Show()
+    -- C_Map.OpenWorldMap is restricted; use Blizzard's Lua UI entry point.
+    if type(OpenWorldMap) == "function" then
+        OpenWorldMap(targetMapID)
+    else
+        if not worldMap:IsShown() then
+            if ToggleWorldMap then
+                ToggleWorldMap()
+            elseif ShowUIPanel then
+                ShowUIPanel(worldMap)
+            else
+                worldMap:Show()
+            end
+        end
+        if targetMapID and worldMap.SetMapID then
+            pcall(worldMap.SetMapID, worldMap, targetMapID)
         end
     end
 
-    if targetMapID and worldMap.SetMapID then
-        pcall(worldMap.SetMapID, worldMap, targetMapID)
+    if not worldMap:IsShown() then
+        self:SetStatus("The Blizzard world map could not be opened.")
+        return false
     end
 
     self:HookWorldMap(worldMap)
@@ -227,33 +142,39 @@ function CollectionMapWindow:ProjectToWorldMap()
         return false
     end
 
-    self.projectedPayload = self:CopyProjectionPayload()
-    if #(self.projectedPayload.pins or {}) == 0 then
-        self.projectedPayload = nil
+    local payload = self:CopyProjectionPayload()
+    if #(payload.pins or {}) == 0 then
         self:SetStatus("No valid curated pins are available to project.")
         return false
     end
-    self.projectedPayload.mapID = self.projectedPayload.mapID or (self.projectedPayload.pins[1] and self.projectedPayload.pins[1].mapID)
+    payload.mapID = payload.mapID or payload.pins[1].mapID
+    local previousPayload = self.projectedPayload
+    self.projectedPayload = payload
 
     if self:OpenWorldMapToProjectedMap() then
+        self:AddProjection(payload)
+        self:RefreshWorldMapProjection()
         self:RefreshMinimapProjection()
-        self:SetStatus(string.format("%d TODO pin(s) projected on the Blizzard map.", #self.projectedPayload.pins))
+        self:SetStatus(string.format("%d item(s) projected on the Blizzard world map and minimap.", #self.projectedPayloads))
         self:UpdateProjectionControls()
         return true
     end
 
+    self.projectedPayload = previousPayload
     return false
 end
 
 function CollectionMapWindow:ClearWorldMapProjection()
     self.projectedPayload = nil
+    self.projectedPayloads = {}
+    self:SaveProjections()
     self:HideWorldMapPins()
     self:HideMinimapPins()
     if self.worldMapControls then
         self.worldMapControls:Hide()
     end
     self:UpdateProjectionControls()
-    self:SetStatus("Projected TODO pins cleared from the Blizzard map.")
+    self:SetStatus("All projected TODO pins cleared from the Blizzard world map and minimap.")
 end
 
 function CollectionMapWindow:OpenProjectedDetails()
@@ -265,67 +186,34 @@ function CollectionMapWindow:OpenProjectedDetails()
 end
 
 function CollectionMapWindow:RefreshWorldMapProjection()
-    local payload = self.projectedPayload
     local child, worldMap = self:GetWorldMapContent()
-    if not payload or not worldMap or not worldMap:IsShown() then
+    if #self.projectedPayloads == 0 or not worldMap then
         self:HideWorldMapPins()
         if self.worldMapControls then
             self.worldMapControls:Hide()
         end
         return
     end
-
-    local controls = self:CreateWorldMapControls(worldMap, child)
-    if not controls then
+    local shown = worldMap:IsShown()
+    local controls = shown and self:CreateWorldMapControls(worldMap, child) or self.worldMapControls
+    local library = self:GetMapPinLibrary()
+    self:HideWorldMapPins()
+    if not library then
+        if controls then controls:Hide() end
         return
     end
-    controls:Show()
+    if controls then controls:SetShown(shown) end
 
-    local provider = self:EnsureWorldMapProjectionProvider(worldMap)
-    if provider then
-        self:HideLegacyWorldMapPins()
-        provider:RefreshAllData()
-        self:UpdateProjectionControls()
-        return
-    end
-
-    if not child then
-        self:HideWorldMapPins()
-        controls:Hide()
-        return
-    end
-
-    local currentMapID = worldMap.GetMapID and worldMap:GetMapID() or payload.mapID
-    local width = math.max(child:GetWidth() or 1, 1)
-    local height = math.max(child:GetHeight() or 1, 1)
     local pinIndex = 1
-
-    self:HideLegacyWorldMapPins()
-    for _, pinData in ipairs(payload.pins or {}) do
-        if PinMatchesMap(pinData, currentMapID) then
-            local x, y = GetPinCoordinates(pinData)
-            if x and y then
-                local pin = self:CreateWorldMapPin(pinIndex, child)
-                self:ConfigureWorldMapPin(pin, {
-                   mapID = pinData.mapID,
-                    mapName = pinData.mapName,
-                    x = x,
-                    y = y,
-                    label = pinData.label,
-                    source = pinData.source,
-                    acquisition = pinData.acquisition,
-                    effect = pinData.effect,
-                   tips = pinData.tips,
-                   icon = pinData.icon,
-                    criterionAchievementId = pinData.criterionAchievementId,
-                   criterionIndex = pinData.criterionIndex,
-                    criterionCompleted = pinData.criterionCompleted,
-                    criterionText = pinData.criterionText,
-                }, payload)
-
-                pin:ClearAllPoints()
-                pin:SetPoint("CENTER", child, "TOPLEFT", x * width, -(y * height))
-                pin:Show()
+    for pinData, payload in self:EnumerateProjectedPins() do
+        local mapID = tonumber(pinData.mapID)
+        local x, y = GetPinCoordinates(pinData)
+        if mapID and mapID > 0 and x and y then
+            local pin = self:CreateWorldMapPin(pinIndex)
+            self:ConfigureWorldMapPin(pin, pinData, payload)
+            -- Register every zone; HBD's canvas provider owns visibility and
+            -- positions the icon as the Blizzard map is navigated or zoomed.
+            if library:AddWorldMapIconMap(self, pin, mapID, x, y, 0) then
                 pinIndex = pinIndex + 1
             end
         end

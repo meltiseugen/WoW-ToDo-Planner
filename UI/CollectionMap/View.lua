@@ -27,13 +27,22 @@ function CollectionMapWindow:Open(options)
     end
 
     options = options or {}
-    if IsCollectionType(options.collectionType) and #(options.pins or {}) == 0 then
+    if self.sourceAreaButton then Widgets:HideDropdownMenus() end
+    if IsCollectionType(options.collectionType) and #(options.pins or {}) == 0 and not options.areaOnly then
         self:SetStatus("No curated map location is available for this collection entry.")
         return
     end
 
     self.title = options.title
+    self.projectionKey = options.projectionKey
     self.collectionType = options.collectionType
+    self.sourceQuestID, self.sourcePatchKey, self.sourceEntry = options.sourceQuestID, options.sourcePatchKey, options.sourceEntry
+    self.sourceNotes = options.sourceNotes
+    self.areaOnly, self.sourceAreaMaps = options.areaOnly == true, options.sourceAreaMaps
+    self.sourceMapID = options.mapID
+    if self.sourceQuestID and self.sourceEntry then
+        TDP.PatchCatalog:GetCollectionSourceNotes(self.collectionType, self.sourcePatchKey, self.sourceEntry, true)
+    end
     self.sourceSummary = options.sourceSummary
     self.acquisition = options.acquisition
     self.effect = options.effect
@@ -47,20 +56,79 @@ function CollectionMapWindow:Open(options)
     self.description = options.description
     self.criteria = options.criteria
     self.mapAchievementId = tonumber(options.mapAchievementId)
-    self.showCompletedCriteriaPins = options.showCompletedCriteriaPins == true
+    local projection = self:FindProjection(options)
+    if options.showCompletedCriteriaPins == nil and projection then
+        self.showCompletedCriteriaPins = projection.showCompletedCriteriaPins == true
+    else
+        self.showCompletedCriteriaPins = options.showCompletedCriteriaPins == true
+    end
     self.waypoints = options.waypoints
     self.icon = options.icon
     self.pins = options.allPins or options.pins or {}
     self.mapID = options.mapID or (self.pins[1] and self.pins[1].mapID) or self:GetDefaultMapID()
     self.initialMapID = self.mapID
+    self:UpdateSourceAreaControl()
     self:RefreshCriteriaProgress()
     self:UpdateCriteriaFilterControl()
+    self:StopMapDrag()
     self.zoom = 1
     self.panX = 0
     self.panY = 0
     self.frame:Show()
     Widgets:BringToFront(self.frame)
     self:RenderMap()
+end
+
+function CollectionMapWindow:UpdateSourceAreaControl()
+    local maps = self.sourceAreaMaps or {}
+    if #maps < 2 then
+        if self.sourceAreaButton then
+            self.sourceAreaButton:Hide()
+            self.detailScroll:ClearAllPoints()
+            self.detailScroll:SetPoint("TOPLEFT", self.detailPanel, "TOPLEFT", 12, -68)
+            self.detailScroll:SetPoint("BOTTOMRIGHT", self.detailPanel, "BOTTOMRIGHT", -28, 12)
+        end
+        return
+    end
+    if not self.sourceAreaButton then
+        self.sourceAreaButton = Widgets:CreateSelectorButton(self.detailPanel, 210, 24, "Source area")
+        self.sourceAreaButton:SetScript("OnClick", function(button)
+            Widgets:ShowSingleSelectMenu(button, self.sourceAreaMaps, self.mapID, function(id) return self:GetMapName(id) end, function(id)
+                self:StopMapDrag()
+                self.mapID, self.zoom, self.panX, self.panY = id, 1, 0, 0
+                self:UpdateSourceAreaControl()
+                self:RenderMap()
+            end)
+        end)
+        Widgets:HookFrameScript(self.frame, "OnHide", function() Widgets:HideDropdownMenus() end)
+    end
+    local top = math.max(66, 30 + self.detailTitle:GetStringHeight() + self.detailMeta:GetStringHeight())
+    self.sourceAreaButton:ClearAllPoints()
+    self.sourceAreaButton:SetPoint("TOPLEFT", self.detailPanel, "TOPLEFT", 12, -top)
+    self.sourceAreaButton:SetPoint("TOPRIGHT", self.detailPanel, "TOPRIGHT", -12, -top)
+    self.sourceAreaButton:SetText(self:GetMapName(self.mapID))
+    self.sourceAreaButton:Show()
+    self.detailScroll:ClearAllPoints()
+    self.detailScroll:SetPoint("TOPLEFT", self.detailPanel, "TOPLEFT", 12, -(top + 32))
+    self.detailScroll:SetPoint("BOTTOMRIGHT", self.detailPanel, "BOTTOMRIGHT", -28, 12)
+end
+
+function CollectionMapWindow:RefreshSourceDestination()
+    if not self.frame or not self.frame:IsShown() or not self.sourceQuestID or not self.sourceEntry then return end
+    local payload = TDP.PatchCatalog:GetCollectionMapPayload(self.collectionType, self.sourcePatchKey, self.sourceEntry)
+    if not payload then return end
+    local before, after = self.pins[1], payload.pins[1]
+    local samePin = (not before and not after) or (before and after and before.mapID == after.mapID and before.x == after.x and before.y == after.y)
+    if payload.sourceQuestID == self.sourceQuestID and samePin and payload.mapID == self.sourceMapID
+        and (payload.areaOnly == true) == self.areaOnly then
+        if payload.sourceSummary ~= self.sourceSummary or payload.sourceNotes ~= self.sourceNotes then
+            self.sourceSummary, self.sourceNotes, self.pins = payload.sourceSummary, payload.sourceNotes, payload.pins
+            self:RenderMap()
+        end
+        return
+    end
+    payload.title, payload.icon = self.title, self.icon
+    self:Open(payload)
 end
 
 function CollectionMapWindow:Build()
@@ -119,7 +187,7 @@ function CollectionMapWindow:Build()
     local initialMapButton = Widgets:CreateButton(toolbar, 82, 24, "Initial Map", "neutral")
     initialMapButton:SetPoint("RIGHT", zoomOutButton, "LEFT", -6, 0)
 
-    local clearProjectButton = Widgets:CreateButton(toolbar, 70, 24, "Clear", "neutral")
+    local clearProjectButton = Widgets:CreateButton(toolbar, 70, 24, "Clear All", "neutral")
     clearProjectButton:SetPoint("RIGHT", initialMapButton, "LEFT", -6, 0)
 
     local projectButton = Widgets:CreateButton(toolbar, 86, 24, "Project", "primary")
@@ -195,38 +263,25 @@ function CollectionMapWindow:Build()
         self:AdjustZoom(delta > 0 and ZOOM_STEP or -ZOOM_STEP)
     end)
 
-    mapViewport:SetScript("OnMouseDown", function(_, button)
+    mapViewport:SetScript("OnMouseDown", function(target, button)
         if button == "RightButton" then
             self:NavigateToParentMap()
             return
         end
-        if button ~= "LeftButton" or type(GetCursorPosition) ~= "function" then
-            return
+        if button == "LeftButton" then
+            self:StartMapDrag(target)
         end
-        self.dragging = true
-        self.dragX, self.dragY = GetCursorPosition()
     end)
 
-    mapViewport:SetScript("OnMouseUp", function()
-        self.dragging = false
+    mapViewport:SetScript("OnMouseUp", function(_, button)
+        if button == "LeftButton" then
+            self:UpdateMapDrag()
+            self:StopMapDrag()
+        end
     end)
 
     mapViewport:SetScript("OnHide", function()
-        self.dragging = false
-    end)
-
-    mapViewport:SetScript("OnUpdate", function()
-        if not self.dragging or type(GetCursorPosition) ~= "function" then
-            return
-        end
-
-        local cursorX, cursorY = GetCursorPosition()
-        local previousX = self.dragX or cursorX
-        local previousY = self.dragY or cursorY
-        self.dragX, self.dragY = cursorX, cursorY
-        self.panX = (self.panX or 0) + (cursorX - previousX)
-        self.panY = (self.panY or 0) + (cursorY - previousY)
-        self:UpdateCanvasPosition()
+        self:StopMapDrag()
     end)
 
     mapViewport:SetScript("OnSizeChanged", function()
@@ -302,5 +357,3 @@ function CollectionMapWindow:Build()
     self:UpdateProjectionControls()
     return self
 end
-
-CollectionMapWindow:EnsureWorldMapProjectionMixins()

@@ -181,7 +181,7 @@ function MainWindow:Build()
     saveButton:SetScript("OnClick", function()
         local titleText = Utils:Trim(inputTitle:GetText())
         if titleText == "" then
-            Utils:Msg("Task title is required.")
+            Utils:Msg("Task title is required.", "warnings")
             return
         end
 

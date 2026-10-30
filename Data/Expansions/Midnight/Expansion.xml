@@ -31,5 +31,6 @@
     <Script file="12.1.5/Achievements.lua"/>
     <Script file="12.0/Availability.lua"/>
     <Script file="12.0.5/Availability.lua"/>
+    <Script file="12.0.7/Unobtainable.lua"/>
     <Script file="12.1/Availability.lua"/>
 </Ui>

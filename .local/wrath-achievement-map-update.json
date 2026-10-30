@@ -1,0 +1,2327 @@
+{
+  "reviewedAt": "2026-10-30",
+  "newlyMapped": [
+    {
+      "id": 46,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Universal Explorer",
+      "description": "Explore Eastern Kingdoms, Kalimdor, Outland, Northrend, the areas revealed by the Cataclysm, Pandaria, Draenor, the Broken Isles, Kul Tiras, and Zandalar. - Eastern Kingdoms Explorer - Outland Explorer - Cataclysm Explorer - Draenor Explorer - Battle for Azeroth Explorer - Kalimdor Explorer - Northrend Explorer - Pandaria Explorer - Broken Isles Explorer Reward: &lt;Name&gt; the Explorer"
+    },
+    {
+      "id": 121,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Journeyman Cook",
+      "description": "Obtain 150 skill points in the &quot;Classic&quot; category of cooking."
+    },
+    {
+      "id": 122,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Expert Cook",
+      "description": "Obtain 225 skill points in the &quot;Classic&quot; category of cooking."
+    },
+    {
+      "id": 123,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Classic Cook",
+      "description": "Obtain 300 skill points in the &quot;Classic&quot; category of cooking."
+    },
+    {
+      "id": 124,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Outland Cook",
+      "description": "Obtain 75 skill points in the &quot;Outland&quot; category of cooking."
+    },
+    {
+      "id": 125,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Northrend Cook",
+      "description": "Obtain 75 skill points in the &quot;Northrend&quot; category of cooking."
+    },
+    {
+      "id": 126,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Journeyman Fisherman",
+      "description": "Obtain 150 skill points in the &quot;Classic&quot; category of fishing."
+    },
+    {
+      "id": 127,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Expert Fisherman",
+      "description": "Obtain 225 skill points in the &quot;Classic&quot; category of fishing."
+    },
+    {
+      "id": 128,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Artisan Fisherman",
+      "description": "Obtain 300 skill points in the &quot;Classic&quot; category of fishing."
+    },
+    {
+      "id": 129,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Outland Fisherman",
+      "description": "Obtain 75 skill points in the &quot;Outland&quot; category of fishing."
+    },
+    {
+      "id": 130,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Northrend Fisherman",
+      "description": "Obtain 75 skill points in the &quot;Northrend&quot; category of fishing."
+    },
+    {
+      "id": 137,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Stocking Up",
+      "description": "Create 500 Heavy Frostweave Bandages. - Create 500 Heavy Frostweave Bandages"
+    },
+    {
+      "id": 153,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "The Old Gnome and the Sea",
+      "description": "Successfully fish from a school. - Successfully fish from a school."
+    },
+    {
+      "id": 230,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Battlemaster",
+      "description": "Complete the battleground achievements listed below. - Master of Alterac Valley - Master of Warsong Gulch - Master of Arathi Basin - Master of Eye of the Storm Reward: Battlemaster &lt;Name&gt;"
+    },
+    {
+      "id": 603,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Wrath of the Horde",
+      "description": "Kill 5 Alliance players in each of the cities listed below. - Ironforge - The Exodar - Darnassus - Stormwind City"
+    },
+    {
+      "id": 604,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Wrath of the Alliance",
+      "description": "Kill 5 Horde players in each of the cities listed below. - Thunder Bluff - Orgrimmar - Silvermoon City - Undercity"
+    },
+    {
+      "id": 614,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "For the Alliance!",
+      "description": "Slay the leaders of the Horde. - Killed in Quel'Thalas - Opposing Orgrimmar Reward: Reins of the Black War Bear"
+    },
+    {
+      "id": 619,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "For the Horde!",
+      "description": "Slay the leaders of the Alliance. - Overthrow the Council - Putting Out the Light Reward: Reins of the Black War Bear"
+    },
+    {
+      "id": 646,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Stratholme",
+      "description": "Defeat the evil masterminds inhabiting Stratholme. - Balnazzar - Lord Aurius Rivendare"
+    },
+    {
+      "id": 714,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "The Conqueror",
+      "description": "Raise your reputation values in Warsong Gulch, Arathi Basin and Alterac Valley to Exalted. - Hero of the Frostwolf Clan - Warsong Outrider - The Defiler Reward: Conqueror &lt;Name&gt;"
+    },
+    {
+      "id": 727,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Call in the Cavalry",
+      "description": "Obtain one of the war mounts through the honor system. - Black Battlestrider - Black War Ram - Black War Wolf - Black War Tiger - Swift Warstrider - Black War Kodo - Black War Steed - Black War Elekk - Black War Raptor - Red Skeletal Warhorse"
+    },
+    {
+      "id": 762,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Ambassador of the Horde",
+      "description": "Earn Exalted reputation with all six Horde factions. - Exalted Bilgewater Cartel - Exalted Orgrimmar - Exalted Thunder Bluff - Exalted Darkspear Trolls - Exalted Silvermoon City - Exalted Undercity Reward: Ambassador &lt;Name&gt;"
+    },
+    {
+      "id": 877,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "The Cake Is Not A Lie",
+      "description": "Bake a Delicious Chocolate Cake."
+    },
+    {
+      "id": 878,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "One That Didn't Get Away",
+      "description": "Catch one of the rare fish in the list below. - Steelscale Crushfish - 22 Pound Lobster - 52 Pound Redgill - 68 Pound Grouper - 32 Pound Catfish - 103 Pound Mightfish - 15 Pound Mud Snapper - 29 Pound Salmon - Dark Herring - Rockhide Strongfish"
+    },
+    {
+      "id": 907,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "The Justicar",
+      "description": "Raise your reputation values in Warsong Gulch, Arathi Basin and Alterac Valley to Exalted. - Hero of the Stormpike Guard - Silverwing Sentinel - Knight of Arathor Reward: Justicar &lt;Name&gt;"
+    },
+    {
+      "id": 948,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Ambassador of the Alliance",
+      "description": "Earn Exalted reputation with all six Alliance factions. - Exalted Darnassus - Exalted Gilneas - Exalted Ironforge - Exalted Exodar - Exalted Gnomeregan Exiles - Exalted Stormwind Reward: Ambassador &lt;Name&gt;"
+    },
+    {
+      "id": 1175,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Battlemaster",
+      "description": "Complete the battleground achievements listed below. - Master of Alterac Valley - Master of Warsong Gulch - Master of Arathi Basin - Master of Eye of the Storm Reward: Battlemaster &lt;Name&gt;"
+    },
+    {
+      "id": 1206,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "To All The Squirrels I've Loved Before",
+      "description": "Show the critters of Azeroth how much you /love them. - Borean Frog - Chicken - Deer - Fawn - Gazelle - Parrot - Ram - Shore Crab - Squirrel - Swine - Prairie Dog - Cat - Cow - Ewe - Small Frog - Hare - Rabbit - Sheep - Skunk - Steam Frog - Toad"
+    },
+    {
+      "id": 1243,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Fish Don't Leave Footprints",
+      "description": "Learn the ability to find fish."
+    },
+    {
+      "id": 1244,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Well Read",
+      "description": "Read an original version of the books listed below. - Aegwynn and the Dragon Hunt - Arathor and the Troll Wars - Beyond the Dark Portal - Civil War in the Plaguelands - Exile of the High Elves - Ironforge - the Awakening of the Dwarves - Kil'jaeden and the Shadow Pact - Mount Hyjal and Illidan's Gift - Rise of the Blood Elves - Sargeras and the Betrayal - The Alliance of Lordaeron - The Betrayer Ascendant - The Dark Portal and the Fall of Stormwind - The Guardians of Tirisfal - The Kaldorei and the Well of Eternity - The Lich King Triumphant - The Old Gods and the Ordering of Azeroth - The Sentinels and the Long Vigil - The Twin Empires - The World Tree and the Emerald Dream - War of the Three Hammers - Aftermath of the Second War - Archimonde's Return and the Flight to Kalimdor - Charge of the Dragonflights - Empires' Fall - Icecrown and the Frozen Throne - Kel'Thuzad and the Forming of the Scourge - Lethargy of the Orcs - Old Hatreds - The Colonization of Kalimdor - Rise of the Horde - Sunwell - The Fall of Quel'Thalas - The Battle of Grim Batol - The Birth of the Lich King - The Founding of Quel'Thalas - The Invasion of Draenor - The Last Guardian - The New Horde - The Scourge of Lordaeron - The Seven Kingdoms - The War of the Ancients - War of the Spider - Wrath of Soulflayer"
+    },
+    {
+      "id": 1257,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "The Scavenger",
+      "description": "Successfully fish in each of the junk nodes listed below. - Steam Pump Flotsam - Schooner Wreckage - Floating Wreckage - Bloodsail Wreckage - Waterlogged Wreckage"
+    },
+    {
+      "id": 1283,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Classic Dungeonmaster",
+      "description": "Complete the classic dungeon achievements listed below. - Deadmines - Wailing Caverns - Blackfathom Deeps - Gnomeregan - Razorfen Downs - Uldaman - Maraudon - Blackrock Depths - King of Dire Maul - Stratholme - Ragefire Chasm - Shadowfang Keep - Stormwind Stockade - Razorfen Kraul - Scarlet Monastery - Zul'Farrak - Sunken Temple - Blackrock Spire - Scholomance"
+    },
+    {
+      "id": 1284,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Outland Dungeonmaster",
+      "description": "Complete the Burning Crusade dungeon achievements listed below. - Hellfire Ramparts - The Slave Pens - Mana-Tombs - Sethekk Halls - Opening of the Dark Portal - The Shattered Halls - The Botanica - Magister's Terrace - The Blood Furnace - Underbog - The Escape From Durnholde - Shadow Labyrinth - The Steamvault - The Mechanar - The Arcatraz - Auchenai Crypts"
+    },
+    {
+      "id": 1285,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Classic Raider",
+      "description": "Complete the classic raid achievements listed below. - Blackwing Lair - Temple of Ahn'Qiraj - Molten Core - Ruins of Ahn'Qiraj"
+    },
+    {
+      "id": 1286,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Outland Raider",
+      "description": "Complete the Burning Crusade raid achievements listed below. - Karazhan - Magtheridon's Lair - The Battle for Mount Hyjal - The Black Temple - Gruul's Lair - Serpentshrine Cavern - Tempest Keep - Sunwell Plateau"
+    },
+    {
+      "id": 1287,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Outland Dungeon Hero",
+      "description": "Complete the Burning Crusade Heroic dungeon achievements listed below. - Heroic Hellfire Ramparts - Heroic The Slave Pens - Heroic Mana-Tombs - Heroic Sethekk Halls - Heroic Opening of the Dark Portal - Heroic The Shattered Halls - Heroic The Botanica - Heroic Magister's Terrace - Heroic The Blood Furnace - Heroic Underbog - Heroic The Escape From Durnholde - Heroic Shadow Labyrinth - Heroic The Steamvault - Heroic The Mechanar - Heroic The Arcatraz - Heroic Auchenai Crypts"
+    },
+    {
+      "id": 1288,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Northrend Dungeonmaster",
+      "description": "Complete the Northrend dungeon achievements listed below. - Utgarde Keep - Caverns of Time: Stratholme - Ahn'kahet: The Old Kingdom - The Violet Hold - Halls of Stone - The Oculus - The Nexus - Azjol-Nerub - Drak'Tharon Keep - Gundrak - Halls of Lightning - Utgarde Pinnacle"
+    },
+    {
+      "id": 1289,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Northrend Dungeon Hero",
+      "description": "Complete the Northrend Heroic dungeon achievements listed below. - Heroic Utgarde Keep - Heroic Caverns of Time: Stratholme - Heroic Ahn'kahet: The Old Kingdom - Heroic The Violet Hold - Heroic Halls of Stone - Heroic The Oculus - Heroic The Nexus - Heroic Azjol-Nerub - Heroic Drak'Tharon Keep - Heroic Gundrak - Heroic Halls of Lightning - Heroic Utgarde Pinnacle"
+    },
+    {
+      "id": 1463,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Northrend Vanguard",
+      "description": "First person on the realm to gain Exalted reputation with the Argent Crusade, Wyrmrest Accord, Kirin Tor and Knights of the Ebon Blade. - The Argent Crusade - The Kirin Tor - The Wyrmrest Accord - Knights of the Ebon Blade"
+    },
+    {
+      "id": 1516,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Accomplished Angler",
+      "description": "Complete the fishing achievements listed below. - Grand Master Fisherman - The Scavenger - Master Angler of Azeroth - One That Didn't Get Away - The Lurker Above - Northrend Angler - 1000 Fish - The Old Gnome and the Sea - The Fishing Diplomat - Mr. Pinchy's Magical Crawdad Box - Old Man Barlowned - Outland Angler - Fish Don't Leave Footprints - The Coin Master Reward: Salty &lt;Name&gt;"
+    },
+    {
+      "id": 1563,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Hail to the Chef",
+      "description": "Complete the cooking achievements listed below. - Grand Master Cook - Kickin' It Up a Notch - Second That Emotion - Our Daily Bread - Sous Chef - The Outland Gourmet - The Cake Is Not A Lie - The Northrend Gourmet - Critter Gitter - Dinner Impossible - Captain Rumsey's Lager Reward: Chef &lt;Name&gt;"
+    },
+    {
+      "id": 1658,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Champion of the Frozen Wastes",
+      "description": "Defeat the dungeon and raid bosses listed below. - Sartharion the Onyx Guardian (10 or 25 player) - Malygos (10 or 25 player) - Heroic: Sjonnir the Ironshaper - Heroic: Herald Volazj - Heroic: Ley-Guardian Eregos - Heroic: King Ymiron - Heroic: The Prophet Tharon'ja - Heroic: Gal'darah - Kel'Thuzad (10 or 25 player) - Heroic: Anub'arak - Heroic: Keristrasza - Heroic: Loken - Heroic: Ingvar the Plunderer - Heroic: Mal'Ganis - Heroic: Cyanigosa Reward: &lt;Name&gt; , Champion of the Frozen Wastes"
+    },
+    {
+      "id": 1777,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "The Northrend Gourmet",
+      "description": "Cook 15 of the Northrend recipes listed below. - Bad Clams - Dalaran Clam Chowder - Grilled Sculpin - Last Week's Mammoth - Northern Stew - Poached Nettlefish - Roasted Worg - Shoveltusk Steak - Smoked Salmon - Worm Delight - Kungaloosh - Blackened Worg Steak - Cuttlesteak - Firecracker Salmon - Gigantic Feast - Imperial Manta Steak - Mighty Rhino Dogs - Rhinolicious Wormsteak - Snapper Extreme - Spiced Worm Burger - Spicy Fried Herring - Tracker Snacks - Worg Tartare - Baked Manta Ray - Grilled Bonescale - Haunted Herring - Mammoth Meal - Pickled Fangtooth - Rhino Dogs - Sauteed Goby - Smoked Rockfin - Tasty Cupcake - Great Feast - Blackened Dragonfin - Critter Bites - Dragonfin Filet - Fish Feast - Hearty Rhino - Mega Mammoth Meal - Poached Northern Sculpin - Small Feast - Spiced Mammoth Treats - Spicy Blue Nettlefish - Tender Shoveltusk Steak - Very Burnt Worg"
+    },
+    {
+      "id": 1778,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "The Northrend Gourmet",
+      "description": "Cook 30 of the Northrend recipes listed below. - Bad Clams - Dalaran Clam Chowder - Grilled Sculpin - Last Week's Mammoth - Northern Stew - Poached Nettlefish - Roasted Worg - Shoveltusk Steak - Smoked Salmon - Worm Delight - Kungaloosh - Blackened Worg Steak - Cuttlesteak - Firecracker Salmon - Gigantic Feast - Imperial Manta Steak - Mighty Rhino Dogs - Rhinolicious Wormsteak - Snapper Extreme - Spiced Worm Burger - Spicy Fried Herring - Tracker Snacks - Worg Tartare - Baked Manta Ray - Grilled Bonescale - Haunted Herring - Mammoth Meal - Pickled Fangtooth - Rhino Dogs - Sauteed Goby - Smoked Rockfin - Tasty Cupcake - Great Feast - Blackened Dragonfin - Critter Bites - Dragonfin Filet - Fish Feast - Hearty Rhino - Mega Mammoth Meal - Poached Northern Sculpin - Small Feast - Spiced Mammoth Treats - Spicy Blue Nettlefish - Tender Shoveltusk Steak - Very Burnt Worg"
+    },
+    {
+      "id": 1779,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "The Northrend Gourmet",
+      "description": "Cook 45 of the Northrend recipes listed below. - Bad Clams - Dalaran Clam Chowder - Grilled Sculpin - Last Week's Mammoth - Northern Stew - Poached Nettlefish - Roasted Worg - Shoveltusk Steak - Smoked Salmon - Worm Delight - Kungaloosh - Blackened Worg Steak - Cuttlesteak - Firecracker Salmon - Gigantic Feast - Imperial Manta Steak - Mighty Rhino Dogs - Rhinolicious Wormsteak - Snapper Extreme - Spiced Worm Burger - Spicy Fried Herring - Tracker Snacks - Worg Tartare - Baked Manta Ray - Grilled Bonescale - Haunted Herring - Mammoth Meal - Pickled Fangtooth - Rhino Dogs - Sauteed Goby - Smoked Rockfin - Tasty Cupcake - Great Feast - Blackened Dragonfin - Critter Bites - Dragonfin Filet - Fish Feast - Hearty Rhino - Mega Mammoth Meal - Poached Northern Sculpin - Small Feast - Spiced Mammoth Treats - Spicy Blue Nettlefish - Tender Shoveltusk Steak - Very Burnt Worg"
+    },
+    {
+      "id": 1781,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Critter Gitter",
+      "description": "Using Critter Bites, coerce 10 critters to be your pet within 3 minutes or less."
+    },
+    {
+      "id": 1800,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "The Outland Gourmet",
+      "description": "Cook each of the Outland cooking recipes listed below. - Delicious Chocolate Cake - Buzzard Bites - Feltail Delight - Stormchops - Blackened Basilisk - Poached Bluefish - Golden Fish Sticks - Roasted Clefthoof - Warp Burger - Mok'Nathal Shortribs - Hot Buttered Trout - Spicy Crawdad - Stewed Trout - Blackened Trout - Clam Bar - Ravager Dog - Blackened Sporefish - Grilled Mudfish - Broiled Bloodfin - Kibler's Bits - Talbuk Steak - Crunchy Serpent - Fisherman's Feast - Skullfish Soup - Spicy Hot Talbuk"
+    },
+    {
+      "id": 1801,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Captain Rumsey's Lager",
+      "description": "Brew up some of Captain Rumsey's Lager."
+    },
+    {
+      "id": 1998,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Cooking Award",
+      "description": "Obtain a Cooking Award."
+    },
+    {
+      "id": 1999,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "10 Cooking Awards",
+      "description": "Obtain 10 Cooking Awards."
+    },
+    {
+      "id": 2000,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "25 Cooking Awards",
+      "description": "Obtain 25 Cooking Awards."
+    },
+    {
+      "id": 2001,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "50 Cooking Awards",
+      "description": "Obtain 50 Cooking Awards."
+    },
+    {
+      "id": 2002,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "100 Cooking Awards",
+      "description": "Obtain 100 Cooking Awards."
+    },
+    {
+      "id": 2097,
+      "patch": "3.0",
+      "category": "Collections",
+      "guide": "Learn, buy, or earn the mount named by the achievement.",
+      "name": "Get to the Choppa!",
+      "description": "Obtain a Mekgineer's Chopper or a Mechano-hog."
+    },
+    {
+      "id": 2136,
+      "patch": "3.0",
+      "category": "Dungeons",
+      "guide": "Complete the listed heroic-dungeon encounter mechanic or Glory of the Hero criterion.",
+      "name": "Glory of the Hero",
+      "description": "Complete the Heroic dungeon achievements listed below. - On The Rocks - Intense Cold - Watch Him Die - Gotta Go! - Respect Your Elders - Consumption Junction - Oh Novos! - Lockdown! - A Void Dance - Less-rabi - Good Grief - Abuse the Ooze - Lightning Struck - The Culling of Time - The Incredible Hulk - My Girl Loves to Skadi All the Time - Experienced Drake Rider - Ruby Void - Amber Void - Split Personality - Chaos Theory - Hadronox Denied - Volazj's Quick Demise - Volunteer Work - Better Off Dred - Defenseless - Dehydration - What the Eck? - Snakes. Why'd It Have To Be Snakes? - Brann Spankin' New - Timely Death - Shatter Resistant - Zombiefest! - Lodi Dodi We Loves the Skadi - King's Bane - Make It Count - Emerald Void Reward: Reins of the Red Proto-Drake"
+    },
+    {
+      "id": 2556,
+      "patch": "3.0.8",
+      "category": "Exploration",
+      "guide": "Find and love or defeat every critter listed in the achievement criteria.",
+      "name": "Pest Control",
+      "description": "Slay the following pests. - Larva - Spider - Underbelly Rat - Mouse - Roach - Crystal Spider - Maggot - Fjord Rat - Gold Beetle - Water Snake - Squirrel - Devouring Maggot - Zul'Drak Rat - Snake - Adder - Scorpion - Fire Beetle - Rat"
+    },
+    {
+      "id": 2336,
+      "patch": "3.1.0",
+      "category": "Reputation",
+      "guide": "Reach the original required reputation standings with the Steamwheedle Cartel, Ravenholdt, Darkmoon Faire, and the removed Shen'dralar faction.",
+      "name": "Insane in the Membrane",
+      "description": "Raise your reputation to Honored with the Bloodsail Buccaneers, and Exalted with Booty Bay, Everlook, Gadgetzan, Ratchet, Darkmoon Faire, and Ravenholdt. Reward: &lt;Name&gt; the Insane"
+    }
+  ],
+  "remaining": [
+    {
+      "id": 6,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Level 10",
+      "description": "Reach level 10."
+    },
+    {
+      "id": 7,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Level 20",
+      "description": "Reach level 20."
+    },
+    {
+      "id": 8,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Level 30",
+      "description": "Reach level 30."
+    },
+    {
+      "id": 9,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Level 40",
+      "description": "Reach level 40."
+    },
+    {
+      "id": 10,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Level 50 (Legacy)",
+      "description": "Reached level 50 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 11,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Level 60 (Legacy)",
+      "description": "Reached level 60 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 12,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Level 70 (Legacy)",
+      "description": "Reached level 70 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 13,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Level 80 (Legacy)",
+      "description": "Reached level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 15,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Plenty of Pets",
+      "description": "Collect 15 unique pets. - Obtain 15 unique companion pets"
+    },
+    {
+      "id": 16,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Did Somebody Order a Knuckle Sandwich?",
+      "description": "Raise your unarmed skill to 400. - Unarmed skill raised to 400"
+    },
+    {
+      "id": 31,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "A Simple Re-Quest",
+      "description": "Complete a daily quest every day for five consecutive days. - Complete a daily quest every day for five consecutive days."
+    },
+    {
+      "id": 32,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "2000 Quests Completed",
+      "description": "Complete 2000 quests. - Complete 2000 quests."
+    },
+    {
+      "id": 116,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Professional Journeyman",
+      "description": "Obtain 150 skill points in a &quot;Classic&quot; category of a primary profession."
+    },
+    {
+      "id": 131,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Journeyman Medic",
+      "description": "Obtain 150 skill points in first aid."
+    },
+    {
+      "id": 132,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Expert Medic",
+      "description": "Obtain 225 skill points in first aid."
+    },
+    {
+      "id": 133,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Artisan Medic",
+      "description": "Obtain 300 skill points in first aid."
+    },
+    {
+      "id": 134,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Master Medic",
+      "description": "Obtain 375 skill points in first aid."
+    },
+    {
+      "id": 135,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Grand Master Medic",
+      "description": "Obtain 450 skill points in first aid."
+    },
+    {
+      "id": 141,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Ultimate Triage",
+      "description": "Use a Heavy Frostweave Bandage, or any Embersilk or Windwool Bandage, to heal a player who has less than 5% health."
+    },
+    {
+      "id": 227,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Damage Control",
+      "description": "Do 300,000 damage or healing in a single battle in any battleground. The damage or healing must be done to a player. - Damage dealt - Healing done"
+    },
+    {
+      "id": 229,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "The Grim Reaper",
+      "description": "Get 30 Honorable Kills in a single battle in any battleground. Reward: Horde Dueling Flag"
+    },
+    {
+      "id": 231,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Wrecking Ball",
+      "description": "Get 20 killing blows without dying in a single battle in any battleground. Reward: Alliance Dueling Flag"
+    },
+    {
+      "id": 238,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "An Honorable Kill",
+      "description": "Achieve an honorable kill."
+    },
+    {
+      "id": 239,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "25000 Honorable Kills",
+      "description": "Get 25000 honorable kills. - Get 25000 honorable kills"
+    },
+    {
+      "id": 245,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "That Takes Class",
+      "description": "Get an honorable, killing blow on one of each class. - Death Knight - Druid - Mage - Paladin - Rogue - Warlock - Evoker - Demon Hunter - Hunter - Monk - Priest - Shaman - Warrior"
+    },
+    {
+      "id": 246,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Know Thy Enemy",
+      "description": "Get an honorable, killing blow against all Horde races. - Pandaren - Goblin - Tauren - Undead - Highmountain Tauren - Blood Elf - Orc - Troll - Nightborne - Dracthyr Horde"
+    },
+    {
+      "id": 247,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Make Love, Not Warcraft",
+      "description": "Emote /hug on a dead enemy before they release corpse."
+    },
+    {
+      "id": 388,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "City Defender",
+      "description": "Kill 50 enemy players in any of your home cities."
+    },
+    {
+      "id": 397,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Step Into The Arena",
+      "description": "Win a ranked arena match."
+    },
+    {
+      "id": 398,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Mercilessly Dedicated",
+      "description": "Win 100 ranked arena matches. - Win 100 ranked arena matches"
+    },
+    {
+      "id": 399,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Just the Two of Us: 1550",
+      "description": "Earn a 1550 personal rating in the 2v2 bracket of the arena."
+    },
+    {
+      "id": 400,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Just the Two of Us: 1750",
+      "description": "Earn a 1750 personal rating in the 2v2 bracket of the arena."
+    },
+    {
+      "id": 401,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Just the Two of Us: 2000",
+      "description": "Earn a 2000 personal rating in the 2v2 bracket of the arena."
+    },
+    {
+      "id": 402,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Three's Company: 1550",
+      "description": "Earn a 1550 personal rating in the 3v3 bracket of the arena."
+    },
+    {
+      "id": 403,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Three's Company: 1750",
+      "description": "Earn a 1750 personal rating in the 3v3 bracket of the arena."
+    },
+    {
+      "id": 404,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "High Five: 2000",
+      "description": "Earn a 2000 personal rating in the 5v5 bracket of the arena."
+    },
+    {
+      "id": 405,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Three's Company: 2000",
+      "description": "Earn a 2000 personal rating in the 3v3 bracket of the arena."
+    },
+    {
+      "id": 406,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "High Five: 1550",
+      "description": "Earn a 1550 personal rating in the 5v5 bracket of the arena."
+    },
+    {
+      "id": 407,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "High Five: 1750",
+      "description": "Earn a 1750 personal rating in the 5v5 bracket of the arena."
+    },
+    {
+      "id": 408,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Hot Streak",
+      "description": "Win ten ranked matches in a row. - Win 10 arenas without losing"
+    },
+    {
+      "id": 409,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Last Man Standing",
+      "description": "Be the sole survivor at the end of a ranked 5v5 match."
+    },
+    {
+      "id": 418,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Merciless Gladiator",
+      "description": "Achieved Merciless Gladiator title."
+    },
+    {
+      "id": 419,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Vengeful Gladiator",
+      "description": "Achieved Vengeful Gladiator title."
+    },
+    {
+      "id": 420,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Brutal Gladiator",
+      "description": "Achieved Brutal Gladiator title."
+    },
+    {
+      "id": 433,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Grand Marshal",
+      "description": "Earned the title, &quot;Grand Marshal&quot; at level 60. Reward: Grand Marshal &lt;Name&gt;"
+    },
+    {
+      "id": 434,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Field Marshal",
+      "description": "Earned the title, &quot;Field Marshal&quot; at level 60. Reward: Field Marshal &lt;Name&gt;"
+    },
+    {
+      "id": 435,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Commander",
+      "description": "Earned the title, &quot;Commander&quot; at level 60. Reward: Commander &lt;Name&gt;"
+    },
+    {
+      "id": 436,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Lieutenant Commander",
+      "description": "Earned the title, &quot;Lieutenant Commander&quot; at level 60. Reward: Lieutenant Commander &lt;Name&gt;"
+    },
+    {
+      "id": 437,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Knight-Champion",
+      "description": "Earned the title, &quot;Knight-Champion&quot; at level 60. Reward: Knight-Champion &lt;Name&gt;"
+    },
+    {
+      "id": 438,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Knight-Captain",
+      "description": "Earned the title, &quot;Knight-Captain&quot; at level 60. Reward: Knight-Captain &lt;Name&gt;"
+    },
+    {
+      "id": 439,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Knight",
+      "description": "Earned the title, &quot;Knight&quot; at level 60. Reward: Knight &lt;Name&gt;"
+    },
+    {
+      "id": 440,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Sergeant Major",
+      "description": "Earned the title, &quot;Sergeant Major&quot; at level 60. Reward: Sergeant Major &lt;Name&gt;"
+    },
+    {
+      "id": 441,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Master Sergeant",
+      "description": "Earned the title, &quot;Master Sergeant&quot; at level 60. Reward: Master Sergeant &lt;Name&gt;"
+    },
+    {
+      "id": 442,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Private",
+      "description": "Earned the title, &quot;Private&quot; at level 60. Reward: Private &lt;Name&gt;"
+    },
+    {
+      "id": 443,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "High Warlord",
+      "description": "Earned the title, &quot;High Warlord&quot; at level 60. Reward: High Warlord &lt;Name&gt;"
+    },
+    {
+      "id": 444,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Lieutenant General",
+      "description": "Earned the title, &quot;Lieutenant General&quot; at level 60. Reward: Lieutenant General &lt;Name&gt;"
+    },
+    {
+      "id": 445,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Warlord",
+      "description": "Earned the title, &quot;Warlord&quot; at level 60. Reward: Warlord &lt;Name&gt;"
+    },
+    {
+      "id": 446,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "General",
+      "description": "Earned the title, &quot;General&quot; at level 60. Reward: General &lt;Name&gt;"
+    },
+    {
+      "id": 447,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Champion",
+      "description": "Earned the title, &quot;Champion&quot; at level 60. Reward: Champion &lt;Name&gt;"
+    },
+    {
+      "id": 448,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Centurion",
+      "description": "Earned the title, &quot;Centurion&quot; at level 60. Reward: Centurion &lt;Name&gt;"
+    },
+    {
+      "id": 449,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Blood Guard",
+      "description": "Earned the title, &quot;Blood Guard&quot; at level 60. Reward: Blood Guard &lt;Name&gt;"
+    },
+    {
+      "id": 450,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Senior Sergeant",
+      "description": "Earned the title, &quot;Senior Sergeant&quot; at level 60. Reward: Senior Sergeant &lt;Name&gt;"
+    },
+    {
+      "id": 451,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Stone Guard",
+      "description": "Earned the title, &quot;Stone Guard&quot; at level 60. Reward: Stone Guard &lt;Name&gt;"
+    },
+    {
+      "id": 452,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "First Sergeant",
+      "description": "Earned the title, &quot;First Sergeant&quot; at level 60. Reward: First Sergeant &lt;Name&gt;"
+    },
+    {
+      "id": 453,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Sergeant",
+      "description": "Earned the title, &quot;Sergeant&quot; at level 60. Reward: Sergeant &lt;Name&gt;"
+    },
+    {
+      "id": 454,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Scout",
+      "description": "Earned the title, &quot;Scout&quot; at level 60. Reward: Scout &lt;Name&gt;"
+    },
+    {
+      "id": 457,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 (Legacy)",
+      "description": "First person on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 458,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Rogue (Legacy)",
+      "description": "First rogue on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 459,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Warrior (Legacy)",
+      "description": "First warrior on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 460,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Mage (Legacy)",
+      "description": "First mage on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 461,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Death Knight (Legacy)",
+      "description": "First death knight on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 462,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Hunter (Legacy)",
+      "description": "First hunter on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 463,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Warlock (Legacy)",
+      "description": "First warlock on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 464,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Priest (Legacy)",
+      "description": "First priest on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 465,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Paladin (Legacy)",
+      "description": "First paladin on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 466,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Druid (Legacy)",
+      "description": "First druid on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 467,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Shaman (Legacy)",
+      "description": "First shaman on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 468,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Grunt",
+      "description": "Earned the title, &quot;Grunt&quot; at level 60. Reward: Grunt &lt;Name&gt;"
+    },
+    {
+      "id": 469,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Legionnaire",
+      "description": "Earned the title, &quot;Legionnaire&quot; at level 60. Reward: Legionnaire &lt;Name&gt;"
+    },
+    {
+      "id": 470,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Corporal",
+      "description": "Earned the title, &quot;Corporal&quot; at level 60. Reward: Corporal &lt;Name&gt;"
+    },
+    {
+      "id": 471,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Sergeant",
+      "description": "Earned the title, &quot;Sergeant&quot; at level 60. Reward: Sergeant &lt;Name&gt;"
+    },
+    {
+      "id": 472,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Knight-Lieutenant",
+      "description": "Earned the title, &quot;Knight-Lieutenant&quot; at level 60. Reward: Knight-Lieutenant &lt;Name&gt;"
+    },
+    {
+      "id": 473,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Marshal",
+      "description": "Earned the title, &quot;Marshal&quot; at level 60. Reward: Marshal &lt;Name&gt;"
+    },
+    {
+      "id": 503,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "50 Quests Completed",
+      "description": "Complete 50 quests. - Complete 50 quests."
+    },
+    {
+      "id": 504,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "100 Quests Completed",
+      "description": "Complete 100 quests. - Complete 100 quests."
+    },
+    {
+      "id": 505,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "250 Quests Completed",
+      "description": "Complete 250 quests. - Complete 250 quests."
+    },
+    {
+      "id": 506,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "500 Quests Completed",
+      "description": "Complete 500 quests. - Complete 500 quests."
+    },
+    {
+      "id": 507,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "1000 Quests Completed",
+      "description": "Complete 1000 quests. - Complete 1000 quests."
+    },
+    {
+      "id": 508,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "1500 Quests Completed",
+      "description": "Complete 1500 quests. - Complete 1500 quests."
+    },
+    {
+      "id": 509,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "10000 Honorable Kills",
+      "description": "Get 10000 honorable kills. - Get 10000 honorable kills"
+    },
+    {
+      "id": 512,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "5000 Honorable Kills",
+      "description": "Get 5000 honorable kills. - Get 5000 honorable kills"
+    },
+    {
+      "id": 513,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "100 Honorable Kills",
+      "description": "Get 100 honorable kills. - Get 100 honorable kills"
+    },
+    {
+      "id": 515,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "500 Honorable Kills",
+      "description": "Get 500 honorable kills. - Get 500 honorable kills"
+    },
+    {
+      "id": 516,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "1000 Honorable Kills",
+      "description": "Get 1000 honorable kills. - Get 1000 honorable kills"
+    },
+    {
+      "id": 518,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "30 Exalted Reputations",
+      "description": "Raise 30 reputations to Exalted. - Silvermoon/Exodar - Gilneas/Bilgewater - Hozen/Jinyu - Valiance/Warsong - Dragonmaw/Wildhammer"
+    },
+    {
+      "id": 519,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "25 Exalted Reputations",
+      "description": "Raise 25 reputations to Exalted. - Silvermoon/Exodar - Gilneas/Bilgewater - Hozen/Jinyu - Valiance/Warsong - Dragonmaw/Wildhammer"
+    },
+    {
+      "id": 520,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "20 Exalted Reputations",
+      "description": "Raise 20 reputations to Exalted. - Silvermoon/Exodar - Gilneas/Bilgewater - Hozen/Jinyu - Valiance/Warsong - Dragonmaw/Wildhammer"
+    },
+    {
+      "id": 521,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "15 Exalted Reputations",
+      "description": "Raise 15 reputations to Exalted. - Silvermoon/Exodar - Gilneas/Bilgewater - Hozen/Jinyu - Valiance/Warsong - Dragonmaw/Wildhammer - Nazjatar"
+    },
+    {
+      "id": 522,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Somebody Likes Me",
+      "description": "Raise a reputation to Exalted. - Silvermoon/Exodar - Gilneas/Bilgewater - Hozen/Jinyu - Raise 1 reputation to Exalted (New v2) - Valiance/Warsong - Dragonmaw/Wildhammer - Raise 1 reputation to Exalted (New v2)"
+    },
+    {
+      "id": 523,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "5 Exalted Reputations",
+      "description": "Raise 5 reputations to Exalted. - Silvermoon/Exodar - Gilneas/Bilgewater - Hozen/Jinyu - Valiance/Warsong - Dragonmaw/Wildhammer"
+    },
+    {
+      "id": 524,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "10 Exalted Reputations",
+      "description": "Raise 10 reputations to Exalted. - Silvermoon/Exodar - Gilneas/Bilgewater - Hozen/Jinyu - Valiance/Warsong - Dragonmaw/Wildhammer"
+    },
+    {
+      "id": 546,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Safe Deposit",
+      "description": "Buy 7 additional bank slots. - Purchase 7 bank slots"
+    },
+    {
+      "id": 556,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Epic",
+      "description": "Equip an epic item in every slot with a minimum item level of 213 (prior to Battle for Azeroth)."
+    },
+    {
+      "id": 557,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Superior",
+      "description": "Equip a superior item in every slot with a minimum item level of 187 (prior to Battle for Azeroth)."
+    },
+    {
+      "id": 558,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Greedy",
+      "description": "Win a greed roll on a superior or better item above level 185 by rolling 100."
+    },
+    {
+      "id": 559,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Needy",
+      "description": "Win a need roll on a superior or better item above level 185 by rolling 100."
+    },
+    {
+      "id": 621,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Represent",
+      "description": "Collect a tabard slot appearance."
+    },
+    {
+      "id": 699,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "World Wide Winner",
+      "description": "Win a ranked arena match in Blade's Edge, Nagrand, Dalaran Sewers, the Ruins of Lordaeron, Tol'Viron Arena and the Tiger's Peak. - Ruins of Lordaeron - Tol'Viron Arena - Blade's Edge Arena - Dalaran Sewers - The Tiger's Peak - Nagrand Arena"
+    },
+    {
+      "id": 700,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Freedom of the Horde",
+      "description": "Obtain an Insignia or Medallion of the Horde."
+    },
+    {
+      "id": 701,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Freedom of the Alliance",
+      "description": "Obtain an Insignia or Medallion of the Alliance."
+    },
+    {
+      "id": 705,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Master of Arms",
+      "description": "Raise four weapon skills to 400. - Axes - Crossbows - Guns - Polearms - Swords - Two-Handed Swords - Unarmed - Thrown - Bows - Daggers - Maces - Staves - Two-Handed Axes - Two-Handed Maces - Wands"
+    },
+    {
+      "id": 730,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Skills to Pay the Bills",
+      "description": "Obtain 450 skill points in Fishing, First Aid, and Cooking. - Grand Master Fisherman - Grand Master Cook - Grand Master in First Aid"
+    },
+    {
+      "id": 731,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Professional Expert",
+      "description": "Obtain 225 skill points in a &quot;Classic&quot; category of a primary profession."
+    },
+    {
+      "id": 732,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Professional Classic Master",
+      "description": "Obtain 300 skill points in a &quot;Classic&quot; category of a primary profession."
+    },
+    {
+      "id": 733,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Professional Outland Master",
+      "description": "Obtain 75 skill points in an &quot;Outland&quot; category of a primary profession."
+    },
+    {
+      "id": 734,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Professional Northrend Master",
+      "description": "Obtain 75 skill points in a &quot;Northrend&quot; category of a primary profession."
+    },
+    {
+      "id": 735,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Working In the Cold",
+      "description": "Obtain 75 skill points in a &quot;Northrend&quot; category of two primary professions."
+    },
+    {
+      "id": 869,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "50000 Honorable Kills",
+      "description": "Get 50000 honorable kills. - Get 50000 honorable kills"
+    },
+    {
+      "id": 870,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "100000 Honorable Kills",
+      "description": "Get 100000 honorable kills. - Get 100000 honorable kills Reward: &lt;Name&gt; of the Alliance Reward: &lt;Name&gt; of the Horde"
+    },
+    {
+      "id": 875,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Vengefully Dedicated",
+      "description": "Win 200 ranked arena matches. - Win 200 ranked arena matches"
+    },
+    {
+      "id": 876,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Brutally Dedicated",
+      "description": "Win 300 ranked arena matches. - Win 300 ranked arena matches Reward: Tabard of Brute Force"
+    },
+    {
+      "id": 879,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Old School Ride",
+      "description": "Owner of one of the original epic mounts that are no longer attainable."
+    },
+    {
+      "id": 886,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Swift Nether Drake",
+      "description": "Obtain the Swift Nether Drake from Arena Season 1 of The Burning Crusade."
+    },
+    {
+      "id": 887,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Merciless Nether Drake",
+      "description": "Obtain the Merciless Nether Drake from Arena Season 2 of The Burning Crusade."
+    },
+    {
+      "id": 888,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Vengeful Nether Drake",
+      "description": "Obtain the Vengeful Nether Drake from Arena Season 3 of The Burning Crusade."
+    },
+    {
+      "id": 889,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Fast and Furious",
+      "description": "Learn the Journeyman Riding skill."
+    },
+    {
+      "id": 890,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Into the Wild Blue Yonder",
+      "description": "Learn the Expert Riding skill."
+    },
+    {
+      "id": 891,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Giddy Up!",
+      "description": "Learn the Apprentice Riding skill."
+    },
+    {
+      "id": 892,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "The Right Stuff",
+      "description": "Learn the Artisan Riding skill."
+    },
+    {
+      "id": 908,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Call to Arms!",
+      "description": "Complete 100 battlegrounds at max level."
+    },
+    {
+      "id": 909,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Call to Arms!",
+      "description": "Complete 100 battlegrounds at max level."
+    },
+    {
+      "id": 973,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "5 Daily Quests Completed",
+      "description": "Complete 5 daily quests. - Complete 5 daily quests."
+    },
+    {
+      "id": 974,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "50 Daily Quests Completed",
+      "description": "Complete 50 daily quests. - Complete 50 daily quests."
+    },
+    {
+      "id": 975,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "200 Daily Quests Completed",
+      "description": "Complete 200 daily quests. - Complete 200 daily quests."
+    },
+    {
+      "id": 976,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "500 Daily Quests Completed",
+      "description": "Complete 500 daily quests. - Complete 500 daily quests."
+    },
+    {
+      "id": 977,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "1000 Daily Quests Completed",
+      "description": "Complete 1000 daily quests. - Complete 1000 daily quests."
+    },
+    {
+      "id": 978,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "3000 Quests Completed",
+      "description": "Complete 3000 quests. - Complete 3000 quests. Reward: &lt;Name&gt; the Seeker"
+    },
+    {
+      "id": 1005,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Know Thy Enemy",
+      "description": "Get an honorable, killing blow against all Alliance races. - Pandaren - Dwarf - Human - Worgen - Void Elf - Draenei - Gnome - Night Elf - Lightforged Draenei - Dracthyr Alliance"
+    },
+    {
+      "id": 1006,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "City Defender",
+      "description": "Kill 50 enemy players in any of your home cities."
+    },
+    {
+      "id": 1014,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "35 Exalted Reputations",
+      "description": "Raise 35 reputations to Exalted. - Silvermoon/Exodar - Gilneas/Bilgewater - Hozen/Jinyu - Valiance/Warsong - Dragonmaw/Wildhammer"
+    },
+    {
+      "id": 1015,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "40 Exalted Reputations",
+      "description": "Raise 40 reputations to Exalted. - Silvermoon/Exodar - Gilneas/Bilgewater - Hozen/Jinyu - Valiance/Warsong - Dragonmaw/Wildhammer Reward: &lt;Name&gt; the Exalted"
+    },
+    {
+      "id": 1017,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Can I Keep Him?",
+      "description": "Obtain a pet. - Obtain a companion pet"
+    },
+    {
+      "id": 1020,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Ten Tabards",
+      "description": "Collect 10 tabard slot appearances. - Unlock 10 tabard slot appearances."
+    },
+    {
+      "id": 1021,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Twenty-Five Tabards",
+      "description": "Collect 25 tabard slot appearances. - Unlock 25 tabard slot appearances. Reward: Tabard of the Achiever"
+    },
+    {
+      "id": 1157,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Duel-icious",
+      "description": "Win a duel against another player. Reward: Challenger's Dueling Flag"
+    },
+    {
+      "id": 1159,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Just the Two of Us: 2200",
+      "description": "Earn a 2200 personal rating in the 2v2 bracket of the arena."
+    },
+    {
+      "id": 1160,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Three's Company: 2200",
+      "description": "Earn a 2200 personal rating in the 3v3 bracket of the arena."
+    },
+    {
+      "id": 1161,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "High Five: 2200",
+      "description": "Earn a 2200 personal rating in the 5v5 bracket of the arena."
+    },
+    {
+      "id": 1162,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Hotter Streak",
+      "description": "Win ten ranked matches in a row with a personal rating above 1800. - Win 10 arenas without losing"
+    },
+    {
+      "id": 1174,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "The Arena Master",
+      "description": "Complete the arena achievements listed below. - World Wide Winner - Just the Two of Us: 2200 - High Five: 2200 - Hotter Streak - Brutally Dedicated - Three's Company: 2200 - Hot Streak - Last Man Standing Reward: Arena Master &lt;Name&gt;"
+    },
+    {
+      "id": 1176,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Got My Mind On My Money",
+      "description": "Loot 100 gold. - Loot 100 gold"
+    },
+    {
+      "id": 1177,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Got My Mind On My Money",
+      "description": "Loot 1,000 gold. - Loot 1,000 gold"
+    },
+    {
+      "id": 1178,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Got My Mind On My Money",
+      "description": "Loot 5,000 gold. - Loot 5,000 gold"
+    },
+    {
+      "id": 1180,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Got My Mind On My Money",
+      "description": "Loot 10,000 gold. - Loot 10,000 gold"
+    },
+    {
+      "id": 1181,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Got My Mind On My Money",
+      "description": "Loot 25,000 gold. - Loot 25,000 gold"
+    },
+    {
+      "id": 1182,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "The Bread Winner",
+      "description": "Make 10,000 gold from quest rewards. - Make 10,000 gold from quest rewards."
+    },
+    {
+      "id": 1248,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Plethora of Pets",
+      "description": "Collect 25 unique pets. - Obtain 25 unique companion pets"
+    },
+    {
+      "id": 1250,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Shop Smart, Shop Pet...Smart",
+      "description": "Collect 50 unique pets. - Obtain 50 unique companion pets Reward: Reeking Pet Carrier"
+    },
+    {
+      "id": 1404,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Gnome (Legacy)",
+      "description": "First gnome on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 1405,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Blood Elf (Legacy)",
+      "description": "First blood elf on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 1406,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Draenei (Legacy)",
+      "description": "First draenei on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 1407,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Dwarf (Legacy)",
+      "description": "First dwarf on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 1408,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Human (Legacy)",
+      "description": "First human on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 1409,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Night Elf (Legacy)",
+      "description": "First night elf on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 1410,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Orc (Legacy)",
+      "description": "First orc on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 1411,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Tauren (Legacy)",
+      "description": "First tauren on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 1412,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Troll (Legacy)",
+      "description": "First troll on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 1413,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Level 80 Forsaken (Legacy)",
+      "description": "First forsaken on the realm to achieve level 80 prior to the Shadowlands expansion."
+    },
+    {
+      "id": 1414,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Grand Master Blacksmith",
+      "description": "First person on the realm to achieve 450 skill in blacksmithing."
+    },
+    {
+      "id": 1415,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Grand Master Alchemist",
+      "description": "First person on the realm to achieve 450 skill in alchemy."
+    },
+    {
+      "id": 1416,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Grand Master Cook",
+      "description": "First person on the realm to achieve 450 skill in cooking."
+    },
+    {
+      "id": 1417,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Grand Master Enchanter",
+      "description": "First person on the realm to achieve 450 skill in enchanting."
+    },
+    {
+      "id": 1418,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Grand Master Engineer",
+      "description": "First person on the realm to achieve 450 skill in engineering."
+    },
+    {
+      "id": 1419,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Grand Master Medic",
+      "description": "First person on the realm to achieve 450 skill in first aid."
+    },
+    {
+      "id": 1420,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Grand Master Angler",
+      "description": "First person on the realm to achieve 450 skill in fishing."
+    },
+    {
+      "id": 1421,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Grand Master Herbalist",
+      "description": "First person on the realm to achieve 450 skill in herbalism."
+    },
+    {
+      "id": 1422,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Grand Master Scribe",
+      "description": "First person on the realm to achieve 450 skill in inscription."
+    },
+    {
+      "id": 1423,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Grand Master Jewelcrafter",
+      "description": "First person on the realm to achieve 450 skill in jewelcrafting."
+    },
+    {
+      "id": 1424,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Grand Master Leatherworker",
+      "description": "First person on the realm to achieve 450 skill in leatherworking."
+    },
+    {
+      "id": 1425,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Grand Master Miner",
+      "description": "First person on the realm to achieve 450 skill in mining."
+    },
+    {
+      "id": 1426,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Grand Master Skinner",
+      "description": "First person on the realm to achieve 450 skill in skinning."
+    },
+    {
+      "id": 1427,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Realm First! Grand Master Tailor",
+      "description": "First person on the realm to achieve 450 skill in tailoring."
+    },
+    {
+      "id": 1436,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Friends In High Places",
+      "description": "Obtain a Zhevra mount through the Recruit-a-Friend program."
+    },
+    {
+      "id": 1556,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "25 Fish",
+      "description": "Fish up 25 items. - Catch 25 fish"
+    },
+    {
+      "id": 1557,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "50 Fish",
+      "description": "Fish up 50 items. - Catch 50 fish"
+    },
+    {
+      "id": 1558,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "100 Fish",
+      "description": "Fish up 100 items. - Catch 100 fish"
+    },
+    {
+      "id": 1559,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "250 Fish",
+      "description": "Fish up 250 items. - Catch 250 fish"
+    },
+    {
+      "id": 1560,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "500 Fish",
+      "description": "Fish up 500 items. - Catch 500 fish"
+    },
+    {
+      "id": 1561,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "1000 Fish",
+      "description": "Fish up 1000 items. - Catch 1000 fish"
+    },
+    {
+      "id": 1780,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Second That Emotion",
+      "description": "Eat each one of the &quot;emotion&quot; foods listed below. - Bad Clams - Last Week's Mammoth - Haunted Herring - Tasty Cupcake"
+    },
+    {
+      "id": 1785,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Dinner Impossible",
+      "description": "Present a Great Feast in each of the battlegrounds listed below. - Alterac Valley - Warsong Gulch - Arathi Basin - Eye of the Storm"
+    },
+    {
+      "id": 1795,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Lunch Lady",
+      "description": "Learn 25 cooking recipes."
+    },
+    {
+      "id": 1796,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Short Order Cook",
+      "description": "Learn 50 cooking recipes."
+    },
+    {
+      "id": 1797,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Chef de Partie",
+      "description": "Learn 75 cooking recipes."
+    },
+    {
+      "id": 1798,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Sous Chef",
+      "description": "Learn 100 cooking recipes."
+    },
+    {
+      "id": 1799,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Chef de Cuisine",
+      "description": "Learn 160 cooking recipes."
+    },
+    {
+      "id": 1832,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Tastes Like Chicken",
+      "description": "Sample 50 different kinds of Azeroth's delectable dishes."
+    },
+    {
+      "id": 1833,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "It's Happy Hour Somewhere",
+      "description": "Drink 25 different types of beverages."
+    },
+    {
+      "id": 2090,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Challenger",
+      "description": "Earn the Challenger title in an arena season. Reward: Challenger &lt;Name&gt;"
+    },
+    {
+      "id": 2091,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Gladiator",
+      "description": "Earn the Gladiator title in an arena season. - Earn the Gladiator title in an arena season. Reward: Custom Gladiator Mount"
+    },
+    {
+      "id": 2092,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Duelist",
+      "description": "Earn the Duelist title in an arena season. Reward: Duelist &lt;Name&gt;"
+    },
+    {
+      "id": 2093,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Rival",
+      "description": "Earn the Rival title in an arena season. Reward: Rival &lt;Name&gt;"
+    },
+    {
+      "id": 2141,
+      "patch": "3.0",
+      "category": "Collections",
+      "guide": "Learn, buy, or earn the mount named by the achievement.",
+      "name": "Stable Keeper",
+      "description": "Obtain 10 mounts (usable by a single character). - Obtain 10 mounts"
+    },
+    {
+      "id": 2142,
+      "patch": "3.0",
+      "category": "Collections",
+      "guide": "Learn, buy, or earn the mount named by the achievement.",
+      "name": "Filling Up The Barn",
+      "description": "Obtain 25 mounts (usable by a single character). - Obtain 25 mounts"
+    },
+    {
+      "id": 2143,
+      "patch": "3.0",
+      "category": "Collections",
+      "guide": "Learn, buy, or earn the mount named by the achievement.",
+      "name": "Leading the Cavalry",
+      "description": "Obtain 50 mounts (usable by a single character). - Obtain 50 mounts Reward: Reins of the Albino Drake"
+    },
+    {
+      "id": 2316,
+      "patch": "3.0",
+      "category": "Legacy and Wrath Launch",
+      "guide": "Complete the achievement's exact in-game criteria.",
+      "name": "Brutal Nether Drake",
+      "description": "Obtain the Brutal Nether Drake from Arena Season 4 of The Burning Crusade."
+    },
+    {
+      "id": 2516,
+      "patch": "3.0.8",
+      "category": "Collections",
+      "guide": "Collect 75 companion pets or 100 mounts under the original account rules.",
+      "name": "Lil' Game Hunter",
+      "description": "Collect 75 unique pets. - Collect 75 unique pets. Reward: Little Fawn's Salt Lick"
+    },
+    {
+      "id": 2536,
+      "patch": "3.0.8",
+      "category": "Collections",
+      "guide": "Collect 75 companion pets or 100 mounts under the original account rules.",
+      "name": "Mountain o' Mounts",
+      "description": "Obtain 100 mounts (usable by a single character). - Obtain 100 mounts Reward: Blue Dragonhawk"
+    },
+    {
+      "id": 2537,
+      "patch": "3.0.8",
+      "category": "Collections",
+      "guide": "Collect 75 companion pets or 100 mounts under the original account rules.",
+      "name": "Mountain o' Mounts",
+      "description": "Obtain 100 mounts (usable by a single character). - Obtain 100 mounts Reward: Red Dragonhawk"
+    },
+    {
+      "id": 2358,
+      "patch": "3.1.0",
+      "category": "Class",
+      "guide": "Have completed the original Warlock Dreadsteed, Paladin Charger, or Druid Swift Flight Form questline.",
+      "name": "Charger",
+      "description": "Completed the paladin quest to obtain a Charger."
+    },
+    {
+      "id": 2716,
+      "patch": "3.1.0",
+      "category": "Character",
+      "guide": "Purchase and activate the original dual-specialization feature.",
+      "name": "Dual Talent Specialization",
+      "description": "Visit your class trainer when you are at least level 30 and activate your Dual Talent Specialization."
+    },
+    {
+      "id": 3096,
+      "patch": "3.1.0",
+      "category": "PvP",
+      "guide": "Earn the original Deadly Gladiator title or Frost Wyrm.",
+      "name": "Deadly Gladiator's Frost Wyrm",
+      "description": "Obtain the Deadly Gladiator's Frost Wyrm from Arena Season 5 of Wrath of the Lich King."
+    },
+    {
+      "id": 3336,
+      "patch": "3.1.0",
+      "category": "PvP",
+      "guide": "Earn the original Deadly Gladiator title or Frost Wyrm.",
+      "name": "Deadly Gladiator",
+      "description": "Achieved Deadly Gladiator title."
+    },
+    {
+      "id": 3436,
+      "patch": "3.2.0",
+      "category": "PvP",
+      "guide": "Earn the listed Gladiator title or Frost Wyrm from its original ranked arena season.",
+      "name": "Furious Gladiator",
+      "description": "Achieved Furious Gladiator title."
+    },
+    {
+      "id": 3756,
+      "patch": "3.2.0",
+      "category": "PvP",
+      "guide": "Earn the listed Gladiator title or Frost Wyrm from its original ranked arena season.",
+      "name": "Furious Gladiator's Frost Wyrm",
+      "description": "Obtain the Furious Gladiator's Frost Wyrm from Arena Season 6 of Wrath of the Lich King."
+    },
+    {
+      "id": 3757,
+      "patch": "3.2.0",
+      "category": "PvP",
+      "guide": "Earn the listed Gladiator title or Frost Wyrm from its original ranked arena season.",
+      "name": "Relentless Gladiator's Frost Wyrm",
+      "description": "Obtain the Relentless Gladiator's Frost Wyrm from Arena Season 7 of Wrath of the Lich King."
+    },
+    {
+      "id": 3758,
+      "patch": "3.2.0",
+      "category": "PvP",
+      "guide": "Earn the listed Gladiator title or Frost Wyrm from its original ranked arena season.",
+      "name": "Relentless Gladiator",
+      "description": "Achieved Relentless Gladiator title."
+    },
+    {
+      "id": 3844,
+      "patch": "3.2.0",
+      "category": "Feats of Strength",
+      "guide": "Loot the listed historical total of Wrath emblems.",
+      "name": "1000 Dungeon & Raid Emblems",
+      "description": "Loot 1000 Emblems of Heroism, Valor, Conquest, Triumph or Frost."
+    },
+    {
+      "id": 4316,
+      "patch": "3.2.0",
+      "category": "Feats of Strength",
+      "guide": "Loot the listed historical total of Wrath emblems.",
+      "name": "2500 Dungeon & Raid Emblems",
+      "description": "Loot 2500 Emblems of Heroism, Valor, Conquest, Triumph or Frost."
+    },
+    {
+      "id": 4476,
+      "patch": "3.3.0",
+      "category": "Dungeons",
+      "guide": "Finish random heroic dungeons until grouped with the listed number of different random players.",
+      "name": "Looking For More",
+      "description": "Use the Dungeon Finder tool to finish random heroic dungeons until you have grouped with 10 random players total. - Use the Dungeon Finder tool to finish random heroic dungeons until you have grouped with 10 random players total."
+    },
+    {
+      "id": 4477,
+      "patch": "3.3.0",
+      "category": "Dungeons",
+      "guide": "Finish random heroic dungeons until grouped with the listed number of different random players.",
+      "name": "Looking For Many",
+      "description": "Use the Dungeon Finder tool to finish random heroic dungeons until you have grouped with 50 random players total. - Use the Dungeon Finder tool to finish random heroic dungeons until you have grouped with 50 random players total. Reward: &lt;Name&gt; the Patient"
+    },
+    {
+      "id": 4478,
+      "patch": "3.3.0",
+      "category": "Dungeons",
+      "guide": "Finish random heroic dungeons until grouped with the listed number of different random players.",
+      "name": "Looking For Multitudes",
+      "description": "Use the Dungeon Finder tool to finish random heroic dungeons until you have grouped with 100 random players total. - Use the Dungeon Finder tool to finish random heroic dungeons until you have grouped with 100 random players total. Reward: Perky Pug"
+    },
+    {
+      "id": 4496,
+      "patch": "3.3.0",
+      "category": "Collections",
+      "guide": "Earn more than 9,000 achievement points.",
+      "name": "It's Over Nine Thousand!",
+      "description": "Earn more than 9000 achievement points."
+    },
+    {
+      "id": 4599,
+      "patch": "3.3.0",
+      "category": "PvP",
+      "guide": "Earn the original Wrathful Gladiator title or Frost Wyrm.",
+      "name": "Wrathful Gladiator",
+      "description": "Achieved Wrathful Gladiator title."
+    },
+    {
+      "id": 4600,
+      "patch": "3.3.0",
+      "category": "PvP",
+      "guide": "Earn the original Wrathful Gladiator title or Frost Wyrm.",
+      "name": "Wrathful Gladiator's Frost Wyrm",
+      "description": "Obtain the Wrathful Gladiator's Frost Wyrm from Arena Season 8 of Wrath of the Lich King."
+    }
+  ],
+  "historicalRemaining": 106,
+  "guideContexts": {
+    "2.0": [
+      124,
+      129
+    ],
+    "2.3": [
+      877
+    ],
+    "2.4": [
+      1801
+    ],
+    "3.0": [
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      137,
+      153,
+      727,
+      877,
+      878,
+      1206,
+      1243,
+      1244,
+      1254,
+      1257,
+      1777,
+      1778,
+      1779,
+      1781,
+      1801,
+      1998,
+      1999,
+      2000,
+      2001,
+      2002,
+      2097
+    ],
+    "3.1.0": [
+      2336,
+      2953,
+      2954,
+      3014,
+      3017
+    ],
+    "3.3.0": [
+      4601,
+      4621
+    ],
+    "4.0.0": [
+      5444
+    ],
+    "7.0.0": [
+      10553
+    ]
+  },
+  "nativeWoWValidated": false
+}

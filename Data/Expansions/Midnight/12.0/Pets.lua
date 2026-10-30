@@ -148,7 +148,7 @@ TDP.CatalogRegistry:RegisterCollection("12.0", "pets", {
             sourceType = "Renown Vendor",
             waypoints = { "/way #2405 52.6 72.8 Void Researcher Anomander / The Singularity rewards" },
         },
-        ["Bubbly Snapling"] = { acquisition = "Fish up and open the Patient Chest during the Midnight launch fishing activity.", source = "Patient Chest", sourceType = "Fishing" },
+        ["Bubbly Snapling"] = { acquisition = "Fish in Midnight waters and loot the Patient Chest that can randomly spawn nearby for a chance at this pet. Chests are not guaranteed and do not always contain the pet.", source = "Patient Chest", sourceType = "Fishing" },
         Chillcrawler = shared["Patch-filtered pet species 2"],
         Dali = {
             acquisition = "Loot Burbling Paint Pot in Eversong Woods; Wowhead notes you must be near or in water to use the object that teaches the pet.",

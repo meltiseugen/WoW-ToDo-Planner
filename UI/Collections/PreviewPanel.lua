@@ -5,6 +5,82 @@ local PREVIEW_VISUAL_WIDTH = 300
 local PREVIEW_VISUAL_HEIGHT = 240
 local PREVIEW_DETAIL_TOP_OFFSET = -254
 
+function Preview:GetPreviewAchievementId(row)
+    if not row then return nil end
+    if row.collectionType == "achievements" then
+        return tonumber(type(row.entry) == "table" and row.entry.achievementId or row.entry)
+    end
+    return TDP.PatchCatalog:GetCollectionSourceAchievementId(row.collectionType, row.patchKey, row.entry)
+end
+
+function Preview:GetCollectionMapAchievementId(row)
+    if row and row.collectionType ~= "achievements" then
+        local info = TDP.PatchCatalog.GetCollectionSourceInfo and TDP.PatchCatalog:GetCollectionSourceInfo(row.collectionType, row.patchKey, row.entry)
+        if info and info.kind == "Vendor" then return nil end
+        return self:GetPreviewAchievementId(row)
+    end
+end
+
+function Preview:GetCollectionMapActionHelp(row)
+    if self:GetCollectionMapAchievementId(row) then
+        return "View Achievement", "Open the rewarding achievement in TODO-Planner's Achievements tab."
+    end
+    local details = row and TDP.PatchCatalog.GetCollectionDetails
+        and TDP.PatchCatalog:GetCollectionDetails(row.collectionType, row.patchKey, row.entry)
+    if details and details.automaticUnlock then
+        return "Automatic Unlock", "Learned automatically on the required race and class. There is no vendor, quest giver or drop location to visit."
+    end
+    local info = row and TDP.PatchCatalog.GetCollectionSourceInfo
+        and TDP.PatchCatalog:GetCollectionSourceInfo(row.collectionType, row.patchKey, row.entry)
+    local recorded = row and TDP.PatchCatalog.GetDescriptionMapLocations
+        and TDP.PatchCatalog:GetDescriptionMapLocations(row.collectionType, row.entry)
+    if info and info.areaOnly or recorded and recorded.areaMaps then
+        return "Source Area", "Open the known source area. A precise NPC or object position is not recorded."
+    elseif info and info.progressType == "secret" then
+        return "Secret Map", "Open this character's next unfinished secret step."
+    elseif info and info.questID then
+        return "Quest Map", "Open this character's next unfinished quest or current quest objective."
+    elseif info and info.kind == "Vendor" then
+        return "Vendor Map", "Open the seller's recorded location."
+    end
+    return "Open Map", self:IsCollectionMapRow(row) and "Open the recorded catalog locations for this collection."
+        or "No catalog location is recorded for this collection."
+end
+
+function Preview:OpenCollectionSourceAchievement(row, achievementId)
+    local explorer = self.OpenAchievement and self
+        or self.homeWindow and self.homeWindow.explorerWindow or TDP.explorerWindow
+    if explorer then
+        return explorer:OpenAchievement(achievementId, row.patchKey)
+    end
+    TDP.Utils:Msg("Collections window is unavailable.", "warnings")
+    return false
+end
+
+function Preview:UpdatePreviewAchievementButton(row)
+    local button = self.previewAchievementButton
+    if not button then return end
+    local achievementId = self:GetPreviewAchievementId(row)
+    button:SetShown(achievementId ~= nil)
+    if achievementId then
+        button:SetText(row.collectionType == "achievements" and "Open Achievement" or "View Achievement")
+        Widgets:SetButtonEnabled(button, true)
+    end
+end
+
+function Preview:OpenPreviewAchievement()
+    local row = self.selectedRow
+    local achievementId = self:GetPreviewAchievementId(row)
+    if not achievementId then return end
+    if row.collectionType == "achievements" then
+        if not TDP.Achievements or not TDP.Achievements:OpenAchievement(achievementId) then
+            TDP.Utils:Msg("Could not open that achievement in the achievement window.", "warnings")
+        end
+        return
+    end
+    self:OpenCollectionSourceAchievement(row, achievementId)
+end
+
 function Preview:BuildPreviewPanel(previewPanel, includeAchievement)
     local previewVisual = CreateFrame("Frame", nil, previewPanel)
     previewVisual:SetPoint("TOPLEFT", previewPanel, "TOPLEFT", 12, -12)
@@ -18,7 +94,12 @@ function Preview:BuildPreviewPanel(previewPanel, includeAchievement)
     previewModel:SetAllPoints(previewVisual)
     previewModel:EnableMouse(true)
     previewModel:EnableMouseWheel(true)
+    previewModel:SetKeepModelOnHide(true)
     previewModel:Hide()
+    previewModel:SetScript("OnModelLoaded", function(model)
+        if self.previewModel ~= model then return end
+        self:ApplyPreviewModelTransform()
+    end)
 
     local previewModelControls = CreateFrame("Frame", nil, previewVisual)
     previewModelControls:SetPoint("BOTTOMLEFT", previewVisual, "BOTTOMLEFT", 4, 4)
@@ -60,6 +141,7 @@ function Preview:BuildPreviewPanel(previewPanel, includeAchievement)
         previewAchievementButton = Widgets:CreateButton(previewPanel, 142, 24, "Open Achievement", "primary")
         previewAchievementButton:SetPoint("TOPLEFT", previewStatus, "BOTTOMLEFT", 0, -8)
         previewAchievementButton:Hide()
+        previewAchievementButton:SetScript("OnClick", function() self:OpenPreviewAchievement() end)
     end
 
     local detailPanel = Widgets:CreatePanel(previewPanel, "input", "inputBorder")
@@ -96,6 +178,7 @@ function Preview:BuildPreviewPanel(previewPanel, includeAchievement)
     self.previewVisual = previewVisual
     self.previewIcon = previewIcon
     self.previewModel = previewModel
+    self.creaturePreviewModel = previewModel
     self.previewModelControls = previewModelControls
     self.modelZoomOutButton = modelZoomOutButton
     self.modelResetButton = modelResetButton
@@ -107,4 +190,15 @@ function Preview:BuildPreviewPanel(previewPanel, includeAchievement)
     self.previewDetailsContent = previewDetailsContent
     self.previewDetails = previewDetails
     self.previewAchievementButton = previewAchievementButton
+end
+
+function Preview:BuildCosmeticPreviewMessage()
+    local controls = self.previewModelControls
+    local message = Widgets:CreateFontString(controls, "OVERLAY", "GameFontHighlightSmall")
+    message:SetPoint("BOTTOMLEFT", controls, "TOPLEFT", 0, 6)
+    message:SetPoint("RIGHT", controls, "RIGHT", 0, 0)
+    message:SetJustifyH("CENTER")
+    message:SetWordWrap(true)
+    message:Hide()
+    self.previewModelMessage = message
 end

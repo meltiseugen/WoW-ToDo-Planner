@@ -529,16 +529,7 @@ function ThemeManager:BuildMinimalVoidglassSpec()
     })
 end
 
-function ThemeManager:Create()
-    if self.theme then
-        return self.theme
-    end
-
-    if type(ThemeLibrary) ~= "table" or type(ThemeLibrary.New) ~= "function" then
-        return nil
-    end
-
-    local themeKey = self:GetSelectedThemeKey()
+function ThemeManager:BuildSpec(themeKey)
     local builders = {
         parchment = self.BuildParchmentSpec,
         quietBotanical = self.BuildQuietBotanicalSpec,
@@ -549,6 +540,30 @@ function ThemeManager:Create()
     }
     local builder = builders[themeKey] or builders[C.DEFAULT_DB.settings.visualTheme]
     local spec = builder(self)
+    spec.buttonPalettes.nearby = {
+        bg = { 0.025, 0.22, 0.28, 0.98 },
+        border = { 0.16, 0.72, 0.86, 0.70 },
+        hoverBg = { 0.035, 0.31, 0.38, 0.98 },
+        hoverBorder = { 0.30, 0.90, 1.00, 0.90 },
+        pressedBg = { 0.015, 0.14, 0.19, 0.98 },
+        pressedBorder = { 0.16, 0.72, 0.86, 0.90 },
+        selectedBg = { 0.035, 0.31, 0.38, 0.98 },
+        selectedBorder = { 0.30, 0.90, 1.00, 0.90 },
+        text = { 0.88, 0.98, 1.00 },
+    }
+    return spec
+end
+
+function ThemeManager:Create()
+    if self.theme then
+        return self.theme
+    end
+
+    if type(ThemeLibrary) ~= "table" or type(ThemeLibrary.New) ~= "function" then
+        return nil
+    end
+
+    local spec = self:BuildSpec(self:GetSelectedThemeKey())
     self.theme = ThemeLibrary:New({
         addon = self.addon.EventFrame,
         key = spec.key,

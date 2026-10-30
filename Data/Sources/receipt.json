@@ -1,0 +1,32 @@
+{
+  "counts": {
+    "cosmetics": 2579,
+    "mounts": 962,
+    "pets": 1474,
+    "quests": 5819,
+    "toys": 726
+  },
+  "curatedSourceSha256": "ad638ff42db7e04cee60351615db709413f9160b59652e927d4abf74e1c250f6",
+  "files": {
+    "LICENSE": "955281b9174e0f66b08c8e83d31e0f38b2fcaa247ca3af92d1723d81a13cddfb",
+    "db/Standard/Categories/BlackMarket.lua": "37718a7c5e02709af48d95f4d0b08fe917dc684ac45a33db379e7357966333b9",
+    "db/Standard/Categories/Character.lua": "c17c7e355869c6cf9e140b1c0bbdad77a6bdfa049d9227b57b7cff05c7defb5a",
+    "db/Standard/Categories/Craftables.lua": "5570ea3d10fe506e772f9db135f6c56fb1fe34398cfcb33e563a7b4f1ae9604b",
+    "db/Standard/Categories/Delves.lua": "bc78e6e65b87af2711779ce4523638050b4dad138f3b6ed873ef7291578a1b7c",
+    "db/Standard/Categories/ExpansionFeatures.lua": "9db95bd3f0f6dc2e73ed720ad004f247731fe2c86c065c190ebc2011f445fa64",
+    "db/Standard/Categories/Holidays.lua": "e49a84fbf9926f73df34fd5884a5c5e20548cd4b2b7890e9a224772b4d45b8bf",
+    "db/Standard/Categories/InGameShop.lua": "90255329a489d78ca3ff0a413147ec11cacdfc36617506edd4b59a1084338257",
+    "db/Standard/Categories/Instances.lua": "09cc392af67cd15cb93430dcdc38359c1d76bc157480b177e61f34a99b6c3a85",
+    "db/Standard/Categories/PVP.lua": "a6945881f6da8931fe0a27c1943bd6d8e4c93707afdf6aacd53571af3516317a",
+    "db/Standard/Categories/Professions.lua": "d72df9cbd58f1d85375e3f09296f85542e77179faa1324b686a7104921e02ae2",
+    "db/Standard/Categories/Promotions.lua": "dad8f5b2e7789fd55df9651f04a46e3c5ed56d9be65429b82caed6f48febee96",
+    "db/Standard/Categories/Secrets.lua": "ef46b31bb0c69e257e538a41997a63a6b3028c5e0e8e8cc9e824274d891e3814",
+    "db/Standard/Categories/TradingPost.lua": "537c95796861f48c3ad75b54caff98a7b9a1e28dad379cd538c0f13c25725f87",
+    "db/Standard/Categories/WorldDrops.lua": "2b67a6d9c9c1a72fcf12d592221de360efa37b3d77f7ea14666a2699edf7cb90",
+    "db/Standard/Categories/WorldEvents.lua": "ce13a5067cdc033f56d58fb4a17c4759b56a8b4622efb9a4483d1a03870e1f44",
+    "db/Standard/Categories/Zones.lua": "e2f0da2107c115e89452f9512de91a2b97cd362ff25dbf922ec615cf158442d5"
+  },
+  "repository": "https://github.com/ATTWoWAddon/AllTheThings",
+  "reviewedAt": "2026-10-30",
+  "revision": "f8113a527789bf361e070d7cde94d1f57a22b2b8"
+}

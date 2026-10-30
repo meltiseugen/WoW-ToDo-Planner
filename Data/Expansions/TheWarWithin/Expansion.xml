@@ -59,4 +59,6 @@
     <Script file="11.1.5/Availability.lua"/>
     <Script file="11.0/Availability.lua"/>
     <Script file="11.0.5/Availability.lua"/>
+    <Script file="11.0.7/Unobtainable.lua"/>
+    <Script file="11.2.7/Unobtainable.lua"/>
 </Ui>

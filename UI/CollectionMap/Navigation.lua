@@ -4,6 +4,64 @@ local DEFAULT_MAP_ID = CollectionMapWindow.Config.DEFAULT_MAP_ID
 local MIN_ZOOM = CollectionMapWindow.Config.MIN_ZOOM
 local MAX_ZOOM = CollectionMapWindow.Config.MAX_ZOOM
 
+function CollectionMapWindow:StartMapDrag(source)
+    if type(GetCursorPosition) ~= "function" or not self.mapContent then
+        return
+    end
+
+    self:StopMapDrag()
+    self.dragging = true
+    self.dragSource = source
+    source.suppressMapClick = nil
+    self.dragX, self.dragY = GetCursorPosition()
+    self.dragStartX, self.dragStartY = self.dragX, self.dragY
+    self.mapViewport:SetScript("OnUpdate", function()
+        -- MouseUp may be missed when the pointer is released outside the map.
+        if not IsMouseButtonDown("LeftButton") then
+            self:StopMapDrag()
+            return
+        end
+        self:UpdateMapDrag()
+    end)
+    if GameTooltip then
+        GameTooltip:Hide()
+    end
+end
+
+function CollectionMapWindow:UpdateMapDrag()
+    if not self.dragging then
+        return
+    end
+
+    local cursorX, cursorY = GetCursorPosition()
+    local startDeltaX, startDeltaY = cursorX - self.dragStartX, cursorY - self.dragStartY
+    -- Allow a little pointer jitter when clicking a waypoint pin.
+    if startDeltaX * startDeltaX + startDeltaY * startDeltaY > 16 then
+        self.dragMoved = true
+    end
+
+    -- Anchor offsets belong to mapContent, including its map zoom and UI scale.
+    local scale = self.mapContent:GetEffectiveScale()
+    self.panX = (self.panX or 0) + (cursorX - self.dragX) / scale
+    self.panY = (self.panY or 0) + (cursorY - self.dragY) / scale
+    self.dragX, self.dragY = cursorX, cursorY
+    self:UpdateCanvasPosition()
+end
+
+function CollectionMapWindow:StopMapDrag()
+    if self.dragSource then
+        self.dragSource.suppressMapClick = self.dragMoved == true
+    end
+    self.dragging = false
+    self.dragSource = nil
+    self.dragMoved = nil
+    self.dragX, self.dragY = nil, nil
+    self.dragStartX, self.dragStartY = nil, nil
+    if self.mapViewport then
+        self.mapViewport:SetScript("OnUpdate", nil)
+    end
+end
+
 function CollectionMapWindow:ClampZoom(value)
     value = tonumber(value) or 1
     if value < MIN_ZOOM then
@@ -25,6 +83,7 @@ function CollectionMapWindow:GetMapName(mapID)
 end
 
 function CollectionMapWindow:NavigateToParentMap()
+    self:StopMapDrag()
     local mapInfo = nil
     if C_Map and C_Map.GetMapInfo then
         local ok, result = pcall(C_Map.GetMapInfo, self.mapID)
@@ -43,7 +102,6 @@ function CollectionMapWindow:NavigateToParentMap()
     self.zoom = 1
     self.panX = 0
     self.panY = 0
-    self.dragging = false
     self:RenderMap()
     return true
 end
@@ -70,9 +128,7 @@ function CollectionMapWindow:AdjustZoom(delta)
 end
 
 function CollectionMapWindow:ResetView()
-    self.dragging = false
-    self.dragX = nil
-    self.dragY = nil
+    self:StopMapDrag()
     self.zoom = 1
     self.panX = 0
     self.panY = 0
@@ -86,7 +142,6 @@ function CollectionMapWindow:ResetToInitialMap()
     end
 
     self.mapID = self.initialMapID
-    self.dragging = false
     self:ResetView()
     return true
 end

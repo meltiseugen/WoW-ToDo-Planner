@@ -444,10 +444,11 @@ TDP.CatalogRegistry:RegisterCollection("7.0.0", "achievements", {
             tips = "Check the raid difficulty and weekly loot lockout before farming; use eligible alts where the source permits it.",
         },
         [10553] = {
-            acquisition = "Defeat Millificent Manastorm after she becomes very cross with you in Assault on Violet Hold on Mythic difficulty.",
-            source = "You're Just Making It WORSE!",
+            acquisition = "1. Enter Assault on Violet Hold on Mythic difficulty in Broken Isles Dalaran. Millificent Manastorm must be one of the bosses released in that run.\n2. Damage Millificent slowly and wait for Millhouse's dialogue about disarming her squirrel bombs. Defuse a bomb instead of bursting her down.\n3. Continue carefully until Millhouse mocks her hair and she gains her rage effect. Use /laugh at her if following the dialogue prompt.\n4. Kill Millificent while she is enraged. The Manastorm's Duplicator toy is an optional shortcut, not a required purchase.",
             sourceType = "Achievement",
-            tips = "Check the raid difficulty and weekly loot lockout before farming; use eligible alts where the source permits it.",
+            source = "Assault on Violet Hold entrance",
+            sourceURL = "https://www.wowhead.com/achievement=10553#comments",
+            waypoints = { "/way #627 66.2 68.4 Assault on Violet Hold entrance" },
         },
         [10554] = {
             acquisition = "Defeat Festerface after slaying a Black Bile in Assault on Violet Hold on Mythic difficulty.",

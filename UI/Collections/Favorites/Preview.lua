@@ -4,15 +4,17 @@ local Widgets = TDP.Widgets
 
 function FavoritesWindow:RenderPreview()
     local row = self.selectedRow
+    local achievementId = self:GetCollectionMapAchievementId(row)
+    local _, mapHelp = self:GetCollectionMapActionHelp(row)
+    self.previewMapButton.tooltipText = mapHelp
+    local mapLabel = achievementId and "Achievement" or "Map"
+    local mapButtonLabel = self.previewMapButton.label or self.previewMapButton
+    if mapButtonLabel:GetText() ~= mapLabel then self.previewMapButton:SetText(mapLabel) end
+    local mapWidth = achievementId and 100 or 74
+    if self.previewMapButton:GetWidth() ~= mapWidth then self.previewMapButton:SetWidth(mapWidth) end
+    self:RenderPreviewVisual(row)
+    self:UpdatePreviewAchievementButton(row)
     if not row then
-        if self.previewModel then
-            self.previewModel:Hide()
-        end
-        if self.previewModelControls then
-            self.previewModelControls:Hide()
-        end
-        self.previewIcon:Show()
-        self.previewIcon:SetTexture("Interface\\Icons\\INV_Misc_QuestionMark")
         self.previewTitle:SetText("Select a favorite")
         self.previewMeta:SetText("")
         self.previewStatus:SetText("")
@@ -22,36 +24,6 @@ function FavoritesWindow:RenderPreview()
         self.previewMapButton:Hide()
         Widgets:SetButtonEnabled(self.previewRemoveButton, false)
         return
-    end
-
-    local didShowModel = false
-    if self.previewModel and self.previewModel.SetDisplayInfo and row.state and row.state.modelId then
-        local ok = pcall(self.previewModel.SetDisplayInfo, self.previewModel, row.state.modelId)
-        if ok then
-            local rowKey = self:GetRowKey(row)
-            if self.previewModelRowKey ~= rowKey then
-                self:ResetPreviewModelTransform(rowKey)
-            else
-                self:ApplyPreviewModelTransform()
-            end
-            if self.previewModelControls then
-                self.previewModelControls:Show()
-            end
-            self.previewModel:Show()
-            self.previewIcon:Hide()
-            didShowModel = true
-        end
-    end
-
-    if not didShowModel then
-        if self.previewModel then
-            self.previewModel:Hide()
-        end
-        if self.previewModelControls then
-            self.previewModelControls:Hide()
-        end
-        self.previewIcon:Show()
-        self.previewIcon:SetTexture(row.icon or "Interface\\Icons\\INV_Misc_QuestionMark")
     end
 
     self.previewTitle:SetText(row.name or "Unknown")

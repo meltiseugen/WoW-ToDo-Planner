@@ -61,7 +61,7 @@ function FrameMethods:GetCriteriaRow(index)
         end
 
         if not Achievements:OpenAchievement(achievementId) then
-            Utils:Msg("Could not open that achievement in the achievement window.")
+            Utils:Msg("Could not open that achievement in the achievement window.", "warnings")
         end
     end)
     row.wowheadButton:SetScript("OnClick", function(target)

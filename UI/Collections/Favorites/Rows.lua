@@ -93,6 +93,8 @@ function FavoritesWindow:BuildVisibleRows()
             local reward = (state and state.reward) or (rewardEntry and rewardEntry.reward)
             local collected = state and state.collected == true
             local mountCategory = favorite.collectionType == "mounts" and PatchCatalog:GetMountCategory(favorite.patchKey, entry) or nil
+            local sourceCategory = favorite.collectionType ~= "achievements" and self:GetSourceCategory(favorite.collectionType, favorite.patchKey, entry) or nil
+            local cosmeticType = favorite.collectionType == "cosmetics" and self:GetCosmeticType(entry) or nil
             local mountSource = favorite.collectionType == "mounts" and PatchCatalog:GetMountSourceSummary(favorite.patchKey, entry) or nil
             local mountAcquisition = favorite.collectionType == "mounts" and PatchCatalog:GetMountAcquisitionText(favorite.patchKey, entry) or nil
             local cosmeticSource = favorite.collectionType == "cosmetics" and PatchCatalog:GetCosmeticSourceSummary(favorite.patchKey, entry) or nil
@@ -110,13 +112,17 @@ function FavoritesWindow:BuildVisibleRows()
                     cosmeticSource or "",
                     cosmeticAcquisition or "",
                     cosmeticSubtype or "",
+                    sourceCategory or "",
+                    cosmeticType and self:GetCosmeticTypeLabel(cosmeticType) or "",
+                    self:GetRowMetaPrefix({ collectionType = favorite.collectionType, patchKey = favorite.patchKey,
+                        entry = entry, sourceCategory = sourceCategory, cosmeticType = cosmeticType, cosmeticSubtype = cosmeticSubtype }),
                     self:GetTypeLabel(favorite.collectionType),
                     tostring(self:GetEntryId(favorite.collectionType, entry) or favorite.entryId or ""),
                 }, " "))
                 searchMatches = haystack:find(searchText, 1, true) ~= nil
             end
 
-            if searchMatches then
+            if searchMatches and not PatchCatalog:IsCollectionHiddenInUI(favorite.collectionType, favorite.patchKey, entry) then
                 self.visibleRows[#self.visibleRows + 1] = {
                     favorite = favorite,
                     patchKey = favorite.patchKey,
@@ -128,6 +134,8 @@ function FavoritesWindow:BuildVisibleRows()
                     collected = collected,
                     reward = reward,
                     mountCategory = mountCategory,
+                    sourceCategory = sourceCategory,
+                    cosmeticType = cosmeticType,
                     cosmeticSubtype = cosmeticSubtype,
                     addedAt = favorite.addedAt,
                 }
@@ -157,7 +165,7 @@ function FavoritesWindow:BuildRow(parent)
     row.icon = icon
 
     local title = Widgets:CreateFontString(row, "OVERLAY", "GameFontNormal")
-    title:SetPoint("TOPLEFT", icon, "TOPRIGHT", 10, -6)
+    title:SetPoint("TOPLEFT", row, "TOPLEFT", 52, -8)
     title:SetPoint("RIGHT", row, "RIGHT", -206, 0)
     title:SetJustifyH("LEFT")
     if title.SetWordWrap then
@@ -169,6 +177,7 @@ function FavoritesWindow:BuildRow(parent)
     meta:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -4)
     meta:SetPoint("RIGHT", title, "RIGHT", 0, 0)
     meta:SetJustifyH("LEFT")
+    meta:SetWordWrap(true)
     row.meta = meta
 
     local removeButton = Widgets:CreateButton(row, 72, 22, "Remove", "danger")
@@ -193,7 +202,7 @@ function FavoritesWindow:BuildRow(parent)
         local rowData = target:GetParent().rowData
         if self:CreateTask(rowData) then
             Tasks:SortStable(TODOPlannerDB.tasks)
-            Utils:Msg("Added collection task: " .. rowData.name)
+            Utils:Msg("Added collection task: " .. rowData.name, "collections")
             if self.homeWindow and self.homeWindow.plannerWindow then
                 self.homeWindow.plannerWindow:Render()
             end
@@ -212,20 +221,16 @@ function FavoritesWindow:BuildRow(parent)
     return row
 end
 
-function FavoritesWindow:UpdateRow(row, rowData, index)
+function FavoritesWindow:UpdateRow(row, rowData, index, offsetY)
     row.rowData = rowData
+    local _, mapHelp = self:GetCollectionMapActionHelp(rowData)
+    row.mapButton.tooltipText = mapHelp
     row:SetParent(self.listContent)
     row:ClearAllPoints()
-    row:SetPoint("TOPLEFT", self.listContent, "TOPLEFT", 0, -((index - 1) * (ROW_HEIGHT + ROW_GAP)))
+    row:SetPoint("TOPLEFT", self.listContent, "TOPLEFT", 0, -(offsetY or ((index - 1) * (ROW_HEIGHT + ROW_GAP))))
     row.icon:SetTexture(rowData.icon or "Interface\\Icons\\INV_Misc_QuestionMark")
     row.title:SetText(rowData.name)
-    local metaPrefix = self:GetTypeLabel(rowData.collectionType)
-    if rowData.collectionType == "mounts" then
-        metaPrefix = (rowData.mountCategory or "Other") .. " mount"
-    elseif rowData.collectionType == "cosmetics" then
-        metaPrefix = ((rowData.cosmeticSubtype or "appearance"):gsub("^%l", string.upper)) .. " cosmetic"
-    end
-    row.meta:SetText(string.format("%s - %s", metaPrefix, rowData.collected and "Collected" or "Missing"))
+    self:SetRowMeta(row, string.format("%s - %s", self:GetRowMetaPrefix(rowData), rowData.collected and "Collected" or "Missing"), ROW_HEIGHT)
     Widgets:SetTextureColor(row.accent, rowData.collected and { 0.28, 0.82, 0.42, 0.74 } or "accentGold")
 
     local existingTask = self:FindTask(rowData)
@@ -269,8 +274,8 @@ function FavoritesWindow:BuildRows()
             row = self:BuildRow(self.listContent)
             self.rowPool[index] = row
         end
-        self:UpdateRow(row, rowData, index)
-        y = y + ROW_HEIGHT + ROW_GAP
+        self:UpdateRow(row, rowData, index, y)
+        y = y + row:GetHeight() + ROW_GAP
     end
 
     self.listContent:SetSize(LIST_CONTENT_WIDTH, math.max(self.listScroll:GetHeight() or 1, y + 6))

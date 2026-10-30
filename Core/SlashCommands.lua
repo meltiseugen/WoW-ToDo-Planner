@@ -130,10 +130,10 @@ function SlashCommands:Init()
         if cmd == "maptest" then
             self:HideAllWindows()
             if self.addon.collectionMapWindow then
-                Utils:Msg("Opening collection map...")
+                Utils:Msg("Opening collection map...", "navigation")
                 self.addon.collectionMapWindow:OpenTest()
             else
-                Utils:Msg("Collection map is unavailable.")
+                Utils:Msg("Collection map is unavailable.", "warnings")
             end
             return
         end

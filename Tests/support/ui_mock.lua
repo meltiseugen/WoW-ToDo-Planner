@@ -3,6 +3,7 @@
 local Mock = { trace = {}, serial = 0 }
 local methods = {}
 local function record(frame, method, ...)
+    if Mock.recording == false then return end
     local entry = { frame.id, method }
     for index = 1, select("#", ...) do
         local value = select(index, ...)
@@ -19,7 +20,7 @@ local function record(frame, method, ...)
 end
 local metatable = { __index = function(frame, key)
     if methods[key] then return methods[key] end
-    if key:match("^Set") or key:match("^Enable") or key:match("^Register")
+    if key:match("^Set") or key:match("^Enable") or key:match("^Register") or key:match("^Unregister")
         or key:match("^Clear") or key:match("^Start") or key:match("^Stop")
         or key == "Raise" or key == "Disable" or key == "HighlightText" then
         return function(self, ...) record(self, key, ...) end
@@ -38,6 +39,8 @@ function Mock:Create(kind, name, parent, template)
     return frame
 end
 function methods:CreateTexture(name, layer) return Mock:Create("Texture", name, self, layer) end
+function methods:CreateMaskTexture(name, layer) return Mock:Create("MaskTexture", name, self, layer) end
+function methods:AddMaskTexture(mask) self.mask = mask; record(self, "AddMaskTexture", mask) end
 function methods:CreateFontString(name, layer, font) return Mock:Create("FontString", name, self, font or layer) end
 function methods:SetScript(event, callback) self.scripts[event] = callback; record(self, "SetScript", event, callback) end
 function methods:GetScript(event) return self.scripts[event] end
@@ -79,6 +82,8 @@ function methods:GetTop() return self.height end
 function methods:GetBottom() return 0 end
 function methods:IsShown() return self.shown end
 function methods:IsVisible() return self.shown end
+function methods:SetEnabled(enabled) self.enabled = enabled; record(self, "SetEnabled", enabled) end
+function methods:IsEnabled() return self.enabled ~= false end
 function methods:Show() self.shown = true; record(self, "Show") end
 function methods:Hide() self.shown = false; record(self, "Hide") end
 function methods:SetShown(shown) if shown then self:Show() else self:Hide() end end

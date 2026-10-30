@@ -2,21 +2,18 @@ local _, TDP = ...
 
 local shared = {}
 shared["Patch 10.2.6: Plunderstorm / Dragonflight Season 4"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     category = "Other",
     source = "Patch 10.2.6: Plunderstorm / Dragonflight Season 4",
     sourceType = "Patch mount collection",
 }
 
 shared["Patch 10.2.6: Plunderstorm / Dragonflight Season 4 2"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     category = "PvP",
     source = "Patch 10.2.6: Plunderstorm / Dragonflight Season 4",
     sourceType = "Patch mount collection",
 }
 
 shared["Patch 10.2.6: Plunderstorm / Dragonflight Season 4 3"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     availability = "Limited-time reward; retained in its original patch catalog for historical collection tracking.",
     category = "Other",
     source = "Patch 10.2.6: Plunderstorm / Dragonflight Season 4",

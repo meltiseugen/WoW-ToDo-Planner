@@ -1,0 +1,722 @@
+[
+  {
+    "faction": "Alliance",
+    "type": "cosmetics",
+    "id": 65909,
+    "patch": "4.0.0",
+    "name": "Tabard of the Dragonmaw Clan",
+    "coordinate": false,
+    "text": "Reach Friendly with the matching faction and purchase its tabard, then wear it in eligible dungeons for reputation.\nOriginal Cataclysm faction quartermasters\nQuest through each faction's opening zone first; Therazane requires the Deepholm campaign before its quartermaster becomes available.\ntabard\nreputationTabards\nReach Friendly with the matching faction and purchase its tabard, then wear it in eligible dungeons for reputation."
+  },
+  {
+    "faction": "Alliance",
+    "type": "achievements",
+    "id": 5374,
+    "patch": "4.0.0",
+    "name": null,
+    "coordinate": false,
+    "text": "Reach the listed faction or total reputation threshold.\nWear Cataclysm reputation tabards in eligible dungeons and complete Tol Barad dailies; Wildhammer and Dragonmaw are faction-specific.\nReach the listed faction or total reputation threshold."
+  },
+  {
+    "faction": "Alliance",
+    "type": "achievements",
+    "id": 5723,
+    "patch": "4.0.0",
+    "name": null,
+    "coordinate": false,
+    "text": "Reach the listed faction or total reputation threshold.\nWear Cataclysm reputation tabards in eligible dungeons and complete Tol Barad dailies; Wildhammer and Dragonmaw are faction-specific.\nReach the listed faction or total reputation threshold."
+  },
+  {
+    "faction": "Alliance",
+    "type": "cosmetics",
+    "id": 83080,
+    "patch": "5.0",
+    "name": "Huojin Tabard",
+    "coordinate": true,
+    "text": "Purchase the tabard from the matching faction emissary in Stormwind or Orgrimmar.\nTushui Pandaren and Huojin Pandaren emissaries\nWear the tabard in eligible dungeons if you still need its racial-faction reputation.\nObtain Huojin Tabard from Disciple Jusi in Orgrimmar.\n/way #84 67.8 18.6 Old Whitenose\n/way #85 69.8 41.0 Turtlemaster Odai\nEach faction tabard becomes purchasable at the listed reputation threshold. The Theramore tabard is an Alliance-only historical pre-launch scenario reward.\nDisciple Jusi in Orgrimmar\npandarenTabards\nPurchase the tabard from the matching faction emissary in Stormwind or Orgrimmar."
+  },
+  {
+    "faction": "Alliance",
+    "type": "cosmetics",
+    "id": 95592,
+    "patch": "5.2",
+    "name": "Sunreaver Onslaught Tabard",
+    "coordinate": true,
+    "text": "Reach Exalted with the matching faction and purchase its tabard.\nIsle of Thunder factions\nKirin Tor Offensive is Alliance, Sunreaver Onslaught is Horde, and Shado-Pan Assault reputation comes primarily from Throne of Thunder.\nObtain Sunreaver Onslaught Tabard from Vasarin Redmorn at Sunreaver Onslaught Exalted.\n/way #504 33.2 32.4 Dawnseeker Promontory\nReputation tabards remain purchasable at Exalted; the elite PvP tabard is historical.\nVasarin Redmorn at Sunreaver Onslaught Exalted\nthunderTabards\nReach Exalted with the matching faction and purchase its tabard."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 171835,
+    "patch": "6.0.0",
+    "name": "Vicious War Raptor",
+    "coordinate": false,
+    "text": "Obtain Vicious War Raptor from the Horde Vicious Saddle vendor in Orgrimmar.\nthe Horde Vicious Saddle vendor in Orgrimmar\nCheck the prerequisite, currency, difficulty, and daily or weekly loot lockout before travelling; park eligible alts near low-drop-rate rares and bosses.\nObtain Vicious War Raptor from the Horde Vicious Saddle vendor in Orgrimmar.\nthe Horde Vicious Saddle vendor in Orgrimmar\nCheck the prerequisite, currency, difficulty, and daily or weekly loot lockout before travelling; park eligible alts near low-drop-rate rares and bosses.\nObtain Vicious War Raptor from the Horde Vicious Saddle vendor in Orgrimmar."
+  },
+  {
+    "faction": "Alliance",
+    "type": "cosmetics",
+    "id": 128472,
+    "patch": "6.2.0",
+    "name": "Battlegear of the Frostwolves",
+    "coordinate": true,
+    "text": "Complete the matching faction campaign reward path and open the packaged cosmetic set.\nFaction Tanaan campaign\nAlliance and Horde rewards require their respective campaign.\nComplete the matching Horde campaign reward path and open the cosmetic package.\n/way #582 40.0 37.0 Lunarfall\n/way #590 52.0 50.0 Frostwall\nKeep the package until the wardrobe confirms every appearance was learned.\nHorde Tanaan campaign cosmetic package\ncampaignSets\nComplete the matching faction campaign reward path and open the packaged cosmetic set."
+  },
+  {
+    "faction": "Alliance",
+    "type": "cosmetics",
+    "id": 128473,
+    "patch": "6.2.0",
+    "name": "Packaged Ceremonial Karabor Finery",
+    "coordinate": true,
+    "text": "Complete the matching faction campaign reward path and open the packaged cosmetic set.\nFaction Tanaan campaign\nAlliance and Horde rewards require their respective campaign.\nComplete the matching Alliance campaign reward path and open the cosmetic package.\n/way #582 40.0 37.0 Lunarfall\n/way #590 52.0 50.0 Frostwall\nKeep the package until the wardrobe confirms every appearance was learned.\nAlliance Tanaan campaign cosmetic package\ncampaignSets\nComplete the matching faction campaign reward path and open the packaged cosmetic set."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 223354,
+    "patch": "7.0.0",
+    "name": "Vicious War Trike",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency.\nVendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency\nThis is a historical PvP reward. Elite, Gladiator, and original Prestige rewards may no longer be obtainable from their original source.\nObtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency.\nVendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency\nThis is a historical PvP reward. Elite, Gladiator, and original Prestige rewards may no longer be obtainable from their original source.\nObtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 223363,
+    "patch": "7.0.0",
+    "name": "Vicious Warstrider",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency.\nVendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency\nThis is a historical PvP reward. Elite, Gladiator, and original Prestige rewards may no longer be obtainable from their original source.\nObtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency.\nVendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency\nThis is a historical PvP reward. Elite, Gladiator, and original Prestige rewards may no longer be obtainable from their original source.\nObtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency."
+  },
+  {
+    "faction": "Alliance",
+    "type": "pets",
+    "id": 2035,
+    "patch": "7.2.0",
+    "name": "Bloodbrood Whelpling",
+    "coordinate": false,
+    "text": "Obtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency.\nVendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nObtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency.\nVendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nObtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency."
+  },
+  {
+    "faction": "Alliance",
+    "type": "pets",
+    "id": 2036,
+    "patch": "7.2.0",
+    "name": "Frostbrood Whelpling",
+    "coordinate": false,
+    "text": "Obtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency.\nVendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nObtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency.\nVendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nObtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency."
+  },
+  {
+    "faction": "Alliance",
+    "type": "pets",
+    "id": 2037,
+    "patch": "7.2.0",
+    "name": "Vilebrood Whelpling",
+    "coordinate": false,
+    "text": "Obtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency.\nVendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nObtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency.\nVendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nObtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency."
+  },
+  {
+    "faction": "Alliance",
+    "type": "pets",
+    "id": 2047,
+    "patch": "7.2.0",
+    "name": "Ban-Fu, Cub of Ban-Lu",
+    "coordinate": false,
+    "text": "Obtain this battle pet from the listed source: Vendor: Mei Chele / Zone: The Wandering Isle / Cost: 1000 currency.\nVendor: Mei Chele / Zone: The Wandering Isle / Cost: 1000 currency\nFinish Breaching the Tomb and the class-specific mount questline. Extra class-mount colors may require additional class achievements or Order Hall purchases.\nObtain this battle pet from the listed source: Vendor: Mei Chele / Zone: The Wandering Isle / Cost: 1000 currency.\nVendor: Mei Chele / Zone: The Wandering Isle / Cost: 1000 currency\nFinish Breaching the Tomb and the class-specific mount questline. Extra class-mount colors may require additional class achievements or Order Hall purchases.\nObtain this battle pet from the listed source: Vendor: Mei Chele / Zone: The Wandering Isle / Cost: 1000 currency."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 230988,
+    "patch": "7.2.5",
+    "name": "Vicious War Scorpion",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency.\nVendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency\nThis is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.\nObtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency.\nVendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency\nThis is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.\nObtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency."
+  },
+  {
+    "faction": "Alliance",
+    "type": "toys",
+    "id": 150744,
+    "patch": "7.2.5",
+    "name": "Walking Kalimdor with the Earthmother",
+    "coordinate": false,
+    "text": "Obtain this toy from the listed source: Vendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency.\nVendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nObtain this toy from the listed source: Vendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency.\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nVendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency\nObtain this toy from the listed source: Vendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency."
+  },
+  {
+    "faction": "Alliance",
+    "type": "toys",
+    "id": 150745,
+    "patch": "7.2.5",
+    "name": "The Azeroth Campaign",
+    "coordinate": false,
+    "text": "Obtain this toy from the listed source: Vendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency.\nVendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nObtain this toy from the listed source: Vendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency.\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nVendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency\nObtain this toy from the listed source: Vendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 232525,
+    "patch": "7.3.0",
+    "name": "Vicious War Turtle",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency.\nVendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency\nThis is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.\nObtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency.\nVendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency\nThis is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.\nObtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 242897,
+    "patch": "7.3.5",
+    "name": "Vicious War Fox",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency.\nVendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency\nThis is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.\nObtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency.\nVendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency\nThis is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.\nObtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 258060,
+    "patch": "7.3.5",
+    "name": "Highmountain Thunderhoof",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Achievement: Allied Races: Highmountain Tauren.\nAchievement: Allied Races: Highmountain Tauren\nOpen the linked achievement in game and plan its incomplete criteria before travelling; some requirements need a group, a specific difficulty, or multiple weeks.\nObtain this mount from the listed source: Achievement: Allied Races: Highmountain Tauren.\nAchievement: Allied Races: Highmountain Tauren\nOpen the linked achievement in game and plan its incomplete criteria before travelling; some requirements need a group, a specific difficulty, or multiple weeks.\nObtain this mount from the listed source: Achievement: Allied Races: Highmountain Tauren."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 270560,
+    "patch": "8.0.0",
+    "name": "Vicious War Clefthoof",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1.\nVendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1\nConfirm the reputation, currency, faction, and vendor phase before travelling; several Battle for Azeroth vendors have faction-equivalent locations.\nObtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1.\nVendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1\nConfirm the reputation, currency, faction, and vendor phase before travelling; several Battle for Azeroth vendors have faction-equivalent locations.\nObtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1."
+  },
+  {
+    "faction": "Alliance",
+    "type": "toys",
+    "id": 165791,
+    "patch": "8.1.0",
+    "name": "Worn Cloak",
+    "coordinate": false,
+    "text": "Obtain this toy from the listed source: Quest: A Warrior's Death / Zone: Swamp of Sorrows.\nQuest: A Warrior's Death / Zone: Swamp of Sorrows\nFor rare, cache, and rotating sources, verify the active Warfront, assault, island theme, or daily before starting the route.\nObtain this toy from the listed source: Quest: A Warrior's Death / Zone: Swamp of Sorrows.\nFor rare, cache, and rotating sources, verify the active Warfront, assault, island theme, or daily before starting the route.\nQuest: A Warrior's Death / Zone: Swamp of Sorrows\nObtain this toy from the listed source: Quest: A Warrior's Death / Zone: Swamp of Sorrows."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 244712,
+    "patch": "8.2",
+    "name": "Spectral Pterrorwing",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Vendor: Natal'hakata / Zone: Zuldazar / Faction: Zandalari Empire - Exalted / Cost: 90000.\nVendor: Natal'hakata / Zone: Zuldazar / Faction: Zandalari Empire - Exalted / Cost: 90000\nCheck the relevant rare, reputation, achievement, profession, or quest prerequisite before starting the farm.\nObtain this mount from the listed source: Vendor: Natal'hakata / Zone: Zuldazar / Faction: Zandalari Empire - Exalted / Cost: 90000.\nVendor: Natal'hakata / Zone: Zuldazar / Faction: Zandalari Empire - Exalted / Cost: 90000\nCheck the relevant rare, reputation, achievement, profession, or quest prerequisite before starting the farm.\nObtain this mount from the listed source: Vendor: Natal'hakata / Zone: Zuldazar / Faction: Zandalari Empire - Exalted / Cost: 90000."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 275838,
+    "patch": "8.2",
+    "name": "Captured Swampstalker",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Vendor: Provisioner Lija / Zone: Nazmir / Faction: Talanji's Expedition - Exalted / Cost: 90000.\nVendor: Provisioner Lija / Zone: Nazmir / Faction: Talanji's Expedition - Exalted / Cost: 90000\nCheck the relevant rare, reputation, achievement, profession, or quest prerequisite before starting the farm.\nObtain this mount from the listed source: Vendor: Provisioner Lija / Zone: Nazmir / Faction: Talanji's Expedition - Exalted / Cost: 90000.\nVendor: Provisioner Lija / Zone: Nazmir / Faction: Talanji's Expedition - Exalted / Cost: 90000\nCheck the relevant rare, reputation, achievement, profession, or quest prerequisite before starting the farm.\nObtain this mount from the listed source: Vendor: Provisioner Lija / Zone: Nazmir / Faction: Talanji's Expedition - Exalted / Cost: 90000."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 275840,
+    "patch": "8.2",
+    "name": "Voldunai Dunescraper",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Vendor: Hoarder Jena / Zone: Vol'dun / Faction: Voldunai - Exalted / Cost: 90000.\nVendor: Hoarder Jena / Zone: Vol'dun / Faction: Voldunai - Exalted / Cost: 90000\nCheck the relevant rare, reputation, achievement, profession, or quest prerequisite before starting the farm.\nObtain this mount from the listed source: Vendor: Hoarder Jena / Zone: Vol'dun / Faction: Voldunai - Exalted / Cost: 90000.\nVendor: Hoarder Jena / Zone: Vol'dun / Faction: Voldunai - Exalted / Cost: 90000\nCheck the relevant rare, reputation, achievement, profession, or quest prerequisite before starting the farm.\nObtain this mount from the listed source: Vendor: Hoarder Jena / Zone: Vol'dun / Faction: Voldunai - Exalted / Cost: 90000."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 297560,
+    "patch": "8.2",
+    "name": "Child of Torcali",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Quest: Wander Not Alone / Zone: Zuldazar.\nQuest: Wander Not Alone / Zone: Zuldazar\nCheck the relevant rare, reputation, achievement, profession, or quest prerequisite before starting the farm.\nObtain this mount from the listed source: Quest: Wander Not Alone / Zone: Zuldazar.\nQuest: Wander Not Alone / Zone: Zuldazar\nCheck the relevant rare, reputation, achievement, profession, or quest prerequisite before starting the farm.\nObtain this mount from the listed source: Quest: Wander Not Alone / Zone: Zuldazar."
+  },
+  {
+    "faction": "Alliance",
+    "type": "toys",
+    "id": 173727,
+    "patch": "8.3.0",
+    "name": "Nomi's Vintage",
+    "coordinate": false,
+    "text": "Obtain this toy from the listed source: Allied Races: Vulpera / Quest: Sip and Savor / Zone: Suramar.\nAllied Races: Vulpera / Quest: Sip and Savor / Zone: Suramar\nFor rare, cache, or rotating-visitor sources, verify the active daily or assault before travelling.\nObtain this toy from the listed source: Allied Races: Vulpera / Quest: Sip and Savor / Zone: Suramar.\nFor rare, cache, or rotating-visitor sources, verify the active daily or assault before travelling.\nAllied Races: Vulpera / Quest: Sip and Savor / Zone: Suramar\nObtain this toy from the listed source: Allied Races: Vulpera / Quest: Sip and Savor / Zone: Suramar."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 407555,
+    "patch": "10.1",
+    "name": "Tarecgosa's Visage",
+    "coordinate": true,
+    "text": "You must own Dragonwrath, Tarecgosa's Rest and complete Kalecgos's blue dragonflight story in Dragonflight, ending with A New Dawn. With the legendary staff available, speak to Kalecgos at the Veiled Ossuary in Thaldraszus (65.7, 12.6) for Rhapsody in Blue. Prepare Tarecgosa's grave and complete the ritual to learn her visage as a permanent mount. This does not consume the staff.\nYou must own Dragonwrath, Tarecgosa's Rest and complete Kalecgos's blue dragonflight story in Dragonflight, ending with A New Dawn. With the legendary staff available, speak to Kalecgos at the Veiled Ossuary in Thaldraszus (65.7, 12.6) for Rhapsody in Blue. Prepare Tarecgosa's grave and complete the ritual to learn her visage as a permanent mount. This does not consume the staff."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 409032,
+    "patch": "10.1",
+    "name": "Vicious War Snail",
+    "coordinate": true,
+    "text": "Buy Vicious War Snail from Deathguard Netharian in Orgrimmar (41.8, 73.0) for 1 Vicious Saddle.\nBuy Vicious War Snail from Deathguard Netharian in Orgrimmar (41.8, 73.0) for 1 Vicious Saddle."
+  },
+  {
+    "faction": "Alliance",
+    "type": "pets",
+    "id": 3553,
+    "patch": "10.1",
+    "name": "Nelthara",
+    "coordinate": true,
+    "text": "Complete Augmenting a Dragon from Scalecommander Emberthal in The Forbidden Reach (58.7, 70.4) to receive Nelthara.\n\nObjectives: - Speak with Ebyssian to initiate the ritual - Adamanthia subdued\nQuest: Augmenting a Dragon\nQuest: Augmenting a Dragon\nComplete Augmenting a Dragon from Scalecommander Emberthal in The Forbidden Reach (58.7, 70.4) to receive Nelthara.\n\nObjectives: - Speak with Ebyssian to initiate the ritual - Adamanthia subdued"
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 414316,
+    "patch": "10.1.5",
+    "name": "White War Wolf",
+    "coordinate": true,
+    "text": "Buy White War Wolf from Warden Krizzik in Thaldraszus (51.1, 56.6) for 3,000 Paracausal Flakes.\nBuy White War Wolf from Warden Krizzik in Thaldraszus (51.1, 56.6) for 3,000 Paracausal Flakes."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 424535,
+    "patch": "10.2",
+    "name": "Vicious Moonbeast",
+    "coordinate": true,
+    "text": "Buy Vicious Moonbeast from Deathguard Netharian in Orgrimmar (41.8, 73.0) for 1 Vicious Saddle.\nBuy Vicious Moonbeast from Deathguard Netharian in Orgrimmar (41.8, 73.0) for 1 Vicious Saddle."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 434477,
+    "patch": "10.2.6",
+    "name": "Vicious Dreamtalon",
+    "coordinate": true,
+    "text": "Buy Vicious Dreamtalon from Deathguard Netharian in Orgrimmar (41.8, 73.0) for 1 Vicious Saddle.\nBuy Vicious Dreamtalon from Deathguard Netharian in Orgrimmar (41.8, 73.0) for 1 Vicious Saddle."
+  },
+  {
+    "faction": "Alliance",
+    "type": "toys",
+    "id": 210455,
+    "patch": "10.2.7",
+    "name": "Draenic Hologem",
+    "coordinate": true,
+    "text": "Complete Our Path Forward from Grand Anchorite Almonen in The Exodar (64.4, 87.3) to receive Draenic Hologem.\n\nObjectives: - Ask Velen to begin the ceremony\n\nTo unlock this questline you need to be logged in on a level 50 Draenei.\nDraenei Heritage Questline / Quest: Our Path Forward\nDraenei Heritage Questline / Quest: Our Path Forward\nComplete Our Path Forward from Grand Anchorite Almonen in The Exodar (64.4, 87.3) to receive Draenic Hologem.\n\nObjectives: - Ask Velen to begin the ceremony\n\nTo unlock this questline you need to be logged in on a level 50 Draenei."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 447405,
+    "patch": "11.0",
+    "name": "Vicious Skyflayer",
+    "coordinate": true,
+    "text": "Buy Vicious Skyflayer from Necrolord Sipe in Stormwind City (76.8, 65.6) for 1 Vicious Saddle.\nBuy Vicious Skyflayer from Deathguard Netharian in Orgrimmar (41.8, 73.0) for 1 Vicious Saddle."
+  },
+  {
+    "faction": "Alliance",
+    "type": "pets",
+    "id": 3543,
+    "patch": "11.0",
+    "name": "Ravenous Shalewing",
+    "coordinate": false,
+    "text": "No implemented acquisition source is verified for this species. The old vendor/drop/wild-pet label is not a usable acquisition method.\nPet Battle: Isle of Dorn\nPet Battle: Isle of Dorn\nNo implemented acquisition source is verified for this species. The old vendor/drop/wild-pet label is not a usable acquisition method."
+  },
+  {
+    "faction": "Alliance",
+    "type": "pets",
+    "id": 3544,
+    "patch": "11.0",
+    "name": "Shalewing Devourer",
+    "coordinate": false,
+    "text": "No implemented acquisition source is verified for this species. The old vendor/drop/wild-pet label is not a usable acquisition method.\nPet Battle: Isle of Dorn\nPet Battle: Isle of Dorn\nNo implemented acquisition source is verified for this species. The old vendor/drop/wild-pet label is not a usable acquisition method."
+  },
+  {
+    "faction": "Alliance",
+    "type": "pets",
+    "id": 4725,
+    "patch": "11.0.7",
+    "name": "Titan Orb",
+    "coordinate": false,
+    "text": "Titan Orb was a datamined Siren Isle pet that was removed from the collectible Pet Journal before the patch launched. It has no confirmed drop, vendor, quest or capture route. This is not the obtainable Teeny Titan Orb from the Arathi Highlands, so farming that pet's source will not unlock this species.\nZone: Siren Isle\nZone: Siren Isle\nTitan Orb was a datamined Siren Isle pet that was removed from the collectible Pet Journal before the patch launched. It has no confirmed drop, vendor, quest or capture route. This is not the obtainable Teeny Titan Orb from the Arathi Highlands, so farming that pet's source will not unlock this species."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 466145,
+    "patch": "11.1",
+    "name": "Vicious Electro Eel",
+    "coordinate": true,
+    "text": "Buy Vicious Electro Eel from Necrolord Sipe in Stormwind City (76.8, 65.6) for 1 Vicious Saddle.\nBuy Vicious Electro Eel from Deathguard Netharian in Orgrimmar (41.8, 73.0) for 1 Vicious Saddle."
+  },
+  {
+    "faction": "Alliance",
+    "type": "mounts",
+    "id": 1234821,
+    "patch": "11.2",
+    "name": "Vicious Void Creeper",
+    "coordinate": true,
+    "text": "Buy Vicious Void Creeper from Deathguard Netharian in Orgrimmar (41.8, 73.0) for 1 Vicious Saddle.\nBuy Vicious Void Creeper from Deathguard Netharian in Orgrimmar (41.8, 73.0) for 1 Vicious Saddle."
+  },
+  {
+    "faction": "Alliance",
+    "type": "toys",
+    "id": 242520,
+    "patch": "11.2.7",
+    "name": "Festival Hot Air Balloon",
+    "coordinate": true,
+    "text": "Complete A New Tradition from Lorewalker Cho in The Wandering Isle (52.3, 19.2) to receive Festival Hot Air Balloon.\n\nMeet Chon Po in Wu-Song Village.\n\nTo unlock this questline you need to be logged in on a level 50 Pandaren.\nWorld Quest: A Tradition / Zone: The Wandering Isle\nWorld Quest: A Tradition / Zone: The Wandering Isle\nComplete A New Tradition from Lorewalker Cho in The Wandering Isle (52.3, 19.2) to receive Festival Hot Air Balloon.\n\nMeet Chon Po in Wu-Song Village.\n\nTo unlock this questline you need to be logged in on a level 50 Pandaren."
+  },
+  {
+    "faction": "Horde",
+    "type": "cosmetics",
+    "id": 65908,
+    "patch": "4.0.0",
+    "name": "Tabard of the Wildhammer Clan",
+    "coordinate": false,
+    "text": "Reach Friendly with the matching faction and purchase its tabard, then wear it in eligible dungeons for reputation.\nOriginal Cataclysm faction quartermasters\nQuest through each faction's opening zone first; Therazane requires the Deepholm campaign before its quartermaster becomes available.\ntabard\nreputationTabards\nReach Friendly with the matching faction and purchase its tabard, then wear it in eligible dungeons for reputation."
+  },
+  {
+    "faction": "Horde",
+    "type": "achievements",
+    "id": 5374,
+    "patch": "4.0.0",
+    "name": null,
+    "coordinate": false,
+    "text": "Reach the listed faction or total reputation threshold.\nWear Cataclysm reputation tabards in eligible dungeons and complete Tol Barad dailies; Wildhammer and Dragonmaw are faction-specific.\nReach the listed faction or total reputation threshold."
+  },
+  {
+    "faction": "Horde",
+    "type": "achievements",
+    "id": 5723,
+    "patch": "4.0.0",
+    "name": null,
+    "coordinate": false,
+    "text": "Reach the listed faction or total reputation threshold.\nWear Cataclysm reputation tabards in eligible dungeons and complete Tol Barad dailies; Wildhammer and Dragonmaw are faction-specific.\nReach the listed faction or total reputation threshold."
+  },
+  {
+    "faction": "Horde",
+    "type": "cosmetics",
+    "id": 83079,
+    "patch": "5.0",
+    "name": "Tushui Tabard",
+    "coordinate": true,
+    "text": "Purchase the tabard from the matching faction emissary in Stormwind or Orgrimmar.\nTushui Pandaren and Huojin Pandaren emissaries\nWear the tabard in eligible dungeons if you still need its racial-faction reputation.\nObtain Tushui Tabard from Ambassador Hsing in Stormwind.\n/way #84 67.8 18.6 Old Whitenose\n/way #85 69.8 41.0 Turtlemaster Odai\nEach faction tabard becomes purchasable at the listed reputation threshold. The Theramore tabard is an Alliance-only historical pre-launch scenario reward.\nAmbassador Hsing in Stormwind\npandarenTabards\nPurchase the tabard from the matching faction emissary in Stormwind or Orgrimmar."
+  },
+  {
+    "faction": "Horde",
+    "type": "cosmetics",
+    "id": 95591,
+    "patch": "5.2",
+    "name": "Kirin Tor Offensive Tabard",
+    "coordinate": true,
+    "text": "Reach Exalted with the matching faction and purchase its tabard.\nIsle of Thunder factions\nKirin Tor Offensive is Alliance, Sunreaver Onslaught is Horde, and Shado-Pan Assault reputation comes primarily from Throne of Thunder.\nObtain Kirin Tor Offensive Tabard from Hiren Loresong at Kirin Tor Offensive Exalted.\n/way #504 64.4 72.7 Violet Rise\nReputation tabards remain purchasable at Exalted; the elite PvP tabard is historical.\nHiren Loresong at Kirin Tor Offensive Exalted\nthunderTabards\nReach Exalted with the matching faction and purchase its tabard."
+  },
+  {
+    "faction": "Horde",
+    "type": "cosmetics",
+    "id": 128472,
+    "patch": "6.2.0",
+    "name": "Battlegear of the Frostwolves",
+    "coordinate": true,
+    "text": "Complete the matching faction campaign reward path and open the packaged cosmetic set.\nFaction Tanaan campaign\nAlliance and Horde rewards require their respective campaign.\nComplete the matching Horde campaign reward path and open the cosmetic package.\n/way #582 40.0 37.0 Lunarfall\n/way #590 52.0 50.0 Frostwall\nKeep the package until the wardrobe confirms every appearance was learned.\nHorde Tanaan campaign cosmetic package\ncampaignSets\nComplete the matching faction campaign reward path and open the packaged cosmetic set."
+  },
+  {
+    "faction": "Horde",
+    "type": "cosmetics",
+    "id": 128473,
+    "patch": "6.2.0",
+    "name": "Packaged Ceremonial Karabor Finery",
+    "coordinate": true,
+    "text": "Complete the matching faction campaign reward path and open the packaged cosmetic set.\nFaction Tanaan campaign\nAlliance and Horde rewards require their respective campaign.\nComplete the matching Alliance campaign reward path and open the cosmetic package.\n/way #582 40.0 37.0 Lunarfall\n/way #590 52.0 50.0 Frostwall\nKeep the package until the wardrobe confirms every appearance was learned.\nAlliance Tanaan campaign cosmetic package\ncampaignSets\nComplete the matching faction campaign reward path and open the packaged cosmetic set."
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 223341,
+    "patch": "7.0.0",
+    "name": "Vicious Gilnean Warhorse",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency.\nVendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency\nThis is a historical PvP reward. Elite, Gladiator, and original Prestige rewards may no longer be obtainable from their original source.\nObtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency.\nVendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency\nThis is a historical PvP reward. Elite, Gladiator, and original Prestige rewards may no longer be obtainable from their original source.\nObtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency."
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 223578,
+    "patch": "7.0.0",
+    "name": "Vicious War Elekk",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency.\nVendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency\nThis is a historical PvP reward. Elite, Gladiator, and original Prestige rewards may no longer be obtainable from their original source.\nObtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency.\nVendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency\nThis is a historical PvP reward. Elite, Gladiator, and original Prestige rewards may no longer be obtainable from their original source.\nObtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency."
+  },
+  {
+    "faction": "Horde",
+    "type": "pets",
+    "id": 2035,
+    "patch": "7.2.0",
+    "name": "Bloodbrood Whelpling",
+    "coordinate": false,
+    "text": "Obtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency.\nVendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nObtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency.\nVendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nObtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency."
+  },
+  {
+    "faction": "Horde",
+    "type": "pets",
+    "id": 2036,
+    "patch": "7.2.0",
+    "name": "Frostbrood Whelpling",
+    "coordinate": false,
+    "text": "Obtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency.\nVendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nObtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency.\nVendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nObtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency."
+  },
+  {
+    "faction": "Horde",
+    "type": "pets",
+    "id": 2037,
+    "patch": "7.2.0",
+    "name": "Vilebrood Whelpling",
+    "coordinate": false,
+    "text": "Obtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency.\nVendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nObtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency.\nVendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nObtain this battle pet from the listed source: Vendor: Slimy / Zone: Acherus: The Ebon Hold / Cost: 1000 currency."
+  },
+  {
+    "faction": "Horde",
+    "type": "pets",
+    "id": 2047,
+    "patch": "7.2.0",
+    "name": "Ban-Fu, Cub of Ban-Lu",
+    "coordinate": false,
+    "text": "Obtain this battle pet from the listed source: Vendor: Mei Chele / Zone: The Wandering Isle / Cost: 1000 currency.\nVendor: Mei Chele / Zone: The Wandering Isle / Cost: 1000 currency\nFinish Breaching the Tomb and the class-specific mount questline. Extra class-mount colors may require additional class achievements or Order Hall purchases.\nObtain this battle pet from the listed source: Vendor: Mei Chele / Zone: The Wandering Isle / Cost: 1000 currency.\nVendor: Mei Chele / Zone: The Wandering Isle / Cost: 1000 currency\nFinish Breaching the Tomb and the class-specific mount questline. Extra class-mount colors may require additional class achievements or Order Hall purchases.\nObtain this battle pet from the listed source: Vendor: Mei Chele / Zone: The Wandering Isle / Cost: 1000 currency."
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 229512,
+    "patch": "7.2.5",
+    "name": "Vicious War Lion",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency.\nVendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency\nThis is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.\nObtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency.\nVendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency\nThis is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.\nObtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency."
+  },
+  {
+    "faction": "Horde",
+    "type": "toys",
+    "id": 150743,
+    "patch": "7.2.5",
+    "name": "Surviving Kalimdor",
+    "coordinate": false,
+    "text": "Obtain this toy from the listed source: Vendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency.\nVendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nObtain this toy from the listed source: Vendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency.\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nVendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency\nObtain this toy from the listed source: Vendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency."
+  },
+  {
+    "faction": "Horde",
+    "type": "toys",
+    "id": 150746,
+    "patch": "7.2.5",
+    "name": "To Modernize the Provisioning of Azeroth",
+    "coordinate": false,
+    "text": "Obtain this toy from the listed source: Vendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency.\nVendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nObtain this toy from the listed source: Vendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency.\nConfirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.\nVendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency\nObtain this toy from the listed source: Vendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency."
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 232523,
+    "patch": "7.3.0",
+    "name": "Vicious War Turtle",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency.\nVendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency\nThis is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.\nObtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency.\nVendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency\nThis is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.\nObtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency."
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 242896,
+    "patch": "7.3.5",
+    "name": "Vicious War Fox",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency.\nVendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency\nThis is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.\nObtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency.\nVendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1 currency\nThis is a historical PvP reward. Check the current saddle/vendor availability; elite and Gladiator season rewards may no longer be obtainable.\nObtain this mount from the listed source: Vendor: Deathguard Netharian / Zone: Orgrimmar / Cost: 1 currency."
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 258060,
+    "patch": "7.3.5",
+    "name": "Highmountain Thunderhoof",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Achievement: Allied Races: Highmountain Tauren.\nAchievement: Allied Races: Highmountain Tauren\nOpen the linked achievement in game and plan its incomplete criteria before travelling; some requirements need a group, a specific difficulty, or multiple weeks.\nObtain this mount from the listed source: Achievement: Allied Races: Highmountain Tauren.\nAchievement: Allied Races: Highmountain Tauren\nOpen the linked achievement in game and plan its incomplete criteria before travelling; some requirements need a group, a specific difficulty, or multiple weeks.\nObtain this mount from the listed source: Achievement: Allied Races: Highmountain Tauren."
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 272481,
+    "patch": "8.0.0",
+    "name": "Vicious War Riverbeast",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1.\nVendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1\nConfirm the reputation, currency, faction, and vendor phase before travelling; several Battle for Azeroth vendors have faction-equivalent locations.\nObtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1.\nVendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1\nConfirm the reputation, currency, faction, and vendor phase before travelling; several Battle for Azeroth vendors have faction-equivalent locations.\nObtain this mount from the listed source: Vendor: Necrolord Sipe / Zone: Stormwind City / Cost: 1."
+  },
+  {
+    "faction": "Horde",
+    "type": "pets",
+    "id": 2443,
+    "patch": "8.0.0",
+    "name": "Lil' Siege Tower",
+    "coordinate": false,
+    "text": "Obtain this battle pet from the listed source: Vendor: Vindicator Jaelaana / Location: Boralus / Faction: 7th Legion.\nVendor: Vindicator Jaelaana / Location: Boralus / Faction: 7th Legion\nConfirm the reputation, currency, faction, and vendor phase before travelling; several Battle for Azeroth vendors have faction-equivalent locations.\nObtain this battle pet from the listed source: Vendor: Vindicator Jaelaana / Location: Boralus / Faction: 7th Legion.\nVendor: Vindicator Jaelaana / Location: Boralus / Faction: 7th Legion\nConfirm the reputation, currency, faction, and vendor phase before travelling; several Battle for Azeroth vendors have faction-equivalent locations.\nObtain this battle pet from the listed source: Vendor: Vindicator Jaelaana / Location: Boralus / Faction: 7th Legion."
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 275859,
+    "patch": "8.2",
+    "name": "Dusky Waycrest Gryphon",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Vendor: Quartermaster Alcorn / Zone: Drustvar / Faction: Order of Embers - Exalted / Cost: 90000.\nVendor: Quartermaster Alcorn / Zone: Drustvar / Faction: Order of Embers - Exalted / Cost: 90000\nCheck the relevant rare, reputation, achievement, profession, or quest prerequisite before starting the farm.\nObtain this mount from the listed source: Vendor: Quartermaster Alcorn / Zone: Drustvar / Faction: Order of Embers - Exalted / Cost: 90000.\nVendor: Quartermaster Alcorn / Zone: Drustvar / Faction: Order of Embers - Exalted / Cost: 90000\nCheck the relevant rare, reputation, achievement, profession, or quest prerequisite before starting the farm.\nObtain this mount from the listed source: Vendor: Quartermaster Alcorn / Zone: Drustvar / Faction: Order of Embers - Exalted / Cost: 90000."
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 275868,
+    "patch": "8.2",
+    "name": "Proudmoore Sea Scout",
+    "coordinate": false,
+    "text": "Obtain this mount from the listed source: Vendor: Provisioner Fray / Zone: Tiragarde Sound / Faction: Proudmoore Admiralty - Exalted / Cost: 90000.\nVendor: Provisioner Fray / Zone: Tiragarde Sound / Faction: Proudmoore Admiralty - Exalted / Cost: 90000\nCheck the relevant rare, reputation, achievement, profession, or quest prerequisite before starting the farm.\nObtain this mount from the listed source: Vendor: Provisioner Fray / Zone: Tiragarde Sound / Faction: Proudmoore Admiralty - Exalted / Cost: 90000.\nVendor: Provisioner Fray / Zone: Tiragarde Sound / Faction: Proudmoore Admiralty - Exalted / Cost: 90000\nCheck the relevant rare, reputation, achievement, profession, or quest prerequisite before starting the farm.\nObtain this mount from the listed source: Vendor: Provisioner Fray / Zone: Tiragarde Sound / Faction: Proudmoore Admiralty - Exalted / Cost: 90000."
+  },
+  {
+    "faction": "Horde",
+    "type": "toys",
+    "id": 173727,
+    "patch": "8.3.0",
+    "name": "Nomi's Vintage",
+    "coordinate": false,
+    "text": "Obtain this toy from the listed source: Allied Races: Vulpera / Quest: Sip and Savor / Zone: Suramar.\nAllied Races: Vulpera / Quest: Sip and Savor / Zone: Suramar\nFor rare, cache, or rotating-visitor sources, verify the active daily or assault before travelling.\nObtain this toy from the listed source: Allied Races: Vulpera / Quest: Sip and Savor / Zone: Suramar.\nFor rare, cache, or rotating-visitor sources, verify the active daily or assault before travelling.\nAllied Races: Vulpera / Quest: Sip and Savor / Zone: Suramar\nObtain this toy from the listed source: Allied Races: Vulpera / Quest: Sip and Savor / Zone: Suramar."
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 407555,
+    "patch": "10.1",
+    "name": "Tarecgosa's Visage",
+    "coordinate": true,
+    "text": "You must own Dragonwrath, Tarecgosa's Rest and complete Kalecgos's blue dragonflight story in Dragonflight, ending with A New Dawn. With the legendary staff available, speak to Kalecgos at the Veiled Ossuary in Thaldraszus (65.7, 12.6) for Rhapsody in Blue. Prepare Tarecgosa's grave and complete the ritual to learn her visage as a permanent mount. This does not consume the staff.\nYou must own Dragonwrath, Tarecgosa's Rest and complete Kalecgos's blue dragonflight story in Dragonflight, ending with A New Dawn. With the legendary staff available, speak to Kalecgos at the Veiled Ossuary in Thaldraszus (65.7, 12.6) for Rhapsody in Blue. Prepare Tarecgosa's grave and complete the ritual to learn her visage as a permanent mount. This does not consume the staff."
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 409034,
+    "patch": "10.1",
+    "name": "Vicious War Snail",
+    "coordinate": true,
+    "text": "Buy Vicious War Snail from Deathguard Netharian in Orgrimmar (41.8, 73.0) for 1 Vicious Saddle.\nBuy Vicious War Snail from Necrolord Sipe in Stormwind City (76.8, 65.6) for 1 Vicious Saddle."
+  },
+  {
+    "faction": "Horde",
+    "type": "pets",
+    "id": 3553,
+    "patch": "10.1",
+    "name": "Nelthara",
+    "coordinate": true,
+    "text": "Complete Augmenting a Dragon from Scalecommander Emberthal in The Forbidden Reach (58.7, 70.4) to receive Nelthara.\n\nObjectives: - Speak with Ebyssian to initiate the ritual - Adamanthia subdued\nQuest: Augmenting a Dragon\nQuest: Augmenting a Dragon\nComplete Augmenting a Dragon from Scalecommander Emberthal in The Forbidden Reach (58.7, 70.4) to receive Nelthara.\n\nObjectives: - Speak with Ebyssian to initiate the ritual - Adamanthia subdued"
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 413827,
+    "patch": "10.1.5",
+    "name": "Harbor Gryphon",
+    "coordinate": false,
+    "text": "Complete Time to Fly in Boralus to receive Harbor Gryphon.\n\nFind Leila Stafford.\n\nReaching Level 30 will make this quest pop up.\nComplete Time to Fly in Boralus to receive Harbor Gryphon.\n\nFind Leila Stafford.\n\nReaching Level 30 will make this quest pop up."
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 414323,
+    "patch": "10.1.5",
+    "name": "Ravenous Black Gryphon",
+    "coordinate": true,
+    "text": "Buy Ravenous Black Gryphon from Warden Krizzik in Thaldraszus (51.1, 56.6) for 3,000 Paracausal Flakes.\nBuy Ravenous Black Gryphon from Warden Krizzik in Thaldraszus (51.1, 56.6) for 3,000 Paracausal Flakes."
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 424534,
+    "patch": "10.2",
+    "name": "Vicious Moonbeast",
+    "coordinate": true,
+    "text": "Buy Vicious Moonbeast from Deathguard Netharian in Orgrimmar (41.8, 73.0) for 1 Vicious Saddle.\nBuy Vicious Moonbeast from Necrolord Sipe in Stormwind City (76.8, 65.6) for 1 Vicious Saddle."
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 434470,
+    "patch": "10.2.6",
+    "name": "Vicious Dreamtalon",
+    "coordinate": true,
+    "text": "Buy Vicious Dreamtalon from Deathguard Netharian in Orgrimmar (41.8, 73.0) for 1 Vicious Saddle.\nBuy Vicious Dreamtalon from Necrolord Sipe in Stormwind City (76.8, 65.6) for 1 Vicious Saddle."
+  },
+  {
+    "faction": "Horde",
+    "type": "toys",
+    "id": 210455,
+    "patch": "10.2.7",
+    "name": "Draenic Hologem",
+    "coordinate": true,
+    "text": "Complete Our Path Forward from Grand Anchorite Almonen in The Exodar (64.4, 87.3) to receive Draenic Hologem.\n\nObjectives: - Ask Velen to begin the ceremony\n\nTo unlock this questline you need to be logged in on a level 50 Draenei.\nDraenei Heritage Questline / Quest: Our Path Forward\nDraenei Heritage Questline / Quest: Our Path Forward\nComplete Our Path Forward from Grand Anchorite Almonen in The Exodar (64.4, 87.3) to receive Draenic Hologem.\n\nObjectives: - Ask Velen to begin the ceremony\n\nTo unlock this questline you need to be logged in on a level 50 Draenei."
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 449325,
+    "patch": "11.0",
+    "name": "Vicious Skyflayer",
+    "coordinate": true,
+    "text": "Buy Vicious Skyflayer from Necrolord Sipe in Stormwind City (76.8, 65.6) for 1 Vicious Saddle.\nBuy Vicious Skyflayer from Necrolord Sipe in Stormwind City (76.8, 65.6) for 1 Vicious Saddle."
+  },
+  {
+    "faction": "Horde",
+    "type": "pets",
+    "id": 3543,
+    "patch": "11.0",
+    "name": "Ravenous Shalewing",
+    "coordinate": false,
+    "text": "No implemented acquisition source is verified for this species. The old vendor/drop/wild-pet label is not a usable acquisition method.\nPet Battle: Isle of Dorn\nPet Battle: Isle of Dorn\nNo implemented acquisition source is verified for this species. The old vendor/drop/wild-pet label is not a usable acquisition method."
+  },
+  {
+    "faction": "Horde",
+    "type": "pets",
+    "id": 3544,
+    "patch": "11.0",
+    "name": "Shalewing Devourer",
+    "coordinate": false,
+    "text": "No implemented acquisition source is verified for this species. The old vendor/drop/wild-pet label is not a usable acquisition method.\nPet Battle: Isle of Dorn\nPet Battle: Isle of Dorn\nNo implemented acquisition source is verified for this species. The old vendor/drop/wild-pet label is not a usable acquisition method."
+  },
+  {
+    "faction": "Horde",
+    "type": "pets",
+    "id": 4725,
+    "patch": "11.0.7",
+    "name": "Titan Orb",
+    "coordinate": false,
+    "text": "Titan Orb was a datamined Siren Isle pet that was removed from the collectible Pet Journal before the patch launched. It has no confirmed drop, vendor, quest or capture route. This is not the obtainable Teeny Titan Orb from the Arathi Highlands, so farming that pet's source will not unlock this species.\nZone: Siren Isle\nZone: Siren Isle\nTitan Orb was a datamined Siren Isle pet that was removed from the collectible Pet Journal before the patch launched. It has no confirmed drop, vendor, quest or capture route. This is not the obtainable Teeny Titan Orb from the Arathi Highlands, so farming that pet's source will not unlock this species."
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 466146,
+    "patch": "11.1",
+    "name": "Vicious Electro Eel",
+    "coordinate": true,
+    "text": "Buy Vicious Electro Eel from Necrolord Sipe in Stormwind City (76.8, 65.6) for 1 Vicious Saddle.\nBuy Vicious Electro Eel from Necrolord Sipe in Stormwind City (76.8, 65.6) for 1 Vicious Saddle."
+  },
+  {
+    "faction": "Horde",
+    "type": "mounts",
+    "id": 1234820,
+    "patch": "11.2",
+    "name": "Vicious Void Creeper",
+    "coordinate": true,
+    "text": "Buy Vicious Void Creeper from Deathguard Netharian in Orgrimmar (41.8, 73.0) for 1 Vicious Saddle.\nBuy Vicious Void Creeper from Necrolord Sipe in Stormwind City (76.8, 65.6) for 1 Vicious Saddle."
+  },
+  {
+    "faction": "Horde",
+    "type": "toys",
+    "id": 242520,
+    "patch": "11.2.7",
+    "name": "Festival Hot Air Balloon",
+    "coordinate": true,
+    "text": "Complete A New Tradition from Lorewalker Cho in The Wandering Isle (52.3, 19.2) to receive Festival Hot Air Balloon.\n\nMeet Chon Po in Wu-Song Village.\n\nTo unlock this questline you need to be logged in on a level 50 Pandaren.\nWorld Quest: A Tradition / Zone: The Wandering Isle\nWorld Quest: A Tradition / Zone: The Wandering Isle\nComplete A New Tradition from Lorewalker Cho in The Wandering Isle (52.3, 19.2) to receive Festival Hot Air Balloon.\n\nMeet Chon Po in Wu-Song Village.\n\nTo unlock this questline you need to be logged in on a level 50 Pandaren."
+  }
+]

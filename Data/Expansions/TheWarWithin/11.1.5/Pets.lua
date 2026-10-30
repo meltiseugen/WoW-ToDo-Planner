@@ -9,22 +9,18 @@ TDP.CatalogRegistry:RegisterCollection("11.1.5", "pets", {
     },
     details = {
         ["Eye of Chaos"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Treasure: Valeera's Corrupted Chest / Zone: Vision of Stormwind (Revisited)",
             sourceType = "Pet Journal Source",
         },
         ["Void-Scarred Parrot"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Treasure: Wyrmbane's Corrupted Chest / Zone: Vision of Stormwind (Revisited)",
             sourceType = "Pet Journal Source",
         },
         ["Void-Scarred Scorpid"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Treasure: Garona's Corrupted Chest / Zone: Vision of Orgrimmar (Revisited)",
             sourceType = "Pet Journal Source",
         },
         ["Void-Scarred Tallstrider Chick"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Treasure: Geya'rah's Corrupted Chest / Zone: Vision of Orgrimmar (Revisited)",
             sourceType = "Pet Journal Source",
         },

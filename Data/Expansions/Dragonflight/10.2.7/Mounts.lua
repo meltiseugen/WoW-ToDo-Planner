@@ -2,7 +2,6 @@ local _, TDP = ...
 
 local shared = {}
 shared["Patch 10.2.7: Dark Heart"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     availability = "Pandaria Remix has ended; the mount remains listed in its original patch for historical collection tracking.",
     category = "Other",
     source = "Patch 10.2.7: Dark Heart",

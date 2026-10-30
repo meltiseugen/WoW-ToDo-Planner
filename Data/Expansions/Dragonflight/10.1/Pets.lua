@@ -1,23 +1,21 @@
 local _, TDP = ...
 
 local shared = {}
-shared["Drop: Fyrakk Assault"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Drop: Fyrakk Assault", sourceType = "Pet Journal Source" }
+shared["Drop: Fyrakk Assault"] = { source = "Drop: Fyrakk Assault", sourceType = "Pet Journal Source" }
 
 shared["Quest: A Race To The Finish / Zone: Zaralek Cavern"] = {
-    acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
     source = "Quest: A Race To The Finish / Zone: Zaralek Cavern",
     sourceType = "Pet Journal Source",
 }
 
-shared["Pet Battle: Zaralek Cavern"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Zaralek Cavern", sourceType = "Pet Journal Source" }
+shared["Pet Battle: Zaralek Cavern"] = { source = "Pet Battle: Zaralek Cavern", sourceType = "Pet Journal Source" }
 
 shared["Vendor: Celestine of the Harvest / Zone: The Waking Shores / Zone: Ohn'ahran Plains / Zone"] = {
-    acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
     source = "Vendor: Celestine of the Harvest / Zone: The Waking Shores / Zone: Ohn'ahran Plains / Zone: The Azure Span / Zone: Thaldraszus / Cost: 250",
     sourceType = "Pet Journal Source",
 }
 
-shared["Drop: Kob'rok / Zone: Zaralek Cavern"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Drop: Kob'rok / Zone: Zaralek Cavern", sourceType = "Pet Journal Source" }
+shared["Drop: Kob'rok / Zone: Zaralek Cavern"] = { source = "Drop: Kob'rok / Zone: Zaralek Cavern", sourceType = "Pet Journal Source" }
 
 TDP.CatalogRegistry:RegisterCollection("10.1", "pets", {
     entries = {
@@ -76,10 +74,9 @@ TDP.CatalogRegistry:RegisterCollection("10.1", "pets", {
     },
     details = {
         Ambre = shared["Drop: Fyrakk Assault"],
-        Annuna = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Quest: A Scaly Pet / Zone: Valdrakken", sourceType = "Pet Journal Source" },
-        Aquapo = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Drop: Aquifon / Zone: Zaralek Cavern", sourceType = "Pet Journal Source" },
+        Annuna = { source = "Quest: A Scaly Pet / Zone: Valdrakken", sourceType = "Pet Journal Source" },
+        Aquapo = { source = "Drop: Aquifon / Zone: Zaralek Cavern", sourceType = "Pet Journal Source" },
         Axel = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Achievement: Whelp, There It Is / Category: Collect",
             sourceType = "Pet Journal Source",
         },
@@ -87,7 +84,6 @@ TDP.CatalogRegistry:RegisterCollection("10.1", "pets", {
         Blaise = shared["Drop: Fyrakk Assault"],
         Boulderfang = shared["Pet Battle: Zaralek Cavern"],
         Brul = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Treasure: Chest of Massive Gains / Zone: Zaralek Cavern",
             sourceType = "Pet Journal Source",
         },
@@ -97,58 +93,49 @@ TDP.CatalogRegistry:RegisterCollection("10.1", "pets", {
         ["Crimson Swoglet"] = shared["Vendor: Celestine of the Harvest / Zone: The Waking Shores / Zone: Ohn'ahran Plains / Zone"],
         Deepridger = shared["Pet Battle: Zaralek Cavern"],
         ["Devourer Lobstrok"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Drop: Researchers Under Fire / Zone: Zaralek Cavern",
             sourceType = "Pet Journal Source",
         },
         Diamondshell = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Saccratros / Zone: Zaralek Cavern / Cost: 50",
             sourceType = "Pet Journal Source",
         },
         ["Ebonwing Moth"] = shared["Pet Battle: Zaralek Cavern"],
         Endmite = shared["Pet Battle: Zaralek Cavern"],
         Gerald = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Achievement: Family Battler of Zaralek Cavern / Category: Battle",
             sourceType = "Pet Journal Source",
         },
         ["Hollow Moth"] = shared["Pet Battle: Zaralek Cavern"],
         Lithengale = shared["Pet Battle: Zaralek Cavern"],
-        ["Lord Stantley"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Zone: Zaralek Cavern", sourceType = "Pet Journal Source" },
+        ["Lord Stantley"] = { source = "Zone: Zaralek Cavern", sourceType = "Pet Journal Source" },
         Miloh = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Explorer Bezzert / Zone: Zaralek Cavern / Cost: 2500 / Vendor: Patchu / Zone: The Azure Span / Cost: 2500",
             sourceType = "Pet Journal Source",
         },
-        ["Mote of Nasz'uro"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Treasure:Wayward Motes of Nasz'uro", sourceType = "Pet Journal Source" },
-        Nelthara = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Quest: Augmenting a Dragon", sourceType = "Pet Journal Source" },
-        Newsy = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Quest: Signed, Sealed, Self-Delivered", sourceType = "Pet Journal Source" },
+        ["Mote of Nasz'uro"] = { source = "Treasure:Wayward Motes of Nasz'uro", sourceType = "Pet Journal Source" },
+        Nelthara = { source = "Quest: Augmenting a Dragon", sourceType = "Pet Journal Source" },
+        Newsy = { source = "Quest: Signed, Sealed, Self-Delivered", sourceType = "Pet Journal Source" },
         Paulie = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Harlowe Marl / Zone: Zaralek Cavern / Cost: 200",
             sourceType = "Pet Journal Source",
         },
         Puddlehopper = shared["Pet Battle: Zaralek Cavern"],
         Rango = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Harlowe Marl / Zone: Zaralek Cavern / Cost: 150",
             sourceType = "Pet Journal Source",
         },
         ["Ridged Shalewing"] = shared["Drop: Kob'rok / Zone: Zaralek Cavern"],
         ["Rock Martin"] = shared["Pet Battle: Zaralek Cavern"],
         Roggy = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Achievement: Slow and Steady Wins the Race / Category: Dragon Isles",
             sourceType = "Pet Journal Source",
         },
         Roland = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Achievement: The Gift of Cheese / Category: Cooking",
             sourceType = "Pet Journal Source",
         },
         Salverun = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Treasure: Ouroboros Tablet and Kob'rok's Luminescent Scale",
             sourceType = "Pet Journal Source",
         },
@@ -158,12 +145,10 @@ TDP.CatalogRegistry:RegisterCollection("10.1", "pets", {
         Stonewhisker = shared["Pet Battle: Zaralek Cavern"],
         ["Sunglow Cobra"] = shared["Pet Battle: Zaralek Cavern"],
         ["Teardrop Moth"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Drop: Underlight Queen / Zone: Zaralek Cavern",
             sourceType = "Pet Journal Source",
         },
         Thimblerig = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Ponzo / Zone: Zaralek Cavern / Cost: 45",
             sourceType = "Pet Journal Source",
         },

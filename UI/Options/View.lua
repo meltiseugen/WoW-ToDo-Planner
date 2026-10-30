@@ -1,278 +1,174 @@
 local _, TDP = ...
 local OptionsWindow = TDP.OptionsWindow
 local Widgets = TDP.Widgets
-local TAB_ORDER = OptionsWindow.Config.TAB_ORDER
-local VISUAL_THEME_OPTIONS = OptionsWindow.Config.VISUAL_THEME_OPTIONS
-local VISUAL_THEME_LABELS = OptionsWindow.Config.VISUAL_THEME_LABELS
-local WORLD_MAP_PIN_DEFAULT_SCALE = OptionsWindow.Config.WORLD_MAP_PIN_DEFAULT_SCALE
-local WORLD_MAP_PIN_SCALE_STEP = OptionsWindow.Config.WORLD_MAP_PIN_SCALE_STEP
 
 function OptionsWindow:Build()
-    if self.frame then
-        return self.frame
-    end
-
+    if self.frame then return self.frame end
     self:EnsureSettings()
-
-    local settingsPanel = CreateFrame("Frame", "TODOPlannerOptionsPanel", UIParent)
-    local settingsTitle = settingsPanel:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
-    settingsTitle:SetPoint("TOPLEFT", 16, -16)
-    settingsTitle:SetText("TODO Planner")
-
-    local settingsSubtitle = settingsPanel:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
-    settingsSubtitle:SetPoint("TOPLEFT", settingsTitle, "BOTTOMLEFT", 0, -8)
-    settingsSubtitle:SetWidth(620)
-    settingsSubtitle:SetJustifyH("LEFT")
-    settingsSubtitle:SetText("Options are managed in a standalone addon window.")
-
-    local openWindowButton = CreateFrame("Button", nil, settingsPanel, "UIPanelButtonTemplate")
-    openWindowButton:SetSize(180, 24)
-    openWindowButton:SetPoint("TOPLEFT", settingsSubtitle, "BOTTOMLEFT", 0, -18)
-    openWindowButton:SetText("Open Options Window")
-    openWindowButton:SetScript("OnClick", function()
-        self:Open()
-    end)
-
+    local saved = TODOPlannerDB.settings.optionsWindow
     local frame = CreateFrame("Frame", "TODOPlannerOptionsWindow", UIParent, "BackdropTemplate")
-    frame:SetSize(720, 500)
-    frame:SetPoint("CENTER", UIParent, "CENTER", 0, 40)
+    frame:SetSize(math.max(860, math.min(1400, tonumber(saved.width) or 1000)),
+        math.max(540, math.min(1000, tonumber(saved.height) or 720)))
+    Widgets:ApplyFramePosition(frame, "options", 0, 40)
     frame:SetMovable(true)
-    if frame.SetResizable then
-        frame:SetResizable(true)
-    end
-    if frame.SetResizeBounds then
-        frame:SetResizeBounds(620, 420, 980, 760)
-    elseif frame.SetMinResize then
-        frame:SetMinResize(620, 420)
-    end
+    frame:SetResizable(true)
+    frame:SetResizeBounds(860, 540, 1400, 1000)
     frame:SetClampedToScreen(true)
     frame:EnableMouse(true)
     frame:RegisterForDrag("LeftButton")
-    frame:SetScript("OnMouseDown", function(target)
-        if target.Raise then
-            target:Raise()
-        end
-    end)
     frame:SetScript("OnDragStart", function(target)
-        if target.Raise then
-            target:Raise()
-        end
+        Widgets:BringToFront(target)
         target:StartMoving()
     end)
-    frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
-    Widgets:RegisterTopLevelWindow(frame)
-    Widgets:HookFrameScript(frame, "OnHide", function()
-        Widgets:HideDropdownMenus()
+    frame:SetScript("OnDragStop", function(target)
+        target:StopMovingOrSizing()
+        Widgets:SaveFramePosition(target, "options")
     end)
+    Widgets:RegisterTopLevelWindow(frame)
 
-    local body
-    local Theme = TDP.Theme
-    if Theme then
-        local chrome = Theme:ApplyWindowChrome(frame, "Options", {
-            closeButtonKey = "optionsCloseButton",
-        })
-        body = Widgets:CreatePanel(frame, "body", "goldBorder")
-        body:SetPoint("TOPLEFT", chrome, "TOPLEFT", 12, -54)
-        body:SetPoint("BOTTOMRIGHT", chrome, "BOTTOMRIGHT", -12, 12)
-        body.topAccent = Widgets:AddGoldTopAccent(body, 3, 0.22)
-        Theme:RegisterSpecialFrame("TODOPlannerOptionsWindow")
+    local chrome = frame
+    if TDP.Theme then
+        chrome = TDP.Theme:ApplyWindowChrome(frame, "Options", { closeButtonKey = "optionsCloseButton" })
+        TDP.Theme:RegisterSpecialFrame("TODOPlannerOptionsWindow")
     else
-        Widgets:ApplyPanelBackdrop(frame, { 0.02, 0.02, 0.03, 0.98 }, { 1, 1, 1, 0.10 })
-
-        local title = Widgets:CreateFontString(frame, "OVERLAY", "GameFontNormalLarge")
-        title:SetPoint("TOPLEFT", 16, -16)
-        title:SetText("Options")
-
+        Widgets:ApplyPanelBackdrop(frame, "chrome", "chromeBorder")
+        local title = self:Text(frame, "Options", "GameFontNormalLarge")
+        title:SetPoint("TOPLEFT", 18, -16)
         local close = CreateFrame("Button", nil, frame, "UIPanelCloseButton")
         close:SetPoint("TOPRIGHT", -6, -6)
-
-        body = Widgets:CreatePanel(frame, "body", "goldBorder")
-        body:SetPoint("TOPLEFT", frame, "TOPLEFT", 12, -54)
-        body:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -12, 12)
+        close:SetScript("OnClick", function() frame:Hide() end)
+        UISpecialFrames[#UISpecialFrames + 1] = "TODOPlannerOptionsWindow"
     end
 
-    local title = Widgets:CreateFontString(body, "ARTWORK", "GameFontNormalLarge")
-    title:SetPoint("TOPLEFT", 16, -16)
-    title:SetText("TODO Planner")
+    local sidebar = Widgets:CreatePanel(frame, "body", "goldBorder")
+    sidebar:SetPoint("TOPLEFT", chrome, "TOPLEFT", 12, -54)
+    sidebar:SetPoint("BOTTOMLEFT", chrome, "BOTTOMLEFT", 12, 54)
+    sidebar:SetWidth(190)
+    local searchLabel = self:Text(sidebar, "Find a setting", "GameFontNormalSmall")
+    searchLabel:SetPoint("TOPLEFT", 12, -14)
+    local search = Widgets:CreateEditBox(sidebar, 140, 28)
+    search:SetPoint("TOPLEFT", 12, -36)
+    search:SetMaxLetters(100)
+    self:BindHelp(search, "Find a setting", "Search every page by setting name, description, example, or skin name.", "Try pin, progress, minimap, or Botanical.")
+    local clear = Widgets:CreateButton(sidebar, 24, 28, "X", "neutral")
+    clear:SetPoint("LEFT", search, "RIGHT", 4, 0)
+    clear:SetScript("OnClick", function() search:SetText(""); self:SetSearch("") end)
+    self:BindHelp(clear, "Clear search", "Return to the page you were viewing before searching.")
+    search:SetScript("OnTextChanged", function(input) self:SetSearch(input:GetText()) end)
+    search:SetScript("OnEscapePressed", function(input)
+        input:SetText(""); input:ClearFocus(); self:SetSearch("")
+    end)
+    search:SetScript("OnEnterPressed", function(input) input:ClearFocus() end)
+    self.searchInput = search
 
-    local subtitle = Widgets:CreateFontString(body, "ARTWORK", "GameFontHighlightSmall")
-    subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -8)
-    subtitle:SetText("Separate Global and character task boards.")
+    self.body = Widgets:CreatePanel(frame, "body", "goldBorder")
+    self.body:SetPoint("TOPLEFT", sidebar, "TOPRIGHT", 10, 0)
+    self.body:SetPoint("BOTTOMRIGHT", chrome, "BOTTOMRIGHT", -12, 54)
+    self.pageTitle = self:Text(self.body, "", "GameFontNormalLarge")
+    self.pageTitle:SetPoint("TOPLEFT", 16, -16)
+    self.pageTitle:SetPoint("TOPRIGHT", -16, -16)
+    self.pageDescription = self:Text(self.body, "", "GameFontHighlightSmall", "textSoft")
+    self.pageDescription:SetPoint("TOPLEFT", 16, -42)
+    self.pageDescription:SetPoint("TOPRIGHT", -16, -42)
 
-    self.tabs = {}
-    local previousTabButton
-    for index, tabName in ipairs(TAB_ORDER) do
-        local tabButton = Widgets:CreateTabButton(body, 118, 24, tabName)
-        tabButton:SetID(index)
-        tabButton:ClearAllPoints()
-        if previousTabButton then
-            tabButton:SetPoint("LEFT", previousTabButton, "RIGHT", 8, 0)
-        else
-            tabButton:SetPoint("TOPLEFT", body, "TOPLEFT", 16, -78)
-        end
-        tabButton:SetScript("OnClick", function()
-            self:SelectTab(tabName)
-        end)
+    local scroll = CreateFrame("ScrollFrame", nil, self.body, "UIPanelScrollFrameTemplate")
+    scroll:SetPoint("TOPLEFT", 16, -82)
+    scroll:SetPoint("BOTTOMRIGHT", -34, 34)
+    scroll:EnableMouseWheel(true)
+    scroll:SetScript("OnMouseWheel", function(target, delta)
+        target:SetVerticalScroll(math.max(0, math.min(target:GetVerticalScrollRange(), target:GetVerticalScroll() - delta * 40)))
+    end)
+    local content = CreateFrame("Frame", nil, scroll)
+    content:SetSize(1, 1)
+    scroll:SetScrollChild(content)
+    self.scrollFrame, self.content = scroll, content
+    self.emptyText = self:Text(content, "No settings match your search.\nTry a shorter term, or clear search to browse the pages.", "GameFontHighlightSmall", "textSoft")
+    self.emptyText:SetPoint("TOPLEFT", 16, -22)
+    self.resultText = self:Text(self.body, "", "GameFontHighlightSmall", "textMuted")
+    self.resultText:SetPoint("BOTTOMLEFT", 16, 12)
+    self.resultText:SetPoint("BOTTOMRIGHT", -16, 12)
 
-        local tab = self:CreateTab(body, tabName)
-        tab.button = tabButton
-        previousTabButton = tabButton
+    self:CreatePages()
+    for index, definition in ipairs(self.PageDefinitions) do
+        local pageID = definition.id
+        local button = Widgets:CreateButton(sidebar, 166, 34, definition.label, "neutral")
+        button:SetPoint("TOPLEFT", 12, -88 - (index - 1) * 42)
+        button:SetScript("OnClick", function() self:SelectPage(pageID) end)
+        self:BindHelp(button, definition.label, definition.description)
+        self.pages[pageID].button = button
     end
+    local hint = self:Text(sidebar, "/tdp options\nOpen settings anytime.", "GameFontHighlightSmall", "textMuted")
+    hint:SetPoint("BOTTOMLEFT", 12, 16)
+    hint:SetWidth(166)
 
-    local tabsUnderline = body:CreateTexture(nil, "ARTWORK")
-    Widgets:SetTextureColor(tabsUnderline, "accentGold", { 1, 0.82, 0, 0.35 })
-    tabsUnderline:SetAlpha(0.48)
-    tabsUnderline:SetPoint("TOPLEFT", body, "TOPLEFT", 16, -112)
-    tabsUnderline:SetPoint("TOPRIGHT", body, "TOPRIGHT", -16, -112)
-    tabsUnderline:SetHeight(1)
+    self.resetButton = Widgets:CreateButton(frame, 144, 28, "Reset this page", "neutral")
+    self.resetButton:SetPoint("BOTTOMLEFT", chrome, "BOTTOMLEFT", 12, 14)
+    self.resetButton:SetScript("OnClick", function() self:ResetPage() end)
+    self:BindHelp(self.resetButton, "Reset this page", "Restore the selected page's preferences. Click twice to confirm. Tasks, characters, favorites, and collection filters are kept. Center windows remains a separate action. Clear search to enable page resets.")
+    self.resetButton:SetMotionScriptsWhileDisabled(true)
+    self.reloadButton = Widgets:CreateButton(frame, 104, 28, "Reload UI", "primary")
+    self.reloadButton:SetPoint("BOTTOMRIGHT", chrome, "BOTTOMRIGHT", -12, 14)
+    self.reloadButton:SetScript("OnClick", function() ReloadUI() end)
+    if self.reloadButton.SetMotionScriptsWhileDisabled then self.reloadButton:SetMotionScriptsWhileDisabled(true) end
+    self:BindHelp(self.reloadButton, "Reload UI", "Reload the interface to apply the selected skin to all addon windows. This button is enabled when your selected skin differs from the active skin.")
+    self.footerText = self:Text(frame, "", "GameFontHighlightSmall", "textSoft")
+    self.footerText:SetPoint("LEFT", self.resetButton, "RIGHT", 14, 0)
+    self.footerText:SetPoint("RIGHT", self.reloadButton, "LEFT", -14, 0)
 
-    local generalContent = self.tabs.General.content
-    local generalWindowSection = self:CreateSection(generalContent, nil, "Window", "Quick window actions for TODO Planner.", 104)
-
-    local resetPositionButton = Widgets:CreateButton(generalWindowSection, 150, 24, "Reset Position", "neutral")
-    resetPositionButton:SetPoint("TOPLEFT", generalWindowSection, "TOPLEFT", 14, generalWindowSection.contentTopOffset)
-    resetPositionButton:SetScript("OnClick", function()
-        self:ResetMainWindowPosition()
-    end)
-
-    local resetPositionText = Widgets:CreateFontString(generalWindowSection, "ARTWORK", "GameFontHighlightSmall")
-    resetPositionText:SetPoint("LEFT", resetPositionButton, "RIGHT", 12, 0)
-    resetPositionText:SetPoint("RIGHT", generalWindowSection, "RIGHT", -14, 0)
-    resetPositionText:SetJustifyH("LEFT")
-    resetPositionText:SetText("Move TODO Planner windows back to the center.")
-
-    local appearanceSection = self:CreateSection(
-        generalContent,
-        generalWindowSection,
-        "Appearance",
-        "Choose a visual system. The selection is applied safely after a UI reload.",
-        132
-    )
-
-    local themeLabel = Widgets:CreateFontString(appearanceSection, "ARTWORK", "GameFontNormalSmall")
-    themeLabel:SetPoint("TOPLEFT", appearanceSection, "TOPLEFT", 14, appearanceSection.contentTopOffset)
-    themeLabel:SetText("Design")
-
-    local themeSelector = Widgets:CreateSelectorButton(appearanceSection, 210, 24, "")
-    themeSelector:SetPoint("TOPLEFT", themeLabel, "BOTTOMLEFT", 0, -8)
-    themeSelector:SetScript("OnClick", function(owner)
-        Widgets:ShowSingleSelectMenu(owner, VISUAL_THEME_OPTIONS, TODOPlannerDB.settings.visualTheme, function(themeKey)
-            return VISUAL_THEME_LABELS[themeKey] or tostring(themeKey)
-        end, function(themeKey)
-            self:SetVisualTheme(themeKey)
-        end)
-    end)
-
-    local reloadThemeButton = Widgets:CreateButton(appearanceSection, 86, 24, "Reload UI", "primary")
-    reloadThemeButton:SetPoint("LEFT", themeSelector, "RIGHT", 12, 0)
-    reloadThemeButton:SetScript("OnClick", function()
-        ReloadUI()
-    end)
-
-    local themeStatusText = Widgets:CreateFontString(appearanceSection, "ARTWORK", "GameFontHighlightSmall")
-    themeStatusText:SetPoint("TOPLEFT", themeSelector, "BOTTOMLEFT", 0, -10)
-    themeStatusText:SetPoint("RIGHT", appearanceSection, "RIGHT", -14, 0)
-    themeStatusText:SetJustifyH("LEFT")
-
-    local mapSection = self:CreateSection(generalContent, appearanceSection, "Collection Map", "Adjust TODO pins projected onto the Blizzard world map.", 124)
-
-    local mapPinLabel = Widgets:CreateFontString(mapSection, "ARTWORK", "GameFontNormalSmall")
-    mapPinLabel:SetPoint("TOPLEFT", mapSection, "TOPLEFT", 14, mapSection.contentTopOffset)
-    mapPinLabel:SetText("Blizzard map pin size")
-
-    local pinScaleDownButton = Widgets:CreateButton(mapSection, 28, 24, "-", "neutral")
-    pinScaleDownButton:SetPoint("TOPLEFT", mapPinLabel, "BOTTOMLEFT", 0, -8)
-    pinScaleDownButton:SetScript("OnClick", function()
-        self:SetWorldMapPinScale((TODOPlannerDB.settings.worldMapPinScale or WORLD_MAP_PIN_DEFAULT_SCALE) - WORLD_MAP_PIN_SCALE_STEP)
-    end)
-
-    local pinScaleText = Widgets:CreateFontString(mapSection, "ARTWORK", "GameFontHighlight")
-    pinScaleText:SetSize(58, 24)
-    pinScaleText:SetPoint("LEFT", pinScaleDownButton, "RIGHT", 8, 0)
-    pinScaleText:SetJustifyH("CENTER")
-
-    local pinScaleUpButton = Widgets:CreateButton(mapSection, 28, 24, "+", "neutral")
-    pinScaleUpButton:SetPoint("LEFT", pinScaleText, "RIGHT", 8, 0)
-    pinScaleUpButton:SetScript("OnClick", function()
-        self:SetWorldMapPinScale((TODOPlannerDB.settings.worldMapPinScale or WORLD_MAP_PIN_DEFAULT_SCALE) + WORLD_MAP_PIN_SCALE_STEP)
-    end)
-
-    local pinScaleResetButton = Widgets:CreateButton(mapSection, 72, 24, "Reset", "neutral")
-    pinScaleResetButton:SetPoint("LEFT", pinScaleUpButton, "RIGHT", 8, 0)
-    pinScaleResetButton:SetScript("OnClick", function()
-        self:SetWorldMapPinScale(WORLD_MAP_PIN_DEFAULT_SCALE)
-    end)
-
-    local mapPinHelp = Widgets:CreateFontString(mapSection, "ARTWORK", "GameFontHighlightSmall")
-    mapPinHelp:SetPoint("LEFT", pinScaleResetButton, "RIGHT", 12, 0)
-    mapPinHelp:SetPoint("RIGHT", mapSection, "RIGHT", -14, 0)
-    mapPinHelp:SetJustifyH("LEFT")
-    mapPinHelp:SetText("Changes apply immediately to projected pins.")
-    generalContent:SetHeight(396)
-
-    local achievementsContent = self.tabs.Achievements.content
-    local progressSection = self:CreateSection(achievementsContent, nil, "Progress Display", "Choose how achievement criteria progress is shown in task details.", 126)
-
-    local progressLabel = Widgets:CreateFontString(progressSection, "ARTWORK", "GameFontNormalSmall")
-    progressLabel:SetPoint("TOPLEFT", progressSection, "TOPLEFT", 14, progressSection.contentTopOffset)
-    progressLabel:SetText("Criteria progress")
-
-    local barsButton = Widgets:CreateButton(progressSection, 112, 24, "Bars", "neutral")
-    barsButton:SetPoint("TOPLEFT", progressLabel, "BOTTOMLEFT", 0, -8)
-    barsButton:SetScript("OnClick", function()
-        self:SetProgressBarsEnabled(true)
-    end)
-
-    local textButton = Widgets:CreateButton(progressSection, 112, 24, "Text", "neutral")
-    textButton:SetPoint("LEFT", barsButton, "RIGHT", 8, 0)
-    textButton:SetScript("OnClick", function()
-        self:SetProgressBarsEnabled(false)
-    end)
-
-    self.controls = {
-        progressBarsButton = barsButton,
-        progressTextButton = textButton,
-        worldMapPinScaleText = pinScaleText,
-        themeSelector = themeSelector,
-        reloadThemeButton = reloadThemeButton,
-        themeStatusText = themeStatusText,
-    }
-    achievementsContent:SetHeight(138)
+    local resize = CreateFrame("Button", nil, frame)
+    resize:SetSize(16, 16)
+    resize:SetPoint("BOTTOMRIGHT", -2, 2)
+    resize:SetFrameLevel(frame:GetFrameLevel() + 20)
+    resize:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
+    resize:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
+    resize:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
+    resize:SetScript("OnMouseDown", function(_, button) if button == "LeftButton" then frame:StartSizing("BOTTOMRIGHT") end end)
+    resize:SetScript("OnMouseUp", function() frame:StopMovingOrSizing() end)
+    self:BindHelp(resize, "Resize Options", "Drag to resize. The window remembers its size and position after reload.")
 
     self.frame = frame
-    self.settingsPanel = settingsPanel
-
-    if Settings and Settings.RegisterCanvasLayoutCategory and Settings.RegisterAddOnCategory then
-        local category = Settings.RegisterCanvasLayoutCategory(settingsPanel, "TODO Planner")
-        Settings.RegisterAddOnCategory(category)
-        self.optionsCategory = category
-    end
-
-    if frame.StartSizing then
-        local resizeButton = CreateFrame("Button", nil, frame)
-        resizeButton:SetSize(18, 18)
-        resizeButton:SetPoint("BOTTOMRIGHT", -5, 5)
-        resizeButton:SetFrameLevel((frame:GetFrameLevel() or 0) + 20)
-        resizeButton:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
-        resizeButton:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
-        resizeButton:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
-        resizeButton:SetScript("OnMouseDown", function()
-            frame:StartSizing("BOTTOMRIGHT")
-        end)
-        resizeButton:SetScript("OnMouseUp", function()
-            frame:StopMovingOrSizing()
-        end)
-    end
-
+    frame:SetScript("OnSizeChanged", function(target)
+        saved.width, saved.height = target:GetSize()
+        self:Layout()
+    end)
+    self.body:SetScript("OnSizeChanged", function() self:Layout() end)
+    frame:SetScript("OnHide", function(target)
+        target:StopMovingOrSizing()
+        Widgets:SaveFramePosition(target, "options")
+        saved.width, saved.height = target:GetSize()
+        self:CancelReset()
+        self:HideHelp()
+        search:ClearFocus()
+        Widgets:HideDropdownMenus()
+    end)
+    self:BuildSettingsPanel()
+    self:SelectPage(saved.page or "appearance")
     frame:Hide()
-    self:SelectTab("General")
-    self:Refresh()
-
     return frame
 end
 
-function OptionsWindow:Open()
+function OptionsWindow:BuildSettingsPanel()
+    if self.settingsPanel then return end
+    local panel = CreateFrame("Frame", "TODOPlannerOptionsPanel", UIParent)
+    local title = self:Text(panel, "Planner & Collection Tracker", "GameFontNormalLarge")
+    title:SetPoint("TOPLEFT", 16, -16)
+    local subtitle = self:Text(panel, "Appearance, achievements, maps, windows, and logging preferences are managed in a searchable Options window.")
+    subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -12)
+    subtitle:SetWidth(580)
+    local open = Widgets:CreateButton(panel, 190, 28, "Open Options Window", "primary")
+    open:SetPoint("TOPLEFT", subtitle, "BOTTOMLEFT", 0, -18)
+    open:SetScript("OnClick", function() self:Open() end)
+    self:BindHelp(open, "Open Options", "Open the standalone settings window. You can also use /tdp options.")
+    self.settingsPanel = panel
+    if Settings and Settings.RegisterCanvasLayoutCategory and Settings.RegisterAddOnCategory then
+        self.optionsCategory = Settings.RegisterCanvasLayoutCategory(panel, "Planner & Collection Tracker")
+        Settings.RegisterAddOnCategory(self.optionsCategory)
+    end
+end
+
+function OptionsWindow:Open(pageID)
     local frame = self:Build()
+    if pageID then self:SelectPage(pageID) end
     self:Refresh()
     frame:Show()
     Widgets:BringToFront(frame, self.ui and self.ui.frame)

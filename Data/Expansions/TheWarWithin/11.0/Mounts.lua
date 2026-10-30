@@ -2,21 +2,18 @@ local _, TDP = ...
 
 local shared = {}
 shared["Patch 11.0: The War Within"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     category = "Other",
     source = "Patch 11.0: The War Within",
     sourceType = "Patch mount collection",
 }
 
 shared["Patch 11.0: The War Within 2"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     category = "PvP",
     source = "Patch 11.0: The War Within",
     sourceType = "Patch mount collection",
 }
 
 shared["Patch 11.0: The War Within 3"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     availability = "Limited-time reward; retained in its original patch catalog for historical collection tracking.",
     category = "Other",
     source = "Patch 11.0: The War Within",
@@ -72,7 +69,6 @@ TDP.CatalogRegistry:RegisterCollection("11.0", "mounts", {
         ["Cyan Glowmite"] = shared["Patch 11.0: The War Within"],
         ["Dauntless Imperial Lynx"] = shared["Patch 11.0: The War Within"],
         ["Delver's Dirigible"] = {
-            acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
             category = "Delves",
             source = "Patch 11.0: The War Within",
             sourceType = "Patch mount collection",

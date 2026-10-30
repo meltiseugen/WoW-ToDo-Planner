@@ -1,11 +1,11 @@
 local _, TDP = ...
 
 local shared = {}
-shared["Vendor: Sir Finley Mrgglton / Zone: Dornogal / Cost: 500"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Vendor: Sir Finley Mrgglton / Zone: Dornogal / Cost: 500", sourceType = "Toy Box Source" }
+shared["Vendor: Sir Finley Mrgglton / Zone: Dornogal / Cost: 500"] = { source = "Vendor: Sir Finley Mrgglton / Zone: Dornogal / Cost: 500", sourceType = "Toy Box Source" }
 
-shared["Profession: Khaz Algar Jewelcrafting"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Profession: Khaz Algar Jewelcrafting", sourceType = "Toy Box Source" }
+shared["Profession: Khaz Algar Jewelcrafting"] = { source = "Profession: Khaz Algar Jewelcrafting", sourceType = "Toy Box Source" }
 
-shared["Vendor: Reno Jackson / Zone: Dornogal"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Vendor: Reno Jackson / Zone: Dornogal", sourceType = "Toy Box Source" }
+shared["Vendor: Reno Jackson / Zone: Dornogal"] = { source = "Vendor: Reno Jackson / Zone: Dornogal", sourceType = "Toy Box Source" }
 
 TDP.CatalogRegistry:RegisterCollection("11.0", "toys", {
     entries = {
@@ -43,55 +43,50 @@ TDP.CatalogRegistry:RegisterCollection("11.0", "toys", {
     },
     details = {
         ["Abyss Caller Horn"] = shared["Vendor: Sir Finley Mrgglton / Zone: Dornogal / Cost: 500"],
-        ["Ancient Construct"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Treasure: Sturdy Chest / Delves", sourceType = "Toy Box Source" },
+        ["Ancient Construct"] = { source = "Treasure: Sturdy Chest / Delves", sourceType = "Toy Box Source" },
         ["Arachnophile Spectacles"] = {
-            acquisition = "Follow the in-game Toy Box source for this permanent toy.",
             source = "Vendor: Alvus Valavulu / Zone: City of Threads / Cost: 1500",
             sourceType = "Toy Box Source",
         },
         Arachnoserum = {
-            acquisition = "Follow the in-game Toy Box source for this permanent toy.",
             source = "Vendor: Lady Vinazian / Zone: Azj-Kahet / Cost: 1750 / Vendor: Y'tekhi / Zone: Azj-Kahet / Cost: 1750",
             sourceType = "Toy Box Source",
         },
-        ["Arathi Book Collection"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Treasure: Loremaster's Reward / Zone: Hallowfall", sourceType = "Toy Box Source" },
-        ["Barrel of Fireworks"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Profession: Khaz Algar Engineering", sourceType = "Toy Box Source" },
+        ["Arathi Book Collection"] = { source = "Treasure: Loremaster's Reward / Zone: Hallowfall", sourceType = "Toy Box Source" },
+        ["Barrel of Fireworks"] = { source = "Profession: Khaz Algar Engineering", sourceType = "Toy Box Source" },
         ["Beautification Iris"] = shared["Profession: Khaz Algar Jewelcrafting"],
         ["Candleflexer's Dumbbell"] = {
-            acquisition = "Follow the in-game Toy Box source for this permanent toy.",
             source = "Vendor: Waxmonger Squick / Zone: The Ringing Deeps / Cost: 5000",
             sourceType = "Toy Box Source",
         },
-        ["Cave Spelunker's Torch"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Treasure: Illuminated Footlocker / Zone: Hallowfall", sourceType = "Toy Box Source" },
+        ["Cave Spelunker's Torch"] = { source = "Treasure: Illuminated Footlocker / Zone: Hallowfall", sourceType = "Toy Box Source" },
         ["Delve-O-Bot 7001"] = shared["Vendor: Reno Jackson / Zone: Dornogal"],
         ["Delver's Mana-Bound Ethergate"] = shared["Vendor: Reno Jackson / Zone: Dornogal"],
         ["Etheric Brannmorpher"] = shared["Vendor: Reno Jackson / Zone: Dornogal"],
-        ["Etheric Victory"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Quest: Defeating Ky'veza / Zone: Dornogal", sourceType = "Toy Box Source" },
+        ["Etheric Victory"] = { source = "Quest: Defeating Ky'veza / Zone: Dornogal", sourceType = "Toy Box Source" },
         ["Explosive Victory"] = {
-            acquisition = "Follow the in-game Toy Box source for this permanent toy.",
             source = "World Quest: Defeating the Underpin / Zone: The Ringing Deeps",
             sourceType = "Toy Box Source",
         },
-        ["Hanna's Locket"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Treasure: Tree's Treasure / Zone: Khaz Algar", sourceType = "Toy Box Source" },
-        ["Infiltrator's Shroud"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Drop: Ethereum Infiltrator", sourceType = "Toy Box Source" },
+        ["Hanna's Locket"] = { source = "Treasure: Tree's Treasure / Zone: Khaz Algar", sourceType = "Toy Box Source" },
+        ["Infiltrator's Shroud"] = { source = "Drop: Ethereum Infiltrator", sourceType = "Toy Box Source" },
         ["Lampyridae Lure"] = shared["Vendor: Sir Finley Mrgglton / Zone: Dornogal / Cost: 500"],
-        ["Memory Chord"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Achievement: Memories of a World Soul", sourceType = "Toy Box Source" },
+        ["Memory Chord"] = { source = "Achievement: Memories of a World Soul", sourceType = "Toy Box Source" },
         ["Pileus Delight"] = shared["Vendor: Sir Finley Mrgglton / Zone: Dornogal / Cost: 500"],
-        ["Radiant Lynx Whistle"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Vendor: Lars Bronsmaelt Zone: Hallowfall Cost: 5000", sourceType = "Toy Box Source" },
-        ["Redeployment Module"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Vendor: Sir Finley Mrrgglton / Zone: Dornogal / Cost: 5000", sourceType = "Toy Box Source" },
+        ["Radiant Lynx Whistle"] = { source = "Vendor: Lars Bronsmaelt Zone: Hallowfall Cost: 5000", sourceType = "Toy Box Source" },
+        ["Redeployment Module"] = { source = "Vendor: Sir Finley Mrrgglton / Zone: Dornogal / Cost: 5000", sourceType = "Toy Box Source" },
         ["Remembrance Stone"] = shared["Profession: Khaz Algar Jewelcrafting"],
-        ["Rockslidomancer's Stone"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Vendor: Auditor Balwurz / Zone: Dornogal / Cost: 5000", sourceType = "Toy Box Source" },
-        ["Silver Linin' Scepter"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Treasure: Sunken Cache / Zone: Hallowfall", sourceType = "Toy Box Source" },
-        ["Sovereign's Finery Chest"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Zone: The Azure Span", sourceType = "Toy Box Source" },
+        ["Rockslidomancer's Stone"] = { source = "Vendor: Auditor Balwurz / Zone: Dornogal / Cost: 5000", sourceType = "Toy Box Source" },
+        ["Silver Linin' Scepter"] = { source = "Treasure: Sunken Cache / Zone: Hallowfall", sourceType = "Toy Box Source" },
+        ["Sovereign's Finery Chest"] = { source = "Zone: The Azure Span", sourceType = "Toy Box Source" },
         ["Spotlight Materializer 1000"] = shared["Vendor: Sir Finley Mrgglton / Zone: Dornogal / Cost: 500"],
-        ["Throwaway Gangster Disguise"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Vendor: Sir Finley Mrrgglton / Zone: Dornogal / Cost: 2500", sourceType = "Toy Box Source" },
-        ["Toxic Victory"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Quest: Zekvir, Hand of the Harbinger Zone: Dornogal", sourceType = "Toy Box Source" },
+        ["Throwaway Gangster Disguise"] = { source = "Vendor: Sir Finley Mrrgglton / Zone: Dornogal / Cost: 2500", sourceType = "Toy Box Source" },
+        ["Toxic Victory"] = { source = "Quest: Zekvir, Hand of the Harbinger Zone: Dornogal", sourceType = "Toy Box Source" },
         ["Trial of Burning Light"] = {
-            acquisition = "Follow the in-game Toy Box source for this permanent toy.",
             source = "Vendor: Auralia Steelstrike / Zone: Hallowfall / Cost: 5000",
             sourceType = "Toy Box Source",
         },
-        ["Trusty Hat"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Drop: Delver's Journey", sourceType = "Toy Box Source" },
-        ["Web-Vandal's Spinning Wheel"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Treasure: \"Weaving Supplies\" / Zone: Azj-Kahet", sourceType = "Toy Box Source" },
+        ["Trusty Hat"] = { source = "Drop: Delver's Journey", sourceType = "Toy Box Source" },
+        ["Web-Vandal's Spinning Wheel"] = { source = "Treasure: \"Weaving Supplies\" / Zone: Azj-Kahet", sourceType = "Toy Box Source" },
     },
 })

@@ -1,0 +1,6590 @@
+{
+  "names": {
+    "pets:1699": "Enchanted Cauldron",
+    "pets:1701": "Enchanted Pen",
+    "pets:1700": "Enchanted Torch",
+    "pets:2117": "Fel Lasher",
+    "pets:2121": "Fossorial Bile Larva",
+    "pets:1806": "Knockoff Blingtron",
+    "pets:1756": "Ridgeback Piglet",
+    "pets:1759": "Thaumaturgical Piglet",
+    "pets:1920": "Transmutant",
+    "pets:1886": "Trigger",
+    "toys:132518": "Blingtron's Circuit Design Tutorial",
+    "toys:130254": "Chatterstone",
+    "toys:129961": "Flaming Hoop",
+    "toys:130251": "JewelCraft",
+    "toys:129956": "Leather Love Seat",
+    "toys:129960": "Leather Pet Bed",
+    "toys:129958": "Leather Pet Leash",
+    "toys:128536": "Leylight Brazier",
+    "toys:129211": "Steamy Romance Novel Kit",
+    "cosmetics:146648": "Arsenal: Brutal Gladiator's Weapons",
+    "cosmetics:146639": "Arsenal: Cataclysmic Gladiator's Weapons",
+    "cosmetics:146645": "Arsenal: Deadly Gladiator's Weapons",
+    "cosmetics:146644": "Arsenal: Furious Gladiator's Weapons",
+    "cosmetics:146651": "Arsenal: Gladiator's Weapons",
+    "cosmetics:146646": "Arsenal: Hateful Gladiator's Weapons",
+    "cosmetics:146650": "Arsenal: Merciless Gladiator's Weapons",
+    "cosmetics:146643": "Arsenal: Relentless Gladiator's Weapons",
+    "cosmetics:146640": "Arsenal: Ruthless Gladiator's Weapons",
+    "cosmetics:146647": "Arsenal: Savage Gladiator's Weapons",
+    "cosmetics:146649": "Arsenal: Vengeful Gladiator's Weapons",
+    "cosmetics:146641": "Arsenal: Vicious Gladiator's Weapons",
+    "cosmetics:146642": "Arsenal: Wrathful Gladiator's Weapons",
+    "cosmetics:146419": "Ensemble: Bloodthirsty Gladiator's Chain Armor",
+    "cosmetics:146421": "Ensemble: Bloodthirsty Gladiator's Dragonhide Armor",
+    "cosmetics:146423": "Ensemble: Bloodthirsty Gladiator's Dreadplate Armor",
+    "cosmetics:146425": "Ensemble: Bloodthirsty Gladiator's Felweave Armor",
+    "cosmetics:146427": "Ensemble: Bloodthirsty Gladiator's Leather Armor",
+    "cosmetics:146429": "Ensemble: Bloodthirsty Gladiator's Plate Armor",
+    "cosmetics:146431": "Ensemble: Bloodthirsty Gladiator's Ringmail Armor",
+    "cosmetics:146433": "Ensemble: Bloodthirsty Gladiator's Satin Armor",
+    "cosmetics:146435": "Ensemble: Bloodthirsty Gladiator's Scaled Armor",
+    "cosmetics:146437": "Ensemble: Bloodthirsty Gladiator's Silk Armor",
+    "cosmetics:146598": "Ensemble: Brutal Gladiator's Chain Armor",
+    "cosmetics:146599": "Ensemble: Brutal Gladiator's Dragonhide Armor",
+    "cosmetics:146600": "Ensemble: Brutal Gladiator's Dreadplate Armor",
+    "cosmetics:146601": "Ensemble: Brutal Gladiator's Felweave Armor",
+    "cosmetics:146602": "Ensemble: Brutal Gladiator's Leather Armor",
+    "cosmetics:146603": "Ensemble: Brutal Gladiator's Plate Armor",
+    "cosmetics:146604": "Ensemble: Brutal Gladiator's Ringmail Armor",
+    "cosmetics:146605": "Ensemble: Brutal Gladiator's Satin Armor",
+    "cosmetics:146606": "Ensemble: Brutal Gladiator's Scaled Armor",
+    "cosmetics:146607": "Ensemble: Brutal Gladiator's Silk Armor",
+    "cosmetics:146439": "Ensemble: Cataclysmic Gladiator's Chain Armor",
+    "cosmetics:146441": "Ensemble: Cataclysmic Gladiator's Dragonhide Armor",
+    "cosmetics:146443": "Ensemble: Cataclysmic Gladiator's Dreadplate Armor",
+    "cosmetics:146445": "Ensemble: Cataclysmic Gladiator's Felweave Armor",
+    "cosmetics:146447": "Ensemble: Cataclysmic Gladiator's Leather Armor",
+    "cosmetics:146449": "Ensemble: Cataclysmic Gladiator's Plate Armor",
+    "cosmetics:146451": "Ensemble: Cataclysmic Gladiator's Ringmail Armor",
+    "cosmetics:146453": "Ensemble: Cataclysmic Gladiator's Satin Armor",
+    "cosmetics:146455": "Ensemble: Cataclysmic Gladiator's Scaled Armor",
+    "cosmetics:146457": "Ensemble: Cataclysmic Gladiator's Silk Armor",
+    "cosmetics:146538": "Ensemble: Deadly Gladiator's Chain Armor",
+    "cosmetics:146539": "Ensemble: Deadly Gladiator's Dragonhide Armor",
+    "cosmetics:146540": "Ensemble: Deadly Gladiator's Dreadplate Armor",
+    "cosmetics:146541": "Ensemble: Deadly Gladiator's Felweave Armor",
+    "cosmetics:146542": "Ensemble: Deadly Gladiator's Leather Armor",
+    "cosmetics:146543": "Ensemble: Deadly Gladiator's Plate Armor",
+    "cosmetics:146544": "Ensemble: Deadly Gladiator's Ringmail Armor",
+    "cosmetics:146545": "Ensemble: Deadly Gladiator's Satin Armor",
+    "cosmetics:146546": "Ensemble: Deadly Gladiator's Scaled Armor",
+    "cosmetics:146547": "Ensemble: Deadly Gladiator's Silk Armor",
+    "cosmetics:146548": "Ensemble: Furious Gladiator's Chain Armor",
+    "cosmetics:146549": "Ensemble: Furious Gladiator's Dragonhide Armor",
+    "cosmetics:146550": "Ensemble: Furious Gladiator's Dreadplate Armor",
+    "cosmetics:146551": "Ensemble: Furious Gladiator's Felweave Armor",
+    "cosmetics:146552": "Ensemble: Furious Gladiator's Leather Armor",
+    "cosmetics:146553": "Ensemble: Furious Gladiator's Plate Armor",
+    "cosmetics:146554": "Ensemble: Furious Gladiator's Ringmail Armor",
+    "cosmetics:146555": "Ensemble: Furious Gladiator's Satin Armor",
+    "cosmetics:146556": "Ensemble: Furious Gladiator's Scaled Armor",
+    "cosmetics:146557": "Ensemble: Furious Gladiator's Silk Armor",
+    "cosmetics:146608": "Ensemble: Gladiator's Chain Armor",
+    "cosmetics:146609": "Ensemble: Gladiator's Dragonhide Armor",
+    "cosmetics:146611": "Ensemble: Gladiator's Felweave Armor",
+    "cosmetics:146612": "Ensemble: Gladiator's Leather Armor",
+    "cosmetics:146613": "Ensemble: Gladiator's Plate Armor",
+    "cosmetics:146614": "Ensemble: Gladiator's Ringmail Armor",
+    "cosmetics:146615": "Ensemble: Gladiator's Satin Armor",
+    "cosmetics:146616": "Ensemble: Gladiator's Scaled Armor",
+    "cosmetics:146617": "Ensemble: Gladiator's Silk Armor",
+    "cosmetics:146558": "Ensemble: Hateful Gladiator's Chain Armor",
+    "cosmetics:146559": "Ensemble: Hateful Gladiator's Dragonhide Armor",
+    "cosmetics:146560": "Ensemble: Hateful Gladiator's Dreadplate Armor",
+    "cosmetics:146561": "Ensemble: Hateful Gladiator's Felweave Armor",
+    "cosmetics:146562": "Ensemble: Hateful Gladiator's Leather Armor",
+    "cosmetics:146563": "Ensemble: Hateful Gladiator's Plate Armor",
+    "cosmetics:146564": "Ensemble: Hateful Gladiator's Ringmail Armor",
+    "cosmetics:146565": "Ensemble: Hateful Gladiator's Satin Armor",
+    "cosmetics:146566": "Ensemble: Hateful Gladiator's Scaled Armor",
+    "cosmetics:146567": "Ensemble: Hateful Gladiator's Silk Armor",
+    "cosmetics:146618": "Ensemble: Merciless Gladiator's Chain Armor",
+    "cosmetics:146619": "Ensemble: Merciless Gladiator's Dragonhide Armor",
+    "cosmetics:146621": "Ensemble: Merciless Gladiator's Felweave Armor",
+    "cosmetics:146622": "Ensemble: Merciless Gladiator's Leather Armor",
+    "cosmetics:146623": "Ensemble: Merciless Gladiator's Plate Armor",
+    "cosmetics:146624": "Ensemble: Merciless Gladiator's Ringmail Armor",
+    "cosmetics:146625": "Ensemble: Merciless Gladiator's Satin Armor",
+    "cosmetics:146626": "Ensemble: Merciless Gladiator's Scaled Armor",
+    "cosmetics:146627": "Ensemble: Merciless Gladiator's Silk Armor",
+    "cosmetics:146568": "Ensemble: Relentless Gladiator's Chain Armor",
+    "cosmetics:146569": "Ensemble: Relentless Gladiator's Dragonhide Armor",
+    "cosmetics:146570": "Ensemble: Relentless Gladiator's Dreadplate Armor",
+    "cosmetics:146571": "Ensemble: Relentless Gladiator's Felweave Armor",
+    "cosmetics:146572": "Ensemble: Relentless Gladiator's Leather Armor",
+    "cosmetics:146573": "Ensemble: Relentless Gladiator's Plate Armor",
+    "cosmetics:146574": "Ensemble: Relentless Gladiator's Ringmail Armor",
+    "cosmetics:146575": "Ensemble: Relentless Gladiator's Satin Armor",
+    "cosmetics:146576": "Ensemble: Relentless Gladiator's Scaled Armor",
+    "cosmetics:146577": "Ensemble: Relentless Gladiator's Silk Armor",
+    "cosmetics:146499": "Ensemble: Ruthless Gladiator's Chain Armor",
+    "cosmetics:146501": "Ensemble: Ruthless Gladiator's Dragonhide Armor",
+    "cosmetics:146503": "Ensemble: Ruthless Gladiator's Dreadplate Armor",
+    "cosmetics:146505": "Ensemble: Ruthless Gladiator's Felweave Armor",
+    "cosmetics:146507": "Ensemble: Ruthless Gladiator's Leather Armor",
+    "cosmetics:146509": "Ensemble: Ruthless Gladiator's Plate Armor",
+    "cosmetics:146511": "Ensemble: Ruthless Gladiator's Ringmail Armor",
+    "cosmetics:146513": "Ensemble: Ruthless Gladiator's Satin Armor",
+    "cosmetics:146515": "Ensemble: Ruthless Gladiator's Scaled Armor",
+    "cosmetics:146517": "Ensemble: Ruthless Gladiator's Silk Armor",
+    "cosmetics:146578": "Ensemble: Savage Gladiator's Chain Armor",
+    "cosmetics:146579": "Ensemble: Savage Gladiator's Dragonhide Armor",
+    "cosmetics:146580": "Ensemble: Savage Gladiator's Dreadplate Armor",
+    "cosmetics:146581": "Ensemble: Savage Gladiator's Felweave Armor",
+    "cosmetics:146582": "Ensemble: Savage Gladiator's Leather Armor",
+    "cosmetics:146583": "Ensemble: Savage Gladiator's Plate Armor",
+    "cosmetics:146584": "Ensemble: Savage Gladiator's Ringmail Armor",
+    "cosmetics:146585": "Ensemble: Savage Gladiator's Satin Armor",
+    "cosmetics:146586": "Ensemble: Savage Gladiator's Scaled Armor",
+    "cosmetics:146587": "Ensemble: Savage Gladiator's Silk Armor",
+    "cosmetics:146628": "Ensemble: Vengeful Gladiator's Chain Armor",
+    "cosmetics:146629": "Ensemble: Vengeful Gladiator's Dragonhide Armor",
+    "cosmetics:146631": "Ensemble: Vengeful Gladiator's Felweave Armor",
+    "cosmetics:146632": "Ensemble: Vengeful Gladiator's Leather Armor",
+    "cosmetics:146633": "Ensemble: Vengeful Gladiator's Plate Armor",
+    "cosmetics:146634": "Ensemble: Vengeful Gladiator's Ringmail Armor",
+    "cosmetics:146635": "Ensemble: Vengeful Gladiator's Satin Armor",
+    "cosmetics:146636": "Ensemble: Vengeful Gladiator's Scaled Armor",
+    "cosmetics:146637": "Ensemble: Vengeful Gladiator's Silk Armor",
+    "cosmetics:146519": "Ensemble: Vicious Gladiator's Chain Armor",
+    "cosmetics:146521": "Ensemble: Vicious Gladiator's Dragonhide Armor",
+    "cosmetics:146523": "Ensemble: Vicious Gladiator's Dreadplate Armor",
+    "cosmetics:146525": "Ensemble: Vicious Gladiator's Felweave Armor",
+    "cosmetics:146527": "Ensemble: Vicious Gladiator's Leather Armor",
+    "cosmetics:146529": "Ensemble: Vicious Gladiator's Plate Armor",
+    "cosmetics:146531": "Ensemble: Vicious Gladiator's Ringmail Armor",
+    "cosmetics:146533": "Ensemble: Vicious Gladiator's Satin Armor",
+    "cosmetics:146535": "Ensemble: Vicious Gladiator's Scaled Armor",
+    "cosmetics:146537": "Ensemble: Vicious Gladiator's Silk Armor",
+    "cosmetics:146588": "Ensemble: Wrathful Gladiator's Chain Armor",
+    "cosmetics:146589": "Ensemble: Wrathful Gladiator's Dragonhide Armor",
+    "cosmetics:146590": "Ensemble: Wrathful Gladiator's Dreadplate Armor",
+    "cosmetics:146591": "Ensemble: Wrathful Gladiator's Felweave Armor",
+    "cosmetics:146592": "Ensemble: Wrathful Gladiator's Leather Armor",
+    "cosmetics:146593": "Ensemble: Wrathful Gladiator's Plate Armor",
+    "cosmetics:146594": "Ensemble: Wrathful Gladiator's Ringmail Armor",
+    "cosmetics:146595": "Ensemble: Wrathful Gladiator's Satin Armor",
+    "cosmetics:146596": "Ensemble: Wrathful Gladiator's Scaled Armor",
+    "cosmetics:146597": "Ensemble: Wrathful Gladiator's Silk Armor"
+  },
+  "records": {
+    "pets:1699": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Filter"
+          },
+          {
+            "_constructor": "Species",
+            "npcID": 96403,
+            "itemID": 128533,
+            "speciesID": 1699,
+            "spellID": 191071
+          }
+        ]
+      }
+    ],
+    "pets:1701": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Filter"
+          },
+          {
+            "_constructor": "Species",
+            "npcID": 96405,
+            "itemID": 128535,
+            "speciesID": 1701,
+            "spellID": 191073
+          }
+        ]
+      }
+    ],
+    "pets:1700": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Filter"
+          },
+          {
+            "_constructor": "Species",
+            "npcID": 96404,
+            "itemID": 128534,
+            "speciesID": 1700,
+            "spellID": 191072
+          }
+        ]
+      }
+    ],
+    "pets:2117": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Header",
+            "headerID": 2366
+          },
+          {
+            "_constructor": "Species",
+            "npcID": 128137,
+            "itemID": 153045,
+            "speciesID": 2117,
+            "spellID": 254271,
+            "description": "This can be looted from any herb on Argus."
+          }
+        ]
+      }
+    ],
+    "pets:2121": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Filter"
+          },
+          {
+            "_constructor": "Species",
+            "npcID": 128160,
+            "itemID": 153057,
+            "speciesID": 2121,
+            "spellID": 254298,
+            "description": "This can be obtained from any skinnable Argus mob."
+          }
+        ]
+      }
+    ],
+    "pets:1806": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -45
+          },
+          {
+            "_constructor": "Quest",
+            "questID": 40753,
+            "lvl": 45,
+            "qgs": {
+              "1": 101527
+            }
+          },
+          {
+            "_constructor": "Item",
+            "itemID": 132892
+          },
+          {
+            "_constructor": "Species",
+            "npcID": 99505,
+            "itemID": 136911,
+            "speciesID": 1806,
+            "spellID": 210683
+          }
+        ]
+      }
+    ],
+    "pets:1756": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Filter"
+          },
+          {
+            "_constructor": "Item",
+            "itemID": 137608,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137599,
+                "3": 1
+              }
+            }
+          },
+          {
+            "_constructor": "Species",
+            "npcID": 98172,
+            "itemID": 136905,
+            "speciesID": 1756,
+            "spellID": 210678
+          }
+        ]
+      }
+    ],
+    "pets:1759": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Filter"
+          },
+          {
+            "_constructor": "Item",
+            "itemID": 137608,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137599,
+                "3": 1
+              }
+            }
+          },
+          {
+            "_constructor": "Species",
+            "npcID": 98183,
+            "itemID": 136908,
+            "speciesID": 1759,
+            "spellID": 210681
+          }
+        ]
+      }
+    ],
+    "pets:1920": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Filter"
+          },
+          {
+            "_constructor": "Item",
+            "itemID": 137608,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137599,
+                "3": 1
+              }
+            }
+          },
+          {
+            "_constructor": "Species",
+            "npcID": 111425,
+            "itemID": 139789,
+            "speciesID": 1920,
+            "spellID": 221906
+          }
+        ]
+      }
+    ],
+    "pets:1886": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Filter"
+          },
+          {
+            "_constructor": "Species",
+            "npcID": 106210,
+            "itemID": 132519,
+            "speciesID": 1886,
+            "spellID": 210696
+          }
+        ]
+      }
+    ],
+    "toys:132518": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Filter"
+          },
+          {
+            "_constructor": "Toy",
+            "itemID": 132518
+          }
+        ]
+      }
+    ],
+    "toys:130254": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Filter"
+          },
+          {
+            "_constructor": "Toy",
+            "itemID": 130254
+          }
+        ]
+      }
+    ],
+    "toys:129961": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Filter"
+          },
+          {
+            "_constructor": "Toy",
+            "itemID": 129961
+          }
+        ]
+      }
+    ],
+    "toys:130251": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Filter"
+          },
+          {
+            "_constructor": "Toy",
+            "itemID": 130251
+          }
+        ]
+      }
+    ],
+    "toys:129956": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Filter"
+          },
+          {
+            "_constructor": "Toy",
+            "itemID": 129956
+          }
+        ]
+      }
+    ],
+    "toys:129960": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Filter"
+          },
+          {
+            "_constructor": "Toy",
+            "itemID": 129960
+          }
+        ]
+      }
+    ],
+    "toys:129958": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Filter"
+          },
+          {
+            "_constructor": "Toy",
+            "itemID": 129958
+          }
+        ]
+      }
+    ],
+    "toys:128536": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Filter"
+          },
+          {
+            "_constructor": "Toy",
+            "itemID": 128536
+          }
+        ]
+      }
+    ],
+    "toys:129211": [
+      {
+        "category": "Craftables",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -23
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "Profession"
+          },
+          {
+            "_constructor": "Filter"
+          },
+          {
+            "_constructor": "Toy",
+            "itemID": 129211
+          }
+        ]
+      }
+    ],
+    "cosmetics:146648": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -250
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -101
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46640,
+            "itemID": 146648,
+            "spellID": 239041,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 80
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146639": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -258
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -101
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46532,
+            "itemID": 146639,
+            "spellID": 241527,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 80
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146645": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -101
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46576,
+            "itemID": 146645,
+            "spellID": 241528,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 80
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146644": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -253
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -101
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46609,
+            "itemID": 146644,
+            "spellID": 241529,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 80
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146651": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -247
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -101
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46630,
+            "itemID": 146651,
+            "spellID": 239038,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 80
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146646": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -252
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -101
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46598,
+            "itemID": 146646,
+            "spellID": 241530,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 80
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146650": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -248
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -101
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46660,
+            "itemID": 146650,
+            "spellID": 239039,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 80
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146643": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -254
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -101
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46620,
+            "itemID": 146643,
+            "spellID": 241531,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 80
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146640": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -257
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -101
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46554,
+            "itemID": 146640,
+            "spellID": 241532,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 80
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146647": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -101
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46565,
+            "itemID": 146647,
+            "spellID": 239043,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 80
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146649": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -249
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -101
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46650,
+            "itemID": 146649,
+            "spellID": 239040,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 80
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146641": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -101
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46543,
+            "itemID": 146641,
+            "spellID": 241533,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 80
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146642": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -255
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -101
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46587,
+            "itemID": 146642,
+            "spellID": 241534,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 80
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146419": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46512,
+            "itemID": 146419,
+            "spellID": 238814,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register the Vicious Gladiator |cFF1eff00Season 10|r Honor Transmog.\n\n|cffde1c1cYou will not|r gain the Vicious Gladiator |cFF1eff00Season 9|r Transmog with the same name.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146421": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46513,
+            "itemID": 146421,
+            "spellID": 238812,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register the Vicious Gladiator |cFF1eff00Season 10|r Honor Transmog.\n\n|cffde1c1cYou will not|r gain the Vicious Gladiator |cFF1eff00Season 9|r Transmog with the same name.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146423": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46514,
+            "itemID": 146423,
+            "spellID": 238820,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register the Vicious Gladiator |cFF1eff00Season 10|r Honor Transmog.\n\n|cffde1c1cYou will not|r gain the Vicious Gladiator |cFF1eff00Season 9|r Transmog with the same name.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146425": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46515,
+            "itemID": 146425,
+            "spellID": 238804,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register the Vicious Gladiator |cFF1eff00Season 10|r Honor Transmog.\n\n|cffde1c1cYou will not|r gain the Vicious Gladiator |cFF1eff00Season 9|r Transmog with the same name.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146427": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46516,
+            "itemID": 146427,
+            "spellID": 238810,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register the Vicious Gladiator |cFF1eff00Season 10|r Honor Transmog.\n\n|cffde1c1cYou will not|r gain the Vicious Gladiator |cFF1eff00Season 9|r Transmog with the same name.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146429": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46517,
+            "itemID": 146429,
+            "spellID": 238822,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register the Vicious Gladiator |cFF1eff00Season 10|r Honor Transmog.\n\n|cffde1c1cYou will not|r gain the Vicious Gladiator |cFF1eff00Season 9|r Transmog with the same name.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146431": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46518,
+            "itemID": 146431,
+            "spellID": 238816,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register the Vicious Gladiator |cFF1eff00Season 10|r Honor Transmog.\n\n|cffde1c1cYou will not|r gain the Vicious Gladiator |cFF1eff00Season 9|r Transmog with the same name.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146433": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46519,
+            "itemID": 146433,
+            "spellID": 238806,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register the Vicious Gladiator |cFF1eff00Season 10|r Honor Transmog.\n\n|cffde1c1cYou will not|r gain the Vicious Gladiator |cFF1eff00Season 9|r Transmog with the same name.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146435": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46520,
+            "itemID": 146435,
+            "spellID": 238818,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register the Vicious Gladiator |cFF1eff00Season 10|r Honor Transmog.\n\n|cffde1c1cYou will not|r gain the Vicious Gladiator |cFF1eff00Season 9|r Transmog with the same name.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146437": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46521,
+            "itemID": 146437,
+            "spellID": 238808,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register the Vicious Gladiator |cFF1eff00Season 10|r Honor Transmog.\n\n|cffde1c1cYou will not|r gain the Vicious Gladiator |cFF1eff00Season 9|r Transmog with the same name.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146598": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -250
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46631,
+            "itemID": 146598,
+            "spellID": 238949,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146599": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -250
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46632,
+            "itemID": 146599,
+            "spellID": 238948,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146600": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -250
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 47060,
+            "itemID": 146600,
+            "spellID": 238952,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146601": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -250
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46633,
+            "itemID": 146601,
+            "spellID": 238944,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146602": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -250
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46634,
+            "itemID": 146602,
+            "spellID": 238947,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146603": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -250
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46635,
+            "itemID": 146603,
+            "spellID": 238953,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146604": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -250
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46636,
+            "itemID": 146604,
+            "spellID": 238950,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146605": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -250
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46637,
+            "itemID": 146605,
+            "spellID": 238945,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146606": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -250
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46638,
+            "itemID": 146606,
+            "spellID": 238951,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146607": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -250
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46639,
+            "itemID": 146607,
+            "spellID": 238946,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146439": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -258
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46355,
+            "itemID": 146439,
+            "spellID": 238714,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146441": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -258
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46523,
+            "itemID": 146441,
+            "spellID": 238712,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146443": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -258
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46524,
+            "itemID": 146443,
+            "spellID": 238720,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146445": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -258
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46525,
+            "itemID": 146445,
+            "spellID": 238704,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146447": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -258
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46526,
+            "itemID": 146447,
+            "spellID": 238710,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146449": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -258
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46527,
+            "itemID": 146449,
+            "spellID": 238722,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146451": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -258
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46528,
+            "itemID": 146451,
+            "spellID": 238716,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146453": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -258
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46529,
+            "itemID": 146453,
+            "spellID": 238706,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146455": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -258
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46530,
+            "itemID": 146455,
+            "spellID": 238718,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146457": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -258
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46531,
+            "itemID": 146457,
+            "spellID": 238708,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146538": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46566,
+            "itemID": 146538,
+            "spellID": 238894,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146539": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46567,
+            "itemID": 146539,
+            "spellID": 238892,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146540": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46568,
+            "itemID": 146540,
+            "spellID": 238900,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146541": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46569,
+            "itemID": 146541,
+            "spellID": 238884,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146542": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46570,
+            "itemID": 146542,
+            "spellID": 238890,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146543": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46571,
+            "itemID": 146543,
+            "spellID": 238902,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146544": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46572,
+            "itemID": 146544,
+            "spellID": 238896,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146545": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46573,
+            "itemID": 146545,
+            "spellID": 238886,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146546": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46574,
+            "itemID": 146546,
+            "spellID": 238898,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146547": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46575,
+            "itemID": 146547,
+            "spellID": 238888,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146548": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -253
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46599,
+            "itemID": 146548,
+            "spellID": 238874,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146549": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -253
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46600,
+            "itemID": 146549,
+            "spellID": 238872,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146550": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -253
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46601,
+            "itemID": 146550,
+            "spellID": 238880,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146551": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -253
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46602,
+            "itemID": 146551,
+            "spellID": 238864,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146552": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -253
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46603,
+            "itemID": 146552,
+            "spellID": 238870,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146553": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -253
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46604,
+            "itemID": 146553,
+            "spellID": 238882,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146554": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -253
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46605,
+            "itemID": 146554,
+            "spellID": 238876,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146555": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -253
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46606,
+            "itemID": 146555,
+            "spellID": 238866,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146556": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -253
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46607,
+            "itemID": 146556,
+            "spellID": 238878,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146557": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -253
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46608,
+            "itemID": 146557,
+            "spellID": 238868,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146608": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -247
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46621,
+            "itemID": 146608,
+            "spellID": 238979,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146609": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -247
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46622,
+            "itemID": 146609,
+            "spellID": 238978,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146611": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -247
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46623,
+            "itemID": 146611,
+            "spellID": 238974,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146612": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -247
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46624,
+            "itemID": 146612,
+            "spellID": 238977,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146613": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -247
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46625,
+            "itemID": 146613,
+            "spellID": 238983,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146614": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -247
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46626,
+            "itemID": 146614,
+            "spellID": 238980,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146615": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -247
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46627,
+            "itemID": 146615,
+            "spellID": 238975,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146616": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -247
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46628,
+            "itemID": 146616,
+            "spellID": 238981,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146617": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -247
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46629,
+            "itemID": 146617,
+            "spellID": 238976,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146558": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -252
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46588,
+            "itemID": 146558,
+            "spellID": 238914,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146559": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -252
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46589,
+            "itemID": 146559,
+            "spellID": 238912,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146560": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -252
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46590,
+            "itemID": 146560,
+            "spellID": 238920,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146561": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -252
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46591,
+            "itemID": 146561,
+            "spellID": 238904,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146562": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -252
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46592,
+            "itemID": 146562,
+            "spellID": 238910,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146563": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -252
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46593,
+            "itemID": 146563,
+            "spellID": 238922,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146564": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -252
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46594,
+            "itemID": 146564,
+            "spellID": 238916,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146565": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -252
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46595,
+            "itemID": 146565,
+            "spellID": 238906,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146566": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -252
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46596,
+            "itemID": 146566,
+            "spellID": 238918,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146567": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -252
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46597,
+            "itemID": 146567,
+            "spellID": 238908,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146618": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -248
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46651,
+            "itemID": 146618,
+            "spellID": 238969,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146619": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -248
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46652,
+            "itemID": 146619,
+            "spellID": 238968,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146621": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -248
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46653,
+            "itemID": 146621,
+            "spellID": 238964,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146622": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -248
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46654,
+            "itemID": 146622,
+            "spellID": 238967,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146623": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -248
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46655,
+            "itemID": 146623,
+            "spellID": 238973,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146624": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -248
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46656,
+            "itemID": 146624,
+            "spellID": 238970,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146625": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -248
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46657,
+            "itemID": 146625,
+            "spellID": 238965,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146626": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -248
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46658,
+            "itemID": 146626,
+            "spellID": 238971,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146627": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -248
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46659,
+            "itemID": 146627,
+            "spellID": 238966,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146568": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -254
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46610,
+            "itemID": 146568,
+            "spellID": 238854,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146569": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -254
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46611,
+            "itemID": 146569,
+            "spellID": 238852,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146570": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -254
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46612,
+            "itemID": 146570,
+            "spellID": 238860,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146571": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -254
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46613,
+            "itemID": 146571,
+            "spellID": 238844,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146572": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -254
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46614,
+            "itemID": 146572,
+            "spellID": 238850,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146573": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -254
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46615,
+            "itemID": 146573,
+            "spellID": 238862,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146574": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -254
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46616,
+            "itemID": 146574,
+            "spellID": 238856,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146575": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -254
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46617,
+            "itemID": 146575,
+            "spellID": 238846,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146576": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -254
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46618,
+            "itemID": 146576,
+            "spellID": 238858,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146577": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -254
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46619,
+            "itemID": 146577,
+            "spellID": 238848,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146499": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -257
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46544,
+            "itemID": 146499,
+            "spellID": 238754,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register every Ruthless Gladiator Item.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146501": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -257
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46545,
+            "itemID": 146501,
+            "spellID": 238752,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register every Ruthless Gladiator Item.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146503": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -257
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46546,
+            "itemID": 146503,
+            "spellID": 238760,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register every Ruthless Gladiator Item.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146505": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -257
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46547,
+            "itemID": 146505,
+            "spellID": 238744,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register every Ruthless Gladiator Item.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146507": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -257
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46548,
+            "itemID": 146507,
+            "spellID": 238750,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register every Ruthless Gladiator Item.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146509": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -257
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46549,
+            "itemID": 146509,
+            "spellID": 238762,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register every Ruthless Gladiator Item.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146511": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -257
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46550,
+            "itemID": 146511,
+            "spellID": 238756,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register every Ruthless Gladiator Item.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146513": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -257
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46551,
+            "itemID": 146513,
+            "spellID": 238746,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register every Ruthless Gladiator Item.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146515": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -257
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46552,
+            "itemID": 146515,
+            "spellID": 238758,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register every Ruthless Gladiator Item.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146517": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -257
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46553,
+            "itemID": 146517,
+            "spellID": 238748,
+            "lvl": 32,
+            "description": "You will need to log out and back in to register every Ruthless Gladiator Item.",
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146578": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46555,
+            "itemID": 146578,
+            "spellID": 238934,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146579": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46556,
+            "itemID": 146579,
+            "spellID": 238932,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146580": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46557,
+            "itemID": 146580,
+            "spellID": 238940,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146581": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46558,
+            "itemID": 146581,
+            "spellID": 238924,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146582": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46559,
+            "itemID": 146582,
+            "spellID": 238930,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146583": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46560,
+            "itemID": 146583,
+            "spellID": 238942,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146584": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46561,
+            "itemID": 146584,
+            "spellID": 238936,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146585": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46562,
+            "itemID": 146585,
+            "spellID": 238926,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146586": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46563,
+            "itemID": 146586,
+            "spellID": 238938,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146587": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -251
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -299
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46564,
+            "itemID": 146587,
+            "spellID": 238928,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146628": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -249
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46641,
+            "itemID": 146628,
+            "spellID": 238959,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146629": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -249
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46642,
+            "itemID": 146629,
+            "spellID": 238958,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146631": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -249
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46643,
+            "itemID": 146631,
+            "spellID": 238954,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146632": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -249
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46644,
+            "itemID": 146632,
+            "spellID": 238957,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146633": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -249
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46645,
+            "itemID": 146633,
+            "spellID": 238963,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146634": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -249
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46646,
+            "itemID": 146634,
+            "spellID": 238960,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146635": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -249
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46647,
+            "itemID": 146635,
+            "spellID": 238955,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146636": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -249
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46648,
+            "itemID": 146636,
+            "spellID": 238961,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146637": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -249
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46649,
+            "itemID": 146637,
+            "spellID": 238956,
+            "lvl": 27,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146519": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46533,
+            "itemID": 146519,
+            "spellID": 238794,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146521": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46534,
+            "itemID": 146521,
+            "spellID": 238792,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146523": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46535,
+            "itemID": 146523,
+            "spellID": 238800,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146525": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46536,
+            "itemID": 146525,
+            "spellID": 238784,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146527": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46537,
+            "itemID": 146527,
+            "spellID": 238790,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146529": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46538,
+            "itemID": 146529,
+            "spellID": 238802,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146531": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46539,
+            "itemID": 146531,
+            "spellID": 238796,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146533": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46540,
+            "itemID": 146533,
+            "spellID": 238786,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146535": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46541,
+            "itemID": 146535,
+            "spellID": 238798,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146537": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -256
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46542,
+            "itemID": 146537,
+            "spellID": 238788,
+            "lvl": 32,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146588": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -255
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46577,
+            "itemID": 146588,
+            "spellID": 238834,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146589": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -255
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46578,
+            "itemID": 146589,
+            "spellID": 238832,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146590": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -255
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46579,
+            "itemID": 146590,
+            "spellID": 238840,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146591": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -255
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46580,
+            "itemID": 146591,
+            "spellID": 238824,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146592": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -255
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46581,
+            "itemID": 146592,
+            "spellID": 238830,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146593": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -255
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46582,
+            "itemID": 146593,
+            "spellID": 238842,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146594": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -255
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46583,
+            "itemID": 146594,
+            "spellID": 238836,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146595": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -255
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46584,
+            "itemID": 146595,
+            "spellID": 238826,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146596": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -255
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46585,
+            "itemID": 146596,
+            "spellID": 238838,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cosmetics:146597": [
+      {
+        "category": "PVP",
+        "path": [
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -303
+          },
+          {
+            "_constructor": "Expansion"
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -255
+          },
+          {
+            "_constructor": "CustomHeader",
+            "headerID": -296
+          },
+          {
+            "_constructor": "CharacterClass"
+          },
+          {
+            "_constructor": "Ensemble",
+            "questID": 46586,
+            "itemID": 146597,
+            "spellID": 238828,
+            "lvl": 30,
+            "cost": {
+              "1": {
+                "1": "i",
+                "2": 137642,
+                "3": 12
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

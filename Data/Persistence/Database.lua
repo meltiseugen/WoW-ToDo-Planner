@@ -18,6 +18,7 @@ function Database:Init()
     end
 
     TODOPlannerDB = Utils:CopyDefaults(TODOPlannerDB, C.DEFAULT_DB)
+    Utils:EnsureChatLoggingSettings()
 
     if type(TODOPlannerDB.tasks) ~= "table" then
         TODOPlannerDB.tasks = {}
@@ -29,6 +30,10 @@ function Database:Init()
 
     if type(TODOPlannerDB.favorites) ~= "table" then
         TODOPlannerDB.favorites = {}
+    end
+
+    if type(TODOPlannerDB.mapProjections) ~= "table" then
+        TODOPlannerDB.mapProjections = {}
     end
 
     local highestId = 0
@@ -191,7 +196,7 @@ function Database:Init()
 
     local collectionStatus = TODOPlannerDB.settings.collectionStatusFilter
     if collectionStatus ~= "missing" and collectionStatus ~= "all"
-        and collectionStatus ~= "collected" and collectionStatus ~= "unobtainable" then
+        and collectionStatus ~= "collected" then
         TODOPlannerDB.settings.collectionStatusFilter = TODOPlannerDB.settings.collectionHideCollected and "missing" or "all"
     end
 

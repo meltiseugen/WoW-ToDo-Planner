@@ -3,5 +3,6 @@
     <Script file="Windows.lua"/>
     <Script file="Controls.lua"/>
     <Script file="Dropdowns.lua"/>
+    <Script file="CostLinks.lua"/>
     <Script file="Preview.lua"/>
 </Ui>

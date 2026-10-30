@@ -1,7 +1,7 @@
 local _, TDP = ...
 
 local shared = {}
-shared["Drop: Vibrating Box / Zone: K'aresh"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Drop: Vibrating Box / Zone: K'aresh", sourceType = "Pet Journal Source" }
+shared["Drop: Vibrating Box / Zone: K'aresh"] = { source = "Drop: Vibrating Box / Zone: K'aresh", sourceType = "Pet Journal Source" }
 
 TDP.CatalogRegistry:RegisterCollection("11.2", "pets", {
     entries = {
@@ -33,33 +33,30 @@ TDP.CatalogRegistry:RegisterCollection("11.2", "pets", {
         ["Copper Lapbug"] = shared["Drop: Vibrating Box / Zone: K'aresh"],
         ["Cyan Siphonmite"] = shared["Drop: Vibrating Box / Zone: K'aresh"],
         ["Dread Horrorling"] = shared["Drop: Vibrating Box / Zone: K'aresh"],
-        Duskthief = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Drop: The Nightreaver / Zone: K'aresh", sourceType = "Pet Journal Source" },
+        Duskthief = { source = "Drop: The Nightreaver / Zone: K'aresh", sourceType = "Pet Journal Source" },
         ["Graceful Cosmic Ray Pup"] = shared["Drop: Vibrating Box / Zone: K'aresh"],
-        ["Heka'Tarnos, Bringer of Discord"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Drop: Heka'tamos / Zone: K'aresh", sourceType = "Pet Journal Source" },
+        ["Heka'Tarnos, Bringer of Discord"] = { source = "Drop: Heka'tamos / Zone: K'aresh", sourceType = "Pet Journal Source" },
         ["Impartial Watcher"] = shared["Drop: Vibrating Box / Zone: K'aresh"],
         ["Inquisitive Cosmic Ray Pup"] = shared["Drop: Vibrating Box / Zone: K'aresh"],
-        ["Ixthal the Observling"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Zone: K'aresh", sourceType = "Pet Journal Source" },
+        ["Ixthal the Observling"] = { source = "Zone: K'aresh", sourceType = "Pet Journal Source" },
         Jimmy = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Drop: Morgil the Netherspawn / Zone: K'aresh",
             sourceType = "Pet Journal Source",
         },
         ["Looker Gaz'kreth Jr."] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Faction: Manaforge Vandals / Renown: 13 / Location: Shadow Point",
             sourceType = "Pet Journal Source",
         },
-        ["Mr. Long-Legs"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Treasure: Ancient Coffer / Zone: K'aresh", sourceType = "Pet Journal Source" },
-        ["Palek'ti, the Mouth of Nothingness"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Drop: Malek'ta / Zone: K'aresh", sourceType = "Pet Journal Source" },
-        ["Penumbral Terror"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Vendor: Shad'anis / Zone: K'aresh / Cost: 4", sourceType = "Pet Journal Source" },
-        ["Sao'rhon"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Drop: Ethereal Delve's Heavy Trunk", sourceType = "Pet Journal Source" },
+        ["Mr. Long-Legs"] = { source = "Treasure: Ancient Coffer / Zone: K'aresh", sourceType = "Pet Journal Source" },
+        ["Palek'ti, the Mouth of Nothingness"] = { source = "Drop: Malek'ta / Zone: K'aresh", sourceType = "Pet Journal Source" },
+        ["Penumbral Terror"] = { source = "Vendor: Shad'anis / Zone: K'aresh / Cost: 4", sourceType = "Pet Journal Source" },
+        ["Sao'rhon"] = { source = "Drop: Ethereal Delve's Heavy Trunk", sourceType = "Pet Journal Source" },
         ["Scrappy Thorntail"] = shared["Drop: Vibrating Box / Zone: K'aresh"],
         ["Shimmering Inchshifter"] = shared["Drop: Vibrating Box / Zone: K'aresh"],
         ["Veridian Thorntail"] = shared["Drop: Vibrating Box / Zone: K'aresh"],
         ["Vitriolic Inchshifter"] = shared["Drop: Vibrating Box / Zone: K'aresh"],
         ["Xanthous Siphonmite"] = shared["Drop: Vibrating Box / Zone: K'aresh"],
         ["Zo'ya"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Faction: Manaforge Vandals / Renown: 8 / Location: Shadow Point",
             sourceType = "Pet Journal Source",
         },

@@ -1,28 +1,24 @@
 local _, TDP = ...
 
 local shared = {}
-shared["Pet Battle: Emerald Dream"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Emerald Dream", sourceType = "Pet Journal Source" }
+shared["Pet Battle: Emerald Dream"] = { source = "Pet Battle: Emerald Dream", sourceType = "Pet Journal Source" }
 
 shared["Vendor: Elianna / Zone: Emerald Dream / Cost: 1"] = {
-    acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
     source = "Vendor: Elianna / Zone: Emerald Dream / Cost: 1",
     sourceType = "Pet Journal Source",
 }
 
 shared["Vendor: Talisa Whisperbloom / Zone: Emerald Dream / Cost: 1"] = {
-    acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
     source = "Vendor: Talisa Whisperbloom / Zone: Emerald Dream / Cost: 1",
     sourceType = "Pet Journal Source",
 }
 
 shared["Vendor: Moon Priestess Lasara / Zone: Emerald Dream / Cost: 375"] = {
-    acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
     source = "Vendor: Moon Priestess Lasara / Zone: Emerald Dream / Cost: 375",
     sourceType = "Pet Journal Source",
 }
 
 shared["Vendor: Sylvia Whisperbloom / Zone: Emerald Dream / Cost: 1 / Vendor: Talisa Whisperbloom "] = {
-    acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
     source = "Vendor: Sylvia Whisperbloom / Zone: Emerald Dream / Cost: 1 / Vendor: Talisa Whisperbloom / Zone: Emerald Dream / Cost: 1",
     sourceType = "Pet Journal Source",
 }
@@ -75,26 +71,24 @@ TDP.CatalogRegistry:RegisterCollection("10.2", "pets", {
         { name = "Snorr", npcId = 212954, source = "Vendor: Elianna / Zone: Emerald Dream / Cost: 1", speciesId = 4310 },
     },
     details = {
-        Blueloo = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Achievement: Friends in Feathers", sourceType = "Pet Journal Source" },
+        Blueloo = { source = "Achievement: Friends in Feathers", sourceType = "Pet Journal Source" },
         ["Dream Badger"] = shared["Pet Battle: Emerald Dream"],
         ["Dreamborne Scarab"] = shared["Vendor: Elianna / Zone: Emerald Dream / Cost: 1"],
         Dreamhoof = shared["Vendor: Elianna / Zone: Emerald Dream / Cost: 1"],
         Drowsey = shared["Vendor: Elianna / Zone: Emerald Dream / Cost: 1"],
         Dustite = shared["Vendor: Talisa Whisperbloom / Zone: Emerald Dream / Cost: 1"],
         Elmer = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Sylvia Whisperbloom Zone: Emerald Dream Cost: 1 Vendor: Talisa Whisperbloom Zone: Emerald Dream Cost: 1",
             sourceType = "Pet Journal Source",
         },
         Flooftalon = shared["Pet Battle: Emerald Dream"],
         ["Fol'ya Pup"] = shared["Pet Battle: Emerald Dream"],
         Ivy = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Achievement: \"Don't Let the Doe Hit You On the Way Out\"",
             sourceType = "Pet Journal Source",
         },
         Juniper = shared["Vendor: Moon Priestess Lasara / Zone: Emerald Dream / Cost: 375"],
-        ["Kal'andu"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Quest: Burning Out / Zone: Emerald Dream", sourceType = "Pet Journal Source" },
+        ["Kal'andu"] = { source = "Quest: Burning Out / Zone: Emerald Dream", sourceType = "Pet Journal Source" },
         Leyhart = shared["Pet Battle: Emerald Dream"],
         Memorie = shared["Vendor: Elianna / Zone: Emerald Dream / Cost: 1"],
         Napps = shared["Vendor: Talisa Whisperbloom / Zone: Emerald Dream / Cost: 1"],
@@ -102,14 +96,12 @@ TDP.CatalogRegistry:RegisterCollection("10.2", "pets", {
         Pewling = shared["Pet Battle: Emerald Dream"],
         Reverie = shared["Vendor: Elianna / Zone: Emerald Dream / Cost: 1"],
         Rithro = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Quest: Mean Green Infusion Machine / Zone: Emerald Dream",
             sourceType = "Pet Journal Source",
         },
         Sapnibbler = shared["Pet Battle: Emerald Dream"],
         Seedle = shared["Vendor: Sylvia Whisperbloom / Zone: Emerald Dream / Cost: 1 / Vendor: Talisa Whisperbloom "],
         ["Sergeant Quackers"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Achievement: Ducks In A Row / Category: Dragonflight Raid",
             sourceType = "Pet Journal Source",
         },

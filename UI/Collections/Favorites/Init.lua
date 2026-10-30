@@ -53,4 +53,5 @@ FavoritesWindow.Config = {
 
 TDP.FavoritesWindow = FavoritesWindow
 
+TDP.CollectionMetadata:Install(FavoritesWindow)
 TDP.CollectionPreview:Install(FavoritesWindow, false)

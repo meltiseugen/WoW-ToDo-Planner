@@ -2,28 +2,48 @@
 
 Reviewed for Retail on **2026-10-13**. This covers the existing catalog; it does not add excluded shop, promotional, holiday, hidden, or never-released records.
 
-Catalogue coverage extended on **2026-10-15** for live patch 12.1.5. The 474 existing retirement records retain their original review date; new live rewards are not marked retired in advance. See [Patch 12.1.5 collection audit](Patch1215CollectionAudit.md) for the 65 additions, deadlines, sources, and remaining location refinement.
+Catalogue coverage extended on **2026-10-15** for live patch 12.1.5. The 474 existing retirement records retain their original review date; new live rewards are not marked retired in advance. Six additional mount records were categorized as Unobtainable on **2026-10-28**. See [Patch 12.1.5 collection audit](Patch1215CollectionAudit.md) for the 65 additions, deadlines, sources, and remaining location refinement.
 
 | Collection | Catalog entries screened | Retirement records |
 | --- | ---: | ---: |
-| Mounts | 1,204 | 158 |
+| Mounts | 1,204 | 164 |
 | Pets | 1,551 | 5 |
 | Toys | 750 | 8 |
 | Cosmetics | 2,845 | 303 |
-| Total | 6,350 | 474 |
+| Total | 6,350 | 480 |
 
 These are curated retirement candidates. The number shown in game depends on the selected expansion/patch and the player's original unlocks. Unclassified or uncertain records remain unflagged; absence of a flag is not a guarantee of availability. Availability needs another review when rewards return or new seasons end.
 
 ## Behavior
 
-- `Status: Unobtainable` shows flagged entries, including owned retired rewards.
-- `Missing` shows unowned entries without an unobtainable flag.
-- `All` preserves the complete catalog; `Collected` preserves ownership tracking.
-- The row, preview, and fallback tooltip identify unobtainable rewards. Preview instructions are labeled `Original acquisition` and include the reason.
+- Mounts categorized as unobtainable are excluded from Collections, Favorites and Nearby in every status, even when owned. Name searches and saved Nearby snapshots also respect this exclusion.
+- The available statuses are `Missing`, `All` and `Collected`. Unobtainable is an archive classification in the files, not a UI tab or selectable mount status.
+- The full catalog, acquisition guides and saved favorites remain intact. Other collection types retain their existing availability behavior.
 - Status selection persists across reload. Existing `collectionHideCollected` settings migrate to `Missing` or `All`.
 - No task status, completion, favorite, or catalog identity is rewritten.
 
-The summary's unobtainable count includes owned retired entries, so it can overlap the collected count.
+Hidden mounts do not contribute to collection totals or progress summaries.
+
+### Unobtainable archive additions, 2026-10-28
+
+The guide text already described these mounts as unavailable, but they were missing
+the availability records used by the UI exclusion. They now have explicit
+`kind = "Unobtainable"` records in their patch's `Unobtainable.lua`, loaded by the
+expansion manifest. Their original `Mounts.lua` entries and guides are preserved.
+
+| Patch | Mount | Spell ID |
+| --- | --- | ---: |
+| 10.2.6 | Royal Seafeather | 254812 |
+| 10.2.6 | Silver Tidestallion | 300154 |
+| 10.2.6 | Polly Roger | 437162 |
+| 11.0.7 | Hooktalon | 471696 |
+| 11.0.7 | Plunderlord's Midnight Crocolisk | 457656 |
+| 11.2.7 | Bonecleaver's Skullboar | 332482 |
+
+Evidence: [Blizzard's Plunderstorm ending notice](https://worldofwarcraft.blizzard.com/en-us/news/24166265)
+and [Bonecleaver's Skullboar's live-source reports](https://www.wowhead.com/item=182083/bonecleavers-skullboar).
+Mounts with a confirmed alternate purchase, returning recurring event or original
+vendor unlock remain eligible through their existing availability rules.
 
 ## Covered rewards and evidence
 

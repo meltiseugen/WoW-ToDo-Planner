@@ -16,11 +16,14 @@ Base Kanban-style planner addon for World of Warcraft.
   - Other
 - Category filtering for the active board view
 - Favorites for patch collection entries
-- Collections **Nearby** button: scan your current map and parent zone for catalog mounts, pets, toys, cosmetics, and achievements across all expansions. Use the type tabs, status, and search to filter the results; **Browse** returns to your regular catalog. The location stays fixed until you click **Nearby** again, with no automatic location tracking or chat reminders.
-- Collection Explorer for static patch catalogs, with type tabs and mount source filtering
+- Collections **Nearby** button: scan your current map and parent zone for catalog mounts, pets, toys, cosmetics, and achievements across all expansions. Use the type tabs, status, and search to filter the results. While active, the same button shows **Cancel**: click it again to leave Nearby and restore your previous browsing view. The location stays fixed during Nearby, with no automatic location tracking or chat reminders.
+- Collection Explorer with visible source/category filters, separate Weapons and Armour dropdowns on Cosmetics, sorting, favorite/map shortcuts, a resizable window, and remembered browsing state. Mounts, pets, and supported cosmetics have collapsible model previews; icon entries give acquisition details the full reading area. Additional catalog notes remain expandable.
+- **Project** adds each collection item to the Blizzard world map and minimap. Multiple items remain projected together, and saved projections restore after login or `/reload`. Projecting the same item again updates it; **Clear All** removes every projected item and its saved pins.
 - Open, delete, and status movement for tasks
 - Move any task between `Global` and a specific character board from the editor
 - Draggable main window with saved position
+- Searchable Options window with Appearance, Achievements, Maps, Windows, and Logging pages; six skin previews, contextual help, page resets, and remembered size/position
+- Chat controls with a master switch, optional timestamps, a delivery test, and separate startup, task, collection, navigation, warning, and command categories
 
 ## Commands
 - `/tdp` or `/todoplanner`: toggle window
@@ -29,6 +32,7 @@ Base Kanban-style planner addon for World of Warcraft.
 - `/tdp planner`: open the Kanban planner
 - `/tdp explorer`: open the collection explorer
 - `/tdp favorites`: open favorites
+- `/tdp options`: open the Options window
 - `/tdp resetpos`: reset window to center
 - `/tdp help`: print command help
 
@@ -60,6 +64,9 @@ Base Kanban-style planner addon for World of Warcraft.
 - The catalog is intentionally static because WoW's addon API can scan current collection state, but does not expose a reliable "added in patch" field.
 
 ## Notes
+
+- Options changes save automatically. Skin changes take effect after **Reload UI**; progress, pin size, minimap visibility, and logging changes apply immediately. **Reset this page** requires a second click and restores that page's preferences. **Center windows** is a separate action; tasks, characters, favorites, and collection filters are preserved.
+- Logging controls the addon's existing output to your default chat frame. Startup and navigation messages are off by default; warnings and action replies remain on. Disabling the master switch also silences warnings and `/tdp help`. Category selections remain saved while muted. No separate log file or automatic location tracking is added.
 - Data is global/account-wide, but tasks can now live on `Global` or on individual character boards.
 - `Global` tasks are visible on the `Global` board and aggregate views, not on character boards.
 - This is a starter foundation intended for iterative improvements.

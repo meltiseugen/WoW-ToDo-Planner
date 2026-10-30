@@ -2,7 +2,6 @@ local _, TDP = ...
 
 local shared = {}
 shared["Patch 11.1.5"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     category = "Other",
     source = "Patch 11.1.5",
     sourceType = "Patch mount collection",
@@ -28,7 +27,12 @@ TDP.CatalogRegistry:RegisterCollection("11.1.5", "mounts", {
         ["Nesting Swarmite"] = shared["Patch 11.1.5"],
         ["Ny'alothan Shadow Worm"] = shared["Patch 11.1.5"],
         ["Radiant Imperial Lynx"] = shared["Patch 11.1.5"],
-        Tyrannotort = shared["Patch 11.1.5"],
+        Tyrannotort = {
+            category = "Vendor",
+            source = "Wodin the Troll-Servant",
+            sourceType = "Vendor",
+            waypoints = { "/way #84 67.2 81.0 Wodin the Troll-Servant - Tyrannotort" },
+        },
         ["Void-Crystal Panther"] = shared["Patch 11.1.5"],
         ["Void-Forged Stallion"] = shared["Patch 11.1.5"],
         ["Void-Scarred Gryphon"] = shared["Patch 11.1.5"],

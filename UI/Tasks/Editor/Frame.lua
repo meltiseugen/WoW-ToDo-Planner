@@ -25,7 +25,7 @@ function FrameMethods:SaveTask()
     local ui = self.todoPlannerOwner.ui
     local titleText = Utils:Trim(self.titleEdit:GetText())
     if titleText == "" then
-        Utils:Msg("Task title is required.")
+        Utils:Msg("Task title is required.", "warnings")
         self.titleEdit:SetFocus()
         return
     end
@@ -34,7 +34,7 @@ function FrameMethods:SaveTask()
     local status = Tasks:NormalizeStatus(self.selectedStatus)
     local targetBoardKey = Boards:ResolveKnownBoardKey(self.selectedBoardKey)
     if targetBoardKey == C.ALL_BOARD_KEY or targetBoardKey == C.ARCHIVED_BOARD_KEY then
-        Utils:Msg("Choose Global or a character board.")
+        Utils:Msg("Choose Global or a character board.", "warnings")
         return
     end
 
@@ -72,7 +72,7 @@ function FrameMethods:SaveTask()
                 boardKey = targetBoardKey,
             }, sourceBoardKey)
             if not updated then
-                Utils:Msg(errorText or "Could not update that task.")
+                Utils:Msg(errorText or "Could not update that task.", "warnings")
                 return
             end
             if currentBoardKey ~= targetBoardKey then

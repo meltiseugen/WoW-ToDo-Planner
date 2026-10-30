@@ -1,9 +1,9 @@
 local _, TDP = ...
 
 local shared = {}
-shared["Pet Battle: Siren Isle"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Siren Isle", sourceType = "Pet Journal Source" }
+shared["Pet Battle: Siren Isle"] = { source = "Pet Battle: Siren Isle", sourceType = "Pet Journal Source" }
 
-shared["Special Event: Plunderstorm"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Special Event: Plunderstorm", sourceType = "Pet Journal Source" }
+shared["Special Event: Plunderstorm"] = { source = "Special Event: Plunderstorm", sourceType = "Pet Journal Source" }
 
 TDP.CatalogRegistry:RegisterCollection("11.0.7", "pets", {
     entries = {
@@ -28,24 +28,22 @@ TDP.CatalogRegistry:RegisterCollection("11.0.7", "pets", {
         ["Cave Kroling"] = shared["Pet Battle: Siren Isle"],
         ["Cliffreach Cub"] = shared["Pet Battle: Siren Isle"],
         Crackleroar = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Zone: Siren Isle / Drop: Stormtouched Pridetalon",
             sourceType = "Pet Journal Source",
         },
-        Marmaduke = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Discovery: Siren Isle", sourceType = "Pet Journal Source" },
+        Marmaduke = { source = "Discovery: Siren Isle", sourceType = "Pet Journal Source" },
         Parley = shared["Special Event: Plunderstorm"],
         ["Pillaged Parrot"] = shared["Pet Battle: Siren Isle"],
         ["Rusty Kroling"] = shared["Pet Battle: Siren Isle"],
-        ["Scavenging Snapdragon"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Siren Isle, Seafury Tempest", sourceType = "Pet Journal Source" },
+        ["Scavenging Snapdragon"] = { source = "Pet Battle: Siren Isle, Seafury Tempest", sourceType = "Pet Journal Source" },
         Skitterbite = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Soweezi / Zone: Siren Isle / Cost: 750",
             sourceType = "Pet Journal Source",
         },
         ["Snapdragon Pup"] = shared["Pet Battle: Siren Isle"],
         Sparklesnap = shared["Special Event: Plunderstorm"],
-        ["Storm-Infused Snapdragon"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Siren Isle: Seafury Tempest", sourceType = "Pet Journal Source" },
+        ["Storm-Infused Snapdragon"] = { source = "Pet Battle: Siren Isle: Seafury Tempest", sourceType = "Pet Journal Source" },
         ["Tidal Kroling"] = shared["Pet Battle: Siren Isle"],
-        ["Titan Orb"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Zone: Siren Isle", sourceType = "Pet Journal Source" },
+        ["Titan Orb"] = { source = "Zone: Siren Isle", sourceType = "Pet Journal Source" },
     },
 })

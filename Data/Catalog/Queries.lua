@@ -142,10 +142,16 @@ function PatchCatalog:GetSourceSummary(details)
 end
 
 function PatchCatalog:GetPetSourceSummary(patchKey, entry)
+    local source = self.GetActionableCollectionSourceSummary and self:GetActionableCollectionSourceSummary("pets", patchKey, entry)
+    if source then return source end
     return self:GetSourceSummary(self:GetPetDetails(patchKey, entry))
 end
 
 function PatchCatalog:GetPetAcquisitionText(patchKey, entry)
+    local guide = self:GetCollectionGuideText("pets", entry)
+    if guide then return guide end
+    local source = self.GetResearchedCollectionAcquisition and self:GetResearchedCollectionAcquisition("pets", patchKey, entry)
+    if source then return source end
     local details = self:GetPetDetails(patchKey, entry)
     return details and details.acquisition or nil
 end
@@ -156,11 +162,17 @@ function PatchCatalog:GetPetWaypoints(patchKey, entry)
 end
 
 function PatchCatalog:GetToySourceSummary(patchKey, entry)
+    local source = self.GetActionableCollectionSourceSummary and self:GetActionableCollectionSourceSummary("toys", patchKey, entry)
+    if source then return source end
     local details = self:GetToyDetails(patchKey, entry)
     return self:GetSourceSummary(details) or (entry and entry.source)
 end
 
 function PatchCatalog:GetToyAcquisitionText(patchKey, entry)
+    local guide = self:GetCollectionGuideText("toys", entry)
+    if guide then return guide end
+    local source = self.GetResearchedCollectionAcquisition and self:GetResearchedCollectionAcquisition("toys", patchKey, entry)
+    if source then return source end
     local details = self:GetToyDetails(patchKey, entry)
     return details and details.acquisition or (entry and entry.acquisition)
 end
@@ -176,10 +188,14 @@ function PatchCatalog:GetToyWaypoints(patchKey, entry)
 end
 
 function PatchCatalog:GetCosmeticSourceSummary(patchKey, entry)
+    local source = self.GetActionableCollectionSourceSummary and self:GetActionableCollectionSourceSummary("cosmetics", patchKey, entry)
+    if source then return source end
     return self:GetSourceSummary(self:GetCosmeticDetails(patchKey, entry))
 end
 
 function PatchCatalog:GetCosmeticAcquisitionText(patchKey, entry)
+    local source = self.GetResearchedCollectionAcquisition and self:GetResearchedCollectionAcquisition("cosmetics", patchKey, entry)
+    if source then return source end
     local details = self:GetCosmeticDetails(patchKey, entry)
     return details and details.acquisition or nil
 end
@@ -216,11 +232,17 @@ function PatchCatalog:GetMountCategory(patchKey, entry)
 end
 
 function PatchCatalog:GetMountSourceSummary(patchKey, entry)
+    local source = self.GetActionableCollectionSourceSummary and self:GetActionableCollectionSourceSummary("mounts", patchKey, entry)
+    if source then return source end
     local details = self:GetMountDetails(patchKey, entry)
     return self:GetSourceSummary(details)
 end
 
 function PatchCatalog:GetMountAcquisitionText(patchKey, entry)
+    local guide = self:GetCollectionGuideText("mounts", entry)
+    if guide then return guide end
+    local source = self.GetResearchedCollectionAcquisition and self:GetResearchedCollectionAcquisition("mounts", patchKey, entry)
+    if source then return source end
     local details = self:GetMountDetails(patchKey, entry)
     return details and details.acquisition or nil
 end
@@ -273,18 +295,23 @@ function PatchCatalog:GetCollectionTips(collectionType, patchKey, entry)
 end
 
 function PatchCatalog:GetCollectionWaypoints(collectionType, patchKey, entry)
+    local source = self.GetCollectionSourceInfo and self:GetCollectionSourceInfo(collectionType, patchKey, entry)
+    if source and self:UseCollectionSourceWaypoints(collectionType, patchKey, entry, source) then return source.waypoints end
+    local waypoints
     if collectionType == "mounts" then
-        return self:GetMountWaypoints(patchKey, entry)
+        waypoints = self:GetMountWaypoints(patchKey, entry)
     elseif collectionType == "pets" then
-        return self:GetPetWaypoints(patchKey, entry)
+        waypoints = self:GetPetWaypoints(patchKey, entry)
     elseif collectionType == "toys" then
-        return self:GetToyWaypoints(patchKey, entry)
+        waypoints = self:GetToyWaypoints(patchKey, entry)
     elseif collectionType == "cosmetics" then
-        return self:GetCosmeticWaypoints(patchKey, entry)
+        waypoints = self:GetCosmeticWaypoints(patchKey, entry)
     elseif collectionType == "achievements" then
-        return self:GetAchievementWaypoints(patchKey, entry)
+        waypoints = self:GetAchievementWaypoints(patchKey, entry)
     end
-    return nil
+    if type(waypoints) == "table" and #waypoints > 0 then return waypoints end
+    local recorded = self.GetDescriptionMapLocations and self:GetDescriptionMapLocations(collectionType, entry)
+    return recorded and recorded.waypoints or waypoints
 end
 
 function PatchCatalog:GetCollectionDetails(collectionType, patchKey, entry)

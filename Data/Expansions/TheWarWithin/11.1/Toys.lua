@@ -1,13 +1,13 @@
 local _, TDP = ...
 
 local shared = {}
-shared["Vendor: Blair Bass / Zone: Undermine / Cost: 5"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Vendor: Blair Bass / Zone: Undermine / Cost: 5", sourceType = "Toy Box Source" }
+shared["Vendor: Blair Bass / Zone: Undermine / Cost: 5"] = { source = "Vendor: Blair Bass / Zone: Undermine / Cost: 5", sourceType = "Toy Box Source" }
 
-shared["Vendor: Rocco Razzboom / Zone: Undermine"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Vendor: Rocco Razzboom / Zone: Undermine", sourceType = "Toy Box Source" }
+shared["Vendor: Rocco Razzboom / Zone: Undermine"] = { source = "Vendor: Rocco Razzboom / Zone: Undermine", sourceType = "Toy Box Source" }
 
-shared["Vendor: Boatswain Hardee / Zone: Undermine"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Vendor: Boatswain Hardee / Zone: Undermine", sourceType = "Toy Box Source" }
+shared["Vendor: Boatswain Hardee / Zone: Undermine"] = { source = "Vendor: Boatswain Hardee / Zone: Undermine", sourceType = "Toy Box Source" }
 
-shared["Vendor: Shredz the Scrapper / Zone: Undermine"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Vendor: Shredz the Scrapper / Zone: Undermine", sourceType = "Toy Box Source" }
+shared["Vendor: Shredz the Scrapper / Zone: Undermine"] = { source = "Vendor: Shredz the Scrapper / Zone: Undermine", sourceType = "Toy Box Source" }
 
 TDP.CatalogRegistry:RegisterCollection("11.1", "toys", {
     entries = {
@@ -32,30 +32,28 @@ TDP.CatalogRegistry:RegisterCollection("11.1", "toys", {
     },
     details = {
         ["Artisan Beverage Goblet Bobber"] = shared["Vendor: Blair Bass / Zone: Undermine / Cost: 5"],
-        ["Atomic Regoblinator"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Vendor: Sitch Lowdown / Zone: Undermine", sourceType = "Toy Box Source" },
+        ["Atomic Regoblinator"] = { source = "Vendor: Sitch Lowdown / Zone: Undermine", sourceType = "Toy Box Source" },
         ["Bilgewater Cartel Banner"] = shared["Vendor: Rocco Razzboom / Zone: Undermine"],
         ["Blackwater Cartel Banner"] = shared["Vendor: Boatswain Hardee / Zone: Undermine"],
-        ["Desk-in-a-Box"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Achievement: Read Between the Lines / Category: War Within", sourceType = "Toy Box Source" },
+        ["Desk-in-a-Box"] = { source = "Achievement: Read Between the Lines / Category: War Within", sourceType = "Toy Box Source" },
         ["Everlasting Noggenfogger Elixir"] = {
-            acquisition = "Follow the in-game Toy Box source for this permanent toy.",
             source = "Vendor: Lab Assistant Laszly / Zone: Undermine / Cost: 5000",
             sourceType = "Toy Box Source",
         },
-        ["Fireworks Hat"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Treasure: Fireworks Hat / Zone: Undermine", sourceType = "Toy Box Source" },
-        ["G.O.L.E.M, Jr."] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Quest: Showdown in the Attic / Zone: Undermine", sourceType = "Toy Box Source" },
+        ["Fireworks Hat"] = { source = "Treasure: Fireworks Hat / Zone: Undermine", sourceType = "Toy Box Source" },
+        ["G.O.L.E.M, Jr."] = { source = "Quest: Showdown in the Attic / Zone: Undermine", sourceType = "Toy Box Source" },
         ["Gallagio Pipeline Rerouter"] = {
-            acquisition = "Follow the in-game Toy Box source for this permanent toy.",
             source = "Achievement: A Good Day to Dye Hard / Category: War Within Raid",
             sourceType = "Toy Box Source",
         },
         ["Limited Edition Rocket Bobber"] = shared["Vendor: Blair Bass / Zone: Undermine / Cost: 5"],
         ["Organically-Sourced Wellington Bobber"] = shared["Vendor: Blair Bass / Zone: Undermine / Cost: 5"],
         ["Personal Fishing Barge"] = shared["Vendor: Boatswain Hardee / Zone: Undermine"],
-        ["Steamwheedle Cartel Banner"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Vendor: Lab Assistant Laszly / Zone: Undermine", sourceType = "Toy Box Source" },
+        ["Steamwheedle Cartel Banner"] = { source = "Vendor: Lab Assistant Laszly / Zone: Undermine", sourceType = "Toy Box Source" },
         ["Storefront-in-a-Box"] = shared["Vendor: Rocco Razzboom / Zone: Undermine"],
         ["Throwin' Sawblade"] = shared["Vendor: Shredz the Scrapper / Zone: Undermine"],
-        ["Uncracked Cold Ones"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Treasure: Uncracked Cold Ones / Zone: Undermine", sourceType = "Toy Box Source" },
-        ["Undermine Supply Crate"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Vendor: Angelo Rustbin / Zone: Undermine / Cost: 999", sourceType = "Toy Box Source" },
+        ["Uncracked Cold Ones"] = { source = "Treasure: Uncracked Cold Ones / Zone: Undermine", sourceType = "Toy Box Source" },
+        ["Undermine Supply Crate"] = { source = "Vendor: Angelo Rustbin / Zone: Undermine / Cost: 999", sourceType = "Toy Box Source" },
         ["Venture Co. Banner"] = shared["Vendor: Shredz the Scrapper / Zone: Undermine"],
     },
 })

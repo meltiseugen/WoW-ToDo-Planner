@@ -64,7 +64,16 @@ TDP.Constants = {
         tasks = {},
         characters = {},
         favorites = {},
+        mapProjections = {},
         settings = {
+            enableChatLogging = true,
+            chatLogTimestamps = false,
+            chatLogStartup = false,
+            chatLogTasks = true,
+            chatLogCollections = true,
+            chatLogNavigation = false,
+            chatLogWarnings = true,
+            chatLogCommands = true,
             visualTheme = "midnight",
             filterCategory = "All",
             selectedBoard = false,
@@ -72,6 +81,8 @@ TDP.Constants = {
             worldMapPinScale = 1.6,
             collectionHideCollected = true,
             collectionMountSourceFilters = {},
+            collectionSourceFilters = {},
+            collectionCosmeticTypeFilter = "all",
             frame = {
                 point = "CENTER",
                 x = 0,
@@ -94,3 +105,16 @@ TDP.Constants = {
         DONE = "accentGold",
     },
 }
+
+TDP.Constants.CHAT_LOG_CATEGORIES = {
+    { id = "startup", key = "chatLogStartup", label = "Startup" },
+    { id = "tasks", key = "chatLogTasks", label = "Tasks" },
+    { id = "collections", key = "chatLogCollections", label = "Collections" },
+    { id = "navigation", key = "chatLogNavigation", label = "Navigation" },
+    { id = "warnings", key = "chatLogWarnings", label = "Warning" },
+    { id = "commands", key = "chatLogCommands", label = "Reply" },
+}
+TDP.Constants.CHAT_LOG_CATEGORY_BY_ID = {}
+for _, category in ipairs(TDP.Constants.CHAT_LOG_CATEGORIES) do
+    TDP.Constants.CHAT_LOG_CATEGORY_BY_ID[category.id] = category
+end

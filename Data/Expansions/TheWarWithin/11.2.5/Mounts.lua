@@ -2,7 +2,6 @@ local _, TDP = ...
 
 local shared = {}
 shared["Patch 11.2.5: Legion Remix"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     availability = "Legion Remix has ended; the mount remains listed in its original patch for historical collection tracking.",
     category = "Other",
     source = "Patch 11.2.5: Legion Remix",

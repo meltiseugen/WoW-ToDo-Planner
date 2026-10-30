@@ -17,7 +17,9 @@ loadAddon("Data/Persistence/TaskRepository.lua")
 loadAddon("Data/Persistence/Database.lua")
 assert(loadfile(root .. "/Tests/load_catalog.lua"))(root, TDP)
 loadAddon("Integrations/CollectionScanner.lua")
+loadAddon("Data/Persistence/Favorites.lua")
 assert(loadfile(root .. "/Tests/load_manifest.lua"))(root, TDP, "UI/Collections/Shared.xml", "UI/Collections/Explorer/Explorer.xml")
+assert(loadfile(root .. "/Tests/load_manifest.lua"))(root, TDP, "UI/Collections/Favorites/Favorites.xml")
 local catalog = TDP.PatchCatalog
 local function equal(actual, expected, message)
     assert(actual == expected, (message or "value") .. ": expected " .. tostring(expected) .. ", got " .. tostring(actual))
@@ -46,10 +48,11 @@ test("all audited IDs resolve to real catalog entries and have research metadata
                 local record = catalog:GetCollectionAvailability(kind, patch, entry)
                 if record then
                     found[kind][entry[field]] = true
-                    counts[kind] = counts[kind] + 1
+                    if catalog.collectionAvailability[kind][entry[field]] == record then counts[kind] = counts[kind] + 1 end
                     assert(record.reason and #record.reason > 15, "missing retirement reason")
                     assert(record.sourceUrl:match("^https://"), "missing research URL")
-                    equal(record.reviewedAt, "2026-10-13", "review date")
+                    equal(record.reviewedAt, record.kind ~= "Unobtainable" and catalog.collectionAvailability[kind][entry[field]] == record
+                        and "2026-10-13" or "2026-10-28", "review date")
                 end
             end
         end
@@ -57,14 +60,15 @@ test("all audited IDs resolve to real catalog entries and have research metadata
     for kind, entries in pairs(catalog.collectionAvailability) do
         for id in pairs(entries) do assert(found[kind][id], "orphaned availability ID: " .. kind .. ":" .. id) end
     end
-    equal(counts.mounts, 158, "retired mount candidates")
+    equal(counts.mounts, 164, "retired mount candidates")
     equal(counts.pets, 5, "retired pet candidates")
     equal(counts.toys, 8, "retired toy candidates")
     equal(counts.cosmetics, 303, "retired cosmetic candidates")
 end)
 
 test("retirement is explicit and does not affect current seasons or alternate sources", function()
-    for _, id in ipairs({ 37015, 59976, 129552, 189999, 302143, 1242272, 1262840, 1268949, 1301775 }) do
+    for _, id in ipairs({ 37015, 59976, 129552, 189999, 302143, 1242272, 1262840, 1268949, 1301775,
+        254812, 300154, 437162, 471696, 457656, 332482 }) do
         equal(retired("mounts", id), true, "historical mount " .. id)
     end
     for _, id in ipairs({
@@ -147,38 +151,91 @@ local function windowFor(expansion, patch, kind)
     return window
 end
 
-test("status filtering preserves ownership and separates unobtainable from Missing", function()
+test("unobtainable archive hides Plunderstorm and unreleased mounts even when collected", function()
+    local cases = {
+        { "10", "10.2.6", 254812 }, { "10", "10.2.6", 300154 }, { "10", "10.2.6", 437162 },
+        { "11", "11.0.7", 471696 }, { "11", "11.0.7", 457656 }, { "11", "11.2.7", 332482 },
+    }
+    local favorites = TDP.FavoritesWindow:New()
+    for _, case in ipairs(cases) do
+        local expansion, patch, id = unpack(case)
+        local entries = catalog:GetEntries(patch, "mounts")
+        local archived
+        for _, entry in ipairs(entries) do if entry.spellId == id then archived = entry; break end end
+        assert(archived, "archived mount must remain in its original patch: " .. id)
+        assert(catalog:GetMountAcquisitionText(patch, archived), "archived guide is retained")
+        equal(catalog:GetCollectionAvailability("mounts", patch, archived).kind, "Unobtainable", "archive category")
+        TDP.Favorites:Add(patch, "mounts", archived)
+        local window = windowFor(expansion, patch, "mounts")
+        for _, collected in ipairs({ false, true }) do
+            owned[id] = collected
+            for _, status in ipairs({ "all", "missing", "collected" }) do
+                window.selectedStatus = status
+                window:BuildVisibleRows()
+                for _, row in ipairs(window.visibleRows) do assert(row.entry.spellId ~= id, "archive leaked into " .. status) end
+            end
+            window.selectedStatus = "all"
+            window.searchEdit = { GetText = function() return archived.name end }
+            window:BuildVisibleRows()
+            equal(#window.visibleRows, 0, "name search cannot reveal archived mount")
+            window.searchEdit = nil
+            window.nearbySnapshot = { patchKeys = { patch }, entries = { [patch] = { mounts = entries } } }
+            window:BuildVisibleRows()
+            for _, row in ipairs(window.visibleRows) do assert(row.entry.spellId ~= id, "archive leaked into saved Nearby snapshot") end
+            window.nearbySnapshot = nil
+        end
+        equal(catalog:GetEntries(patch, "mounts"), entries, "catalog array is preserved")
+        owned[id] = nil
+    end
+    for _, kind in ipairs({ "all", "mounts" }) do
+        favorites.selectedCollectionType = kind
+        favorites:BuildVisibleRows()
+        equal(#favorites.visibleRows, 0, "archived favorites stay hidden")
+    end
+    equal(#TDP.Favorites:GetAll(), #cases, "saved archive favorites remain intact")
+    -- A recurring Timewalking vendor and a returning Brawler's Guild reward
+    -- must not be retired merely because other event mounts are archived.
+    equal(retired("mounts", 1263369), false, "Skypaw Timewalking purchase retained")
+    equal(retired("mounts", 1264621), false, "current Brawler reward retained")
+end)
+
+test("all mount statuses hide retired rewards while retaining the complete catalog", function()
     owned[65439] = true
+    local entries = catalog:GetEntries("3.2.0", "mounts")
+    local available
+    for _, entry in ipairs(entries) do
+        if not catalog:IsCollectionUnobtainable("mounts", "3.2.0", entry) then available = entry; break end
+    end
+    assert(available, "obtainable mount fixture")
+    owned[available.spellId] = true
     local window = windowFor("3", "3.2.0", "mounts")
     window.selectedStatus = "all"
     local total, collected, missing, unavailable = window:BuildVisibleRows()
-    equal(total, 14, "total")
-    equal(collected, 1, "collected retired mount")
-    equal(missing, 8, "obtainable missing mounts")
-    equal(unavailable, 6, "unobtainable total includes owned mounts")
-    equal(#window.visibleRows, 14, "All retains historical entries")
+    equal(total, 8, "visible catalog total")
+    equal(collected, 1, "only obtainable ownership counted")
+    equal(missing, 7, "obtainable missing mounts")
+    equal(unavailable, 0, "hidden rewards excluded from summary")
+    equal(#window.visibleRows, 8, "All excludes historical entries")
+    for _, row in ipairs(window.visibleRows) do equal(row.unobtainable, false) end
     window.selectedStatus = "missing"
     window:BuildVisibleRows()
-    equal(#window.visibleRows, 8, "Missing excludes retired rewards")
+    equal(#window.visibleRows, 7, "Missing excludes retired and owned rewards")
     for _, row in ipairs(window.visibleRows) do equal(row.unobtainable, false) end
-    window.selectedStatus = "unobtainable"
-    window:BuildVisibleRows()
-    equal(#window.visibleRows, 6, "Unobtainable includes every retired reward")
     window.selectedStatus = "collected"
     window:BuildVisibleRows()
-    equal(#window.visibleRows, 1, "Collected retains retired ownership")
-    equal(window:GetRowStatusLabel(window.visibleRows[1]), "Collected - Unobtainable", "owned retirement label")
-    local notes = window:GetRowNotes(window.visibleRows[1])
-    assert(notes:find("Unobtainable:", 1, true), "retirement reason in preview")
-    assert(notes:find("Original acquisition:", 1, true), "historic directions labeled")
-    window.selectedStatus = "unobtainable"
+    equal(#window.visibleRows, 1, "Collected excludes owned retired rewards")
+    equal(window.visibleRows[1].entry, available, "obtainable ownership retained")
+    window.selectedStatus = "all"
     window.searchEdit = { GetText = function() return "Furious" end }
     window:BuildVisibleRows()
-    equal(#window.visibleRows, 1, "search composes with retirement")
+    equal(#window.visibleRows, 0, "search cannot reveal retired rewards")
+    equal(catalog:GetEntries("3.2.0", "mounts"), entries, "catalog array unchanged")
+    equal(#entries, 14, "historical entries retained")
     owned[65439] = nil
+    owned[available.spellId] = nil
 end)
 
-test("filter applies to pets toys cosmetics and still scopes by expansion patch and source", function()
+test("other collection types keep their entries and availability metadata", function()
     for _, case in ipairs({
         { "10", "10.2.7", "pets", 2 },
         { "3", "3.3.5", "toys", 2 },
@@ -186,19 +243,63 @@ test("filter applies to pets toys cosmetics and still scopes by expansion patch 
         { "12", "12.0.5", "cosmetics", 7 },
     }) do
         local window = windowFor(case[1], case[2], case[3])
-        window.selectedStatus = "unobtainable"
+        window.selectedStatus = "all"
         window:BuildVisibleRows()
-        equal(#window.visibleRows, case[4], case[3] .. " retired filter")
+        local retiredCount = 0
         for _, row in ipairs(window.visibleRows) do
+            if row.unobtainable then retiredCount = retiredCount + 1 end
             equal(row.patchKey, case[2], "patch scope")
             equal(row.collectionType, case[3], "type scope")
         end
+        equal(retiredCount, case[4], case[3] .. " retired entries retained")
     end
+end)
+
+test("combined and captured Nearby views cannot reveal historical mounts", function()
     local window = windowFor("3", "3.2.0", "mounts")
-    window.selectedStatus = "unobtainable"
-    window.MountCategoryMatchesFilter = function(_, category) return category == "PvP" end
+    window.selectedStatus = "all"
+    window.selectedCollectionType = "all"
     window:BuildVisibleRows()
-    equal(#window.visibleRows, 2, "PvP source filter composes with retirement")
+    local mountCount = 0
+    for _, row in ipairs(window.visibleRows) do
+        if row.collectionType == "mounts" then
+            mountCount = mountCount + 1
+            equal(row.unobtainable, false, "combined view hides historical mounts")
+        end
+    end
+    equal(mountCount, 8, "combined view retains obtainable mounts")
+    window.selectedCollectionType = "mounts"
+    window.nearbySnapshot = { patchKeys = { "3.2.0" }, entries = {
+        ["3.2.0"] = { mounts = catalog:GetEntries("3.2.0", "mounts") },
+    } }
+    window:BuildVisibleRows()
+    equal(#window.visibleRows, 8, "captured snapshot respects visibility")
+end)
+
+test("historical favorites are hidden without removing saved records", function()
+    local retiredEntry, available
+    for _, entry in ipairs(catalog:GetEntries("3.2.0", "mounts")) do
+        if catalog:IsCollectionUnobtainable("mounts", "3.2.0", entry) then retiredEntry = entry
+        else available = entry end
+    end
+    assert(retiredEntry and available, "favorite fixtures")
+    TDP.Favorites:Add("3.2.0", "mounts", retiredEntry)
+    TDP.Favorites:Add("3.2.0", "mounts", available)
+    local store = TODOPlannerDB.favorites
+    local retiredKey = TDP.Favorites:GetKey("3.2.0", "mounts", retiredEntry)
+    local savedRecord = store[retiredKey]
+    owned[retiredEntry.spellId] = true
+    local window = TDP.FavoritesWindow:New()
+    for _, kind in ipairs({ "all", "mounts" }) do
+        window.selectedCollectionType = kind
+        window:BuildVisibleRows()
+        equal(#window.visibleRows, 1, "only obtainable favorite displayed")
+        equal(window.visibleRows[1].entry, available, "obtainable favorite retained")
+    end
+    equal(TODOPlannerDB.favorites, store, "favorites store preserved")
+    equal(store[retiredKey], savedRecord, "historical favorite preserved")
+    equal(#TDP.Favorites:GetAll(), 2, "both saved favorites retained")
+    owned[retiredEntry.spellId] = nil
 end)
 
 test("dropdown selection refreshes rows and persists across reload with legacy migration", function()
@@ -208,21 +309,31 @@ test("dropdown selection refreshes rows and persists across reload with legacy m
     local window = TDP.CollectionExplorerWindow:New()
     equal(window.selectedStatus, "all", "migrated selection")
     local options = window:GetStatusOptions()
-    equal(options[4], "unobtainable", "new dropdown option")
-    equal(window:GetStatusLabel(options[4]), "Unobtainable", "literal label")
+    equal(#options, 3, "only supported statuses remain")
+    equal(options[1], "missing", "Missing option")
+    equal(options[2], "all", "All option")
+    equal(options[3], "collected", "Collected option")
     local renders = 0
     window.Render = function() renders = renders + 1 end
     window.selectedRow = {}
-    equal(window:SetSelectedStatus("unobtainable"), true, "select new option")
+    equal(window:SetSelectedStatus("collected"), true, "select supported option")
     equal(window.selectedRow, nil, "old preview is cleared")
     equal(renders, 1, "selection renders immediately")
     TDP.Database:Init()
-    equal(TDP.CollectionExplorerWindow:New().selectedStatus, "unobtainable", "reload selection")
+    equal(TDP.CollectionExplorerWindow:New().selectedStatus, "collected", "reload selection")
+    equal(window:SetSelectedStatus("unobtainable"), false, "removed status rejected")
     equal(window:SetSelectedStatus("invalid"), false, "unknown status rejected")
     equal(renders, 1, "invalid selection does not render")
     TODOPlannerDB = { settings = { collectionHideCollected = true, collectionStatusFilter = "invalid" } }
     TDP.Database:Init()
     equal(TODOPlannerDB.settings.collectionStatusFilter, "missing", "invalid saved status migration")
+    for _, hideCollected in ipairs({ true, false }) do
+        TODOPlannerDB = { settings = { collectionHideCollected = hideCollected, collectionStatusFilter = "unobtainable" } }
+        local fallback = hideCollected and "missing" or "all"
+        equal(TDP.CollectionExplorerWindow:New().selectedStatus, fallback, "constructor ignores removed status")
+        TDP.Database:Init()
+        equal(TODOPlannerDB.settings.collectionStatusFilter, fallback, "removed saved status migration")
+    end
 end)
 
 print(string.format("Collection availability tests passed: %d", passed))

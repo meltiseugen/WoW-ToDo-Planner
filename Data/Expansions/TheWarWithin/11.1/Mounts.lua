@@ -2,14 +2,12 @@ local _, TDP = ...
 
 local shared = {}
 shared["Patch 11.1: Undermined"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     category = "Other",
     source = "Patch 11.1: Undermined",
     sourceType = "Patch mount collection",
 }
 
 shared["Patch 11.1: Undermined 2"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     category = "PvP",
     source = "Patch 11.1: Undermined",
     sourceType = "Patch mount collection",
@@ -61,7 +59,6 @@ TDP.CatalogRegistry:RegisterCollection("11.1", "mounts", {
         ["Darkfuse Demolisher"] = shared["Patch 11.1: Undermined"],
         ["Darkfuse Spy-Eye"] = shared["Patch 11.1: Undermined"],
         ["Delver's Gob-Trotter"] = {
-            acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
             category = "Delves",
             source = "Patch 11.1: Undermined",
             sourceType = "Patch mount collection",

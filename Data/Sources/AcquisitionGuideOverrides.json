@@ -1,0 +1,196 @@
+{
+  "mounts:368893": {
+    "text": "Follow the Embers of Neltharion campaign into Zaralek Cavern and complete chapter 4, Inherited Sin. Ebyssian's final quest, Worst of the Worst, at Slitherdrake Roost (53.6, 30.2), rewards the Winding Slitherdrake after you defeat Overseer Xymra. Continue the campaign prerequisites shown in the quest-chain notes if this quest is not available yet.",
+    "references": ["https://www.wowhead.com/quest=74563", "https://www.wowhead.com/item=204361"]
+  },
+  "mounts:407555": {
+    "text": "You must own Dragonwrath, Tarecgosa's Rest and complete Kalecgos's blue dragonflight story in Dragonflight, ending with A New Dawn. With the legendary staff available, speak to Kalecgos at the Veiled Ossuary in Thaldraszus (65.7, 12.6) for Rhapsody in Blue. Prepare Tarecgosa's grave and complete the ritual to learn her visage as a permanent mount. This does not consume the staff.",
+    "references": ["https://www.wowhead.com/quest=73199", "https://www.wowhead.com/spell=407555"]
+  },
+  "mounts:408651": {
+    "text": "Join Researchers Under Fire at the central platform in Zaralek Cavern (47.5, 56.7), when the event is active. Help the researchers finish the objectives and open your weekly researcher reward bag. Cataloged Shalewing is a chance reward from the researcher bags, so finishing the event does not guarantee the mount. Complete as many objectives as possible for the better reward tier.",
+    "references": ["https://www.wowhead.com/item=205204", "https://www.wowhead.com/quest=74906"]
+  },
+  "mounts:408653": {
+    "text": "Reach Renown 3 with the Loamm Niffen to unlock bartering, then earn Barter Bricks through Zaralek Cavern activities and Ponzo's barter quests. Buy the Boulder Hauler from Ponzo in Loamm (58.1, 53.8). His offers include 170 Barter Bricks or 85 Barter Boulders; the boulder currency becomes available as your Niffen bartering unlocks advance.",
+    "references": ["https://www.wowhead.com/item=205209", "https://www.wowhead.com/npc=204693"]
+  },
+  "mounts:413922": {
+    "text": "Unlock old Scholomance and the Wards of the Dread Citadel route into the restored Naxxramas content. Obtain a Rotten Delicious apple from Zackett Skullsmash in Naxxramas. Enter 10-player Naxxramas and leave Instructor Razuvious alive. Approach Valiance slowly and feed him the apple. Use an Obedience Crystal to control a Death Knight Understudy, bring the Understudy to Valiance so it mounts him, then ride back to Razuvious. Release the Understudy and kill Razuvious to loot Valiance's reins. The mount comes from this interaction, not from killing Valiance.",
+    "references": ["https://www.wowhead.com/item=206585", "https://www.wowhead.com/npc=206712"]
+  },
+  "mounts:418078": {
+    "text": "Complete all 15 Secrets of Azeroth clues for Whodunnit?. Start with Preservationist Kathos in the Roasted Ram inn in Valdrakken (48.4, 47.8), beginning Preserving Rarities. Follow Kathos's and Tithris's clue quests in order: recover the thinking cap, Torch of Pyrreth and Idol of Ohn'ahra, then use those tools to solve the remaining clues and expose the thief. The chain remains available after the original event. Completing Under Suspicion finishes the achievement and awards Pattie.",
+    "references": ["https://warcraft-secrets.com/guides/secrets-of-azeroth-world-event", "https://www.wowhead.com/achievement=18646"]
+  },
+  "mounts:374278": {
+    "text": "Wait for an active Dreamsurge in one of the four original Dragon Isles zones. Join its Waking Dream portals and defeat the empowered flame lieutenants for Charred Elemental Remains. Collect 20 remains on one character, then combine them to create the Renewed Magmammoth. This is a combination reward, rather than a vendor purchase or a single guaranteed boss drop.",
+    "references": ["https://www.wowhead.com/item=192807", "https://www.wowhead.com/item=209419"]
+  },
+  "mounts:424082": {
+    "text": "Collect three booster parts on the same character. First, bring three players with the Torch of Pyrreth to the braziers on Jaguero Isle, Cape of Stranglethorn (59.4, 79.0), summon Enigma Ward and loot its part. Second, loot the part in Irontree Woods, Felwood (49.9, 26.4). Third, go to the Dark Portal in the Blasted Lands (54.8, 52.1), destroy the nearby Legion Flak Cannons and channel on the part without being interrupted; use Zidormi's older phase if needed. Bring all three parts to the Empowered Arcane Forge in Valdrakken (36.5, 61.9) and combine them into Mimiron's Jumpjets. Obtain the Torch through the Secrets of Azeroth clues at the Roasted Ram inn if you do not have it.",
+    "references": ["https://warcraft-secrets.com/guides/secrets-of-azeroth-world-event", "https://www.wowhead.com/item=210022"]
+  },
+  "mounts:428060": {
+    "text": "Visit Madam Goya's Black Market Auction House in Valdrakken, below the Little Scales Daycare (34.6, 60.6), or another Black Market broker. When the Golden Regal Scarab is listed, place the winning gold bid before the auction expires, then collect it from your mail. Inventory rotates and other players can outbid you; this mount has no fixed buyout or guaranteed listing day.",
+    "references": ["https://www.wowhead.com/item=211084", "https://www.wowhead.com/npc=189644"]
+  },
+  "mounts:431049": {
+    "text": "Complete the Wrathion and Vyranoth side story that opens during Guardians of the Dream. Pick up The Dragon Isles Await from Wrathion at the Central Encampment in the Emerald Dream, follow the Netherwing and storm-dragon errands, and finish Dragon Keeping to receive the Grotto Netherwing Drake. The July 2023 Trading Post reward was its original source; the quest chain provides a permanent way to obtain the mount.",
+    "references": ["https://www.wowhead.com/news/grotto-netherwing-drake-trading-post-mount-available-from-10-2-wrathion-quest-336291"]
+  },
+  "mounts:424476": {
+    "text": "Plant a Small Dreamseed at an Emerald Bounty soil patch in the Emerald Dream. Contribute Emerald Dewdrops while the seed grows, wait for the bloom to finish, then loot its Dreamseed Cache. Winter Night Dreamsaber is a rare reward from these caches. Gather more Dreamseeds and Dewdrops from Dream activities and repeat at other bounty patches; an individual planting does not guarantee a mount.",
+    "references": ["https://www.wowhead.com/item=210059", "https://www.wowhead.com/item=210218"]
+  },
+  "mounts:442358": {
+    "text": "Defeat High Speaker Eirich in The Stonevault on Mythic difficulty for a chance at the Malfunctioning Mechsuit. Use that item to begin the associated repair quest, take it to the repair contact in the Ringing Deeps, and complete the component errands through A Mech in Need. Finishing the repair chain awards the Stonevault Mechsuit. The source notes track the first unfinished quest once you have obtained the starter.",
+    "references": ["https://www.wowhead.com/quest=84025", "https://www.wowhead.com/spell=442358"]
+  },
+  "mounts:448979": {
+    "text": "Reach Renown 3 with the Hallowfall Arathi and go to the spreading-the-light area around Light's Blooming (65.4, 32.2). Farm Radiant Remnants from nearby enemies and use them to light Lesser and Major Keyflames. Complete the weekly quests and bonus objectives those flames unlock, then open their Lamplighter Supply Satchels for a chance at the Dauntless Imperial Lynx. Each flame's reward is limited by its weekly activity; a satchel is not a guaranteed mount.",
+    "references": ["https://www.wowhead.com/item=228741", "https://www.wowhead.com/item=223318"]
+  },
+  "mounts:453785": {
+    "text": "Unlock the Earthen allied race, create an Earthen Paladin, and reach level 10 on that character. The Earthen Ordinant's Ramolith is the Earthen paladin class mount and is learned through that character unlock; another race or class cannot buy it from a mount vendor.",
+    "references": ["https://www.wowhead.com/spell=453785"]
+  },
+  "mounts:466021": {
+    "text": "Unlock the D.R.I.V.E. G-99 Breakneck through the Undermine introduction, then take Shipping and Handling jobs in Undermine. Finish ten jobs in succession without cancelling your streak and open the resulting reward for a chance at the Violet Goblin Shredder. Surge Pricing starts at the half-hour mark and improves job rewards during its ten-minute window. Keep completing streaks; this mount is a random reward.",
+    "references": ["https://www.wowhead.com/item=229947"]
+  },
+  "mounts:1217760": {
+    "text": "Enter Liberation of Undermine through the Incontinental Hotel in Undermine (42.0, 50.2) on Mythic difficulty. Defeat the final boss, Chrome King Gallywix, and loot The Big G. Normal, Heroic and Raid Finder do not award this mount. You have one eligible Mythic boss loot opportunity per character each weekly reset, and the mount is shared raid loot rather than a personal reward for every participant.",
+    "references": ["https://www.wowhead.com/item=235626"]
+  },
+  "mounts:1221155": {
+    "text": "Defeat Chrome King Gallywix, the final boss of Liberation of Undermine, and check the boss loot for Prototype A.S.M.R. It can drop on Raid Finder, Normal, Heroic or Mythic difficulty. The raid entrance is in the Incontinental Hotel in Undermine (42.0, 50.2). This is a rare drop with an eligible loot opportunity per difficulty each weekly reset; the different mount, The Big G, is Mythic only.",
+    "references": ["https://www.wowhead.com/item=236960"]
+  },
+  "mounts:428068": {
+    "text": "Enter the revisited Horrific Vision of Stormwind with at least one Faceless Mask active. Defeat Haymar the Devout in the Dwarven District and send his bike frame to Dornogal. Rebuild it at Dornogal (33.6, 68.0). Collect the manifold near Stormwind's Trade District auction house, handlebars from Valeera's chest, crystal from Umbric's chest, and wheel materials from Wyrmbane's chest. In the Orgrimmar rotation, collect the engine block in the Drag, boarhide from Rexxar's chest and wheel materials from Geya'rah's chest. Each part needs an active mask. Combine them with the crafting reagents shown by the frame, then install the repaired engine, exhaust, handlebars, battery, seat and two wheels. Stormwind and Orgrimmar alternate, so plan for both rotations.",
+    "references": ["https://warcraft-secrets.com/guides/voidfire-deathcycle"]
+  },
+  "mounts:1228865": {
+    "text": "Go to the Nightfall camp at Flame's Radiance in Hallowfall and complete the daily Radiant Incursion or Sureki Incursion assignments. Open the Arathi Soldier's Coffer awarded by those dailies for a chance at the Void-Scarred Lynx. Repeat on later days if it does not drop; this mount is a coffer reward rather than the Nightfall reputation vendor mount.",
+    "references": ["https://www.wowhead.com/item=239546", "https://www.wowhead.com/item=239563"]
+  },
+  "mounts:353264": {
+    "text": "Reach Renown 8 with the Manaforge Vandals. Obtain the Inscription items Deal: Cartel Ba, Deal: Cartel Zo and Deal: Cartel Om, by crafting them or buying them on the Auction House. Use one deal per account each week and equip its cartel title. While aligned, collect that cartel's hidden cypher inside Manaforge Omega: Ba is after Plexus Sentinel near the phase-warp ledge; Zo is on the mana-vent pipes before Forgeweaver Araz; Om is on a rock in the area opened after Fractillus. Leave Araz alive while collecting Ba and Zo. After all three cyphers, return to Zo'turu in K'aresh (42.0, 22.1) and finish Someone Like Me for the mount and Cartel Transmorpher. Allow three weekly cartel selections.",
+    "references": ["https://warcraft-secrets.com/guides/xy-trustees-gearglider"]
+  },
+  "mounts:1234573": {
+    "text": "Enter Manaforge Omega in K'aresh (41.9, 21.5) on Mythic difficulty, defeat the final boss Dimensius, the All-Devouring, and loot the Unbound Star-Eater. Lower difficulties do not drop this mount. The boss has a weekly Mythic loot lockout per character, and the raid must distribute any mount that drops.",
+    "references": ["https://www.wowhead.com/item=243061"]
+  },
+  "mounts:1241070": {
+    "text": "Join Devourer attacks in K'aresh and defeat their rare elite bosses for Devoured Energy-Pods. Each rare can award one pod per Warband each week. Collect 20 pods, then combine them to create the Translocated Gorger. Defeat different event rares and continue after weekly resets; repeatedly killing one rare in the same week does not supply all 20 pods.",
+    "references": ["https://www.wowhead.com/item=246159", "https://www.wowhead.com/item=246240"]
+  },
+  "mounts:332482": {
+    "method": "Unavailable",
+    "text": "This mount has no confirmed obtainable version. The advertised Shadowlands Timewalking purchase did not appear on Collector Ta'steld, and Sabriel the Bonecleaver's beta drop was never released. Do not farm Sabriel or spend Timewarped Badges expecting this mount; his live mount reward is Armored Bonehoof Tauralus. Keep this entry as an unreleased collectible until an actual acquisition source is confirmed.",
+    "references": ["https://www.wowhead.com/item=182083/bonecleavers-skullboar", "https://us.forums.blizzard.com/en/wow/t/bonecleavers-skullboar/2076393"]
+  },
+  "mounts:1263369": {
+    "text": "During Shadowlands Timewalking, visit Collector Ta'steld in the Ring of Fates in Oribos and buy Skypaw Glimmerfur for 5,000 Timewarped Badges. Earn the badges from Timewalking dungeons, raids and their event quests. The vendor follows the active Timewalking schedule, so return during the Shadowlands event if the item is absent.",
+    "references": ["https://www.wowhead.com/guide/collections/the-war-within/mounts-sources-patch-11-2-7"]
+  },
+  "pets:3511": {
+    "text": "Take part in Fyrakk Assaults when active in Ohn'ahran Plains or the Azure Span. Loot the assault enemies and the event reward chest for a chance at Blaise. To open a Secured Shipment, gather the assault wards and exchange three Everburning Keys at the shipment. Complete the weekly assault as well; the pet is a random event drop rather than a wild pet you can trap.",
+    "references": ["https://www.wowhead.com/item=205002", "https://www.wowhead.com/object=398815"]
+  },
+  "pets:3512": {
+    "text": "Take part in the active Fyrakk Assault in Ohn'ahran Plains or the Azure Span. Ambre can be looted from assault enemies and the Secured Shipment. Collect assault wards to obtain Everburning Keys, then use three keys to open the shipment. Repeat eligible assault activities for another chance; Ambre cannot be captured in a wild pet battle.",
+    "references": ["https://www.wowhead.com/item=205003", "https://www.wowhead.com/object=398815"]
+  },
+  "pets:4489": {
+    "text": "Complete a War Within delve and open the Heavy Trunks in the treasure room after the final objective. Bouncer is a random chest reward; Kobyss-themed delves such as The Sinkhole and Tak-Rethan Abyss are its themed sources. Loot the ordinary completion chests as well as any eligible bountiful chest. Learn the pet from the item if it drops, or buy a caged Bouncer from another player.",
+    "references": ["https://www.wowhead.com/item=222971"]
+  },
+  "pets:4496": {
+    "text": "Finish War Within delves and loot the Heavy Trunks in the final treasure room for a chance at Wriggle. Its themed sources are nerubian delves, including Earthcrawl Mines and Skittering Breach. A random pet drop is not guaranteed by completing the delve. Learn the dropped item, or obtain a caged Wriggle from the Auction House.",
+    "references": ["https://www.wowhead.com/item=221496"]
+  },
+  "pets:4506": {
+    "text": "Finish Fungal Folly on the Isle of Dorn or Mycomancer Cavern in Hallowfall, then open the Heavy Trunks in the final treasure room for a chance at Violet Sporbit. It has also been reported from other delve completion chests, including ordinary low-tier runs; it does not require capturing a wild pet. Learn the dropped item or purchase a caged Violet Sporbit from another player.",
+    "references": ["https://www.wow-petguide.com/Pet/222590/Sporob%C3%AAte_violette?sel_lang=en", "https://www.wowhead.com/item=225337/violet-sporbit"]
+  },
+  "pets:4537": {
+    "text": "Complete War Within delves and loot the Heavy Trunks in the treasure room after the final objective. Chester is a random delve completion reward, so open each eligible chest and repeat runs if the item does not drop. Learn Chester from the reward item; a caged copy can also be traded or bought on the Auction House.",
+    "references": ["https://www.wowhead.com/item=221820"]
+  },
+  "pets:4575": {
+    "text": "Complete a kobold-themed War Within delve, such as The Waterworks or The Dread Pit, and loot the Heavy Trunks after the final objective. Sneef is a chance reward from the completion treasure room; it can also appear in other delve completion chests. Learn the pet from its item, or buy a caged Sneef on the Auction House.",
+    "references": ["https://www.wowhead.com/battle-pet/4575"]
+  },
+  "pets:4596": {
+    "text": "First befriend Dog at the Heartland in Valley of the Four Winds by completing Lost and Lonely, then build the Herb Garden in your Warlords garrison so Dog moves in. Find a Loose Pebble on the streets of Legion Dalaran and show it to Dog in your garrison so he moves to Dalaran. On the Isle of Dorn, inspect the Half-Buried Dog Bowl at (31.4, 51.3) near Dalaran's crash site, then interact with Dog there and pet his head to learn Faithful Dog. The source notes follow your first unfinished step, so an established friendship does not need to be repeated.",
+    "references": ["https://www.wowhead.com/battle-pet/4596", "https://www.wowhead.com/quest=83093", "https://www.wowhead.com/quest=83094"]
+  },
+  "pets:4725": {
+    "method": "Unavailable",
+    "text": "Titan Orb was a datamined Siren Isle pet that was removed from the collectible Pet Journal before the patch launched. It has no confirmed drop, vendor, quest or capture route. This is not the obtainable Teeny Titan Orb from the Arathi Highlands, so farming that pet's source will not unlock this species.",
+    "references": ["https://www.wowhead.com/guide/collections/the-war-within/battle-pet-collection-siren-isle"]
+  },
+  "pets:4726": {
+    "text": "Finish the Siren Isle introduction and its Special Assignment, then ask Suzie Boltwrench to enter the storm phase. Kill Stormtouched Pridetalons on the peaks around (51.0, 20.0) and (42.0, 60.0) for a chance at Crackleroar. Tempest Talon can also drop it. An Experimental Go-Pack helps reach the peaks. This pet drops as an item; it cannot be trapped in a wild pet battle.",
+    "references": ["https://www.wowhead.com/item=234379/crackleroar"]
+  },
+  "pets:4647": {
+    "text": "Complete a goblin-themed War Within delve, such as Excavation Site 9 or Sidestreet Sluice, and open the Heavy Trunks in the final treasure room for a chance at Mr. DELVER. Drops have also been reported from other delve completion chests. Learn the pet from the item, or buy a caged copy from the Auction House; defeating the friendly Mr. DELVER encounter character is not required.",
+    "references": ["https://www.warcraftpets.com/wow-pets/mechanical/robots/mr-delver/", "https://www.wowhead.com/item=232848/mr-delver"]
+  },
+  "mounts:1264621": {
+    "text": "Join the Brawler's Guild in your faction's arena: Bizmo's Brawlpub beneath the Deeprun Tram in Stormwind, or Brawl'gar Arena in Orgrimmar. Win the ranked solo encounters until rank 6, then buy Brawlin' Bruno from the arena quartermaster for 4,000 gold. Each rank requires defeating its encounter sequence; random exhibition fights do not substitute for rank progression. The purchase is available during an active Brawler's Guild season.",
+    "references": ["https://www.wowhead.com/item=259227/brawlin-bruno"]
+  },
+  "mounts:1264643": {
+    "text": "Progress through the ranked Brawler's Guild encounters in Bizmo's Brawlpub beneath Stormwind's Deeprun Tram or Brawl'gar Arena in Orgrimmar. Reach rank 8, then buy Ballistic Bronco from the arena quartermaster for 10,000 gold. Work through the rank bosses in order; exhibition fights do not advance the required rank. This route requires an active Brawler's Guild season.",
+    "references": ["https://www.wowhead.com/item=259238/ballistic-bronco"]
+  },
+  "mounts:448186": {
+    "text": "Buy a completed Crowd Pummeler 2-30 on the Auction House, or build it with Khaz Algar Engineering. To learn the schematic, use Invent and the resulting Comprehensibly Organized Ideas until this recipe is offered. Craft it using 1 Pummel Permit, 1,000 Bountiful Bolts, 200 Assorted Whirligigs, 80 Blinker Fluid, 50 Cataclysmic Converters and 20 Pummel-Proof Plating. Paxton Bombshell at Opportunity Point in the Ringing Deeps sells the special parts; the Parts specialization also allows rare components to be recovered with Pilfer Through Parts. The finished mount can be traded, so you do not need Engineering to learn a purchased copy.",
+    "references": ["https://www.wowhead.com/item=221967/crowd-pummeler-2-30"]
+  },
+  "mounts:1218317": {
+    "text": "Use a character with Khaz Algar Jewelcrafting 30. Enter the revisited Horrific Vision of Orgrimmar with at least one Faceless Mask and defeat Big Keech in the Valley of Honor (72.4, 34.9) for the design and Void-Bound Orb of Mystery. With the orb acquired and a mask active, collect 20 Shadow Infused Onyx from corrupted-area chests, Unusual Gems from Valeera's chest after clearing Old Town in Stormwind, and 4 Black Blood Infused Bars from the vision blacksmithing areas. Learn the design and craft the panther at a jeweler's bench. The finished mount binds to your Warband; it is not an ordinary Auction House panther.",
+    "references": ["https://www.wowhead.com/item=235712", "https://warcraft.wiki.gg/wiki/Design%3A_Void-Crystal_Panther"]
+  },
+  "pets:4482": {
+    "text": "Learn Khaz Algar Alchemy and unlock Thaumaturgy. Perform Thaumaturgy on eligible stacks of materials; Writhing Transmutagen is a rare bonus discovery from the process, rather than a directly craftable pet recipe. Repeat conversions if you want to obtain it yourself, or buy the learned pet in a cage from another player. No particular number of conversions guarantees the pet.",
+    "references": ["https://www.wowhead.com/item=223487/writhing-transmutagen"]
+  },
+  "toys:207092": {
+    "text": "Buy the finished Portable Party Platter on the Auction House or have an engineer craft it. To learn the schematic yourself, reach Dragon Isles Engineering 50 and carry Light Parchment and Engineer's Ink. Stand near a mage who has a Chef's Splendid Rolling Pin equipped, knows a Dragon Isles dessert recipe, and gains the Well Fed buff by eating. The mage conjures a dessert and the nearby engineer receives the schematic. Learn it, craft the platter and use the finished item to add it to your Toy Box.",
+    "references": ["https://www.wowhead.com/item=207092/portable-party-platter"]
+  },
+  "toys:206565": {
+    "text": "Unlock the restored Scholomance and Wards of the Dread Citadel route into old Naxxramas. Inside Naxxramas, repair the Makeshift Grappling Hook and use it to reach Zackett Skullsmash above Thaddius's room. Bring Black Coffee to wake him and complete his introduction. Exchange Scourgestones for Death's Bargaining Chips, then buy Plagued Grain from Zackett for 15 chips. The Eastern Plaguelands map marker is the Naxxramas entrance, not an outdoor location for the vendor. Zackett is a merchant; do not attack him for this toy.",
+    "references": ["https://www.wowhead.com/item=206565/plagued-grain"]
+  },
+  "mounts:447213": {
+    "text": "Kill creatures on the Isle of Dorn until you collect 10 Crackling Shards. The shards bind to your Warband, so you can consolidate drops from your characters. Combine all ten into a Storm Vessel, fly to Alunira above Dhar Oztan (23.1, 58.5), and use your vessel to remove her Protective Stormshroud. Defeat her and loot the mount. Use your own vessel: merely tagging another player's summoned fight does not guarantee the mount. Alunira is an enemy whose shield consumes the vessel, not a merchant selling the mount.",
+    "references": ["https://www.wowhead.com/spell=447213/alunira"]
+  },
+  "mounts:451489": {
+    "text": "Defeat Tka'ktath near the City of Threads in Azj-Kahet (62.8, 66.6) and loot a Vial of Tka'ktath's Blood. Use it to start The Beginning of Something Beautiful, then take it to Shalba in the City of Threads (45.4, 13.5). Complete her gathering quests in order: 1,500 Nerubian Chitin, then 1,000 Nerubian Venom, then 500 Nerubian Blood. Kill nerubians for chitin and venom; ascended nerubians and skyrazors supply blood. Follower Ara-Kara runs are one farming option. Return each batch before gathering the next quest's items, watch Witnessing Brilliance, and finish Consolation Flies for Siesbarg.",
+    "references": ["https://www.wowhead.com/item=224150/siesbarg", "https://www.wowhead.com/quest=83722"]
+  },
+  "mounts:471562": {
+    "text": "Finish Siren Isle's story, then enter Seafury Tempest through Suzie Boltwrench (69.0, 49.2). Collect five runekeys during the storm. Cyclonic drops from Zek'ul at (33.0, 73.6), or fishing nearby. Whirling drops from Ksvir in the Forgotten Vault. Make Turbulent from three fragments at (38.2, 51.9), (67.2, 78.8) and inside the cave starting at (50.2, 42.4). Make Torrential from seven fragments dropped by storm enemies, and Thunderous from five fragments in Rune Storm Caches revealed with Runecaster's Eye. Enter the vault via the cave at (44.8, 22.4) and Singing Tablet at (50.2, 15.5). Use the keys on the stones surrounding Thrayir in the vault (72.7, 61.4), then accept his quest to learn the mount.",
+    "references": ["https://warcraft-secrets.com/guides/thrayir"]
+  },
+  "mounts:1218229": {
+    "text": "Enter the revisited Horrific Vision of Stormwind with at least two Faceless Masks active and clear the Trade District. Read the two ripped notes near (68.6, 73.3) and (65.7, 71.6). Match the requested ingredient and preparation: raw fish = Fresh Fillet; cooked fish = Skewered Fillet; raw fungus = Chopped Mycobloom; cooked fungus = Roasted Mycobloom; raw spiced meat = Spiced Meat Stock; cooked spiced meat = Simple Stew; raw steak = Portioned Steak; cooked steak = Unseasoned Field Steak. Place the matching food in the Claw Marked Bowl (68.1, 73.4), rattle it, then defeat the arriving Void-Scarred Gryphon and loot its reins.",
+    "references": ["https://www.wowhead.com/item=235700/reins-of-the-void-scarred-gryphon"]
+  },
+  "mounts:428013": {
+    "text": "Unlock the Detective title through Azeroth's Greatest Detective and obtain the Torch of Pyrreth from Secrets of Azeroth. Equip Detective and begin Ratts' Race with the Dalaran Survivor in Dornogal (54.9, 28.9). Read the notes in Azj-Kahet (69.3, 93.3), above the City of Threads (31.5, 20.8), and underwater in Hallowfall (50.7, 86.6). Confront Ratts in the hidden upper tunnel inside Pillar-nest Vosh, Azj-Kahet (entrance 55.1, 19.0; climb at 56.4, 17.5), and take the Peculiar Gem. Use the torch in the rotten tree trunk in northern Un'Goro (44.5, 8.0) for the Inert Peculiar Key. Combine them, carry the resulting key to the Karazhan Catacombs gate in Deadwind Pass (46.3, 69.1), and use the torch to enter Ratts' Revenge. Solve the following nine basins in order. You do not need the later flight-unlock puzzles to obtain the mount.\n\n1. With your torch active, wait for The Light of Their Love at the Humble Monument in Northern Barrens (55.0, 40.2), Young Olgra in Draenor Nagrand (74.2, 37.5 or 49.2, 48.0 depending on your story phase), and Decimator Olgra in Maldraxxus (27.3, 61.3). Obtain all three stacks.\n\n2. At the Ny'alotha Obelisk above the Seat of Knowledge in the BFA phase of Vale of Eternal Blossoms (83.7, 27.6), summon Perky Pug wearing a Dogg-Saron or Yipp-Saron costume, use Twitching Eyeball or All-Seeing Eyes for Gift of N'Zoth, and /pray. Wait nearby for the Key of Shadows. Another player can fulfill these requirements for everyone standing within ten yards.\n\n3. Back in the catacombs, open the chamber beside the Red Button with the key. Fish an Astral Key from the bowl, open the Astral Chest and equip Starry-Eyed Goggles. Use the consoles and loot their Pieces of Hate. Catacombs coordinates and codes: (48.9, 80.3) 88224646; (42.9, 70.6) 17112317; (49.5, 65.1) try 1533, 3457, 8265 or 10638; (67.4, 84.3) 19019; (56.3, 62.6) 5661; (64.9, 48.3) 52233; (70.3, 55.4) 51567; (66.3, 15.2) 115. For the ninth piece, carry at least five distinct lucky items, for example Lucky Rat's Tooth, Lucky Shirt, Lucky Horseshoe, Lucky Duck and Lucky Dragon's Claw, then enter 777 at a slot-machine console in the felcycle room. Keep all nine pieces.\n\n4. Buy a Scroll of Fel Binding from Vashti the Wandering Merchant in Azsuna. Use it outside Uther's Tomb in Western Plaguelands (52.1, 85.1), return after dying, and read all four writings while the summoned doomguard is alive.\n\n5. On Timeless Isle, ask Zarhym in the Cavern of Lost Spirits to enter the spirit realm. Reach Jeremy Feasel before the spirit timer expires. Defeat him with three level-25 secret pets, such as Baa'l, Wicker Pup and Sun Darter Hatchling; a grouped player's successful battle can also qualify you. Accept Jeremy's quest and obtain the Relic of Crystal Connections.\n\n6. Use your torch at the five acquisition altars in northeastern Northern Stranglethorn. One player must satisfy each altar's complete combination; friends can help with different altars. Blood (77.1, 46.3): a mount and pet with Blood in their names, plus Throbbing Blood Orb. Corruption (77.5, 43.9): Cloak of Overwhelming Corruption appearance, a Corrupted mount and pet, Ring of Broken Promises or Accursed Tome of the Sargerei, and /cower. Void (78.1, 46.3): Cloak of the Black Void appearance, Lesser Voidcaller or another qualifying void pet, Shadowy Disguise or Void Totem, and /smirk. Sin (78.3, 44.0): a sinstone back appearance, Sinheart, and Bondable Sinstone. Lust (77.1, 44.9): remove your clothes, summon Sister of Temptation, use Moroes' Famous Polish or Steamy Romance Novel Kit, and /flirt. With goggles equipped, loot Ancient Shaman Blood from the chest by the altars (78.2, 47.7).\n\n7. Summon Fledgling Warden Owl on Azsuna's Isle of the Watchers. Find the active owl statues and stand with your owl in each of the red, green, blue and purple auras until each triggers the magnifying-glass effect. Search the island around (40.5, 74.0), (43.5, 86.0), (47.5, 84.7) and (50.4, 91.7); the active statues rotate. Keep the empowered owl summoned and clear Vault of the Wardens. Take Elune's Light from Cordana's arena, return to the newly opened room before the first boss and collect the Sentry Statue. Place it in the Vault of Mirrors. Lower every statue in its five-by-five toggle puzzle to loot Warden's Mirror.\n\n8. Insert Ancient Shaman Blood and Warden's Mirror into the Enigma Machine at catacombs (59.9, 42.6). Begin, then submit to release Rats. Count and kill every Rat, excluding creatures named Catacombs Rat; kill those as well so they cannot stand on plates. Complete three locks. For each lock multiply the Rat count by the lock number; subtract 20 if the result exceeds 20. Count that result along the seven plates repeatedly: 1-7 means one statue on plate 1-7, 8-14 means two statues on plate 1-7, and 15-20 means three statues on plate 1-6. Submit the arrangement, clear the plate and repeat for the next lock. Plate coordinates, in order: (71.6, 20.1), (68.5, 34.2), (73.6, 43.0), (68.8, 50.9), (73.6, 65.3), (60.2, 71.6), (47.8, 78.9). Reach plate 3 by targeting its Humming Crystal and using the relic. A wrong submission requires clearing the Rats and restarting.\n\n9. Return to the hidden upper tunnel in Pillar-nest Vosh. Wear the goggles to reveal the platform and use the relic on its Humming Crystal. Submit 84847078 at the console, then open the Encrypted Chest to learn Incognitro.",
+    "references": ["https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Secrets.lua", "https://warcraft-secrets.com/guides/incognitro-the-indecipherable-felcycle"]
+  },
+  "pets:4843": {
+    "text": "Complete the War Within's ethereal delves, including the Archival Assault in K'aresh, then loot the Heavy Trunks in the completion treasure room for a chance at Sao'rhon. It is learned from the reward item rather than captured from the opposing pet team. Repeat completion chests if it does not drop, or buy a caged copy from another player.",
+    "references": ["https://www.wowhead.com/item=245256"]
+  }
+}

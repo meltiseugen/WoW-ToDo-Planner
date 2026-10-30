@@ -1,23 +1,23 @@
 {
   "collection explorer construction and rendering": {
-    "operations": 1157,
-    "sha256": "53f0120b03095b3e7e7699aefcebb51927e4e3a8b6584abbdd4773a6bd7f9a74"
+    "operations": 1585,
+    "sha256": "c5902219e24640f4106fcfcaf8e3962702ce1103122beb0d1bf30ec081441aad"
   },
   "collection map construction and reset": {
-    "operations": 321,
-    "sha256": "c5e74661aceec68e89e5de07ac48acf43c54d167a9efd9317cbcef3a5ca289b0"
+    "operations": 327,
+    "sha256": "112536ad5d564e579251af9329c5da6a7f4e0e0dca8e4a1b75967abcb650382a"
   },
   "favorites construction and rendering": {
-    "operations": 684,
-    "sha256": "36a3c009a2fd6a2d176a54be59e7ef5ec6975fc85a4c5144a293e774e132b96b"
+    "operations": 719,
+    "sha256": "0a366bb1889bdf8d4694c42e3c8409a2f38b8246c40715eaaeaa5007e855f673"
   },
   "home construction and rendering": {
     "operations": 162,
-    "sha256": "7e074e10884bc1716de4e0027e6fe10b824cfd7088f400fc25579e359dd06c8e"
+    "sha256": "5b2f367832807f9f18bc80e67c4ffe375196bedeb1e93761bb3a1f1d7d5a414f"
   },
   "options construction and tabs": {
-    "operations": 560,
-    "sha256": "a57693ba4f85aa515f6fb215169ce788e3e82f0067e866d706fd7a3f05302058"
+    "operations": 2585,
+    "sha256": "b3bec67848b844881304bb8790f12dd733ac13d023723377ae86fe4d402cee7b"
   },
   "planner construction and rendering": {
     "operations": 496,
@@ -25,10 +25,10 @@
   },
   "task details open layout and criteria": {
     "operations": 802,
-    "sha256": "51d6010032912c3afa19fe86f582aeed9e5d59c5af0717bc30e6396fde1779cd"
+    "sha256": "fe2dfa4be470b20a7df7518433f35c898369c7f833e80d96cb5659b017e78e37"
   },
   "task editor create save and edit": {
     "operations": 508,
-    "sha256": "3235ab988a64bb63904c477df776068749ba98a339723404d32f5eb836a7f22c"
+    "sha256": "65b609a4ce713f81e89c4ae5835456825e32a6afaae9a1e06a8d17e860ee5126"
   }
 }

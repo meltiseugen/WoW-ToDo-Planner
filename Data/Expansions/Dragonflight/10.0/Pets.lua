@@ -14,7 +14,7 @@ shared["Dragon Isles"] = {
     sourceType = "Wild pet battle",
 }
 
-shared["Pet Battle: The Azure Span"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: The Azure Span", sourceType = "Pet Journal Source" }
+shared["Pet Battle: The Azure Span"] = { source = "Pet Battle: The Azure Span", sourceType = "Pet Journal Source" }
 
 shared["Dragon Isles 2"] = { acquisition = "Complete this pet's permanent Dragon Isles treasure, discovery, or interaction puzzle.", source = "Dragon Isles", sourceType = "Treasure or discovery" }
 
@@ -31,7 +31,7 @@ shared["Grand Hunt reward bags"] = {
     waypoints = { "/way #2023 60.4 39.6 Maruukai / Grand Hunt hub" },
 }
 
-shared["Pet Battle: Thaldraszus"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Thaldraszus", sourceType = "Pet Journal Source" }
+shared["Pet Battle: Thaldraszus"] = { source = "Pet Battle: Thaldraszus", sourceType = "Pet Journal Source" }
 
 shared["Pet, racing, or collection achievement"] = {
     acquisition = "Complete the achievement associated with this permanent Dragonflight collection reward.",
@@ -45,7 +45,7 @@ shared["Dragon Isles pet and event vendors"] = {
     sourceType = "Vendor",
 }
 
-shared["Pet Battle: Ohn'ahran Plains"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Ohn'ahran Plains", sourceType = "Pet Journal Source" }
+shared["Pet Battle: Ohn'ahran Plains"] = { source = "Pet Battle: Ohn'ahran Plains", sourceType = "Pet Journal Source" }
 
 shared["Dragon Isles Primal Storms"] = {
     acquisition = "Defeat enemies during the matching elemental Primal Storm for a chance at this companion.",
@@ -53,16 +53,14 @@ shared["Dragon Isles Primal Storms"] = {
     sourceType = "Primal Storm drop",
 }
 
-shared["Pet Battle: The Waking Shores"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: The Waking Shores", sourceType = "Pet Journal Source" }
+shared["Pet Battle: The Waking Shores"] = { source = "Pet Battle: The Waking Shores", sourceType = "Pet Journal Source" }
 
 shared["Pet Battle: Ohn'ahran Plains, Thaldraszus, The Waking Shores"] = {
-    acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
     source = "Pet Battle: Ohn'ahran Plains, Thaldraszus, The Waking Shores",
     sourceType = "Pet Journal Source",
 }
 
 shared["Pet Battle: Thaldraszus, The Azure Span, The Waking Shores"] = {
-    acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
     source = "Pet Battle: Thaldraszus, The Azure Span, The Waking Shores",
     sourceType = "Pet Journal Source",
 }
@@ -70,7 +68,6 @@ shared["Pet Battle: Thaldraszus, The Azure Span, The Waking Shores"] = {
 shared["Dragon Isles side quests"] = { acquisition = "Complete the permanent Dragon Isles quest or questline that awards this companion.", source = "Dragon Isles side quests", sourceType = "Quest" }
 
 shared["Pet Battle: Ohn'ahran Plains, The Azure Span"] = {
-    acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
     source = "Pet Battle: Ohn'ahran Plains, The Azure Span",
     sourceType = "Pet Journal Source",
 }
@@ -204,7 +201,14 @@ TDP.CatalogRegistry:RegisterCollection("10.0", "pets", {
     },
     details = {
         Alvin = shared["Dragon Isles professions"],
-        ["Alvin the Anvil"] = shared["Dragon Isles"],
+        ["Alvin the Anvil"] = {
+            acquisition = "Craft Alvin the Anvil with Dragon Isles Blacksmithing (50) after learning Plans: Alvin the Anvil, or buy the crafted pet from the Auction House. The plans can drop from powerful blacksmiths, including Rohzor Forgesmash in The Waking Shores and Forgemaster Gorek in Neltharus.",
+            source = "Dragon Isles Blacksmithing (50)",
+            sourceType = "Profession",
+            sourceUrl = "https://www.wow-petguide.com/Pet/189095/Alvin_the_Anvil",
+            tips = "The map marks Rohzor Forgesmash's patrol area around Obsidian Citadel for farming the plans. He patrols between spawn positions; this is a recipe source, not a wild pet capture location. Use a character with Dragon Isles Blacksmithing when farming the recipe.",
+            waypoints = { "/way #2022 28.6 59.2 Rohzor Forgesmash - Alvin the Anvil recipe patrol area" },
+        },
         ["Azure Crystalspine"] = shared["Pet Battle: The Azure Span"],
         ["Azure Frillfish"] = shared["Dragon Isles 2"],
         ["Backswimmer Timbertooth"] = shared["Dragon Isles major factions"],
@@ -216,7 +220,6 @@ TDP.CatalogRegistry:RegisterCollection("10.0", "pets", {
         ["Blue Dasher"] = shared["Pet Battle: Thaldraszus"],
         ["Bronze Racing Enthusiast"] = shared["Pet, racing, or collection achievement"],
         ["Bugbiter Tortoise"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "World Event: A Small Favor for Cymre Brightblade / Zone: Waking Shores",
             sourceType = "Pet Journal Source",
         },
@@ -238,12 +241,11 @@ TDP.CatalogRegistry:RegisterCollection("10.0", "pets", {
         Ghostflame = shared["Dragon Isles pet and event vendors"],
         ["Grassland Stomper"] = shared["Pet Battle: Ohn'ahran Plains, Thaldraszus, The Waking Shores"],
         ["Gray Marmoni"] = shared["Dragon Isles major factions"],
-        ["Grizzlefur Cub"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Thaldraszus, The Azure Span", sourceType = "Pet Journal Source" },
+        ["Grizzlefur Cub"] = { source = "Pet Battle: Thaldraszus, The Azure Span", sourceType = "Pet Journal Source" },
         Gwosh = shared["Pet Battle: The Azure Span"],
         Hoofhelper = shared["Dragon Isles major factions"],
         Igneoid = shared["Pet Battle: Thaldraszus, The Azure Span, The Waking Shores"],
         ["Ironbeak Duck"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Pet Battle: Ohn'ahran Plains, The Waking Shores",
             sourceType = "Pet Journal Source",
         },
@@ -266,14 +268,12 @@ TDP.CatalogRegistry:RegisterCollection("10.0", "pets", {
         ["Obsidian Proto-Whelp"] = shared["Dragon Isles pet and event vendors"],
         ["Ohuna Companion"] = shared["Grand Hunt reward bags"],
         Palamanther = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Pet Battle: Ohn'ahran Plains, Thaldraszus, The Azure Span, The Waking Shores",
             sourceType = "Pet Journal Source",
         },
         ["Pale Baby Vorquin"] = shared["Pet Battle: The Azure Span"],
         Petal = shared["Dragon Isles pet and event vendors"],
         ["Phoenix Wishwing"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Quest: Tale of the Phoenix / Zone: The Waking Shores",
             sourceType = "Pet Journal Source",
         },
@@ -281,14 +281,12 @@ TDP.CatalogRegistry:RegisterCollection("10.0", "pets", {
         Pinkie = shared["Dragon Isles pet and event vendors"],
         Pistachio = shared["Dragon Isles pet and event vendors"],
         ["Plucky Duckling"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Pet Battle: Ohn'ahran Plains, The Waking Shores, Valdrakken",
             sourceType = "Pet Journal Source",
         },
         Polliswog = shared["Pet Battle: Thaldraszus"],
         ["Pricklefury Hare"] = shared["Dragon Isles"],
         ["Primal Stormling"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Quest: A Primal Threat / Zone: The Dranosh'ar Blockade (Horde), Stormwind Harbor (Alliance)",
             sourceType = "Pet Journal Source",
         },
@@ -301,15 +299,14 @@ TDP.CatalogRegistry:RegisterCollection("10.0", "pets", {
         ["Shiverweb Broodling"] = shared["Dragon Isles side quests"],
         Shyfly = shared["Dragon Isles"],
         ["Snowclaw Cub"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "World Event: Primal Bear Cub / Zone: Azure Span",
             sourceType = "Pet Journal Source",
         },
         Snowlemental = shared["Dragon Isles"],
         ["Snowy Treeflitter"] = shared["Dragon Isles"],
         ["Sophic Amalgamation"] = shared["Dragon Isles professions"],
-        Spyragos = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Quest: A Dragon's Day Off", sourceType = "Pet Journal Source" },
-        Stoneshell = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Ohn'ahran Plains, Thaldraszus", sourceType = "Pet Journal Source" },
+        Spyragos = { source = "Quest: A Dragon's Day Off", sourceType = "Pet Journal Source" },
+        Stoneshell = { source = "Pet Battle: Ohn'ahran Plains, Thaldraszus", sourceType = "Pet Journal Source" },
         ["Storm-Touched Bluefeather"] = shared["Pet Battle: Thaldraszus"],
         ["Storm-Touched Ottuk"] = shared["Pet Battle: The Azure Span"],
         ["Storm-Touched Stomper"] = shared["Pet Battle: The Waking Shores"],

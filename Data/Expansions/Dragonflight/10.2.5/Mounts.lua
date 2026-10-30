@@ -2,7 +2,6 @@ local _, TDP = ...
 
 local shared = {}
 shared["Patch 10.2.5: Seeds of Renewal"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     category = "Other",
     source = "Patch 10.2.5: Seeds of Renewal",
     sourceType = "Patch mount collection",

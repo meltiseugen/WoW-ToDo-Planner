@@ -31,13 +31,6 @@ shared["Zone: Nazjatar"] = {
     waypoints = { "/way #1355 48.0 61.0 Nazjatar central collection route" },
 }
 
-shared["Profession: Engineering"] = {
-    acquisition = "Obtain this toy from the listed source: Profession: Engineering.",
-    source = "Profession: Engineering",
-    sourceType = "Toy Box Source",
-    tips = "For rare, cache, or rotating-visitor sources, verify the active daily or assault before travelling.",
-}
-
 TDP.CatalogRegistry:RegisterCollection("8.2", "toys", {
     entries = {
         {
@@ -77,18 +70,20 @@ TDP.CatalogRegistry:RegisterCollection("8.2", "toys", {
             tips = "For rare, cache, or rotating-visitor sources, verify the active daily or assault before travelling.",
         },
         {
-            acquisition = "Obtain this toy from the listed source: Profession: Engineering.",
+            acquisition = "At Battle for Azeroth Engineering 150, learn Wormhole Generator: Kul Tiras from Instructor Alikana in Mezzamere (Alliance, Nazjatar 38.0, 53.6) or Jada in Newhome (Horde, Nazjatar 49.1, 61.5). Craft it with 15 Monelite Ore, 25 Storm Silver Ore, 5 Chemical Blasting Cap and 50 Insulated Wiring, or buy the finished toy from another player or the Auction House.",
             itemId = 168807,
             name = "Wormhole Generator: Kul Tiras",
-            source = "Profession: Engineering",
-            tips = "For rare, cache, or rotating-visitor sources, verify the active daily or assault before travelling.",
+            source = "Battle for Azeroth Engineering 150 - Instructor Alikana / Jada in Nazjatar",
+            tips = "Complete the Nazjatar introduction until your faction's base and profession trainer are available. Both trainers teach both wormhole generators. Using the toy requires Battle for Azeroth Engineering 1. The map marks recipe trainers, not the random teleport destinations.",
+            waypoints = { "/way #1355 38.0 53.6 Instructor Alikana - Alliance wormhole recipe trainer", "/way #1355 49.1 61.5 Jada - Horde wormhole recipe trainer" },
         },
         {
-            acquisition = "Obtain this toy from the listed source: Profession: Engineering.",
+            acquisition = "At Battle for Azeroth Engineering 150, learn Wormhole Generator: Zandalar from Instructor Alikana in Mezzamere (Alliance, Nazjatar 38.0, 53.6) or Jada in Newhome (Horde, Nazjatar 49.1, 61.5). Craft it with 15 Monelite Ore, 25 Storm Silver Ore, 5 Chemical Blasting Cap and 50 Insulated Wiring, or buy the finished toy from another player or the Auction House.",
             itemId = 168808,
             name = "Wormhole Generator: Zandalar",
-            source = "Profession: Engineering",
-            tips = "For rare, cache, or rotating-visitor sources, verify the active daily or assault before travelling.",
+            source = "Battle for Azeroth Engineering 150 - Instructor Alikana / Jada in Nazjatar",
+            tips = "Complete the Nazjatar introduction until your faction's base and profession trainer are available. Both trainers teach both wormhole generators. Using the toy requires Battle for Azeroth Engineering 1. The map marks recipe trainers, not the random teleport destinations.",
+            waypoints = { "/way #1355 38.0 53.6 Instructor Alikana - Alliance wormhole recipe trainer", "/way #1355 49.1 61.5 Jada - Horde wormhole recipe trainer" },
         },
         {
             acquisition = "Obtain this toy from the listed source: Treasure: World Arcane Chest Drop.",
@@ -231,11 +226,12 @@ TDP.CatalogRegistry:RegisterCollection("8.2", "toys", {
             waypoints = { "/way #1355 48.0 61.0 Nazjatar central collection route" },
         },
         {
-            acquisition = "Obtain this toy from the listed source: Profession: Engineering(175).",
+            acquisition = "Reach Exalted with Rustbolt Resistance and buy Schematic: Blingtron 7000 from Stolen Royal Vendorbot in Rustbolt, Mechagon (73.6, 36.6). Learn it with Battle for Azeroth Engineering 175, then craft Blingtron 7000 using 5 Platinum Ore, 10 Storm Silver Ore, 3 Amberblaze, 3 Laribole and 25 Insulated Wiring.",
             itemId = 168667,
             name = "Blingtron 7000",
-            source = "Profession: Engineering(175)",
-            tips = "For rare, cache, or rotating-visitor sources, verify the active daily or assault before travelling.",
+            source = "Battle for Azeroth Engineering 175 - schematic sold by Stolen Royal Vendorbot / Rustbolt Resistance Exalted",
+            tips = "The map marks the schematic vendor. The crafted toy binds when picked up, so you must craft your own; collecting another player's Blingtron gift does not teach the toy.",
+            waypoints = { "/way #1462 73.6 36.6 Stolen Royal Vendorbot - Blingtron 7000 schematic" },
         },
         {
             acquisition = "Obtain this toy from the listed source: Zone: Nazjatar.",
@@ -266,10 +262,13 @@ TDP.CatalogRegistry:RegisterCollection("8.2", "toys", {
         ["Alliance War Standard"] = shared["Patch 8.2: Rise of Azshara"],
         ["Azeroth Mini Collection: Mechagon"] = shared["Patch 8.2: Rise of Azshara 2"],
         ["Blingtron 7000"] = {
-            acquisition = "Obtain this toy from the listed source: Profession: Engineering(175).",
-            source = "Profession: Engineering(175)",
-            sourceType = "Toy Box Source",
-            tips = "For rare, cache, or rotating-visitor sources, verify the active daily or assault before travelling.",
+            acquisition = "Reach Exalted with Rustbolt Resistance and buy Schematic: Blingtron 7000 from Stolen Royal Vendorbot in Rustbolt, Mechagon (73.6, 36.6). Learn it with Battle for Azeroth Engineering 175, then craft Blingtron 7000 using 5 Platinum Ore, 10 Storm Silver Ore, 3 Amberblaze, 3 Laribole and 25 Insulated Wiring.",
+            source = "Battle for Azeroth Engineering 175 - schematic sold by Stolen Royal Vendorbot / Rustbolt Resistance Exalted",
+            sourceType = "Profession",
+            faction = "all",
+            tips = "The map marks the schematic vendor. The crafted toy binds when picked up, so you must craft your own; collecting another player's Blingtron gift does not teach the toy.",
+            waypoints = { "/way #1462 73.6 36.6 Stolen Royal Vendorbot - Blingtron 7000 schematic" },
+            sourceURL = "https://www.wowhead.com/item=168660/schematic-blingtron-7000",
         },
         ["Book of the Unshackled"] = {
             acquisition = "Obtain this toy from the listed source: Quest: Tome of Tears.",
@@ -376,8 +375,24 @@ TDP.CatalogRegistry:RegisterCollection("8.2", "toys", {
             waypoints = { "/way #1355 48.0 61.0 Nazjatar central collection route" },
         },
         ["Underlight Sealamp"] = shared["Zone: Nazjatar"],
-        ["Wormhole Generator: Kul Tiras"] = shared["Profession: Engineering"],
-        ["Wormhole Generator: Zandalar"] = shared["Profession: Engineering"],
+        ["Wormhole Generator: Kul Tiras"] = {
+            acquisition = "At Battle for Azeroth Engineering 150, learn Wormhole Generator: Kul Tiras from Instructor Alikana in Mezzamere (Alliance, Nazjatar 38.0, 53.6) or Jada in Newhome (Horde, Nazjatar 49.1, 61.5). Craft it with 15 Monelite Ore, 25 Storm Silver Ore, 5 Chemical Blasting Cap and 50 Insulated Wiring, or buy the finished toy from another player or the Auction House.",
+            source = "Battle for Azeroth Engineering 150 - Instructor Alikana / Jada in Nazjatar",
+            sourceType = "Profession",
+            faction = "all",
+            tips = "Complete the Nazjatar introduction until your faction's base and profession trainer are available. Both trainers teach both wormhole generators. Using the toy requires Battle for Azeroth Engineering 1. The map marks recipe trainers, not the random teleport destinations.",
+            waypoints = { "/way #1355 38.0 53.6 Instructor Alikana - Alliance wormhole recipe trainer", "/way #1355 49.1 61.5 Jada - Horde wormhole recipe trainer" },
+            sourceURL = "https://www.wowhead.com/spell=299105/wormhole-generator-kul-tiras",
+        },
+        ["Wormhole Generator: Zandalar"] = {
+            acquisition = "At Battle for Azeroth Engineering 150, learn Wormhole Generator: Zandalar from Instructor Alikana in Mezzamere (Alliance, Nazjatar 38.0, 53.6) or Jada in Newhome (Horde, Nazjatar 49.1, 61.5). Craft it with 15 Monelite Ore, 25 Storm Silver Ore, 5 Chemical Blasting Cap and 50 Insulated Wiring, or buy the finished toy from another player or the Auction House.",
+            source = "Battle for Azeroth Engineering 150 - Instructor Alikana / Jada in Nazjatar",
+            sourceType = "Profession",
+            faction = "all",
+            tips = "Complete the Nazjatar introduction until your faction's base and profession trainer are available. Both trainers teach both wormhole generators. Using the toy requires Battle for Azeroth Engineering 1. The map marks recipe trainers, not the random teleport destinations.",
+            waypoints = { "/way #1355 38.0 53.6 Instructor Alikana - Alliance wormhole recipe trainer", "/way #1355 49.1 61.5 Jada - Horde wormhole recipe trainer" },
+            sourceURL = "https://www.wowhead.com/spell=299106/wormhole-generator-zandalar",
+        },
         ["Zanj'ir Weapon Rack"] = shared["Zone: Nazjatar"],
     },
 })

@@ -1,0 +1,1374 @@
+{
+  "reviewedAt": "2026-10-28",
+  "originalUnmappedCount": 228,
+  "targets": [
+    {
+      "type": "toys",
+      "patch": "3.0",
+      "id": 36862,
+      "name": "Worn Troll Dice"
+    },
+    {
+      "type": "toys",
+      "patch": "3.0",
+      "id": 36863,
+      "name": "Decahedral Dwarven Dice"
+    },
+    {
+      "type": "toys",
+      "patch": "3.0",
+      "id": 37254,
+      "name": "Super Simian Sphere"
+    },
+    {
+      "type": "toys",
+      "patch": "4.0.0",
+      "id": 63269,
+      "name": "Loaded Gnomish Dice"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "5.0",
+      "id": 89799,
+      "name": "August Celestials Tabard"
+    },
+    {
+      "type": "pets",
+      "patch": "5.1",
+      "id": 1157,
+      "name": "Harpy Youngling"
+    },
+    {
+      "type": "pets",
+      "patch": "5.1",
+      "id": 1158,
+      "name": "Stunted Yeti"
+    },
+    {
+      "type": "pets",
+      "patch": "5.1",
+      "id": 1159,
+      "name": "Lofty Libram"
+    },
+    {
+      "type": "pets",
+      "patch": "5.1",
+      "id": 1160,
+      "name": "Arcane Eye"
+    },
+    {
+      "type": "pets",
+      "patch": "5.1",
+      "id": 1161,
+      "name": "Infinite Whelpling"
+    },
+    {
+      "type": "pets",
+      "patch": "5.1",
+      "id": 1162,
+      "name": "Fluxfire Feline"
+    },
+    {
+      "type": "pets",
+      "patch": "5.1",
+      "id": 1163,
+      "name": "Anodized Robo Cub"
+    },
+    {
+      "type": "pets",
+      "patch": "5.1",
+      "id": 1164,
+      "name": "Cogblade Raptor"
+    },
+    {
+      "type": "pets",
+      "patch": "5.1",
+      "id": 1166,
+      "name": "Kun-Lai Runt"
+    },
+    {
+      "type": "pets",
+      "patch": "5.2",
+      "id": 1196,
+      "name": "Sunfur Panda"
+    },
+    {
+      "type": "pets",
+      "patch": "5.2",
+      "id": 1197,
+      "name": "Snowy Panda"
+    },
+    {
+      "type": "pets",
+      "patch": "5.2",
+      "id": 1198,
+      "name": "Mountain Panda"
+    },
+    {
+      "type": "pets",
+      "patch": "6.0.0",
+      "id": 1449,
+      "name": "Deathwatch Hatchling"
+    },
+    {
+      "type": "toys",
+      "patch": "6.2.0",
+      "id": 128310,
+      "name": "Burning Blade"
+    },
+    {
+      "type": "pets",
+      "patch": "7.0.0",
+      "id": 1722,
+      "name": "Dream Whelpling"
+    },
+    {
+      "type": "pets",
+      "patch": "7.0.0",
+      "id": 1723,
+      "name": "Nightmare Whelpling"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "7.1.0",
+      "id": 143506,
+      "name": "Ensemble: Vestment of the Chosen Dead"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "7.1.0",
+      "id": 143507,
+      "name": "Ensemble: Vestment of the Chosen Dead"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "7.1.0",
+      "id": 143509,
+      "name": "Ensemble: Vestment of the Chosen Dead"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "7.1.0",
+      "id": 143510,
+      "name": "Ensemble: Garb of the Chosen Dead"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "7.1.0",
+      "id": 143511,
+      "name": "Ensemble: Garb of the Chosen Dead"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "7.1.0",
+      "id": 143513,
+      "name": "Ensemble: Garb of the Chosen Dead"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "7.1.0",
+      "id": 143514,
+      "name": "Ensemble: Chains of the Chosen Dead"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "7.1.0",
+      "id": 143515,
+      "name": "Ensemble: Chains of the Chosen Dead"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "7.1.0",
+      "id": 143517,
+      "name": "Ensemble: Chains of the Chosen Dead"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "7.1.0",
+      "id": 143518,
+      "name": "Ensemble: Funerary Plate of the Chosen Dead"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "7.1.0",
+      "id": 143519,
+      "name": "Ensemble: Funerary Plate of the Chosen Dead"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "7.1.0",
+      "id": 143521,
+      "name": "Ensemble: Funerary Plate of the Chosen Dead"
+    },
+    {
+      "type": "pets",
+      "patch": "7.3.0",
+      "id": 2077,
+      "name": "Ghost Shark"
+    },
+    {
+      "type": "pets",
+      "patch": "7.3.0",
+      "id": 2078,
+      "name": "Tinytron"
+    },
+    {
+      "type": "pets",
+      "patch": "7.3.0",
+      "id": 2079,
+      "name": "Discarded Experiment"
+    },
+    {
+      "type": "pets",
+      "patch": "7.3.0",
+      "id": 2080,
+      "name": "Rattlejaw"
+    },
+    {
+      "type": "pets",
+      "patch": "7.3.0",
+      "id": 2081,
+      "name": "Twilight Clutch-Sister"
+    },
+    {
+      "type": "pets",
+      "patch": "7.3.0",
+      "id": 2082,
+      "name": "Bound Stream"
+    },
+    {
+      "type": "pets",
+      "patch": "7.3.0",
+      "id": 2083,
+      "name": "Faceless Minion"
+    },
+    {
+      "type": "pets",
+      "patch": "7.3.0",
+      "id": 2084,
+      "name": "Zephyrian Prince"
+    },
+    {
+      "type": "pets",
+      "patch": "7.3.0",
+      "id": 2085,
+      "name": "Drafty"
+    },
+    {
+      "type": "pets",
+      "patch": "7.3.0",
+      "id": 2086,
+      "name": "Blazehound"
+    },
+    {
+      "type": "pets",
+      "patch": "7.3.0",
+      "id": 2087,
+      "name": "Cinderweb Recluse"
+    },
+    {
+      "type": "pets",
+      "patch": "7.3.0",
+      "id": 2088,
+      "name": "Surger"
+    },
+    {
+      "type": "pets",
+      "patch": "7.3.0",
+      "id": 2089,
+      "name": "Infernal Pyreclaw"
+    },
+    {
+      "type": "pets",
+      "patch": "7.3.0",
+      "id": 2090,
+      "name": "Faceless Mindlasher"
+    },
+    {
+      "type": "pets",
+      "patch": "7.3.0",
+      "id": 2091,
+      "name": "Corrupted Blood"
+    },
+    {
+      "type": "pets",
+      "patch": "7.3.0",
+      "id": 2092,
+      "name": "Unstable Tendril"
+    },
+    {
+      "type": "mounts",
+      "patch": "8.0.0",
+      "id": 272472,
+      "name": "Undercity Plaguebat"
+    },
+    {
+      "type": "mounts",
+      "patch": "8.0.0",
+      "id": 274610,
+      "name": "Teldrassil Hippogryph"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2186,
+      "name": "Spawn of Merektha"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2445,
+      "name": "Scuttle"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2446,
+      "name": "Sparkleshell Sandcrawler"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2447,
+      "name": "Kindleweb Spiderling"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2448,
+      "name": "Craghoof Kid"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2449,
+      "name": "False Knucklebump"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2450,
+      "name": "Tinder Pup"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2451,
+      "name": "Bloodstone Tunneler"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2452,
+      "name": "Poro"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2453,
+      "name": "Juvenile Brineshell"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2454,
+      "name": "Kunchong Hatchling"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2455,
+      "name": "Captain Nibs"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2456,
+      "name": "Barnaby"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2457,
+      "name": "Coldlight Surfrunner"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2458,
+      "name": "Muskflank Calfling"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2459,
+      "name": "Snort"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2460,
+      "name": "Voru'kar Leecher"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2461,
+      "name": "Inky"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2462,
+      "name": "Octopode Fry"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2463,
+      "name": "Sandshell Chitterer"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2464,
+      "name": "Deathsting Scorpid"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2465,
+      "name": "Playful Frostkin"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2466,
+      "name": "Giggling Flame"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2467,
+      "name": "Mischievous Zephyr"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2468,
+      "name": "Laughing Stonekin"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2469,
+      "name": "Thistlebrush Bud"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2471,
+      "name": "Littlehoof"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2472,
+      "name": "Snapper"
+    },
+    {
+      "type": "pets",
+      "patch": "8.0.0",
+      "id": 2473,
+      "name": "Sunscale Hatchling"
+    },
+    {
+      "type": "toys",
+      "patch": "8.0.0",
+      "id": 163795,
+      "name": "Oomgut Ritual Drum"
+    },
+    {
+      "type": "toys",
+      "patch": "8.0.0",
+      "id": 163924,
+      "name": "Whiskerwax Candle"
+    },
+    {
+      "type": "toys",
+      "patch": "8.0.0",
+      "id": 164371,
+      "name": "Yaungol Oil Stove"
+    },
+    {
+      "type": "toys",
+      "patch": "8.0.0",
+      "id": 164372,
+      "name": "Jinyu Light Globe"
+    },
+    {
+      "type": "toys",
+      "patch": "8.0.0",
+      "id": 164373,
+      "name": "Enchanted Soup Stone"
+    },
+    {
+      "type": "toys",
+      "patch": "8.0.0",
+      "id": 164374,
+      "name": "Magic Monkey Banana"
+    },
+    {
+      "type": "toys",
+      "patch": "8.0.0",
+      "id": 164375,
+      "name": "Bad Mojo Banana"
+    },
+    {
+      "type": "toys",
+      "patch": "8.0.0",
+      "id": 164377,
+      "name": "Regenerating Banana Bunch"
+    },
+    {
+      "type": "mounts",
+      "patch": "8.1.0",
+      "id": 261395,
+      "name": "The Hivemind"
+    },
+    {
+      "type": "pets",
+      "patch": "8.1.0",
+      "id": 2551,
+      "name": "Baby Stonehide"
+    },
+    {
+      "type": "pets",
+      "patch": "8.1.0",
+      "id": 2552,
+      "name": "Leatherwing Screecher"
+    },
+    {
+      "type": "pets",
+      "patch": "8.1.0",
+      "id": 2553,
+      "name": "Rotting Ghoul"
+    },
+    {
+      "type": "pets",
+      "patch": "8.1.0",
+      "id": 2554,
+      "name": "Needleback Pup"
+    },
+    {
+      "type": "pets",
+      "patch": "8.1.0",
+      "id": 2556,
+      "name": "Shadefeather Hatchling"
+    },
+    {
+      "type": "pets",
+      "patch": "8.1.0",
+      "id": 2557,
+      "name": "Firesting Buzzer"
+    },
+    {
+      "type": "pets",
+      "patch": "8.1.0",
+      "id": 2558,
+      "name": "Lord Woofington"
+    },
+    {
+      "type": "pets",
+      "patch": "8.1.0",
+      "id": 2559,
+      "name": "Tonguelasher"
+    },
+    {
+      "type": "pets",
+      "patch": "8.1.0",
+      "id": 2560,
+      "name": "Scritches"
+    },
+    {
+      "type": "pets",
+      "patch": "8.1.0",
+      "id": 2561,
+      "name": "Thunderscale Whelpling"
+    },
+    {
+      "type": "toys",
+      "patch": "8.1.0",
+      "id": 166851,
+      "name": "Kojo's Master Matching Set"
+    },
+    {
+      "type": "mounts",
+      "patch": "8.1.5",
+      "id": 289639,
+      "name": "Bruce"
+    },
+    {
+      "type": "pets",
+      "patch": "8.2",
+      "id": 2754,
+      "name": "Ghostly Whelpling"
+    },
+    {
+      "type": "pets",
+      "patch": "8.2",
+      "id": 2755,
+      "name": "Adventurous Hopling"
+    },
+    {
+      "type": "pets",
+      "patch": "8.2.5",
+      "id": 2795,
+      "name": "Jenafur"
+    },
+    {
+      "type": "toys",
+      "patch": "8.3.0",
+      "id": 173951,
+      "name": "N'lyeth, Sliver of N'Zoth"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186497,
+      "name": "Ensemble: Garb of Pure Spirit"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186498,
+      "name": "Ensemble: Garb of the Azure Dusk"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186499,
+      "name": "Ensemble: Garb of Fall's Promise"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186500,
+      "name": "Ensemble: Garb of the Twilight Grove"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186502,
+      "name": "Ensemble: Marileth's Assistant Vestments"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186503,
+      "name": "Ensemble: Initiate's Necromantle Vestments"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186504,
+      "name": "Ensemble: Frontline Necromancer's Vestments"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186505,
+      "name": "Ensemble: Rogue Necromancer's Vestments"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186507,
+      "name": "Ensemble: Harvester's Court Attire"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186508,
+      "name": "Ensemble: Court Inquisitor's Vestments"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186509,
+      "name": "Ensemble: Sinful Venthyr Attire"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186510,
+      "name": "Ensemble: Sinful Inquisitor's Vestments"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186511,
+      "name": "Ensemble: Renathal's Battlefield Attire"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186512,
+      "name": "Ensemble: Renathal's Field Inquisitor's Vestments"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186513,
+      "name": "Ensemble: Radiant Court Attire"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186514,
+      "name": "Ensemble: Redeemed Inquisitor's Vestments"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186515,
+      "name": "Ensemble: Aspiring Aspirant's Regalia"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186516,
+      "name": "Ensemble: Devoted Aspirant's Regalia"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186517,
+      "name": "Ensemble: Battlefield Messenger's Regalia"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.1",
+      "id": 186518,
+      "name": "Ensemble: Foresworn Aspirant's Regalia"
+    },
+    {
+      "type": "mounts",
+      "patch": "9.1.5",
+      "id": 363613,
+      "name": "Lightforged Ruinstrider"
+    },
+    {
+      "type": "toys",
+      "patch": "9.1.5",
+      "id": 187419,
+      "name": "Steward's First Feather"
+    },
+    {
+      "type": "toys",
+      "patch": "9.1.5",
+      "id": 187512,
+      "name": "Tome of Small Sins"
+    },
+    {
+      "type": "toys",
+      "patch": "9.1.5",
+      "id": 187840,
+      "name": "Sparkle Wings"
+    },
+    {
+      "type": "toys",
+      "patch": "9.1.5",
+      "id": 187913,
+      "name": "Apprentice Slimemancer's Boots"
+    },
+    {
+      "type": "mounts",
+      "patch": "9.2",
+      "id": 359545,
+      "name": "Carcinized Zerethsteed"
+    },
+    {
+      "type": "mounts",
+      "patch": "9.2",
+      "id": 363178,
+      "name": "Colossal Umbrahide Mawrat"
+    },
+    {
+      "type": "mounts",
+      "patch": "9.2",
+      "id": 368158,
+      "name": "Zereth Overseer"
+    },
+    {
+      "type": "toys",
+      "patch": "9.2",
+      "id": 190754,
+      "name": "Firim's Specimen Container"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.2",
+      "id": 188737,
+      "name": "Ebon Mawsworn Crossbow"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.2",
+      "id": 188743,
+      "name": "Ashen Mawsworn Crossbow"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.2",
+      "id": 188744,
+      "name": "Ebon Mawsworn Maul"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.2",
+      "id": 188745,
+      "name": "Ashen Mawsworn Maul"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.2",
+      "id": 188746,
+      "name": "Ebon Mawsworn Halberd"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.2",
+      "id": 188747,
+      "name": "Ashen Mawsworn Halberd"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.2",
+      "id": 188748,
+      "name": "Ebon Mawsworn Staff"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.2",
+      "id": 188749,
+      "name": "Ashen Mawsworn Staff"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.2",
+      "id": 188750,
+      "name": "Burnished Mawsworn Greatsword"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.2",
+      "id": 188752,
+      "name": "Argent Mawsworn Greatsword"
+    },
+    {
+      "type": "mounts",
+      "patch": "9.2.5",
+      "id": 366791,
+      "name": "Jigglesworth Sr."
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.2.5",
+      "id": 184922,
+      "name": "Arsenal: Lavaforge Armaments"
+    },
+    {
+      "type": "cosmetics",
+      "patch": "9.2.5",
+      "id": 191658,
+      "name": "Ensemble: Dark Ranger's Attire"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3272,
+      "name": "Pricklefury Hare"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3273,
+      "name": "Magma Slug"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3276,
+      "name": "Treeflitter"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3282,
+      "name": "Swoglet"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3283,
+      "name": "Snowlemental"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3288,
+      "name": "Trunkalumpf"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3289,
+      "name": "Echo of the Inferno"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3296,
+      "name": "Palamanther"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3299,
+      "name": "Echo of the Depths"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3300,
+      "name": "Ironbeak Duck"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3301,
+      "name": "Wild Duckling"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3310,
+      "name": "Echo of the Heights"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3348,
+      "name": "Primal Stormling"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3353,
+      "name": "Stoneshell"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3355,
+      "name": "Echo of the Cave"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3357,
+      "name": "Azure Crystalspine"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3366,
+      "name": "Kindlet"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3367,
+      "name": "Emberling"
+    },
+    {
+      "type": "pets",
+      "patch": "10.0",
+      "id": 3377,
+      "name": "Gwosh"
+    },
+    {
+      "type": "toys",
+      "patch": "10.0",
+      "id": 200148,
+      "name": "A Collection of Me"
+    },
+    {
+      "type": "pets",
+      "patch": "10.1",
+      "id": 3524,
+      "name": "Devourer Lobstrok"
+    },
+    {
+      "type": "pets",
+      "patch": "10.1",
+      "id": 3545,
+      "name": "Salverun"
+    },
+    {
+      "type": "pets",
+      "patch": "10.1",
+      "id": 3581,
+      "name": "Mote of Nasz'uro"
+    },
+    {
+      "type": "toys",
+      "patch": "10.1.7",
+      "id": 207730,
+      "name": "Idol of Ohn'ahra"
+    },
+    {
+      "type": "toys",
+      "patch": "10.2.6",
+      "id": 170197,
+      "name": "Swarthy Warning Sign"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 3361,
+      "name": "Diamond Crab"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 3525,
+      "name": "Abyssal Lurker"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 3543,
+      "name": "Ravenous Shalewing"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 3544,
+      "name": "Shalewing Devourer"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 3547,
+      "name": "Jade Cragviper"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4450,
+      "name": "Remembered Riverpaw"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4451,
+      "name": "Remembered Construct"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4452,
+      "name": "Remembered Spawn"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4458,
+      "name": "Illskitter"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4469,
+      "name": "Bop"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4478,
+      "name": "Caustic Oozeling"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4488,
+      "name": "Haywire Servobot"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4502,
+      "name": "Kaheti Bull Worm"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4549,
+      "name": "Tiny Cragling"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4550,
+      "name": "Stratus"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4551,
+      "name": "Ridge"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4552,
+      "name": "Mini Airship"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4553,
+      "name": "Takey-Take"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4554,
+      "name": "Bubs"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4555,
+      "name": "Sir Pounce"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4556,
+      "name": "Tickler"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4557,
+      "name": "Swoopgrasp"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4558,
+      "name": "Four-Legs"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4559,
+      "name": "Flicker"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4560,
+      "name": "Zaedu"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4561,
+      "name": "Awakened Custodian"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4562,
+      "name": "Guttergunk"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4564,
+      "name": "Rufus"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0",
+      "id": 4596,
+      "name": "Faithful Dog"
+    },
+    {
+      "type": "toys",
+      "patch": "11.0",
+      "id": 231064,
+      "name": "Throwaway Gangster Disguise"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0.7",
+      "id": 4628,
+      "name": "Tidal Kroling"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0.7",
+      "id": 4702,
+      "name": "Rusty Kroling"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0.7",
+      "id": 4703,
+      "name": "Cave Kroling"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0.7",
+      "id": 4710,
+      "name": "Pillaged Parrot"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0.7",
+      "id": 4711,
+      "name": "Snapdragon Pup"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0.7",
+      "id": 4723,
+      "name": "Cliffreach Cub"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0.7",
+      "id": 4724,
+      "name": "Battleboar Piglet"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0.7",
+      "id": 4731,
+      "name": "Storm-Infused Snapdragon"
+    },
+    {
+      "type": "pets",
+      "patch": "11.0.7",
+      "id": 4732,
+      "name": "Scavenging Snapdragon"
+    },
+    {
+      "type": "pets",
+      "patch": "11.1",
+      "id": 4636,
+      "name": "Mutt"
+    },
+    {
+      "type": "pets",
+      "patch": "11.1",
+      "id": 4646,
+      "name": "Personal-Use Sapper"
+    },
+    {
+      "type": "pets",
+      "patch": "11.1",
+      "id": 4667,
+      "name": "Spring-Loaded Ribbitron"
+    },
+    {
+      "type": "pets",
+      "patch": "11.1",
+      "id": 4737,
+      "name": "Precision Powerdrill"
+    },
+    {
+      "type": "pets",
+      "patch": "11.1",
+      "id": 4741,
+      "name": "Cannoneer"
+    },
+    {
+      "type": "pets",
+      "patch": "11.1",
+      "id": 4742,
+      "name": "Lookout"
+    },
+    {
+      "type": "pets",
+      "patch": "11.1",
+      "id": 4743,
+      "name": "Swabbie"
+    },
+    {
+      "type": "pets",
+      "patch": "11.1",
+      "id": 4744,
+      "name": "Muddy Croach"
+    },
+    {
+      "type": "pets",
+      "patch": "11.1",
+      "id": 4745,
+      "name": "Rusty Croach"
+    },
+    {
+      "type": "pets",
+      "patch": "11.1",
+      "id": 4746,
+      "name": "Sooty Croach"
+    },
+    {
+      "type": "pets",
+      "patch": "11.1",
+      "id": 4755,
+      "name": "Gleam"
+    },
+    {
+      "type": "pets",
+      "patch": "11.1",
+      "id": 4759,
+      "name": "Craboom"
+    },
+    {
+      "type": "mounts",
+      "patch": "11.2",
+      "id": 1224048,
+      "name": "Delver's Mana-Skimmer"
+    },
+    {
+      "type": "mounts",
+      "patch": "12.0",
+      "id": 1257058,
+      "name": "Calamitous Carrion"
+    },
+    {
+      "type": "mounts",
+      "patch": "12.0",
+      "id": 1257081,
+      "name": "Convalescent Carrion"
+    },
+    {
+      "type": "pets",
+      "patch": "12.0",
+      "id": 4945,
+      "name": "Aud'rei III"
+    },
+    {
+      "type": "mounts",
+      "patch": "12.1",
+      "id": 1301775,
+      "name": "Umbral Ashes"
+    }
+  ]
+}

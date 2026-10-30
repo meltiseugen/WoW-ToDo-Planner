@@ -12,9 +12,10 @@ function CollectionScanner:New()
     }, self)
 end
 
-function CollectionScanner:ResetCache()
-    self.mountSpellIndex = nil
-    self.petSpeciesCounts = nil
+function CollectionScanner:ResetCache(preserveSources, collections)
+    if not collections or collections.mounts then self.mountSpellIndex = nil end
+    if not collections or collections.pets then self.petSpeciesCounts = nil end
+    if not preserveSources and PatchCatalog and PatchCatalog.ResetCollectionSourceCache then PatchCatalog:ResetCollectionSourceCache() end
 end
 
 function CollectionScanner:Call(func, ...)

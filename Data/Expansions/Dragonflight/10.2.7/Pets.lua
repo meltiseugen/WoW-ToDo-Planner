@@ -7,12 +7,10 @@ TDP.CatalogRegistry:RegisterCollection("10.2.7", "pets", {
     },
     details = {
         ["Astral Emperor's Serpentling"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Achievement: Pandaria: Remix - Timeless Isle",
             sourceType = "Pet Journal Source",
         },
         ["Muskpaw Calf"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Achievement: Pandaria: Remix - Townlong Steppes",
             sourceType = "Pet Journal Source",
         },

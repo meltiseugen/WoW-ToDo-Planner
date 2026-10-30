@@ -7,10 +7,9 @@ TDP.CatalogRegistry:RegisterCollection("10.2.6", "toys", {
     },
     details = {
         ["Duck Disguiser"] = {
-            acquisition = "Follow the in-game Toy Box source for this permanent toy.",
             source = "Quest:Just a Waddle Away / Zone: Durotar / Quest: Just a Waddle Away / Zone: Elwynn Forest",
             sourceType = "Toy Box Source",
         },
-        ["Swarthy Warning Sign"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Faction: Keg Leg's Crew / Renown: 16", sourceType = "Toy Box Source" },
+        ["Swarthy Warning Sign"] = { source = "Faction: Keg Leg's Crew / Renown: 16", sourceType = "Toy Box Source" },
     },
 })

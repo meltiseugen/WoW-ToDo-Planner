@@ -7,7 +7,6 @@ TDP.CatalogRegistry:RegisterCollection("10.1.7", "pets", {
     },
     details = {
         Arfus = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Drop: Headless Horseman / Zone: Scarlet Monastery",
             sourceType = "Pet Journal Source",
         },

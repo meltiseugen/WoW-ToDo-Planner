@@ -121,7 +121,7 @@ function FavoritesWindow:Build()
     previewPanel:SetPoint("BOTTOMRIGHT", body, "BOTTOMRIGHT", -12, 12)
     previewPanel.topAccent = Widgets:AddGoldTopAccent(previewPanel, 2, 0.18)
 
-    self:BuildPreviewPanel(previewPanel, false)
+    self:BuildPreviewPanel(previewPanel, true)
 
     local previewWowheadButton = Widgets:CreateButton(previewPanel, 96, 24, "Wowhead", "neutral")
     previewWowheadButton:SetPoint("BOTTOMLEFT", previewPanel, "BOTTOMLEFT", 18, 20)

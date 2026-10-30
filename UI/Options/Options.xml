@@ -1,6 +1,9 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
     <Script file="Init.lua"/>
+    <Script file="Pages.lua"/>
     <Script file="Settings.lua"/>
-    <Script file="Tabs.lua"/>
+    <Script file="Previews.lua"/>
+    <Script file="Controls.lua"/>
+    <Script file="Layout.lua"/>
     <Script file="View.lua"/>
 </Ui>

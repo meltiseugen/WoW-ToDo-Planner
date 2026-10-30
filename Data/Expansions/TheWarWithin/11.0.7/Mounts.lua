@@ -2,7 +2,6 @@ local _, TDP = ...
 
 local shared = {}
 shared["Patch 11.0.7: Siren Isle"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     category = "Other",
     source = "Patch 11.0.7: Siren Isle",
     sourceType = "Patch mount collection",
@@ -33,7 +32,6 @@ TDP.CatalogRegistry:RegisterCollection("11.0.7", "mounts", {
         ["Jani's Trashpile"] = shared["Patch 11.0.7: Siren Isle"],
         ["Nightfall Skyreaver"] = shared["Patch 11.0.7: Siren Isle"],
         ["Plunderlord's Midnight Crocolisk"] = {
-            acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
             availability = "Limited-time reward; retained in its original patch catalog for historical collection tracking.",
             category = "Other",
             source = "Patch 11.0.7: Siren Isle",

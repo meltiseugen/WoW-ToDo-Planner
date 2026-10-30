@@ -1,0 +1,13 @@
+[
+  {"name": "Altar of Fangs", "expansion": "12", "waypoints": [[2509, 47.2, 67.6, "Altar of Fangs entrance"]], "references": ["Data/Expansions/Midnight/12.1/Mounts.lua", "https://www.wowhead.com/guide/midnight/dungeons-overview-locations-details"]},
+  {"name": "Den of Nalorakk", "expansion": "12", "waypoints": [[2437, 29.99, 84.45, "Den of Nalorakk entrance"]], "references": ["https://www.method.gg/guides/wow-midnight-season-2-dungeon-entrance-locations"]},
+  {"name": "Murder Row", "expansion": "12", "waypoints": [[2393, 56.61, 61.10, "Murder Row entrance"]], "references": ["https://www.method.gg/guides/wow-midnight-season-2-dungeon-entrance-locations"]},
+  {"name": "The Blinding Vale", "expansion": "12", "waypoints": [[2413, 27.43, 77.98, "The Blinding Vale entrance"]], "references": ["https://www.method.gg/guides/wow-midnight-season-2-dungeon-entrance-locations"]},
+  {"name": "Voidscar Arena", "expansion": "12", "waypoints": [[2405, 53.62, 35.45, "Voidscar Arena entrance - Slayer's Rise"]], "references": ["https://www.method.gg/guides/wow-midnight-season-2-dungeon-entrance-locations"]},
+  {"name": "Ruby Life Pools", "expansion": "12", "waypoints": [[2022, 59.84, 75.90, "Ruby Life Pools entrance"]], "references": ["https://www.method.gg/guides/wow-midnight-season-2-dungeon-entrance-locations"]},
+  {"name": "Kings' Rest", "expansion": "12", "waypoints": [[862, 37.9, 39.73, "Kings' Rest entrance - atop Atal'Dazar"]], "references": ["https://www.method.gg/guides/wow-midnight-season-2-dungeon-entrance-locations"]},
+  {"name": "Temple of Sethraliss", "expansion": "12", "waypoints": [[864, 51.94, 26.53, "Temple of Sethraliss entrance"]], "references": ["https://www.method.gg/guides/wow-midnight-season-2-dungeon-entrance-locations"]},
+  {"name": "The Ring of Glory", "expansion": "12", "waypoints": [[2512, 71.2, 56.5, "The Ring of Glory delve entrance"]], "references": ["https://www.wowhead.com/fr/guide/midnight/delves-season-companion-nemesis-rewards-locations"]},
+  {"name": "Razorwind Shores", "expansion": "12", "maps": [2351], "references": ["https://www.wowhead.com/guide/player-housing/horde-neighborhood-plots-biomes-maps-razorwind-shores", "https://blizzardwatch.com/2026/09/11/complete-souvenir-seeker-achievements/"]},
+  {"name": "Founder's Point", "expansion": "12", "maps": [2352], "references": ["https://blizzardwatch.com/2026/09/11/complete-souvenir-seeker-achievements/"]}
+]

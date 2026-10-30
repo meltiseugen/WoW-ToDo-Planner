@@ -2,7 +2,6 @@ local _, TDP = ...
 
 local shared = {}
 shared["Vendor: Churbro / Zone: Zuldazar / Zone: Boralus Harbor / World Event: Battle for Azeroth "] = {
-    acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
     source = "Vendor: Churbro / Zone: Zuldazar / Zone: Boralus Harbor / World Event: Battle for Azeroth Timewalking",
     sourceType = "Pet Journal Source",
 }

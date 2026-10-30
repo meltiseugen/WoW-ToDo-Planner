@@ -56,24 +56,49 @@ function CollectionMapWindow:GetPin(index)
         pin:SetSize(COLLECTION_MAP_PIN_SIZE, COLLECTION_MAP_PIN_SIZE)
         pin:EnableMouse(true)
         pin:RegisterForClicks("LeftButtonUp", "RightButtonUp")
-        pin.icon = pin:CreateTexture(nil, "OVERLAY")
+        pin.icon = pin:CreateTexture(nil, "ARTWORK")
         pin.icon:SetPoint("CENTER")
         pin.icon:SetSize(COLLECTION_MAP_PIN_ICON_SIZE, COLLECTION_MAP_PIN_ICON_SIZE)
         pin.icon:SetTexture("Interface\\Icons\\INV_Misc_Map02")
-        pin.icon:SetTexCoord(0, 1, 0, 1)
-        pin.ring = pin:CreateTexture(nil, "ARTWORK")
+        pin.icon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
+
+        -- Match the circular artwork used by our HBD world-map/minimap pins.
+        pin.mask = pin:CreateMaskTexture()
+        pin.mask:SetTexture("Interface\\CHARACTERFRAME\\TempPortraitAlphaMask", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+        pin.mask:SetAllPoints(pin.icon)
+        pin.icon:AddMaskTexture(pin.mask)
+
+        pin.ring = pin:CreateTexture(nil, "OVERLAY")
         pin.ring:SetPoint("CENTER")
         pin.ring:SetSize(COLLECTION_MAP_PIN_RING_SIZE, COLLECTION_MAP_PIN_RING_SIZE)
-        pin.ring:SetColorTexture(1.0, 0.82, 0.18, 0.18)
+        pin.ring:SetAtlas("worldquest-icon-ring")
+        pin.ring:SetVertexColor(1.0, 0.82, 0.18, 0.9)
         pin:SetScript("OnEnter", function(target)
-            self:ShowWorldMapPinTooltip(target)
+            if not self.dragging then
+                self:ShowWorldMapPinTooltip(target)
+            end
         end)
         pin:SetScript("OnLeave", function()
             GameTooltip:Hide()
         end)
+        pin:SetScript("OnMouseDown", function(target, button)
+            if button == "LeftButton" then
+                self:StartMapDrag(target)
+            end
+        end)
+        pin:SetScript("OnMouseUp", function(target, button)
+            if button == "LeftButton" and self.dragSource == target then
+                self:UpdateMapDrag()
+                self:StopMapDrag()
+            end
+        end)
         pin:SetScript("OnClick", function(target, button)
             if button == "RightButton" then
                 self:NavigateToParentMap()
+                return
+            end
+            if button ~= "LeftButton" or target.suppressMapClick then
+                target.suppressMapClick = nil
                 return
             end
             self:SetUserWaypoint(target.mapID, target.x, target.y)
@@ -298,7 +323,7 @@ function CollectionMapWindow:RenderPins()
                 -- SetAtlas changes texture coordinates. Reset them whenever a
                 -- normal icon texture is used or it can render as an empty crop.
                 if pinData.icon or self.icon then
-                    pin.icon:SetTexCoord(0, 1, 0, 1)
+                    pin.icon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
                 end
                 pin.icon:SetVertexColor(1, 1, 1, 1)
                 pin.icon:SetAlpha(1)
@@ -356,6 +381,8 @@ function CollectionMapWindow:RenderMap()
         self:SetStatus(string.format("%d of %d location pin(s) rendered. Click a pin to set your user waypoint or project them to the Blizzard map. Zoom %.2fx", renderedPinCount, pinCount, self.zoom or 1))
     elseif pinCount > 0 then
         self:SetStatus(string.format("%d of %d location pin(s) rendered. Valid coordinates are required before pins can be used as waypoints. Zoom %.2fx", renderedPinCount, pinCount, self.zoom or 1))
+    elseif self.areaOnly then
+        self:SetStatus("Source area only. No precise NPC or object position is recorded for this source.")
     else
         self:SetStatus(string.format("No curated waypoint pins yet. Showing details with fallback map. Zoom %.2fx", self.zoom or 1))
     end

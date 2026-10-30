@@ -1,53 +1,48 @@
 local _, TDP = ...
 
 local shared = {}
-shared["Pet Battle: Hallowfall"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Hallowfall", sourceType = "Pet Journal Source" }
+shared["Pet Battle: Hallowfall"] = { source = "Pet Battle: Hallowfall", sourceType = "Pet Journal Source" }
 
-shared["Pet Battle: Isle of Dorn"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Isle of Dorn", sourceType = "Pet Journal Source" }
+shared["Pet Battle: Isle of Dorn"] = { source = "Pet Battle: Isle of Dorn", sourceType = "Pet Journal Source" }
 
 shared["Pet Battle: Azj-Kahet, City of Threads, Hallowfall, Shadowvein Extraction Site, The Ringin"] = {
-    acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
     source = "Pet Battle: Azj-Kahet, City of Threads, Hallowfall, Shadowvein Extraction Site, The Ringing Deeps",
     sourceType = "Pet Journal Source",
 }
 
-shared["Pet Battle: Azj-Kahet"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Azj-Kahet", sourceType = "Pet Journal Source" }
+shared["Pet Battle: Azj-Kahet"] = { source = "Pet Battle: Azj-Kahet", sourceType = "Pet Journal Source" }
 
-shared["Pet Battle: Dornogal, Isle of Dorn"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Dornogal, Isle of Dorn", sourceType = "Pet Journal Source" }
+shared["Pet Battle: Dornogal, Isle of Dorn"] = { source = "Pet Battle: Dornogal, Isle of Dorn", sourceType = "Pet Journal Source" }
 
-shared["Vendor: World Vendors / Cost: 50"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Vendor: World Vendors / Cost: 50", sourceType = "Pet Journal Source" }
+shared["Vendor: World Vendors / Cost: 50"] = { source = "Vendor: World Vendors / Cost: 50", sourceType = "Pet Journal Source" }
 
-shared["Pet Battle: The Ringing Deeps"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: The Ringing Deeps", sourceType = "Pet Journal Source" }
+shared["Pet Battle: The Ringing Deeps"] = { source = "Pet Battle: The Ringing Deeps", sourceType = "Pet Journal Source" }
 
-shared["Vendor:"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Vendor:", sourceType = "Pet Journal Source" }
+shared["Vendor:"] = { source = "Vendor:", sourceType = "Pet Journal Source" }
 
 shared["Vendor: Gnawbles / Zone: The Ringing Deeps / Cost: 1"] = {
-    acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
     source = "Vendor: Gnawbles / Zone: The Ringing Deeps / Cost: 1",
     sourceType = "Pet Journal Source",
 }
 
-shared["Pet Battle: City of Threads"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: City of Threads", sourceType = "Pet Journal Source" }
+shared["Pet Battle: City of Threads"] = { source = "Pet Battle: City of Threads", sourceType = "Pet Journal Source" }
 
 shared["Vendor: Clutchmother Marn'tiq / Zone: City of Threads / Cost: 2250"] = {
-    acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
     source = "Vendor: Clutchmother Marn'tiq / Zone: City of Threads / Cost: 2250",
     sourceType = "Pet Journal Source",
 }
 
 shared["Pet Battle: Hallowfall, Isle of Dorn, The Ringing Deeps"] = {
-    acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
     source = "Pet Battle: Hallowfall, Isle of Dorn, The Ringing Deeps",
     sourceType = "Pet Journal Source",
 }
 
 shared["Vendor: Lars Bronsmaelt / Zone: Hallowfall / Cost: 6500"] = {
-    acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
     source = "Vendor: Lars Bronsmaelt / Zone: Hallowfall / Cost: 6500",
     sourceType = "Pet Journal Source",
 }
 
-shared["Pet Battle: Azj-Kahet, The Ringing Deeps"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Azj-Kahet, The Ringing Deeps", sourceType = "Pet Journal Source" }
+shared["Pet Battle: Azj-Kahet, The Ringing Deeps"] = { source = "Pet Battle: Azj-Kahet, The Ringing Deeps", sourceType = "Pet Journal Source" }
 
 TDP.CatalogRegistry:RegisterCollection("11.0", "pets", {
     entries = {
@@ -187,34 +182,29 @@ TDP.CatalogRegistry:RegisterCollection("11.0", "pets", {
         ["Awakened Custodian"] = shared["Pet Battle: Isle of Dorn"],
         ["Azure Flickerfly"] = shared["Pet Battle: Azj-Kahet, City of Threads, Hallowfall, Shadowvein Extraction Site, The Ringin"],
         Bean = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Pelefien / Zone: City of Threads / Cost: 2250",
             sourceType = "Pet Journal Source",
         },
         ["Bedrock Stonecharger"] = shared["Pet Battle: Dornogal, Isle of Dorn"],
         Blightbud = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Treasure: Dislodged Blockage / Zone: The Ringing Deeps",
             sourceType = "Pet Journal Source",
         },
         Bop = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Drop: Goldie Baronbottom / Zone: Cinderbrew Meadery",
             sourceType = "Pet Journal Source",
         },
-        Bouncer = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Drop: Nerubian Delve's Heavy Trunk", sourceType = "Pet Journal Source" },
+        Bouncer = { source = "Drop: Nerubian Delve's Heavy Trunk", sourceType = "Pet Journal Source" },
         ["Brown Leafbug"] = shared["Vendor: World Vendors / Cost: 50"],
         Bubs = shared["Pet Battle: The Ringing Deeps"],
         ["Caustic Oozeling"] = shared["Vendor:"],
         Chester = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Drop: Delve's Bountiful Coffer and Hidden Trove",
             sourceType = "Pet Journal Source",
         },
         ["Chitin Burrower"] = shared["Pet Battle: Azj-Kahet, City of Threads, Hallowfall, Shadowvein Extraction Site, The Ringin"],
         ["Cinderhoney Emberstinger"] = shared["Pet Battle: Isle of Dorn"],
         ["Cinderwold Sizzlestinger"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Quest: Home Is Where the Candle Is / Zone: The Ringing Deeps",
             sourceType = "Pet Journal Source",
         },
@@ -222,30 +212,26 @@ TDP.CatalogRegistry:RegisterCollection("11.0", "pets", {
         ["Common Ploughworm"] = shared["Pet Battle: Azj-Kahet, City of Threads, Hallowfall, Shadowvein Extraction Site, The Ringin"],
         Coppers = shared["Vendor: Gnawbles / Zone: The Ringing Deeps / Cost: 1"],
         ["Dalaran Sewer Turtle"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Treasure: Dalaran Sewer Turtle / Zone: Isle of Dorn",
             sourceType = "Pet Journal Source",
         },
         ["Diamond Crab"] = shared["Pet Battle: Isle of Dorn"],
         ["Ebon Ploughworm"] = shared["Pet Battle: Azj-Kahet, City of Threads, Hallowfall, Shadowvein Extraction Site, The Ringin"],
         ["Faithful Dog"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Treasure: Half-Buried Dog Bowl / Zone: Isle of Dorn",
             sourceType = "Pet Journal Source",
         },
         ["Fallowspark Glowfly"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Pet Battle: Dornogal, Hallowfall, Isle of Dorn, The Ringing Deeps",
             sourceType = "Pet Journal Source",
         },
-        ["Fathom Incher"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Quest: Return to the Sea / Zone: Hallowfall", sourceType = "Pet Journal Source" },
+        ["Fathom Incher"] = { source = "Quest: Return to the Sea / Zone: Hallowfall", sourceType = "Pet Journal Source" },
         Flicker = shared["Pet Battle: Hallowfall"],
         ["Four-Legs"] = shared["Pet Battle: City of Threads"],
         ["Fragrant Stonelamb"] = shared["Pet Battle: Isle of Dorn"],
         ["Frenzied Bloodtick"] = shared["Pet Battle: The Ringing Deeps"],
         Fringe = shared["Vendor: Clutchmother Marn'tiq / Zone: City of Threads / Cost: 2250"],
         Fuzzy = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Achievement: Family Battler of Khaz Algar / Category: Battle",
             sourceType = "Pet Journal Source",
         },
@@ -253,85 +239,72 @@ TDP.CatalogRegistry:RegisterCollection("11.0", "pets", {
         ["Granite Ramolith"] = shared["Pet Battle: Isle of Dorn"],
         ["Greenlands Chicken"] = shared["Pet Battle: Hallowfall"],
         Guacamole = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Waxmonger Squick / Zone: The Ringing Deeps / Cost: 6500",
             sourceType = "Pet Journal Source",
         },
         Guttergunk = shared["Pet Battle: Hallowfall"],
         ["Hallowed Glowfly"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Gather: Hallowfall Sparkfly / Zone: Hallowfall",
             sourceType = "Pet Journal Source",
         },
         ["Haywire Servobot"] = shared["Pet Battle: The Ringing Deeps"],
         Hemospore = shared["Pet Battle: The Ringing Deeps"],
-        Illskitter = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Drop:", sourceType = "Pet Journal Source" },
+        Illskitter = { source = "Drop:", sourceType = "Pet Journal Source" },
         Itchbite = shared["Vendor: Clutchmother Marn'tiq / Zone: City of Threads / Cost: 2250"],
         ["Jade Cragviper"] = shared["Pet Battle: The Ringing Deeps"],
         ["Jump Jump"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Lady Vinazian / Zone: Azj-Kahet / Cost: 2250 / Vendor: Y'tekhi / Zone: Azj-Kahet / Cost: 2250",
             sourceType = "Pet Journal Source",
         },
         ["Kaheti Bull Worm"] = shared["Vendor:"],
         ["Lil' Bonechewer"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Achievement: Worm Theory / Category: War Within",
             sourceType = "Pet Journal Source",
         },
         ["Lil' Moss Rosy"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Treasure: Mosswool Flower / Zone: Isle of Dorn",
             sourceType = "Pet Journal Source",
         },
         Loamy = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Auditor Balwurz / Zone: Dornogal / Cost: 6500",
             sourceType = "Pet Journal Source",
         },
-        ["Magmashell Crawler"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Dornogal, The Ringing Deeps", sourceType = "Pet Journal Source" },
+        ["Magmashell Crawler"] = { source = "Pet Battle: Dornogal, The Ringing Deeps", sourceType = "Pet Journal Source" },
         ["Meek Bloodlasher"] = shared["Pet Battle: Hallowfall, Isle of Dorn, The Ringing Deeps"],
-        ["Mind Slurp"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Treasure: Memory Cache / Zone: Azj-Kahet", sourceType = "Pet Journal Source" },
+        ["Mind Slurp"] = { source = "Treasure: Memory Cache / Zone: Azj-Kahet", sourceType = "Pet Journal Source" },
         ["Mini Airship"] = shared["Pet Battle: Hallowfall"],
         ["Mister Mans"] = shared["Vendor: Lars Bronsmaelt / Zone: Hallowfall / Cost: 6500"],
         ["Mossy Snail"] = shared["Pet Battle: Isle of Dorn"],
         ["Nightfarm Growthling"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Treasure: Nightfarm Growthling / Zone: Hallowfall",
             sourceType = "Pet Journal Source",
         },
         ["Oop'lajax"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Treasure: Scary Dark Chest / Zone: The Ringing Deeps",
             sourceType = "Pet Journal Source",
         },
-        ["Pillarnest Bonedrinker"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Treasure: Nest Egg / Zone: Azj-Kahet", sourceType = "Pet Journal Source" },
+        ["Pillarnest Bonedrinker"] = { source = "Treasure: Nest Egg / Zone: Azj-Kahet", sourceType = "Pet Journal Source" },
         ["Pinkskin Burrower"] = shared["Pet Battle: Azj-Kahet, The Ringing Deeps"],
-        ["Rak-Ush Battleshell"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Quest: Permanent Hire / Zone: Azj-Kahet", sourceType = "Pet Journal Source" },
+        ["Rak-Ush Battleshell"] = { source = "Quest: Permanent Hire / Zone: Azj-Kahet", sourceType = "Pet Journal Source" },
         ["Rak-Ush Threadling"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Ves'trak / Zone: Azj-Kahet / Cost: 2250",
             sourceType = "Pet Journal Source",
         },
         ["Ravenous Shalewing"] = shared["Pet Battle: Isle of Dorn"],
         ["Remembered Construct"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Remembrancer Amuul / Zone: Dalaran / Cost: 10000 / Vendor: Echo of the Silver Hand / Zone: Dragonblight / Cost: 10000",
             sourceType = "Pet Journal Source",
         },
         ["Remembered Riverpaw"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Remembrancer Amuul / Zone: Dalaran / Cost: 10000 / Vendor: Memory of a Duke / Zone: Searing Gorge / Cost: 10000",
             sourceType = "Pet Journal Source",
         },
         ["Remembered Spawn"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Remembrancer Amuul Zone: Dalaran Cost: 10000 Vendor: Forgotten Hero Zone: Dustwallow Marsh Cost: 10000",
             sourceType = "Pet Journal Source",
         },
         Ridge = shared["Pet Battle: Isle of Dorn"],
         ["Ruby-Eyed Stagshell"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Achievement: A Champion's Tour: The War Within / Category: World",
             sourceType = "Pet Journal Source",
         },
@@ -339,13 +312,11 @@ TDP.CatalogRegistry:RegisterCollection("11.0", "pets", {
         ["Sandstone Mosswool"] = shared["Pet Battle: Dornogal, Isle of Dorn"],
         ["Sandstone Ramolith"] = shared["Vendor: World Vendors / Cost: 50"],
         ["Sapphire Crab"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Treasure: Magical Treasure Chest / Zone: Isle of Dorn",
             sourceType = "Pet Journal Source",
         },
-        ["Scourge of the Aspects"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Vendor: Torie / Zone: Dornogal / Cost: 5000", sourceType = "Pet Journal Source" },
+        ["Scourge of the Aspects"] = { source = "Vendor: Torie / Zone: Dornogal / Cost: 5000", sourceType = "Pet Journal Source" },
         ["Shadowbog Hopper"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Treasure: Shadowrooted Vine / Zone: Hallowfall",
             sourceType = "Pet Journal Source",
         },
@@ -354,55 +325,49 @@ TDP.CatalogRegistry:RegisterCollection("11.0", "pets", {
         ["Shalewing Devourer"] = shared["Pet Battle: Isle of Dorn"],
         ["Sir Pounce"] = shared["Pet Battle: Hallowfall"],
         ["Sir Shady Mrrgglton Junior"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Sir Finley Mrrgglton / Zone: Dornogal / Cost: 10000",
             sourceType = "Pet Journal Source",
         },
         Skippy = shared["Vendor: World Vendors / Cost: 50"],
         ["Skittish Sniffler"] = shared["Pet Battle: Azj-Kahet, The Ringing Deeps"],
         Slim = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Quest: Grand, Gutsy Solutions / Zone: Azj-Kahet",
             sourceType = "Pet Journal Source",
         },
-        Sneef = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Drop: Kobold Delve's Heavy Trunk", sourceType = "Pet Journal Source" },
+        Sneef = { source = "Drop: Kobold Delve's Heavy Trunk", sourceType = "Pet Journal Source" },
         Snuffling = shared["Pet Battle: The Ringing Deeps"],
         Spinner = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Treasure: Trapped Trove / Zone: City of Threads",
             sourceType = "Pet Journal Source",
         },
         ["Starkstripe Hopper"] = shared["Vendor: World Vendors / Cost: 50"],
         Stratus = shared["Pet Battle: Isle of Dorn"],
         ["Subterranean Dartswog"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Pet Battle: Azj-Kahet, City of Threads, Hallowfall, Isle of Dorn, The Ringing Deeps",
             sourceType = "Pet Journal Source",
         },
         Swiftpaw = shared["Vendor: Lars Bronsmaelt / Zone: Hallowfall / Cost: 6500"],
         Swoopgrasp = shared["Pet Battle: City of Threads"],
         ["Takey-Take"] = shared["Pet Battle: The Ringing Deeps"],
-        Thunder = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Quest: Tale of Tails / Zone: Hallowfall", sourceType = "Pet Journal Source" },
+        Thunder = { source = "Quest: Tale of Tails / Zone: Hallowfall", sourceType = "Pet Journal Source" },
         Tiberius = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Auralia Steelstrike / Zone: Hallowfall / Cost: 6500",
             sourceType = "Pet Journal Source",
         },
         Tickler = shared["Pet Battle: City of Threads"],
         ["Tiny Cragling"] = shared["Pet Battle: Isle of Dorn"],
         Troglofrog = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Pet Battle: Azj-Kahet, City of Threads, Deepforge Golemworks, Hallowfall, Isle of Dorn, The Ringing Deeps",
             sourceType = "Pet Journal Source",
         },
         ["Umbral Amalgam"] = shared["Pet Battle: Hallowfall"],
         Undermoth = shared["Pet Battle: Azj-Kahet"],
-        Vanilla = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Quest: Save Tomothy / Zone: Hallowfall", sourceType = "Pet Journal Source" },
+        Vanilla = { source = "Quest: Save Tomothy / Zone: Hallowfall", sourceType = "Pet Journal Source" },
         Venomwing = shared["Vendor: World Vendors / Cost: 50"],
         ["Verdant Scootlefish"] = shared["Pet Battle: Azj-Kahet"],
         ["Vibrant Glowfly"] = shared["Pet Battle: Azj-Kahet, City of Threads, Hallowfall, Shadowvein Extraction Site, The Ringin"],
         ["Vile Bloodtick"] = shared["Pet Battle: Azj-Kahet"],
-        ["Violet Sporbit"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Drop: Fungarian Delve's Heavy Trunk", sourceType = "Pet Journal Source" },
+        ["Violet Sporbit"] = { source = "Drop: Fungarian Delve's Heavy Trunk", sourceType = "Pet Journal Source" },
         ["Voidling Ooze"] = shared["Pet Battle: Azj-Kahet"],
         Waxwick = {
             acquisition = "Complete Khaz Algar Safari by capturing its 30 required wild battle pets.",
@@ -443,10 +408,10 @@ TDP.CatalogRegistry:RegisterCollection("11.0", "pets", {
                 "/way #2248 72.6 41.6 Cinderhoney Emberstinger",
             },
         },
-        ["Winged Arachnoid"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Azj-Kahet, Hallowfall", sourceType = "Pet Journal Source" },
+        ["Winged Arachnoid"] = { source = "Pet Battle: Azj-Kahet, Hallowfall", sourceType = "Pet Journal Source" },
         Wobbles = shared["Vendor: Gnawbles / Zone: The Ringing Deeps / Cost: 1"],
-        Wriggle = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Drop: Kobyss Delve's Heavy Trunk", sourceType = "Pet Journal Source" },
-        ["Writhing Transmutagen"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Discovery: Khaz Algar Thaumaturgy", sourceType = "Pet Journal Source" },
+        Wriggle = { source = "Drop: Kobyss Delve's Heavy Trunk", sourceType = "Pet Journal Source" },
+        ["Writhing Transmutagen"] = { source = "Discovery: Khaz Algar Thaumaturgy", sourceType = "Pet Journal Source" },
         Zaedu = shared["Pet Battle: Azj-Kahet"],
     },
 })

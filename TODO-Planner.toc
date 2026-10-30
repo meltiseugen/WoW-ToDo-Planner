@@ -6,6 +6,10 @@
 ## SavedVariables: TODOPlannerDB
 ## OptionalDeps: Krowi_AchievementFilter
 
+Libs/LibStub/LibStub.lua
+Libs/CallbackHandler-1.0/CallbackHandler-1.0.lua
+Libs/HereBeDragons/HereBeDragons-2.0.lua
+Libs/HereBeDragons/HereBeDragons-Pins-2.0.lua
 Libs/JanisTheme-1.0/JanisTheme-1.0.lua
 TODOPlanner.lua
 Core/Constants.lua

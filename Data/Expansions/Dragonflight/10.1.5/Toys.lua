@@ -1,7 +1,7 @@
 local _, TDP = ...
 
 local shared = {}
-shared["Discovery: Naxxramas"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Discovery: Naxxramas", sourceType = "Toy Box Source" }
+shared["Discovery: Naxxramas"] = { source = "Discovery: Naxxramas", sourceType = "Toy Box Source" }
 
 TDP.CatalogRegistry:RegisterCollection("10.1.5", "toys", {
     entries = {
@@ -15,17 +15,16 @@ TDP.CatalogRegistry:RegisterCollection("10.1.5", "toys", {
         { itemId = 208415, name = "Stasis Sand", source = "Quest: Dawn of the Infinite: Chrono-Lord Deios / Zone: Thaldraszus" },
     },
     details = {
-        Boffins = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Achievement: Temporal Acquisitions Specialist", sourceType = "Toy Box Source" },
+        Boffins = { source = "Achievement: Temporal Acquisitions Specialist", sourceType = "Toy Box Source" },
         ["Familiar Journal"] = shared["Discovery: Naxxramas"],
-        ["Investi-gator's Pocketwatch"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Drop: Temporal Investi-gator / Zone: Thaldraszus", sourceType = "Toy Box Source" },
-        ["Path of the Naaru"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Vendor: Gaal / Zone: Krokuun / Cost: 90 90 900", sourceType = "Toy Box Source" },
+        ["Investi-gator's Pocketwatch"] = { source = "Drop: Temporal Investi-gator / Zone: Thaldraszus", sourceType = "Toy Box Source" },
+        ["Path of the Naaru"] = { source = "Vendor: Gaal / Zone: Krokuun / Cost: 90 90 900", sourceType = "Toy Box Source" },
         ["Plagued Grain"] = shared["Discovery: Naxxramas"],
         ["Stasis Sand"] = {
-            acquisition = "Follow the in-game Toy Box source for this permanent toy.",
             source = "Quest: Dawn of the Infinite: Chrono-Lord Deios / Zone: Thaldraszus",
             sourceType = "Toy Box Source",
         },
-        ["Tiny Box of Tiny Rocks"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Achievement: Many Boxes, Many Rockses", sourceType = "Toy Box Source" },
-        ["Whelps on Strings"] = { acquisition = "Follow the in-game Toy Box source for this permanent toy.", source = "Achievement: Daycare Derby / Category: Dragonflight", sourceType = "Toy Box Source" },
+        ["Tiny Box of Tiny Rocks"] = { source = "Achievement: Many Boxes, Many Rockses", sourceType = "Toy Box Source" },
+        ["Whelps on Strings"] = { source = "Achievement: Daycare Derby / Category: Dragonflight", sourceType = "Toy Box Source" },
     },
 })

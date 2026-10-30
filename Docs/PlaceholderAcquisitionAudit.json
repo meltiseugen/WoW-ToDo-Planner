@@ -1,0 +1,17 @@
+{
+  "reviewedAt": "2026-10-28",
+  "scope": "All runtime catalog entries after catalog policy filters. No live character, ownership or quest APIs; visibility can vary with filters and eligibility.",
+  "scanned": {
+    "mounts": 1204,
+    "pets": 1551,
+    "toys": 750,
+    "cosmetics": 2845,
+    "achievements": 8893
+  },
+  "summary": {},
+  "stillReturned": 0,
+  "storedCatalogEntries": 0,
+  "alreadyOverridden": 0,
+  "entries": [],
+  "definitions": []
+}

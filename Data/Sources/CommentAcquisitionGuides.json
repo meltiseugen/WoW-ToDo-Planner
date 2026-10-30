@@ -1,0 +1,1240 @@
+{
+  "reviewedAt": "2026-10-30",
+  "selection": "Prioritize useful step-by-step comments ending in Profit, from any author. Read replies and current-retail corrections before writing original instructions. Never import filler or old level guarantees.",
+  "runtime": "Only compact acquisition strings and waypoints are loaded. This evidence and comment metadata are offline research files.",
+  "guides": [
+    {
+      "id": 5444,
+      "steps": [
+        "Go to Fuselight in Badlands (64.3, 38.0). Finish Garyanne Fleezlebop's When the Going Gets Tough, Cheat, then accept It's Goat Time, Baby for the Billy Goat Blaster.",
+        "If you already turned in the quest, buy Billy Goat Blaster DX from Gina Gotgoods nearby (64.25, 37.46). Completing the quest does not lock you out.",
+        "Put the blaster on your action bar. An optional targeting macro is:\n/target Billy Goat\n/use Billy Goat Blaster\nFor the purchased version, replace the last line with /use Billy Goat Blaster DX.",
+        "Locate a route between 12 Billy Goats before firing. Stay mounted, move close to each goat and blast 12 within 60 seconds of your first hit.",
+        "If using the quest blaster, wait for achievement credit before handing in the quest. Retry the timed run if necessary."
+      ],
+      "authors": [
+        "333888",
+        "culemborgnl",
+        "762263",
+        "Esploratore",
+        "patti221"
+      ],
+      "corrections": [
+        "The DX item needs the DX macro; the quest item and purchased item are different.",
+        "The vendor version permits attempts after quest completion; flying is helpful, not required."
+      ],
+      "matchedProfitGuide": true,
+      "references": [
+        "https://www.wowhead.com/achievement=5444#comments"
+      ],
+      "waypoints": [
+        [
+          15,
+          64.3,
+          38.0,
+          "Garyanne Fleezlebop - goat quest chain"
+        ],
+        [
+          15,
+          64.25,
+          37.46,
+          "Gina Gotgoods - Billy Goat Blaster DX"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 4601,
+      "steps": [
+        "Enter Icecrown Citadel in the raid size named by this achievement, reach the Frozen Throne and speak to Tirion to start the encounter.",
+        "Stand on the stairs with your back toward the throne. Stop attacking and let the Lich King summon adds; keep them alive for Necrotic Plague to jump between.",
+        "Watch Necrotic Plague on yourself and the adds until it reaches at least 30 stacks. The boss's Plague Siphon buff is a different counter.",
+        "Only then damage the Lich King. Let the final dialogue, resurrection and Tirion's intervention finish before dealing the killing blow."
+      ],
+      "authors": [
+        "Bajungadustin",
+        "Roguesoultms",
+        "Volleynova",
+        "lostelement"
+      ],
+      "corrections": [
+        "Recent solo reports do not require a pet or an old class-specific threat trick.",
+        "Do not kill adds early or finish the boss during the scripted ending."
+      ],
+      "matchedProfitGuide": true,
+      "references": [
+        "https://www.wowhead.com/achievement=4601#comments"
+      ],
+      "waypoints": [
+        [
+          118,
+          53.5,
+          85.5,
+          "Icecrown Citadel entrance"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 4621,
+      "steps": [
+        "Enter Icecrown Citadel in the raid size named by this achievement, reach the Frozen Throne and speak to Tirion to start the encounter.",
+        "Stand on the stairs with your back toward the throne. Stop attacking and let the Lich King summon adds; keep them alive for Necrotic Plague to jump between.",
+        "Watch Necrotic Plague on yourself and the adds until it reaches at least 30 stacks. The boss's Plague Siphon buff is a different counter.",
+        "Only then damage the Lich King. Let the final dialogue, resurrection and Tirion's intervention finish before dealing the killing blow."
+      ],
+      "authors": [
+        "Bajungadustin",
+        "Roguesoultms",
+        "Volleynova",
+        "lostelement"
+      ],
+      "corrections": [
+        "Recent solo reports do not require a pet or an old class-specific threat trick.",
+        "Do not kill adds early or finish the boss during the scripted ending."
+      ],
+      "matchedProfitGuide": true,
+      "references": [
+        "https://www.wowhead.com/achievement=4621#comments"
+      ],
+      "waypoints": [
+        [
+          118,
+          53.5,
+          85.5,
+          "Icecrown Citadel entrance"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 1254,
+      "steps": [
+        "Go to the Fjord Turkey packs beside the road west of Explorer's League Outpost, Howling Fjord (69, 64).",
+        "Bind /target Fjord Turkey and a quick damaging ability to convenient keys. Start where you can see several living turkeys.",
+        "Kill 15 Fjord Turkeys within three minutes, moving along the road and using respawns when needed. Pilgrim's Bounty turkeys do not count."
+      ],
+      "authors": [
+        "68381",
+        "Avrsion",
+        "610726",
+        "659423"
+      ],
+      "corrections": [
+        "Use Fjord Turkey, not an unspecified Turkey target.",
+        "Holiday turkeys are a different creature."
+      ],
+      "matchedProfitGuide": true,
+      "references": [
+        "https://www.wowhead.com/achievement=1254#comments"
+      ],
+      "waypoints": [
+        [
+          117,
+          69.0,
+          64.0,
+          "Fjord Turkeys - west of Explorer's League Outpost"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 2953,
+      "steps": [
+        "Reach Kologarn in Ulduar. Disable pet attacks and incidental cleave so the torso and arms stay alive while you prepare.",
+        "Lower the torso's health with controlled single-target damage. Leave enough health to survive the damage transferred when each arm dies.",
+        "Destroy one arm, destroy the other, then finish the torso within 12 seconds of the first arm dying. Do not kill the torso before both arms are destroyed."
+      ],
+      "authors": [
+        "Volleynova",
+        "Lightweave",
+        "karliflan"
+      ],
+      "corrections": [
+        "Arm deaths damage the torso; a universal 20-percent preparation target is unsafe with current damage.",
+        "The objective is both arms and then the torso, inside the same 12-second window."
+      ],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=2953#comments"
+      ],
+      "waypoints": [
+        [
+          120,
+          41.6,
+          18.2,
+          "Ulduar entrance"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 2954,
+      "steps": [
+        "Reach Kologarn in Ulduar. Disable pet attacks and incidental cleave so the torso and arms stay alive while you prepare.",
+        "Lower the torso's health with controlled single-target damage. Leave enough health to survive the damage transferred when each arm dies.",
+        "Destroy one arm, destroy the other, then finish the torso within 12 seconds of the first arm dying. Do not kill the torso before both arms are destroyed."
+      ],
+      "authors": [
+        "Volleynova",
+        "Lightweave",
+        "karliflan"
+      ],
+      "corrections": [
+        "Arm deaths damage the torso; a universal 20-percent preparation target is unsafe with current damage.",
+        "The objective is both arms and then the torso, inside the same 12-second window."
+      ],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=2954#comments"
+      ],
+      "waypoints": [
+        [
+          120,
+          41.6,
+          18.2,
+          "Ulduar entrance"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 3014,
+      "steps": [
+        "Enter Ulduar and reach Sara in Yogg-Saron's room. During the opening phase, stand beside Sara without damaging the Guardians.",
+        "Touch Ominous Clouds to spawn additional Guardians of Yogg-Saron. Gather at least nine living Guardians before attacking.",
+        "Kill those nine Guardians together with area damage inside 12 seconds. Check for achievement credit before continuing the fight."
+      ],
+      "authors": [
+        "LordRaikalo",
+        "hsoftdev17"
+      ],
+      "corrections": [
+        "Use opening-phase Guardians of Yogg-Saron, not the later Immortal Guardians, which cannot be killed normally.",
+        "A reply confirms the opening-phase method; later discussion corrects an old bug claim."
+      ],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=3014#comments"
+      ],
+      "waypoints": [
+        [
+          120,
+          41.6,
+          18.2,
+          "Ulduar entrance"
+        ]
+      ],
+      "maps": [],
+      "tips": "Keep damage procs and pets disabled until all nine Guardians are present. The later Immortal Guardians are the wrong targets."
+    },
+    {
+      "id": 3017,
+      "steps": [
+        "Enter Ulduar and reach Sara in Yogg-Saron's room. During the opening phase, stand beside Sara without damaging the Guardians.",
+        "Touch Ominous Clouds to spawn additional Guardians of Yogg-Saron. Gather at least nine living Guardians before attacking.",
+        "Kill those nine Guardians together with area damage inside 12 seconds. Check for achievement credit before continuing the fight."
+      ],
+      "authors": [
+        "LordRaikalo",
+        "hsoftdev17"
+      ],
+      "corrections": [
+        "Use opening-phase Guardians of Yogg-Saron, not the later Immortal Guardians, which cannot be killed normally.",
+        "A reply confirms the opening-phase method; later discussion corrects an old bug claim."
+      ],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=3017#comments"
+      ],
+      "waypoints": [
+        [
+          120,
+          41.6,
+          18.2,
+          "Ulduar entrance"
+        ]
+      ],
+      "maps": [],
+      "tips": "Keep damage procs and pets disabled until all nine Guardians are present. The later Immortal Guardians are the wrong targets."
+    },
+    {
+      "id": 10553,
+      "steps": [
+        "Enter Assault on Violet Hold on Mythic difficulty in Broken Isles Dalaran. Millificent Manastorm must be one of the bosses released in that run.",
+        "Damage Millificent slowly and wait for Millhouse's dialogue about disarming her squirrel bombs. Defuse a bomb instead of bursting her down.",
+        "Continue carefully until Millhouse mocks her hair and she gains her rage effect. Use /laugh at her if following the dialogue prompt.",
+        "Kill Millificent while she is enraged. The Manastorm's Duplicator toy is an optional shortcut, not a required purchase."
+      ],
+      "authors": [
+        "Volleynova",
+        "adkbmxrider",
+        "maximef1",
+        "alecz24"
+      ],
+      "corrections": [
+        "The discussion confirms the encounter dialogue can trigger the rage without the toy.",
+        "Do not use an old dated boss-rotation calendar as a current schedule."
+      ],
+      "matchedProfitGuide": true,
+      "references": [
+        "https://www.wowhead.com/achievement=10553#comments"
+      ],
+      "waypoints": [
+        [
+          627,
+          66.2,
+          68.4,
+          "Assault on Violet Hold entrance"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 125,
+      "steps": [
+        "Visit Katherine Lee (Alliance) or Awilo Lon'gomba (Horde) in Northrend Dalaran and learn Northrend Cooking.",
+        "Cook recipes that still grant Northrend skill until that expansion's skill reaches 75. Cooking from a different expansion does not advance this achievement.",
+        "Use the Dalaran cooking daily rewards to buy additional Northrend recipes and Northern Spices when trainer recipes stop granting skill."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=125#comments",
+        "https://www.wowhead.com/npc=29631/awilo-longomba"
+      ],
+      "waypoints": [
+        [
+          125,
+          40.3,
+          66.1,
+          "Katherine Lee - Alliance Northrend Cooking and daily quests"
+        ],
+        [
+          125,
+          70.0,
+          38.9,
+          "Awilo Lon'gomba - Horde Northrend Cooking and daily quests"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 130,
+      "steps": [
+        "Learn Northrend Fishing from Marcia Chase by the fountain in Northrend Dalaran (52.6, 65.6).",
+        "Fish in Northrend waters until the Northrend Fishing skill reaches 75. Progress in Classic, Outland or Broken Isles Fishing is separate."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=130#comments",
+        "https://www.wowhead.com/npc=28742/marcia-chase"
+      ],
+      "waypoints": [
+        [
+          125,
+          52.6,
+          65.6,
+          "Marcia Chase - Northrend Fishing and daily quests"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 1998,
+      "steps": [
+        "Learn Northrend Cooking, then visit your faction's cooking quest giver in Northrend Dalaran: Katherine Lee for Alliance or Awilo Lon'gomba for Horde.",
+        "Accept the available daily, collect or cook its requested items, and return to the same NPC to claim the Cooking Awards.",
+        "Repeat on later daily resets until you have earned 1 awards. Open reward bags and use any Waterlogged Recipe turn-in you obtain for additional awards."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=1998#comments",
+        "https://www.wowhead.com/npc=29631/awilo-longomba"
+      ],
+      "waypoints": [
+        [
+          125,
+          40.3,
+          66.1,
+          "Katherine Lee - Alliance Northrend Cooking and daily quests"
+        ],
+        [
+          125,
+          70.0,
+          38.9,
+          "Awilo Lon'gomba - Horde Northrend Cooking and daily quests"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 1999,
+      "steps": [
+        "Learn Northrend Cooking, then visit your faction's cooking quest giver in Northrend Dalaran: Katherine Lee for Alliance or Awilo Lon'gomba for Horde.",
+        "Accept the available daily, collect or cook its requested items, and return to the same NPC to claim the Cooking Awards.",
+        "Repeat on later daily resets until you have earned 10 awards. Open reward bags and use any Waterlogged Recipe turn-in you obtain for additional awards."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=1999#comments",
+        "https://www.wowhead.com/npc=29631/awilo-longomba"
+      ],
+      "waypoints": [
+        [
+          125,
+          40.3,
+          66.1,
+          "Katherine Lee - Alliance Northrend Cooking and daily quests"
+        ],
+        [
+          125,
+          70.0,
+          38.9,
+          "Awilo Lon'gomba - Horde Northrend Cooking and daily quests"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 2000,
+      "steps": [
+        "Learn Northrend Cooking, then visit your faction's cooking quest giver in Northrend Dalaran: Katherine Lee for Alliance or Awilo Lon'gomba for Horde.",
+        "Accept the available daily, collect or cook its requested items, and return to the same NPC to claim the Cooking Awards.",
+        "Repeat on later daily resets until you have earned 25 awards. Open reward bags and use any Waterlogged Recipe turn-in you obtain for additional awards."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=2000#comments",
+        "https://www.wowhead.com/npc=29631/awilo-longomba"
+      ],
+      "waypoints": [
+        [
+          125,
+          40.3,
+          66.1,
+          "Katherine Lee - Alliance Northrend Cooking and daily quests"
+        ],
+        [
+          125,
+          70.0,
+          38.9,
+          "Awilo Lon'gomba - Horde Northrend Cooking and daily quests"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 2001,
+      "steps": [
+        "Learn Northrend Cooking, then visit your faction's cooking quest giver in Northrend Dalaran: Katherine Lee for Alliance or Awilo Lon'gomba for Horde.",
+        "Accept the available daily, collect or cook its requested items, and return to the same NPC to claim the Cooking Awards.",
+        "Repeat on later daily resets until you have earned 50 awards. Open reward bags and use any Waterlogged Recipe turn-in you obtain for additional awards."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=2001#comments",
+        "https://www.wowhead.com/npc=29631/awilo-longomba"
+      ],
+      "waypoints": [
+        [
+          125,
+          40.3,
+          66.1,
+          "Katherine Lee - Alliance Northrend Cooking and daily quests"
+        ],
+        [
+          125,
+          70.0,
+          38.9,
+          "Awilo Lon'gomba - Horde Northrend Cooking and daily quests"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 2002,
+      "steps": [
+        "Learn Northrend Cooking, then visit your faction's cooking quest giver in Northrend Dalaran: Katherine Lee for Alliance or Awilo Lon'gomba for Horde.",
+        "Accept the available daily, collect or cook its requested items, and return to the same NPC to claim the Cooking Awards.",
+        "Repeat on later daily resets until you have earned 100 awards. Open reward bags and use any Waterlogged Recipe turn-in you obtain for additional awards."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=2002#comments",
+        "https://www.wowhead.com/npc=29631/awilo-longomba"
+      ],
+      "waypoints": [
+        [
+          125,
+          40.3,
+          66.1,
+          "Katherine Lee - Alliance Northrend Cooking and daily quests"
+        ],
+        [
+          125,
+          70.0,
+          38.9,
+          "Awilo Lon'gomba - Horde Northrend Cooking and daily quests"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 877,
+      "steps": [
+        "Complete cooking daily quests for The Rokk in Shattrath (61.6, 15.8), or your faction's cook in Northrend Dalaran.",
+        "Open the daily reward containers until Recipe: Delicious Chocolate Cake drops. Learn the recipe on the character doing this achievement.",
+        "Gather its ingredients and personally bake the cake. Buying or eating a finished cake does not satisfy the baking objective."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=877#comments",
+        "https://www.wowhead.com/item=33925/recipe-delicious-chocolate-cake"
+      ],
+      "waypoints": [
+        [
+          111,
+          61.6,
+          15.8,
+          "The Rokk - Shattrath cooking daily quests"
+        ],
+        [
+          125,
+          40.3,
+          66.1,
+          "Katherine Lee - Alliance Northrend Cooking and daily quests"
+        ],
+        [
+          125,
+          70.0,
+          38.9,
+          "Awilo Lon'gomba - Horde Northrend Cooking and daily quests"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 1801,
+      "steps": [
+        "Do Marcia Chase's fishing daily in Northrend Dalaran and open the Bag of Fishing Treasures for a chance at Recipe: Captain Rumsey's Lager. Outland and Northrend cooking daily containers are another source.",
+        "Learn the recipe, then buy a Skin of Dwarven Stout and a Flagon of Dwarven Mead from an innkeeper or drink vendor.",
+        "Brew Captain Rumsey's Lager yourself. Purchasing a finished drink does not complete the brewing objective."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=1801#comments",
+        "https://www.wowhead.com/item=34834/recipe-captain-rumseys-lager"
+      ],
+      "waypoints": [
+        [
+          125,
+          52.6,
+          65.6,
+          "Marcia Chase - Northrend Fishing and daily quests"
+        ],
+        [
+          111,
+          61.6,
+          15.8,
+          "The Rokk - Shattrath cooking daily quests"
+        ],
+        [
+          125,
+          40.3,
+          66.1,
+          "Katherine Lee - Alliance Northrend Cooking and daily quests"
+        ],
+        [
+          125,
+          70.0,
+          38.9,
+          "Awilo Lon'gomba - Horde Northrend Cooking and daily quests"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 878,
+      "steps": [
+        "Travel to Howling Fjord and look for Fangtooth Herring Schools along its waters.",
+        "Fish those schools for a chance at Dark Herring. Move to another school when one is depleted; the rare catch is not guaranteed in a fixed number of casts.",
+        "Catch the fish yourself and loot it. Only one of the listed rare fish is required; buying a rare fish does not count as catching it."
+      ],
+      "authors": [
+        "Nikotine",
+        "250338",
+        "32578"
+      ],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=878#comments"
+      ],
+      "waypoints": [],
+      "maps": [
+        117
+      ],
+      "tips": null
+    },
+    {
+      "id": 153,
+      "steps": [
+        "Learn Fishing, then find a visible fish school or Steam Pump Flotsam pool in Zangarmarsh.",
+        "Cast so the bobber lands inside the pool, and loot a successful catch. Casting into ordinary open water beside a school does not count."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=153#comments"
+      ],
+      "waypoints": [],
+      "maps": [
+        102
+      ],
+      "tips": null
+    },
+    {
+      "id": 1243,
+      "steps": [
+        "Fish from wreckage pools, such as Steam Pump Flotsam in Zangarmarsh, and open the trunks or supply crates you catch.",
+        "Keep opening these containers until you obtain a Weather-Beaten Journal. Pool positions and the journal drop are random.",
+        "Use the journal to learn Find Fish, then enable fish-school tracking on the minimap. Merely owning the journal does not complete the achievement."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=1243#comments"
+      ],
+      "waypoints": [],
+      "maps": [
+        102,
+        56,
+        71,
+        50,
+        210,
+        66,
+        69
+      ],
+      "tips": null
+    },
+    {
+      "id": 1781,
+      "steps": [
+        "Cook or buy at least ten Critter Bites before travelling to the Fjord Turkey packs in Howling Fjord (69, 64).",
+        "Find ten separate living critters close together. Target each one and use a Critter Bite, moving quickly between them.",
+        "Coerce ten critters within three minutes. Feed the turkeys before killing them if you also want Friend or Fowl? on the same visit."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=1781#comments",
+        "https://www.wowhead.com/achievement=1254/friend-or-fowl#comments"
+      ],
+      "waypoints": [
+        [
+          117,
+          69.0,
+          64.0,
+          "Fjord Turkeys - west of Explorer's League Outpost"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 1777,
+      "steps": [
+        "Learn Northrend Cooking and start with the recipes taught by Katherine Lee or Awilo Lon'gomba in Northrend Dalaran.",
+        "Complete their cooking dailies for awards, then buy missing recipes and Northern Spices from the nearby recipe vendors. Learn Northern Stew through a Northrend starter-zone cooking quest and collect other quest recipes as needed.",
+        "Personally cook 15 different recipes from this achievement's checklist. Track missing dishes as you work; buying or eating somebody else's cooking does not count."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=1777#comments",
+        "https://www.wowhead.com/npc=29631/awilo-longomba"
+      ],
+      "waypoints": [],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 1778,
+      "steps": [
+        "Learn Northrend Cooking and start with the recipes taught by Katherine Lee or Awilo Lon'gomba in Northrend Dalaran.",
+        "Complete their cooking dailies for awards, then buy missing recipes and Northern Spices from the nearby recipe vendors. Learn Northern Stew through a Northrend starter-zone cooking quest and collect other quest recipes as needed.",
+        "Personally cook 30 different recipes from this achievement's checklist. Track missing dishes as you work; buying or eating somebody else's cooking does not count."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=1778#comments",
+        "https://www.wowhead.com/npc=29631/awilo-longomba"
+      ],
+      "waypoints": [],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 1779,
+      "steps": [
+        "Learn Northrend Cooking and start with the recipes taught by Katherine Lee or Awilo Lon'gomba in Northrend Dalaran.",
+        "Complete their cooking dailies for awards, then buy missing recipes and Northern Spices from the nearby recipe vendors. Learn Northern Stew through a Northrend starter-zone cooking quest and collect other quest recipes as needed.",
+        "Personally cook 45 different recipes from this achievement's checklist. Track missing dishes as you work; buying or eating somebody else's cooking does not count."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=1779#comments",
+        "https://www.wowhead.com/npc=29631/awilo-longomba"
+      ],
+      "waypoints": [],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 137,
+      "steps": [
+        "Learn Northrend Tailoring and the Heavy Frostweave Bandage recipe. First Aid was removed; this recipe now belongs to Tailoring.",
+        "Collect or buy Frostweave Cloth, then craft Heavy Frostweave Bandages until you have created 500. Purchased finished bandages do not count."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=137#comments",
+        "https://www.wowhead.com/spell=45546/heavy-frostweave-bandage"
+      ],
+      "waypoints": [
+        [
+          125,
+          38.78,
+          41.56,
+          "Darin Goodstitch - Northrend Tailoring"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 1244,
+      "steps": [
+        "Track the unread titles in the achievement checklist and visit their original book objects in libraries, inns and dungeons.",
+        "Click each original book to open and read it, then check that its title is credited before moving on. A later reprint with the same title may not count.",
+        "Use the mapped book-source areas to plan your trip. Place names inside a book title describe its subject, not necessarily where that book is located."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=1244#comments"
+      ],
+      "waypoints": [],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 1257,
+      "steps": [
+        "Fish a Steam Pump Flotsam pool in Zangarmarsh and a Schooner Wreckage pool along the Wetlands coast.",
+        "Find Floating Wreckage along Tanaris and Bloodsail Wreckage along the Stranglethorn coasts.",
+        "Fish Waterlogged Wreckage along Desolace or Feralas. Cast inside each required pool and loot a catch for that criterion.",
+        "Pools move and share spawn locations. Clear nearby fishing pools and return along the coast if the wreckage type you need is absent."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=1257#comments"
+      ],
+      "waypoints": [],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 1206,
+      "steps": [
+        "Target each required living critter and use /love. You need credit for every species; do not kill them.",
+        "In Elwynn Forest, find Cat, Chicken, Cow, Deer, Fawn, Rabbit and Small Frog around Goldshire and its woods or ponds.",
+        "In Durotar, find Hare, Swine and Toad. In Northern Barrens, find Gazelle and Prairie Dog; in Un'Goro Crater, find Parrot.",
+        "Find Ram in Wetlands, and Sheep and Skunk in Howling Fjord.",
+        "Visit Shattrath for Ewe and Northrend Dalaran for Squirrel.",
+        "In Borean Tundra, find Borean Frog around the Geyser Fields, Steam Frog around Taunka'le Village's pools, and Shore Crab on the coast. Check the remaining species in your achievement checklist."
+      ],
+      "authors": [
+        "1223209",
+        "boraa",
+        "NavySWO91"
+      ],
+      "corrections": [
+        "Criterion type 54 identifies the love emote, not creature 225. Resolve the named critters instead.",
+        "Critters roam; the map opens their documented habitat areas rather than invented fixed spawn pins."
+      ],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=1206#comments",
+        "https://www.wowhead.com/achievement=1206/to-all-the-squirrels-ive-loved-before#comments"
+      ],
+      "waypoints": [],
+      "maps": [
+        37,
+        1,
+        10,
+        78,
+        56,
+        117,
+        111,
+        125,
+        114
+      ],
+      "tips": null
+    },
+    {
+      "id": 121,
+      "steps": [
+        "Visit Stephen Ryback in Stormwind (76.8, 53.6) or Zamja in Orgrimmar (32.2, 69.6) to train Classic Cooking.",
+        "Cook Classic recipes that still grant skill, learning higher recipes as needed, until Classic Cooking reaches 150.",
+        "Check the Classic skill bar specifically. Skill gained in a later expansion's Cooking category does not count for this milestone."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=121#comments",
+        "https://www.wowhead.com/npc=5482",
+        "https://www.wowhead.com/npc=3399"
+      ],
+      "waypoints": [
+        [
+          84,
+          76.8,
+          53.6,
+          "Stephen Ryback - Alliance Classic Cooking"
+        ],
+        [
+          85,
+          32.2,
+          69.6,
+          "Zamja - Horde Classic Cooking"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 122,
+      "steps": [
+        "Visit Stephen Ryback in Stormwind (76.8, 53.6) or Zamja in Orgrimmar (32.2, 69.6) to train Classic Cooking.",
+        "Cook Classic recipes that still grant skill, learning higher recipes as needed, until Classic Cooking reaches 225.",
+        "Check the Classic skill bar specifically. Skill gained in a later expansion's Cooking category does not count for this milestone."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=122#comments",
+        "https://www.wowhead.com/npc=5482",
+        "https://www.wowhead.com/npc=3399"
+      ],
+      "waypoints": [
+        [
+          84,
+          76.8,
+          53.6,
+          "Stephen Ryback - Alliance Classic Cooking"
+        ],
+        [
+          85,
+          32.2,
+          69.6,
+          "Zamja - Horde Classic Cooking"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 123,
+      "steps": [
+        "Visit Stephen Ryback in Stormwind (76.8, 53.6) or Zamja in Orgrimmar (32.2, 69.6) to train Classic Cooking.",
+        "Cook Classic recipes that still grant skill, learning higher recipes as needed, until Classic Cooking reaches 300.",
+        "Check the Classic skill bar specifically. Skill gained in a later expansion's Cooking category does not count for this milestone."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=123#comments",
+        "https://www.wowhead.com/npc=5482",
+        "https://www.wowhead.com/npc=3399"
+      ],
+      "waypoints": [
+        [
+          84,
+          76.8,
+          53.6,
+          "Stephen Ryback - Alliance Classic Cooking"
+        ],
+        [
+          85,
+          32.2,
+          69.6,
+          "Zamja - Horde Classic Cooking"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 126,
+      "steps": [
+        "Learn Classic Fishing from Arnold Leland in Stormwind (55.0, 69.6) or Lumak in Orgrimmar (66.6, 41.6).",
+        "Fish in Classic waters until the Classic Fishing skill reaches 150. Cast, wait for the bobber's bite and loot each catch.",
+        "The map marks the trainers as starting points. Fishing skill in Northrend, Outland or another expansion is tracked separately."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=126#comments",
+        "https://www.wowhead.com/npc=5493",
+        "https://www.wowhead.com/npc=3332"
+      ],
+      "waypoints": [
+        [
+          84,
+          55.0,
+          69.6,
+          "Arnold Leland - Alliance Classic Fishing"
+        ],
+        [
+          85,
+          66.6,
+          41.6,
+          "Lumak - Horde Classic Fishing"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 127,
+      "steps": [
+        "Learn Classic Fishing from Arnold Leland in Stormwind (55.0, 69.6) or Lumak in Orgrimmar (66.6, 41.6).",
+        "Fish in Classic waters until the Classic Fishing skill reaches 225. Cast, wait for the bobber's bite and loot each catch.",
+        "The map marks the trainers as starting points. Fishing skill in Northrend, Outland or another expansion is tracked separately."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=127#comments",
+        "https://www.wowhead.com/npc=5493",
+        "https://www.wowhead.com/npc=3332"
+      ],
+      "waypoints": [
+        [
+          84,
+          55.0,
+          69.6,
+          "Arnold Leland - Alliance Classic Fishing"
+        ],
+        [
+          85,
+          66.6,
+          41.6,
+          "Lumak - Horde Classic Fishing"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 128,
+      "steps": [
+        "Learn Classic Fishing from Arnold Leland in Stormwind (55.0, 69.6) or Lumak in Orgrimmar (66.6, 41.6).",
+        "Fish in Classic waters until the Classic Fishing skill reaches 300. Cast, wait for the bobber's bite and loot each catch.",
+        "The map marks the trainers as starting points. Fishing skill in Northrend, Outland or another expansion is tracked separately."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=128#comments",
+        "https://www.wowhead.com/npc=5493",
+        "https://www.wowhead.com/npc=3332"
+      ],
+      "waypoints": [
+        [
+          84,
+          55.0,
+          69.6,
+          "Arnold Leland - Alliance Classic Fishing"
+        ],
+        [
+          85,
+          66.6,
+          41.6,
+          "Lumak - Horde Classic Fishing"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 124,
+      "steps": [
+        "Learn Outland Cooking from Gaston in Honor Hold or Baxter in Thrallmar, Hellfire Peninsula.",
+        "Cook Outland recipes that still grant skill, learning higher recipes from trainers, vendors and quests as needed, until Outland Cooking reaches 75.",
+        "Track the Outland skill bar. Later expansions' Cooking skill does not advance this achievement."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=124#comments",
+        "https://www.wowhead.com/npc=18987",
+        "https://www.wowhead.com/npc=18988"
+      ],
+      "waypoints": [
+        [
+          100,
+          54.0,
+          63.6,
+          "Gaston - Alliance Outland Cooking"
+        ],
+        [
+          100,
+          56.8,
+          37.4,
+          "Baxter - Horde Outland Cooking"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 129,
+      "steps": [
+        "Visit Juno Dufrain at Cenarion Refuge, Zangarmarsh (78.5, 63.0), and learn Outland Fishing.",
+        "Fish in Outland waters until Outland Fishing reaches 75. Zangarmarsh's lakes and schools let you work on the skill and Outland Angler together.",
+        "Check the Outland skill bar; Classic and Northrend Fishing have separate progression."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=129#comments",
+        "https://www.wowhead.com/npc=18993"
+      ],
+      "waypoints": [
+        [
+          102,
+          78.5,
+          63.0,
+          "Juno Dufrain - Outland Fishing"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 727,
+      "steps": [
+        "Earn Marks of Honor through PvP and visit Lieutenant Karter in Stormwind (76.2, 65.6) or Raider Bork in Orgrimmar (41.8, 72.6).",
+        "Buy one of the original Black War mounts listed by this achievement, such as Black War Steed or Black War Wolf. Check the vendor's current price before purchasing.",
+        "Use the mount item to learn it. Merely purchasing the item and leaving it refundable is not sufficient."
+      ],
+      "authors": [],
+      "corrections": [],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=727#comments",
+        "https://www.wowhead.com/guide/the-ultimate-achievements-guide-player-vs-player-3590"
+      ],
+      "waypoints": [
+        [
+          84,
+          76.2,
+          65.6,
+          "Lieutenant Karter - Alliance honor mounts"
+        ],
+        [
+          85,
+          41.8,
+          72.6,
+          "Raider Bork - Horde honor mounts"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 2097,
+      "steps": [
+        "Obtain a Mekgineer's Chopper for Alliance or Mechano-hog for Horde. You can buy the finished mount from an engineer or the auction house; Engineering is not required to use it.",
+        "To craft one yourself, learn its schematic with Northrend Engineering and Exalted Alliance Vanguard or Horde Expedition reputation. Gather Titansteel Bars, Cobalt Bolts and Arctic Fur.",
+        "The engineer buys the specialized motorcycle parts from Roxi Ramrocket in K3, Storm Peaks (40.6, 84.8), then crafts the mount.",
+        "Use the finished mount item to learn it. Older comments claiming that crafting or mailing it alone grants achievement credit are outdated."
+      ],
+      "authors": [
+        "Thortok2000",
+        "Venator",
+        "smashfanDS",
+        "345621"
+      ],
+      "corrections": [
+        "Northrend professions now have their own skill category; do not require an obsolete global 450 skill value.",
+        "Crafting alone no longer completes the achievement; learn the mount."
+      ],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=2097#comments"
+      ],
+      "waypoints": [
+        [
+          120,
+          40.6,
+          84.8,
+          "Roxi Ramrocket - motorcycle crafting components"
+        ]
+      ],
+      "maps": [],
+      "tips": null
+    },
+    {
+      "id": 2336,
+      "steps": [
+        "Earn Honored with Bloodsail Buccaneers by killing Booty Bay guards. This lowers your Steamwheedle Cartel reputations, so do this before restoring the goblins.",
+        "Farm Southsea pirates in Tanaris or on Fray Island in Northern Barrens to raise Booty Bay, Ratchet, Gadgetzan and Everlook toward Exalted without sacrificing Bloodsail reputation.",
+        "For Ravenholdt, kill Syndicate enemies around Durnholde Keep in Hillsbrad until ordinary kills stop granting reputation. Then turn in Heavy Junkboxes at Ravenholdt Manor; a rogue can pickpocket the boxes for you.",
+        "During Darkmoon Faire, complete its profession quests, dailies and other reputation activities until Exalted.",
+        "Track all required factions on the character doing the achievement. Shen'dralar is not required. Avoid reputation turn-ins that undo your pirate progress while completing the other factions."
+      ],
+      "authors": [
+        "UnholyoneSP"
+      ],
+      "corrections": [
+        "Removed Shen'dralar is not a current requirement.",
+        "Old two-day estimates and fixed costs for buying junkboxes are not reliable guide promises."
+      ],
+      "matchedProfitGuide": false,
+      "references": [
+        "https://www.wowhead.com/achievement=2336#comments",
+        "https://www.wowhead.com/guide/insane-in-the-membrane-3358",
+        "https://www.wowhead.com/guide/achievements/reputation/a-guide-for-the-insane"
+      ],
+      "waypoints": [],
+      "maps": [
+        210,
+        71,
+        10,
+        25,
+        407
+      ],
+      "tips": null
+    }
+  ],
+  "updatedContexts": {
+    "2.0": [
+      124,
+      129
+    ],
+    "2.3": [
+      877
+    ],
+    "2.4": [
+      1801
+    ],
+    "3.0": [
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      137,
+      153,
+      727,
+      877,
+      878,
+      1206,
+      1243,
+      1244,
+      1254,
+      1257,
+      1777,
+      1778,
+      1779,
+      1781,
+      1801,
+      1998,
+      1999,
+      2000,
+      2001,
+      2002,
+      2097
+    ],
+    "3.1.0": [
+      2336,
+      2953,
+      2954,
+      3014,
+      3017
+    ],
+    "3.3.0": [
+      4601,
+      4621
+    ],
+    "4.0.0": [
+      5444
+    ],
+    "7.0.0": [
+      10553
+    ]
+  }
+}

@@ -5,57 +5,30 @@ local ALL_PATCHES = CollectionExplorerWindow.Config.ALL_PATCHES
 
 function CollectionExplorerWindow:RenderPreview()
     local row = self.selectedRow
+    local rowKey = self:GetRowKey(row)
+    if self.inspectorRowKey ~= rowKey then
+        self.previewDetailsExpanded = false
+        self.inspectorRowKey = rowKey
+    end
+    local achievementId = self:GetCollectionMapAchievementId(row)
+    local mapLabel = achievementId and "Achievement" or "Open Map"
+    local mapButtonLabel = self.previewMapButton.label or self.previewMapButton
+    if mapButtonLabel:GetText() ~= mapLabel then self.previewMapButton:SetText(mapLabel) end
+    self.previewMapButton.explorerHelpTitle = self:GetCollectionMapActionHelp(row)
+    self:RenderPreviewVisual(row)
     if not row then
-        if self.previewModel then
-            self.previewModel:Hide()
-        end
-        if self.previewModelControls then
-            self.previewModelControls:Hide()
-        end
-        self.previewIcon:Show()
-        self.previewIcon:SetTexture("Interface\\Icons\\INV_Misc_QuestionMark")
         self.previewTitle:SetText("Select an entry")
         self.previewMeta:SetText("")
         self.previewStatus:SetText("")
         self.previewStatus:Hide()
-        Widgets:UpdateScrollablePreviewText(self.previewDetailsScroll, self.previewDetailsContent, self.previewDetails, "")
         if self.previewAchievementButton then
             self.previewAchievementButton:Hide()
         end
+        self:UpdateExplorerInspectorText()
         Widgets:SetButtonEnabled(self.previewWowheadButton, false)
         Widgets:SetButtonEnabled(self.previewFavoriteButton, false)
-        self.previewMapButton:Hide()
+        Widgets:SetButtonEnabled(self.previewMapButton, false)
         return
-    end
-
-    local didShowModel = false
-    if self.previewModel and self.previewModel.SetDisplayInfo and row.state and row.state.modelId then
-        local ok = pcall(self.previewModel.SetDisplayInfo, self.previewModel, row.state.modelId)
-        if ok then
-            local rowKey = self:GetRowKey(row)
-            if self.previewModelRowKey ~= rowKey then
-                self:ResetPreviewModelTransform(rowKey)
-            else
-                self:ApplyPreviewModelTransform()
-            end
-            self.previewModel:Show()
-            if self.previewModelControls then
-                self.previewModelControls:Show()
-            end
-            self.previewIcon:Hide()
-            didShowModel = true
-        end
-    end
-
-    if not didShowModel then
-        if self.previewModel then
-            self.previewModel:Hide()
-        end
-        if self.previewModelControls then
-            self.previewModelControls:Hide()
-        end
-        self.previewIcon:Show()
-        self.previewIcon:SetTexture(row.icon or "Interface\\Icons\\INV_Misc_QuestionMark")
     end
 
     self.previewTitle:SetText(row.name or "Unknown")
@@ -71,27 +44,15 @@ function CollectionExplorerWindow:RenderPreview()
         previewMeta = string.format("Patch %s - %s", row.patchKey, previewMeta)
     end
     self.previewMeta:SetText(previewMeta)
-    self.previewStatus:SetText(row.unobtainable and self:GetRowStatusLabel(row) or "")
-    self.previewStatus:SetShown(row.unobtainable == true)
-    if self.previewAchievementButton then
-        if self:GetRowAchievementId(row) then
-            self.previewAchievementButton:Show()
-            Widgets:SetButtonEnabled(self.previewAchievementButton, true)
-        else
-            self.previewAchievementButton:Hide()
-        end
-    end
+    self.previewStatus:SetText(self:GetRowStatusLabel(row))
+    self.previewStatus:Show()
+    self:UpdatePreviewAchievementButton(row)
 
-    Widgets:UpdateScrollablePreviewText(self.previewDetailsScroll, self.previewDetailsContent, self.previewDetails, self:GetRowNotes(row))
+    self:UpdateExplorerInspectorText()
 
     local isFavorite = self:IsFavoriteRow(row)
     self.previewFavoriteButton:SetText(isFavorite and "Remove Favorite" or "Set Favorite")
     Widgets:SetButtonEnabled(self.previewWowheadButton, self:GetRowWowheadUrl(row) ~= nil)
     Widgets:SetButtonEnabled(self.previewFavoriteButton, true)
-    if self:IsCollectionMapRow(row) then
-        self.previewMapButton:Show()
-        Widgets:SetButtonEnabled(self.previewMapButton, true)
-    else
-        self.previewMapButton:Hide()
-    end
+    Widgets:SetButtonEnabled(self.previewMapButton, self:IsCollectionMapRow(row) == true)
 end

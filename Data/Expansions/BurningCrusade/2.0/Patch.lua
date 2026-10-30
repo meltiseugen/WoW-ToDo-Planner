@@ -70,7 +70,8 @@ TDP.CatalogRegistry:RegisterPatch("2.0", {
     sourceNotes = {
         "The launch bucket covers the permanent collection introduced by the 2.0 client and the January 2007 expansion release: Outland flying mounts, blood elf and draenei racial mounts and pets, talbuks, launch raids, reputation tabards, quests, fishing, and engineering devices later promoted into the Toy Box.",
         "Fiery Warhorse and Ashes of Al'ar retain their original Karazhan and Tempest Keep entrances. Mr. Pinchy, Halaa, racial vendors, reputation quartermasters, and the two engineering transporter branches include practical farming or purchase pins.",
-        "Collector's Edition, trading-card, promotion, recurring holiday, unused, NPC-only, temporary, and ordinary equipment records are excluded. The one-time Tabard of the Protector remains as a historical collection appearance; achievements did not exist until patch 3.0.2.",
+        "Collector's Edition, trading-card, promotion, recurring holiday, unused, NPC-only, temporary, and ordinary equipment records are excluded. The one-time Tabard of the Protector remains as a historical collection appearance.",
+        "Retroactive retail achievements are grouped here by the Burning Crusade content they describe, including Outland exploration, quests, reputations, original instances, professions and pet battles. The achievement system itself arrived in patch 3.0.2; original introduction-patch records remain available for existing links and favorites.",
     },
     sourceUrls = {
         collections = "https://news.blizzard.com/en-us/article/23523203/burning-crusade-mounts-pets-and-more",

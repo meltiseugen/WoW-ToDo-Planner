@@ -35,11 +35,20 @@ function NearbyCollections:GetLocalMaps(mapID)
 end
 
 function NearbyCollections:EntryMatches(collectionType, patchKey, entry, maps)
+    if PatchCatalog:IsCollectionHiddenInUI(collectionType, patchKey, entry) then
+        return false
+    end
     for _, waypoint in ipairs(PatchCatalog:GetCollectionWaypoints(collectionType, patchKey, entry) or {}) do
         local pin = PatchCatalog:ParseWaypoint(waypoint)
         if pin and maps[tonumber(pin.mapID)] then
             return true
         end
+    end
+    local source = PatchCatalog.GetCollectionSourceInfo and PatchCatalog:GetCollectionSourceInfo(collectionType, patchKey, entry)
+    local recorded = PatchCatalog:GetDescriptionMapLocations(collectionType, entry)
+    local areas = source and source.areaOnly and source.areaMaps or recorded and recorded.areaMaps
+    for _, mapID in ipairs(areas or {}) do
+        if maps[mapID] then return true end
     end
     return false
 end

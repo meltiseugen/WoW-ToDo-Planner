@@ -1,0 +1,1073 @@
+{
+  "39937": {
+    "maps": [
+      91
+    ],
+    "references": [
+      "https://nether.wowhead.com/tooltip/achievement/39937?dataEnv=1&locale=0",
+      "https://warcraft.wiki.gg/wiki/UiMapID"
+    ]
+  },
+  "39957": {
+    "maps": [
+      26
+    ],
+    "references": [
+      "https://nether.wowhead.com/tooltip/achievement/39957?dataEnv=1&locale=0"
+    ]
+  },
+  "40002": {
+    "maps": [
+      483
+    ],
+    "references": [
+      "https://nether.wowhead.com/tooltip/achievement/40002?dataEnv=1&locale=0",
+      "Data/Sources/DescriptionLocations.json:cosmetics:89196"
+    ]
+  },
+  "40003": {
+    "maps": [
+      483
+    ],
+    "references": [
+      "https://nether.wowhead.com/tooltip/achievement/40003?dataEnv=1&locale=0",
+      "Data/Sources/DescriptionLocations.json:cosmetics:89196"
+    ]
+  },
+  "40014": {
+    "maps": [
+      542
+    ],
+    "references": [
+      "https://www.wowhead.com/guide/reputation/wod/arakkoa-outcasts-guide"
+    ]
+  },
+  "40020": {
+    "maps": [
+      646
+    ],
+    "references": [
+      "https://www.wowhead.com/guide/armies-of-legionfall-reputation-guide-4994"
+    ]
+  },
+  "40023": {
+    "sourceAchievement": 60874,
+    "references": [
+      "https://www.wowhead.com/achievement=60874/seat-of-the-pantheon"
+    ]
+  },
+  "40024": {
+    "sourceAchievement": 12310,
+    "references": [
+      "https://www.wowhead.com/achievement=12310/the-descent-into-madness"
+    ]
+  },
+  "40031": {
+    "sourceAchievement": 12521,
+    "references": [
+      "https://www.wowhead.com/achievement=12521/halls-of-containment"
+    ]
+  },
+  "40032": {
+    "sourceAchievement": 12521,
+    "references": [
+      "https://www.wowhead.com/achievement=12521/halls-of-containment",
+      "https://www.wowhead.com/achievement=12806/glory-of-the-uldir-raider"
+    ]
+  },
+  "40033": {
+    "sourceAchievement": 12523,
+    "references": [
+      "https://www.wowhead.com/achievement=12523/heart-of-corruption"
+    ]
+  },
+  "40035": {
+    "maps": [
+      84,
+      1161
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=12582/come-sail-away",
+      "https://www.wowhead.com/guide/tiragarde-sound-leveling-tips"
+    ]
+  },
+  "40036": {
+    "maps": [
+      1161,
+      1165
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=13142/archipelago-explorer",
+      "https://www.wowhead.com/order-advancement=655/island-plunderer"
+    ]
+  },
+  "40040": {
+    "sourceAchievement": 14196,
+    "references": [
+      "https://www.wowhead.com/achievement=14196/the-waking-dream"
+    ]
+  },
+  "40047": {
+    "sourceAchievement": 14715,
+    "references": [
+      "https://www.wowhead.com/achievement=14715/castle-nathria"
+    ]
+  },
+  "40051": {
+    "waypoints": [
+      [
+        1565,
+        65.74,
+        22.91,
+        "Rotbriar Changeling / Gwynceirw - toss the seed during the encounter"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=14791/toss-a-seed-to-your-hunter"
+    ]
+  },
+  "40055": {
+    "maps": [
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "references": [
+      "https://www.wowhead.com/guide/the-ultimate-achievements-guide-reputation-8986"
+    ]
+  },
+  "40056": {
+    "sourceAchievement": 17112,
+    "references": [
+      "https://www.wowhead.com/achievement=17112/fury-of-the-storm"
+    ]
+  },
+  "40057": {
+    "maps": [
+      91
+    ],
+    "references": [
+      "https://nether.wowhead.com/tooltip/achievement/40057?dataEnv=1&locale=0",
+      "https://warcraft.wiki.gg/wiki/UiMapID"
+    ]
+  },
+  "40250": {
+    "maps": [
+      2248,
+      2214,
+      2215,
+      2255
+    ],
+    "references": [
+      "https://nether.wowhead.com/tooltip/achievement/40250?dataEnv=1&locale=0",
+      "Data/Sources/DescriptionLocationOverrides.json:toys:224251"
+    ]
+  },
+  "40251": {
+    "maps": [
+      2248,
+      2214,
+      2215,
+      2255
+    ],
+    "references": [
+      "https://nether.wowhead.com/tooltip/achievement/40251?dataEnv=1&locale=0",
+      "Data/Sources/DescriptionLocationOverrides.json:toys:224251"
+    ]
+  },
+  "40888": {
+    "sourceAchievement": 17112,
+    "references": [
+      "https://nether.wowhead.com/tooltip/achievement/40888?dataEnv=1&locale=0",
+      "https://www.wowhead.com/achievement=17112/fury-of-the-storm"
+    ]
+  },
+  "62357": {
+    "maps": [
+      10
+    ],
+    "references": [
+      "https://www.method.gg/guides/best-routes-to-farm-lumber"
+    ]
+  },
+  "62358": {
+    "maps": [
+      102
+    ],
+    "references": [
+      "https://www.method.gg/guides/best-routes-to-farm-lumber"
+    ]
+  },
+  "62359": {
+    "maps": [
+      116
+    ],
+    "references": [
+      "https://www.method.gg/guides/best-routes-to-farm-lumber"
+    ]
+  },
+  "62360": {
+    "maps": [
+      198
+    ],
+    "references": [
+      "https://www.method.gg/guides/best-routes-to-farm-lumber"
+    ]
+  },
+  "62361": {
+    "maps": [
+      379
+    ],
+    "references": [
+      "https://www.method.gg/guides/how-to-farm-lumber-in-patch-11-2-7"
+    ]
+  },
+  "62362": {
+    "maps": [
+      550
+    ],
+    "references": [
+      "https://us.forums.blizzard.com/en/wow/t/shadowmoon-lumber-farming-needs-fixed/2293763"
+    ]
+  },
+  "62363": {
+    "maps": [
+      630
+    ],
+    "references": [
+      "https://www.method.gg/guides/how-to-farm-lumber-in-patch-11-2-7"
+    ]
+  },
+  "62364": {
+    "maps": [
+      862
+    ],
+    "references": [
+      "https://www.method.gg/guides/how-to-farm-lumber-in-patch-11-2-7"
+    ]
+  },
+  "62365": {
+    "maps": [
+      1565
+    ],
+    "references": [
+      "https://www.method.gg/guides/how-to-farm-lumber-in-patch-11-2-7"
+    ]
+  },
+  "62366": {
+    "maps": [
+      2024
+    ],
+    "references": [
+      "https://www.method.gg/guides/how-to-farm-lumber-in-patch-11-2-7"
+    ]
+  },
+  "62369": {
+    "maps": [
+      2248
+    ],
+    "references": [
+      "https://www.method.gg/guides/how-to-farm-lumber-in-patch-11-2-7"
+    ]
+  },
+  "62370": {
+    "maps": [
+      2413,
+      2512
+    ],
+    "references": [
+      "https://www.wowhead.com/ptr/item=256963/thalassian-lumber",
+      "https://eu.forums.blizzard.com/en/wow/t/anyone-know-how-to-farm-thalassian-lumber/608722"
+    ]
+  },
+  "62875": {
+    "maps": [
+      2599
+    ],
+    "references": [
+      "https://nether.wowhead.com/tooltip/achievement/62875?dataEnv=1&locale=0",
+      "Data/Catalog/MapNames.lua"
+    ]
+  },
+  "62877": {
+    "maps": [
+      2599
+    ],
+    "references": [
+      "https://nether.wowhead.com/tooltip/achievement/62877?dataEnv=1&locale=0",
+      "Data/Catalog/MapNames.lua"
+    ]
+  },
+  "63451": {
+    "waypoints": [
+      [
+        2393,
+        56.63,
+        65.61,
+        "Astalor Bloodsworn - choose a Nightmare Prey hunt"
+      ]
+    ],
+    "references": [
+      "https://www.method.gg/guides/prey-in-wow-midnight-season-2",
+      "https://www.wowhead.com/quest=96004/prey-a-slithering-threat"
+    ]
+  },
+  "63452": {
+    "waypoints": [
+      [
+        2393,
+        56.63,
+        65.61,
+        "Astalor Bloodsworn - choose a Nightmare Prey hunt"
+      ]
+    ],
+    "references": [
+      "https://www.method.gg/guides/prey-in-wow-midnight-season-2",
+      "https://www.wowhead.com/quest=96004/prey-a-slithering-threat"
+    ]
+  },
+  "63642": {
+    "waypoints": [
+      [
+        2393,
+        56.63,
+        65.61,
+        "Astalor Bloodsworn - choose a Hard or Nightmare Prey hunt"
+      ]
+    ],
+    "references": [
+      "https://www.method.gg/guides/prey-in-wow-midnight-season-2"
+    ]
+  },
+  "63643": {
+    "waypoints": [
+      [
+        2393,
+        56.63,
+        65.61,
+        "Astalor Bloodsworn - choose a Hard or Nightmare Prey hunt"
+      ]
+    ],
+    "references": [
+      "https://www.method.gg/guides/prey-in-wow-midnight-season-2"
+    ]
+  },
+  "63644": {
+    "waypoints": [
+      [
+        2393,
+        56.63,
+        65.61,
+        "Astalor Bloodsworn - choose a Hard or Nightmare Prey hunt"
+      ]
+    ],
+    "references": [
+      "https://www.method.gg/guides/prey-in-wow-midnight-season-2"
+    ]
+  },
+  "246": {
+    "noFixedDestination": true,
+    "reason": "Defeat the required player races in PvP. A race name does not establish a destination in the zone with that name.",
+    "references": [
+      "https://www.wowhead.com/achievement=246"
+    ]
+  },
+  "1005": {
+    "noFixedDestination": true,
+    "reason": "Defeat the required player races in PvP. A race name does not establish a destination in the zone with that name.",
+    "references": [
+      "https://www.wowhead.com/achievement=1005"
+    ]
+  },
+  "518": {
+    "noFixedDestination": true,
+    "reason": "Aggregate Exalted-reputation count. No individual faction or zone is required; use the individual reputation guides for destinations.",
+    "references": [
+      "https://www.wowhead.com/achievement=518"
+    ]
+  },
+  "519": {
+    "noFixedDestination": true,
+    "reason": "Aggregate Exalted-reputation count. No individual faction or zone is required; use the individual reputation guides for destinations.",
+    "references": [
+      "https://www.wowhead.com/achievement=519"
+    ]
+  },
+  "520": {
+    "noFixedDestination": true,
+    "reason": "Aggregate Exalted-reputation count. No individual faction or zone is required; use the individual reputation guides for destinations.",
+    "references": [
+      "https://www.wowhead.com/achievement=520"
+    ]
+  },
+  "521": {
+    "noFixedDestination": true,
+    "reason": "Aggregate Exalted-reputation count. No individual faction or zone is required; use the individual reputation guides for destinations.",
+    "references": [
+      "https://www.wowhead.com/achievement=521"
+    ]
+  },
+  "522": {
+    "noFixedDestination": true,
+    "reason": "Aggregate Exalted-reputation count. No individual faction or zone is required; use the individual reputation guides for destinations.",
+    "references": [
+      "https://www.wowhead.com/achievement=522"
+    ]
+  },
+  "523": {
+    "noFixedDestination": true,
+    "reason": "Aggregate Exalted-reputation count. No individual faction or zone is required; use the individual reputation guides for destinations.",
+    "references": [
+      "https://www.wowhead.com/achievement=523"
+    ]
+  },
+  "524": {
+    "noFixedDestination": true,
+    "reason": "Aggregate Exalted-reputation count. No individual faction or zone is required; use the individual reputation guides for destinations.",
+    "references": [
+      "https://www.wowhead.com/achievement=524"
+    ]
+  },
+  "1014": {
+    "noFixedDestination": true,
+    "reason": "Aggregate Exalted-reputation count. No individual faction or zone is required; use the individual reputation guides for destinations.",
+    "references": [
+      "https://www.wowhead.com/achievement=1014"
+    ]
+  },
+  "1015": {
+    "noFixedDestination": true,
+    "reason": "Aggregate Exalted-reputation count. No individual faction or zone is required; use the individual reputation guides for destinations.",
+    "references": [
+      "https://www.wowhead.com/achievement=1015"
+    ]
+  },
+  "1244": {
+    "disableNamedFallback": true,
+    "reason": "Use the actual required book objects. Place names inside book titles do not locate those books.",
+    "references": [
+      "https://www.wowhead.com/achievement=1244/well-read"
+    ]
+  },
+  "5444": {
+    "waypoints": [
+      [
+        15,
+        64.3,
+        38.0,
+        "Garyanne Fleezlebop - goat quest chain"
+      ],
+      [
+        15,
+        64.25,
+        37.46,
+        "Gina Gotgoods - Billy Goat Blaster DX"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=5444#comments"
+    ]
+  },
+  "4601": {
+    "waypoints": [
+      [
+        118,
+        53.5,
+        85.5,
+        "Icecrown Citadel entrance"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=4601#comments"
+    ]
+  },
+  "4621": {
+    "waypoints": [
+      [
+        118,
+        53.5,
+        85.5,
+        "Icecrown Citadel entrance"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=4621#comments"
+    ]
+  },
+  "1254": {
+    "waypoints": [
+      [
+        117,
+        69.0,
+        64.0,
+        "Fjord Turkeys - west of Explorer's League Outpost"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=1254#comments"
+    ]
+  },
+  "2953": {
+    "waypoints": [
+      [
+        120,
+        41.6,
+        18.2,
+        "Ulduar entrance"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=2953#comments"
+    ]
+  },
+  "2954": {
+    "waypoints": [
+      [
+        120,
+        41.6,
+        18.2,
+        "Ulduar entrance"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=2954#comments"
+    ]
+  },
+  "3014": {
+    "waypoints": [
+      [
+        120,
+        41.6,
+        18.2,
+        "Ulduar entrance"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=3014#comments"
+    ]
+  },
+  "3017": {
+    "waypoints": [
+      [
+        120,
+        41.6,
+        18.2,
+        "Ulduar entrance"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=3017#comments"
+    ]
+  },
+  "10553": {
+    "waypoints": [
+      [
+        627,
+        66.2,
+        68.4,
+        "Assault on Violet Hold entrance"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=10553#comments"
+    ]
+  },
+  "125": {
+    "waypoints": [
+      [
+        125,
+        40.3,
+        66.1,
+        "Katherine Lee - Alliance Northrend Cooking and daily quests"
+      ],
+      [
+        125,
+        70.0,
+        38.9,
+        "Awilo Lon'gomba - Horde Northrend Cooking and daily quests"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=125#comments",
+      "https://www.wowhead.com/npc=29631/awilo-longomba"
+    ]
+  },
+  "130": {
+    "waypoints": [
+      [
+        125,
+        52.6,
+        65.6,
+        "Marcia Chase - Northrend Fishing and daily quests"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=130#comments",
+      "https://www.wowhead.com/npc=28742/marcia-chase"
+    ]
+  },
+  "1998": {
+    "waypoints": [
+      [
+        125,
+        40.3,
+        66.1,
+        "Katherine Lee - Alliance Northrend Cooking and daily quests"
+      ],
+      [
+        125,
+        70.0,
+        38.9,
+        "Awilo Lon'gomba - Horde Northrend Cooking and daily quests"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=1998#comments",
+      "https://www.wowhead.com/npc=29631/awilo-longomba"
+    ]
+  },
+  "1999": {
+    "waypoints": [
+      [
+        125,
+        40.3,
+        66.1,
+        "Katherine Lee - Alliance Northrend Cooking and daily quests"
+      ],
+      [
+        125,
+        70.0,
+        38.9,
+        "Awilo Lon'gomba - Horde Northrend Cooking and daily quests"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=1999#comments",
+      "https://www.wowhead.com/npc=29631/awilo-longomba"
+    ]
+  },
+  "2000": {
+    "waypoints": [
+      [
+        125,
+        40.3,
+        66.1,
+        "Katherine Lee - Alliance Northrend Cooking and daily quests"
+      ],
+      [
+        125,
+        70.0,
+        38.9,
+        "Awilo Lon'gomba - Horde Northrend Cooking and daily quests"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=2000#comments",
+      "https://www.wowhead.com/npc=29631/awilo-longomba"
+    ]
+  },
+  "2001": {
+    "waypoints": [
+      [
+        125,
+        40.3,
+        66.1,
+        "Katherine Lee - Alliance Northrend Cooking and daily quests"
+      ],
+      [
+        125,
+        70.0,
+        38.9,
+        "Awilo Lon'gomba - Horde Northrend Cooking and daily quests"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=2001#comments",
+      "https://www.wowhead.com/npc=29631/awilo-longomba"
+    ]
+  },
+  "2002": {
+    "waypoints": [
+      [
+        125,
+        40.3,
+        66.1,
+        "Katherine Lee - Alliance Northrend Cooking and daily quests"
+      ],
+      [
+        125,
+        70.0,
+        38.9,
+        "Awilo Lon'gomba - Horde Northrend Cooking and daily quests"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=2002#comments",
+      "https://www.wowhead.com/npc=29631/awilo-longomba"
+    ]
+  },
+  "877": {
+    "waypoints": [
+      [
+        111,
+        61.6,
+        15.8,
+        "The Rokk - Shattrath cooking daily quests"
+      ],
+      [
+        125,
+        40.3,
+        66.1,
+        "Katherine Lee - Alliance Northrend Cooking and daily quests"
+      ],
+      [
+        125,
+        70.0,
+        38.9,
+        "Awilo Lon'gomba - Horde Northrend Cooking and daily quests"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=877#comments",
+      "https://www.wowhead.com/item=33925/recipe-delicious-chocolate-cake"
+    ]
+  },
+  "1801": {
+    "waypoints": [
+      [
+        125,
+        52.6,
+        65.6,
+        "Marcia Chase - Northrend Fishing and daily quests"
+      ],
+      [
+        111,
+        61.6,
+        15.8,
+        "The Rokk - Shattrath cooking daily quests"
+      ],
+      [
+        125,
+        40.3,
+        66.1,
+        "Katherine Lee - Alliance Northrend Cooking and daily quests"
+      ],
+      [
+        125,
+        70.0,
+        38.9,
+        "Awilo Lon'gomba - Horde Northrend Cooking and daily quests"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=1801#comments",
+      "https://www.wowhead.com/item=34834/recipe-captain-rumseys-lager"
+    ]
+  },
+  "878": {
+    "maps": [
+      117
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=878#comments"
+    ]
+  },
+  "153": {
+    "maps": [
+      102
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=153#comments"
+    ]
+  },
+  "1243": {
+    "maps": [
+      102,
+      56,
+      71,
+      50,
+      210,
+      66,
+      69
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=1243#comments"
+    ]
+  },
+  "1781": {
+    "waypoints": [
+      [
+        117,
+        69.0,
+        64.0,
+        "Fjord Turkeys - west of Explorer's League Outpost"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=1781#comments",
+      "https://www.wowhead.com/achievement=1254/friend-or-fowl#comments"
+    ]
+  },
+  "137": {
+    "waypoints": [
+      [
+        125,
+        38.78,
+        41.56,
+        "Darin Goodstitch - Northrend Tailoring"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=137#comments",
+      "https://www.wowhead.com/spell=45546/heavy-frostweave-bandage"
+    ]
+  },
+  "603": {
+    "maps": [
+      84,
+      87,
+      89,
+      103
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=603"
+    ]
+  },
+  "604": {
+    "maps": [
+      85,
+      88,
+      90,
+      110
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=604"
+    ]
+  },
+  "1206": {
+    "maps": [
+      37,
+      1,
+      10,
+      78,
+      56,
+      117,
+      111,
+      125,
+      114
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=1206#comments",
+      "https://www.wowhead.com/achievement=1206/to-all-the-squirrels-ive-loved-before#comments"
+    ]
+  },
+  "121": {
+    "waypoints": [
+      [
+        84,
+        76.8,
+        53.6,
+        "Stephen Ryback - Alliance Classic Cooking"
+      ],
+      [
+        85,
+        32.2,
+        69.6,
+        "Zamja - Horde Classic Cooking"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=121#comments",
+      "https://www.wowhead.com/npc=5482",
+      "https://www.wowhead.com/npc=3399"
+    ]
+  },
+  "122": {
+    "waypoints": [
+      [
+        84,
+        76.8,
+        53.6,
+        "Stephen Ryback - Alliance Classic Cooking"
+      ],
+      [
+        85,
+        32.2,
+        69.6,
+        "Zamja - Horde Classic Cooking"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=122#comments",
+      "https://www.wowhead.com/npc=5482",
+      "https://www.wowhead.com/npc=3399"
+    ]
+  },
+  "123": {
+    "waypoints": [
+      [
+        84,
+        76.8,
+        53.6,
+        "Stephen Ryback - Alliance Classic Cooking"
+      ],
+      [
+        85,
+        32.2,
+        69.6,
+        "Zamja - Horde Classic Cooking"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=123#comments",
+      "https://www.wowhead.com/npc=5482",
+      "https://www.wowhead.com/npc=3399"
+    ]
+  },
+  "126": {
+    "waypoints": [
+      [
+        84,
+        55.0,
+        69.6,
+        "Arnold Leland - Alliance Classic Fishing"
+      ],
+      [
+        85,
+        66.6,
+        41.6,
+        "Lumak - Horde Classic Fishing"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=126#comments",
+      "https://www.wowhead.com/npc=5493",
+      "https://www.wowhead.com/npc=3332"
+    ]
+  },
+  "127": {
+    "waypoints": [
+      [
+        84,
+        55.0,
+        69.6,
+        "Arnold Leland - Alliance Classic Fishing"
+      ],
+      [
+        85,
+        66.6,
+        41.6,
+        "Lumak - Horde Classic Fishing"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=127#comments",
+      "https://www.wowhead.com/npc=5493",
+      "https://www.wowhead.com/npc=3332"
+    ]
+  },
+  "128": {
+    "waypoints": [
+      [
+        84,
+        55.0,
+        69.6,
+        "Arnold Leland - Alliance Classic Fishing"
+      ],
+      [
+        85,
+        66.6,
+        41.6,
+        "Lumak - Horde Classic Fishing"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=128#comments",
+      "https://www.wowhead.com/npc=5493",
+      "https://www.wowhead.com/npc=3332"
+    ]
+  },
+  "124": {
+    "waypoints": [
+      [
+        100,
+        54.0,
+        63.6,
+        "Gaston - Alliance Outland Cooking"
+      ],
+      [
+        100,
+        56.8,
+        37.4,
+        "Baxter - Horde Outland Cooking"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=124#comments",
+      "https://www.wowhead.com/npc=18987",
+      "https://www.wowhead.com/npc=18988"
+    ]
+  },
+  "129": {
+    "waypoints": [
+      [
+        102,
+        78.5,
+        63.0,
+        "Juno Dufrain - Outland Fishing"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=129#comments",
+      "https://www.wowhead.com/npc=18993"
+    ]
+  },
+  "727": {
+    "waypoints": [
+      [
+        84,
+        76.2,
+        65.6,
+        "Lieutenant Karter - Alliance honor mounts"
+      ],
+      [
+        85,
+        41.8,
+        72.6,
+        "Raider Bork - Horde honor mounts"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=727#comments",
+      "https://www.wowhead.com/guide/the-ultimate-achievements-guide-player-vs-player-3590"
+    ]
+  },
+  "2097": {
+    "waypoints": [
+      [
+        120,
+        40.6,
+        84.8,
+        "Roxi Ramrocket - motorcycle crafting components"
+      ]
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=2097#comments"
+    ]
+  },
+  "2336": {
+    "maps": [
+      210,
+      71,
+      10,
+      25,
+      407
+    ],
+    "references": [
+      "https://www.wowhead.com/achievement=2336#comments",
+      "https://www.wowhead.com/guide/insane-in-the-membrane-3358",
+      "https://www.wowhead.com/guide/achievements/reputation/a-guide-for-the-insane"
+    ]
+  }
+}

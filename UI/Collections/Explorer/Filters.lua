@@ -54,11 +54,34 @@ function CollectionExplorerWindow:GetSelectedPatchKeys()
 end
 
 function CollectionExplorerWindow:GetEntriesForView(patchKey, collectionType)
+    local entries
     if self.nearbySnapshot then
-        local entries = self.nearbySnapshot.entries[patchKey]
-        return entries and entries[collectionType] or {}
+        local patchEntries = self.nearbySnapshot.entries[patchKey]
+        entries = patchEntries and patchEntries[collectionType] or {}
+    else
+        entries = PatchCatalog:GetEntries(patchKey, collectionType)
     end
-    return PatchCatalog:GetEntries(patchKey, collectionType)
+    local visible = {}
+    for _, entry in ipairs(entries) do
+        if not PatchCatalog:IsCollectionHiddenInUI(collectionType, patchKey, entry) then
+            visible[#visible + 1] = entry
+        end
+    end
+    entries = visible
+    if self.nearbySnapshot then return entries end
+    local linked = self.linkedAchievement
+    if linked and linked.patchKey == patchKey and collectionType == "achievements" then
+        if PatchCatalog:IsCollectionHiddenInUI(collectionType, patchKey, linked.id) then return entries end
+        for _, id in ipairs(entries) do
+            if tonumber(id) == linked.id then return entries end
+        end
+        -- A linked reward may precede its catalog entry; keep it local to this window.
+        local withLinked = {}
+        for _, id in ipairs(entries) do withLinked[#withLinked + 1] = id end
+        withLinked[#withLinked + 1] = linked.id
+        return withLinked
+    end
+    return entries
 end
 
 function CollectionExplorerWindow:SetSelectedExpansion(expansionKey)
@@ -82,8 +105,6 @@ function CollectionExplorerWindow:GetStatusLabel(value)
         return "Missing"
     elseif value == "collected" then
         return "Collected"
-    elseif value == "unobtainable" then
-        return "Unobtainable"
     end
     return "All"
 end

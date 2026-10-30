@@ -67,7 +67,7 @@ function TaskDetailWindow:BuildActions(frame, body)
         end
 
         if not Achievements:OpenAchievement(achievementId) then
-            Utils:Msg("Could not open that achievement in the achievement window.")
+            Utils:Msg("Could not open that achievement in the achievement window.", "warnings")
         end
     end)
     frame.openAchievementButton = openAchievementButton
@@ -92,7 +92,7 @@ function TaskDetailWindow:BuildActions(frame, body)
         end
 
         if #boardOptions == 0 then
-            Utils:Msg("No other boards are available.")
+            Utils:Msg("No other boards are available.", "warnings")
             return
         end
 
@@ -110,7 +110,7 @@ function TaskDetailWindow:BuildActions(frame, body)
 
                 local moved, errorText = Tasks:MoveToBoard(currentTask, targetBoardKey, sourceBoardKey)
                 if not moved then
-                    Utils:Msg(errorText or "Could not move that task.")
+                    Utils:Msg(errorText or "Could not move that task.", "warnings")
                     return
                 end
 

@@ -811,7 +811,7 @@ end
 function AchievementIntegration:CreateTask(achievementId)
     achievementId = tonumber(achievementId)
     if not self:IsValidAchievementId(achievementId) then
-        Utils:Msg("Achievement information is not available.")
+        Utils:Msg("Achievement information is not available.", "warnings")
         return nil, false
     end
 
@@ -822,13 +822,13 @@ function AchievementIntegration:CreateTask(achievementId)
         if self.addon.ui then
             self.addon.ui:Render()
         end
-        Utils:Msg("That achievement already has a task on " .. Boards:GetDisplayName(targetBoardKey) .. ".")
+        Utils:Msg("That achievement already has a task on " .. Boards:GetDisplayName(targetBoardKey) .. ".", "tasks")
         return existingTask, false
     end
 
     local info = self:GetInfoSafe(achievementId)
     if not info or Utils:Trim(info.name) == "" then
-        Utils:Msg("Achievement information is not available yet.")
+        Utils:Msg("Achievement information is not available yet.", "warnings")
         return nil, false
     end
 
@@ -848,7 +848,7 @@ function AchievementIntegration:CreateTask(achievementId)
     end
     self:RefreshButtons()
 
-    Utils:Msg("Added achievement task: " .. info.name)
+    Utils:Msg("Added achievement task: " .. info.name, "tasks")
     return task, true
 end
 

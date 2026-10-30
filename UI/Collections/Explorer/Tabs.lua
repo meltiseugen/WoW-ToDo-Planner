@@ -5,7 +5,6 @@ local TYPE_OPTIONS = CollectionExplorerWindow.Config.TYPE_OPTIONS
 
 function CollectionExplorerWindow:BuildTypeTabs(parent)
     local widths = {
-        all = 54,
         mounts = 82,
         pets = 64,
         toys = 64,
@@ -23,7 +22,7 @@ function CollectionExplorerWindow:BuildTypeTabs(parent)
 
     local tabGroup = CreateFrame("Frame", nil, parent)
     tabGroup:SetSize(totalWidth, 24)
-    tabGroup:SetPoint("TOP", parent, "TOP", 0, -12)
+    tabGroup:SetPoint("TOP", parent, "TOP", 0, -2)
 
     local previous
 
@@ -35,8 +34,10 @@ function CollectionExplorerWindow:BuildTypeTabs(parent)
             button:SetPoint("LEFT", tabGroup, "LEFT", 0, 0)
         end
         button:SetScript("OnClick", function()
+            Widgets:HideDropdownMenus()
+            self:CaptureListState()
             self.selectedCollectionType = value
-            self.selectedRow = nil
+            self:RestoreListState()
             self:Render()
         end)
         self.typeTabs[value] = button
@@ -52,16 +53,28 @@ function CollectionExplorerWindow:UpdateTypeTabs()
     end
 end
 
-function CollectionExplorerWindow:UpdateMountCategoryControl()
-    if not self.mountCategoryButton then
+function CollectionExplorerWindow:UpdateSourceControl()
+    if not self.sourceButton then
         return
     end
 
-    if self.selectedCollectionType == "mounts" then
-        self.mountCategoryButton:Show()
-        Widgets:UpdateButtonLabel(self.mountCategoryButton, "Sources", self:GetMountSourceSelectionSummary())
+    if self:HasSourceFilter() then
+        self.sourceButton:Show()
+        Widgets:UpdateButtonLabel(self.sourceButton, "Sources", self:GetSourceSelectionSummary())
     else
-        self.mountCategoryButton:Hide()
+        self.sourceButton:Hide()
+    end
+end
+
+function CollectionExplorerWindow:UpdateCosmeticTypeControl()
+    local isCosmetics = self.selectedCollectionType == "cosmetics"
+    for _, field in ipairs({ { "weapons", self.weaponTypeButton, self.weaponTypeLabel },
+        { "armour", self.armourTypeButton, self.armourTypeLabel } }) do
+        local selected = self:GetCosmeticGroupSelection(field[1])
+        field[2]:SetShown(isCosmetics)
+        field[3]:SetShown(isCosmetics)
+        field[2]:SetText(selected == "all" and "All types" or self:GetCosmeticGroupOptionLabel(field[1], selected))
+        field[2]:SetSelected(selected ~= "all")
     end
 end
 

@@ -1,4 +1,5 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <Script file="Metadata.lua"/>
     <Script file="PreviewModel.lua"/>
     <Script file="PreviewPanel.lua"/>
 </Ui>

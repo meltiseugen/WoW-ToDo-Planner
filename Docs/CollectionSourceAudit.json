@@ -1,0 +1,1415 @@
+{
+  "additionalMapEntries": 1528,
+  "areaOnlySources": [
+    {
+      "mapID": 114,
+      "method": "Rare Drops",
+      "name": "Worn Troll Dice",
+      "patch": "3.0",
+      "source": "Northrend humanoid pickpocketing",
+      "type": "toys"
+    },
+    {
+      "mapID": 114,
+      "method": "Rare Drops",
+      "name": "Decahedral Dwarven Dice",
+      "patch": "3.0",
+      "source": "Northrend humanoid pickpocketing",
+      "type": "toys"
+    },
+    {
+      "mapID": 114,
+      "method": "Rare Drops",
+      "name": "Super Simian Sphere",
+      "patch": "3.0",
+      "source": "Northrend world drops",
+      "type": "toys"
+    },
+    {
+      "mapID": 582,
+      "method": "Rare Drops",
+      "name": "Sea Turtle",
+      "patch": "3.1.0",
+      "source": "fishing pools in Northrend",
+      "type": "mounts"
+    },
+    {
+      "mapID": 198,
+      "method": "Rare Drops",
+      "name": "Loaded Gnomish Dice",
+      "patch": "4.0.0",
+      "source": "pickpocketing Cataclysm humanoids",
+      "type": "toys"
+    },
+    {
+      "mapID": 10,
+      "method": "Quest Rewards",
+      "name": "Porcupette",
+      "patch": "5.0",
+      "source": "Sacks of Pet Supplies from master-tamer daily quests",
+      "type": "pets"
+    },
+    {
+      "mapID": 10,
+      "method": "Pet Battles",
+      "name": "Harpy Youngling",
+      "patch": "5.1",
+      "source": "wild pet battles in Northern Barrens",
+      "type": "pets"
+    },
+    {
+      "mapID": 69,
+      "method": "Pet Battles",
+      "name": "Stunted Yeti",
+      "patch": "5.1",
+      "source": "wild pet battles in Feralas",
+      "type": "pets"
+    },
+    {
+      "mapID": 25,
+      "method": "Pet Battles",
+      "name": "Lofty Libram",
+      "patch": "5.1",
+      "source": "wild pet battles in Hillsbrad Foothills",
+      "type": "pets"
+    },
+    {
+      "mapID": 42,
+      "method": "Pet Battles",
+      "name": "Arcane Eye",
+      "patch": "5.1",
+      "source": "wild pet battles in Deadwind Pass",
+      "type": "pets"
+    },
+    {
+      "mapID": 75,
+      "method": "Pet Battles",
+      "name": "Infinite Whelpling",
+      "patch": "5.1",
+      "source": "wild pet battles near the Caverns of Time",
+      "type": "pets"
+    },
+    {
+      "mapID": 469,
+      "method": "Pet Battles",
+      "name": "Fluxfire Feline",
+      "patch": "5.1",
+      "source": "wild pet battles around Gnomeregan",
+      "type": "pets"
+    },
+    {
+      "mapID": 83,
+      "method": "Pet Battles",
+      "name": "Anodized Robo Cub",
+      "patch": "5.1",
+      "source": "wild pet battles in Winterspring",
+      "type": "pets"
+    },
+    {
+      "mapID": 105,
+      "method": "Pet Battles",
+      "name": "Cogblade Raptor",
+      "patch": "5.1",
+      "source": "wild pet battles in Blade's Edge Mountains",
+      "type": "pets"
+    },
+    {
+      "mapID": 379,
+      "method": "Pet Battles",
+      "name": "Kun-Lai Runt",
+      "patch": "5.1",
+      "source": "wild pet battles in Kun-Lai Summit",
+      "type": "pets"
+    },
+    {
+      "mapID": 390,
+      "method": "Pet Battles",
+      "name": "Sunfur Panda",
+      "patch": "5.2",
+      "source": "the Beasts of Fable quest",
+      "type": "pets"
+    },
+    {
+      "mapID": 390,
+      "method": "Pet Battles",
+      "name": "Snowy Panda",
+      "patch": "5.2",
+      "source": "the Beasts of Fable quest",
+      "type": "pets"
+    },
+    {
+      "mapID": 390,
+      "method": "Pet Battles",
+      "name": "Mountain Panda",
+      "patch": "5.2",
+      "source": "the Beasts of Fable quest",
+      "type": "pets"
+    },
+    {
+      "mapID": 17,
+      "method": "Rare Drops",
+      "name": "Bronze Whelpling",
+      "patch": "6.0.0",
+      "source": "Iron Horde enemies in the Blasted Lands",
+      "type": "pets"
+    },
+    {
+      "mapID": 582,
+      "method": "Vendor",
+      "name": "Personal Spotlight",
+      "patch": "6.2.0",
+      "source": "Garrison pet vendor for Pet Charms",
+      "type": "toys"
+    },
+    {
+      "mapID": 582,
+      "method": "Rare Drops",
+      "name": "Burning Blade",
+      "patch": "6.2.0",
+      "source": "Drop: Akrrilo, Rendarr, or Eyepiercer / Fang'rila",
+      "type": "toys"
+    },
+    {
+      "mapID": 790,
+      "method": "Quest Rewards",
+      "name": "Fathom Dweller",
+      "patch": "7.0.0",
+      "source": "Drop: Kosumoth the Hungering",
+      "type": "mounts"
+    },
+    {
+      "mapID": 790,
+      "method": "Quest Rewards",
+      "name": "Hungering Claw",
+      "patch": "7.0.0",
+      "source": "Drop: Kosumoth the Hungering",
+      "type": "pets"
+    },
+    {
+      "mapID": 24,
+      "method": "Rare Drops",
+      "name": "Firebat Pup",
+      "patch": "7.0.0",
+      "source": "Mission: Friends, Not Food",
+      "type": "pets"
+    },
+    {
+      "mapID": 24,
+      "method": "Rare Drops",
+      "name": "Corgnelius",
+      "patch": "7.0.0",
+      "source": "Mission: It's so FLUFFY!",
+      "type": "pets"
+    },
+    {
+      "mapID": 726,
+      "method": "Rare Drops",
+      "name": "Snowfang",
+      "patch": "7.0.0",
+      "source": "Pet Battle: Snowfang",
+      "type": "pets"
+    },
+    {
+      "mapID": 626,
+      "method": "Treasure",
+      "name": "Suspicious Crate",
+      "patch": "7.0.0",
+      "source": "Order Hall: Uncrowned Vault",
+      "type": "toys"
+    },
+    {
+      "mapID": 695,
+      "method": "Treasure",
+      "name": "Stormforged Vrykul Horn",
+      "patch": "7.0.0",
+      "source": "Order Hall: Skyhold Arena of Glory",
+      "type": "toys"
+    },
+    {
+      "mapID": 120,
+      "method": "Quest Rewards",
+      "name": "Stardust",
+      "patch": "7.1.0",
+      "source": "Quest: A Celestial Invitation / Zone: The Storm Peaks",
+      "type": "pets"
+    },
+    {
+      "mapID": 806,
+      "method": "Quest Rewards",
+      "name": "Ensemble: Vestment of the Chosen Dead",
+      "patch": "7.1.0",
+      "source": "Trial of Valor",
+      "type": "cosmetics"
+    },
+    {
+      "mapID": 806,
+      "method": "Quest Rewards",
+      "name": "Ensemble: Garb of the Chosen Dead",
+      "patch": "7.1.0",
+      "source": "Trial of Valor",
+      "type": "cosmetics"
+    },
+    {
+      "mapID": 806,
+      "method": "Quest Rewards",
+      "name": "Ensemble: Chains of the Chosen Dead",
+      "patch": "7.1.0",
+      "source": "Trial of Valor",
+      "type": "cosmetics"
+    },
+    {
+      "mapID": 806,
+      "method": "Quest Rewards",
+      "name": "Ensemble: Funerary Plate of the Chosen Dead",
+      "patch": "7.1.0",
+      "source": "Trial of Valor",
+      "type": "cosmetics"
+    },
+    {
+      "mapID": 627,
+      "method": "Quest Rewards",
+      "name": "Archmage's Prismatic Disc",
+      "patch": "7.2.0",
+      "source": "Quest: Dispersion of the Discs",
+      "type": "mounts"
+    },
+    {
+      "mapID": 627,
+      "method": "Quest Rewards",
+      "name": "High Priest's Lightsworn Seeker",
+      "patch": "7.2.0",
+      "source": "Quest: The Sunken Vault",
+      "type": "mounts"
+    },
+    {
+      "mapID": 627,
+      "method": "Quest Rewards",
+      "name": "Ban-Lu, Grandmaster's Companion",
+      "patch": "7.2.0",
+      "source": "Quest: The Trial of Ban-Lu",
+      "type": "mounts"
+    },
+    {
+      "mapID": 627,
+      "method": "Quest Rewards",
+      "name": "Huntmaster's Loyal Wolfhawk",
+      "patch": "7.2.0",
+      "source": "Quest: Night of the Wilds",
+      "type": "mounts"
+    },
+    {
+      "mapID": 627,
+      "method": "Quest Rewards",
+      "name": "Deathlord's Vilebrood Vanquisher",
+      "patch": "7.2.0",
+      "source": "Quest: The Lost Glacier /",
+      "type": "mounts"
+    },
+    {
+      "mapID": 627,
+      "method": "Quest Rewards",
+      "name": "Battlelord's Bloodthirsty War Wyrm",
+      "patch": "7.2.0",
+      "source": "Quest: The Trial of Rage",
+      "type": "mounts"
+    },
+    {
+      "mapID": 627,
+      "method": "Quest Rewards",
+      "name": "Slayer's Felbroken Shrieker",
+      "patch": "7.2.0",
+      "source": "Quest: To Fel and Back",
+      "type": "mounts"
+    },
+    {
+      "mapID": 627,
+      "method": "Quest Rewards",
+      "name": "Shadowblade's Murderous Omen",
+      "patch": "7.2.0",
+      "source": "Quest: Hiding In Plain Sight /",
+      "type": "mounts"
+    },
+    {
+      "mapID": 24,
+      "method": "Vendor",
+      "name": "Highlord's Vengeful Charger",
+      "patch": "7.2.0",
+      "source": "Vendor: Crusader Lord Dalfors / Zone: Sanctum of Light",
+      "type": "mounts"
+    },
+    {
+      "mapID": 24,
+      "method": "Vendor",
+      "name": "Highlord's Vigilant Charger",
+      "patch": "7.2.0",
+      "source": "Vendor: Crusader Lord Dalfors / Zone: Sanctum of Light",
+      "type": "mounts"
+    },
+    {
+      "mapID": 24,
+      "method": "Vendor",
+      "name": "Highlord's Valorous Charger",
+      "patch": "7.2.0",
+      "source": "Vendor: Crusader Lord Dalfors / Zone: Sanctum of Light",
+      "type": "mounts"
+    },
+    {
+      "mapID": 627,
+      "method": "Quest Rewards",
+      "name": "Farseer's Raging Tempest",
+      "patch": "7.2.0",
+      "source": "Quest: Gathering of the Storms /",
+      "type": "mounts"
+    },
+    {
+      "mapID": 627,
+      "method": "Quest Rewards",
+      "name": "Netherlord's Chaotic Wrathsteed",
+      "patch": "7.2.0",
+      "source": "Quest: The Wrathsteed of Xoroth /",
+      "type": "mounts"
+    },
+    {
+      "mapID": 627,
+      "method": "Quest Rewards",
+      "name": "Crackers",
+      "patch": "7.2.0",
+      "source": "Order Hall: Hall of Shadows",
+      "type": "pets"
+    },
+    {
+      "mapID": 734,
+      "method": "Vendor",
+      "name": "Magical Saucer",
+      "patch": "7.2.0",
+      "source": "Vendor: Uthel'nay / Zone: Hall of the Guardian / Cost: 10000 currency",
+      "type": "toys"
+    },
+    {
+      "mapID": 627,
+      "method": "Quest Rewards",
+      "name": "Akazamzarak's Spare Hat",
+      "patch": "7.2.0",
+      "source": "Quest: Down the Rabbit Hole - Mage Campaign / Zone: Hall of the Guardian",
+      "type": "toys"
+    },
+    {
+      "mapID": 646,
+      "method": "Treasure",
+      "name": "Pilfered Sweeper",
+      "patch": "7.2.0",
+      "source": "Drop: Curious Wyrmtongue Cache",
+      "type": "toys"
+    },
+    {
+      "mapID": 897,
+      "method": "Rare Drops",
+      "name": "Bronze Proto-Whelp",
+      "patch": "7.2.5",
+      "source": "Drop: Time-Lost Wallet / Scenario: The Deaths of Chromie",
+      "type": "pets"
+    },
+    {
+      "mapID": 897,
+      "method": "Rare Drops",
+      "name": "Ageless Bronze Drake",
+      "patch": "7.2.5",
+      "source": "Drop: Time-Lost Wallet / Scenario: The Deaths of Chromie",
+      "type": "pets"
+    },
+    {
+      "mapID": 905,
+      "method": "Rare Drops",
+      "name": "Darkspore Mana Ray",
+      "patch": "7.3.0",
+      "source": "Drop: Fel-Spotted Egg",
+      "type": "mounts"
+    },
+    {
+      "mapID": 905,
+      "method": "Rare Drops",
+      "name": "Felglow Mana Ray",
+      "patch": "7.3.0",
+      "source": "Drop: Fel-Spotted Egg",
+      "type": "mounts"
+    },
+    {
+      "mapID": 905,
+      "method": "Rare Drops",
+      "name": "Scintillating Mana Ray",
+      "patch": "7.3.0",
+      "source": "Drop: Fel-Spotted Egg",
+      "type": "mounts"
+    },
+    {
+      "mapID": 981,
+      "method": "Rare Drops",
+      "name": "Squawks",
+      "patch": "8.0.0",
+      "source": "Drop: Island Expeditions",
+      "type": "mounts"
+    },
+    {
+      "mapID": 942,
+      "method": "Rare Drops",
+      "name": "Goldenmane",
+      "patch": "8.0.0",
+      "source": "Zone: Stormsong",
+      "type": "mounts"
+    },
+    {
+      "mapID": 981,
+      "method": "Rare Drops",
+      "name": "Surf Jelly",
+      "patch": "8.0.0",
+      "source": "Drop: Island Expeditions",
+      "type": "mounts"
+    },
+    {
+      "mapID": 981,
+      "method": "Rare Drops",
+      "name": "Twilight Avenger",
+      "patch": "8.0.0",
+      "source": "Drop: Island Expeditions",
+      "type": "mounts"
+    },
+    {
+      "mapID": 981,
+      "method": "Rare Drops",
+      "name": "Craghorn Chasm-Leaper",
+      "patch": "8.0.0",
+      "source": "Drop: Island Expeditions",
+      "type": "mounts"
+    },
+    {
+      "mapID": 981,
+      "method": "Rare Drops",
+      "name": "Qinsho's Eternal Hound",
+      "patch": "8.0.0",
+      "source": "Drop: Island Expeditions",
+      "type": "mounts"
+    },
+    {
+      "mapID": 1015,
+      "method": "Quest Rewards",
+      "name": "Vengeful Chicken",
+      "patch": "8.0.0",
+      "source": "Quest: Cutting Edge Poultry Science",
+      "type": "pets"
+    },
+    {
+      "mapID": 981,
+      "method": "Rare Drops",
+      "name": "Stonehide Elderhorn",
+      "patch": "8.1.0",
+      "source": "Drop: Island Expeditions",
+      "type": "mounts"
+    },
+    {
+      "mapID": 981,
+      "method": "Rare Drops",
+      "name": "Bloodgorged Hunter",
+      "patch": "8.1.0",
+      "source": "Drop: Island Expeditions",
+      "type": "mounts"
+    },
+    {
+      "mapID": 981,
+      "method": "Rare Drops",
+      "name": "Island Thunderscale",
+      "patch": "8.1.0",
+      "source": "Drop: Island Expeditions",
+      "type": "mounts"
+    },
+    {
+      "mapID": 981,
+      "method": "Rare Drops",
+      "name": "Risen Mare",
+      "patch": "8.1.0",
+      "source": "Drop: Island Expeditions",
+      "type": "mounts"
+    },
+    {
+      "mapID": 1355,
+      "method": "Quest Rewards",
+      "name": "Lustrous Glimmershell",
+      "patch": "8.2",
+      "source": "Quest: Glittering Shell",
+      "type": "pets"
+    },
+    {
+      "mapID": 1355,
+      "method": "Quest Rewards",
+      "name": "Brilliant Glimmershell",
+      "patch": "8.2",
+      "source": "Quest: Beauty in the Deeps",
+      "type": "pets"
+    },
+    {
+      "mapID": 91,
+      "method": "Vendor",
+      "name": "Stormpike Insignia",
+      "patch": "8.2",
+      "source": "Patch 8.2: Rise of Azshara",
+      "type": "toys"
+    },
+    {
+      "mapID": 1355,
+      "method": "Quest Rewards",
+      "name": "Carved Ankoan Charm",
+      "patch": "8.2",
+      "source": "Quest: Last Heirloom",
+      "type": "toys"
+    },
+    {
+      "mapID": 1355,
+      "method": "Quest Rewards",
+      "name": "Book of the Unshackled",
+      "patch": "8.2",
+      "source": "Quest: Tome of Tears",
+      "type": "toys"
+    },
+    {
+      "mapID": 1527,
+      "method": "Rare Drops",
+      "name": "Void-Scarred Beetle",
+      "patch": "8.3.0",
+      "source": "Drop: Vision of the Twisting Sands Creatures",
+      "type": "pets"
+    },
+    {
+      "mapID": 862,
+      "method": "PvP",
+      "name": "N'lyeth, Sliver of N'Zoth",
+      "patch": "8.3.0",
+      "source": "Quest: Servant of N'Zoth / Quest: Servant of N'Zoth",
+      "type": "toys"
+    },
+    {
+      "mapID": 1701,
+      "method": "Reputation",
+      "name": "Ensemble: Garb of Pure Spirit",
+      "patch": "9.1",
+      "source": "Renown, covenant vendors, Death's Advance, and Korthia activities",
+      "type": "cosmetics"
+    },
+    {
+      "mapID": 1698,
+      "method": "Reputation",
+      "name": "Ensemble: Initiate's Necromantle Vestments",
+      "patch": "9.1",
+      "source": "Renown, covenant vendors, Death's Advance, and Korthia activities",
+      "type": "cosmetics"
+    },
+    {
+      "mapID": 1699,
+      "method": "Reputation",
+      "name": "Ensemble: Harvester's Court Attire",
+      "patch": "9.1",
+      "source": "Renown, covenant vendors, Death's Advance, and Korthia activities",
+      "type": "cosmetics"
+    },
+    {
+      "mapID": 1707,
+      "method": "Reputation",
+      "name": "Ensemble: Aspiring Aspirant's Regalia",
+      "patch": "9.1",
+      "source": "Renown, covenant vendors, Death's Advance, and Korthia activities",
+      "type": "cosmetics"
+    },
+    {
+      "mapID": 1707,
+      "method": "Quest Rewards",
+      "name": "Steward's First Feather",
+      "patch": "9.1.5",
+      "source": "Covenant callings, heirloom vendors, and Legion Timewalking",
+      "type": "toys"
+    },
+    {
+      "mapID": 1699,
+      "method": "Quest Rewards",
+      "name": "Tome of Small Sins",
+      "patch": "9.1.5",
+      "source": "Covenant callings, heirloom vendors, and Legion Timewalking",
+      "type": "toys"
+    },
+    {
+      "mapID": 1662,
+      "method": "Treasure",
+      "name": "Choofa's Call",
+      "patch": "9.1.5",
+      "source": "Covenant callings, heirloom vendors, and Legion Timewalking",
+      "type": "toys"
+    },
+    {
+      "mapID": 1701,
+      "method": "Quest Rewards",
+      "name": "Sparkle Wings",
+      "patch": "9.1.5",
+      "source": "Covenant callings, heirloom vendors, and Legion Timewalking",
+      "type": "toys"
+    },
+    {
+      "mapID": 1698,
+      "method": "Quest Rewards",
+      "name": "Apprentice Slimemancer's Boots",
+      "patch": "9.1.5",
+      "source": "Covenant callings, heirloom vendors, and Legion Timewalking",
+      "type": "toys"
+    },
+    {
+      "mapID": 1670,
+      "method": "Quest Rewards",
+      "name": "Firim's Specimen Container",
+      "patch": "9.2",
+      "source": "Firim / Zereth Mortis",
+      "type": "toys"
+    },
+    {
+      "mapID": 1627,
+      "method": "Vendor",
+      "name": "Gilded Mawsworn Greatsword",
+      "patch": "9.2",
+      "source": "Broker Ve'ken and Broker Ve'nott / Torghast Layers 13-16",
+      "type": "cosmetics"
+    },
+    {
+      "mapID": 2118,
+      "method": "Quest Rewards",
+      "name": "Renewed Proto-Drake",
+      "patch": "10.0",
+      "source": "Dragonflight leveling campaign",
+      "type": "mounts"
+    },
+    {
+      "mapID": 2022,
+      "method": "Pet Battles",
+      "name": "Pricklefury Hare",
+      "patch": "10.0",
+      "source": "Dragon Isles",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Pet Battles",
+      "name": "Magma Slug",
+      "patch": "10.0",
+      "source": "Dragon Isles",
+      "type": "pets"
+    },
+    {
+      "mapID": 2023,
+      "method": "Pet Battles",
+      "name": "Treeflitter",
+      "patch": "10.0",
+      "source": "Dragon Isles",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Pet Battles",
+      "name": "Swoglet",
+      "patch": "10.0",
+      "source": "Dragon Isles",
+      "type": "pets"
+    },
+    {
+      "mapID": 2024,
+      "method": "Pet Battles",
+      "name": "Snowlemental",
+      "patch": "10.0",
+      "source": "Dragon Isles",
+      "type": "pets"
+    },
+    {
+      "mapID": 2023,
+      "method": "Pet Battles",
+      "name": "Trunkalumpf",
+      "patch": "10.0",
+      "source": "Dragon Isles",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Rare Drops",
+      "name": "Echo of the Inferno",
+      "patch": "10.0",
+      "source": "Dragon Isles Primal Storms",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Pet Battles",
+      "name": "Palamanther",
+      "patch": "10.0",
+      "source": "Pet Battle: Ohn'ahran Plains, Thaldraszus, The Azure Span, The Waking Shores",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Rare Drops",
+      "name": "Echo of the Depths",
+      "patch": "10.0",
+      "source": "Dragon Isles Primal Storms",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Pet Battles",
+      "name": "Ironbeak Duck",
+      "patch": "10.0",
+      "source": "Pet Battle: Ohn'ahran Plains, The Waking Shores",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Pet Battles",
+      "name": "Wild Duckling",
+      "patch": "10.0",
+      "source": "Pet Battle: Ohn'ahran Plains, Thaldraszus, The Waking Shores",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Rare Drops",
+      "name": "Echo of the Heights",
+      "patch": "10.0",
+      "source": "Dragon Isles Primal Storms",
+      "type": "pets"
+    },
+    {
+      "mapID": 2023,
+      "method": "Pet Battles",
+      "name": "Storm-Touched Timbertooth",
+      "patch": "10.0",
+      "source": "Pet Battle: Ohn'ahran Plains",
+      "type": "pets"
+    },
+    {
+      "mapID": 2023,
+      "method": "Pet Battles",
+      "name": "Stoneshell",
+      "patch": "10.0",
+      "source": "Pet Battle: Ohn'ahran Plains, Thaldraszus",
+      "type": "pets"
+    },
+    {
+      "mapID": 2024,
+      "method": "Pet Battles",
+      "name": "Storm-Touched Ottuk",
+      "patch": "10.0",
+      "source": "Pet Battle: The Azure Span",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Rare Drops",
+      "name": "Echo of the Cave",
+      "patch": "10.0",
+      "source": "Dragon Isles Primal Storms",
+      "type": "pets"
+    },
+    {
+      "mapID": 2024,
+      "method": "Pet Battles",
+      "name": "Azure Crystalspine",
+      "patch": "10.0",
+      "source": "Pet Battle: The Azure Span",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Pet Battles",
+      "name": "Kindlet",
+      "patch": "10.0",
+      "source": "Pet Battle: Thaldraszus, The Azure Span, The Waking Shores",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Pet Battles",
+      "name": "Emberling",
+      "patch": "10.0",
+      "source": "Pet Battle: The Waking Shores",
+      "type": "pets"
+    },
+    {
+      "mapID": 2025,
+      "method": "Pet Battles",
+      "name": "Storm-Touched Bluefeather",
+      "patch": "10.0",
+      "source": "Pet Battle: Thaldraszus",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Pet Battles",
+      "name": "Storm-Touched Stomper",
+      "patch": "10.0",
+      "source": "Pet Battle: The Waking Shores",
+      "type": "pets"
+    },
+    {
+      "mapID": 2023,
+      "method": "Rare Drops",
+      "name": "Blaise",
+      "patch": "10.1",
+      "source": "Drop: Fyrakk Assault",
+      "type": "pets"
+    },
+    {
+      "mapID": 2023,
+      "method": "Rare Drops",
+      "name": "Ambre",
+      "patch": "10.1",
+      "source": "Drop: Fyrakk Assault",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Quest Rewards",
+      "name": "Annuna",
+      "patch": "10.1",
+      "source": "Quest: A Scaly Pet / Zone: Valdrakken",
+      "type": "pets"
+    },
+    {
+      "mapID": 2133,
+      "method": "Rare Drops",
+      "name": "Devourer Lobstrok",
+      "patch": "10.1",
+      "source": "Drop: Researchers Under Fire / Zone: Zaralek Cavern",
+      "type": "pets"
+    },
+    {
+      "mapID": 2151,
+      "method": "Quest Rewards",
+      "name": "Nelthara",
+      "patch": "10.1",
+      "source": "Quest: Augmenting a Dragon",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Quest Rewards",
+      "name": "Titan Containment Device",
+      "patch": "10.1",
+      "source": "Quest: A Sliver of Silver / Zone: Tirisfal Glades",
+      "type": "toys"
+    },
+    {
+      "mapID": 1163,
+      "method": "Quest Rewards",
+      "name": "Scarlet Pterrordax",
+      "patch": "10.1.5",
+      "source": "Patch 10.1.5: Fractures in Time",
+      "type": "mounts"
+    },
+    {
+      "mapID": 1161,
+      "method": "Quest Rewards",
+      "name": "Harbor Gryphon",
+      "patch": "10.1.5",
+      "source": "Patch 10.1.5: Fractures in Time",
+      "type": "mounts"
+    },
+    {
+      "mapID": 2022,
+      "method": "Quest Rewards",
+      "name": "Iggy",
+      "patch": "10.1.5",
+      "source": "Quest: A Solid Pet / Zone: Valdrakken",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Quest Rewards",
+      "name": "Rusziona",
+      "patch": "10.1.5",
+      "source": "Quest: Anatidaephobia / Zone: Valdrakken",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Quest Rewards",
+      "name": "Belastrasza",
+      "patch": "10.1.5",
+      "source": "Quest: Patience, Please / Zone: Valdrakken",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Quest Rewards",
+      "name": "Princess Vorquistrasza",
+      "patch": "10.1.5",
+      "source": "Quest: A Cavalier Pet / Zone: Valdrakken",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Quest Rewards",
+      "name": "Zhusadormu",
+      "patch": "10.1.5",
+      "source": "Quest: Temporal Immunity / Zone: Valdrakken",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Quest Rewards",
+      "name": "Zalethgos",
+      "patch": "10.1.5",
+      "source": "Quest: Sight Isn't Everything / Zone: Valdrakken",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Quest Rewards",
+      "name": "Pallibrius",
+      "patch": "10.1.5",
+      "source": "Quest: A Scholar's Pet / Zone: Valdrakken",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Quest Rewards",
+      "name": "Posidriss",
+      "patch": "10.1.5",
+      "source": "Quest: Hibernation / Zone: Valdrakken",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Quest Rewards",
+      "name": "Somnius",
+      "patch": "10.1.5",
+      "source": "Quest: A Sleepy Pet / Zone: Valdrakken",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Rare Drops",
+      "name": "Renewed Magmammoth",
+      "patch": "10.1.7",
+      "source": "Patch 10.1.7: Fury Incarnate",
+      "type": "mounts"
+    },
+    {
+      "mapID": 2200,
+      "method": "Quest Rewards",
+      "name": "Flourishing Whimsydrake",
+      "patch": "10.2",
+      "source": "Patch 10.2: Guardians of the Dream",
+      "type": "mounts"
+    },
+    {
+      "mapID": 2200,
+      "method": "Quest Rewards",
+      "name": "Rithro",
+      "patch": "10.2",
+      "source": "Quest: Mean Green Infusion Machine / Zone: Emerald Dream",
+      "type": "pets"
+    },
+    {
+      "mapID": 2022,
+      "method": "Quest Rewards",
+      "name": "Recorded Memories of Tyr's Guard",
+      "patch": "10.2",
+      "source": "Quest: Disc Delivery / Zone: Thaldraszus",
+      "type": "toys"
+    },
+    {
+      "mapID": 2255,
+      "method": "Quest Rewards",
+      "name": "Siesbarg",
+      "patch": "11.0",
+      "source": "Patch 11.0: The War Within",
+      "type": "mounts"
+    },
+    {
+      "mapID": 2248,
+      "method": "Pet Battles",
+      "name": "Diamond Crab",
+      "patch": "11.0",
+      "source": "Pet Battle: Isle of Dorn",
+      "type": "pets"
+    },
+    {
+      "mapID": 2215,
+      "method": "Pet Battles",
+      "name": "Abyssal Lurker",
+      "patch": "11.0",
+      "source": "Pet Battle: Hallowfall",
+      "type": "pets"
+    },
+    {
+      "mapID": 2214,
+      "method": "Pet Battles",
+      "name": "Jade Cragviper",
+      "patch": "11.0",
+      "source": "Pet Battle: The Ringing Deeps",
+      "type": "pets"
+    },
+    {
+      "mapID": 2255,
+      "method": "Pet Battles",
+      "name": "Undermoth",
+      "patch": "11.0",
+      "source": "Pet Battle: Azj-Kahet",
+      "type": "pets"
+    },
+    {
+      "mapID": 32,
+      "method": "Historical Reward",
+      "name": "Remembered Riverpaw",
+      "patch": "11.0",
+      "source": "Vendor: Remembrancer Amuul / Zone: Dalaran / Cost: 10000 / Vendor: Memory of a Duke / Zone: Searing Gorge / Cost: 10000",
+      "type": "pets"
+    },
+    {
+      "mapID": 115,
+      "method": "Historical Reward",
+      "name": "Remembered Construct",
+      "patch": "11.0",
+      "source": "Vendor: Remembrancer Amuul / Zone: Dalaran / Cost: 10000 / Vendor: Echo of the Silver Hand / Zone: Dragonblight / Cost: 10000",
+      "type": "pets"
+    },
+    {
+      "mapID": 70,
+      "method": "Historical Reward",
+      "name": "Remembered Spawn",
+      "patch": "11.0",
+      "source": "Vendor: Remembrancer Amuul Zone: Dalaran Cost: 10000 Vendor: Forgotten Hero Zone: Dustwallow Marsh Cost: 10000",
+      "type": "pets"
+    },
+    {
+      "mapID": 2215,
+      "method": "Rare Drops",
+      "name": "Shadowbog Hopper",
+      "patch": "11.0",
+      "source": "Treasure: Shadowrooted Vine / Zone: Hallowfall",
+      "type": "pets"
+    },
+    {
+      "mapID": 2249,
+      "method": "Delves",
+      "name": "Bouncer",
+      "patch": "11.0",
+      "source": "Drop: Nerubian Delve's Heavy Trunk",
+      "type": "pets"
+    },
+    {
+      "mapID": 2249,
+      "method": "Delves",
+      "name": "Wriggle",
+      "patch": "11.0",
+      "source": "Drop: Kobyss Delve's Heavy Trunk",
+      "type": "pets"
+    },
+    {
+      "mapID": 2249,
+      "method": "Delves",
+      "name": "Violet Sporbit",
+      "patch": "11.0",
+      "source": "Drop: Fungarian Delve's Heavy Trunk",
+      "type": "pets"
+    },
+    {
+      "mapID": 2215,
+      "method": "Quest Rewards",
+      "name": "Fathom Incher",
+      "patch": "11.0",
+      "source": "Quest: Return to the Sea / Zone: Hallowfall",
+      "type": "pets"
+    },
+    {
+      "mapID": 2249,
+      "method": "Delves",
+      "name": "Chester",
+      "patch": "11.0",
+      "source": "Drop: Delve's Bountiful Coffer and Hidden Trove",
+      "type": "pets"
+    },
+    {
+      "mapID": 2249,
+      "method": "Delves",
+      "name": "Sneef",
+      "patch": "11.0",
+      "source": "Drop: Kobold Delve's Heavy Trunk",
+      "type": "pets"
+    },
+    {
+      "mapID": 2248,
+      "method": "Treasure",
+      "name": "Hanna's Locket",
+      "patch": "11.0",
+      "source": "Treasure: Tree's Treasure / Zone: Khaz Algar",
+      "type": "toys"
+    },
+    {
+      "mapID": 2348,
+      "method": "Rare Drops",
+      "name": "Toxic Victory",
+      "patch": "11.0",
+      "source": "Quest: Zekvir, Hand of the Harbinger Zone: Dornogal",
+      "type": "toys"
+    },
+    {
+      "mapID": 2425,
+      "method": "Rare Drops",
+      "name": "Explosive Victory",
+      "patch": "11.0",
+      "source": "World Quest: Defeating the Underpin / Zone: The Ringing Deeps",
+      "type": "toys"
+    },
+    {
+      "mapID": 2339,
+      "method": "Historical Reward",
+      "name": "Throwaway Gangster Disguise",
+      "patch": "11.0",
+      "source": "Vendor: Sir Finley Mrrgglton / Zone: Dornogal / Cost: 2500",
+      "type": "toys"
+    },
+    {
+      "mapID": 2484,
+      "method": "Rare Drops",
+      "name": "Etheric Victory",
+      "patch": "11.0",
+      "source": "Quest: Defeating Ky'veza / Zone: Dornogal",
+      "type": "toys"
+    },
+    {
+      "mapID": 84,
+      "method": "Vendor",
+      "name": "Broodling of Sinestra",
+      "patch": "11.0.7",
+      "source": "Patch 11.0.7: Siren Isle",
+      "type": "mounts"
+    },
+    {
+      "mapID": 2369,
+      "method": "Pet Battles",
+      "name": "Tidal Kroling",
+      "patch": "11.0.7",
+      "source": "Pet Battle: Siren Isle",
+      "type": "pets"
+    },
+    {
+      "mapID": 2369,
+      "method": "Pet Battles",
+      "name": "Rusty Kroling",
+      "patch": "11.0.7",
+      "source": "Pet Battle: Siren Isle",
+      "type": "pets"
+    },
+    {
+      "mapID": 2369,
+      "method": "Pet Battles",
+      "name": "Cave Kroling",
+      "patch": "11.0.7",
+      "source": "Pet Battle: Siren Isle",
+      "type": "pets"
+    },
+    {
+      "mapID": 2369,
+      "method": "Pet Battles",
+      "name": "Pillaged Parrot",
+      "patch": "11.0.7",
+      "source": "Pet Battle: Siren Isle",
+      "type": "pets"
+    },
+    {
+      "mapID": 2369,
+      "method": "Pet Battles",
+      "name": "Snapdragon Pup",
+      "patch": "11.0.7",
+      "source": "Pet Battle: Siren Isle",
+      "type": "pets"
+    },
+    {
+      "mapID": 2369,
+      "method": "Pet Battles",
+      "name": "Cliffreach Cub",
+      "patch": "11.0.7",
+      "source": "Pet Battle: Siren Isle",
+      "type": "pets"
+    },
+    {
+      "mapID": 2369,
+      "method": "Pet Battles",
+      "name": "Battleboar Piglet",
+      "patch": "11.0.7",
+      "source": "Pet Battle: Siren Isle",
+      "type": "pets"
+    },
+    {
+      "mapID": 2369,
+      "method": "Rare Drops",
+      "name": "Crackleroar",
+      "patch": "11.0.7",
+      "source": "Zone: Siren Isle / Drop: Stormtouched Pridetalon",
+      "type": "pets"
+    },
+    {
+      "mapID": 2369,
+      "method": "Pet Battles",
+      "name": "Storm-Infused Snapdragon",
+      "patch": "11.0.7",
+      "source": "Pet Battle: Siren Isle: Seafury Tempest",
+      "type": "pets"
+    },
+    {
+      "mapID": 2369,
+      "method": "Pet Battles",
+      "name": "Scavenging Snapdragon",
+      "patch": "11.0.7",
+      "source": "Pet Battle: Siren Isle, Seafury Tempest",
+      "type": "pets"
+    },
+    {
+      "mapID": 2346,
+      "method": "Rare Drops",
+      "name": "Salvaged Goblin Gazillionaire's Flying Machine",
+      "patch": "11.1",
+      "source": "Patch 11.1: Undermined",
+      "type": "mounts"
+    },
+    {
+      "mapID": 2346,
+      "method": "Rare Drops",
+      "name": "Mutt",
+      "patch": "11.1",
+      "source": "Drop: Shipping and Handling / Zone: Undermine",
+      "type": "pets"
+    },
+    {
+      "mapID": 2346,
+      "method": "Quest Rewards",
+      "name": "Mega-Mecha Gorilla",
+      "patch": "11.1",
+      "source": "Quest: Mega-Mecha Gorilla / Zone: Undermine",
+      "type": "pets"
+    },
+    {
+      "mapID": 2346,
+      "method": "Rare Drops",
+      "name": "Personal-Use Sapper",
+      "patch": "11.1",
+      "source": "Drop: Shipping and Handling / Zone: Undermine",
+      "type": "pets"
+    },
+    {
+      "mapID": 2249,
+      "method": "Delves",
+      "name": "Mr. DELVER",
+      "patch": "11.1",
+      "source": "Drop: Goblin Delve's Heavy Trunk",
+      "type": "pets"
+    },
+    {
+      "mapID": 2346,
+      "method": "Pet Battles",
+      "name": "Spring-Loaded Ribbitron",
+      "patch": "11.1",
+      "source": "Pet Battle: Undermine",
+      "type": "pets"
+    },
+    {
+      "mapID": 2346,
+      "method": "Unverified",
+      "name": "Gleam",
+      "patch": "11.1",
+      "source": "Drop: Gallagio Garbage / Zone: Undermine",
+      "type": "pets"
+    },
+    {
+      "mapID": 2404,
+      "method": "Rare Drops",
+      "name": "Void-Scarred Gryphon",
+      "patch": "11.1.5",
+      "source": "Patch 11.1.5",
+      "type": "mounts"
+    },
+    {
+      "mapID": 2460,
+      "method": "Quest Rewards",
+      "name": "Royal Voidwing",
+      "patch": "11.2",
+      "source": "Patch 11.2: Ghosts of K'aresh",
+      "type": "mounts"
+    },
+    {
+      "mapID": 2249,
+      "method": "Delves",
+      "name": "Sao'rhon",
+      "patch": "11.2",
+      "source": "Drop: Ethereal Delve's Heavy Trunk",
+      "type": "pets"
+    },
+    {
+      "mapID": 627,
+      "method": "Quest Rewards",
+      "name": "Flight Master's Whistle",
+      "patch": "11.2.5",
+      "source": "Quest: Uniting the Isles / Zone: Dalaran / Quest: Uniting Kul Tiras / Zone: Tiragarde Sound / Quest: Uniting Zandalar / Zone: Zuldazar",
+      "type": "toys"
+    }
+  ],
+  "mapEntriesAfter": {
+    "cosmetics": 2652,
+    "mounts": 942,
+    "pets": 1422,
+    "toys": 669
+  },
+  "mapEntriesBefore": {
+    "cosmetics": 2118,
+    "mounts": 674,
+    "pets": 932,
+    "toys": 433
+  },
+  "mapEntriesWithCoordinates": {
+    "cosmetics": 2643,
+    "mounts": 904,
+    "pets": 1329,
+    "toys": 640
+  },
+  "previousUnknownLabels": 481,
+  "remainingLocationResearch": [],
+  "reviewedAt": "2026-10-28",
+  "scope": "All catalog entries; includes historical entries. No live quest or faction APIs.",
+  "sourceAreaMaps": {
+    "cosmetics": 9,
+    "mounts": 38,
+    "pets": 93,
+    "toys": 29
+  },
+  "structuredSources": {
+    "cosmetics": 2578,
+    "mounts": 959,
+    "pets": 1474,
+    "toys": 726
+  },
+  "totals": {
+    "cosmetics": 2845,
+    "mounts": 1204,
+    "pets": 1551,
+    "toys": 750
+  },
+  "unconfirmedSources": [
+    {
+      "instructions": "The old journal labels this as a Gallagio Garbage drop during S.C.R.A.P. jobs in Undermine, but the species is hidden and a working acquisition source remains unverified. This map shows the associated area, not a confirmed farmable pet spawn.",
+      "name": "Gleam",
+      "patch": "11.1",
+      "source": "Unconfirmed Gallagio Garbage reward",
+      "type": "pets"
+    },
+    {
+      "instructions": "The journal associates this species with Re-Hydra-ted, but that association has not been verified as an obtainable reward. No confirmed source NPC or map destination is available for this species.",
+      "name": "Aud'rei III",
+      "patch": "12.0",
+      "source": "Acquisition source remains unconfirmed",
+      "type": "pets"
+    }
+  ],
+  "unknownRowsWithNamedCatalogSources": 15,
+  "unknownRowsWithStructuredSources": 466
+}

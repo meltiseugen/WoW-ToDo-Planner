@@ -65,13 +65,13 @@ function HomeWindow:OpenExplorer()
         if not ok then
             self:Open()
             if TDP.Utils then
-                TDP.Utils:Msg("Could not open Collections: " .. tostring(errorText))
+                TDP.Utils:Msg("Could not open Collections: " .. tostring(errorText), "warnings")
             end
         end
     else
         self:Open()
         if TDP.Utils then
-            TDP.Utils:Msg("Collections window is unavailable.")
+            TDP.Utils:Msg("Collections window is unavailable.", "warnings")
         end
     end
 end

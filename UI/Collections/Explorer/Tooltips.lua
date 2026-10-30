@@ -91,8 +91,8 @@ function CollectionExplorerWindow:HideRowTooltip()
     end
 end
 
-function CollectionExplorerWindow:ShowRowTooltip(owner)
-    local row = owner and owner.rowData
+function CollectionExplorerWindow:ShowRowTooltip(owner, row)
+    row = row or (owner and owner.rowData)
     if not row or not GameTooltip then
         return
     end

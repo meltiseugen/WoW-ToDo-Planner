@@ -4,6 +4,9 @@ local PatchCatalog = TDP.PatchCatalog
 
 function CollectionExplorerWindow:GetRowNotes(row)
     local lines = {}
+    if PatchCatalog and PatchCatalog.GetCollectionSourceNotes then
+        for _, line in ipairs(PatchCatalog:GetCollectionSourceNotes(row.collectionType, row.patchKey, row.entry, true)) do lines[#lines + 1] = line end
+    end
     local acquisitionLabel = row.unobtainable and "Original acquisition: " or "How to get: "
     if row.unobtainable and row.availability then
         lines[#lines + 1] = "Unobtainable: " .. row.availability.reason
@@ -56,10 +59,8 @@ function CollectionExplorerWindow:GetRowNotes(row)
         local acquisition = PatchCatalog and PatchCatalog:GetCosmeticAcquisitionText(row.patchKey, row.entry)
         local subtype = type(row.entry) == "table" and row.entry.subtype or "appearance"
         local requirements = type(row.entry) == "table" and row.entry.requirements or nil
-        local cost = type(row.entry) == "table" and row.entry.cost or nil
         local itemNotes = type(row.entry) == "table" and row.entry.notes or nil
         requirements = requirements or details.requirements
-        cost = cost or details.cost
         itemNotes = itemNotes or details.notes
         lines[#lines + 1] = "Cosmetic Type: " .. tostring(subtype):gsub("^%l", string.upper)
         if row.state and (row.state.totalCount or 0) > 0 then
@@ -76,15 +77,6 @@ function CollectionExplorerWindow:GetRowNotes(row)
         end
         if requirements then
             lines[#lines + 1] = "Requirements: " .. requirements
-        end
-        if cost then
-            lines[#lines + 1] = "Cost: " .. cost
-        end
-        if type(details.costs) == "table" and #details.costs > 0 then
-            lines[#lines + 1] = "Cost guide:"
-            for _, costLine in ipairs(details.costs) do
-                lines[#lines + 1] = "- " .. tostring(costLine)
-            end
         end
         if details.availability then
             lines[#lines + 1] = "Availability: " .. details.availability
@@ -136,6 +128,14 @@ function CollectionExplorerWindow:GetRowNotes(row)
                 lines[#lines + 1] = ""
             end
             lines[#lines + 1] = acquisitionLabel .. acquisition
+        end
+    end
+
+    if PatchCatalog then
+        local costs = PatchCatalog:GetCollectionCostLines(row.collectionType, row.patchKey, row.entry)
+        if #costs > 0 then
+            if #lines > 0 then lines[#lines + 1] = "" end
+            for _, line in ipairs(costs) do lines[#lines + 1] = line end
         end
     end
 

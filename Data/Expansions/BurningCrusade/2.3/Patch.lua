@@ -5,7 +5,7 @@ TDP.CatalogRegistry:RegisterPatch("2.3", {
     sourceNotes = {
         "Patch 2.3 opens Zul'Aman and adds its timed Amani War Bear and Mojo rewards, the Cenarion War Hippogryph, Tiny Sporebat, engineering flying machines, and the Arena Season 2 mount.",
         "Merciless Nether Drake uses the durable current mount spell 44744; an additional historical DB2 record with the same display name is not a separate player collection mount.",
-        "The Paper Flying Machine Kit and other trading-card, promotion, recurring holiday, unused, NPC-only, and ordinary equipment records are excluded. Achievements did not exist during patch 2.3; later retroactive Burning Crusade feats remain in the 3.0 achievement-system bucket.",
+        "The Paper Flying Machine Kit and other trading-card, promotion, recurring holiday, unused, NPC-only, and ordinary equipment records are excluded. Obtainable retroactive achievements for this patch's cooking dailies and regular Vengeful Gladiator appearances are included; the retired original Zul'Aman and seasonal title achievements are not added to this guide view.",
     },
     sourceUrls = {
         flyingMachine = "https://warcraft.wiki.gg/wiki/Flying_Machine",

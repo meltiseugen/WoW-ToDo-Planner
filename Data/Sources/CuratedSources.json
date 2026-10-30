@@ -1,0 +1,3705 @@
+{
+  "collections": {
+    "pets": {
+      "286": [
+        {
+          "kind": "Rare Drops",
+          "containerItemID": 61387,
+          "unlockQuestID": 27555,
+          "maps": [
+            23
+          ],
+          "coords": [],
+          "sourceName": "Hidden Stash from creatures in Eastern Plaguelands",
+          "instructions": "Unlock Fiona's Caravan buffs, choose Fiona's Lucky Charm, then loot creatures in Eastern Plaguelands for Hidden Stash. The pet is a chance reward from the stash. Reapply the buff after leaving the zone.",
+          "references": [
+            "https://www.wowhead.com/item=66076/mr-grubbs",
+            "https://warcraft.wiki.gg/wiki/Fiona%27s_Lucky_Charm"
+          ]
+        }
+      ],
+      "4945": [
+        {
+          "kind": "Unverified",
+          "sourceName": "Acquisition source remains unconfirmed",
+          "coords": [],
+          "maps": [],
+          "instructions": "The journal associates this species with Re-Hydra-ted, but that association has not been verified as an obtainable reward. No confirmed source NPC or map destination is available for this species.",
+          "references": [
+            "https://www.wowhead.com/npc=255832/audrei-iii",
+            "https://www.wow-petguide.com/News/581/Midnight_Pet_Compilation_2025-11-11"
+          ],
+          "researchStatus": "unconfirmed"
+        }
+      ],
+      "2077": [
+        {
+          "kind": "Vendor",
+          "sourceName": "Ilyssia of the Waters",
+          "coords": [
+            [
+              630,
+              43.2,
+              40.6
+            ]
+          ],
+          "maps": [],
+          "instructions": "Visit the rotating Fisherfriend when she is active and exchange 50 Fragmented Enchantments. The fishing buff requires remaining near the active NPC.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+            "https://www.wowhead.com/item=152555"
+          ],
+          "npcID": 120266,
+          "npcName": "Ilyssia of the Waters",
+          "cost": [
+            [
+              "i",
+              146848,
+              50
+            ]
+          ]
+        }
+      ],
+      "1449": [
+        {
+          "kind": "Vendor",
+          "sourceName": "Shay Pressler",
+          "coords": [
+            [
+              84,
+              64.6,
+              76.8
+            ]
+          ],
+          "maps": [],
+          "instructions": "Join a guild that already earned Challenge Warlords: Gold - Guild Edition and reach the required guild reputation. The historical guild achievement cannot be newly earned, but an already-qualified guild can still sell the pet.",
+          "references": [
+            "https://www.wowhead.com/item=114968/deathwatch-hatchling",
+            "https://www.wowhead.com/npc=46602/shay-pressler"
+          ],
+          "npcID": 46602,
+          "npcName": "Shay Pressler",
+          "faction": "Alliance",
+          "cost": [
+            [
+              "g",
+              3000000
+            ]
+          ]
+        },
+        {
+          "kind": "Vendor",
+          "sourceName": "Goram",
+          "coords": [
+            [
+              85,
+              48.2,
+              75.6
+            ]
+          ],
+          "maps": [],
+          "instructions": "Requires a guild with the historical Challenge Warlords: Gold - Guild Edition unlock and sufficient guild reputation.",
+          "references": [
+            "https://www.wowhead.com/item=114968/deathwatch-hatchling",
+            "https://www.wowhead.com/npc=46572/goram"
+          ],
+          "npcID": 46572,
+          "npcName": "Goram",
+          "faction": "Horde",
+          "cost": [
+            [
+              "g",
+              3000000
+            ]
+          ]
+        }
+      ],
+      "3348": [
+        {
+          "kind": "Historical Reward",
+          "sourceName": "Retired quest reward",
+          "coords": [],
+          "maps": [],
+          "instructions": "The original event or seasonal reward quest is no longer offered. Existing collections are preserved; this is not an active quest-chain destination. A caged copy may still be traded between players.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/WorldEvents.lua"
+          ]
+        }
+      ],
+      "4450": [
+        {
+          "kind": "Historical Reward",
+          "sourceName": "Radiant Echoes event vendor (event ended)",
+          "coords": [],
+          "maps": [
+            32,
+            629
+          ],
+          "instructions": "These are the former Radiant Echoes vendor areas. The pre-expansion event and its Residual Memories vendors have ended; existing caged pets can still be traded or listed by players.",
+          "references": [
+            "https://www.wowhead.com/npc=223710/remembrancer-amuul",
+            "https://www.method.gg/guides/radiant-echoes-event-residual-memories-vendor-rewards-and-location"
+          ]
+        }
+      ],
+      "4451": [
+        {
+          "kind": "Historical Reward",
+          "sourceName": "Radiant Echoes event vendor (event ended)",
+          "coords": [],
+          "maps": [
+            115,
+            629
+          ],
+          "instructions": "These are the former Radiant Echoes vendor areas. The pre-expansion event and its Residual Memories vendors have ended; existing caged pets can still be traded or listed by players.",
+          "references": [
+            "https://www.wowhead.com/npc=223710/remembrancer-amuul",
+            "https://www.method.gg/guides/radiant-echoes-event-residual-memories-vendor-rewards-and-location"
+          ]
+        }
+      ],
+      "4452": [
+        {
+          "kind": "Historical Reward",
+          "sourceName": "Radiant Echoes event vendor (event ended)",
+          "coords": [],
+          "maps": [
+            70,
+            629
+          ],
+          "instructions": "These are the former Radiant Echoes vendor areas. The pre-expansion event and its Residual Memories vendors have ended; existing caged pets can still be traded or listed by players.",
+          "references": [
+            "https://www.wowhead.com/npc=223710/remembrancer-amuul",
+            "https://www.method.gg/guides/radiant-echoes-event-residual-memories-vendor-rewards-and-location"
+          ]
+        }
+      ],
+      "3524": [
+        {
+          "kind": "Rare Drops",
+          "sourceName": "Researchers Under Fire reward caches",
+          "coords": [],
+          "maps": [
+            2133
+          ],
+          "instructions": "Complete Researchers Under Fire in Zaralek Cavern and open the event reward cache for a chance at the pet. The event is in the central ruins; its icon marks the current start location.",
+          "references": [
+            "https://www.wowhead.com/item=205026/devourer-lobstrok"
+          ]
+        }
+      ],
+      "3545": [
+        {
+          "kind": "Treasure",
+          "sourceName": "Sniffenseeking with Myrrit and Kob'rok",
+          "coords": [
+            [
+              2133,
+              55.6,
+              57.4
+            ],
+            [
+              2133,
+              65.4,
+              55.8
+            ]
+          ],
+          "maps": [],
+          "instructions": "Use Sniffenseeking with Myrrit in Loamm to obtain an Ouroboros Tablet, then loot Kob'rok's Luminescent Scale from Kob'rok. Combine the tablet with the scale to create Salverun. The two points mark Myrrit and the rare.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+            "https://www.wowhead.com/item=205151/salverun"
+          ],
+          "locationType": "Sniffenseeking hub / Kob'rok rare"
+        }
+      ],
+      "3581": [
+        {
+          "kind": "Treasure",
+          "sourceName": "Sixteen Wayward Motes of Nasz'uro",
+          "coords": [
+            [
+              2022,
+              22.84,
+              88.41
+            ],
+            [
+              2022,
+              24.15,
+              55.56
+            ],
+            [
+              2022,
+              58.5,
+              67.65
+            ],
+            [
+              2022,
+              63.89,
+              44.81
+            ],
+            [
+              2023,
+              61.23,
+              64.36
+            ],
+            [
+              2023,
+              34.33,
+              58.74
+            ],
+            [
+              2024,
+              78.84,
+              34.13
+            ],
+            [
+              2024,
+              61.57,
+              71.43
+            ],
+            [
+              2024,
+              36.4,
+              56.46
+            ],
+            [
+              2024,
+              8.23,
+              53.08
+            ],
+            [
+              2025,
+              62.71,
+              13.23
+            ],
+            [
+              2025,
+              61.23,
+              40.74
+            ],
+            [
+              2025,
+              72.88,
+              55.05
+            ],
+            [
+              2025,
+              70.87,
+              69.85
+            ],
+            [
+              2025,
+              62.61,
+              85.07
+            ],
+            [
+              2151,
+              36.04,
+              34.26
+            ]
+          ],
+          "maps": [],
+          "instructions": "Collect all sixteen motes across the Dragon Isles, including the Forbidden Reach. They can be collected in any order. Each pin is an actual mote location; some are on towers, trees or high peaks.",
+          "references": [
+            "https://www.wowhead.com/npc=205649/mote-of-naszuro"
+          ],
+          "locationType": "Wayward Mote"
+        }
+      ],
+      "4636": [
+        {
+          "kind": "Rare Drops",
+          "sourceName": "Shipping and Handling job streaks",
+          "coords": [],
+          "maps": [
+            2346
+          ],
+          "instructions": "In Undermine, unlock the G-99 Breakneck and use its job interface to complete Shipping and Handling streaks. Renown 8 unlocks Expert Haggler rewards; complete nine consecutive jobs for a chance at cosmetic rewards. There is no stationary pet drop NPC.",
+          "references": [
+            "https://www.wowhead.com/guide/the-war-within/patch-11-1-d-r-i-v-e-guide",
+            "https://www.wowhead.com/item=232847/personal-use-sapper"
+          ]
+        }
+      ],
+      "4646": [
+        {
+          "kind": "Rare Drops",
+          "sourceName": "Shipping and Handling job streaks",
+          "coords": [],
+          "maps": [
+            2346
+          ],
+          "instructions": "In Undermine, unlock the G-99 Breakneck and use its job interface to complete Shipping and Handling streaks. Renown 8 unlocks Expert Haggler rewards; complete nine consecutive jobs for a chance at cosmetic rewards. There is no stationary pet drop NPC.",
+          "references": [
+            "https://www.wowhead.com/guide/the-war-within/patch-11-1-d-r-i-v-e-guide",
+            "https://www.wowhead.com/item=232847/personal-use-sapper"
+          ]
+        }
+      ],
+      "4755": [
+        {
+          "kind": "Unverified",
+          "sourceName": "Unconfirmed Gallagio Garbage reward",
+          "coords": [],
+          "maps": [
+            2346
+          ],
+          "instructions": "The old journal labels this as a Gallagio Garbage drop during S.C.R.A.P. jobs in Undermine, but the species is hidden and a working acquisition source remains unverified. This map shows the associated area, not a confirmed farmable pet spawn.",
+          "references": [
+            "https://www.wowhead.com/npc=237976/gleam",
+            "https://www.cymre.com/2025/02/26/undermined-pets-11-1/"
+          ],
+          "researchStatus": "unconfirmed"
+        }
+      ],
+      "2795": [
+        {
+          "kind": "Treasure",
+          "sourceName": "Jenafur secret chain",
+          "coords": [],
+          "maps": [],
+          "instructions": "Complete the secret starting with Amara Lunastar, then the Empty Dish and the Return to Karazhan food puzzle.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Secrets.lua"
+          ],
+          "progressQuestID": 58099,
+          "progressType": "secret"
+        }
+      ],
+      "4596": [
+        {
+          "kind": "Treasure",
+          "sourceName": "Dog's multi-expansion secret chain",
+          "coords": [],
+          "maps": [],
+          "instructions": "",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Secrets.lua"
+          ],
+          "progressQuestID": 83094,
+          "progressType": "secret"
+        }
+      ],
+      "1699": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Enchanting - Tigrid the Charmer's formula",
+          "coords": [
+            [
+              634,
+              39.4,
+              42.6
+            ]
+          ],
+          "maps": [],
+          "instructions": "Learn Legion Enchanting and follow Enchanter Nalthanis's profession quests in Broken Isles Dalaran (38.3, 40.3) until An Enchanting Home. Visit Tigrid the Charmer in Stormheim (39.4, 42.6), complete A Touch of Magic, then Halls of Valor: Revenge of the Enchantress. Recover her rod in Halls of Valor and return it to unlock her shop. Buy Formula: Enchanted Cauldron for 50 Arkhana, learn it and craft the pet. Alternatively, buy the crafted pet or a caged copy from another player or the Auction House.",
+          "references": [
+            "https://www.wowhead.com/item=128621",
+            "https://www.wowhead.com/npc=98367/tigrid-the-charmer",
+            "https://www.wowhead.com/quest=39904",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "npcID": 98367,
+          "npcName": "Tigrid the Charmer",
+          "unlockQuestID": 39904,
+          "locationType": "Enchanting formula vendor",
+          "cost": [
+            [
+              "i",
+              124440,
+              50
+            ]
+          ]
+        }
+      ],
+      "1700": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Enchanting - Tigrid the Charmer's formula",
+          "coords": [
+            [
+              634,
+              39.4,
+              42.6
+            ]
+          ],
+          "maps": [],
+          "instructions": "Learn Legion Enchanting and follow Enchanter Nalthanis's profession quests in Broken Isles Dalaran (38.3, 40.3) until An Enchanting Home. Visit Tigrid the Charmer in Stormheim (39.4, 42.6), complete A Touch of Magic, then Halls of Valor: Revenge of the Enchantress. Recover her rod in Halls of Valor and return it to unlock her shop. Buy Formula: Enchanted Torch for 50 Arkhana, learn it and craft the pet. Alternatively, buy the crafted pet or a caged copy from another player or the Auction House.",
+          "references": [
+            "https://www.wowhead.com/item=128622",
+            "https://www.wowhead.com/npc=98367/tigrid-the-charmer",
+            "https://www.wowhead.com/quest=39904",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "npcID": 98367,
+          "npcName": "Tigrid the Charmer",
+          "unlockQuestID": 39904,
+          "locationType": "Enchanting formula vendor",
+          "cost": [
+            [
+              "i",
+              124440,
+              50
+            ]
+          ]
+        }
+      ],
+      "1701": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Enchanting - Halls of Valor: Revenge of the Enchantress",
+          "coords": [
+            [
+              634,
+              39.4,
+              42.6
+            ]
+          ],
+          "maps": [],
+          "instructions": "Learn Legion Enchanting and progress Enchanter Nalthanis's profession story in Broken Isles Dalaran (38.3, 40.3) until An Enchanting Home. Visit Tigrid the Charmer in Stormheim (39.4, 42.6), complete A Touch of Magic, and accept Halls of Valor: Revenge of the Enchantress. Recover Tigrid's Enchanting Rod in Halls of Valor and return it to her to learn Enchanted Pen. Craft the pet with the learned recipe, or buy a crafted/caged copy on the Auction House. The map follows the first unfinished prerequisite; the quest rewards the recipe, not the finished pet.",
+          "references": [
+            "https://www.wowhead.com/quest=39904",
+            "https://www.wowhead.com/item=128535/enchanted-pen",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "npcID": 98367,
+          "npcName": "Tigrid the Charmer",
+          "progressQuestID": 39904,
+          "locationType": "Enchanting recipe quest"
+        }
+      ],
+      "1756": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Alchemy - Transmute: Meat to Pet / Growling Sac",
+          "coords": [
+            [
+              627,
+              42.2,
+              32.3
+            ]
+          ],
+          "maps": [],
+          "instructions": "Learn Legion Alchemy from Deucus Valdera in Broken Isles Dalaran (41.3, 33.4). Complete the alchemy-station quest chain through Return the Filter, then buy Recipe: Wild Transmutation from Patricia Egan in the same shop (42.2, 32.3). Perform Wild Transmutation at the Dalaran Alchemy Station each day until you discover Transmute: Meat to Pet. Use that recipe to make a Pulsating Sac and wait 7 real-time days for it to become a Growling Sac. Open it for a random pet; Ridgeback Piglet is one possible result. Repeat if needed, or buy a caged Ridgeback Piglet on the Auction House.",
+          "references": [
+            "https://www.wowhead.com/spell=213256/transmute-meat-to-pet",
+            "https://www.wowhead.com/item=137599/pulsating-sac",
+            "https://www.wowhead.com/quest=39338/return-the-filter",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "npcID": 92457,
+          "npcName": "Patricia Egan",
+          "unlockQuestID": 39338,
+          "locationType": "Wild Transmutation recipe / Dalaran Alchemy Station"
+        }
+      ],
+      "1759": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Alchemy - Transmute: Meat to Pet / Growling Sac",
+          "coords": [
+            [
+              627,
+              42.2,
+              32.3
+            ]
+          ],
+          "maps": [],
+          "instructions": "Learn Legion Alchemy from Deucus Valdera in Broken Isles Dalaran (41.3, 33.4). Complete the alchemy-station quest chain through Return the Filter, then buy Recipe: Wild Transmutation from Patricia Egan in the same shop (42.2, 32.3). Perform Wild Transmutation at the Dalaran Alchemy Station each day until you discover Transmute: Meat to Pet. Use that recipe to make a Pulsating Sac and wait 7 real-time days for it to become a Growling Sac. Open it for a random pet; Thaumaturgical Piglet is one possible result. Repeat if needed, or buy a caged Thaumaturgical Piglet on the Auction House.",
+          "references": [
+            "https://www.wowhead.com/spell=213256/transmute-meat-to-pet",
+            "https://www.wowhead.com/item=137599/pulsating-sac",
+            "https://www.wowhead.com/quest=39338/return-the-filter",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "npcID": 92457,
+          "npcName": "Patricia Egan",
+          "unlockQuestID": 39338,
+          "locationType": "Wild Transmutation recipe / Dalaran Alchemy Station"
+        }
+      ],
+      "1920": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Alchemy - Transmute: Meat to Pet / Growling Sac",
+          "coords": [
+            [
+              627,
+              42.2,
+              32.3
+            ]
+          ],
+          "maps": [],
+          "instructions": "Learn Legion Alchemy from Deucus Valdera in Broken Isles Dalaran (41.3, 33.4). Complete the alchemy-station quest chain through Return the Filter, then buy Recipe: Wild Transmutation from Patricia Egan in the same shop (42.2, 32.3). Perform Wild Transmutation at the Dalaran Alchemy Station each day until you discover Transmute: Meat to Pet. Use that recipe to make a Pulsating Sac and wait 7 real-time days for it to become a Growling Sac. Open it for a random pet; Transmutant is one possible result. Repeat if needed, or buy a caged Transmutant on the Auction House.",
+          "references": [
+            "https://www.wowhead.com/spell=213256/transmute-meat-to-pet",
+            "https://www.wowhead.com/item=137599/pulsating-sac",
+            "https://www.wowhead.com/quest=39338/return-the-filter",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "npcID": 92457,
+          "npcName": "Patricia Egan",
+          "unlockQuestID": 39338,
+          "locationType": "Wild Transmutation recipe / Dalaran Alchemy Station"
+        }
+      ],
+      "1886": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Engineering - Halls of Valor: Trigger Happy",
+          "coords": [
+            [
+              627,
+              38.4,
+              24.7
+            ]
+          ],
+          "maps": [],
+          "instructions": "Learn Legion Engineering in Broken Isles Dalaran and follow the engineering story until Hobart Grapplehammer offers Halls of Valor: Trigger Happy. Accept it at the engineering shop (38.4, 24.7), defeat Odyn in Halls of Valor and loot the Runestone of Vitality. Return to Hobart to learn Trigger. Craft it at Legion Engineering 90 with 50 Leystone Ore, 30 Loose Trigger, 20 Oversized Blasting Cap, 2 Sniping Scope, 50 Blood of Sargeras and 10 Infernal Brimstone. You can instead buy a caged Trigger from another player or the Auction House without Engineering.",
+          "references": [
+            "https://www.wowhead.com/quest=40877/halls-of-valor-trigger-happy",
+            "https://www.wowhead.com/guide/legion-engineering",
+            "https://www.wowhead.com/item=132519/trigger",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "npcID": 93539,
+          "npcName": "Hobart Grapplehammer",
+          "progressQuestID": 40877,
+          "locationType": "Trigger engineering recipe quest"
+        }
+      ],
+      "1806": [
+        {
+          "kind": "Professions",
+          "sourceName": "Blingtron 6000 Gift Package - portable daily gift / Reaves engineering unlock",
+          "coords": [
+            [
+              627,
+              38.6,
+              25.0
+            ]
+          ],
+          "maps": [],
+          "instructions": "Accept Blingtron 6000's daily gift quest and open the Blingtron 6000 Gift Package for a chance at Knockoff Blingtron. Another player's Blingtron works; it is portable and has no permanent spawn. To summon your own, progress Legion Engineering with Didi the Wrench in Broken Isles Dalaran (38.6, 25.0), complete Short Circuit and Oil Rags to Riches, craft Reaves Module: Bling Mode and install it on Reaves. Summon Reaves with a battery and choose Bling Mode. The marker follows this engineering unlock route, not a fixed Blingtron spawn. Alternatively, buy a caged pet on the Auction House.",
+          "references": [
+            "https://www.wowhead.com/item=132892/blingtron-6000-gift-package",
+            "https://www.wowhead.com/quest=40881/oil-rags-to-riches",
+            "https://www.wowhead.com/guide/legion-engineering",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "npcID": 93520,
+          "npcName": "Didi the Wrench",
+          "unlockQuestID": 40881,
+          "containerItemID": 132892,
+          "locationType": "Optional engineering unlock for your own portable Blingtron"
+        }
+      ],
+      "2117": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Herbalism - herb nodes on Argus",
+          "coords": [],
+          "maps": [
+            830,
+            885,
+            882
+          ],
+          "instructions": "Learn Legion Herbalism, unlock Argus through The Hand of Fate and follow the Argus campaign to open its zones. Gather herbs in Krokuun, Antoran Wastes or Eredath: Fel-Encrusted Herb nodes and Astral Glory can yield Fel Lasher. Keep gathering; this is a rare bonus from harvesting herbs, not a wild pet you trap or a stationary creature drop. The map opens the actual gathering zones because herb nodes move and respawn. You can also buy a caged Fel Lasher from another player or the Auction House.",
+          "references": [
+            "https://www.wowhead.com/npc=128137/fel-lasher",
+            "https://www.wowhead.com/guide/legion-herbalism",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Craftables.lua",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "locationType": "Argus herb gathering areas"
+        }
+      ],
+      "2121": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Skinning - skinnable creatures on Argus",
+          "coords": [
+            [
+              882,
+              52.0,
+              35.0
+            ]
+          ],
+          "maps": [
+            830,
+            885,
+            882
+          ],
+          "instructions": "Learn Legion Skinning and unlock Argus through The Hand of Fate. Kill and skin beasts on Argus for a rare chance at Fossorial Bile Larva; the pet comes from skinning, not their normal loot or pet battles. One reported farm is Chitinbuk Ruinwalkers in Eredath around 52.0, 35.0. Panthara in Krokuun's Petrified Forest and other skinnable Argus beasts are alternatives. Keep skinning until the pet drops, or buy a caged copy on the Auction House. The marker is a farming area, not a guaranteed pet spawn; Fiendish Leather ranks improve material yield but a particular rank is not established as a pet requirement.",
+          "references": [
+            "https://www.wowhead.com/item=153057/fossorial-bile-larva",
+            "https://www.wowhead.com/guide/legion-skinning",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Craftables.lua",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "locationType": "Chitinbuk skinning farm - rare bonus, not a pet spawn"
+        }
+      ]
+    },
+    "toys": {
+      "36862": [
+        {
+          "kind": "Rare Drops",
+          "sourceName": "Northrend humanoid pickpocketing",
+          "coords": [],
+          "maps": [
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121
+          ],
+          "instructions": "Use Pick Pocket on Northrend humanoids; this is a rare pickpocket reward. The map choices identify farming regions, not guaranteed drops.",
+          "references": [
+            "https://www.wowhead.com/item=36862",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/WorldDrops.lua"
+          ]
+        }
+      ],
+      "36863": [
+        {
+          "kind": "Rare Drops",
+          "sourceName": "Northrend humanoid pickpocketing",
+          "coords": [],
+          "maps": [
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121
+          ],
+          "instructions": "Use Pick Pocket on Northrend humanoids; this is a rare pickpocket reward. The map choices identify farming regions, not guaranteed drops.",
+          "references": [
+            "https://www.wowhead.com/item=36863",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/WorldDrops.lua"
+          ]
+        }
+      ],
+      "37254": [
+        {
+          "kind": "Rare Drops",
+          "sourceName": "Northrend world drops",
+          "coords": [],
+          "maps": [
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121
+          ],
+          "instructions": "A rare Northrend world drop. There is no single guaranteed rare or fixed spawn to mark. The map choices identify farming regions, not guaranteed drops.",
+          "references": [
+            "https://www.wowhead.com/item=37254",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/WorldDrops.lua"
+          ]
+        }
+      ],
+      "63269": [
+        {
+          "kind": "Rare Drops",
+          "sourceName": "Cataclysm humanoid pickpocketing",
+          "coords": [],
+          "maps": [
+            198,
+            207,
+            241,
+            249,
+            203
+          ],
+          "instructions": "Use Pick Pocket on Cataclysm-zone humanoids. The areas show potential farming regions; there is no single fixed source NPC.",
+          "references": [
+            "https://www.wowhead.com/item=63269",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/WorldDrops.lua"
+          ]
+        }
+      ],
+      "187419": [
+        {
+          "kind": "Quest Rewards",
+          "sourceName": "Kyrian Calling reward caches",
+          "coords": [],
+          "maps": [
+            1707,
+            1708
+          ],
+          "instructions": "Pick up eligible Kyrian Callings in the covenant sanctum, complete them, and open Tribute of the Ascended / Tribute of the Paragon. This toy is a chance reward from those caches, not a vendor purchase.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/ExpansionFeatures.lua",
+            "https://warcraft.wiki.gg/wiki/Covenant_Callings"
+          ]
+        }
+      ],
+      "187512": [
+        {
+          "kind": "Quest Rewards",
+          "sourceName": "Venthyr Calling reward caches",
+          "coords": [],
+          "maps": [
+            1699,
+            1700
+          ],
+          "instructions": "Pick up eligible Venthyr Callings in the covenant sanctum, complete them, and open Tribute of the Court / Favor of the Court. This toy is a chance reward from those caches, not a vendor purchase.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/ExpansionFeatures.lua",
+            "https://warcraft.wiki.gg/wiki/Covenant_Callings"
+          ]
+        }
+      ],
+      "187840": [
+        {
+          "kind": "Quest Rewards",
+          "sourceName": "Night Fae Calling reward caches",
+          "coords": [],
+          "maps": [
+            1701,
+            1702,
+            1703
+          ],
+          "instructions": "Pick up eligible Night Fae Callings in the covenant sanctum, complete them, and open Bounty of the Grove Wardens / Tribute of the Wild Hunt. This toy is a chance reward from those caches, not a vendor purchase.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/ExpansionFeatures.lua",
+            "https://warcraft.wiki.gg/wiki/Covenant_Callings"
+          ]
+        }
+      ],
+      "187913": [
+        {
+          "kind": "Quest Rewards",
+          "sourceName": "Necrolord Calling reward caches",
+          "coords": [],
+          "maps": [
+            1698
+          ],
+          "instructions": "Pick up eligible Necrolord Callings in the covenant sanctum, complete them, and open Tribute of the Ambitious / Tribute of the Duty-Bound. This toy is a chance reward from those caches, not a vendor purchase.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/ExpansionFeatures.lua",
+            "https://warcraft.wiki.gg/wiki/Covenant_Callings"
+          ]
+        }
+      ],
+      "231064": [
+        {
+          "kind": "Historical Reward",
+          "sourceName": "Sir Finley Mrrgglton: retired Delves Season 2 reward",
+          "coords": [],
+          "maps": [
+            2339
+          ],
+          "instructions": "This was sold at Delver's Headquarters during The War Within Season 2. It was removed in 11.2 and was not transferred to the legacy Reno Jackson inventory; the marker is historical context.",
+          "references": [
+            "https://warcraft.wiki.gg/wiki/Throwaway_Gangster_Disguise",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Delves.lua"
+          ],
+          "locationType": "Former seasonal vendor location",
+          "availability": {
+            "kind": "retired",
+            "reason": "Delves Season 2 reward removed in patch 11.2; no active legacy purchase."
+          }
+        }
+      ],
+      "170197": [
+        {
+          "kind": "PvP",
+          "sourceName": "Plunderstore reward",
+          "coords": [],
+          "maps": [],
+          "instructions": "Purchase for 500 Plunder in the Plunderstore when Plunderstorm is available. This uses the event shop interface, not a fixed NPC in the normal world.",
+          "references": [
+            "https://warcraft.wiki.gg/wiki/Template%3APlunderstore"
+          ],
+          "cost": [
+            [
+              "c",
+              3139,
+              500
+            ]
+          ]
+        }
+      ],
+      "200148": [
+        {
+          "kind": "Rare Drops",
+          "sourceName": "Dragon Isles rare enemies",
+          "coords": [
+            [
+              2025,
+              58.0,
+              83.8
+            ],
+            [
+              2025,
+              62.2,
+              81.7
+            ],
+            [
+              2025,
+              57.2,
+              84.2
+            ]
+          ],
+          "maps": [],
+          "instructions": "A chance reward associated with Dragon Isles rares. These are recorded Thaldraszus rare-enemy locations; access and spawns may depend on quests or phase conditions.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+            "https://www.wowhead.com/item=200148"
+          ],
+          "locationType": "Recorded rare-enemy location"
+        }
+      ],
+      "207730": [
+        {
+          "kind": "Quest Rewards",
+          "sourceName": "Secrets of Azeroth: the idol",
+          "coords": [],
+          "maps": [],
+          "instructions": "",
+          "references": [
+            "https://www.wowhead.com/quest=77303/idol-searching",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Secrets.lua"
+          ],
+          "questID": 77304
+        }
+      ],
+      "190754": [
+        {
+          "kind": "Quest Rewards",
+          "sourceName": "Firim's rotating research quests",
+          "coords": [],
+          "maps": [],
+          "instructions": "This is a chance reward from Firim's eligible rotating quests, including Materials of Creation, Forcing the Cycle and Portal Play. Repeat eligible quests when offered; a previous completion does not guarantee the toy.",
+          "references": [
+            "https://warcraft.wiki.gg/wiki/Firim%27s_Specimen_Container",
+            "https://www.wowhead.com/quest=64717/materials-of-creation"
+          ],
+          "questID": 64717,
+          "repeatableReward": true
+        }
+      ],
+      "173951": [
+        {
+          "kind": "PvP",
+          "sourceName": "Automatically offered War Mode PvP quest",
+          "coords": [],
+          "maps": [
+            862,
+            863,
+            864,
+            895,
+            896,
+            942
+          ],
+          "instructions": "Enable War Mode in a Battle for Azeroth zone, become an Assassin by defeating opposing-faction players without dying, then accept the automatically offered Servant of N'Zoth quest. Complete its same-faction kills without dying. There is no fixed quest-giver NPC.",
+          "references": [
+            "https://www.wowhead.com/quest=58273/servant-of-nzoth",
+            "https://www.wowhead.com/quest=58274/servant-of-nzoth"
+          ]
+        }
+      ],
+      "132518": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Engineering - Short Circuit",
+          "coords": [
+            [
+              627,
+              38.6,
+              25.0
+            ]
+          ],
+          "maps": [],
+          "instructions": "Progress the Legion Engineering story with Didi the Wrench in Broken Isles Dalaran (38.6, 25.0) until Short Circuit. Follow its investigation: Rocket-Chief Fuselage in Area 52, Ricket in K3, Chief Engineer Foote in Ratchet, Nixx Sprocketspring in Gadgetzan, then Winkey in eastern Tanaris. Borrow Winkey's Diving Helmet and find Gnopetto's underwater workshop and journal off Tanaris. This teaches Blingtron's Circuit Design Tutorial. Craft the toy with 50 Leystone Ore, 50 Felslate and 5 Infernal Brimstone, then use it to add it to the Toy Box. Alternatively, buy the finished toy on the Auction House; using it does not require Engineering.",
+          "references": [
+            "https://www.wowhead.com/quest=40880/short-circuit",
+            "https://www.wowhead.com/guide/legion-engineering",
+            "https://www.wowhead.com/item=137692",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "npcID": 93520,
+          "npcName": "Didi the Wrench",
+          "progressQuestID": 40880,
+          "locationType": "Engineering recipe quest chain"
+        }
+      ],
+      "130254": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Jewelcrafting - Mysteries of Nature",
+          "coords": [
+            [
+              634,
+              42.2,
+              35.0
+            ]
+          ],
+          "maps": [],
+          "instructions": "Begin Legion Jewelcrafting with Tiffany Cartier in Broken Isles Dalaran (39.9, 34.8) and follow her profession story through Come at Me, Brul and The Charge Within. Jabrul in Stormheim (42.2, 35.0) offers Mysteries of Nature: collect Dragon Glass from the mountainside at 46.7, 31.3 and return it to learn Chatterstone. Craft it with 10 Sangrite, 10 Chaotic Spinel and 1 Blood of Sargeras, then use it to collect the toy. You can also buy the finished toy from another player or the Auction House without Jewelcrafting.",
+          "references": [
+            "https://www.wowhead.com/quest=40546/mysteries-of-nature",
+            "https://www.wowhead.com/spell=195883/chatterstone",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "npcID": 100499,
+          "npcName": "Jabrul",
+          "progressQuestID": 40546,
+          "locationType": "Jabrul - Chatterstone recipe quest"
+        }
+      ],
+      "130251": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Jewelcrafting - Socket to Me",
+          "coords": [
+            [
+              627,
+              40.0,
+              35.3
+            ]
+          ],
+          "maps": [],
+          "instructions": "Follow Tiffany Cartier's Legion Jewelcrafting story through To Dalaran, With Love, then inspect the toy box in the Dalaran jewelry shop (40.0, 35.3) to accept Socket to Me. Collect Crystal Shell from the Truesilver Crab in the Northern Stranglethorn wreck (35.7, 55.9), Crystal Core in Deepholm (51.9, 20.7), Crystal Scale in Twilight Highlands (26.0, 69.7), Crystal Heart from the Golden Hare in Vale of Eternal Blossoms (14.2, 67.2), Crystal Plume in Moonglade (31.0, 47.7), and Crystal Shard inside Highmountain's Greystone Enclave (entrance 54.5, 75.4). Return the components to learn JewelCraft, craft the toy and use it. Buying the finished toy on the Auction House skips the profession chain.",
+          "references": [
+            "https://www.wowhead.com/quest=40558/socket-to-me",
+            "https://www.wowhead.com/guide/legion-jewelcrafting",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "progressQuestID": 40558,
+          "locationType": "Toy box - Socket to Me quest start"
+        }
+      ],
+      "129961": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Leatherworking - Pattern: Flaming Hoop / Laura Malley",
+          "coords": [
+            [
+              628,
+              58,
+              58.1
+            ]
+          ],
+          "maps": [],
+          "instructions": "Learn Legion Leatherworking, then buy Pattern: Flaming Hoop from Laura Malley in the Broken Isles Dalaran Underbelly (58.0, 58.1) for 100 Sightless Eyes. Earn the currency from Underbelly activities and rare creatures; check whether the sewer guards are present before entering its PvP areas. Learn the pattern, craft Flaming Hoop and use the finished item to add it to the Toy Box. The marker is Laura's recipe shop, not a direct toy purchase. Alternatively, buy the finished toy on the Auction House; Leatherworking is not needed to use it.",
+          "references": [
+            "https://www.wowhead.com/npc=97364/laura-malley",
+            "https://www.wowhead.com/guide/legion-leatherworking",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "npcID": 97364,
+          "npcName": "Laura Malley",
+          "cost": [
+            [
+              "c",
+              1149,
+              100
+            ]
+          ],
+          "locationType": "Leatherworking pattern vendor"
+        }
+      ],
+      "129958": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Leatherworking - Pattern: Leather Pet Leash / Laura Malley",
+          "coords": [
+            [
+              628,
+              58,
+              58.1
+            ]
+          ],
+          "maps": [],
+          "instructions": "Learn Legion Leatherworking, then buy Pattern: Leather Pet Leash from Laura Malley in the Broken Isles Dalaran Underbelly (58.0, 58.1) for 50 Sightless Eyes. Earn the currency from Underbelly activities and rare creatures; check whether the sewer guards are present before entering its PvP areas. Learn the pattern, craft Leather Pet Leash and use the finished item to add it to the Toy Box. The marker is Laura's recipe shop, not a direct toy purchase. Alternatively, buy the finished toy on the Auction House; Leatherworking is not needed to use it.",
+          "references": [
+            "https://www.wowhead.com/npc=97364/laura-malley",
+            "https://www.wowhead.com/guide/legion-leatherworking",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "npcID": 97364,
+          "npcName": "Laura Malley",
+          "cost": [
+            [
+              "c",
+              1149,
+              50
+            ]
+          ],
+          "locationType": "Leatherworking pattern vendor"
+        }
+      ],
+      "129956": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Leatherworking - Pattern: Leather Love Seat / Xur'ios",
+          "coords": [
+            [
+              627,
+              48.8,
+              13.5
+            ]
+          ],
+          "maps": [],
+          "instructions": "Visit Xur'ios beside the bank in Broken Isles Dalaran (48.8, 13.5) and check his rotating stock for Pattern: Leather Love Seat, priced at 1 Curious Coin. Return on another day if the pattern is absent. Curious Coins are rare rewards from Broken Isles treasures, rare creatures and other Legion reward containers. Learn the pattern with Legion Leatherworking, craft Leather Love Seat and use the finished toy. You can instead buy the finished toy from another player or the Auction House without Leatherworking.",
+          "references": [
+            "https://www.wowhead.com/item=137935/pattern-leather-love-seat",
+            "https://www.wowhead.com/npc=107109/xurios",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "npcID": 107109,
+          "npcName": "Xur'ios",
+          "cost": [
+            [
+              "c",
+              1275,
+              1
+            ]
+          ],
+          "locationType": "Rotating Leather Love Seat pattern vendor"
+        }
+      ],
+      "129960": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Leatherworking - Playthings / Namha Moonwater",
+          "coords": [
+            [
+              627,
+              35.4,
+              29.6
+            ]
+          ],
+          "maps": [],
+          "instructions": "Begin Legion Leatherworking with Namha Moonwater in Broken Isles Dalaran (35.4, 29.6), starting with Skin Deep. Follow her story through Dazed of the Past and Battle Bonds, then accept Playthings. Collect the tanning mixture from the red bottle on the workbench behind Namha. Use the quest workbench recipes in order: 8 Shaved Stonehide Pelts, 8 Tanned Stonehide Leather, 2 Stonehide Leather Linings, 5 Stonehide Leather Strips, then the prototype Stonehide Leather Bed. Turn it in to learn Leather Pet Bed, craft the collectible with 50 Stonehide Leather and 5 Felhide, and use it. Alternatively, buy the finished toy on the Auction House.",
+          "references": [
+            "https://www.wowhead.com/quest=40201/playthings",
+            "https://www.wowhead.com/spell=194776/leather-pet-bed",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "npcID": 93523,
+          "npcName": "Namha Moonwater",
+          "progressQuestID": 40201,
+          "locationType": "Leather Pet Bed recipe quest / Namha's Workbench"
+        }
+      ],
+      "128536": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Enchanting - Formula: Leylight Brazier / K'huta",
+          "coords": [
+            [
+              628,
+              66,
+              79.9
+            ]
+          ],
+          "maps": [],
+          "instructions": "Buy Formula: Leylight Brazier from K'huta in the Broken Isles Dalaran Underbelly (66.0, 79.9) for 250 Sightless Eyes. Gather the currency from Underbelly activities and rare creatures. Learn the formula with Legion Enchanting, then craft Leylight Brazier with 1 Chaos Crystal, 100 Arkhana and 5 Blood of Sargeras. Use the finished item to add it to the Toy Box. The marker identifies the formula vendor. You can instead buy the finished toy from another player or the Auction House without Enchanting.",
+          "references": [
+            "https://www.wowhead.com/item=128625/formula-leylight-brazier",
+            "https://www.wowhead.com/spell=191078/leylight-brazier",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "npcID": 97363,
+          "npcName": "K'huta",
+          "cost": [
+            [
+              "c",
+              1149,
+              250
+            ]
+          ],
+          "locationType": "Leylight Brazier enchanting formula vendor"
+        }
+      ],
+      "129211": [
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Inscription - The Legacy Passed On / Bill Spearshaker",
+          "coords": [
+            [
+              87,
+              77.2,
+              10.4
+            ]
+          ],
+          "maps": [],
+          "instructions": "Learn Legion Inscription from Professor Pallin in Broken Isles Dalaran (41.3, 37.0) and progress the profession story until An Embarrassing Revelation. Bring him the Steamy Romance Novel and accept The Plot Thickens. Find Bill Spearshaker in Ironforge (77.2, 10.4) and complete The Legacy Passed On by interacting with the unfinished book and choosing a complete story. This teaches Steamy Romance Novel Kit; craft the toy and use it to collect it. The finished toy is tradable, so buying it on the Auction House skips Inscription and its quest chain.",
+          "references": [
+            "https://www.wowhead.com/quest=39956/the-legacy-passed-on",
+            "https://www.wowhead.com/guide/legion-inscription",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "npcID": 97762,
+          "npcName": "Bill Spearshaker",
+          "faction": "Alliance",
+          "progressQuestID": 39956,
+          "locationType": "Steamy Romance Novel Kit recipe quest"
+        },
+        {
+          "kind": "Professions",
+          "sourceName": "Legion Inscription - The Legacy Passed On / Ferdinand Serbacon",
+          "coords": [
+            [
+              90,
+              77.8,
+              38.8
+            ]
+          ],
+          "maps": [],
+          "instructions": "Learn Legion Inscription from Professor Pallin in Broken Isles Dalaran (41.3, 37.0) and progress the profession story until An Embarrassing Revelation. Bring him the Steamy Romance Novel and accept The Plot Thickens. Find Ferdinand Serbacon in Undercity (77.8, 38.8) and complete The Legacy Passed On by interacting with the unfinished book and choosing a complete story. This teaches Steamy Romance Novel Kit; craft the toy and use it to collect it. If Undercity is in its destroyed phase, ask Zidormi in Tirisfal Glades to show the city before the Battle for Lordaeron. The finished toy is tradable, so buying it on the Auction House skips Inscription and its quest chain.",
+          "references": [
+            "https://www.wowhead.com/quest=39960/the-legacy-passed-on",
+            "https://www.wowhead.com/guide/legion-inscription",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "npcID": 97766,
+          "npcName": "Ferdinand Serbacon",
+          "faction": "Horde",
+          "progressQuestID": 39960,
+          "locationType": "Steamy Romance Novel Kit recipe quest"
+        }
+      ]
+    },
+    "mounts": {
+      "363613": [
+        {
+          "kind": "Class Unlock",
+          "sourceName": "Lightforged draenei paladin racial mount",
+          "coords": [],
+          "maps": [],
+          "instructions": "Create and level a Lightforged draenei paladin. The racial mount is learned automatically; there is no reward quest or seller to visit.",
+          "references": [
+            "https://www.wowhead.com/spell=363613/summon-lightforged-ruinstrider",
+            "https://worldofwarcraft.blizzard.com/en-us/news/23731242/updated-november-1-915-content-update-notes"
+          ]
+        }
+      ],
+      "1224048": [
+        {
+          "kind": "Vendor",
+          "sourceName": "Reno Jackson",
+          "coords": [
+            [
+              2339,
+              47.6,
+              45.0
+            ]
+          ],
+          "maps": [],
+          "instructions": "The former Season 3 reward quest has retired. Buy the base Mana-Skimmer from Reno Jackson at Delver's Headquarters; its schematics are separate purchases.",
+          "references": [
+            "https://www.wowhead.com/item=238051/delvers-mana-skimmer",
+            "https://warcraft.wiki.gg/wiki/Delver%27s_Mana-Skimmer",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Delves.lua"
+          ],
+          "npcID": 226250,
+          "npcName": "Reno Jackson",
+          "cost": [
+            [
+              "c",
+              2815,
+              10000
+            ]
+          ]
+        }
+      ],
+      "1257058": [
+        {
+          "kind": "Achievements",
+          "sourceName": "Rewarding achievement",
+          "coords": [],
+          "maps": [],
+          "instructions": "Open the rewarding achievement in TODO-Planner. Seasonal availability and any legacy acquisition alternatives must be checked separately.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Instances.lua"
+          ],
+          "achievementID": 61256
+        }
+      ],
+      "1257081": [
+        {
+          "kind": "Achievements",
+          "sourceName": "Rewarding achievement",
+          "coords": [],
+          "maps": [],
+          "instructions": "Open the rewarding achievement in TODO-Planner. Seasonal availability and any legacy acquisition alternatives must be checked separately.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Instances.lua"
+          ],
+          "achievementID": 61258
+        }
+      ],
+      "1301775": [
+        {
+          "kind": "Achievements",
+          "sourceName": "Rewarding achievement",
+          "coords": [],
+          "maps": [],
+          "instructions": "Open the rewarding achievement in TODO-Planner. Seasonal availability and any legacy acquisition alternatives must be checked separately.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Instances.lua"
+          ],
+          "achievementID": 63104
+        }
+      ],
+      "366791": [
+        {
+          "kind": "Achievements",
+          "sourceName": "Rewarding achievement",
+          "coords": [],
+          "maps": [],
+          "instructions": "Open the rewarding achievement in TODO-Planner. Seasonal availability and any legacy acquisition alternatives must be checked separately.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Instances.lua"
+          ],
+          "achievementID": 15684
+        }
+      ],
+      "363178": [
+        {
+          "kind": "Rare Drops",
+          "sourceName": "Torghast Layer 13+ bosses",
+          "coords": [
+            [
+              1543,
+              48.2,
+              39.4
+            ]
+          ],
+          "maps": [],
+          "instructions": "Enter Torghast and complete Layer 13 or higher for a chance at the boss drop. Floor layouts and boss positions vary; the marker is the tower entrance.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/ExpansionFeatures.lua"
+          ],
+          "locationType": "Torghast entrance"
+        }
+      ],
+      "261395": [
+        {
+          "kind": "Treasure",
+          "sourceName": "The Hivemind secret: Griftah",
+          "coords": [
+            [
+              111,
+              65.6,
+              69.3
+            ]
+          ],
+          "maps": [],
+          "instructions": "Start by buying and equipping the Talisman of True Treasure Tracking from Griftah in Shattrath. Follow a monocle puzzle branch, then form a five-player group with the required monocle colours for the Suramar finale. This marker is the secret's starting point, not the final mount pickup.",
+          "references": [
+            "https://www.wowhead.com/guide/the-hivemind",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Secrets.lua"
+          ],
+          "npcID": 19227,
+          "npcName": "Griftah",
+          "locationType": "Secret starting point"
+        }
+      ],
+      "272472": [
+        {
+          "kind": "Historical Reward",
+          "sourceName": "Retired quest reward",
+          "coords": [],
+          "maps": [],
+          "instructions": "The original event or seasonal reward quest is no longer offered. Existing collections are preserved; this is not an active quest-chain destination.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/WorldEvents.lua"
+          ]
+        }
+      ],
+      "274610": [
+        {
+          "kind": "Historical Reward",
+          "sourceName": "Retired quest reward",
+          "coords": [],
+          "maps": [],
+          "instructions": "The original event or seasonal reward quest is no longer offered. Existing collections are preserved; this is not an active quest-chain destination.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/WorldEvents.lua"
+          ]
+        }
+      ],
+      "289639": [
+        {
+          "kind": "Historical Reward",
+          "sourceName": "Retired quest reward",
+          "coords": [],
+          "maps": [],
+          "instructions": "The original event or seasonal reward quest is no longer offered. Existing collections are preserved; this is not an active quest-chain destination.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/WorldEvents.lua"
+          ]
+        }
+      ],
+      "359545": [
+        {
+          "kind": "Historical Reward",
+          "sourceName": "Retired quest reward",
+          "coords": [],
+          "maps": [],
+          "instructions": "The original event or seasonal reward quest is no longer offered. Existing collections are preserved; this is not an active quest-chain destination.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Instances.lua"
+          ]
+        }
+      ],
+      "431049": [
+        {
+          "kind": "Quest Rewards",
+          "questID": 76465,
+          "sourceName": "Dragon Keeping",
+          "references": [
+            "https://www.wowhead.com/quest=76465/dragon-keeping"
+          ]
+        }
+      ],
+      "1264621": [
+        {
+          "kind": "Vendor",
+          "faction": "Alliance",
+          "npcName": "Brawler's Guild quartermaster",
+          "sourceName": "Bizmo's Brawlpub",
+          "coords": [
+            [
+              500,
+              54.3,
+              25.2
+            ]
+          ],
+          "cost": [
+            [
+              "g",
+              40000000
+            ]
+          ],
+          "references": [
+            "https://www.wowhead.com/item=259227",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/WorldEvents.lua"
+          ]
+        },
+        {
+          "kind": "Vendor",
+          "faction": "Horde",
+          "npcName": "Brawler's Guild quartermaster",
+          "sourceName": "Brawl'gar Arena",
+          "coords": [
+            [
+              503,
+              50.8,
+              29.4
+            ]
+          ],
+          "cost": [
+            [
+              "g",
+              40000000
+            ]
+          ],
+          "references": [
+            "https://www.wowhead.com/item=259227",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/WorldEvents.lua"
+          ]
+        }
+      ],
+      "1264643": [
+        {
+          "kind": "Vendor",
+          "faction": "Alliance",
+          "npcName": "Brawler's Guild quartermaster",
+          "sourceName": "Bizmo's Brawlpub",
+          "coords": [
+            [
+              500,
+              54.3,
+              25.2
+            ]
+          ],
+          "cost": [
+            [
+              "g",
+              100000000
+            ]
+          ],
+          "references": [
+            "https://www.wowhead.com/item=259238",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/WorldEvents.lua"
+          ]
+        },
+        {
+          "kind": "Vendor",
+          "faction": "Horde",
+          "npcName": "Brawler's Guild quartermaster",
+          "sourceName": "Brawl'gar Arena",
+          "coords": [
+            [
+              503,
+              50.8,
+              29.4
+            ]
+          ],
+          "cost": [
+            [
+              "g",
+              100000000
+            ]
+          ],
+          "references": [
+            "https://www.wowhead.com/item=259238",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/WorldEvents.lua"
+          ]
+        }
+      ]
+    },
+    "cosmetics": {
+      "89799": [
+        {
+          "kind": "Vendor",
+          "sourceName": "Sage Whiteheart",
+          "coords": [
+            [
+              390,
+              84.6,
+              63.8
+            ]
+          ],
+          "maps": [],
+          "instructions": "Buy the tabard from the Alliance August Celestials quartermaster after reaching Exalted. Use the original Pandaria phase of the Vale of Eternal Blossoms.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/ExpansionFeatures.lua"
+          ],
+          "npcID": 64032,
+          "npcName": "Sage Whiteheart",
+          "faction": "Alliance"
+        },
+        {
+          "kind": "Vendor",
+          "sourceName": "Sage Lotusbloom",
+          "coords": [
+            [
+              390,
+              62.7,
+              23.3
+            ]
+          ],
+          "maps": [],
+          "instructions": "Buy the tabard from the Horde August Celestials quartermaster after reaching Exalted. Use the original Pandaria phase of the Vale of Eternal Blossoms.",
+          "references": [
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/ExpansionFeatures.lua"
+          ],
+          "npcID": 64001,
+          "npcName": "Sage Lotusbloom",
+          "faction": "Horde"
+        }
+      ],
+      "186500": [
+        {
+          "kind": "Quest Rewards",
+          "sourceName": "Korthia covenant dailies: individual appearance pieces",
+          "coords": [
+            [
+              1961,
+              62.8,
+              22.6
+            ]
+          ],
+          "maps": [],
+          "instructions": "The ensemble wrapper was not implemented as an obtainable item. Its matching appearance pieces can be earned separately from the corresponding covenant's rotating daily quests at Keeper's Respite. Complete the Korthia campaign unlocks and inspect daily rewards while in the matching covenant.",
+          "references": [
+            "https://www.wowhead.com/transmog-set=11998/redeemed-inquisitors-vestments",
+            "https://warcraft.wiki.gg/wiki/Ensemble%3A_Redeemed_Inquisitor%27s_Vestments",
+            "https://warcraft.wiki.gg/wiki/Ensemble%3A_Forsworn_Aspirant%27s_Regalia"
+          ],
+          "locationType": "Korthia daily quest hub",
+          "availability": {
+            "kind": "neverImplemented",
+            "reason": "Ensemble wrapper not obtainable; matching appearances are individual covenant daily-quest rewards."
+          }
+        }
+      ],
+      "186505": [
+        {
+          "kind": "Quest Rewards",
+          "sourceName": "Korthia covenant dailies: individual appearance pieces",
+          "coords": [
+            [
+              1961,
+              62.8,
+              22.6
+            ]
+          ],
+          "maps": [],
+          "instructions": "The ensemble wrapper was not implemented as an obtainable item. Its matching appearance pieces can be earned separately from the corresponding covenant's rotating daily quests at Keeper's Respite. Complete the Korthia campaign unlocks and inspect daily rewards while in the matching covenant.",
+          "references": [
+            "https://www.wowhead.com/transmog-set=11998/redeemed-inquisitors-vestments",
+            "https://warcraft.wiki.gg/wiki/Ensemble%3A_Redeemed_Inquisitor%27s_Vestments",
+            "https://warcraft.wiki.gg/wiki/Ensemble%3A_Forsworn_Aspirant%27s_Regalia"
+          ],
+          "locationType": "Korthia daily quest hub",
+          "availability": {
+            "kind": "neverImplemented",
+            "reason": "Ensemble wrapper not obtainable; matching appearances are individual covenant daily-quest rewards."
+          }
+        }
+      ],
+      "186513": [
+        {
+          "kind": "Quest Rewards",
+          "sourceName": "Korthia covenant dailies: individual appearance pieces",
+          "coords": [
+            [
+              1961,
+              62.8,
+              22.6
+            ]
+          ],
+          "maps": [],
+          "instructions": "The ensemble wrapper was not implemented as an obtainable item. Its matching appearance pieces can be earned separately from the corresponding covenant's rotating daily quests at Keeper's Respite. Complete the Korthia campaign unlocks and inspect daily rewards while in the matching covenant.",
+          "references": [
+            "https://www.wowhead.com/transmog-set=11998/redeemed-inquisitors-vestments",
+            "https://warcraft.wiki.gg/wiki/Ensemble%3A_Redeemed_Inquisitor%27s_Vestments",
+            "https://warcraft.wiki.gg/wiki/Ensemble%3A_Forsworn_Aspirant%27s_Regalia"
+          ],
+          "locationType": "Korthia daily quest hub",
+          "availability": {
+            "kind": "neverImplemented",
+            "reason": "Ensemble wrapper not obtainable; matching appearances are individual covenant daily-quest rewards."
+          }
+        }
+      ],
+      "186514": [
+        {
+          "kind": "Quest Rewards",
+          "sourceName": "Korthia covenant dailies: individual appearance pieces",
+          "coords": [
+            [
+              1961,
+              62.8,
+              22.6
+            ]
+          ],
+          "maps": [],
+          "instructions": "The ensemble wrapper was not implemented as an obtainable item. Its matching appearance pieces can be earned separately from the corresponding covenant's rotating daily quests at Keeper's Respite. Complete the Korthia campaign unlocks and inspect daily rewards while in the matching covenant.",
+          "references": [
+            "https://www.wowhead.com/transmog-set=11998/redeemed-inquisitors-vestments",
+            "https://warcraft.wiki.gg/wiki/Ensemble%3A_Redeemed_Inquisitor%27s_Vestments",
+            "https://warcraft.wiki.gg/wiki/Ensemble%3A_Forsworn_Aspirant%27s_Regalia"
+          ],
+          "locationType": "Korthia daily quest hub",
+          "availability": {
+            "kind": "neverImplemented",
+            "reason": "Ensemble wrapper not obtainable; matching appearances are individual covenant daily-quest rewards."
+          }
+        }
+      ],
+      "186518": [
+        {
+          "kind": "Quest Rewards",
+          "sourceName": "Korthia covenant dailies: individual appearance pieces",
+          "coords": [
+            [
+              1961,
+              62.8,
+              22.6
+            ]
+          ],
+          "maps": [],
+          "instructions": "The ensemble wrapper was not implemented as an obtainable item. Its matching appearance pieces can be earned separately from the corresponding covenant's rotating daily quests at Keeper's Respite. Complete the Korthia campaign unlocks and inspect daily rewards while in the matching covenant.",
+          "references": [
+            "https://www.wowhead.com/transmog-set=11998/redeemed-inquisitors-vestments",
+            "https://warcraft.wiki.gg/wiki/Ensemble%3A_Redeemed_Inquisitor%27s_Vestments",
+            "https://warcraft.wiki.gg/wiki/Ensemble%3A_Forsworn_Aspirant%27s_Regalia"
+          ],
+          "locationType": "Korthia daily quest hub",
+          "availability": {
+            "kind": "neverImplemented",
+            "reason": "Ensemble wrapper not obtainable; matching appearances are individual covenant daily-quest rewards."
+          }
+        }
+      ],
+      "146651": [
+        {
+          "kind": "Unavailable",
+          "sourceName": "Retired wrapper - replaced by Arsenal: Merciless Gladiator's Weapons",
+          "coords": [],
+          "maps": [],
+          "instructions": "This separate Gladiator's Weapons wrapper was retired in patch 7.2.5. Collect its weapon appearances through Arsenal: Merciless Gladiator's Weapons from Izzee the 'Clutch' in Area 52, Netherstorm, for 80 Marks of Honor. Keep this historical record out of the collection guide UI.",
+          "references": [
+            "https://www.wowhead.com/item=146651/arsenal-gladiators-weapons",
+            "https://warcraft.wiki.gg/wiki/Arsenal%3A_Gladiator%27s_Weapons",
+            "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+          ],
+          "reviewedAt": "2026-10-30",
+          "availability": {
+            "kind": "Removed",
+            "reason": "The separate wrapper was retired in 7.2.5; its appearances are included in Arsenal: Merciless Gladiator's Weapons.",
+            "reviewedAt": "2026-10-30",
+            "sourceUrl": "https://www.wowhead.com/item=146651/arsenal-gladiators-weapons",
+            "replacementItemID": 146650
+          }
+        }
+      ]
+    }
+  },
+  "profiles": {
+    "island_pets": [
+      {
+        "kind": "Rare Drops",
+        "sourceName": "Island Expedition rewards",
+        "coords": [
+          [
+            1161,
+            66.6,
+            33.4
+          ]
+        ],
+        "maps": [],
+        "instructions": "Speak to the expedition captain beside the map to queue or request a private tour. Complete expeditions for a chance at this reward; suitable salvage crates are another chance-based source. The marker is the queue location, not an outdoor pet spawn. Complete the Island Expedition introduction first if required.",
+        "references": [
+          "https://www.wowhead.com/guide/island-expeditions-in-battle-for-azeroth-5984",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/ExpansionFeatures.lua"
+        ],
+        "npcID": 143968,
+        "npcName": "Flynn Fairwind",
+        "faction": "Alliance",
+        "locationType": "Island Expedition queue"
+      },
+      {
+        "kind": "Rare Drops",
+        "sourceName": "Island Expedition rewards",
+        "coords": [
+          [
+            1165,
+            44.5,
+            95.3
+          ]
+        ],
+        "maps": [],
+        "instructions": "Speak to the expedition captain beside the map to queue or request a private tour. Complete expeditions for a chance at this reward; suitable salvage crates are another chance-based source. The marker is the queue location, not an outdoor pet spawn. Complete the Island Expedition introduction first if required.",
+        "references": [
+          "https://www.wowhead.com/guide/island-expeditions-in-battle-for-azeroth-5984",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/ExpansionFeatures.lua"
+        ],
+        "npcID": 143967,
+        "npcName": "Captain Rez'okun",
+        "faction": "Horde",
+        "locationType": "Island Expedition queue"
+      }
+    ],
+    "island_toys": [
+      {
+        "kind": "Rare Drops",
+        "sourceName": "Island Expedition rewards",
+        "coords": [
+          [
+            1161,
+            66.6,
+            33.4
+          ]
+        ],
+        "maps": [],
+        "instructions": "Speak to the expedition captain beside the map to queue or request a private tour. Complete expeditions for a chance at this reward; suitable salvage crates are another chance-based source. The marker is the queue location, not an outdoor pet spawn. Complete the Island Expedition introduction first if required.",
+        "references": [
+          "https://www.wowhead.com/guide/island-expeditions-in-battle-for-azeroth-5984",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/ExpansionFeatures.lua"
+        ],
+        "npcID": 143968,
+        "npcName": "Flynn Fairwind",
+        "faction": "Alliance",
+        "locationType": "Island Expedition queue"
+      },
+      {
+        "kind": "Rare Drops",
+        "sourceName": "Island Expedition rewards",
+        "coords": [
+          [
+            1165,
+            44.5,
+            95.3
+          ]
+        ],
+        "maps": [],
+        "instructions": "Speak to the expedition captain beside the map to queue or request a private tour. Complete expeditions for a chance at this reward; suitable salvage crates are another chance-based source. The marker is the queue location, not an outdoor pet spawn. Complete the Island Expedition introduction first if required.",
+        "references": [
+          "https://www.wowhead.com/guide/island-expeditions-in-battle-for-azeroth-5984",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/ExpansionFeatures.lua"
+        ],
+        "npcID": 143967,
+        "npcName": "Captain Rez'okun",
+        "faction": "Horde",
+        "locationType": "Island Expedition queue"
+      }
+    ],
+    "never_implemented_toys": [
+      {
+        "kind": "Unavailable",
+        "sourceName": "Never implemented",
+        "coords": [],
+        "maps": [],
+        "instructions": "This datamined toy has no implemented acquisition source. Its old journal drop label does not establish an obtainable reward.",
+        "references": [
+          "https://warcraft-secrets.com/guides/hidden-toys"
+        ],
+        "availability": {
+          "kind": "neverImplemented",
+          "reason": "Datamined toy; no implemented acquisition source."
+        }
+      }
+    ],
+    "unreleased_pets": [
+      {
+        "kind": "Unavailable",
+        "sourceName": "Unreleased or removed from the pet journal",
+        "coords": [],
+        "maps": [],
+        "instructions": "No implemented acquisition source is verified for this species. The old vendor/drop/wild-pet label is not a usable acquisition method.",
+        "references": [
+          "https://www.wow-petguide.com/News/501/The_War_Within%3A_Patch_11.0.5_2024-09-06",
+          "https://www.curseforge.com/wow/addons/battle-pet-completionist/files/7807022",
+          "https://www.wowhead.com/guide/collections/the-war-within/battle-pet-collection-overview"
+        ],
+        "availability": {
+          "kind": "neverImplemented",
+          "reason": "Unreleased pet species or removed journal entry; no implemented acquisition source."
+        }
+      }
+    ],
+    "gwosh": [
+      {
+        "kind": "Pet Battles",
+        "sourceName": "Gwosh encounter",
+        "coords": [
+          [
+            2024,
+            14.2,
+            47.6
+          ]
+        ],
+        "maps": [],
+        "instructions": "This species is an opposing battle pet, not a collectible companion. The marker locates its trainer or boss encounter; the pet cannot be captured or learned.",
+        "references": [
+          "https://www.wowhead.com/npc=196206/gwosh",
+          "https://www.wow-petguide.com/News/370"
+        ],
+        "npcName": "Gwosh",
+        "locationType": "Pet battle opponent encounter",
+        "availability": {
+          "kind": "opponent",
+          "reason": "Pet battle opponent; cannot be captured or learned as a collectible companion."
+        },
+        "npcID": 196206
+      }
+    ],
+    "dyna_team": [
+      {
+        "kind": "Pet Battles",
+        "sourceName": "Collector Dyna encounter",
+        "coords": [
+          [
+            2248,
+            38.33,
+            78.83
+          ]
+        ],
+        "maps": [],
+        "instructions": "This species is an opposing battle pet, not a collectible companion. The marker locates its trainer or boss encounter; the pet cannot be captured or learned.",
+        "references": [
+          "https://www.wowhead.com/npc=223446/collector-dyna",
+          "https://www.wowhead.com/npc=223407/awakened-custodian",
+          "https://www.wow-petguide.com/News/526"
+        ],
+        "npcName": "Collector Dyna",
+        "locationType": "Pet battle opponent encounter",
+        "availability": {
+          "kind": "opponent",
+          "reason": "Pet battle opponent; cannot be captured or learned as a collectible companion."
+        },
+        "npcID": 223446
+      }
+    ],
+    "custodian": [
+      {
+        "kind": "Pet Battles",
+        "sourceName": "Awakened Custodian encounter",
+        "coords": [
+          [
+            2248,
+            48.17,
+            31.96
+          ]
+        ],
+        "maps": [],
+        "instructions": "This species is an opposing battle pet, not a collectible companion. The marker locates its trainer or boss encounter; the pet cannot be captured or learned.",
+        "references": [
+          "https://www.wowhead.com/npc=223446/collector-dyna",
+          "https://www.wowhead.com/npc=223407/awakened-custodian",
+          "https://www.wow-petguide.com/News/526"
+        ],
+        "npcName": "Awakened Custodian",
+        "locationType": "Pet battle opponent encounter",
+        "availability": {
+          "kind": "opponent",
+          "reason": "Pet battle opponent; cannot be captured or learned as a collectible companion."
+        },
+        "npcID": 223407
+      }
+    ],
+    "grem_team": [
+      {
+        "kind": "Pet Battles",
+        "sourceName": "Friendhaver Grem encounter",
+        "coords": [
+          [
+            2214,
+            61.59,
+            37.6
+          ]
+        ],
+        "maps": [],
+        "instructions": "This species is an opposing battle pet, not a collectible companion. The marker locates its trainer or boss encounter; the pet cannot be captured or learned.",
+        "references": [
+          "https://www.wowhead.com/npc=223446/collector-dyna",
+          "https://www.wowhead.com/npc=223407/awakened-custodian",
+          "https://www.wow-petguide.com/News/526"
+        ],
+        "npcName": "Friendhaver Grem",
+        "locationType": "Pet battle opponent encounter",
+        "availability": {
+          "kind": "opponent",
+          "reason": "Pet battle opponent; cannot be captured or learned as a collectible companion."
+        },
+        "npcID": 223444
+      }
+    ],
+    "servobot": [
+      {
+        "kind": "Pet Battles",
+        "sourceName": "Haywire Servobot encounter",
+        "coords": [
+          [
+            2214,
+            66.86,
+            58.1
+          ]
+        ],
+        "maps": [],
+        "instructions": "This species is an opposing battle pet, not a collectible companion. The marker locates its trainer or boss encounter; the pet cannot be captured or learned.",
+        "references": [
+          "https://www.wowhead.com/npc=223446/collector-dyna",
+          "https://www.wowhead.com/npc=223407/awakened-custodian",
+          "https://www.wow-petguide.com/News/526"
+        ],
+        "npcName": "Haywire Servobot",
+        "locationType": "Pet battle opponent encounter",
+        "availability": {
+          "kind": "opponent",
+          "reason": "Pet battle opponent; cannot be captured or learned as a collectible companion."
+        },
+        "npcID": 222535
+      }
+    ],
+    "kyrie_team": [
+      {
+        "kind": "Pet Battles",
+        "sourceName": "Kyrie encounter",
+        "coords": [
+          [
+            2215,
+            52.4,
+            62.6
+          ]
+        ],
+        "maps": [],
+        "instructions": "This species is an opposing battle pet, not a collectible companion. The marker locates its trainer or boss encounter; the pet cannot be captured or learned.",
+        "references": [
+          "https://www.wowhead.com/npc=223446/collector-dyna",
+          "https://www.wowhead.com/npc=223407/awakened-custodian",
+          "https://www.wow-petguide.com/News/526"
+        ],
+        "npcName": "Kyrie",
+        "locationType": "Pet battle opponent encounter",
+        "availability": {
+          "kind": "opponent",
+          "reason": "Pet battle opponent; cannot be captured or learned as a collectible companion."
+        }
+      }
+    ],
+    "guttergunk": [
+      {
+        "kind": "Pet Battles",
+        "sourceName": "Guttergunk encounter",
+        "coords": [
+          [
+            2215,
+            61.08,
+            68.96
+          ]
+        ],
+        "maps": [],
+        "instructions": "This species is an opposing battle pet, not a collectible companion. The marker locates its trainer or boss encounter; the pet cannot be captured or learned.",
+        "references": [
+          "https://www.wowhead.com/npc=223446/collector-dyna",
+          "https://www.wowhead.com/npc=223407/awakened-custodian",
+          "https://www.wow-petguide.com/News/526"
+        ],
+        "npcName": "Guttergunk",
+        "locationType": "Pet battle opponent encounter",
+        "availability": {
+          "kind": "opponent",
+          "reason": "Pet battle opponent; cannot be captured or learned as a collectible companion."
+        }
+      }
+    ],
+    "ziriak_team": [
+      {
+        "kind": "Pet Battles",
+        "sourceName": "Ziriak encounter",
+        "coords": [
+          [
+            2216,
+            61.6,
+            36.6
+          ]
+        ],
+        "maps": [],
+        "instructions": "This species is an opposing battle pet, not a collectible companion. The marker locates its trainer or boss encounter; the pet cannot be captured or learned.",
+        "references": [
+          "https://www.wowhead.com/npc=223446/collector-dyna",
+          "https://www.wowhead.com/npc=223407/awakened-custodian",
+          "https://www.wow-petguide.com/News/526"
+        ],
+        "npcName": "Ziriak",
+        "locationType": "Pet battle opponent encounter",
+        "availability": {
+          "kind": "opponent",
+          "reason": "Pet battle opponent; cannot be captured or learned as a collectible companion."
+        }
+      }
+    ],
+    "zaedu": [
+      {
+        "kind": "Pet Battles",
+        "sourceName": "Zaedu encounter",
+        "coords": [
+          [
+            2255,
+            53.1,
+            31.59
+          ]
+        ],
+        "maps": [],
+        "instructions": "This species is an opposing battle pet, not a collectible companion. The marker locates its trainer or boss encounter; the pet cannot be captured or learned.",
+        "references": [
+          "https://www.wowhead.com/npc=223446/collector-dyna",
+          "https://www.wowhead.com/npc=223407/awakened-custodian",
+          "https://www.wow-petguide.com/News/526"
+        ],
+        "npcName": "Zaedu",
+        "locationType": "Pet battle opponent encounter",
+        "availability": {
+          "kind": "opponent",
+          "reason": "Pet battle opponent; cannot be captured or learned as a collectible companion."
+        }
+      }
+    ],
+    "powerdrill": [
+      {
+        "kind": "Pet Battles",
+        "sourceName": "Precision Powerdrill encounter",
+        "coords": [
+          [
+            2346,
+            55.0,
+            69.6
+          ]
+        ],
+        "maps": [],
+        "instructions": "This species is an opposing battle pet, not a collectible companion. The marker locates its trainer or boss encounter; the pet cannot be captured or learned.",
+        "references": [
+          "https://www.wowhead.com/npc=223446/collector-dyna",
+          "https://www.wowhead.com/npc=223407/awakened-custodian",
+          "https://www.wow-petguide.com/News/526"
+        ],
+        "npcName": "Precision Powerdrill",
+        "locationType": "Pet battle opponent encounter",
+        "availability": {
+          "kind": "opponent",
+          "reason": "Pet battle opponent; cannot be captured or learned as a collectible companion."
+        },
+        "npcID": 237701
+      }
+    ],
+    "prezly_team": [
+      {
+        "kind": "Pet Battles",
+        "sourceName": "Prezly Wavecutter encounter",
+        "coords": [
+          [
+            2346,
+            59.4,
+            27.2
+          ]
+        ],
+        "maps": [],
+        "instructions": "This species is an opposing battle pet, not a collectible companion. The marker locates its trainer or boss encounter; the pet cannot be captured or learned.",
+        "references": [
+          "https://www.wowhead.com/npc=223446/collector-dyna",
+          "https://www.wowhead.com/npc=223407/awakened-custodian",
+          "https://www.wow-petguide.com/News/526"
+        ],
+        "npcName": "Prezly Wavecutter",
+        "locationType": "Pet battle opponent encounter",
+        "availability": {
+          "kind": "opponent",
+          "reason": "Pet battle opponent; cannot be captured or learned as a collectible companion."
+        },
+        "npcID": 237712
+      }
+    ],
+    "creech_team": [
+      {
+        "kind": "Pet Battles",
+        "sourceName": "Creech encounter",
+        "coords": [
+          [
+            2346,
+            32.2,
+            82.0
+          ]
+        ],
+        "maps": [],
+        "instructions": "This species is an opposing battle pet, not a collectible companion. The marker locates its trainer or boss encounter; the pet cannot be captured or learned.",
+        "references": [
+          "https://www.wowhead.com/npc=223446/collector-dyna",
+          "https://www.wowhead.com/npc=223407/awakened-custodian",
+          "https://www.wow-petguide.com/News/526"
+        ],
+        "npcName": "Creech",
+        "locationType": "Pet battle opponent encounter",
+        "availability": {
+          "kind": "opponent",
+          "reason": "Pet battle opponent; cannot be captured or learned as a collectible companion."
+        },
+        "npcID": 237718
+      }
+    ],
+    "torghast_brokers": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Broker Ve'ken / Broker Ve'nott",
+        "coords": [
+          [
+            1543,
+            48.2,
+            39.4
+          ]
+        ],
+        "maps": [],
+        "instructions": "Enter Torghast and select Layer 13 or higher. Brokers inside sell a rotating selection of cosmetic weapons for Phantasma. Their positions vary with the generated floor; this marker is the tower entrance, not a fixed broker spawn.",
+        "references": [
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/ExpansionFeatures.lua",
+          "https://www.wowhead.com/npc=152594/broker-veken"
+        ],
+        "npcID": 152594,
+        "npcName": "Broker Ve'ken / Broker Ve'nott",
+        "locationType": "Torghast entrance; brokers inside"
+      }
+    ],
+    "legion_legacy_brutal_gladiator_arsenal": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Blaze Magmaburn - Brutal Gladiator weapon arsenal",
+        "coords": [
+          [
+            109,
+            33.2,
+            64
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 80 Marks of Honor from PvP reward containers, then visit Blaze Magmaburn in Area 52, Netherstorm (33.2, 64). Buy the Brutal Gladiator weapon arsenal for 80 Marks of Honor and use the purchased wrapper to add its appearances to your collection. The arsenal teaches the season's weapon appearances, including weapon types your current character cannot equip. Buying only individual weapons can cost fewer marks if you want a small subset. The vendor is inside the PvP-vendor building in Area 52 in Outland.",
+        "references": [
+          "https://www.wowhead.com/npc=107619",
+          "https://www.wowhead.com/item=146648",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 107619,
+        "npcName": "Blaze Magmaburn",
+        "cost": [
+          [
+            "i",
+            137642,
+            80
+          ]
+        ],
+        "locationType": "Brutal Gladiator weapon arsenal vendor"
+      }
+    ],
+    "legion_legacy_cataclysmic_gladiator_arsenal": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Capps Carlin - Cataclysmic Gladiator weapon arsenal",
+        "coords": [
+          [
+            71,
+            51.6,
+            28
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 80 Marks of Honor from PvP reward containers, then visit Capps Carlin in Gadgetzan, Tanaris (51.6, 28). Buy the Cataclysmic Gladiator weapon arsenal for 80 Marks of Honor and use the purchased wrapper to add its appearances to your collection. The arsenal teaches the season's weapon appearances, including weapon types your current character cannot equip. Buying only individual weapons can cost fewer marks if you want a small subset. This Gadgetzan vendor serves both factions.",
+        "references": [
+          "https://www.wowhead.com/npc=69322",
+          "https://www.wowhead.com/item=146639",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 69322,
+        "npcName": "Capps Carlin",
+        "cost": [
+          [
+            "i",
+            137642,
+            80
+          ]
+        ],
+        "locationType": "Cataclysmic Gladiator weapon arsenal vendor"
+      }
+    ],
+    "legion_legacy_deadly_gladiator_arsenal": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Herwin Steampop - Deadly Gladiator weapon arsenal",
+        "coords": [
+          [
+            126,
+            59.4,
+            57.8
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 80 Marks of Honor from PvP reward containers, then visit Herwin Steampop in the Northrend Dalaran sewers (59.4, 57.8). Buy the Deadly Gladiator weapon arsenal for 80 Marks of Honor and use the purchased wrapper to add its appearances to your collection. The arsenal teaches the season's weapon appearances, including weapon types your current character cannot equip. Buying only individual weapons can cost fewer marks if you want a small subset. Travel to Dalaran in Crystalsong Forest, Northrend, and descend into its sewers; these vendors are not in Broken Isles Dalaran.",
+        "references": [
+          "https://www.wowhead.com/npc=69321",
+          "https://www.wowhead.com/item=146645",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 69321,
+        "npcName": "Herwin Steampop",
+        "cost": [
+          [
+            "i",
+            137642,
+            80
+          ]
+        ],
+        "locationType": "Deadly Gladiator weapon arsenal vendor"
+      }
+    ],
+    "legion_legacy_furious_gladiator_arsenal": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Kylo Kelwin - Furious Gladiator weapon arsenal",
+        "coords": [
+          [
+            126,
+            59,
+            57.6
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 80 Marks of Honor from PvP reward containers, then visit Kylo Kelwin in the Northrend Dalaran sewers (59, 57.6). Buy the Furious Gladiator weapon arsenal for 80 Marks of Honor and use the purchased wrapper to add its appearances to your collection. The arsenal teaches the season's weapon appearances, including weapon types your current character cannot equip. Buying only individual weapons can cost fewer marks if you want a small subset. Travel to Dalaran in Crystalsong Forest, Northrend, and descend into its sewers; these vendors are not in Broken Isles Dalaran.",
+        "references": [
+          "https://www.wowhead.com/npc=69318",
+          "https://www.wowhead.com/item=146644",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 69318,
+        "npcName": "Kylo Kelwin",
+        "cost": [
+          [
+            "i",
+            137642,
+            80
+          ]
+        ],
+        "locationType": "Furious Gladiator weapon arsenal vendor"
+      }
+    ],
+    "legion_legacy_hateful_gladiator_arsenal": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Blazik Fireclaw - Hateful Gladiator weapon arsenal",
+        "coords": [
+          [
+            126,
+            59.5,
+            57.9
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 80 Marks of Honor from PvP reward containers, then visit Blazik Fireclaw in the Northrend Dalaran sewers (59.5, 57.9). Buy the Hateful Gladiator weapon arsenal for 80 Marks of Honor and use the purchased wrapper to add its appearances to your collection. The arsenal teaches the season's weapon appearances, including weapon types your current character cannot equip. Buying only individual weapons can cost fewer marks if you want a small subset. Travel to Dalaran in Crystalsong Forest, Northrend, and descend into its sewers; these vendors are not in Broken Isles Dalaran.",
+        "references": [
+          "https://www.wowhead.com/npc=30885",
+          "https://www.wowhead.com/item=146646",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 30885,
+        "npcName": "Blazik Fireclaw",
+        "cost": [
+          [
+            "i",
+            137642,
+            80
+          ]
+        ],
+        "locationType": "Hateful Gladiator weapon arsenal vendor"
+      }
+    ],
+    "legion_legacy_merciless_gladiator_arsenal": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Izzee the 'Clutch' - Merciless Gladiator weapon arsenal",
+        "coords": [
+          [
+            109,
+            33,
+            64.2
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 80 Marks of Honor from PvP reward containers, then visit Izzee the 'Clutch' in Area 52, Netherstorm (33, 64.2). Buy the Merciless Gladiator weapon arsenal for 80 Marks of Honor and use the purchased wrapper to add its appearances to your collection. The arsenal teaches the season's weapon appearances, including weapon types your current character cannot equip. Buying only individual weapons can cost fewer marks if you want a small subset. The vendor is inside the PvP-vendor building in Area 52 in Outland. This current arsenal also grants the original Gladiator Season 1 weapon appearances; the separate Gladiator's Weapons wrapper was retired.",
+        "references": [
+          "https://www.wowhead.com/npc=107599",
+          "https://www.wowhead.com/item=146650",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 107599,
+        "npcName": "Izzee the 'Clutch'",
+        "cost": [
+          [
+            "i",
+            137642,
+            80
+          ]
+        ],
+        "locationType": "Merciless Gladiator weapon arsenal vendor"
+      }
+    ],
+    "legion_legacy_relentless_gladiator_arsenal": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Zom Bocom - Relentless Gladiator weapon arsenal",
+        "coords": [
+          [
+            126,
+            59,
+            58.8
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 80 Marks of Honor from PvP reward containers, then visit Zom Bocom in the Northrend Dalaran sewers (59, 58.8). Buy the Relentless Gladiator weapon arsenal for 80 Marks of Honor and use the purchased wrapper to add its appearances to your collection. The arsenal teaches the season's weapon appearances, including weapon types your current character cannot equip. Buying only individual weapons can cost fewer marks if you want a small subset. Travel to Dalaran in Crystalsong Forest, Northrend, and descend into its sewers; these vendors are not in Broken Isles Dalaran.",
+        "references": [
+          "https://www.wowhead.com/npc=69973",
+          "https://www.wowhead.com/item=146643",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 69973,
+        "npcName": "Zom Bocom",
+        "cost": [
+          [
+            "i",
+            137642,
+            80
+          ]
+        ],
+        "locationType": "Relentless Gladiator weapon arsenal vendor"
+      }
+    ],
+    "legion_legacy_ruthless_gladiator_arsenal": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Tiny Tayger - Ruthless Gladiator weapon arsenal",
+        "coords": [
+          [
+            71,
+            51.6,
+            28
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 80 Marks of Honor from PvP reward containers, then visit Tiny Tayger in Gadgetzan, Tanaris (51.6, 28). Buy the Ruthless Gladiator weapon arsenal for 80 Marks of Honor and use the purchased wrapper to add its appearances to your collection. The arsenal teaches the season's weapon appearances, including weapon types your current character cannot equip. Buying only individual weapons can cost fewer marks if you want a small subset. This Gadgetzan vendor serves both factions.",
+        "references": [
+          "https://www.wowhead.com/npc=69323",
+          "https://www.wowhead.com/item=146640",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 69323,
+        "npcName": "Tiny Tayger",
+        "cost": [
+          [
+            "i",
+            137642,
+            80
+          ]
+        ],
+        "locationType": "Ruthless Gladiator weapon arsenal vendor"
+      }
+    ],
+    "legion_legacy_savage_gladiator_arsenal": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Trapjaw Rix - Savage Gladiator weapon arsenal",
+        "coords": [
+          [
+            126,
+            59.3,
+            57.3
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 80 Marks of Honor from PvP reward containers, then visit Trapjaw Rix in the Northrend Dalaran sewers (59.3, 57.3). Buy the Savage Gladiator weapon arsenal for 80 Marks of Honor and use the purchased wrapper to add its appearances to your collection. The arsenal teaches the season's weapon appearances, including weapon types your current character cannot equip. Buying only individual weapons can cost fewer marks if you want a small subset. Travel to Dalaran in Crystalsong Forest, Northrend, and descend into its sewers; these vendors are not in Broken Isles Dalaran.",
+        "references": [
+          "https://www.wowhead.com/npc=40212",
+          "https://www.wowhead.com/item=146647",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 40212,
+        "npcName": "Trapjaw Rix",
+        "cost": [
+          [
+            "i",
+            137642,
+            80
+          ]
+        ],
+        "locationType": "Savage Gladiator weapon arsenal vendor"
+      }
+    ],
+    "legion_legacy_vengeful_gladiator_arsenal": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Kitzie Crankshot - Vengeful Gladiator weapon arsenal",
+        "coords": [
+          [
+            109,
+            33,
+            64.2
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 80 Marks of Honor from PvP reward containers, then visit Kitzie Crankshot in Area 52, Netherstorm (33, 64.2). Buy the Vengeful Gladiator weapon arsenal for 80 Marks of Honor and use the purchased wrapper to add its appearances to your collection. The arsenal teaches the season's weapon appearances, including weapon types your current character cannot equip. Buying only individual weapons can cost fewer marks if you want a small subset. The vendor is inside the PvP-vendor building in Area 52 in Outland.",
+        "references": [
+          "https://www.wowhead.com/npc=107610",
+          "https://www.wowhead.com/item=146649",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 107610,
+        "npcName": "Kitzie Crankshot",
+        "cost": [
+          [
+            "i",
+            137642,
+            80
+          ]
+        ],
+        "locationType": "Vengeful Gladiator weapon arsenal vendor"
+      }
+    ],
+    "legion_legacy_vicious_gladiator_arsenal": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Blazzek the Biter - Vicious Gladiator weapon arsenal",
+        "coords": [
+          [
+            71,
+            51.6,
+            28
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 80 Marks of Honor from PvP reward containers, then visit Blazzek the Biter in Gadgetzan, Tanaris (51.6, 28). Buy the Vicious Gladiator weapon arsenal for 80 Marks of Honor and use the purchased wrapper to add its appearances to your collection. The arsenal teaches the season's weapon appearances, including weapon types your current character cannot equip. Buying only individual weapons can cost fewer marks if you want a small subset. This Gadgetzan vendor serves both factions.",
+        "references": [
+          "https://www.wowhead.com/npc=40216",
+          "https://www.wowhead.com/item=146641",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 40216,
+        "npcName": "Blazzek the Biter",
+        "cost": [
+          [
+            "i",
+            137642,
+            80
+          ]
+        ],
+        "locationType": "Vicious Gladiator weapon arsenal vendor"
+      }
+    ],
+    "legion_legacy_wrathful_gladiator_arsenal": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Xazi Smolderpipe - Wrathful Gladiator weapon arsenal",
+        "coords": [
+          [
+            126,
+            58.5,
+            58.3
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 80 Marks of Honor from PvP reward containers, then visit Xazi Smolderpipe in the Northrend Dalaran sewers (58.5, 58.3). Buy the Wrathful Gladiator weapon arsenal for 80 Marks of Honor and use the purchased wrapper to add its appearances to your collection. The arsenal teaches the season's weapon appearances, including weapon types your current character cannot equip. Buying only individual weapons can cost fewer marks if you want a small subset. Travel to Dalaran in Crystalsong Forest, Northrend, and descend into its sewers; these vendors are not in Broken Isles Dalaran.",
+        "references": [
+          "https://www.wowhead.com/npc=69971",
+          "https://www.wowhead.com/item=146642",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 69971,
+        "npcName": "Xazi Smolderpipe",
+        "cost": [
+          [
+            "i",
+            137642,
+            80
+          ]
+        ],
+        "locationType": "Wrathful Gladiator weapon arsenal vendor"
+      }
+    ],
+    "legion_legacy_bloodthirsty_gladiator_ensemble": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Vixton Pinchwhistle - Bloodthirsty Gladiator armor ensemble",
+        "coords": [
+          [
+            71,
+            51.6,
+            28
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 12 Marks of Honor from PvP reward containers, then visit Vixton Pinchwhistle in Gadgetzan, Tanaris (51.6, 28). Buy the Bloodthirsty Gladiator armor ensemble for 12 Marks of Honor and use the purchased wrapper to add its appearances to your collection. Choose the ensemble for the class shown in the item tooltip and check which appearances you already know before spending the marks. These are the regular legacy sets; the old seasonal rating is not required. This Gadgetzan vendor serves both factions.",
+        "references": [
+          "https://www.wowhead.com/npc=20278",
+          "https://www.wowhead.com/item=146419",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://warcraft.wiki.gg/wiki/Ensemble%3A_Bloodthirsty_Gladiator%27s_Chain_Armor",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 20278,
+        "npcName": "Vixton Pinchwhistle",
+        "cost": [
+          [
+            "i",
+            137642,
+            12
+          ]
+        ],
+        "locationType": "Bloodthirsty Gladiator armor ensemble vendor"
+      }
+    ],
+    "legion_legacy_brutal_gladiator_ensemble": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Blaze Magmaburn - Brutal Gladiator armor ensemble",
+        "coords": [
+          [
+            109,
+            33.2,
+            64
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 12 Marks of Honor from PvP reward containers, then visit Blaze Magmaburn in Area 52, Netherstorm (33.2, 64). Buy the Brutal Gladiator armor ensemble for 12 Marks of Honor and use the purchased wrapper to add its appearances to your collection. Choose the ensemble for the class shown in the item tooltip and check which appearances you already know before spending the marks. These are the regular legacy sets; the old seasonal rating is not required. The vendor is inside the PvP-vendor building in Area 52 in Outland.",
+        "references": [
+          "https://www.wowhead.com/npc=107619",
+          "https://www.wowhead.com/item=146598",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 107619,
+        "npcName": "Blaze Magmaburn",
+        "cost": [
+          [
+            "i",
+            137642,
+            12
+          ]
+        ],
+        "locationType": "Brutal Gladiator armor ensemble vendor"
+      }
+    ],
+    "legion_legacy_cataclysmic_gladiator_ensemble": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Capps Carlin - Cataclysmic Gladiator armor ensemble",
+        "coords": [
+          [
+            71,
+            51.6,
+            28
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 12 Marks of Honor from PvP reward containers, then visit Capps Carlin in Gadgetzan, Tanaris (51.6, 28). Buy the Cataclysmic Gladiator armor ensemble for 12 Marks of Honor and use the purchased wrapper to add its appearances to your collection. Choose the ensemble for the class shown in the item tooltip and check which appearances you already know before spending the marks. These are the regular legacy sets; the old seasonal rating is not required. This Gadgetzan vendor serves both factions.",
+        "references": [
+          "https://www.wowhead.com/npc=69322",
+          "https://www.wowhead.com/item=146439",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 69322,
+        "npcName": "Capps Carlin",
+        "cost": [
+          [
+            "i",
+            137642,
+            12
+          ]
+        ],
+        "locationType": "Cataclysmic Gladiator armor ensemble vendor"
+      }
+    ],
+    "legion_legacy_deadly_gladiator_ensemble": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Herwin Steampop - Deadly Gladiator armor ensemble",
+        "coords": [
+          [
+            126,
+            59.4,
+            57.8
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 12 Marks of Honor from PvP reward containers, then visit Herwin Steampop in the Northrend Dalaran sewers (59.4, 57.8). Buy the Deadly Gladiator armor ensemble for 12 Marks of Honor and use the purchased wrapper to add its appearances to your collection. Choose the ensemble for the class shown in the item tooltip and check which appearances you already know before spending the marks. These are the regular legacy sets; the old seasonal rating is not required. Travel to Dalaran in Crystalsong Forest, Northrend, and descend into its sewers; these vendors are not in Broken Isles Dalaran.",
+        "references": [
+          "https://www.wowhead.com/npc=69321",
+          "https://www.wowhead.com/item=146538",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 69321,
+        "npcName": "Herwin Steampop",
+        "cost": [
+          [
+            "i",
+            137642,
+            12
+          ]
+        ],
+        "locationType": "Deadly Gladiator armor ensemble vendor"
+      }
+    ],
+    "legion_legacy_furious_gladiator_ensemble": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Kylo Kelwin - Furious Gladiator armor ensemble",
+        "coords": [
+          [
+            126,
+            59,
+            57.6
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 12 Marks of Honor from PvP reward containers, then visit Kylo Kelwin in the Northrend Dalaran sewers (59, 57.6). Buy the Furious Gladiator armor ensemble for 12 Marks of Honor and use the purchased wrapper to add its appearances to your collection. Choose the ensemble for the class shown in the item tooltip and check which appearances you already know before spending the marks. These are the regular legacy sets; the old seasonal rating is not required. Travel to Dalaran in Crystalsong Forest, Northrend, and descend into its sewers; these vendors are not in Broken Isles Dalaran.",
+        "references": [
+          "https://www.wowhead.com/npc=69318",
+          "https://www.wowhead.com/item=146548",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 69318,
+        "npcName": "Kylo Kelwin",
+        "cost": [
+          [
+            "i",
+            137642,
+            12
+          ]
+        ],
+        "locationType": "Furious Gladiator armor ensemble vendor"
+      }
+    ],
+    "legion_legacy_gladiator_ensemble": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Kezzik the Striker - Gladiator armor ensemble",
+        "coords": [
+          [
+            109,
+            33,
+            64.2
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 12 Marks of Honor from PvP reward containers, then visit Kezzik the Striker in Area 52, Netherstorm (33, 64.2). Buy the Gladiator armor ensemble for 12 Marks of Honor and use the purchased wrapper to add its appearances to your collection. Choose the ensemble for the class shown in the item tooltip and check which appearances you already know before spending the marks. These are the regular legacy sets; the old seasonal rating is not required. The vendor is inside the PvP-vendor building in Area 52 in Outland.",
+        "references": [
+          "https://www.wowhead.com/npc=54650",
+          "https://www.wowhead.com/item=146608",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 54650,
+        "npcName": "Kezzik the Striker",
+        "cost": [
+          [
+            "i",
+            137642,
+            12
+          ]
+        ],
+        "locationType": "Gladiator armor ensemble vendor"
+      }
+    ],
+    "legion_legacy_hateful_gladiator_ensemble": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Blazik Fireclaw - Hateful Gladiator armor ensemble",
+        "coords": [
+          [
+            126,
+            59.5,
+            57.9
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 12 Marks of Honor from PvP reward containers, then visit Blazik Fireclaw in the Northrend Dalaran sewers (59.5, 57.9). Buy the Hateful Gladiator armor ensemble for 12 Marks of Honor and use the purchased wrapper to add its appearances to your collection. Choose the ensemble for the class shown in the item tooltip and check which appearances you already know before spending the marks. These are the regular legacy sets; the old seasonal rating is not required. Travel to Dalaran in Crystalsong Forest, Northrend, and descend into its sewers; these vendors are not in Broken Isles Dalaran.",
+        "references": [
+          "https://www.wowhead.com/npc=30885",
+          "https://www.wowhead.com/item=146558",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 30885,
+        "npcName": "Blazik Fireclaw",
+        "cost": [
+          [
+            "i",
+            137642,
+            12
+          ]
+        ],
+        "locationType": "Hateful Gladiator armor ensemble vendor"
+      }
+    ],
+    "legion_legacy_merciless_gladiator_ensemble": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Izzee the 'Clutch' - Merciless Gladiator armor ensemble",
+        "coords": [
+          [
+            109,
+            33,
+            64.2
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 12 Marks of Honor from PvP reward containers, then visit Izzee the 'Clutch' in Area 52, Netherstorm (33, 64.2). Buy the Merciless Gladiator armor ensemble for 12 Marks of Honor and use the purchased wrapper to add its appearances to your collection. Choose the ensemble for the class shown in the item tooltip and check which appearances you already know before spending the marks. These are the regular legacy sets; the old seasonal rating is not required. The vendor is inside the PvP-vendor building in Area 52 in Outland.",
+        "references": [
+          "https://www.wowhead.com/npc=107599",
+          "https://www.wowhead.com/item=146618",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 107599,
+        "npcName": "Izzee the 'Clutch'",
+        "cost": [
+          [
+            "i",
+            137642,
+            12
+          ]
+        ],
+        "locationType": "Merciless Gladiator armor ensemble vendor"
+      }
+    ],
+    "legion_legacy_relentless_gladiator_ensemble": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Zom Bocom - Relentless Gladiator armor ensemble",
+        "coords": [
+          [
+            126,
+            59,
+            58.8
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 12 Marks of Honor from PvP reward containers, then visit Zom Bocom in the Northrend Dalaran sewers (59, 58.8). Buy the Relentless Gladiator armor ensemble for 12 Marks of Honor and use the purchased wrapper to add its appearances to your collection. Choose the ensemble for the class shown in the item tooltip and check which appearances you already know before spending the marks. These are the regular legacy sets; the old seasonal rating is not required. Travel to Dalaran in Crystalsong Forest, Northrend, and descend into its sewers; these vendors are not in Broken Isles Dalaran.",
+        "references": [
+          "https://www.wowhead.com/npc=69973",
+          "https://www.wowhead.com/item=146568",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 69973,
+        "npcName": "Zom Bocom",
+        "cost": [
+          [
+            "i",
+            137642,
+            12
+          ]
+        ],
+        "locationType": "Relentless Gladiator armor ensemble vendor"
+      }
+    ],
+    "legion_legacy_ruthless_gladiator_ensemble": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Tiny Tayger - Ruthless Gladiator armor ensemble",
+        "coords": [
+          [
+            71,
+            51.6,
+            28
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 12 Marks of Honor from PvP reward containers, then visit Tiny Tayger in Gadgetzan, Tanaris (51.6, 28). Buy the Ruthless Gladiator armor ensemble for 12 Marks of Honor and use the purchased wrapper to add its appearances to your collection. Choose the ensemble for the class shown in the item tooltip and check which appearances you already know before spending the marks. These are the regular legacy sets; the old seasonal rating is not required. This Gadgetzan vendor serves both factions.",
+        "references": [
+          "https://www.wowhead.com/npc=69323",
+          "https://www.wowhead.com/item=146499",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 69323,
+        "npcName": "Tiny Tayger",
+        "cost": [
+          [
+            "i",
+            137642,
+            12
+          ]
+        ],
+        "locationType": "Ruthless Gladiator armor ensemble vendor"
+      }
+    ],
+    "legion_legacy_savage_gladiator_ensemble": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Trapjaw Rix - Savage Gladiator armor ensemble",
+        "coords": [
+          [
+            126,
+            59.3,
+            57.3
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 12 Marks of Honor from PvP reward containers, then visit Trapjaw Rix in the Northrend Dalaran sewers (59.3, 57.3). Buy the Savage Gladiator armor ensemble for 12 Marks of Honor and use the purchased wrapper to add its appearances to your collection. Choose the ensemble for the class shown in the item tooltip and check which appearances you already know before spending the marks. These are the regular legacy sets; the old seasonal rating is not required. Travel to Dalaran in Crystalsong Forest, Northrend, and descend into its sewers; these vendors are not in Broken Isles Dalaran.",
+        "references": [
+          "https://www.wowhead.com/npc=40212",
+          "https://www.wowhead.com/item=146578",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 40212,
+        "npcName": "Trapjaw Rix",
+        "cost": [
+          [
+            "i",
+            137642,
+            12
+          ]
+        ],
+        "locationType": "Savage Gladiator armor ensemble vendor"
+      }
+    ],
+    "legion_legacy_vengeful_gladiator_ensemble": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Kitzie Crankshot - Vengeful Gladiator armor ensemble",
+        "coords": [
+          [
+            109,
+            33,
+            64.2
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 12 Marks of Honor from PvP reward containers, then visit Kitzie Crankshot in Area 52, Netherstorm (33, 64.2). Buy the Vengeful Gladiator armor ensemble for 12 Marks of Honor and use the purchased wrapper to add its appearances to your collection. Choose the ensemble for the class shown in the item tooltip and check which appearances you already know before spending the marks. These are the regular legacy sets; the old seasonal rating is not required. The vendor is inside the PvP-vendor building in Area 52 in Outland.",
+        "references": [
+          "https://www.wowhead.com/npc=107610",
+          "https://www.wowhead.com/item=146628",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 107610,
+        "npcName": "Kitzie Crankshot",
+        "cost": [
+          [
+            "i",
+            137642,
+            12
+          ]
+        ],
+        "locationType": "Vengeful Gladiator armor ensemble vendor"
+      }
+    ],
+    "legion_legacy_vicious_gladiator_ensemble": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Blazzek the Biter - Vicious Gladiator armor ensemble",
+        "coords": [
+          [
+            71,
+            51.6,
+            28
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 12 Marks of Honor from PvP reward containers, then visit Blazzek the Biter in Gadgetzan, Tanaris (51.6, 28). Buy the Vicious Gladiator armor ensemble for 12 Marks of Honor and use the purchased wrapper to add its appearances to your collection. Choose the ensemble for the class shown in the item tooltip and check which appearances you already know before spending the marks. These are the regular legacy sets; the old seasonal rating is not required. This Gadgetzan vendor serves both factions.",
+        "references": [
+          "https://www.wowhead.com/npc=40216",
+          "https://www.wowhead.com/item=146519",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 40216,
+        "npcName": "Blazzek the Biter",
+        "cost": [
+          [
+            "i",
+            137642,
+            12
+          ]
+        ],
+        "locationType": "Vicious Gladiator armor ensemble vendor"
+      }
+    ],
+    "legion_legacy_wrathful_gladiator_ensemble": [
+      {
+        "kind": "Vendor",
+        "sourceName": "Xazi Smolderpipe - Wrathful Gladiator armor ensemble",
+        "coords": [
+          [
+            126,
+            58.5,
+            58.3
+          ]
+        ],
+        "maps": [],
+        "instructions": "Collect 12 Marks of Honor from PvP reward containers, then visit Xazi Smolderpipe in the Northrend Dalaran sewers (58.5, 58.3). Buy the Wrathful Gladiator armor ensemble for 12 Marks of Honor and use the purchased wrapper to add its appearances to your collection. Choose the ensemble for the class shown in the item tooltip and check which appearances you already know before spending the marks. These are the regular legacy sets; the old seasonal rating is not required. Travel to Dalaran in Crystalsong Forest, Northrend, and descend into its sewers; these vendors are not in Broken Isles Dalaran.",
+        "references": [
+          "https://www.wowhead.com/npc=69971",
+          "https://www.wowhead.com/item=146588",
+          "https://www.wowhead.com/achievement=11719/its-not-fashion-unless-it-hurts",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Zones.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/PVP.lua",
+          "https://github.com/ATTWoWAddon/AllTheThings/blob/f8113a527789bf361e070d7cde94d1f57a22b2b8/db/Standard/Categories/Professions.lua"
+        ],
+        "reviewedAt": "2026-10-30",
+        "npcID": 69971,
+        "npcName": "Xazi Smolderpipe",
+        "cost": [
+          [
+            "i",
+            137642,
+            12
+          ]
+        ],
+        "locationType": "Wrathful Gladiator armor ensemble vendor"
+      }
+    ]
+  },
+  "groups": [
+    {
+      "type": "pets",
+      "ids": [
+        2445,
+        2446,
+        2447,
+        2448,
+        2449,
+        2450,
+        2451,
+        2452,
+        2453,
+        2454,
+        2455,
+        2456,
+        2457,
+        2458,
+        2459,
+        2460,
+        2461,
+        2462,
+        2463,
+        2464,
+        2465,
+        2466,
+        2467,
+        2468,
+        2469,
+        2471,
+        2472,
+        2473,
+        2551,
+        2552,
+        2553,
+        2554,
+        2556,
+        2557,
+        2558,
+        2559,
+        2560,
+        2561,
+        2754,
+        2755
+      ],
+      "profile": "island_pets"
+    },
+    {
+      "type": "toys",
+      "ids": [
+        163795,
+        163924,
+        164373,
+        164374,
+        164375
+      ],
+      "profile": "island_toys"
+    },
+    {
+      "type": "toys",
+      "ids": [
+        164371,
+        164372,
+        164377,
+        166851
+      ],
+      "profile": "never_implemented_toys"
+    },
+    {
+      "type": "pets",
+      "ids": [
+        3543,
+        3544,
+        4458,
+        4478,
+        4502
+      ],
+      "profile": "unreleased_pets"
+    },
+    {
+      "type": "pets",
+      "ids": [
+        3377
+      ],
+      "profile": "gwosh"
+    },
+    {
+      "type": "pets",
+      "ids": [
+        4549,
+        4550,
+        4551
+      ],
+      "profile": "dyna_team"
+    },
+    {
+      "type": "pets",
+      "ids": [
+        4561
+      ],
+      "profile": "custodian"
+    },
+    {
+      "type": "pets",
+      "ids": [
+        4553,
+        4554,
+        4564
+      ],
+      "profile": "grem_team"
+    },
+    {
+      "type": "pets",
+      "ids": [
+        4488
+      ],
+      "profile": "servobot"
+    },
+    {
+      "type": "pets",
+      "ids": [
+        4552,
+        4555,
+        4559
+      ],
+      "profile": "kyrie_team"
+    },
+    {
+      "type": "pets",
+      "ids": [
+        4562
+      ],
+      "profile": "guttergunk"
+    },
+    {
+      "type": "pets",
+      "ids": [
+        4556,
+        4557,
+        4558
+      ],
+      "profile": "ziriak_team"
+    },
+    {
+      "type": "pets",
+      "ids": [
+        4560
+      ],
+      "profile": "zaedu"
+    },
+    {
+      "type": "pets",
+      "ids": [
+        4737
+      ],
+      "profile": "powerdrill"
+    },
+    {
+      "type": "pets",
+      "ids": [
+        4741,
+        4742,
+        4743
+      ],
+      "profile": "prezly_team"
+    },
+    {
+      "type": "pets",
+      "ids": [
+        4744,
+        4745,
+        4746
+      ],
+      "profile": "creech_team"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        188737,
+        188743,
+        188744,
+        188745,
+        188746,
+        188747,
+        188748,
+        188749,
+        188750,
+        188752
+      ],
+      "profile": "torghast_brokers"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146648
+      ],
+      "profile": "legion_legacy_brutal_gladiator_arsenal"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146639
+      ],
+      "profile": "legion_legacy_cataclysmic_gladiator_arsenal"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146645
+      ],
+      "profile": "legion_legacy_deadly_gladiator_arsenal"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146644
+      ],
+      "profile": "legion_legacy_furious_gladiator_arsenal"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146646
+      ],
+      "profile": "legion_legacy_hateful_gladiator_arsenal"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146650
+      ],
+      "profile": "legion_legacy_merciless_gladiator_arsenal"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146643
+      ],
+      "profile": "legion_legacy_relentless_gladiator_arsenal"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146640
+      ],
+      "profile": "legion_legacy_ruthless_gladiator_arsenal"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146647
+      ],
+      "profile": "legion_legacy_savage_gladiator_arsenal"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146649
+      ],
+      "profile": "legion_legacy_vengeful_gladiator_arsenal"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146641
+      ],
+      "profile": "legion_legacy_vicious_gladiator_arsenal"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146642
+      ],
+      "profile": "legion_legacy_wrathful_gladiator_arsenal"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146419,
+        146421,
+        146423,
+        146425,
+        146427,
+        146429,
+        146431,
+        146433,
+        146435,
+        146437
+      ],
+      "profile": "legion_legacy_bloodthirsty_gladiator_ensemble"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146598,
+        146599,
+        146600,
+        146601,
+        146602,
+        146603,
+        146604,
+        146605,
+        146606,
+        146607
+      ],
+      "profile": "legion_legacy_brutal_gladiator_ensemble"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146439,
+        146441,
+        146443,
+        146445,
+        146447,
+        146449,
+        146451,
+        146453,
+        146455,
+        146457
+      ],
+      "profile": "legion_legacy_cataclysmic_gladiator_ensemble"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146538,
+        146539,
+        146540,
+        146541,
+        146542,
+        146543,
+        146544,
+        146545,
+        146546,
+        146547
+      ],
+      "profile": "legion_legacy_deadly_gladiator_ensemble"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146548,
+        146549,
+        146550,
+        146551,
+        146552,
+        146553,
+        146554,
+        146555,
+        146556,
+        146557
+      ],
+      "profile": "legion_legacy_furious_gladiator_ensemble"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146608,
+        146609,
+        146611,
+        146612,
+        146613,
+        146614,
+        146615,
+        146616,
+        146617
+      ],
+      "profile": "legion_legacy_gladiator_ensemble"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146558,
+        146559,
+        146560,
+        146561,
+        146562,
+        146563,
+        146564,
+        146565,
+        146566,
+        146567
+      ],
+      "profile": "legion_legacy_hateful_gladiator_ensemble"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146618,
+        146619,
+        146621,
+        146622,
+        146623,
+        146624,
+        146625,
+        146626,
+        146627
+      ],
+      "profile": "legion_legacy_merciless_gladiator_ensemble"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146568,
+        146569,
+        146570,
+        146571,
+        146572,
+        146573,
+        146574,
+        146575,
+        146576,
+        146577
+      ],
+      "profile": "legion_legacy_relentless_gladiator_ensemble"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146499,
+        146501,
+        146503,
+        146505,
+        146507,
+        146509,
+        146511,
+        146513,
+        146515,
+        146517
+      ],
+      "profile": "legion_legacy_ruthless_gladiator_ensemble"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146578,
+        146579,
+        146580,
+        146581,
+        146582,
+        146583,
+        146584,
+        146585,
+        146586,
+        146587
+      ],
+      "profile": "legion_legacy_savage_gladiator_ensemble"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146628,
+        146629,
+        146631,
+        146632,
+        146633,
+        146634,
+        146635,
+        146636,
+        146637
+      ],
+      "profile": "legion_legacy_vengeful_gladiator_ensemble"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146519,
+        146521,
+        146523,
+        146525,
+        146527,
+        146529,
+        146531,
+        146533,
+        146535,
+        146537
+      ],
+      "profile": "legion_legacy_vicious_gladiator_ensemble"
+    },
+    {
+      "type": "cosmetics",
+      "ids": [
+        146588,
+        146589,
+        146590,
+        146591,
+        146592,
+        146593,
+        146594,
+        146595,
+        146596,
+        146597
+      ],
+      "profile": "legion_legacy_wrathful_gladiator_ensemble"
+    }
+  ],
+  "quests": {
+    "58076": {
+      "name": "Speak with Amara Lunastar",
+      "coords": [
+        [
+          63,
+          17.4,
+          49.3
+        ]
+      ],
+      "maps": [
+        63
+      ],
+      "sourceQuests": [],
+      "qgs": [
+        159799
+      ],
+      "npcName": "Amara Lunastar",
+      "instructions": "Speak with Amara Lunastar in Ashenvale about her missing cat."
+    },
+    "58098": {
+      "name": "Inspect the Empty Dish",
+      "coords": [
+        [
+          37,
+          44.2,
+          53.0
+        ]
+      ],
+      "maps": [
+        37
+      ],
+      "sourceQuests": [
+        58076
+      ],
+      "instructions": "Inspect the Empty Dish inside the cat house in Elwynn Forest."
+    },
+    "58099": {
+      "name": "Solve the Jenafur food puzzle",
+      "coords": [
+        [
+          42,
+          46.7,
+          70.1
+        ]
+      ],
+      "maps": [
+        42
+      ],
+      "sourceQuests": [
+        58098
+      ],
+      "instructions": "Enter Return to Karazhan, clear the required rooms, then place the food in the Opera Hall in the Amara's Wish pattern. Pet Jenafur when she appears. The marker is the dungeon entrance."
+    },
+    "46952": {
+      "name": "Bring Dog a Loose Pebble",
+      "coords": [],
+      "maps": [],
+      "sourceQuests": [
+        30526
+      ],
+      "variants": [
+        {
+          "questID": 46952,
+          "name": "Bring Dog a Loose Pebble",
+          "faction": "Alliance",
+          "coords": [
+            [
+              582,
+              58.8,
+              53.8
+            ]
+          ],
+          "qgs": [
+            87553
+          ],
+          "sourceQuests": [
+            30526,
+            34193
+          ],
+          "instructions": "Find a Loose Pebble in Legion Dalaran and show it to Dog in your garrison Herb Garden. Do not throw the pebble."
+        },
+        {
+          "questID": 46952,
+          "name": "Bring Dog a Loose Pebble",
+          "faction": "Horde",
+          "coords": [
+            [
+              590,
+              44.6,
+              84.8
+            ]
+          ],
+          "qgs": [
+            87553
+          ],
+          "sourceQuests": [
+            30526,
+            36404
+          ],
+          "instructions": "Find a Loose Pebble in Legion Dalaran and show it to Dog in your garrison Herb Garden. Do not throw the pebble."
+        }
+      ],
+      "instructions": "Find a Loose Pebble in Legion Dalaran, build the garrison Herb Garden, and show the pebble to Dog. Do not throw it."
+    },
+    "83093": {
+      "name": "Inspect the Half-Buried Dog Bowl",
+      "coords": [
+        [
+          2248,
+          31.4,
+          51.3
+        ]
+      ],
+      "maps": [
+        2248
+      ],
+      "sourceQuests": [
+        46952
+      ],
+      "instructions": "Interact with the Half-Buried Dog Bowl near Dalaran's crash site on the Isle of Dorn."
+    },
+    "83094": {
+      "name": "Pet Dog",
+      "coords": [
+        [
+          2248,
+          31.4,
+          51.3
+        ]
+      ],
+      "maps": [
+        2248
+      ],
+      "sourceQuests": [
+        83093
+      ],
+      "qgs": [
+        225486
+      ],
+      "npcName": "Dog",
+      "instructions": "Interact with Dog and choose to pet his head to learn Faithful Dog."
+    },
+    "77303": {
+      "name": "Idol Searching",
+      "coords": [
+        [
+          2112,
+          47.2,
+          46.6
+        ]
+      ],
+      "maps": [
+        2112
+      ],
+      "sourceQuests": [],
+      "qgs": [
+        185562
+      ],
+      "npcName": "Tithris",
+      "instructions": "Speak with Tithris in the Roasted Ram. Bring the Torch of Pyrreth and follow the brazier clues to Teerakai."
+    },
+    "77304": {
+      "name": "An Idol in Hand",
+      "coords": [
+        [
+          2023,
+          39.5,
+          58.9
+        ]
+      ],
+      "maps": [
+        2023
+      ],
+      "sourceQuests": [
+        77303
+      ],
+      "instructions": "After lighting the braziers with the Torch of Pyrreth, collect the idol by the last brazier at Teerakai and return it to Preservationist Kathos."
+    }
+  }
+}

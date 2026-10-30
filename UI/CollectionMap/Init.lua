@@ -17,14 +17,7 @@ local WORLD_MAP_PIN_BASE_SIZE = 30
 local WORLD_MAP_PIN_DEFAULT_SCALE = 1.6
 local WORLD_MAP_PIN_MIN_SCALE = 0.75
 local WORLD_MAP_PIN_MAX_SCALE = 3
-local WORLD_MAP_PIN_TEMPLATE = "TODOPlannerWorldMapPinTemplate"
-local MINIMAP_PIN_BASE_SIZE = 22
-local MINIMAP_PIN_EDGE_PADDING = 10
-local MINIMAP_UPDATE_INTERVAL = 0.15
-local MINIMAP_NORMALIZED_EDGE_DISTANCE = 0.08
-
-_G.TODOPlannerWorldMapPinMixin = _G.TODOPlannerWorldMapPinMixin or {}
-_G.TODOPlannerWorldMapDataProviderMixin = _G.TODOPlannerWorldMapDataProviderMixin or {}
+local MINIMAP_PIN_BASE_SIZE = 18
 
 local TYPE_LABELS = {
     mounts = "Mount",
@@ -40,15 +33,6 @@ end
 
 local function IsCollectionType(value)
     return value == "mounts" or value == "pets" or value == "toys" or value == "cosmetics" or value == "achievements"
-end
-
-local function CopyTableContents(target, source)
-    for key in pairs(target) do
-        target[key] = nil
-    end
-    for key, value in pairs(source) do
-        target[key] = value
-    end
 end
 
 local function GetPinCoordinates(pinData)
@@ -106,13 +90,10 @@ function CollectionMapWindow:New()
         waypoints = nil,
         icon = nil,
         projectedPayload = nil,
+        projectedPayloads = {},
         worldMapPins = {},
         minimapPins = {},
-        minimapFrame = nil,
-        minimapElapsed = 0,
-        worldMapDataProvider = nil,
         worldMapControls = nil,
-        worldMapEventFrame = nil,
         criteriaEventFrame = nil,
         worldMapHooksInstalled = false,
     }, self)
@@ -132,18 +113,13 @@ CollectionMapWindow.Config = {
     WORLD_MAP_PIN_DEFAULT_SCALE = WORLD_MAP_PIN_DEFAULT_SCALE,
     WORLD_MAP_PIN_MIN_SCALE = WORLD_MAP_PIN_MIN_SCALE,
     WORLD_MAP_PIN_MAX_SCALE = WORLD_MAP_PIN_MAX_SCALE,
-    WORLD_MAP_PIN_TEMPLATE = WORLD_MAP_PIN_TEMPLATE,
     MINIMAP_PIN_BASE_SIZE = MINIMAP_PIN_BASE_SIZE,
-    MINIMAP_PIN_EDGE_PADDING = MINIMAP_PIN_EDGE_PADDING,
-    MINIMAP_UPDATE_INTERVAL = MINIMAP_UPDATE_INTERVAL,
-    MINIMAP_NORMALIZED_EDGE_DISTANCE = MINIMAP_NORMALIZED_EDGE_DISTANCE,
     TYPE_LABELS = TYPE_LABELS,
 }
 
 CollectionMapWindow.Helpers = {
     IsNonEmptyText = IsNonEmptyText,
     IsCollectionType = IsCollectionType,
-    CopyTableContents = CopyTableContents,
     GetPinCoordinates = GetPinCoordinates,
     PinMatchesMap = PinMatchesMap,
 }

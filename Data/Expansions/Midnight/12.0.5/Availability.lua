@@ -24,6 +24,16 @@ TDP.CatalogRegistry:RegisterAvailability("12.0.5", {
         [272338] = shared["cosmetics 272317"],
     },
     mounts = {
+        [1283906] = { -- [PH] Giant Eagle Sunwalker Mount Blue
+            kind = "Unconfirmed",
+            reason = "Placeholder mount record; no confirmed in-game acquisition is recorded.",
+            reviewedAt = "2026-10-29",
+        },
+        [1283911] = { -- [PH] Giant Eagle Sunwalker Mount White
+            kind = "Unconfirmed",
+            reason = "Placeholder mount record; no confirmed in-game acquisition is recorded.",
+            reviewedAt = "2026-10-29",
+        },
         [1282471] = {
             reason = "Decor Duels ended in patch 12.1. The mount reward has no current source; only housing decor was retained for Voidlight Marl.",
             reviewedAt = "2026-10-13",

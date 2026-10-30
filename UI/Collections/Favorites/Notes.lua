@@ -4,6 +4,9 @@ local PatchCatalog = TDP.PatchCatalog
 
 function FavoritesWindow:GetRowNotes(row)
     local lines = {}
+    if PatchCatalog and PatchCatalog.GetCollectionSourceNotes then
+        for _, line in ipairs(PatchCatalog:GetCollectionSourceNotes(row.collectionType, row.patchKey, row.entry, true)) do lines[#lines + 1] = line end
+    end
 
     if row.collectionType == "mounts" then
         local sourceSummary = PatchCatalog and PatchCatalog:GetMountSourceSummary(row.patchKey, row.entry)
@@ -103,6 +106,14 @@ function FavoritesWindow:GetRowNotes(row)
                 lines[#lines + 1] = ""
             end
             lines[#lines + 1] = "How to get: " .. acquisition
+        end
+    end
+
+    if PatchCatalog then
+        local costs = PatchCatalog:GetCollectionCostLines(row.collectionType, row.patchKey, row.entry)
+        if #costs > 0 then
+            if #lines > 0 then lines[#lines + 1] = "" end
+            for _, line in ipairs(costs) do lines[#lines + 1] = line end
         end
     end
 

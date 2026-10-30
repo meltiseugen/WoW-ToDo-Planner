@@ -147,7 +147,9 @@ def lua_strings(value, seen=None):
 
     strings = []
     for key, nested_value in value.items():
-        if key in {"researchNotes", "tips"}:
+        # Guidance may mention an old event or a holiday prerequisite without
+        # making the collectible itself an excluded acquisition source.
+        if key in {"researchNotes", "tips", "acquisition"}:
             continue
         strings.extend(lua_strings(key, seen))
         strings.extend(lua_strings(nested_value, seen))
@@ -168,7 +170,9 @@ toc = TOC_PATH.read_text(encoding="utf-8-sig")
 assert toc.index("Data/Catalog.xml") < toc.index("Integrations/CollectionScanner.lua")
 catalog_paths = list(manifest_scripts(CATALOG_MANIFEST))
 assert len(catalog_paths) == len(set(catalog_paths)), "Duplicate catalog manifest scripts"
-assert set(catalog_paths) == set((ROOT / "Data/Expansions").rglob("*.lua")) | set((ROOT / "Data/Catalog").glob("*.lua")), "Unlisted catalog files"
+assert set(catalog_paths) == (set((ROOT / "Data/Expansions").rglob("*.lua"))
+                              | set((ROOT / "Data/Catalog").glob("*.lua"))
+                              | set((ROOT / "Data/Sources").glob("*.lua"))), "Unlisted catalog files"
 catalog_text = "\n".join(path.read_text(encoding="utf-8-sig") for path in catalog_paths)
 assert "remain intentionally empty" not in catalog_text
 assert "remains intentionally empty" not in catalog_text

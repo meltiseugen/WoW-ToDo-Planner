@@ -8,7 +8,7 @@ TDP.CatalogRegistry:RegisterCollection("5.4.0", "pets", {
             name = "Pierre",
             source = "Pandaria Engineering",
             speciesId = 1204,
-            tips = "Most Timeless Isle rare pets are low-chance drops. Use alts for one-attempt-per-day sources; cageable pets can also be bought from the auction house.",
+            tips = "Craft with Pandaria Engineering or buy a caged copy from another player.",
         },
         {
             acquisition = "Obtain Rascal-Bot from Pandaria Engineering.",
@@ -16,7 +16,7 @@ TDP.CatalogRegistry:RegisterCollection("5.4.0", "pets", {
             name = "Rascal-Bot",
             source = "Pandaria Engineering",
             speciesId = 1256,
-            tips = "Most Timeless Isle rare pets are low-chance drops. Use alts for one-attempt-per-day sources; cageable pets can also be bought from the auction house.",
+            tips = "Craft with Pandaria Engineering or buy a caged copy from another player.",
         },
         {
             acquisition = "Obtain Xu-Fu, Cub of Xuen from Master Li for three Celestial Coins.",
@@ -60,7 +60,7 @@ TDP.CatalogRegistry:RegisterCollection("5.4.0", "pets", {
             name = "Lil' Bling",
             source = "a Blingtron 4000 Gift Package",
             speciesId = 1320,
-            tips = "Most Timeless Isle rare pets are low-chance drops. Use alts for one-attempt-per-day sources; cageable pets can also be bought from the auction house.",
+            tips = "Open a Blingtron gift package for a chance at the pet, or buy a caged copy from another player. Blingtrons can be summoned in different locations.",
         },
         {
             acquisition = "Obtain Azure Crane Chick from Crane Nests on the Timeless Isle.",
@@ -407,7 +407,7 @@ TDP.CatalogRegistry:RegisterCollection("5.4.0", "pets", {
             acquisition = "Obtain Lil' Bling from a Blingtron 4000 Gift Package.",
             source = "a Blingtron 4000 Gift Package",
             sourceType = "Pet Journal Source",
-            tips = "Most Timeless Isle rare pets are low-chance drops. Use alts for one-attempt-per-day sources; cageable pets can also be bought from the auction house.",
+            tips = "Open a Blingtron gift package for a chance at the pet, or buy a caged copy from another player. Blingtrons can be summoned in different locations.",
         },
         ["Ominous Flame"] = {
             acquisition = "Obtain Ominous Flame from Foreboding Flames on the Timeless Isle.",
@@ -420,13 +420,13 @@ TDP.CatalogRegistry:RegisterCollection("5.4.0", "pets", {
             acquisition = "Obtain Pierre from Pandaria Engineering.",
             source = "Pandaria Engineering",
             sourceType = "Pet Journal Source",
-            tips = "Most Timeless Isle rare pets are low-chance drops. Use alts for one-attempt-per-day sources; cageable pets can also be bought from the auction house.",
+            tips = "Craft with Pandaria Engineering or buy a caged copy from another player.",
         },
         ["Rascal-Bot"] = {
             acquisition = "Obtain Rascal-Bot from Pandaria Engineering.",
             source = "Pandaria Engineering",
             sourceType = "Pet Journal Source",
-            tips = "Most Timeless Isle rare pets are low-chance drops. Use alts for one-attempt-per-day sources; cageable pets can also be bought from the auction house.",
+            tips = "Craft with Pandaria Engineering or buy a caged copy from another player.",
         },
         ["Ruby Droplet"] = {
             acquisition = "Obtain Ruby Droplet from Garnia on the Timeless Isle.",

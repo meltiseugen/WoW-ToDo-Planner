@@ -34,6 +34,7 @@ function CollectionMapWindow:BuildDetailsText()
     local lines = {}
 
     self:AddDetailsSection(lines, "Source", self.sourceSummary)
+    self:AddDetailsSection(lines, "Source details", self.sourceNotes)
     self:AddDetailsSection(lines, "How to get", self.acquisition)
     self:AddDetailsSection(lines, "Effect", self.effect)
     self:AddDetailsSection(lines, "Tips", self.tips)
@@ -118,5 +119,6 @@ function CollectionMapWindow:RenderDetails()
     self.detailIcon:SetTexture(self.icon or "Interface\\Icons\\INV_Misc_QuestionMark")
     self.detailTitle:SetText(self.title or "Collection location")
     self.detailMeta:SetText(self:GetCollectionTypeLabel())
+    if self.sourceAreaButton and self.sourceAreaButton:IsShown() then self:UpdateSourceAreaControl() end
     Widgets:UpdateScrollablePreviewText(self.detailScroll, self.detailContent, self.detailText, self:BuildDetailsText())
 end

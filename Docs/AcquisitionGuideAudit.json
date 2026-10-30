@@ -1,0 +1,28 @@
+{
+  "reviewedAt": "2026-10-28",
+  "verifiedGuides": {
+    "pets": 331,
+    "mounts": 283,
+    "toys": 111
+  },
+  "total": 725,
+  "journalPlaceholders": 0,
+  "methods": {
+    "Quest Rewards": 64,
+    "Pet Battles": 137,
+    "Historical Reward": 15,
+    "Vendor": 294,
+    "Reviewed guide": 46,
+    "Treasure": 33,
+    "Rare Drops": 34,
+    "Achievements": 61,
+    "Professions": 5,
+    "Dungeon and Raids": 7,
+    "PvP": 1,
+    "Unavailable": 7,
+    "Container reward": 20,
+    "Unverified": 1
+  },
+  "runtimeDataSha256": "ce415f6fc4d546c3c21fb39f1a755ba9eaef2f034e0ba79ad96325a9eaf8ec20",
+  "scope": "Offline coverage and runtime getter validation. Acquisition evidence is recorded per item. Native WoW interactions and current event scheduling are not exercised."
+}

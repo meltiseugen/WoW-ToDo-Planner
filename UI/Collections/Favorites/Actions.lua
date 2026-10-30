@@ -22,13 +22,18 @@ end
 function FavoritesWindow:IsCollectionMapRow(row)
     return row
         and PatchCatalog
-        and PatchCatalog.HasCollectionMapPayload
-        and PatchCatalog:HasCollectionMapPayload(row.collectionType, row.patchKey, row.entry)
+        and (self:GetCollectionMapAchievementId(row) ~= nil
+            or PatchCatalog.HasCollectionMapPayload
+                and PatchCatalog:HasCollectionMapPayload(row.collectionType, row.patchKey, row.entry))
 end
 
 function FavoritesWindow:OpenCollectionMap(row)
+    local achievementId = self:GetCollectionMapAchievementId(row)
+    if achievementId then
+        return self:OpenCollectionSourceAchievement(row, achievementId)
+    end
     if not self:IsCollectionMapRow(row) then
-        Utils:Msg("No curated map location is available for this collection entry.")
+        Utils:Msg("No curated map location is available for this collection entry.", "warnings")
         return
     end
 
@@ -36,13 +41,13 @@ function FavoritesWindow:OpenCollectionMap(row)
         TDP.collectionMapWindow = TDP.CollectionMapWindow:New()
     end
     if not TDP.collectionMapWindow or not PatchCatalog or not PatchCatalog.GetCollectionMapPayload then
-        Utils:Msg("Collection map is unavailable.")
+        Utils:Msg("Collection map is unavailable.", "warnings")
         return
     end
 
     local payload = PatchCatalog:GetCollectionMapPayload(row.collectionType, row.patchKey, row.entry, row.state)
     if not payload then
-        Utils:Msg("No curated map location is available for this collection entry.")
+        Utils:Msg("No curated map location is available for this collection entry.", "warnings")
         return
     end
     payload.title = row.name or payload.title
@@ -77,7 +82,7 @@ function FavoritesWindow:RemoveFavorite(row)
     end
 
     if Favorites:Remove(row.patchKey, row.collectionType, row.entry) then
-        Utils:Msg("Removed favorite: " .. (row.name or "Unknown"))
+        Utils:Msg("Removed favorite: " .. (row.name or "Unknown"), "collections")
         self.selectedRow = nil
         if self.homeWindow and self.homeWindow.explorerWindow and self.homeWindow.explorerWindow.frame and self.homeWindow.explorerWindow.frame:IsShown() then
             self.homeWindow.explorerWindow:Render()

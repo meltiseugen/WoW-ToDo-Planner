@@ -120,6 +120,7 @@ function Widgets:FormatPreviewNotes(text)
     end
 
     local function addBodyLine(line)
+        line = self:LinkifyPreviewCostText(line, text)
         local completedText = line:match("^%[Done%]%s*(.*)$")
         local pendingText = line:match("^%[ %]%s*(.*)$")
         local bulletText = line:match("^%-%s+(.*)$")
@@ -167,6 +168,8 @@ function Widgets:UpdateScrollablePreviewText(scrollFrame, content, fontString, t
     end
 
     local width = math.max(1, (scrollFrame:GetWidth() or 1) - 4)
+    self:ConfigurePreviewCostLinks(content)
+    if content.HidePreviewCostTooltip then content:HidePreviewCostTooltip() end
     fontString.rawPreviewText = tostring(text or "")
     fontString:SetWidth(width)
     fontString:SetText(self:FormatPreviewNotes(fontString.rawPreviewText))

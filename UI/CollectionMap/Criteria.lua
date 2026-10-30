@@ -89,15 +89,12 @@ function CollectionMapWindow:UpdateCriteriaFilterControl()
 end
 
 function CollectionMapWindow:RefreshProjectedCriteriaPins()
-    if not self.projectedPayload
-        or not self.mapAchievementId
-        or tonumber(self.projectedPayload.mapAchievementId) ~= tonumber(self.mapAchievementId) then
-        return
+    local payload = self:CopyProjectionPayload()
+    if self:FindProjection(payload) then
+        self:AddProjection(payload)
+        self:RefreshWorldMapProjection()
+        self:RefreshMinimapProjection()
     end
-
-    self.projectedPayload = self:CopyProjectionPayload()
-    self:RefreshWorldMapProjection()
-    self:RefreshMinimapProjection()
 end
 
 function CollectionMapWindow:SetShowCompletedCriteriaPins(showCompleted)

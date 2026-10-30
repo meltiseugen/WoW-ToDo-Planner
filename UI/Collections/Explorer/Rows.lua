@@ -37,163 +37,186 @@ function CollectionExplorerWindow:GetRowKey(row)
     return string.format("%s:%s:%s", tostring(row.patchKey), tostring(row.collectionType), tostring(self:GetEntryId(row.collectionType, row.entry) or "unknown"))
 end
 
-function CollectionExplorerWindow:BuildRow(parent)
-    local row = Widgets:CreatePanel(parent, "rowOdd", "goldBorder")
-    row:SetSize(LIST_CONTENT_WIDTH, ROW_HEIGHT)
-    row:EnableMouse(true)
-
-    local accent = row:CreateTexture(nil, "ARTWORK")
-    accent:SetPoint("TOPLEFT", row, "TOPLEFT", 0, -1)
-    accent:SetPoint("BOTTOMLEFT", row, "BOTTOMLEFT", 0, 1)
-    accent:SetWidth(3)
-    row.accent = accent
-
-    local icon = row:CreateTexture(nil, "ARTWORK")
-    icon:SetPoint("LEFT", row, "LEFT", 10, 0)
-    icon:SetSize(32, 32)
-    row.icon = icon
-
-    local factionBadge = row:CreateTexture(nil, "OVERLAY")
-    factionBadge:SetTexture("Interface\\Buttons\\WHITE8X8")
-    factionBadge:SetPoint("LEFT", icon, "RIGHT", 8, 7)
-    factionBadge:SetSize(10, 10)
-    factionBadge:Hide()
-    row.factionBadge = factionBadge
-
-    local title = Widgets:CreateFontString(row, "OVERLAY", "GameFontNormal")
-    title:SetPoint("TOPLEFT", factionBadge, "TOPRIGHT", 6, 1)
-    title:SetPoint("RIGHT", row, "RIGHT", -136, 0)
-    title:SetJustifyH("LEFT")
-    if title.SetWordWrap then
-        title:SetWordWrap(false)
-    end
-    row.title = title
-
-    local meta = Widgets:CreateFontString(row, "OVERLAY", "GameFontHighlightSmall")
-    meta:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -4)
-    meta:SetPoint("RIGHT", title, "RIGHT", 0, 0)
-    meta:SetJustifyH("LEFT")
-    row.meta = meta
-
-    local favoriteButton = Widgets:CreateButton(row, 54, 22, "Fav", "neutral")
-    favoriteButton:SetPoint("RIGHT", row, "RIGHT", -10, 0)
-    row.favoriteButton = favoriteButton
-
-    local mapButton = Widgets:CreateButton(row, 54, 22, "Map", "neutral")
-    mapButton:SetPoint("RIGHT", favoriteButton, "LEFT", -6, 0)
-    row.mapButton = mapButton
-
-    row:SetScript("OnMouseDown", function(target, button)
-        if self:TryDressUpCosmetic(target.rowData, button) then
-            return
+function CollectionExplorerWindow:GetExplorerRowMeta(row)
+    local text
+    if self.selectedCollectionType ~= "all" and row.collectionType == "mounts" then
+        text = row.mountCategory or "Other"
+    else
+        text = self:GetRowMetaPrefix(row)
+        if self.selectedCollectionType ~= "all" and (row.collectionType == "pets" or row.collectionType == "toys") then
+            text = text:gsub("^" .. self:GetTypeLabel(row.collectionType) .. " %- ", "")
         end
+    end
+    text = text .. " - Patch " .. row.patchKey
+    if self.selectedStatus == "all" or row.unobtainable then text = text .. " - " .. self:GetRowStatusLabel(row) end
+    return text
+end
 
+function CollectionExplorerWindow:BuildRow(parent)
+    local row = Widgets:CreatePanel(parent, "rowOdd", "chromeBorder")
+    row:SetSize(self.listContentWidth or LIST_CONTENT_WIDTH, ROW_HEIGHT)
+    row:EnableMouse(true)
+    row.accent = row:CreateTexture(nil, "ARTWORK")
+    row.accent:SetPoint("TOPLEFT", 0, -1)
+    row.accent:SetPoint("BOTTOMLEFT", 0, 1)
+    row.accent:SetWidth(3)
+    row.icon = row:CreateTexture(nil, "ARTWORK")
+    row.icon:SetPoint("LEFT", 10, 0)
+    row.icon:SetSize(32, 32)
+    row.iconTooltip = CreateFrame("Frame", nil, row)
+    row.iconTooltip:SetAllPoints(row.icon)
+    row.iconTooltip:EnableMouse(true)
+    row.iconTooltip:SetPropagateMouseClicks(true)
+    row.iconTooltip:SetPropagateMouseMotion(true)
+    row.factionBadge = Widgets:CreateFontString(row, "OVERLAY", "GameFontNormalSmall")
+    row.factionBadge:SetPoint("TOPLEFT", 50, -10)
+    row.factionBadge:Hide()
+    row.title = Widgets:CreateFontString(row, "OVERLAY", "GameFontNormal")
+    row.title:SetJustifyH("LEFT")
+    row.title:SetWordWrap(true)
+    row.meta = Widgets:CreateFontString(row, "OVERLAY", "GameFontHighlightSmall")
+    row.meta:SetPoint("TOPLEFT", row.title, "BOTTOMLEFT", 0, -4)
+    row.meta:SetJustifyH("LEFT")
+    row.meta:SetWordWrap(true)
+    row.mapButton = self:CreateCollectionShortcut(row, "map")
+    row.mapButton:SetPoint("RIGHT", -8, 0)
+    row.favoriteButton = self:CreateCollectionShortcut(row, "favorite")
+    row.favoriteButton:SetPoint("RIGHT", row.mapButton, "LEFT", -4, 0)
+    row:SetScript("OnMouseDown", function(target, button)
+        if self:TryDressUpCosmetic(target.rowData, button) then return end
+        Widgets:HideDropdownMenus()
         self.selectedRow = target.rowData
         self:RenderPreview()
         self:UpdateRowSelection()
+        self:SaveBrowserState()
     end)
-
-    row:SetScript("OnEnter", function(target)
-        self:ShowRowTooltip(target)
-    end)
-
-    row:SetScript("OnLeave", function()
-        self:HideRowTooltip()
-    end)
-
-    row:SetScript("OnHide", function()
-        self:HideRowTooltip()
-    end)
-
-    favoriteButton:SetScript("OnClick", function(target)
-        self:ToggleFavorite(target:GetParent().rowData)
-    end)
-
-    mapButton:SetScript("OnClick", function(target)
-        self:OpenCollectionMap(target:GetParent().rowData)
-    end)
-
+    row.iconTooltip:SetScript("OnEnter", function(target) self:ShowRowTooltip(target, row.rowData) end)
+    row.iconTooltip:SetScript("OnLeave", function() self:HideRowTooltip() end)
+    row.iconTooltip:SetScript("OnHide", function() self:HideRowTooltip() end)
+    row.favoriteButton:SetScript("OnClick", function() self:ToggleFavorite(row.rowData) end)
+    row.mapButton:SetScript("OnClick", function() self:OpenCollectionMap(row.rowData) end)
     return row
 end
 
-function CollectionExplorerWindow:UpdateRow(row, rowData, index)
-    row.rowData = rowData
-    row:SetParent(self.listContent)
+function CollectionExplorerWindow:UpdateRow(row, data, index, offsetY)
+    local width = self.listContentWidth or LIST_CONTENT_WIDTH
+    if row.rowData == data and row.boundWidth == width and row.boundOffset == offsetY
+        and row.boundGeometryVersion == self.rowGeometryVersion then return end
+    row.rowData = data
+    row.boundWidth, row.boundOffset, row.boundGeometryVersion = width, offsetY, self.rowGeometryVersion
     row:ClearAllPoints()
-    row:SetPoint("TOPLEFT", self.listContent, "TOPLEFT", 0, -((index - 1) * (ROW_HEIGHT + ROW_GAP)))
-
-    local icon = rowData.icon or "Interface\\Icons\\INV_Misc_QuestionMark"
-    row.icon:SetTexture(icon)
-    row.title:SetText(rowData.name)
-    local factionColor = self:GetFactionBadgeColor(rowData.faction)
-    if factionColor then
-        row.factionBadge:SetVertexColor(factionColor[1], factionColor[2], factionColor[3], factionColor[4])
-        row.factionBadge:Show()
-    else
-        row.factionBadge:Hide()
+    row:SetPoint("TOPLEFT", self.listContent, "TOPLEFT", 0, -(offsetY or 0))
+    row:SetWidth(self.listContentWidth or LIST_CONTENT_WIDTH)
+    row.icon:SetTexture(data.icon or "Interface\\Icons\\INV_Misc_QuestionMark")
+    local faction = self:GetFactionBadgeColor(data.faction)
+    row.factionBadge:SetShown(faction ~= nil)
+    if faction then
+        row.factionBadge:SetText(data.faction == "alliance" and "A" or "H")
+        row.factionBadge:SetTextColor(faction[1], faction[2], faction[3], faction[4])
     end
-    local metaPrefix = self:GetTypeLabel(rowData.collectionType)
-    if rowData.collectionType == "mounts" then
-        metaPrefix = (rowData.mountCategory or "Other") .. " mount"
-    elseif rowData.collectionType == "cosmetics" then
-        metaPrefix = ((rowData.cosmeticSubtype or "appearance"):gsub("^%l", string.upper)) .. " cosmetic"
-    elseif rowData.collectionType == "achievements" then
-        metaPrefix = (rowData.achievementCategory or "Other") .. " achievement"
+    local titleLeft = faction and 64 or 50
+    row.title:ClearAllPoints()
+    row.title:SetPoint("TOPLEFT", row, "TOPLEFT", titleLeft, -9)
+    row.title:SetWidth((self.listContentWidth or LIST_CONTENT_WIDTH) - titleLeft - 76)
+    row.meta:SetWidth((self.listContentWidth or LIST_CONTENT_WIDTH) - titleLeft - 76)
+    row.title:SetText(data.name)
+    self:SetRowMeta(row, data.explorerMeta or self:GetExplorerRowMeta(data), ROW_HEIGHT)
+    local favorite = self:IsFavoriteRow(data)
+    row.favoriteButton.icon:SetAlpha(favorite and 1 or 0.45)
+    row.favoriteButton.helpText = favorite and "Remove this collection from Favorites." or "Save this collection to Favorites."
+    if not data.mapActionChecked then
+        data.mapActionTitle, data.mapActionHelp = self:GetCollectionMapActionHelp(data)
+        data.hasMapAction = self:IsCollectionMapRow(data) == true
+        data.mapActionChecked = true
     end
-    local metaText = string.format("%s - %s", metaPrefix, self:GetRowStatusLabel(rowData))
-    if self.nearbySnapshot or self.selectedPatch == ALL_PATCHES then
-        metaText = string.format("Patch %s - %s", rowData.patchKey, metaText)
-    end
-    row.meta:SetText(metaText)
-    Widgets:SetTextureColor(row.accent, rowData.collected and { 0.28, 0.82, 0.42, 0.74 }
-        or rowData.unobtainable and { 0.92, 0.36, 0.28, 0.74 } or "accentGold")
-
-    local isFavorite = self:IsFavoriteRow(rowData)
-    row.favoriteButton:SetText(isFavorite and "Unfav" or "Fav")
-    Widgets:SetButtonEnabled(row.favoriteButton, true)
-    if self:IsCollectionMapRow(rowData) then
-        row.mapButton:Show()
-        Widgets:SetButtonEnabled(row.mapButton, true)
-    else
-        row.mapButton:Hide()
-    end
+    row.mapButton.explorerHelpTitle, row.mapButton.helpText = data.mapActionTitle, data.mapActionHelp
+    row.mapButton:SetShown(data.hasMapAction)
+    Widgets:SetTextureColor(row.accent, data.unobtainable and "previewHeading" or data.collected and "previewSuccess" or "accentGold")
     row:Show()
 end
 
 function CollectionExplorerWindow:UpdateRowSelection()
+    local selectedKey = self:GetRowKey(self.selectedRow)
     for _, row in ipairs(self.rowPool) do
         if row.rowData then
-            local isSelected = self.selectedRow
-                and row.rowData.collectionType == self.selectedRow.collectionType
-                and tostring(self:GetEntryId(row.rowData.collectionType, row.rowData.entry)) == tostring(self:GetEntryId(self.selectedRow.collectionType, self.selectedRow.entry))
-            if row.SetBackdropColor then
-                local color = Widgets:GetThemeColor(isSelected and "rowSelected" or "rowOdd")
-                row:SetBackdropColor(color[1], color[2], color[3], color[4])
-            end
-            Widgets:ApplyTextColor(row.title, isSelected and "selectionText" or "textStrong")
-            Widgets:ApplyTextColor(row.meta, isSelected and "selectionTextSoft" or "textSoft")
+            local selected = selectedKey == self:GetRowKey(row.rowData)
+            local color = Widgets:GetThemeColor(selected and "rowSelected" or "rowOdd")
+            row:SetBackdropColor(color[1], color[2], color[3], color[4])
+            row.accent:SetShown(selected or row.rowData.collected or row.rowData.unobtainable)
+            Widgets:ApplyTextColor(row.title, selected and "selectionText" or "textStrong")
+            Widgets:ApplyTextColor(row.meta, selected and "selectionTextSoft" or "textSoft")
         end
     end
 end
 
-function CollectionExplorerWindow:BuildRows()
-    for _, row in ipairs(self.rowPool) do
-        row:Hide()
+function CollectionExplorerWindow:UpdateVisibleRows(scroll)
+    if not self.rowGeometry or self.updatingVisibleRows then return end
+    self.updatingVisibleRows = true
+    scroll = math.max(0, tonumber(scroll) or self.listScroll:GetVerticalScroll())
+    if self.renderedListScroll ~= scroll then self:HideRowTooltip() end
+    self.renderedListScroll = scroll
+    local bottom = scroll + (self.listViewportHeight or self.listScroll:GetHeight())
+    local first, last, low, high = 1, #self.visibleRows, 1, #self.visibleRows
+    while low <= high do
+        local middle = math.floor((low + high) / 2)
+        local geometry = self.rowGeometry[middle]
+        if geometry.top + geometry.height < scroll then low = middle + 1 else high = middle - 1 end
     end
-
-    local y = 0
-    for index, rowData in ipairs(self.visibleRows) do
-        local row = self.rowPool[index]
-        if not row then
-            row = self:BuildRow(self.listContent)
-            self.rowPool[index] = row
-        end
-        self:UpdateRow(row, rowData, index)
-        y = y + ROW_HEIGHT + ROW_GAP
+    first = math.max(1, low - 1) -- One overscan row prevents gaps during wheel scrolling.
+    local poolIndex = 0
+    for index = first, last do
+        local geometry = self.rowGeometry[index]
+        if geometry.top > bottom + ROW_HEIGHT then break end
+        poolIndex = poolIndex + 1
+        local row = self.rowPool[poolIndex]
+        if not row then row = self:BuildRow(self.listContent); self.rowPool[poolIndex] = row end
+        self:UpdateRow(row, self.visibleRows[index], index, geometry.top)
     end
-
-    self.listContent:SetSize(LIST_CONTENT_WIDTH, math.max(self.listScroll:GetHeight() or 1, y + 6))
+    for index = poolIndex + 1, #self.rowPool do
+        self.rowPool[index]:Hide()
+        self.rowPool[index].rowData = nil
+    end
     self:UpdateRowSelection()
+    self.updatingVisibleRows = nil
+end
+
+function CollectionExplorerWindow:BuildRows(scroll)
+    if self.buildingRows then return end
+    self.buildingRows = true
+    -- Capture the requested offset before native size/range callbacks can clamp it.
+    scroll = tonumber(scroll) or tonumber(self.pendingListScroll) or self.listScroll:GetVerticalScroll()
+    local width = self.listContentWidth or LIST_CONTENT_WIDTH
+    if not self.rowMeasureTitle then
+        self.rowMeasureTitle = Widgets:CreateFontString(self.listContent, "OVERLAY", "GameFontNormal")
+        self.rowMeasureMeta = Widgets:CreateFontString(self.listContent, "OVERLAY", "GameFontHighlightSmall")
+        self.rowMeasureTitle:SetWordWrap(true)
+        self.rowMeasureMeta:SetWordWrap(true)
+        self.rowMeasureTitle:Hide()
+        self.rowMeasureMeta:Hide()
+    end
+    local y = 0
+    self.rowGeometryVersion = (self.rowGeometryVersion or 0) + 1
+    self.rowGeometry = {}
+    for index, data in ipairs(self.visibleRows) do
+        local textWidth = width - (self:GetFactionBadgeColor(data.faction) and 64 or 50) - 76
+        self.rowMeasureTitle:SetWidth(textWidth)
+        self.rowMeasureMeta:SetWidth(textWidth)
+        self.rowMeasureTitle:SetText(data.name)
+        data.explorerMeta = self:GetExplorerRowMeta(data)
+        self.rowMeasureMeta:SetText(data.explorerMeta)
+        local height = math.max(ROW_HEIGHT, math.ceil(self.rowMeasureTitle:GetStringHeight() + self.rowMeasureMeta:GetStringHeight()) + 20)
+        self.rowGeometry[index] = { top = y, height = height }
+        y = y + height + ROW_GAP
+    end
+    local viewport = self.listViewportHeight or self.listScroll:GetHeight()
+    self.listContent:SetSize(width, math.max(viewport, y))
+    if self.listScroll.UpdateScrollChildRect then self.listScroll:UpdateScrollChildRect() end
+    scroll = math.max(0, math.min(scroll, y - viewport))
+    self.pendingListScroll = nil
+    self.listScroll:SetVerticalScroll(scroll)
+    self:UpdateVisibleRows(scroll)
+    self.hasBuiltRows = true
+    self.buildingRows = nil
 end
 
 function CollectionExplorerWindow:BuildVisibleRows()
@@ -227,17 +250,19 @@ function CollectionExplorerWindow:BuildVisibleRows()
                 local unobtainable = PatchCatalog.IsCollectionUnobtainable
                     and PatchCatalog:IsCollectionUnobtainable(collectionType, patchKey, entry) or false
                 local mountCategory = collectionType == "mounts" and PatchCatalog:GetMountCategory(patchKey, entry) or nil
-                local mountSource = collectionType == "mounts" and PatchCatalog:GetMountSourceSummary(patchKey, entry) or nil
-                local mountAcquisition = collectionType == "mounts" and PatchCatalog:GetMountAcquisitionText(patchKey, entry) or nil
+                local sourceCategory = self:HasSourceFilter(collectionType) and (mountCategory or self:GetSourceCategory(collectionType, patchKey, entry)) or nil
+                local mountSource = searchText ~= "" and collectionType == "mounts" and PatchCatalog:GetMountSourceSummary(patchKey, entry) or nil
+                local mountAcquisition = searchText ~= "" and collectionType == "mounts" and PatchCatalog:GetMountAcquisitionText(patchKey, entry) or nil
                 local achievementCategory = collectionType == "achievements" and self:GetAchievementCategoryForEntry(patchKey, entry, state) or nil
-                local petSource = collectionType == "pets" and PatchCatalog:GetPetSourceSummary(patchKey, entry) or nil
-                local petAcquisition = collectionType == "pets" and PatchCatalog:GetPetAcquisitionText(patchKey, entry) or nil
-                local toySource = collectionType == "toys" and PatchCatalog:GetToySourceSummary(patchKey, entry) or nil
-                local toyAcquisition = collectionType == "toys" and PatchCatalog:GetToyAcquisitionText(patchKey, entry) or nil
-                local toyEffect = collectionType == "toys" and PatchCatalog:GetToyUseText(patchKey, entry) or nil
-                local cosmeticSource = collectionType == "cosmetics" and PatchCatalog:GetCosmeticSourceSummary(patchKey, entry) or nil
-                local cosmeticAcquisition = collectionType == "cosmetics" and PatchCatalog:GetCosmeticAcquisitionText(patchKey, entry) or nil
+                local petSource = searchText ~= "" and collectionType == "pets" and PatchCatalog:GetPetSourceSummary(patchKey, entry) or nil
+                local petAcquisition = searchText ~= "" and collectionType == "pets" and PatchCatalog:GetPetAcquisitionText(patchKey, entry) or nil
+                local toySource = searchText ~= "" and collectionType == "toys" and PatchCatalog:GetToySourceSummary(patchKey, entry) or nil
+                local toyAcquisition = searchText ~= "" and collectionType == "toys" and PatchCatalog:GetToyAcquisitionText(patchKey, entry) or nil
+                local toyEffect = searchText ~= "" and collectionType == "toys" and PatchCatalog:GetToyUseText(patchKey, entry) or nil
+                local cosmeticSource = searchText ~= "" and collectionType == "cosmetics" and PatchCatalog:GetCosmeticSourceSummary(patchKey, entry) or nil
+                local cosmeticAcquisition = searchText ~= "" and collectionType == "cosmetics" and PatchCatalog:GetCosmeticAcquisitionText(patchKey, entry) or nil
                 local cosmeticSubtype = collectionType == "cosmetics" and type(entry) == "table" and entry.subtype or nil
+                local cosmeticType = collectionType == "cosmetics" and self:GetCosmeticType(entry) or nil
                 local faction = PatchCatalog:GetCollectionFaction(collectionType, patchKey, entry, state)
                 totalCount = totalCount + 1
 
@@ -253,10 +278,8 @@ function CollectionExplorerWindow:BuildVisibleRows()
                 local statusMatches = self.selectedStatus == "all"
                     or self.selectedStatus == "collected" and collected
                     or self.selectedStatus == "missing" and not collected and not unobtainable
-                    or self.selectedStatus == "unobtainable" and unobtainable
-                local mountCategoryMatches = collectionType ~= "mounts"
-                    or self.selectedCollectionType ~= "mounts"
-                    or self:MountCategoryMatchesFilter(mountCategory)
+                local sourceCategoryMatches = self:SourceCategoryMatchesFilter(collectionType, sourceCategory)
+                local cosmeticTypeMatches = collectionType ~= "cosmetics" or self:CosmeticTypeMatchesFilter(cosmeticType)
                 local achievementCategoryMatches = collectionType ~= "achievements"
                     or self.selectedCollectionType ~= "achievements"
                     or self.selectedAchievementCategory == "all"
@@ -270,6 +293,7 @@ function CollectionExplorerWindow:BuildVisibleRows()
                         patchKey,
                         self:GetExpansionLabel(self:GetExpansionForPatch(patchKey)),
                         mountCategory or "",
+                        sourceCategory or "",
                         mountSource or "",
                         mountAcquisition or "",
                         achievementCategory or "",
@@ -283,6 +307,7 @@ function CollectionExplorerWindow:BuildVisibleRows()
                         cosmeticSource or "",
                         cosmeticAcquisition or "",
                         cosmeticSubtype or "",
+                        cosmeticType and self:GetCosmeticTypeLabel(cosmeticType) or "",
                         unobtainable and "Unobtainable" or "",
                         availability and availability.reason or "",
                         self:GetFactionLabel(faction),
@@ -292,7 +317,7 @@ function CollectionExplorerWindow:BuildVisibleRows()
                     searchMatches = haystack:find(searchText, 1, true) ~= nil
                 end
 
-                if statusMatches and mountCategoryMatches and achievementCategoryMatches and searchMatches then
+                if statusMatches and sourceCategoryMatches and cosmeticTypeMatches and achievementCategoryMatches and searchMatches then
                     self.visibleRows[#self.visibleRows + 1] = {
                         patchKey = patchKey,
                         collectionType = collectionType,
@@ -305,6 +330,8 @@ function CollectionExplorerWindow:BuildVisibleRows()
                         availability = availability,
                         reward = reward,
                         mountCategory = mountCategory,
+                        sourceCategory = sourceCategory,
+                        cosmeticType = cosmeticType,
                         cosmeticSubtype = cosmeticSubtype,
                         achievementCategory = achievementCategory,
                         faction = faction,
@@ -315,13 +342,20 @@ function CollectionExplorerWindow:BuildVisibleRows()
     end
 
     table.sort(self.visibleRows, function(a, b)
-        if a.collectionType ~= b.collectionType then
-            return self:GetTypeLabel(a.collectionType) < self:GetTypeLabel(b.collectionType)
+        if self.sortKey == "source" then
+            local sourceA, sourceB = a.sourceCategory or a.achievementCategory or "", b.sourceCategory or b.achievementCategory or ""
+            if sourceA ~= sourceB then return sourceA < sourceB end
+        elseif self.sortKey == "status" then
+            local statusA, statusB = self:GetRowStatusLabel(a), self:GetRowStatusLabel(b)
+            if statusA ~= statusB then return statusA < statusB end
+        elseif self.sortKey == "patch" and a.patchKey ~= b.patchKey then
+            return (patchOrder[a.patchKey] or math.huge) > (patchOrder[b.patchKey] or math.huge)
         end
-        if a.patchKey ~= b.patchKey then
-            return (patchOrder[a.patchKey] or math.huge) < (patchOrder[b.patchKey] or math.huge)
-        end
-        return (a.name or "") < (b.name or "")
+        local nameA, nameB = string.lower(a.name or ""), string.lower(b.name or "")
+        if nameA ~= nameB then return nameA < nameB end
+        if a.collectionType ~= b.collectionType then return a.collectionType < b.collectionType end
+        if a.patchKey ~= b.patchKey then return (patchOrder[a.patchKey] or math.huge) < (patchOrder[b.patchKey] or math.huge) end
+        return tostring(self:GetEntryId(a.collectionType, a.entry)) < tostring(self:GetEntryId(b.collectionType, b.entry))
     end)
 
     return totalCount, collectedCount, missingCount, unobtainableCount

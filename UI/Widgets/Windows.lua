@@ -156,7 +156,7 @@ function Widgets:CreateWindowNavigation(parent, currentWindow, ownerWindow, opti
             if type(openMethod) == "function" then
                 openMethod(homeWindow)
             elseif self.addon.Utils then
-                self.addon.Utils:Msg(destination.label .. " window is unavailable.")
+                self.addon.Utils:Msg(destination.label .. " window is unavailable.", "warnings")
             end
         end)
         buttons[destination.key] = button

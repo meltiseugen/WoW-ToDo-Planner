@@ -1,18 +1,16 @@
 local _, TDP = ...
 
 local shared = {}
-shared["Pet Battle: Undermine"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Undermine", sourceType = "Pet Journal Source" }
+shared["Pet Battle: Undermine"] = { source = "Pet Battle: Undermine", sourceType = "Pet Journal Source" }
 
 shared["Vendor: Ditty Fuzeboy / Zone: Undermine / Cost: 5"] = {
-    acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
     source = "Vendor: Ditty Fuzeboy / Zone: Undermine / Cost: 5",
     sourceType = "Pet Journal Source",
 }
 
-shared["Pet Battle: Zuldazar"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Pet Battle: Zuldazar", sourceType = "Pet Journal Source" }
+shared["Pet Battle: Zuldazar"] = { source = "Pet Battle: Zuldazar", sourceType = "Pet Journal Source" }
 
 shared["Drop: Shipping and Handling / Zone: Undermine"] = {
-    acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
     source = "Drop: Shipping and Handling / Zone: Undermine",
     sourceType = "Pet Journal Source",
 }
@@ -70,7 +68,6 @@ TDP.CatalogRegistry:RegisterCollection("11.1", "pets", {
         ["Acid-Drenched Rat"] = shared["Pet Battle: Undermine"],
         ["Alchemical Runoff"] = shared["Pet Battle: Undermine"],
         ["Bilgewater Junkhauler"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Rocco Razzboom / Zone: Undermine / Cost: 6500",
             sourceType = "Pet Journal Source",
         },
@@ -79,44 +76,36 @@ TDP.CatalogRegistry:RegisterCollection("11.1", "pets", {
         Cannoneer = shared["Pet Battle: Undermine"],
         ["Cave Crab"] = shared["Pet Battle: Undermine"],
         Craboom = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Drop: Swampface / Zone: Operation: Floodgate",
             sourceType = "Pet Journal Source",
         },
         ["Crimson Mechasaur"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Ditty Fuzeboy / Zone: Undermine / Cost: 10",
             sourceType = "Pet Journal Source",
         },
         Cruncher = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Angelo Rustbin / Zone: Undermine / Cost: 1",
             sourceType = "Pet Journal Source",
         },
         Eepy = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Lab Assistant Laszly / Zone: Undermine / Cost: 6500",
             sourceType = "Pet Journal Source",
         },
         Foreman = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Achievement: Family Battler of Undermine / Category: Battle",
             sourceType = "Pet Journal Source",
         },
         ["Fun-Size Flarendo"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Snix Longpocket / Zone: Liberation of Undermine",
             sourceType = "Pet Journal Source",
         },
-        Gleam = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Drop: Gallagio Garbage / Zone: Undermine", sourceType = "Pet Journal Source" },
+        Gleam = { source = "Drop: Gallagio Garbage / Zone: Undermine", sourceType = "Pet Journal Source" },
         ["Iron Chick"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Achievement: Honored with the Cartels Category: War Within",
             sourceType = "Pet Journal Source",
         },
         ["Kaja Crab"] = shared["Pet Battle: Zuldazar"],
         ["Lab Rat"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Angelo Rustbin / Zone: Undermine / Cost: 3",
             sourceType = "Pet Journal Source",
         },
@@ -145,27 +134,24 @@ TDP.CatalogRegistry:RegisterCollection("11.1", "pets", {
         ["Lime Roboclucker"] = shared["Pet Battle: Undermine"],
         Lookout = shared["Pet Battle: Undermine"],
         Mechagopher = shared["Vendor: Ditty Fuzeboy / Zone: Undermine / Cost: 5"],
-        ["Mega-Mecha Gorilla"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Quest: Mega-Mecha Gorilla / Zone: Undermine", sourceType = "Pet Journal Source" },
-        ["Mr. DELVER"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "Drop: Goblin Delve's Heavy Trunk", sourceType = "Pet Journal Source" },
+        ["Mega-Mecha Gorilla"] = { source = "Quest: Mega-Mecha Gorilla / Zone: Undermine", sourceType = "Pet Journal Source" },
+        ["Mr. DELVER"] = { source = "Drop: Goblin Delve's Heavy Trunk", sourceType = "Pet Journal Source" },
         ["Muddy Croach"] = shared["Pet Battle: Undermine"],
         Mutt = shared["Drop: Shipping and Handling / Zone: Undermine"],
         ["Paleshell Crab"] = shared["Pet Battle: Undermine"],
         ["Personal-Use Sapper"] = shared["Drop: Shipping and Handling / Zone: Undermine"],
         ["Precision Powerdrill"] = shared["Pet Battle: Undermine"],
         ["Professor Punch"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Ditty Fuzeboy / Zone: Undermine / Cost: 8",
             sourceType = "Pet Journal Source",
         },
         Rocketfist = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Shredz the Scrapper / Zone: Undermine / Cost: 6500",
             sourceType = "Pet Journal Source",
         },
         ["Rusty Croach"] = shared["Pet Battle: Undermine"],
         ["Sooty Croach"] = shared["Pet Battle: Undermine"],
         Spotty = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Quest: Unsolicited Feedback / Zone: Undermine",
             sourceType = "Pet Journal Source",
         },
@@ -173,7 +159,6 @@ TDP.CatalogRegistry:RegisterCollection("11.1", "pets", {
         ["Steamwheedle Flunkie"] = shared["Vendor: Ditty Fuzeboy / Zone: Undermine / Cost: 5"],
         Swabbie = shared["Pet Battle: Undermine"],
         ["Tiny Torq"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Skitto Screwjack / Zone: Liberation of Undermine",
             sourceType = "Pet Journal Source",
         },
@@ -184,12 +169,10 @@ TDP.CatalogRegistry:RegisterCollection("11.1", "pets", {
         ["Venture Bombshell"] = shared["Pet Battle: Undermine"],
         ["Venture Companyman"] = shared["Vendor: Ditty Fuzeboy / Zone: Undermine / Cost: 5"],
         ["Viridian Mechasaur"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Drop: Sifted Pile of Scrap / Zone: Undermine",
             sourceType = "Pet Journal Source",
         },
         ["Wavebreaker Mechasaur"] = {
-            acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.",
             source = "Vendor: Boatswain Hardee / Zone: Undermine / Cost: 6500",
             sourceType = "Pet Journal Source",
         },

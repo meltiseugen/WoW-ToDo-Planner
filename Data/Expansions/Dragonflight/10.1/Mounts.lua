@@ -2,14 +2,12 @@ local _, TDP = ...
 
 local shared = {}
 shared["Patch 10.1: Embers of Neltharion"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     category = "Other",
     source = "Patch 10.1: Embers of Neltharion",
     sourceType = "Patch mount collection",
 }
 
 shared["Patch 10.1: Embers of Neltharion 2"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     category = "PvP",
     source = "Patch 10.1: Embers of Neltharion",
     sourceType = "Patch mount collection",

@@ -48,7 +48,7 @@ catalog.patches = {
         achievements = { ids = { 910007 } },
     },
     ["12.1.5"] = {
-        mounts = { { spellId = 910008 }, { spellId = 910009 }, { spellId = 910010 } },
+        mounts = { { spellId = 910008 }, { spellId = 910009 }, { spellId = 910010 }, { spellId = 910012 } },
         toys = { { itemId = 910011 } },
         achievements = { ids = {} },
     },
@@ -65,6 +65,7 @@ local locations = {
     [910009] = { "invalid waypoint" },
     -- 910010 has no known location.
     [910011] = { "/way #100 50 50 Retired toy" },
+    [910012] = { "/way #200 50 50 Retired mount" },
 }
 local scanner = TDP.CollectionScanner
 catalog.GetCollectionWaypoints = function(_, kind, _, entry)
@@ -76,7 +77,8 @@ scanner.GetState = function(_, kind, entry)
 end
 scanner.GetDisplayName = function(_, _, _, state) return state.name end
 catalog.IsCollectionUnobtainable = function(_, kind, _, entry)
-    return scanner:GetEntryKey(kind, entry) == 910011
+    local id = scanner:GetEntryKey(kind, entry)
+    return id == 910011 or id == 910012
 end
 local originalScan = TDP.NearbyCollections.Scan
 TDP.NearbyCollections.Scan = function(self)
@@ -101,7 +103,7 @@ test("opening Collections does not read the player location or scan nearby entri
     window:Open()
     equal(reads, 0, "map reads")
     equal(scans, 0, "nearby scans")
-    assert(window.nearbyButton and window.typeTabs.all)
+    assert(window.nearbyButton and window.typeTabs.mounts and not window.typeTabs.all)
     equal(window.browseButton:IsShown(), false, "Browse hidden")
 end)
 
@@ -114,16 +116,20 @@ test("Nearby captures all five types across patches and excludes distant or unkn
     equal(reads, 1, "one location lookup")
     equal(scans, 1, "one nearby scan")
     equal(window.nearbySnapshot.mapID, 200, "captured map")
-    equal(window.selectedCollectionType, "all", "all types selected")
-    equal(#window.visibleRows, 7, "nearby entries, including collected and retired")
+    equal(window.selectedCollectionType, "mounts", "selected type retained")
+    equal(#window.visibleRows, 2, "nearby mounts, including collected")
     equal(window.nearbySnapshot.total, 7, "snapshot count")
+    equal(#window.nearbySnapshot.entries["12.1.5"].mounts, 1, "snapshot excludes retired mount")
+    equal(#catalog:GetEntries("12.1.5", "mounts"), 4, "raw mount catalog retained")
     equal(#window:GetSelectedPatchKeys(), 2, "all matching patches")
     equal(window.searchEdit:GetText(), "", "old search cleared")
     local found = {}
-    for _, row in ipairs(window.visibleRows) do found[row.collectionType] = true end
     for _, kind in ipairs({ "mounts", "pets", "toys", "cosmetics", "achievements" }) do
+        click(window.typeTabs[kind])
+        for _, row in ipairs(window.visibleRows) do found[row.collectionType] = true end
         assert(found[kind], "missing nearby type: " .. kind)
     end
+    click(window.typeTabs.mounts)
     equal(window.browseButton:IsShown(), true, "Browse available")
     assert(window.summaryText:GetText():find("Test Subzone", 1, true))
 end)
@@ -147,19 +153,20 @@ test("movement, Refresh, reopening, and collection events never rescan location"
     equal(reads, 1, "no location lookup")
     equal(scans, 1, "no rescan")
     equal(window.nearbySnapshot.mapID, 200, "snapshot location stays fixed")
-    equal(#window.visibleRows, 7, "original results retained")
+    equal(#window.visibleRows, 2, "original mount results retained")
     equal(messages, 0, "no chat reminders")
 end)
 
 test("type, status, and search filters operate on the captured nearby list", function()
     click(window.typeTabs.pets)
     equal(#window.visibleRows, 1, "pet filter")
-    click(window.typeTabs.all)
+    click(window.typeTabs.mounts)
     window:SetSelectedStatus("missing")
-    equal(#window.visibleRows, 5, "missing excludes collected and retired")
+    equal(#window.visibleRows, 1, "missing excludes collected mount")
     window.searchEdit:SetText("Classic")
     window.searchEdit:GetScript("OnTextChanged")()
-    equal(#window.visibleRows, 5, "search uses each row's expansion")
+    equal(#window.visibleRows, 1, "search uses each row's expansion")
+    click(window.typeTabs.achievements)
     window.searchEdit:SetText("910007")
     window.searchEdit:GetScript("OnTextChanged")()
     equal(#window.visibleRows, 1, "search within nearby results")
@@ -178,7 +185,22 @@ test("existing Map and Favorite actions work on nearby entries", function()
     equal(reads, 1, "actions do not read position")
 end)
 
-test("a second Nearby click captures the new location and Browse restores catalog choices", function()
+test("a second Nearby click cancels without reading location and restores catalog choices", function()
+    click(window.typeTabs.mounts)
+    equal(window.nearbyButton.label:GetText(), "Cancel", "active button label")
+    click(window.nearbyButton)
+    equal(reads, 1, "cancel does not read location")
+    equal(scans, 1, "cancel does not rescan")
+    equal(window.nearbySnapshot, nil, "nearby mode canceled")
+    equal(window.nearbyButton.label:GetText(), "Nearby", "idle button label")
+    equal(window.nearbyButton.isSelected, false, "active highlight cleared")
+    equal(window.selectedCollectionType, "mounts", "previous type restored")
+    equal(window.selectedExpansion, "12", "previous expansion retained")
+    equal(window.selectedPatch, "12.1.5", "previous patch retained")
+    equal(window.searchEdit:GetText(), "saved search", "previous search restored")
+end)
+
+test("Nearby can start a fresh scan after cancellation and Browse still exits", function()
     click(window.nearbyButton)
     equal(reads, 2, "second location lookup")
     equal(scans, 2, "second scan")
@@ -199,11 +221,17 @@ test("unavailable maps and empty zones show useful empty states without chat", f
     click(window.nearbyButton)
     equal(#window.visibleRows, 0, "unknown map has no unrelated rows")
     assert(window.emptyText:IsShown() and window.emptyText:GetText():find("unavailable", 1, true))
+    local readsBeforeCancel = reads
+    click(window.nearbyButton)
+    equal(window.nearbySnapshot, nil, "failed scan can be canceled")
+    equal(reads, readsBeforeCancel, "canceling an error does not retry location")
     mapID = 900
     click(window.nearbyButton)
     equal(#window.visibleRows, 0, "unmapped area")
     equal(window.emptyText:GetText(), "No catalog locations found for this area.", "empty zone message")
     equal(messages, previousMessages, "no chat output")
+    click(window.nearbyButton)
+    equal(window.nearbySnapshot, nil, "empty scan can be canceled")
     C_Map.GetBestMapForUnit = function() error("map temporarily unavailable") end
     click(window.nearbyButton)
     assert(window.nearbySnapshot.error, "map API failure handled")

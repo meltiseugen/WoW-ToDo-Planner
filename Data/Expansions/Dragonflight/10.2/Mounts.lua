@@ -2,14 +2,12 @@ local _, TDP = ...
 
 local shared = {}
 shared["Patch 10.2: Guardians of the Dream"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     category = "Other",
     source = "Patch 10.2: Guardians of the Dream",
     sourceType = "Patch mount collection",
 }
 
 shared["Patch 10.2: Guardians of the Dream 2"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     category = "PvP",
     source = "Patch 10.2: Guardians of the Dream",
     sourceType = "Patch mount collection",

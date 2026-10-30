@@ -1,7 +1,7 @@
 local _, TDP = ...
 
 local shared = {}
-shared["World Event: WoW Remix: Legion"] = { acquisition = "Follow the in-game Pet Journal source for this permanent battle pet.", source = "World Event: WoW Remix: Legion", sourceType = "Pet Journal Source" }
+shared["World Event: WoW Remix: Legion"] = { source = "World Event: WoW Remix: Legion", sourceType = "Pet Journal Source" }
 
 TDP.CatalogRegistry:RegisterCollection("11.2.5", "pets", {
     entries = {

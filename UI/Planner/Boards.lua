@@ -42,7 +42,7 @@ function MainWindow:OpenCreateBoardDialog()
             local boardName = editBox and Utils:Trim(editBox:GetText()) or ""
             local boardKey, errorText = Boards:CreateBoard(boardName)
             if not boardKey then
-                Utils:Msg(errorText or "Could not create board.")
+                Utils:Msg(errorText or "Could not create board.", "warnings")
                 return
             end
 
@@ -68,7 +68,7 @@ function MainWindow:ConfirmDeleteSelectedBoard()
     local boardKey = self:GetSelectedBoardKey()
     local canDelete, reason = Boards:CanDeleteBoard(boardKey)
     if not canDelete then
-        Utils:Msg(reason or "That board cannot be deleted.")
+        Utils:Msg(reason or "That board cannot be deleted.", "warnings")
         return
     end
 
@@ -82,14 +82,14 @@ function MainWindow:ConfirmDeleteSelectedBoard()
         OnAccept = function()
             local ok, errorText, movedTasks = Boards:DeleteBoard(boardKey)
             if not ok then
-                Utils:Msg(errorText or "Could not delete board.")
+                Utils:Msg(errorText or "Could not delete board.", "warnings")
                 return
             end
 
             Tasks:SortStable(TODOPlannerDB.tasks)
             self:ResetEditor()
             self:Render()
-            Utils:Msg("Deleted board. Moved " .. tostring(movedTasks or 0) .. " task(s) to Global.")
+            Utils:Msg("Deleted board. Moved " .. tostring(movedTasks or 0) .. " task(s) to Global.", "tasks")
         end,
         timeout = 0,
         whileDead = true,

@@ -2,14 +2,12 @@ local _, TDP = ...
 
 local shared = {}
 shared["Patch 11.2: Ghosts of K'aresh"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     category = "Other",
     source = "Patch 11.2: Ghosts of K'aresh",
     sourceType = "Patch mount collection",
 }
 
 shared["Patch 11.2: Ghosts of K'aresh 2"] = {
-    acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
     category = "PvP",
     source = "Patch 11.2: Ghosts of K'aresh",
     sourceType = "Patch mount collection",
@@ -49,7 +47,6 @@ TDP.CatalogRegistry:RegisterCollection("11.2", "mounts", {
         ["Blue Barry"] = shared["Patch 11.2: Ghosts of K'aresh"],
         ["Curious Slateback"] = shared["Patch 11.2: Ghosts of K'aresh"],
         ["Delver's Mana-Skimmer"] = {
-            acquisition = "Follow the in-game Mount Journal source for this mount. This row records the patch in which the reward was introduced.",
             category = "Delves",
             source = "Patch 11.2: Ghosts of K'aresh",
             sourceType = "Patch mount collection",
