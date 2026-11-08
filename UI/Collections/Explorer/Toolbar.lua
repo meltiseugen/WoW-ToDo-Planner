@@ -88,6 +88,7 @@ function Explorer:BuildExplorerToolbar(body)
         label:SetPoint("BOTTOMLEFT", field[1], "TOPLEFT", 0, 4)
         label:SetText(field[2])
         self.toolbarLabels[#self.toolbarLabels + 1] = label
+        if field[2] == "Patch" then self.patchLabel = label end
         if field[2] == "Weapons" then self.weaponTypeLabel = label end
         if field[2] == "Armour" then self.armourTypeLabel = label end
     end
@@ -173,10 +174,11 @@ function Explorer:BuildExplorerToolbar(body)
     end)
     self:BindExplorerHelp(self.expansionButton, "Expansion", function()
         return self.nearbySnapshot and "Nearby covers all expansions. Cancel Nearby to choose an expansion."
-            or "Choose an expansion. All Patches includes only patches from this expansion."
+            or "Choose General for expansion-neutral achievements, or choose an expansion to browse its content. All Patches includes only patches from the selected expansion."
     end)
     self:BindExplorerHelp(self.patchButton, "Patch", function()
         return self.nearbySnapshot and "Nearby covers all matching patches in the scanned area."
+            or self.selectedExpansion == "general" and "General achievements are grouped independently of expansion patches."
             or "Choose a patch within the selected expansion."
     end)
     self:BindExplorerHelp(self.statusButton, "Collection status", "Missing shows uncollected, obtainable catalog entries. Collected shows owned entries, and All includes both.")
@@ -192,7 +194,7 @@ function Explorer:UpdateExplorerFilters()
     self:UpdateSourceControl()
     self:UpdateCosmeticTypeControl()
     self:UpdateAchievementCategoryControl()
-    updateFilterHighlight(self.patchButton, not self.nearbySnapshot and self.selectedPatch ~= self.Config.ALL_PATCHES)
+    updateFilterHighlight(self.patchButton, not self.nearbySnapshot and self.selectedExpansion ~= "general" and self.selectedPatch ~= self.Config.ALL_PATCHES)
     updateFilterHighlight(self.statusButton, self.selectedStatus ~= "all")
     updateFilterHighlight(self.sourceButton, self:HasSourceFilter() and not self:IsSourceChecked("all"))
     updateFilterHighlight(self.weaponTypeButton, self.selectedCollectionType == "cosmetics"

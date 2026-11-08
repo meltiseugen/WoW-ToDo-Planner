@@ -233,14 +233,6 @@ TDP.CatalogRegistry:RegisterCollection("4.0.0", "mounts", {
             tips = "Check a Horde guild vendor for the current reputation requirement.",
             waypoints = { "/way #84 67.4 72.8 Guild vendor", "/way #85 48.4 75.6 Guild vendor" },
         },
-        {
-            acquisition = "Obtain Vicious Gladiator's Twilight Drake from top-ranked arena reward from Cataclysm PvP Season 9.",
-            category = "PvP",
-            name = "Vicious Gladiator's Twilight Drake",
-            source = "top-ranked arena reward from Cataclysm PvP Season 9",
-            spellId = 101282,
-            tips = "The original Season 9 Gladiator reward is no longer obtainable; retained for historical tracking.",
-        },
     },
     details = {
         ["Brown Riding Camel"] = {
@@ -426,13 +418,6 @@ TDP.CatalogRegistry:RegisterCollection("4.0.0", "mounts", {
             sourceType = "Patch mount collection",
             tips = "Follow the opening Vashj'ir campaign through Abyssal Ride. This mount is intended for underwater travel in Vashj'ir.",
             waypoints = { "/way #201 53.4 43.0 Vashj'ir quest hub" },
-        },
-        ["Vicious Gladiator's Twilight Drake"] = {
-            acquisition = "Obtain Vicious Gladiator's Twilight Drake from top-ranked arena reward from Cataclysm PvP Season 9.",
-            category = "PvP",
-            source = "top-ranked arena reward from Cataclysm PvP Season 9",
-            sourceType = "Patch mount collection",
-            tips = "The original Season 9 Gladiator reward is no longer obtainable; retained for historical tracking.",
         },
         ["Vitreous Stone Drake"] = {
             acquisition = "Obtain Vitreous Stone Drake from Slabhide in The Stonecore.",

@@ -165,15 +165,6 @@ TDP.CatalogRegistry:RegisterCollection("3.0", "mounts", {
             tips = "Complete the original Wrath heroic-dungeon meta. At high level, pause damage until each mechanic has registered.",
         },
         {
-            acquisition = "Obtain Black Proto-Drake from Glory of the Raider (25 player).",
-            category = "Achievements",
-            name = "Black Proto-Drake",
-            source = "Glory of the Raider (25 player)",
-            spellId = 59976,
-            tips = "Historical launch reward removed in patch 3.1; retained for original-source tracking.",
-            waypoints = { "/way #115 59.8 54.6 Wyrmrest Temple", "/way #115 87.3 50.9 Naxxramas entrance" },
-        },
-        {
             acquisition = "Obtain Blue Proto-Drake from Skadi the Ruthless in Heroic Utgarde Pinnacle.",
             category = "Dungeons",
             name = "Blue Proto-Drake",
@@ -412,14 +403,6 @@ TDP.CatalogRegistry:RegisterCollection("3.0", "mounts", {
             source = "Sartharion with three drakes alive in 10-player Obsidian Sanctum",
             sourceType = "Patch mount collection",
             tips = "Engage Sartharion without killing any twilight drakes first. Use the original 10-player mode for this color.",
-            waypoints = { "/way #115 59.8 54.6 Wyrmrest Temple", "/way #115 87.3 50.9 Naxxramas entrance" },
-        },
-        ["Black Proto-Drake"] = {
-            acquisition = "Obtain Black Proto-Drake from Glory of the Raider (25 player).",
-            category = "Achievements",
-            source = "Glory of the Raider (25 player)",
-            sourceType = "Patch mount collection",
-            tips = "Historical launch reward removed in patch 3.1; retained for original-source tracking.",
             waypoints = { "/way #115 59.8 54.6 Wyrmrest Temple", "/way #115 87.3 50.9 Naxxramas entrance" },
         },
         ["Black War Bear"] = {

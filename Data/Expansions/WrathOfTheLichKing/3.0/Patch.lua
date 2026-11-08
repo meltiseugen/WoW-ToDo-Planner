@@ -17,9 +17,9 @@ TDP.CatalogRegistry:RegisterPatch("3.0", {
     },
     label = "Wrath of the Lich King",
     sourceNotes = {
-        "The 3.0 bucket is the catalogue's initial Wrath release set: Northrend launch rewards plus the achievement system's original permanent and historical records.",
-        "Mount, pet, toy, and cosmetic IDs were reconciled against a later client DB2 snapshot so retired rewards remain visible. Modern replacement ID 54437 is kept with 3.0.8, where the original Tiny Green Ragdoll was introduced.",
-        "Recurring holiday, shop, trading-card, Collector's Edition, convention, promotional, unused, NPC-only, hidden-statistic, and ordinary equipment records are excluded. One-time historical raid, PvP, realm-first, and launch-event achievements are retained.",
+        "The 3.0 bucket contains Northrend launch rewards and Wrath-content achievements. Retroactive Classic and Burning Crusade achievements belong to 1.0 and 2.0; neutral milestones and cross-expansion metas live in General. The introduction of the achievement system does not assign older or neutral content to Wrath.",
+        "The 2026-11-04 Retail review excludes permanently retired collectibles. Plagued Proto-Drake remains through the Black Market; Black Proto-Drake has no replacement source. Modern replacement ID 54437 is kept with 3.0.8, where the original Tiny Green Ragdoll was introduced.",
+        "Recurring holiday, shop, trading-card, Collector's Edition, convention, promotional, unused, NPC-only, hidden-statistic, and ordinary equipment records are excluded. The achievement catalogue contains only achievements still earnable in Retail; retired realm-first, launch-event, original-season, original Ulduar size-specific, and removed-system achievements are excluded.",
     },
     sourceUrls = {
         expansion = "https://warcraft.wiki.gg/wiki/World_of_Warcraft:_Wrath_of_the_Lich_King",

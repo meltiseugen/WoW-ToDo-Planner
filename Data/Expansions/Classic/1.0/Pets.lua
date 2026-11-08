@@ -288,7 +288,7 @@ TDP.CatalogRegistry:RegisterCollection("1.0", "pets", {
             npcId = 9736,
             source = "Quartermaster Zigris in Lower Blackrock Spire",
             speciesId = 89,
-            tips = "The original Kibler quest reward was removed. The current Worg Carrier is a drop from Quartermaster Zigris; reset the dungeon after each clear.",
+            tips = "The original Kibler quest reward was removed. Quartermaster Zigris now drops Worg Carrier as a guaranteed pet reward; kill and loot him in Lower Blackrock Spire.",
             waypoints = { "/way #36 21.0 38.0 Blackrock Mountain / Lower Blackrock Spire" },
         },
         {
@@ -298,7 +298,7 @@ TDP.CatalogRegistry:RegisterCollection("1.0", "pets", {
             npcId = 10596,
             source = "Mother Smolderweb in Lower Blackrock Spire",
             speciesId = 90,
-            tips = "The original Kibler quest reward was removed. Defeat Mother Smolderweb for the current rare drop and reset the dungeon after each clear.",
+            tips = "The original Kibler quest reward was removed. Mother Smolderweb now drops Smolderweb Egg as a guaranteed pet reward; kill and loot her in Lower Blackrock Spire.",
             waypoints = { "/way #36 21.0 38.0 Blackrock Mountain / Lower Blackrock Spire" },
         },
         {
@@ -498,7 +498,7 @@ TDP.CatalogRegistry:RegisterCollection("1.0", "pets", {
             acquisition = "Obtain Smolderweb Hatchling from Mother Smolderweb in Lower Blackrock Spire.",
             source = "Mother Smolderweb in Lower Blackrock Spire",
             sourceType = "Pet Journal Source",
-            tips = "The original Kibler quest reward was removed. Defeat Mother Smolderweb for the current rare drop and reset the dungeon after each clear.",
+            tips = "The original Kibler quest reward was removed. Mother Smolderweb now drops Smolderweb Egg as a guaranteed pet reward; kill and loot her in Lower Blackrock Spire.",
             waypoints = { "/way #36 21.0 38.0 Blackrock Mountain / Lower Blackrock Spire" },
         },
         ["Snowshoe Rabbit"] = {
@@ -540,7 +540,7 @@ TDP.CatalogRegistry:RegisterCollection("1.0", "pets", {
             acquisition = "Obtain Worg Pup from Quartermaster Zigris in Lower Blackrock Spire.",
             source = "Quartermaster Zigris in Lower Blackrock Spire",
             sourceType = "Pet Journal Source",
-            tips = "The original Kibler quest reward was removed. The current Worg Carrier is a drop from Quartermaster Zigris; reset the dungeon after each clear.",
+            tips = "The original Kibler quest reward was removed. Quartermaster Zigris now drops Worg Carrier as a guaranteed pet reward; kill and loot him in Lower Blackrock Spire.",
             waypoints = { "/way #36 21.0 38.0 Blackrock Mountain / Lower Blackrock Spire" },
         },
     },

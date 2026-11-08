@@ -61,14 +61,6 @@ TDP.CatalogRegistry:RegisterCollection("4.3.0", "mounts", {
             tips = "Farm Ultraxion on Normal or Heroic. The mount has a very low drop rate, so use multiple eligible characters per weekly reset.",
             waypoints = { "/way #71 64.4 50.0 Dragon Soul entrance" },
         },
-        {
-            acquisition = "Obtain Cataclysmic Gladiator's Twilight Drake from top-ranked arena reward from Cataclysm PvP Season 11.",
-            category = "PvP",
-            name = "Cataclysmic Gladiator's Twilight Drake",
-            source = "top-ranked arena reward from Cataclysm PvP Season 11",
-            spellId = 124550,
-            tips = "This original seasonal Gladiator reward is no longer obtainable; retained for historical collection tracking.",
-        },
     },
     details = {
         ["Blazing Drake"] = {
@@ -78,13 +70,6 @@ TDP.CatalogRegistry:RegisterCollection("4.3.0", "mounts", {
             sourceType = "Patch mount collection",
             tips = "Farm Madness of Deathwing on Normal or Heroic using each eligible weekly lockout. Complete the Spine encounter immediately beforehand.",
             waypoints = { "/way #71 64.4 50.0 Dragon Soul entrance" },
-        },
-        ["Cataclysmic Gladiator's Twilight Drake"] = {
-            acquisition = "Obtain Cataclysmic Gladiator's Twilight Drake from top-ranked arena reward from Cataclysm PvP Season 11.",
-            category = "PvP",
-            source = "top-ranked arena reward from Cataclysm PvP Season 11",
-            sourceType = "Patch mount collection",
-            tips = "This original seasonal Gladiator reward is no longer obtainable; retained for historical collection tracking.",
         },
         ["Experiment 12-B"] = {
             acquisition = "Obtain Experiment 12-B from Ultraxion's Lesser Cache of the Aspects.",

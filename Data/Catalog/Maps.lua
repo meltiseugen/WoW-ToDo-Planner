@@ -30,6 +30,7 @@ function PatchCatalog:ParseWaypoint(waypoint)
             y = y,
             label = waypoint.label,
             waypoint = waypoint.waypoint,
+            step = tonumber(waypoint.step),
         }
     end
 
@@ -62,10 +63,16 @@ function PatchCatalog:GetCollectionMapPayload(collectionType, patchKey, entry, s
     if collectionType ~= "mounts" and collectionType ~= "pets" and collectionType ~= "toys" and collectionType ~= "cosmetics" and collectionType ~= "achievements" then
         return nil
     end
-    local sourceInfo = self.GetCollectionSourceInfo and self:GetCollectionSourceInfo(collectionType, patchKey, entry)
-    local recordedLocations = self:GetDescriptionMapLocations(collectionType, entry)
+    local guide = self:GetCollectionWalkthrough(collectionType, entry)
+    local sourceInfo
+    if not guide and self.GetCollectionSourceInfo then
+        sourceInfo = self:GetCollectionSourceInfo(collectionType, patchKey, entry)
+    end
+    -- A walkthrough owns its destinations, including an intentionally empty
+    -- route for retired rewards or automatically learned class mounts.
+    local recordedLocations = not guide and self:GetDescriptionMapLocations(collectionType, entry) or nil
     local sourceWaypoints = sourceInfo and self:UseCollectionSourceWaypoints(collectionType, patchKey, entry, sourceInfo) and sourceInfo.waypoints
-    if not sourceWaypoints and not recordedLocations and self:IsAchievementSourcedCollection(collectionType, patchKey, entry) then
+    if not guide and not sourceWaypoints and not recordedLocations and self:IsAchievementSourcedCollection(collectionType, patchKey, entry) then
         return nil
     end
 
@@ -75,7 +82,7 @@ function PatchCatalog:GetCollectionMapPayload(collectionType, patchKey, entry, s
     local tips = self:GetCollectionTips(collectionType, patchKey, entry)
     local details = self:GetCollectionDetails(collectionType, patchKey, entry)
     local waypoints = sourceWaypoints or self:GetCollectionWaypoints(collectionType, patchKey, entry)
-    local pins = {}
+    local pins, guideMaps, seenMaps, guidePositions = {}, {}, {}, {}
 
     local entryDetails = type(entry) == "table" and entry or {}
     details = type(details) == "table" and details or {}
@@ -103,14 +110,37 @@ function PatchCatalog:GetCollectionMapPayload(collectionType, patchKey, entry, s
                         pin.criterionIndex = tonumber(criterionMapping)
                     end
                 end
-                pins[#pins + 1] = pin
+                local positionKey = guide and string.format("%d:%.6f:%.6f", pin.mapID, pin.x, pin.y)
+                local existing = positionKey and guidePositions[positionKey]
+                if existing then
+                    existing.steps = existing.steps or { existing.step }
+                    local found
+                    for _, step in ipairs(existing.steps) do if step == pin.step then found = true end end
+                    if not found then existing.steps[#existing.steps + 1] = pin.step end
+                else
+                    pins[#pins + 1] = pin
+                    if positionKey then guidePositions[positionKey] = pin end
+                end
+                if guide and not seenMaps[pin.mapID] then
+                    seenMaps[pin.mapID] = true
+                    guideMaps[#guideMaps + 1] = pin.mapID
+                end
             end
         end
     end
 
-    local sourceAreas = sourceInfo and sourceInfo.areaOnly and sourceInfo.areaMaps
+    local sourceAreas = guide and guide.areaMaps
+        or sourceInfo and sourceInfo.areaOnly and sourceInfo.areaMaps
         or recordedLocations and recordedLocations.areaMaps
     local areaOnly = #pins == 0 and type(sourceAreas) == "table" and #sourceAreas > 0
+    if guide and type(sourceAreas) == "table" then
+        for _, mapID in ipairs(sourceAreas) do
+            if not seenMaps[mapID] then
+                seenMaps[mapID] = true
+                guideMaps[#guideMaps + 1] = mapID
+            end
+        end
+    end
     if #pins == 0 and not areaOnly then
         return nil
     end
@@ -142,7 +172,7 @@ function PatchCatalog:GetCollectionMapPayload(collectionType, patchKey, entry, s
         availability = entryDetails.availability or details.availability,
         notes = notes,
         researchNotes = entryDetails.researchNotes or details.researchNotes,
-        description = state and state.description,
+        description = guide and guide.description or (state and state.description) or details.description,
         criteria = state and state.criteria,
         mapAchievementId = not sourceWaypoints and tonumber(details.mapAchievementId) or nil,
         waypoints = waypoints,
@@ -150,6 +180,7 @@ function PatchCatalog:GetCollectionMapPayload(collectionType, patchKey, entry, s
         mapID = pins[1] and pins[1].mapID or areaOnly and sourceAreas[1] or nil,
         areaOnly = areaOnly or nil,
         sourceAreaMaps = areaOnly and sourceAreas or nil,
+        guideMaps = guide and guideMaps or nil,
         icon = state and state.icon,
         sourceQuestID = sourceInfo and sourceInfo.questID,
         sourcePatchKey = sourceInfo and (sourceWaypoints or areaOnly) and patchKey or nil,
@@ -162,6 +193,13 @@ end
 function PatchCatalog:HasCollectionMapPayload(collectionType, patchKey, entry)
     if collectionType ~= "mounts" and collectionType ~= "pets" and collectionType ~= "toys"
         and collectionType ~= "cosmetics" and collectionType ~= "achievements" then return false end
+    local guide = self:GetCollectionWalkthrough(collectionType, entry)
+    if guide then
+        for _, point in ipairs(guide.waypoints or {}) do
+            if self:ParseWaypoint(point) then return true end
+        end
+        return type(guide.areaMaps) == "table" and tonumber(guide.areaMaps[1]) ~= nil
+    end
     local info = self.GetCollectionSourceInfo and self:GetCollectionSourceInfo(collectionType, patchKey, entry)
     local recordedLocations = self:GetDescriptionMapLocations(collectionType, entry)
     local sourceWaypoints = info and self:UseCollectionSourceWaypoints(collectionType, patchKey, entry, info)
@@ -180,6 +218,8 @@ function PatchCatalog:HasCollectionMapPayload(collectionType, patchKey, entry)
 end
 
 function PatchCatalog:GetWowheadUrl(collectionType, entry)
+    local guide = self:GetCollectionWalkthrough(collectionType, entry)
+    if guide and guide.wowheadUrl then return guide.wowheadUrl end
     if collectionType == "mounts" and entry and entry.spellId then
         return "https://www.wowhead.com/spell=" .. tostring(entry.spellId)
     elseif collectionType == "pets" and entry and entry.speciesId then

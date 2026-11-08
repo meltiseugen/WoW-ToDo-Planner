@@ -1,8 +1,12 @@
 local _, TDP = ...
 
--- Group retroactive achievements with the content they guide.
--- The achievement system arrived later; the original release records
--- remain intact so saved favorites and old patch links keep working.
+-- Retroactive Burning Crusade achievements are owned by their content,
+-- not the 3.x patch that introduced the achievement system.
+-- Name/criteria reference: https://wago.tools/db2/Achievement/csv
+-- Records moved from Wrath live only here; existing detailed guides are kept.
+-- Outland and blood elf/draenei starting-zone achievements belong here.
+-- Retired seasons, removed quests and other unobtainable feats are excluded.
+-- Neutral riding/rating milestones and cross-expansion metas live in General.
 TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
     entries = {
         ids = {
@@ -10,6 +14,18 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             124, -- Outland Cook
             129, -- Outland Fisherman
             144, -- The Lurker Above
+            208, -- Eye of the Storm Victory
+            209, -- Eye of the Storm Veteran
+            211, -- Storm Glory
+            212, -- Storm Capper
+            213, -- Stormtrooper
+            214, -- Flurry
+            216, -- Bound for Glory
+            233, -- Bloodthirsty Berserker
+            426, -- Warglaives of Azzinoth
+            587, -- Stormy Assassin
+            613, -- Killed in Quel'Thalas
+            618, -- Putting Out the Light
             647, -- Hellfire Ramparts
             648, -- The Blood Furnace
             649, -- The Slave Pens
@@ -24,6 +40,7 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             658, -- The Mechanar
             659, -- The Botanica
             660, -- The Arcatraz
+            661, -- Magister's Terrace
             666, -- Auchenai Crypts
             667, -- Heroic: Hellfire Ramparts
             668, -- Heroic: The Blood Furnace
@@ -40,16 +57,22 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             679, -- Heroic: The Mechanar
             680, -- Heroic: The Botanica
             681, -- Heroic: The Arcatraz
+            682, -- Heroic: Magister's Terrace
             690, -- Karazhan
             692, -- Gruul's Lair
             693, -- Magtheridon's Lair
             694, -- Serpentshrine Cavern
             695, -- The Battle for Mount Hyjal
             696, -- Tempest Keep
+            697, -- The Black Temple
+            698, -- Sunwell Plateau
+            725, -- Thori'dal, the Stars' Fury
             726, -- Mr. Pinchy's Magical Crawdad Box
             733, -- Professional Outland Master
             763, -- The Burning Crusader
             764, -- The Burning Crusader
+            783, -- The Perfect Storm
+            784, -- Eye of the Storm Domination
             843, -- Explore Netherstorm
             858, -- Explore Ghostlands
             859, -- Explore Eversong Woods (Burning Crusade)
@@ -61,19 +84,30 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             865, -- Explore Blade's Edge Mountains
             866, -- Explore Nagrand
             867, -- Explore Terokkar Forest
+            868, -- Explore Isle of Quel'Danas
+            877, -- The Cake Is Not A Lie
             882, -- Fiery Warhorse's Reins
+            883, -- Reins of the Raven Lord
+            884, -- Swift White Hawkstrider
             885, -- Ashes of Al'ar
             893, -- Cenarion War Hippogryph
+            894, -- Flying High Over Skettis
+            896, -- A Quest a Day Keeps the Ogres at Bay
+            897, -- You're So Offensive
+            898, -- On Wings of Nether
             899, -- Oh My, Kurenai
             900, -- The Czar of Sporeggar
             901, -- Mag'har of Draenor
             902, -- Chief Exalted Officer
             903, -- Shattrath Divided
+            905, -- Old Man Barlowned
+            906, -- Kickin' It Up a Notch
             939, -- Hills Like White Elekk
-            953, -- Guardian of Cenarius
+            958, -- Sworn to the Deathsworn
             959, -- The Scale of the Sands
             960, -- The Violet Eye
             1165, -- My Storage is "Gigantique"
+            1171, -- Master of Eye of the Storm
             1189, -- To Hellfire and Back
             1190, -- Mysteries of the Marsh
             1191, -- Terror of Terokkar
@@ -83,15 +117,21 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             1195, -- Shadow of the Betrayer
             1205, -- Hero of Shattrath
             1225, -- Outland Angler
+            1258, -- Take a Chill Pill
             1262, -- Loremaster of Outland
             1271, -- To Hellfire and Back
             1272, -- Terror of Terokkar
             1273, -- Nagrand Slam
+            1275, -- Bombs Away
+            1276, -- Blade's Edge Bomberman
             1284, -- Outland Dungeonmaster
             1286, -- Outland Raider
             1287, -- Outland Dungeon Hero
             1311, -- Medium Rare
             1312, -- Bloody Rare
+            1638, -- Skyshattered
+            1800, -- The Outland Gourmet
+            1801, -- Captain Rumsey's Lager
             4908, -- Ghostlands Quests
             4926, -- Bloodmyst Isle Quests
             6587, -- Outland Safari
@@ -149,6 +189,90 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             source = "Serpentshrine Cavern",
             sourceURL = "https://www.wowhead.com/achievement=144",
             waypoints = { "/way #102 50.2 41 Serpentshrine Cavern entrance", "/way #102 51.9 32.9 Serpentshrine Cavern entrance" },
+        },
+        [208] = {
+            name = "Eye of the Storm Victory",
+            acquisition = "Win Eye of the Storm.",
+            source = "Burning Crusade pvp",
+            sourceType = "Achievement",
+            sourceURL = "https://www.wowhead.com/achievement=208",
+        },
+        [209] = {
+            name = "Eye of the Storm Veteran",
+            acquisition = "Complete 100 victories in Eye of the Storm.",
+            source = "Burning Crusade pvp",
+            sourceType = "Achievement",
+            sourceURL = "https://www.wowhead.com/achievement=209",
+        },
+        [211] = {
+            name = "Storm Glory",
+            acquisition = "While your team holds 4 of the bases in Eye of the Storm, personally grab the flag and capture it.",
+            source = "Burning Crusade pvp",
+            sourceType = "Achievement",
+            sourceURL = "https://www.wowhead.com/achievement=211",
+        },
+        [212] = {
+            name = "Storm Capper",
+            acquisition = "Personally carry and capture the flag in Eye of the Storm.",
+            source = "Burning Crusade pvp",
+            sourceType = "Achievement",
+            sourceURL = "https://www.wowhead.com/achievement=212",
+        },
+        [213] = {
+            name = "Stormtrooper",
+            acquisition = "Kill 5 flag carriers in a single Eye of the Storm battle.",
+            source = "Burning Crusade pvp",
+            sourceType = "Achievement",
+            sourceURL = "https://www.wowhead.com/achievement=213",
+        },
+        [214] = {
+            name = "Flurry",
+            acquisition = "Win Eye of the Storm in under 6 minutes.",
+            source = "Burning Crusade pvp",
+            sourceType = "Achievement",
+            sourceURL = "https://www.wowhead.com/achievement=214",
+        },
+        [216] = {
+            name = "Bound for Glory",
+            acquisition = "In a single Eye of the Storm match, capture the flag 3 times without dying.",
+            source = "Burning Crusade pvp",
+            sourceType = "Achievement",
+            sourceURL = "https://www.wowhead.com/achievement=216",
+        },
+        [233] = {
+            name = "Bloodthirsty Berserker",
+            acquisition = "Get a killing blow while under the effects of the berserker buff in Eye of the Storm.",
+            source = "Burning Crusade pvp",
+            sourceType = "Achievement",
+            sourceURL = "https://www.wowhead.com/achievement=233",
+        },
+        [426] = {
+            name = "Warglaives of Azzinoth",
+            acquisition = "Wielder of a set of Warglaives of Azzinoth.",
+            sourceType = "Achievement",
+            source = "Burning Crusade collections",
+            sourceURL = "https://www.wowhead.com/achievement=426",
+        },
+        [587] = {
+            name = "Stormy Assassin",
+            acquisition = "In a single Eye of the Storm battle, get 5 honorable kills at each of the bases.",
+            source = "Burning Crusade pvp",
+            sourceType = "Achievement",
+            sourceURL = "https://www.wowhead.com/achievement=587",
+        },
+        [613] = {
+            name = "Killed in Quel'Thalas",
+            acquisition = "Kill Lor'themar Theron.",
+            source = "Burning Crusade pvp",
+            sourceType = "Achievement",
+            sourceURL = "https://www.wowhead.com/achievement=613",
+        },
+        [618] = {
+            name = "Putting Out the Light",
+            acquisition = "Kill Prophet Velen.",
+            source = "Burning Crusade pvp",
+            sourceType = "Achievement",
+            sourceURL = "https://www.wowhead.com/achievement=618",
         },
         [647] = {
             name = "Hellfire Ramparts",
@@ -261,6 +385,14 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             source = "The Arcatraz",
             sourceURL = "https://www.wowhead.com/achievement=660",
             waypoints = { "/way #109 74.42 57.72 The Arcatraz entrance" },
+        },
+        [661] = {
+            name = "Magister's Terrace",
+            acquisition = "Enter the original Burning Crusade version of Magisters' Terrace. Defeat Kael'thas Sunstrider. Defeat the required encounter in that instance; a later remake or timewalking raid with a different map is a separate activity.",
+            sourceType = "Achievement",
+            source = "Magisters' Terrace",
+            sourceURL = "https://www.wowhead.com/achievement=661",
+            waypoints = { "/way #122 61.23 30.94 Magisters' Terrace entrance" },
         },
         [666] = {
             name = "Auchenai Crypts",
@@ -390,6 +522,14 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             sourceURL = "https://www.wowhead.com/achievement=681",
             waypoints = { "/way #109 74.42 57.72 The Arcatraz entrance" },
         },
+        [682] = {
+            name = "Heroic: Magister's Terrace",
+            acquisition = "Set dungeon difficulty to Heroic before entering the original Magisters' Terrace. Defeat Kael'thas Sunstrider on Heroic Difficulty. Finish the encounter and check that its criterion has registered before leaving.",
+            sourceType = "Achievement",
+            source = "Magisters' Terrace",
+            sourceURL = "https://www.wowhead.com/achievement=682",
+            waypoints = { "/way #122 61.23 30.94 Magisters' Terrace entrance" },
+        },
         [690] = {
             name = "Karazhan",
             acquisition = "Enter the original Burning Crusade version of Karazhan. Defeat Prince Malchezaar in Karazhan. Defeat the required encounter in that instance; a later remake or timewalking raid with a different map is a separate activity.",
@@ -438,6 +578,29 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             sourceURL = "https://www.wowhead.com/achievement=696",
             waypoints = { "/way #109 73.73 63.71 The Battle for Mount Hyjal entrance" },
         },
+        [697] = {
+            name = "The Black Temple",
+            acquisition = "Enter the original Burning Crusade version of Black Temple. Defeat Illidan Stormrage in The Black Temple. Defeat the required encounter in that instance; a later remake or timewalking raid with a different map is a separate activity.",
+            sourceType = "Achievement",
+            source = "Black Temple",
+            sourceURL = "https://www.wowhead.com/achievement=697",
+            waypoints = { "/way #104 71 46.5 Black Temple entrance" },
+        },
+        [698] = {
+            name = "Sunwell Plateau",
+            acquisition = "Enter the original Burning Crusade version of Sunwell Plateau. Defeat Kil'jaeden in Sunwell Plateau. Defeat the required encounter in that instance; a later remake or timewalking raid with a different map is a separate activity.",
+            sourceType = "Achievement",
+            source = "Sunwell Plateau",
+            sourceURL = "https://www.wowhead.com/achievement=698",
+            waypoints = { "/way #122 44.28 45.71 Sunwell Plateau entrance" },
+        },
+        [725] = {
+            name = "Thori'dal, the Stars' Fury",
+            acquisition = "Wielder of Thori'dal, the Stars' Fury.",
+            sourceType = "Achievement",
+            source = "Burning Crusade collections",
+            sourceURL = "https://www.wowhead.com/achievement=725",
+        },
         [726] = {
             name = "Mr. Pinchy's Magical Crawdad Box",
             acquisition = "Fish your way to Mr. Pinchy's Magical Crawdad Box.",
@@ -465,6 +628,20 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             sourceType = "Achievement",
             source = "Burning Crusade reputation",
             sourceURL = "https://www.wowhead.com/achievement=764",
+        },
+        [783] = {
+            name = "The Perfect Storm",
+            acquisition = "Win Eye of the Storm with a score of 1500 to 0.",
+            source = "Burning Crusade pvp",
+            sourceType = "Achievement",
+            sourceURL = "https://www.wowhead.com/achievement=783",
+        },
+        [784] = {
+            name = "Eye of the Storm Domination",
+            acquisition = "Win Eye of the Storm 10 times while holding 4 bases.",
+            source = "Burning Crusade pvp",
+            sourceType = "Achievement",
+            sourceURL = "https://www.wowhead.com/achievement=784",
         },
         [843] = {
             name = "Explore Netherstorm",
@@ -543,12 +720,41 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             source = "Burning Crusade exploration",
             sourceURL = "https://www.wowhead.com/achievement=867",
         },
+        [868] = {
+            name = "Explore Isle of Quel'Danas",
+            acquisition = "Explore Isle of Quel'Danas, revealing the covered areas of the world map. Visit every required subzone until each exploration criterion is credited; revealing only the main zone name is not enough.",
+            sourceType = "Achievement",
+            source = "Burning Crusade exploration",
+            sourceURL = "https://www.wowhead.com/achievement=868",
+        },
+        [877] = {
+            acquisition = "1. Complete cooking daily quests for The Rokk in Shattrath (61.6, 15.8), or your faction's cook in Northrend Dalaran.\n2. Open the daily reward containers until Recipe: Delicious Chocolate Cake drops. Learn the recipe on the character doing this achievement.\n3. Gather its ingredients and personally bake the cake. Buying or eating a finished cake does not satisfy the baking objective.",
+            sourceType = "Achievement",
+            name = "The Cake Is Not A Lie",
+            sourceURL = "https://www.wowhead.com/achievement=877#comments",
+            source = "The Rokk / Katherine Lee / Awilo Lon'gomba",
+            waypoints = { "/way #111 61.6 15.8 The Rokk - Shattrath cooking daily quests", "/way #125 40.3 66.1 Katherine Lee - Alliance Northrend Cooking and daily quests", "/way #125 70.0 38.9 Awilo Lon'gomba - Horde Northrend Cooking and daily quests" },
+        },
         [882] = {
             name = "Fiery Warhorse's Reins",
             acquisition = "Obtain the Fiery Warhorse's Reins from Attumen the Huntsman in Karazhan.",
             sourceType = "Achievement",
             source = "Burning Crusade collections",
             sourceURL = "https://www.wowhead.com/achievement=882",
+        },
+        [883] = {
+            name = "Reins of the Raven Lord",
+            acquisition = "Obtain the Reins of the Raven Lord from Anzu in Sethekk Halls.",
+            sourceType = "Achievement",
+            source = "Burning Crusade collections",
+            sourceURL = "https://www.wowhead.com/achievement=883",
+        },
+        [884] = {
+            name = "Swift White Hawkstrider",
+            acquisition = "Obtain the Swift White Hawkstrider from Kael'thas Sunstrider in Magisters' Terrace.",
+            sourceType = "Achievement",
+            source = "Burning Crusade collections",
+            sourceURL = "https://www.wowhead.com/achievement=884",
         },
         [885] = {
             name = "Ashes of Al'ar",
@@ -563,6 +769,34 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             sourceType = "Achievement",
             source = "Burning Crusade reputation",
             sourceURL = "https://www.wowhead.com/achievement=893",
+        },
+        [894] = {
+            name = "Flying High Over Skettis",
+            acquisition = "Earn Exalted status within the Sha'tari Skyguard. Earn reputation through the faction's Outland quests, associated dungeons and repeatable turn-ins. Track each required faction separately; tabards from later expansions do not grant these reputations.",
+            sourceType = "Achievement",
+            source = "Burning Crusade reputation",
+            sourceURL = "https://www.wowhead.com/achievement=894",
+        },
+        [896] = {
+            name = "A Quest a Day Keeps the Ogres at Bay",
+            acquisition = "Earn Exalted status within Ogri'la. Earn reputation through the faction's Outland quests, associated dungeons and repeatable turn-ins. Track each required faction separately; tabards from later expansions do not grant these reputations.",
+            sourceType = "Achievement",
+            source = "Burning Crusade reputation",
+            sourceURL = "https://www.wowhead.com/achievement=896",
+        },
+        [897] = {
+            name = "You're So Offensive",
+            acquisition = "Earn Exalted status with the Shattered Sun Offensive. Earn reputation through the faction's Outland quests, associated dungeons and repeatable turn-ins. Track each required faction separately; tabards from later expansions do not grant these reputations.",
+            sourceType = "Achievement",
+            source = "Burning Crusade reputation",
+            sourceURL = "https://www.wowhead.com/achievement=897",
+        },
+        [898] = {
+            name = "On Wings of Nether",
+            acquisition = "Earn Exalted status with Netherwing. Earn reputation through the faction's Outland quests, associated dungeons and repeatable turn-ins. Track each required faction separately; tabards from later expansions do not grant these reputations.",
+            sourceType = "Achievement",
+            source = "Burning Crusade reputation",
+            sourceURL = "https://www.wowhead.com/achievement=898",
         },
         [899] = {
             name = "Oh My, Kurenai",
@@ -599,6 +833,20 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             source = "Burning Crusade reputation",
             sourceURL = "https://www.wowhead.com/achievement=903",
         },
+        [905] = {
+            name = "Old Man Barlowned",
+            acquisition = "Complete each of Old Man Barlo's 5 fishing daily quests listed below. Follow the zone's quest chains and track the named story criteria. Use a character eligible for the faction's version; reputation or bonus objectives do not replace unfinished storylines.",
+            sourceType = "Achievement",
+            source = "Burning Crusade quests",
+            sourceURL = "https://www.wowhead.com/achievement=905",
+        },
+        [906] = {
+            name = "Kickin' It Up a Notch",
+            acquisition = "Complete each of The Rokk's 4 cooking daily quests listed below. Follow the zone's quest chains and track the named story criteria. Use a character eligible for the faction's version; reputation or bonus objectives do not replace unfinished storylines.",
+            sourceType = "Achievement",
+            source = "Burning Crusade quests",
+            sourceURL = "https://www.wowhead.com/achievement=906",
+        },
         [939] = {
             name = "Hills Like White Elekk",
             acquisition = "Complete all of Hemet Nesingwary quests in Nagrand up to and including The Ultimate Bloodsport. Follow the zone's quest chains and track the named story criteria. Use a character eligible for the faction's version; reputation or bonus objectives do not replace unfinished storylines.",
@@ -606,12 +854,12 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             source = "Burning Crusade quests",
             sourceURL = "https://www.wowhead.com/achievement=939",
         },
-        [953] = {
-            name = "Guardian of Cenarius",
-            acquisition = "Earn Exalted status with the Cenarion Circle and Cenarion Expedition. Earn reputation through the faction's Outland quests, associated dungeons and repeatable turn-ins. Track each required faction separately; tabards from later expansions do not grant these reputations.",
+        [958] = {
+            name = "Sworn to the Deathsworn",
+            acquisition = "Earn Exalted status with the Ashtongue Deathsworn. Earn reputation through the faction's Outland quests, associated dungeons and repeatable turn-ins. Track each required faction separately; tabards from later expansions do not grant these reputations.",
             sourceType = "Achievement",
             source = "Burning Crusade reputation",
-            sourceURL = "https://www.wowhead.com/achievement=953",
+            sourceURL = "https://www.wowhead.com/achievement=958",
         },
         [959] = {
             name = "The Scale of the Sands",
@@ -633,6 +881,13 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             sourceType = "Achievement",
             source = "Burning Crusade collections",
             sourceURL = "https://www.wowhead.com/achievement=1165",
+        },
+        [1171] = {
+            name = "Master of Eye of the Storm",
+            acquisition = "Complete the Eye of the Storm achievements listed below.",
+            source = "Burning Crusade pvp",
+            sourceType = "Achievement",
+            sourceURL = "https://www.wowhead.com/achievement=1171",
         },
         [1189] = {
             name = "To Hellfire and Back",
@@ -697,6 +952,13 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             source = "Burning Crusade professions",
             sourceURL = "https://www.wowhead.com/achievement=1225",
         },
+        [1258] = {
+            name = "Take a Chill Pill",
+            acquisition = "In Eye of the Storm, kill a player who is under the effects of the Berserker power-up.",
+            source = "Burning Crusade pvp",
+            sourceType = "Achievement",
+            sourceURL = "https://www.wowhead.com/achievement=1258",
+        },
         [1262] = {
             name = "Loremaster of Outland",
             acquisition = "Complete the Outland quest achievements listed below. Follow the zone's quest chains and track the named story criteria. Use a character eligible for the faction's version; reputation or bonus objectives do not replace unfinished storylines.",
@@ -724,6 +986,20 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             sourceType = "Achievement",
             source = "Burning Crusade quests",
             sourceURL = "https://www.wowhead.com/achievement=1273",
+        },
+        [1275] = {
+            name = "Bombs Away",
+            acquisition = "Complete the Fires Over Skettis quest in under 2 minutes 15 seconds while not in a group. Follow the zone's quest chains and track the named story criteria. Use a character eligible for the faction's version; reputation or bonus objectives do not replace unfinished storylines.",
+            sourceType = "Achievement",
+            source = "Burning Crusade quests",
+            sourceURL = "https://www.wowhead.com/achievement=1275",
+        },
+        [1276] = {
+            name = "Blade's Edge Bomberman",
+            acquisition = "Complete the Bomb Them Again! quest in under 2 minutes 15 seconds while not in a group. Follow the zone's quest chains and track the named story criteria. Use a character eligible for the faction's version; reputation or bonus objectives do not replace unfinished storylines.",
+            sourceType = "Achievement",
+            source = "Burning Crusade quests",
+            sourceURL = "https://www.wowhead.com/achievement=1276",
         },
         [1284] = {
             name = "Outland Dungeonmaster",
@@ -762,6 +1038,28 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
             sourceType = "Achievement",
             source = "Burning Crusade exploration",
             sourceURL = "https://www.wowhead.com/achievement=1312",
+        },
+        [1638] = {
+            name = "Skyshattered",
+            acquisition = "Defeat Captain Skyshatter in the Dragonmaw race on Netherwing Ledge. Follow the zone's quest chains and track the named story criteria. Use a character eligible for the faction's version; reputation or bonus objectives do not replace unfinished storylines.",
+            sourceType = "Achievement",
+            source = "Burning Crusade quests",
+            sourceURL = "https://www.wowhead.com/achievement=1638",
+        },
+        [1800] = {
+            name = "The Outland Gourmet",
+            acquisition = "Cook each of the Outland cooking recipes listed below. Learn the Outland tier of the relevant profession and use Outland recipes or gathering materials. Skill in a different expansion's profession tier does not credit the Outland requirement.",
+            sourceType = "Achievement",
+            source = "Burning Crusade professions",
+            sourceURL = "https://www.wowhead.com/achievement=1800",
+        },
+        [1801] = {
+            acquisition = "1. Do Marcia Chase's fishing daily in Northrend Dalaran and open the Bag of Fishing Treasures for a chance at Recipe: Captain Rumsey's Lager. Outland and Northrend cooking daily containers are another source.\n2. Learn the recipe, then buy a Skin of Dwarven Stout and a Flagon of Dwarven Mead from an innkeeper or drink vendor.\n3. Brew Captain Rumsey's Lager yourself. Purchasing a finished drink does not complete the brewing objective.",
+            sourceType = "Achievement",
+            name = "Captain Rumsey's Lager",
+            sourceURL = "https://www.wowhead.com/achievement=1801#comments",
+            source = "Marcia Chase / The Rokk / Katherine Lee / Awilo Lon'gomba",
+            waypoints = { "/way #125 52.6 65.6 Marcia Chase - Northrend Fishing and daily quests", "/way #111 61.6 15.8 The Rokk - Shattrath cooking daily quests", "/way #125 40.3 66.1 Katherine Lee - Alliance Northrend Cooking and daily quests", "/way #125 70.0 38.9 Awilo Lon'gomba - Horde Northrend Cooking and daily quests" },
         },
         [4908] = {
             name = "Ghostlands Quests",
@@ -933,6 +1231,18 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
         [124] = "Professions",
         [129] = "Professions",
         [144] = "Raids",
+        [208] = "PvP",
+        [209] = "PvP",
+        [211] = "PvP",
+        [212] = "PvP",
+        [213] = "PvP",
+        [214] = "PvP",
+        [216] = "PvP",
+        [233] = "PvP",
+        [426] = "Collections",
+        [587] = "PvP",
+        [613] = "PvP",
+        [618] = "PvP",
         [647] = "Dungeons",
         [648] = "Dungeons",
         [649] = "Dungeons",
@@ -947,6 +1257,7 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
         [658] = "Dungeons",
         [659] = "Dungeons",
         [660] = "Dungeons",
+        [661] = "Dungeons",
         [666] = "Dungeons",
         [667] = "Dungeons",
         [668] = "Dungeons",
@@ -963,16 +1274,22 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
         [679] = "Dungeons",
         [680] = "Dungeons",
         [681] = "Dungeons",
+        [682] = "Dungeons",
         [690] = "Raids",
         [692] = "Raids",
         [693] = "Raids",
         [694] = "Raids",
         [695] = "Raids",
         [696] = "Raids",
+        [697] = "Raids",
+        [698] = "Raids",
+        [725] = "Collections",
         [726] = "Collections",
         [733] = "Professions",
         [763] = "Reputation",
         [764] = "Reputation",
+        [783] = "PvP",
+        [784] = "PvP",
         [843] = "Exploration",
         [858] = "Exploration",
         [859] = "Exploration",
@@ -984,19 +1301,30 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
         [865] = "Exploration",
         [866] = "Exploration",
         [867] = "Exploration",
+        [868] = "Exploration",
+        [877] = "Professions",
         [882] = "Collections",
+        [883] = "Collections",
+        [884] = "Collections",
         [885] = "Collections",
         [893] = "Reputation",
+        [894] = "Reputation",
+        [896] = "Reputation",
+        [897] = "Reputation",
+        [898] = "Reputation",
         [899] = "Reputation",
         [900] = "Reputation",
         [901] = "Reputation",
         [902] = "Reputation",
         [903] = "Reputation",
+        [905] = "Quests",
+        [906] = "Quests",
         [939] = "Quests",
-        [953] = "Reputation",
+        [958] = "Reputation",
         [959] = "Reputation",
         [960] = "Reputation",
         [1165] = "Collections",
+        [1171] = "PvP",
         [1189] = "Quests",
         [1190] = "Quests",
         [1191] = "Quests",
@@ -1006,15 +1334,21 @@ TDP.CatalogRegistry:RegisterCollection("2.0", "achievements", {
         [1195] = "Quests",
         [1205] = "Reputation",
         [1225] = "Professions",
+        [1258] = "PvP",
         [1262] = "Quests",
         [1271] = "Quests",
         [1272] = "Quests",
         [1273] = "Quests",
+        [1275] = "Quests",
+        [1276] = "Quests",
         [1284] = "Dungeons",
         [1286] = "Raids",
         [1287] = "Dungeons",
         [1311] = "Exploration",
         [1312] = "Exploration",
+        [1638] = "Quests",
+        [1800] = "Professions",
+        [1801] = "Professions",
         [4908] = "Quests",
         [4926] = "Quests",
         [6587] = "Pet Battles",

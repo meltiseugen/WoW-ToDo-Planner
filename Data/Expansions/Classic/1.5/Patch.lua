@@ -22,7 +22,7 @@ TDP.CatalogRegistry:RegisterPatch("1.5", {
         "Patch 1.5.0 opened Warsong Gulch and Alterac Valley. Its permanent collection consists of the Frostwolf Howler, Stormpike Battle Charger, the four original battleground-faction tabards, and the two original Engineering transporters.",
         "The Alterac Valley mounts still require Exalted reputation with Frostwolf Clan or Stormpike Guard. Current outdoor supply-officer pins are provided alongside the Warsong Gulch faction vendors for the tabards.",
         "Goblin Engineers learn Dimensional Ripper - Everlook from Zap Farflinger, while Gnomish Engineers learn Ultrasafe Transporter: Gadgetzan from Jhordy Lapforge. Both items became Toy Box collectibles in later expansions but remain attributed to their patch 1.5 introduction.",
-        "Battleground armor, weapons, trinkets, standards, consumables, and later retroactive achievements are excluded under the catalogue's ordinary-equipment and achievement-attribution rules.",
+        "Battleground armor, weapons, trinkets, standards and consumables are excluded under the catalogue's ordinary-equipment rules. Retroactive achievements about these Classic battlegrounds are grouped in 1.0.",
     },
     sourceUrls = {
         everlookRipper = "https://warcraft.wiki.gg/wiki/Dimensional_Ripper_-_Everlook",

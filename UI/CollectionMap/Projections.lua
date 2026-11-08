@@ -5,11 +5,11 @@ local GetPinCoordinates = CollectionMapWindow.Helpers.GetPinCoordinates
 local PAYLOAD_FIELDS = {
     "projectionKey", "title", "collectionType", "sourceSummary", "acquisition",
     "effect", "tips", "requirements", "cost", "costs", "availability", "notes",
-    "researchNotes", "description", "criteria", "mapAchievementId", "waypoints", "icon",
+    "researchNotes", "description", "criteria", "mapAchievementId", "waypoints", "icon", "guideMaps",
 }
 local PIN_FIELDS = {
     "mapName", "label", "waypoint", "icon", "source", "acquisition", "effect", "tips",
-    "criterionAchievementId", "criterionIndex", "criterionCompleted", "criterionText",
+    "criterionAchievementId", "criterionIndex", "criterionCompleted", "criterionText", "step", "steps",
 }
 
 -- SavedVariables must contain data only, independent of frames and catalog tables.

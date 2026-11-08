@@ -14,6 +14,8 @@
     <Include file="Expansions/Dragonflight/Expansion.xml"/>
     <Include file="Expansions/TheWarWithin/Expansion.xml"/>
     <Include file="Expansions/Midnight/Expansion.xml"/>
+    <Script file="General/Achievements.lua"/>
+    <Script file="General/AchievementGuides.lua"/>
     <Script file="Catalog/Policy.lua"/>
     <Script file="Catalog/Queries.lua"/>
     <Script file="Catalog/Acquisition.lua"/>

@@ -19,6 +19,7 @@ TDP.CatalogMapNames = {
     [22] = "Western Plaguelands",
     [23] = "Eastern Plaguelands",
     [25] = "Hillsbrad Foothills",
+    [26] = "The Hinterlands",
     [27] = "Dun Morogh",
     [30] = "New Tinkertown",
     [37] = "Elwynn Forest",

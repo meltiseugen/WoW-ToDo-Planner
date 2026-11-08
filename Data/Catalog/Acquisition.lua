@@ -1,8 +1,17 @@
 local _, TDP = ...
 local PatchCatalog = TDP.PatchCatalog
 
-local GUIDE_ID_FIELDS = { mounts = "spellId", pets = "speciesId", toys = "itemId" }
+local GUIDE_ID_FIELDS = { mounts = "spellId", pets = "speciesId", toys = "itemId", cosmetics = "itemId", achievements = "achievementId" }
+function PatchCatalog:GetCollectionWalkthrough(collectionType, entry)
+    local guides = TDP.CollectionWalkthroughs and TDP.CollectionWalkthroughs[collectionType]
+    local field = GUIDE_ID_FIELDS[collectionType]
+    local id = field and (type(entry) == "table" and entry[field] or collectionType == "achievements" and entry)
+    return guides and guides[tonumber(id)] or nil
+end
+
 function PatchCatalog:GetCollectionGuideText(collectionType, entry)
+    local walkthrough = self:GetCollectionWalkthrough(collectionType, entry)
+    if walkthrough then return walkthrough.acquisition end
     local guides = TDP.CollectionAcquisitionGuides and TDP.CollectionAcquisitionGuides[collectionType]
     local field = GUIDE_ID_FIELDS[collectionType]
     return guides and field and type(entry) == "table" and guides[entry[field]] or nil

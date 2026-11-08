@@ -52,7 +52,9 @@ function CollectionMapWindow:ShowWorldMapPinTooltip(pin)
     GameTooltip:SetOwner(pin, "ANCHOR_RIGHT")
     GameTooltip:SetText(pin.title or pin.label or "Collection location", 1, 0.82, 0.18)
     if IsNonEmptyText(pin.label) and pin.label ~= pin.title then
-        GameTooltip:AddLine("Location: " .. pin.label, 0.86, 0.88, 0.94, true)
+        local prefix = pin.steps and ("Steps " .. table.concat(pin.steps, ", ") .. ": ")
+            or pin.step and ("Step " .. tostring(pin.step) .. ": ") or "Location: "
+        GameTooltip:AddLine(prefix .. pin.label, 0.86, 0.88, 0.94, true)
     end
     if pin.criterionIndex then
         local criterionLabel = pin.criterionText or ("Achievement criterion " .. tostring(pin.criterionIndex))
@@ -83,6 +85,7 @@ function CollectionMapWindow:ConfigureWorldMapPin(pin, pinData, payload)
     pin.y = pinData.y
     pin.title = payload.title
     pin.label = pinData.label
+    self:SetGuidePinSteps(pin, pinData)
     pin.source = pinData.source or payload.sourceSummary
     pin.acquisition = pinData.acquisition or payload.acquisition
     pin.effect = pinData.effect or payload.effect

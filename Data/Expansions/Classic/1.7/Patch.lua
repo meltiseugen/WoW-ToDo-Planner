@@ -20,7 +20,7 @@ TDP.CatalogRegistry:RegisterPatch("1.7", {
     label = "Rise of the Blood God",
     sourceNotes = {
         "Patch 1.7.0 introduced the original Zul'Gurub raid and Arathi Basin. Its permanent collection records are the Swift Razzashi Raptor, Swift Zulian Tiger, and the two Exalted Arathi Basin faction tabards.",
-        "Both original Zul'Gurub mounts became unavailable when the raid was replaced in patch 4.0.3a, although they may appear on the Black Market Auction House. Their later replacement mounts remain attributed to Cataclysm.",
+        "Both original Zul'Gurub mounts remain obtainable through rare Black Market Auction House listings. Their original raid drops ended in patch 4.0.3a; the later dungeon replacement mounts remain attributed to Cataclysm.",
         "The Stranglethorn Fishing Extravaganza and ordinary Zul'Gurub equipment are excluded under the catalogue's recurring-event and ordinary-equipment rules. Achievements did not yet exist.",
     },
     sourceUrls = {

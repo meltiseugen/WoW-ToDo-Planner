@@ -40,7 +40,9 @@ function CollectionExplorerWindow:RenderPreview()
     elseif row.collectionType == "achievements" then
         previewMeta = (row.achievementCategory or "Other") .. " achievement"
     end
-    if self.nearbySnapshot or self.selectedPatch == ALL_PATCHES then
+    if row.patchKey == "general" then
+        previewMeta = "General - " .. previewMeta
+    elseif self.nearbySnapshot or self.selectedPatch == ALL_PATCHES then
         previewMeta = string.format("Patch %s - %s", row.patchKey, previewMeta)
     end
     self.previewMeta:SetText(previewMeta)

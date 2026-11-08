@@ -43,9 +43,17 @@
     <Script file="3.3.5a/Pets.lua"/>
     <Script file="3.3.5a/Toys.lua"/>
     <Script file="3.3.5a/Achievements.lua"/>
-    <Script file="3.2.0/Availability.lua"/>
-    <Script file="3.1.0/Availability.lua"/>
-    <Script file="3.0/Availability.lua"/>
-    <Script file="3.3.0/Availability.lua"/>
-    <Script file="3.3.5/Availability.lua"/>
+    <Script file="MountGuides.lua"/>
+    <Script file="PetGuides.lua"/>
+    <Script file="ToyGuides.lua"/>
+    <Script file="CosmeticGuides.lua"/>
+    <Script file="AchievementGuides.lua"/>
+    <Script file="AchievementRaidGuides.lua"/>
+    <Script file="AchievementWorldGuides.lua"/>
+    <Script file="AchievementProfessionGuides.lua"/>
+    <Script file="AchievementExplorationGuides.lua"/>
+    <Script file="AchievementReputationGuides.lua"/>
+    <Script file="AchievementTournamentGuides.lua"/>
+    <Script file="AchievementOwnershipGuides.lua"/>
+    <Script file="AchievementPvPGuides.lua"/>
 </Ui>

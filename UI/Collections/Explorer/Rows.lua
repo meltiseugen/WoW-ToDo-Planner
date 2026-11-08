@@ -47,7 +47,7 @@ function CollectionExplorerWindow:GetExplorerRowMeta(row)
             text = text:gsub("^" .. self:GetTypeLabel(row.collectionType) .. " %- ", "")
         end
     end
-    text = text .. " - Patch " .. row.patchKey
+    text = text .. (row.patchKey == "general" and " - General" or " - Patch " .. row.patchKey)
     if self.selectedStatus == "all" or row.unobtainable then text = text .. " - " .. self:GetRowStatusLabel(row) end
     return text
 end

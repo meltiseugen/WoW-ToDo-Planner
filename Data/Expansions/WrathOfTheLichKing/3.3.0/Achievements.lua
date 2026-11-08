@@ -1,13 +1,6 @@
 local _, TDP = ...
 
 local shared = {}
-shared["Dungeon Finder"] = {
-    acquisition = "Finish random heroic dungeons until grouped with the listed number of different random players.",
-    source = "Dungeon Finder",
-    sourceType = "Achievement",
-    tips = "Queue through Random Heroic rather than selecting one dungeon. Looking For Multitudes rewards the Perky Pug by mail.",
-}
-
 shared["The Frozen Halls"] = {
     acquisition = "Complete the listed Forge of Souls, Pit of Saron, or Halls of Reflection clear or heroic mechanic.",
     source = "The Frozen Halls",
@@ -25,10 +18,10 @@ shared["Icecrown Citadel"] = {
 }
 
 shared["Wrath raid and legendary feats"] = {
-    acquisition = "Complete the listed realm-first, legendary, or rare raid-mount criterion.",
+    acquisition = "Complete the Shadowmourne questline or learn the specified rare raid mount.",
     source = "Wrath raid and legendary feats",
     sourceType = "Achievement",
-    tips = "Realm First is historical. Shadowmourne requires repeated 25-player Icecrown clears; Invincible and Mimiron's Head use weekly raid lockouts.",
+    tips = "Shadowmourne requires repeated 25-player Icecrown clears; Invincible and Mimiron's Head use weekly raid lockouts. Read the mount's required difficulty before starting.",
     waypoints = { "/way #118 53.5 85.5 Icecrown Citadel entrance" },
 }
 
@@ -40,106 +33,81 @@ shared["Toravon in the Vault of Archavon"] = {
     waypoints = { "/way #123 50.0 11.0 Vault of Archavon entrance" },
 }
 
-shared["Wrath Arena Season 8"] = {
-    acquisition = "Earn the original Wrathful Gladiator title or Frost Wyrm.",
-    source = "Wrath Arena Season 8",
-    sourceType = "Achievement",
-    tips = "These seasonal ladder rewards are no longer obtainable and remain for historical tracking.",
-}
-
 TDP.CatalogRegistry:RegisterCollection("3.3.0", "achievements", {
     entries = {
         ids = {
-            4476,
-            4477,
-            4478,
-            4496,
-            4516,
-            4517,
-            4518,
-            4519,
-            4520,
-            4521,
-            4522,
-            4523,
-            4524,
-            4525,
-            4526,
-            4527,
-            4528,
-            4529,
-            4530,
-            4531,
-            4532,
-            4534,
-            4535,
-            4536,
-            4537,
-            4538,
-            4539,
-            4576,
-            4577,
-            4578,
-            4579,
-            4580,
-            4581,
-            4582,
-            4583,
-            4584,
-            4585,
-            4586,
-            4596,
-            4597,
-            4598,
-            4599,
-            4600,
-            4601,
-            4602,
-            4603,
-            4604,
-            4605,
-            4606,
-            4607,
-            4608,
-            4610,
-            4611,
-            4612,
-            4613,
-            4614,
-            4615,
-            4616,
-            4617,
-            4618,
-            4619,
-            4620,
-            4621,
-            4622,
-            4623,
-            4625,
-            4626,
-            4628,
-            4629,
-            4630,
-            4631,
-            4632,
-            4633,
-            4634,
-            4635,
-            4636,
-            4637,
+            4516, -- The Forge of Souls
+            4517, -- The Pit of Saron
+            4518, -- The Halls of Reflection
+            4519, -- Heroic: The Forge of Souls
+            4520, -- Heroic: The Pit of Saron
+            4521, -- Heroic: The Halls of Reflection
+            4522, -- Soul Power
+            4523, -- Three Faced
+            4526, -- We're Not Retreating; We're Advancing in a Different Direction.
+            4527, -- The Frostwing Halls (10 player)
+            4528, -- The Plagueworks (10 player)
+            4529, -- The Crimson Hall (10 player)
+            4530, -- The Frozen Throne (10 player)
+            4531, -- Storming the Citadel (10 player)
+            4532, -- Fall of the Lich King (10 player)
+            4534, -- Boned (10 player)
+            4535, -- Full House (10 player)
+            4536, -- I'm on a Boat (10 player)
+            4537, -- I've Gone and Made a Mess (10 player)
+            4538, -- Dances with Oozes (10 player)
+            4539, -- Once Bitten, Twice Shy (10 player)
+            4577, -- Flu Shot Shortage (10 player)
+            4578, -- Nausea, Heartburn, Indigestion... (10 player)
+            4579, -- Portal Jockey (10 player)
+            4580, -- All You Can Eat (10 player)
+            4581, -- Neck-Deep in Vile (10 player)
+            4582, -- The Orb Whisperer (10 player)
+            4583, -- Bane of the Fallen King
+            4584, -- The Light of Dawn
+            4585, -- Toravon the Ice Watcher (10 player)
+            4586, -- Toravon the Ice Watcher (25 player)
+            4596, -- The Sword in the Skull
+            4597, -- The Frozen Throne (25 player)
+            4598, -- The Ashen Verdict
+            4601, -- Been Waiting a Long Time for This (10 player)
+            4602, -- Glory of the Icecrown Raider (10 player)
+            4603, -- Glory of the Icecrown Raider (25 player)
+            4604, -- Storming the Citadel (25 player)
+            4605, -- The Plagueworks (25 player)
+            4606, -- The Crimson Hall (25 player)
+            4607, -- The Frostwing Halls (25 player)
+            4608, -- Fall of the Lich King (25 player)
+            4610, -- Boned (25 player)
+            4611, -- Full House (25 player)
+            4612, -- I'm on a Boat (25 player)
+            4613, -- I've Gone and Made a Mess (25 player)
+            4614, -- Dances with Oozes (25 player)
+            4615, -- Flu Shot Shortage (25 player)
+            4616, -- Nausea, Heartburn, Indigestion... (25 player)
+            4617, -- The Orb Whisperer (25 player)
+            4618, -- Once Bitten, Twice Shy (25 player)
+            4619, -- Portal Jockey (25 player)
+            4620, -- All You Can Eat (25 player)
+            4621, -- Been Waiting a Long Time for This (25 player)
+            4622, -- Neck-Deep in Vile (25 player)
+            4623, -- Shadowmourne
+            4625, -- Invincible's Reins
+            4626, -- And I'll Form the Head!
+            4628, -- Heroic: Storming the Citadel (10 player)
+            4629, -- Heroic: The Plagueworks (10 player)
+            4630, -- Heroic: The Crimson Hall (10 player)
+            4631, -- Heroic: The Frostwing Halls (10 player)
+            4632, -- Heroic: Storming the Citadel (25 player)
+            4633, -- Heroic: The Plagueworks (25 player)
+            4634, -- Heroic: The Crimson Hall (25 player)
+            4635, -- Heroic: The Frostwing Halls (25 player)
+            4636, -- Heroic: Fall of the Lich King (10 player)
+            4637, -- Heroic: Fall of the Lich King (25 player)
         },
         rewardHighlights = {},
     },
     details = {
-        [4476] = shared["Dungeon Finder"],
-        [4477] = shared["Dungeon Finder"],
-        [4478] = shared["Dungeon Finder"],
-        [4496] = {
-            acquisition = "Earn more than 9,000 achievement points.",
-            source = "Achievement points",
-            sourceType = "Achievement",
-            tips = "This is an account progression milestone; prioritize high-density expansion and dungeon metas.",
-        },
         [4516] = shared["The Frozen Halls"],
         [4517] = shared["The Frozen Halls"],
         [4518] = shared["The Frozen Halls"],
@@ -148,8 +116,6 @@ TDP.CatalogRegistry:RegisterCollection("3.3.0", "achievements", {
         [4521] = shared["The Frozen Halls"],
         [4522] = shared["The Frozen Halls"],
         [4523] = shared["The Frozen Halls"],
-        [4524] = shared["The Frozen Halls"],
-        [4525] = shared["The Frozen Halls"],
         [4526] = shared["The Frozen Halls"],
         [4527] = shared["Icecrown Citadel"],
         [4528] = shared["Icecrown Citadel"],
@@ -163,7 +129,6 @@ TDP.CatalogRegistry:RegisterCollection("3.3.0", "achievements", {
         [4537] = shared["Icecrown Citadel"],
         [4538] = shared["Icecrown Citadel"],
         [4539] = shared["Icecrown Citadel"],
-        [4576] = shared["Wrath raid and legendary feats"],
         [4577] = shared["Icecrown Citadel"],
         [4578] = shared["Icecrown Citadel"],
         [4579] = shared["Icecrown Citadel"],
@@ -189,8 +154,6 @@ TDP.CatalogRegistry:RegisterCollection("3.3.0", "achievements", {
             tips = "Clear raid trash and bosses each week; the Shadowmourne chain also grants substantial reputation.",
             waypoints = { "/way #118 53.5 85.5 Icecrown Citadel entrance" },
         },
-        [4599] = shared["Wrath Arena Season 8"],
-        [4600] = shared["Wrath Arena Season 8"],
         [4601] = {
             acquisition = "1. Enter Icecrown Citadel in the raid size named by this achievement, reach the Frozen Throne and speak to Tirion to start the encounter.\n2. Stand on the stairs with your back toward the throne. Stop attacking and let the Lich King summon adds; keep them alive for Necrotic Plague to jump between.\n3. Watch Necrotic Plague on yourself and the adds until it reaches at least 30 stacks. The boss's Plague Siphon buff is a different counter.\n4. Only then damage the Lich King. Let the final dialogue, resurrection and Tirion's intervention finish before dealing the killing blow.",
             sourceType = "Achievement",
@@ -239,10 +202,6 @@ TDP.CatalogRegistry:RegisterCollection("3.3.0", "achievements", {
         [4637] = shared["Icecrown Citadel"],
     },
     categories = {
-        [4476] = "Dungeons",
-        [4477] = "Dungeons",
-        [4478] = "Dungeons",
-        [4496] = "Collections",
         [4516] = "Dungeons",
         [4517] = "Dungeons",
         [4518] = "Dungeons",
@@ -251,8 +210,6 @@ TDP.CatalogRegistry:RegisterCollection("3.3.0", "achievements", {
         [4521] = "Dungeons",
         [4522] = "Dungeons",
         [4523] = "Dungeons",
-        [4524] = "Dungeons",
-        [4525] = "Dungeons",
         [4526] = "Dungeons",
         [4527] = "Raids",
         [4528] = "Raids",
@@ -266,7 +223,6 @@ TDP.CatalogRegistry:RegisterCollection("3.3.0", "achievements", {
         [4537] = "Raids",
         [4538] = "Raids",
         [4539] = "Raids",
-        [4576] = "Feats of Strength",
         [4577] = "Raids",
         [4578] = "Raids",
         [4579] = "Raids",
@@ -280,8 +236,6 @@ TDP.CatalogRegistry:RegisterCollection("3.3.0", "achievements", {
         [4596] = "Questing",
         [4597] = "Raids",
         [4598] = "Reputation",
-        [4599] = "PvP",
-        [4600] = "PvP",
         [4601] = "Raids",
         [4602] = "Raids",
         [4603] = "Raids",

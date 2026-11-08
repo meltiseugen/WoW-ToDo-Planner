@@ -87,6 +87,8 @@ function CollectionMapWindow:RefreshMinimapProjection()
                 x = x,
                 y = y,
                 label = pinData.label,
+                step = pinData.step,
+                steps = pinData.steps,
                 source = pinData.source,
                 acquisition = pinData.acquisition,
                 effect = pinData.effect,

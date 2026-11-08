@@ -204,6 +204,8 @@ local METHOD_ORDER = { Vendor = 1, ["Quest Rewards"] = 2, ["Dungeon and Raids"] 
     ["Black Market"] = 20, ["Trading Post"] = 21, Promotion = 22 }
 
 function Catalog:GetResearchedCollectionSourceKind(collectionType, patchKey, entry)
+    local guide = self:GetCollectionWalkthrough(collectionType, entry)
+    if guide then return guide.category end
     local selected, score
     for _, record in ipairs(self:GetCollectionSourceRecords(collectionType, patchKey, entry)) do
         if record.researched and matchesCharacter(record) then
@@ -220,6 +222,18 @@ function Catalog:GetCollectionSourceInfo(collectionType, patchKey, entry)
     self.collectionSourceCache = self.collectionSourceCache or {}
     local cached = self.collectionSourceCache[key]
     if cached ~= nil then return cached or nil end
+    local guide = self:GetCollectionWalkthrough(collectionType, entry)
+    if guide then
+        -- Inspector labels and source actions must agree with the reviewed route,
+        -- including corrected mount vendors, profession toys and cosmetics.
+        return self:CacheCollectionSourceInfo(key, {
+            kind = guide.category, source = guide.source,
+            summary = guide.category .. ": " .. guide.source,
+            npcID = guide.npcId, npcName = NPC_NAMES[guide.npcId],
+            waypoints = guide.waypoints, areaMaps = {}, records = {},
+            acquisition = guide.acquisition, walkthrough = true,
+        })
+    end
     local candidates, selected, score = {}, nil, math.huge
     for _, record in ipairs(self:GetCollectionSourceRecords(collectionType, patchKey, entry)) do
         if matchesCharacter(record) then
@@ -317,6 +331,16 @@ end
 function Catalog:GetCollectionSourceNotes(collectionType, patchKey, entry, requestData)
     local info = self:GetCollectionSourceInfo(collectionType, patchKey, entry)
     if not info then return {} end
+    -- Reviewed Source/How to get/Tips are already printed by both inspectors.
+    -- Reviewed mount, pet and toy descriptions and prerequisites need visible sections.
+    if info.walkthrough then
+        local guide = (collectionType == "mounts" or collectionType == "pets" or collectionType == "toys")
+            and self:GetCollectionWalkthrough(collectionType, entry)
+        local lines = {}
+        if guide and guide.description then lines[#lines + 1] = "Description: " .. guide.description end
+        if guide and guide.requirements then lines[#lines + 1] = "Requirements: " .. guide.requirements end
+        return lines
+    end
     local lines = {}
     if info.questID then
         if requestData and not info.questName and C_QuestLog and type(C_QuestLog.RequestLoadQuestByID) == "function" then
@@ -342,6 +366,8 @@ function Catalog:GetCollectionSourceNotes(collectionType, patchKey, entry, reque
 end
 
 function Catalog:GetCollectionSourceCost(collectionType, patchKey, entry)
+    local guide = self:GetCollectionWalkthrough(collectionType, entry)
+    if guide then return guide.cost end
     local info = self:GetCollectionSourceInfo(collectionType, patchKey, entry)
     local parts = {}
     local costs = info and info.cost

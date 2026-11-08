@@ -24,6 +24,8 @@
         "ToggleWorldMap",
         "MapCanvasDataProviderMixin",
         "MapCanvasPinMixin",
-        "ReloadUI"
+        "ReloadUI",
+        "Lerp",
+        "CreateUnsecuredRegionPoolInstance"
     ]
 }

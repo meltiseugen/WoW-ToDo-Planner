@@ -13,7 +13,7 @@ TDP.CatalogRegistry:RegisterPatch("3.1.0", {
     label = "Secrets of Ulduar",
     sourceNotes = {
         "Patch 3.1 opens Ulduar, introduces the Argent Tournament and Dalaran fishing dailies, and adds their permanent mounts, pets, toys, city tabards, and achievements.",
-        "The PTR-only Blue Skeletal Warhorse and recurring Noblegarden collection are excluded. Deadly Gladiator rewards and removed Ulduar realm-first or challenge records remain for historical completeness.",
+        "The PTR-only Blue Skeletal Warhorse and recurring Noblegarden collection are excluded. Retired season rewards, realm-first and original size-specific Ulduar achievements are excluded; obtainable Val'anyr and Herald of the Titans remain. Both Ulduar proto-drakes remain rewards of the current unified meta.",
         "Tournament rows point to the shared grounds because city vendors cluster in faction pavilions; each tip names the championship prerequisite so Seal spending can be planned efficiently.",
     },
     sourceUrls = {

@@ -15,6 +15,9 @@ end
 
 function Preview:GetCollectionMapAchievementId(row)
     if row and row.collectionType ~= "achievements" then
+        -- A reviewed route owns its map destinations, including an empty route
+        -- for a queue reward. Keep the separate achievement action available.
+        if TDP.PatchCatalog:GetCollectionWalkthrough(row.collectionType, row.entry) then return nil end
         local info = TDP.PatchCatalog.GetCollectionSourceInfo and TDP.PatchCatalog:GetCollectionSourceInfo(row.collectionType, row.patchKey, row.entry)
         if info and info.kind == "Vendor" then return nil end
         return self:GetPreviewAchievementId(row)

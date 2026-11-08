@@ -32,24 +32,6 @@ TDP.CatalogRegistry:RegisterCollection("1.1", "mounts", {
             tips = "Purchase the kodo from Harb Clawhoof after meeting the current riding and reputation requirements.",
             waypoints = { "/way #7 47.6 58.6 Harb Clawhoof / Bloodhoof Village" },
         },
-        {
-            acquisition = "Obtain Green Kodo from the original tauren epic-mount vendor.",
-            category = "Legacy",
-            name = "Green Kodo",
-            source = "the original tauren epic-mount vendor",
-            spellId = 18991,
-            tips = "Added with the launch-version kodo system and retired in patch 1.4. It remains usable only by original owners.",
-            waypoints = { "/way #7 47.6 58.6 Harb Clawhoof / Bloodhoof Village" },
-        },
-        {
-            acquisition = "Obtain Teal Kodo from the original tauren epic-mount vendor.",
-            category = "Legacy",
-            name = "Teal Kodo",
-            source = "the original tauren epic-mount vendor",
-            spellId = 18992,
-            tips = "Added with the launch-version kodo system and retired in patch 1.4. It remains usable only by original owners.",
-            waypoints = { "/way #7 47.6 58.6 Harb Clawhoof / Bloodhoof Village" },
-        },
     },
     details = {
         ["Brown Kodo"] = {
@@ -66,22 +48,6 @@ TDP.CatalogRegistry:RegisterCollection("1.1", "mounts", {
             source = "Harb Clawhoof in Mulgore",
             sourceType = "Patch mount collection",
             tips = "Purchase the kodo from Harb Clawhoof after meeting the current riding and reputation requirements.",
-            waypoints = { "/way #7 47.6 58.6 Harb Clawhoof / Bloodhoof Village" },
-        },
-        ["Green Kodo"] = {
-            acquisition = "Obtain Green Kodo from the original tauren epic-mount vendor.",
-            category = "Legacy",
-            source = "the original tauren epic-mount vendor",
-            sourceType = "Patch mount collection",
-            tips = "Added with the launch-version kodo system and retired in patch 1.4. It remains usable only by original owners.",
-            waypoints = { "/way #7 47.6 58.6 Harb Clawhoof / Bloodhoof Village" },
-        },
-        ["Teal Kodo"] = {
-            acquisition = "Obtain Teal Kodo from the original tauren epic-mount vendor.",
-            category = "Legacy",
-            source = "the original tauren epic-mount vendor",
-            sourceType = "Patch mount collection",
-            tips = "Added with the launch-version kodo system and retired in patch 1.4. It remains usable only by original owners.",
             waypoints = { "/way #7 47.6 58.6 Harb Clawhoof / Bloodhoof Village" },
         },
         Warhorse = {

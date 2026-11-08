@@ -3,14 +3,6 @@ local _, TDP = ...
 TDP.CatalogRegistry:RegisterCollection("3.3.0", "mounts", {
     entries = {
         {
-            acquisition = "Obtain Wrathful Gladiator's Frost Wyrm from the top-ranked Arena Season 8 reward.",
-            category = "PvP",
-            name = "Wrathful Gladiator's Frost Wyrm",
-            source = "the top-ranked Arena Season 8 reward",
-            spellId = 71810,
-            tips = "This original seasonal Gladiator reward is no longer obtainable; it remains listed for historical tracking.",
-        },
-        {
             acquisition = "Obtain Invincible from the Lich King in Icecrown Citadel.",
             category = "Dungeon and Raids",
             name = "Invincible",
@@ -98,13 +90,6 @@ TDP.CatalogRegistry:RegisterCollection("3.3.0", "mounts", {
             sourceType = "Patch mount collection",
             tips = "Defeat the Lich King on an eligible difficulty once per character each week. The current drop rate is very low.",
             waypoints = { "/way #118 53.5 85.5 Icecrown Citadel entrance" },
-        },
-        ["Wrathful Gladiator's Frost Wyrm"] = {
-            acquisition = "Obtain Wrathful Gladiator's Frost Wyrm from the top-ranked Arena Season 8 reward.",
-            category = "PvP",
-            source = "the top-ranked Arena Season 8 reward",
-            sourceType = "Patch mount collection",
-            tips = "This original seasonal Gladiator reward is no longer obtainable; it remains listed for historical tracking.",
         },
     },
 })

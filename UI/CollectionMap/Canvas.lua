@@ -122,6 +122,7 @@ function CollectionMapWindow:ApplyCollectionMapPinSize(pin, mapScale)
     pin:SetSize(COLLECTION_MAP_PIN_SIZE * sizeScale, COLLECTION_MAP_PIN_SIZE * sizeScale)
     pin.icon:SetSize(COLLECTION_MAP_PIN_ICON_SIZE * sizeScale, COLLECTION_MAP_PIN_ICON_SIZE * sizeScale)
     pin.ring:SetSize(COLLECTION_MAP_PIN_RING_SIZE * sizeScale, COLLECTION_MAP_PIN_RING_SIZE * sizeScale)
+    if pin.stepText then pin.stepText:SetScale(sizeScale) end
 end
 
 function CollectionMapWindow:LoadMapArt(mapID)
@@ -303,6 +304,7 @@ function CollectionMapWindow:RenderPins()
                 pin.x = x
                 pin.y = y
                 pin.label = pinData.label
+                self:SetGuidePinSteps(pin, pinData)
                 pin.title = self.title
                 pin.source = pinData.source
                 pin.acquisition = pinData.acquisition

@@ -2,7 +2,6 @@ local _, TDP = ...
 
 TDP.CatalogRegistry:RegisterCollection("2.0", "cosmetics", {
     entries = {
-        { detailKey = "darkPortalTabard", itemId = 28788, name = "Tabard of the Protector", subtype = "tabard" },
         { detailKey = "racialTabards", itemId = 24344, name = "Tabard of the Hand", subtype = "tabard" },
         { detailKey = "racialTabards", itemId = 25549, name = "Blood Knight Tabard", subtype = "tabard" },
         { detailKey = "hellfireTabards", itemId = 23999, name = "Honor Hold Tabard", subtype = "tabard" },

@@ -9,13 +9,6 @@ TDP.CatalogRegistry:RegisterPatch("2.0", {
             tips = "Run Coilfang Reservoir dungeons and turn in eligible reputation items before finishing remaining quests.",
             waypoints = { "/way #102 79.3 63.8 Fedryen Swiftspear" },
         },
-        darkPortalTabard = {
-            acquisition = "Complete the pre-expansion Dark Portal event quest Into the Breach.",
-            source = "Into the Breach at the Dark Portal",
-            sourceType = "Historical launch event",
-            tips = "This one-time 2.0.1 event reward is no longer obtainable; keep it in the catalogue for historical appearance tracking.",
-            waypoints = { "/way #17 58.0 55.8 Dark Portal event location" },
-        },
         hellfireTabards = {
             acquisition = "Reach Exalted with the matching Hellfire Peninsula faction and buy its tabard.",
             source = "Honor Hold or Thrallmar quartermaster",
@@ -70,8 +63,8 @@ TDP.CatalogRegistry:RegisterPatch("2.0", {
     sourceNotes = {
         "The launch bucket covers the permanent collection introduced by the 2.0 client and the January 2007 expansion release: Outland flying mounts, blood elf and draenei racial mounts and pets, talbuks, launch raids, reputation tabards, quests, fishing, and engineering devices later promoted into the Toy Box.",
         "Fiery Warhorse and Ashes of Al'ar retain their original Karazhan and Tempest Keep entrances. Mr. Pinchy, Halaa, racial vendors, reputation quartermasters, and the two engineering transporter branches include practical farming or purchase pins.",
-        "Collector's Edition, trading-card, promotion, recurring holiday, unused, NPC-only, temporary, and ordinary equipment records are excluded. The one-time Tabard of the Protector remains as a historical collection appearance.",
-        "Retroactive retail achievements are grouped here by the Burning Crusade content they describe, including Outland exploration, quests, reputations, original instances, professions and pet battles. The achievement system itself arrived in patch 3.0.2; original introduction-patch records remain available for existing links and favorites.",
+        "Collector's Edition, trading-card, promotion, recurring holiday, unused, NPC-only, temporary, ordinary equipment and retired launch-event records are excluded.",
+        "Obtainable Retail achievements are grouped here by the Burning Crusade content they describe, including Outland exploration, quests, reputations, original instances, professions and Eye of the Storm. Retired Arena seasons, removed class quests, First Aid, the original Zul'Aman raid and the Dark Portal launch-event feat are excluded. Expansion-neutral milestones and cross-expansion metas live in General. Each achievement has one catalogue home, and saved favorites follow its current section.",
     },
     sourceUrls = {
         collections = "https://news.blizzard.com/en-us/article/23523203/burning-crusade-mounts-pets-and-more",

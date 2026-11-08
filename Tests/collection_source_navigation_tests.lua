@@ -94,7 +94,8 @@ test("both windows replace the unknown source with quest and seller information"
     assert(vendor.kind == "Vendor" and vendor.npcID == 6367)
     local payload = catalog:GetCollectionMapPayload("pets", "1.0", cat)
     assert(payload.mapID == 37 and payload.pins[1].npcID == 6367)
-    assert(math.abs(payload.pins[1].x - 0.442) < 0.001 and math.abs(payload.pins[1].y - 0.532) < 0.001)
+    -- Reviewed Retail walkthrough uses Donni's current 44.2, 53.4 location.
+    assert(math.abs(payload.pins[1].x - 0.442) < 0.001 and math.abs(payload.pins[1].y - 0.534) < 0.001)
     for _, class in ipairs({ TDP.CollectionExplorerWindow, TDP.FavoritesWindow }) do
         local window = class:New()
         local row = { collectionType = "pets", patchKey = "4.0.0", entry = flamefly }
@@ -107,6 +108,12 @@ test("both windows replace the unknown source with quest and seller information"
         text = window:GetRowMetaPrefix(row)
         assert(text:find("Vendor", 1, true) and text:find("Donni Anthania", 1, true))
         assert(window:IsCollectionMapRow(row))
+        row.entry = entry("1.0", "pets", "Siamese Cat")
+        assert(window:GetRowMetaPrefix(row):find("Dealer Rashaad", 1, true))
+        assert(window:GetCollectionMapActionHelp(row) == "Vendor Map")
+        local reviewedNotes = window:GetRowNotes(row)
+        assert(reviewedNotes:find("How to get: 1. ", 1, true))
+        assert(not reviewedNotes:find("Source NPC: Cookie", 1, true))
     end
 end)
 

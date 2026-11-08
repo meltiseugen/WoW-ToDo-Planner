@@ -79,6 +79,13 @@ function Database:Init()
         task.category = Utils:IndexOf(C.TASK_CATEGORIES, task.category) and task.category or "Other"
         task.title = task.title or "Untitled"
         task.notes = task.notes or ""
+        if task.sourceType == "patchCollection" and TDP.PatchCatalog then
+            local patchKey, collectionType, entryId = tostring(task.sourceId or ""):match("^([^:]+):([^:]+):(.+)$")
+            if collectionType == "achievements" then
+                local contentPatch = TDP.PatchCatalog:GetAchievementContentPatch(patchKey, entryId)
+                task.sourceId = contentPatch .. ":achievements:" .. entryId
+            end
+        end
         task.createdAt = task.createdAt or time()
         task.updatedAt = task.updatedAt or task.createdAt
         if type(task.sortOrder) ~= "number" then
@@ -130,9 +137,15 @@ function Database:Init()
             and type(favorite.patchKey) == "string"
             and type(favorite.collectionType) == "string"
             and favorite.entryId ~= nil then
+            if favorite.collectionType == "achievements" and TDP.PatchCatalog then
+                favorite.patchKey = TDP.PatchCatalog:GetAchievementContentPatch(favorite.patchKey, favorite.entryId)
+            end
             favorite.key = string.format("%s:%s:%s", favorite.patchKey, favorite.collectionType, tostring(favorite.entryId))
             favorite.addedAt = type(favorite.addedAt) == "number" and favorite.addedAt or time()
-            normalizedFavorites[favorite.key] = favorite
+            local existing = normalizedFavorites[favorite.key]
+            if not existing or favorite.addedAt < existing.addedAt then
+                normalizedFavorites[favorite.key] = favorite
+            end
         end
     end
     TODOPlannerDB.favorites = normalizedFavorites

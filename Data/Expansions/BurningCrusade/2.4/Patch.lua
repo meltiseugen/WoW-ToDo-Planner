@@ -12,10 +12,10 @@ TDP.CatalogRegistry:RegisterPatch("2.4", {
     },
     label = "Fury of the Sunwell",
     sourceNotes = {
-        "The 2.4 bucket covers the complete 2.4.x line: Isle of Quel'Danas, Magisters' Terrace, Shattered Sun Offensive, Shattrath fishing rewards, the 2.4.3 Nether Ray Fry, and Arena Seasons 3 and 4.",
+        "The 2.4 bucket covers the obtainable 2.4.x collection: Isle of Quel'Danas, Magisters' Terrace, Shattered Sun Offensive, Shattrath fishing rewards and the 2.4.3 Nether Ray Fry. Retired original Arena-season rewards are excluded.",
         "The Black War Elekk is included at its documented patch 2.4.0 boundary rather than in the 2.0 racial launch set.",
         "The Swift White Hawkstrider, Phoenix Hatchling, and Orb of the Sin'dorei retain the original Magisters' Terrace entrance and farming guidance; the Shattered Sun tabard points to its island quartermaster.",
-        "Trading-card, promotion, recurring holiday, unused, NPC-only, and ordinary equipment records are excluded. Obtainable retroactive retail achievements for Sunwell Plateau, Magisters' Terrace, the Shattered Sun Offensive, Outland fishing dailies and the regular Brutal Gladiator appearances are included with this content.",
+        "Trading-card, promotion, recurring holiday, unused, NPC-only and ordinary equipment records are excluded. Shared Burning Crusade-content achievements, including instance clears, Shattered Sun reputation and fishing dailies, are registered in 2.0. This patch retains the Sunwell raid-pet collection meta and the Sunwell and regular Brutal Gladiator appearance-set achievements.",
     },
     sourceUrls = {
         burningCrusadeCollections = "https://news.blizzard.com/en-us/article/23523203/burning-crusade-mounts-pets-and-more",

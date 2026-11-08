@@ -19,14 +19,13 @@ TDP.CatalogRegistry:RegisterPatch("2.1", {
     },
     label = "The Black Temple",
     sourceNotes = {
-        "Patch 2.1 adds the Netherwing and Sha'tari Skyguard daily hubs, their eleven reputation drakes and nether rays, Raven Lord, the Arena Season 1 Swift Nether Drake, Captured Firefly, Time-Lost Figurine, and the Skyguard and Ogri'la tabards.",
+        "Patch 2.1 adds the Netherwing and Sha'tari Skyguard daily hubs, their eleven reputation drakes and nether rays, Raven Lord, Captured Firefly, Time-Lost Figurine, and the Skyguard and Ogri'la tabards. Retired Arena-season rewards are excluded.",
         "The Black Temple itself adds raid equipment but no separate permanent mount, pet, toy, or tabard record under this catalogue's rules. Swift Flight Form is a druid form rather than a Mount Journal collectible.",
-        "Retroactive retail achievements for Black Temple, Netherwing, Sha'tari Skyguard, Ogri'la and the associated collection activities are listed with this content. Trading-card, promotional, recurring holiday, unused, NPC-only, temporary, and ordinary equipment records remain excluded.",
+        "Shared Burning Crusade-content achievements, including the Black Temple clear and reputation objectives, are registered in 2.0. This patch retains the Merciless Gladiator and Black Temple appearance-set achievements. Trading-card, promotional, recurring holiday, unused, NPC-only, temporary and ordinary equipment records remain excluded.",
     },
     sourceUrls = {
         capturedFirefly = "https://warcraft.wiki.gg/wiki/Captured_Firefly",
         patch = "https://warcraft.wiki.gg/wiki/Patch_2.1.0",
-        swiftNetherDrake = "https://warcraft.wiki.gg/wiki/Swift_Nether_Drake",
         timeLostFigurine = "https://warcraft.wiki.gg/wiki/Time-Lost_Figurine",
         undocumented = "https://warcraft.wiki.gg/wiki/Patch_2.1.0_(undocumented_changes)",
     },

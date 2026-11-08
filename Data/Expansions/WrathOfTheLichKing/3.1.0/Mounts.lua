@@ -176,14 +176,6 @@ TDP.CatalogRegistry:RegisterCollection("3.1.0", "mounts", {
             tips = "Fish any Northrend pool. The turtle is a rare catch; pool hopping with Find Fish is faster than open-water fishing.",
         },
         {
-            acquisition = "Obtain Deadly Gladiator's Frost Wyrm from the top-ranked Arena Season 5 reward.",
-            category = "PvP",
-            name = "Deadly Gladiator's Frost Wyrm",
-            source = "the top-ranked Arena Season 5 reward",
-            spellId = 64927,
-            tips = "This original seasonal Gladiator reward is no longer obtainable and remains for historical tracking.",
-        },
-        {
             acquisition = "Obtain Black Skeletal Horse from Zachariah Post in Brill.",
             category = "Vendor",
             name = "Black Skeletal Horse",
@@ -234,13 +226,6 @@ TDP.CatalogRegistry:RegisterCollection("3.1.0", "mounts", {
             sourceType = "Patch mount collection",
             tips = "Become Champion of Darnassus, then buy the nightsaber with Champion's Seals.",
             waypoints = { "/way #118 75.8 24.4 Argent Tournament Grounds" },
-        },
-        ["Deadly Gladiator's Frost Wyrm"] = {
-            acquisition = "Obtain Deadly Gladiator's Frost Wyrm from the top-ranked Arena Season 5 reward.",
-            category = "PvP",
-            source = "the top-ranked Arena Season 5 reward",
-            sourceType = "Patch mount collection",
-            tips = "This original seasonal Gladiator reward is no longer obtainable and remains for historical tracking.",
         },
         ["Exodar Elekk"] = {
             acquisition = "Obtain Exodar Elekk from Irisee at the Argent Tournament.",

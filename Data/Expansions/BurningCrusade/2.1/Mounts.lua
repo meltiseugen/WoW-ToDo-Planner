@@ -3,14 +3,6 @@ local _, TDP = ...
 TDP.CatalogRegistry:RegisterCollection("2.1", "mounts", {
     entries = {
         {
-            acquisition = "Obtain Swift Nether Drake from the top-ranked Arena Season 1 reward.",
-            category = "PvP",
-            name = "Swift Nether Drake",
-            source = "the top-ranked Arena Season 1 reward",
-            spellId = 37015,
-            tips = "This original top-0.5-percent arena reward is no longer obtainable and remains listed for historical collection tracking.",
-        },
-        {
             acquisition = "Obtain Green Riding Nether Ray from Grella at Exalted with the Sha'tari Skyguard.",
             category = "Reputation",
             name = "Green Riding Nether Ray",
@@ -205,13 +197,6 @@ TDP.CatalogRegistry:RegisterCollection("2.1", "mounts", {
             sourceType = "Patch mount collection",
             tips = "Reach Exalted through the linked 2.1 daily hub, then purchase or select the mount.",
             waypoints = { "/way #108 64.3 66.2 Grella / Sha'tari Skyguard quartermaster" },
-        },
-        ["Swift Nether Drake"] = {
-            acquisition = "Obtain Swift Nether Drake from the top-ranked Arena Season 1 reward.",
-            category = "PvP",
-            source = "the top-ranked Arena Season 1 reward",
-            sourceType = "Patch mount collection",
-            tips = "This original top-0.5-percent arena reward is no longer obtainable and remains listed for historical collection tracking.",
         },
         ["Veridian Netherwing Drake"] = {
             acquisition = "Obtain Veridian Netherwing Drake from the Netherwing at Exalted.",

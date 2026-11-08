@@ -19,6 +19,19 @@ local WORLD_MAP_PIN_MIN_SCALE = 0.75
 local WORLD_MAP_PIN_MAX_SCALE = 3
 local MINIMAP_PIN_BASE_SIZE = 18
 
+function CollectionMapWindow:SetGuidePinSteps(pin, pinData)
+    pin.step, pin.steps = pinData.step, pinData.steps
+    local label = pin.steps and table.concat(pin.steps, "/") or pin.step and tostring(pin.step)
+    if label and not pin.stepText then
+        pin.stepText = TDP.Widgets:CreateFontString(pin, "OVERLAY", "GameFontNormalSmall")
+        pin.stepText:SetPoint("CENTER")
+        pin.stepText:SetTextColor(1, 1, 1, 1)
+        pin.stepText:SetShadowColor(0, 0, 0, 1)
+        pin.stepText:SetShadowOffset(1, -1)
+    end
+    if pin.stepText then pin.stepText:SetText(label or "") end
+end
+
 local TYPE_LABELS = {
     mounts = "Mount",
     pets = "Pet",

@@ -39,6 +39,7 @@ function CollectionMapWindow:Open(options)
     self.sourceQuestID, self.sourcePatchKey, self.sourceEntry = options.sourceQuestID, options.sourcePatchKey, options.sourceEntry
     self.sourceNotes = options.sourceNotes
     self.areaOnly, self.sourceAreaMaps = options.areaOnly == true, options.sourceAreaMaps
+    self.guideMaps = options.guideMaps
     self.sourceMapID = options.mapID
     if self.sourceQuestID and self.sourceEntry then
         TDP.PatchCatalog:GetCollectionSourceNotes(self.collectionType, self.sourcePatchKey, self.sourceEntry, true)
@@ -80,8 +81,8 @@ function CollectionMapWindow:Open(options)
 end
 
 function CollectionMapWindow:UpdateSourceAreaControl()
-    local maps = self.sourceAreaMaps or {}
-    if #maps < 2 then
+    local maps = self.guideMaps or self.sourceAreaMaps or {}
+    if #maps == 0 or (not self.guideMaps and #maps < 2) then
         if self.sourceAreaButton then
             self.sourceAreaButton:Hide()
             self.detailScroll:ClearAllPoints()
@@ -93,7 +94,9 @@ function CollectionMapWindow:UpdateSourceAreaControl()
     if not self.sourceAreaButton then
         self.sourceAreaButton = Widgets:CreateSelectorButton(self.detailPanel, 210, 24, "Source area")
         self.sourceAreaButton:SetScript("OnClick", function(button)
-            Widgets:ShowSingleSelectMenu(button, self.sourceAreaMaps, self.mapID, function(id) return self:GetMapName(id) end, function(id)
+            Widgets:ShowSingleSelectMenu(button, self.guideMaps or self.sourceAreaMaps, self.mapID, function(id)
+                return self:GetSourceAreaLabel(id)
+            end, function(id)
                 self:StopMapDrag()
                 self.mapID, self.zoom, self.panX, self.panY = id, 1, 0, 0
                 self:UpdateSourceAreaControl()
@@ -106,11 +109,32 @@ function CollectionMapWindow:UpdateSourceAreaControl()
     self.sourceAreaButton:ClearAllPoints()
     self.sourceAreaButton:SetPoint("TOPLEFT", self.detailPanel, "TOPLEFT", 12, -top)
     self.sourceAreaButton:SetPoint("TOPRIGHT", self.detailPanel, "TOPRIGHT", -12, -top)
-    self.sourceAreaButton:SetText(self:GetMapName(self.mapID))
+    self.sourceAreaButton:SetText(self:GetSourceAreaLabel(self.mapID))
     self.sourceAreaButton:Show()
     self.detailScroll:ClearAllPoints()
     self.detailScroll:SetPoint("TOPLEFT", self.detailPanel, "TOPLEFT", 12, -(top + 32))
     self.detailScroll:SetPoint("BOTTOMRIGHT", self.detailPanel, "BOTTOMRIGHT", -28, 12)
+end
+
+function CollectionMapWindow:GetSourceAreaLabel(mapID)
+    local steps, seen = {}, {}
+    local mapName
+    if self.guideMaps then
+        for _, pin in ipairs(self.pins or {}) do
+            if pin.mapID == mapID and pin.step then
+                mapName = mapName or pin.mapName
+                for _, step in ipairs(pin.steps or { pin.step }) do
+                    if not seen[step] then
+                        seen[step] = true
+                        steps[#steps + 1] = step
+                    end
+                end
+            end
+        end
+    end
+    table.sort(steps)
+    local suffix = #steps > 0 and (" - " .. (#steps == 1 and "Step " or "Steps ") .. table.concat(steps, ", ")) or ""
+    return (mapName or self:GetMapName(mapID)) .. suffix
 end
 
 function CollectionMapWindow:RefreshSourceDestination()

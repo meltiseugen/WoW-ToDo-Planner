@@ -15,18 +15,6 @@ TDP.CatalogRegistry:RegisterPatch("3.2.0", {
             sourceType = "Battleground achievement",
             tips = "Many criteria need active battleground coordination; track vehicle, node, bomb, and location requirements separately.",
         },
-        seasonSevenTabard = {
-            acquisition = "Earn the original elite-rating Relentless Gladiator tabard during Arena Season 7.",
-            source = "Wrath Arena Season 7",
-            sourceType = "Ranked PvP",
-            tips = "The original seasonal source is no longer obtainable.",
-        },
-        seasonSixTabard = {
-            acquisition = "Earn the original elite-rating Furious Gladiator tabard during Arena Season 6.",
-            source = "Wrath Arena Season 6",
-            sourceType = "Ranked PvP",
-            tips = "The original seasonal source is no longer obtainable.",
-        },
         tournamentTabards = {
             acquisition = "Reach Exalted with the matching faction, unlock its tournament vendor, and purchase the tabard.",
             source = "Silver Covenant or Sunreavers quartermaster",
@@ -37,9 +25,9 @@ TDP.CatalogRegistry:RegisterPatch("3.2.0", {
     },
     label = "Call of the Crusade",
     sourceNotes = {
-        "Patch 3.2 expands the Argent Tournament, opens Trial of the Champion and Trial of the Crusader, adds Isle of Conquest, revamps Onyxia's Lair, and covers Wrath Arena Seasons 6 and 7 collection rewards.",
-        "The eight original raptor hatchlings are retained with their historical sources and coordinates. Several nest or dungeon sources changed with Cataclysm, so their tips explicitly mark removed acquisition paths.",
-        "Shop, trading-card, convention, recurring holiday, unused, NPC-only, hidden-statistic, and ordinary equipment records are excluded. Faction duplicates and no-longer-obtainable ranked or tribute rewards remain for historical completeness.",
+        "Patch 3.2 expands the Argent Tournament, opens Trial of the Champion and Trial of the Crusader, adds Isle of Conquest, and revamps Onyxia's Lair. Retired Arena mounts, elite tabards and tribute mounts are excluded after the 2026-11-04 Retail review.",
+        "All eight raptor hatchlings remain obtainable. Follow the current Retail nest, dungeon, world-drop or Auction House routes in their individual walkthroughs.",
+        "Shop, trading-card, convention, recurring holiday, unused, NPC-only, hidden-statistic, and ordinary equipment records are excluded. Obtainable faction achievement variants remain; retired ranked-season, limited-attempt tribute and emblem achievements are excluded.",
     },
     sourceUrls = {
         argentTournament = "https://www.wowhead.com/wotlk/guide/argent-tournament/rewards",

@@ -10,26 +10,22 @@ shared["The Ruby Sanctum"] = {
 }
 
 TDP.CatalogRegistry:RegisterCollection("3.3.5", "achievements", {
-    entries = { ids = { 4786, 4790, 4815, 4816, 4817, 4818 }, rewardHighlights = {} },
+    entries = { ids = {
+            4815, -- The Twilight Destroyer (25 player)
+            4816, -- Heroic: The Twilight Destroyer (25 player)
+            4817, -- The Twilight Destroyer (10 player)
+            4818, -- Heroic: The Twilight Destroyer (10 player)
+        }, rewardHighlights = {} },
     details = {
-        [4786] = {
-            acquisition = "Complete the historical Alliance pre-Cataclysm liberation event.",
-            source = "Operation: Gnomeregan",
-            sourceType = "Achievement",
-            tips = "The original limited event and its Gnomeregan Pride reward are no longer obtainable.",
-            waypoints = { "/way #87 69.0 49.0 Historical event staging area" },
-        },
-        [4790] = {
-            acquisition = "Complete the historical Horde pre-Cataclysm liberation event.",
-            source = "Zalazane's Fall",
-            sourceType = "Achievement",
-            tips = "The original limited event and its Darkspear Pride reward are no longer obtainable.",
-            waypoints = { "/way #1 55.8 74.8 Historical event staging area" },
-        },
         [4815] = shared["The Ruby Sanctum"],
         [4816] = shared["The Ruby Sanctum"],
         [4817] = shared["The Ruby Sanctum"],
         [4818] = shared["The Ruby Sanctum"],
     },
-    categories = { [4786] = "Events", [4790] = "Events", [4815] = "Raids", [4816] = "Raids", [4817] = "Raids", [4818] = "Raids" },
+    categories = {
+        [4815] = "Raids",
+        [4816] = "Raids",
+        [4817] = "Raids",
+        [4818] = "Raids",
+    },
 })

@@ -38,25 +38,8 @@ TDP.CatalogRegistry:RegisterCollection("1.9", "mounts", {
             tips = "Farm AQ40 trash. This resonating crystal is usable only inside the Temple of Ahn'Qiraj and usually drops more often than the red variant.",
             waypoints = { "/way #327 46.8 7.5 Temple of Ahn'Qiraj entrance" },
         },
-        {
-            acquisition = "Obtain Black Qiraji Battle Tank from Bang a Gong! during the original Gates of Ahn'Qiraj event.",
-            category = "Quest Rewards",
-            name = "Black Qiraji Battle Tank",
-            source = "Bang a Gong! during the original Gates of Ahn'Qiraj event",
-            spellId = 26656,
-            tips = "Only players who rang the Scarab Gong with the Scepter of the Shifting Sands during the original ten-hour gate-opening window received this legendary mount. It is no longer obtainable.",
-            waypoints = { "/way #81 25.8 90.8 Scarab Gong / historical gate event" },
-        },
     },
     details = {
-        ["Black Qiraji Battle Tank"] = {
-            acquisition = "Obtain Black Qiraji Battle Tank from Bang a Gong! during the original Gates of Ahn'Qiraj event.",
-            category = "Quest Rewards",
-            source = "Bang a Gong! during the original Gates of Ahn'Qiraj event",
-            sourceType = "Patch mount collection",
-            tips = "Only players who rang the Scarab Gong with the Scepter of the Shifting Sands during the original ten-hour gate-opening window received this legendary mount. It is no longer obtainable.",
-            waypoints = { "/way #81 25.8 90.8 Scarab Gong / historical gate event" },
-        },
         ["Blue Qiraji Battle Tank"] = {
             acquisition = "Obtain Blue Qiraji Battle Tank from trash enemies in the Temple of Ahn'Qiraj.",
             category = "Dungeon and Raids",

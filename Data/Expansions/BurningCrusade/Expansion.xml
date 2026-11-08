@@ -27,8 +27,9 @@
     <Script file="2.4/Toys.lua"/>
     <Script file="2.4/Cosmetics.lua"/>
     <Script file="2.4/Achievements.lua"/>
-    <Script file="2.3/Availability.lua"/>
-    <Script file="2.1/Availability.lua"/>
-    <Script file="2.4/Availability.lua"/>
-    <Script file="2.0/Availability.lua"/>
+    <Script file="MountGuides.lua"/>
+    <Script file="PetGuides.lua"/>
+    <Script file="ToyGuides.lua"/>
+    <Script file="AchievementGuides.lua"/>
+    <Script file="CosmeticGuides.lua"/>
 </Ui>

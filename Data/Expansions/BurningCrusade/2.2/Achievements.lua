@@ -1,8 +1,6 @@
 local _, TDP = ...
 
--- Group retroactive achievements with the content they guide.
--- The achievement system arrived later; the original release records
--- remain intact so saved favorites and old patch links keep working.
+-- Retroactive Burning Crusade records moved from Wrath live in 2.0.
 TDP.CatalogRegistry:RegisterCollection("2.2", "achievements", {
     entries = {
         ids = {

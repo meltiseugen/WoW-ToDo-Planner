@@ -9,6 +9,7 @@ local Catalog = {
     cosmeticDetails = {},
     achievementDetails = {},
     achievementCategories = {},
+    achievementContentPatches = {},
     collectionAvailability = { mounts = {}, pets = {}, toys = {}, cosmetics = {} },
     collectionAvailabilityReviewedAt = "2026-10-13",
 }
@@ -58,6 +59,11 @@ function Registry:RegisterCollection(patchKey, collectionType, data)
     end
     if collectionType == "achievements" then
         Catalog.achievementCategories[patchKey] = data.categories
+        if patchKey == "1.0" or patchKey == "2.0" or patchKey == "general" then
+            for _, achievementId in ipairs(data.entries.ids or {}) do
+                Catalog.achievementContentPatches[achievementId] = patchKey
+            end
+        end
     end
 end
 

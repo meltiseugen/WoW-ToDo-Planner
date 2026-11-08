@@ -41,14 +41,6 @@ TDP.CatalogRegistry:RegisterCollection("4.2.0", "mounts", {
             waypoints = { "/way #198 47.2 78.1 Firelands entrance" },
         },
         {
-            acquisition = "Obtain Ruthless Gladiator's Twilight Drake from top-ranked arena reward from Cataclysm PvP Season 10.",
-            category = "PvP",
-            name = "Ruthless Gladiator's Twilight Drake",
-            source = "top-ranked arena reward from Cataclysm PvP Season 10",
-            spellId = 101821,
-            tips = "This original seasonal Gladiator reward is no longer obtainable; retained for historical collection tracking.",
-        },
-        {
             acquisition = "Obtain Vicious War Steed from Veteran of the Alliance II rated-battleground achievement.",
             category = "PvP",
             name = "Vicious War Steed",
@@ -99,13 +91,6 @@ TDP.CatalogRegistry:RegisterCollection("4.2.0", "mounts", {
             sourceType = "Patch mount collection",
             tips = "Farm Ragnaros on an eligible difficulty and lockout. Heroic historically had the stronger rate; current loot rules should be checked before choosing a route.",
             waypoints = { "/way #198 47.2 78.1 Firelands entrance" },
-        },
-        ["Ruthless Gladiator's Twilight Drake"] = {
-            acquisition = "Obtain Ruthless Gladiator's Twilight Drake from top-ranked arena reward from Cataclysm PvP Season 10.",
-            category = "PvP",
-            source = "top-ranked arena reward from Cataclysm PvP Season 10",
-            sourceType = "Patch mount collection",
-            tips = "This original seasonal Gladiator reward is no longer obtainable; retained for historical collection tracking.",
         },
         ["Vicious War Steed"] = {
             acquisition = "Obtain Vicious War Steed from Veteran of the Alliance II rated-battleground achievement.",

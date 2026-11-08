@@ -6,8 +6,9 @@ CollectionExplorerWindow.__index = CollectionExplorerWindow
 
 local TYPE_OPTIONS = { "mounts", "pets", "toys", "cosmetics", "achievements" }
 local STATUS_OPTIONS = { "missing", "all", "collected" }
-local EXPANSION_OPTIONS = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }
+local EXPANSION_OPTIONS = { "general", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }
 local EXPANSION_LABELS = {
+    general = "General",
     ["1"] = "Classic / Vanilla (1)",
     ["2"] = "The Burning Crusade (2)",
     ["3"] = "Wrath of the Lich King (3)",
@@ -50,6 +51,7 @@ function CollectionExplorerWindow:New(homeWindow)
     for _, collectionType in ipairs(TYPE_OPTIONS) do
         if saved.collectionType == collectionType then selectedType = collectionType end
     end
+    if saved.expansion == "general" then selectedType = "achievements" end
     local selectedStatus = settings.collectionStatusFilter
     if selectedStatus ~= "missing" and selectedStatus ~= "all" and selectedStatus ~= "collected" then
         selectedStatus = settings.collectionHideCollected == false and "all" or "missing"
@@ -58,7 +60,7 @@ function CollectionExplorerWindow:New(homeWindow)
         homeWindow = homeWindow,
         frame = nil,
         selectedExpansion = EXPANSION_LABELS[saved.expansion] and saved.expansion or "12",
-        selectedPatch = type(saved.patch) == "string" and saved.patch or "12.1.5",
+        selectedPatch = saved.expansion == "general" and "general" or (type(saved.patch) == "string" and saved.patch or "12.1.5"),
         selectedCollectionType = selectedType,
         selectedStatus = selectedStatus,
         selectedAchievementCategory = saved.achievementCategory or "all",

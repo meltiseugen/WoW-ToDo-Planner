@@ -1,3 +1,8 @@
 local _, TDP = ...
 
-TDP.CatalogRegistry:RegisterCollection("3.3.5a", "achievements", { entries = { ids = {}, rewardHighlights = {} }, details = {}, categories = {} })
+TDP.CatalogRegistry:RegisterCollection("3.3.5a", "achievements", { entries = { ids = {
+
+        }, rewardHighlights = {} }, details = {}, categories = {
+
+    },
+})

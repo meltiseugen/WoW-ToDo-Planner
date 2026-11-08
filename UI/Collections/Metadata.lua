@@ -144,6 +144,8 @@ function Metadata:GetRowMetaPrefix(row)
         local details = PatchCatalog:GetCollectionDetails(row.collectionType, row.patchKey, row.entry) or {}
         local source = PatchCatalog.GetResearchedCollectionSourceKind
             and PatchCatalog:GetResearchedCollectionSourceKind(row.collectionType, row.patchKey, row.entry) or details.sourceType
+        local guide = PatchCatalog:GetCollectionWalkthrough(row.collectionType, row.entry)
+        if guide then source = guide.category .. ": " .. guide.source end
         if not source or source == "Pet Journal Source" or source == "Toy Box Source" or source:find("Unknown", 1, true) then
             source = row.sourceCategory or self:GetSourceCategory(row.collectionType, row.patchKey, row.entry)
             local sourceInfo = PatchCatalog.GetCollectionSourceInfo and PatchCatalog:GetCollectionSourceInfo(row.collectionType, row.patchKey, row.entry)

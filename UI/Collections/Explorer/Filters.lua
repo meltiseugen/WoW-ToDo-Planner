@@ -9,6 +9,7 @@ local FACTION_BADGE_COLORS = CollectionExplorerWindow.Config.FACTION_BADGE_COLOR
 local TYPE_LABELS = CollectionExplorerWindow.Config.TYPE_LABELS
 
 function CollectionExplorerWindow:GetPatchOptions()
+    if self.selectedExpansion == "general" then return { "general" } end
     local options = { ALL_PATCHES }
     if not PatchCatalog then
         options[#options + 1] = "12.1.5"
@@ -24,6 +25,7 @@ function CollectionExplorerWindow:GetPatchOptions()
 end
 
 function CollectionExplorerWindow:GetExpansionForPatch(patchKey)
+    if patchKey == "general" then return "general" end
     return tostring(patchKey or ""):match("^(%d+)")
 end
 
@@ -32,6 +34,7 @@ function CollectionExplorerWindow:GetExpansionLabel(value)
 end
 
 function CollectionExplorerWindow:GetPatchLabel(value)
+    if value == "general" then return "General" end
     return value == ALL_PATCHES and "All Patches" or tostring(value)
 end
 
@@ -90,7 +93,10 @@ function CollectionExplorerWindow:SetSelectedExpansion(expansionKey)
     end
 
     self.selectedExpansion = expansionKey
-    if self:GetExpansionForPatch(self.selectedPatch) ~= expansionKey then
+    if expansionKey == "general" then
+        self.selectedPatch = "general"
+        self.selectedCollectionType = "achievements"
+    elseif self:GetExpansionForPatch(self.selectedPatch) ~= expansionKey then
         self.selectedPatch = ALL_PATCHES
     end
     return true

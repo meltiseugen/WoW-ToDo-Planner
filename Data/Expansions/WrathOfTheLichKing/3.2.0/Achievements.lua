@@ -1,13 +1,6 @@
 local _, TDP = ...
 
 local shared = {}
-shared["Wrath Arena Seasons 6 and 7"] = {
-    acquisition = "Earn the listed Gladiator title or Frost Wyrm from its original ranked arena season.",
-    source = "Wrath Arena Seasons 6 and 7",
-    sourceType = "Achievement",
-    tips = "These seasonal ladder rewards are no longer obtainable and remain for historical collection tracking.",
-}
-
 shared["Argent Tournament"] = {
     acquisition = "Complete the listed faction-reputation, city-champion, or Argent Pony tournament criterion.",
     source = "Argent Tournament",
@@ -32,10 +25,10 @@ shared["Trial of the Champion"] = {
 }
 
 shared["Trial of the Crusader and Trial of the Grand Crusader"] = {
-    acquisition = "Complete the listed raid clear, limited-attempt tribute, realm-first, or special encounter criterion.",
+    acquisition = "Complete the listed raid clear or encounter mechanic in the required raid size and difficulty.",
     source = "Trial of the Crusader and Trial of the Grand Crusader",
     sourceType = "Achievement",
-    tips = "Read the exact mechanic before dealing damage. The original attempt counter, realm-first, immortality, and item-level tribute requirements are historical and no longer obtainable.",
+    tips = "Read the exact mechanic before dealing damage. Several achievements require leaving adds alive or delaying the boss kill; set the required difficulty before entering.",
     waypoints = { "/way #118 75.0 21.8 Trial of the Crusader entrance" },
 }
 
@@ -45,13 +38,6 @@ shared["Vault of Archavon"] = {
     sourceType = "Achievement",
     tips = "Vault access historically required Wintergrasp control. Earth, Wind & Fire needs the three Watchers defeated within one minute.",
     waypoints = { "/way #123 50.0 11.0 Vault of Archavon entrance" },
-}
-
-shared["Wrath dungeon and raid emblems"] = {
-    acquisition = "Loot the listed historical total of Wrath emblems.",
-    source = "Wrath dungeon and raid emblems",
-    sourceType = "Achievement",
-    tips = "Emblems were converted and retired; these feats can no longer be newly earned.",
 }
 
 shared["Onyxia's Lair"] = {
@@ -65,97 +51,69 @@ shared["Onyxia's Lair"] = {
 TDP.CatalogRegistry:RegisterCollection("3.2.0", "achievements", {
     entries = {
         ids = {
-            3357,
-            3436,
-            3676,
-            3677,
-            3736,
-            3756,
-            3757,
-            3758,
-            3776,
-            3777,
-            3778,
-            3797,
-            3798,
-            3799,
-            3800,
-            3802,
-            3803,
-            3804,
-            3808,
-            3809,
-            3810,
-            3812,
-            3813,
-            3815,
-            3816,
-            3817,
-            3818,
-            3819,
-            3836,
-            3837,
-            3844,
-            3845,
-            3846,
-            3847,
-            3848,
-            3849,
-            3850,
-            3851,
-            3852,
-            3853,
-            3854,
-            3855,
-            3856,
-            3857,
-            3916,
-            3917,
-            3918,
-            3936,
-            3937,
-            3957,
-            3996,
-            3997,
-            4016,
-            4017,
-            4078,
-            4079,
-            4080,
-            4156,
-            4176,
-            4177,
-            4256,
-            4296,
-            4297,
-            4298,
-            4316,
-            4396,
-            4397,
-            4402,
-            4403,
-            4404,
-            4405,
-            4406,
-            4407,
+            3676, -- A Silver Confidant
+            3677, -- The Sunreavers
+            3736, -- Pony Up!
+            3776, -- Isle of Conquest Victory
+            3777, -- Isle of Conquest Veteran
+            3778, -- Trial of the Champion
+            3797, -- Upper Back Pain (10 player)
+            3798, -- Resilience Will Fix It (10 player)
+            3799, -- Salt and Pepper (10 player)
+            3800, -- The Traitor King (10 player)
+            3802, -- Argent Confessor
+            3803, -- The Faceroller
+            3804, -- I've Had Worse
+            3812, -- Call of the Grand Crusade (25 player)
+            3813, -- Upper Back Pain (25 player)
+            3815, -- Salt and Pepper (25 player)
+            3816, -- The Traitor King (25 player)
+            3836, -- Koralon the Flame Watcher (10 player)
+            3837, -- Koralon the Flame Watcher (25 player)
+            3845, -- Isle of Conquest All-Star
+            3846, -- Resource Glut
+            3847, -- Four Car Garage
+            3848, -- A-bomb-inable
+            3849, -- A-bomb-ination
+            3850, -- Mowed Down
+            3851, -- Mine
+            3852, -- Cut the Blue Wire... No the Red Wire!
+            3853, -- All Over the Isle
+            3854, -- Back Door Job
+            3855, -- Glaive Grave
+            3856, -- Demolition Derby
+            3857, -- Master of Isle of Conquest
+            3916, -- Call of the Crusade (25 player)
+            3917, -- Call of the Crusade (10 player)
+            3918, -- Call of the Grand Crusade (10 player)
+            3936, -- Not One, But Two Jormungars (10 player)
+            3937, -- Not One, But Two Jormungars (25 player)
+            3957, -- Master of Isle of Conquest
+            3996, -- Three Sixty Pain Spike (10 player)
+            3997, -- Three Sixty Pain Spike (25 player)
+            4016, -- Earth, Wind & Fire (10 player)
+            4017, -- Earth, Wind & Fire (25 player)
+            4176, -- Resource Glut
+            4177, -- Mine
+            4256, -- Demolition Derby
+            4296, -- Trial of the Champion
+            4297, -- Heroic: Trial of the Champion
+            4298, -- Heroic: Trial of the Champion
+            4396, -- Onyxia's Lair (10 player)
+            4397, -- Onyxia's Lair (25 player)
+            4402, -- More Dots! (10 player)
+            4403, -- Many Whelps! Handle It! (10 player)
+            4404, -- She Deep Breaths More (10 player)
+            4405, -- More Dots! (25 player)
+            4406, -- Many Whelps! Handle It! (25 player)
+            4407, -- She Deep Breaths More (25 player)
         },
         rewardHighlights = {},
     },
     details = {
-        [3357] = {
-            acquisition = "Raise a Venomhide hatchling through the Horde-only daily chain.",
-            source = "Venomhide Ravasaur",
-            sourceType = "Achievement",
-            tips = "Keep the hatchling summoned for its daily and plan on 20 days of training.",
-            waypoints = { "/way #78 71.6 73.8 Mor'vek" },
-        },
-        [3436] = shared["Wrath Arena Seasons 6 and 7"],
         [3676] = shared["Argent Tournament"],
         [3677] = shared["Argent Tournament"],
         [3736] = shared["Argent Tournament"],
-        [3756] = shared["Wrath Arena Seasons 6 and 7"],
-        [3757] = shared["Wrath Arena Seasons 6 and 7"],
-        [3758] = shared["Wrath Arena Seasons 6 and 7"],
         [3776] = shared["Isle of Conquest"],
         [3777] = shared["Isle of Conquest"],
         [3778] = shared["Trial of the Champion"],
@@ -166,19 +124,12 @@ TDP.CatalogRegistry:RegisterCollection("3.2.0", "achievements", {
         [3802] = shared["Trial of the Champion"],
         [3803] = shared["Trial of the Champion"],
         [3804] = shared["Trial of the Champion"],
-        [3808] = shared["Trial of the Crusader and Trial of the Grand Crusader"],
-        [3809] = shared["Trial of the Crusader and Trial of the Grand Crusader"],
-        [3810] = shared["Trial of the Crusader and Trial of the Grand Crusader"],
         [3812] = shared["Trial of the Crusader and Trial of the Grand Crusader"],
         [3813] = shared["Trial of the Crusader and Trial of the Grand Crusader"],
         [3815] = shared["Trial of the Crusader and Trial of the Grand Crusader"],
         [3816] = shared["Trial of the Crusader and Trial of the Grand Crusader"],
-        [3817] = shared["Trial of the Crusader and Trial of the Grand Crusader"],
-        [3818] = shared["Trial of the Crusader and Trial of the Grand Crusader"],
-        [3819] = shared["Trial of the Crusader and Trial of the Grand Crusader"],
         [3836] = shared["Vault of Archavon"],
         [3837] = shared["Vault of Archavon"],
-        [3844] = shared["Wrath dungeon and raid emblems"],
         [3845] = shared["Isle of Conquest"],
         [3846] = shared["Isle of Conquest"],
         [3847] = shared["Isle of Conquest"],
@@ -202,17 +153,12 @@ TDP.CatalogRegistry:RegisterCollection("3.2.0", "achievements", {
         [3997] = shared["Trial of the Crusader and Trial of the Grand Crusader"],
         [4016] = shared["Vault of Archavon"],
         [4017] = shared["Vault of Archavon"],
-        [4078] = shared["Trial of the Crusader and Trial of the Grand Crusader"],
-        [4079] = shared["Trial of the Crusader and Trial of the Grand Crusader"],
-        [4080] = shared["Trial of the Crusader and Trial of the Grand Crusader"],
-        [4156] = shared["Trial of the Crusader and Trial of the Grand Crusader"],
         [4176] = shared["Isle of Conquest"],
         [4177] = shared["Isle of Conquest"],
         [4256] = shared["Isle of Conquest"],
         [4296] = shared["Trial of the Champion"],
         [4297] = shared["Trial of the Champion"],
         [4298] = shared["Trial of the Champion"],
-        [4316] = shared["Wrath dungeon and raid emblems"],
         [4396] = shared["Onyxia's Lair"],
         [4397] = shared["Onyxia's Lair"],
         [4402] = shared["Onyxia's Lair"],
@@ -223,14 +169,9 @@ TDP.CatalogRegistry:RegisterCollection("3.2.0", "achievements", {
         [4407] = shared["Onyxia's Lair"],
     },
     categories = {
-        [3357] = "Questing",
-        [3436] = "PvP",
         [3676] = "Questing",
         [3677] = "Questing",
         [3736] = "Questing",
-        [3756] = "PvP",
-        [3757] = "PvP",
-        [3758] = "PvP",
         [3776] = "PvP",
         [3777] = "PvP",
         [3778] = "Dungeons",
@@ -241,19 +182,12 @@ TDP.CatalogRegistry:RegisterCollection("3.2.0", "achievements", {
         [3802] = "Dungeons",
         [3803] = "Dungeons",
         [3804] = "Dungeons",
-        [3808] = "Raids",
-        [3809] = "Raids",
-        [3810] = "Raids",
         [3812] = "Raids",
         [3813] = "Raids",
         [3815] = "Raids",
         [3816] = "Raids",
-        [3817] = "Raids",
-        [3818] = "Raids",
-        [3819] = "Raids",
         [3836] = "Raids",
         [3837] = "Raids",
-        [3844] = "Feats of Strength",
         [3845] = "PvP",
         [3846] = "PvP",
         [3847] = "PvP",
@@ -277,17 +211,12 @@ TDP.CatalogRegistry:RegisterCollection("3.2.0", "achievements", {
         [3997] = "Raids",
         [4016] = "Raids",
         [4017] = "Raids",
-        [4078] = "Raids",
-        [4079] = "Raids",
-        [4080] = "Raids",
-        [4156] = "Raids",
         [4176] = "PvP",
         [4177] = "PvP",
         [4256] = "PvP",
         [4296] = "Dungeons",
         [4297] = "Dungeons",
         [4298] = "Dungeons",
-        [4316] = "Feats of Strength",
         [4396] = "Raids",
         [4397] = "Raids",
         [4402] = "Raids",
