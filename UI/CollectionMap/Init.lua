@@ -20,7 +20,10 @@ local WORLD_MAP_PIN_MAX_SCALE = 3
 local MINIMAP_PIN_BASE_SIZE = 18
 
 function CollectionMapWindow:SetGuidePinSteps(pin, pinData)
-    pin.step, pin.steps = pinData.step, pinData.steps
+    pin.step = pinData.step
+    pin.steps = type(pinData.steps) == "table" and #pinData.steps > 0 and pinData.steps or nil
+    pin.stepInstructions = pinData.stepInstructions
+    pin.questID, pin.locationType = pinData.questID, pinData.locationType
     local label = pin.steps and table.concat(pin.steps, "/") or pin.step and tostring(pin.step)
     if label and not pin.stepText then
         pin.stepText = TDP.Widgets:CreateFontString(pin, "OVERLAY", "GameFontNormalSmall")
@@ -107,7 +110,6 @@ function CollectionMapWindow:New()
         worldMapPins = {},
         minimapPins = {},
         worldMapControls = nil,
-        criteriaEventFrame = nil,
         worldMapHooksInstalled = false,
     }, self)
 end

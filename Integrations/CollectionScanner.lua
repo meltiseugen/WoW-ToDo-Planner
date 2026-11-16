@@ -13,6 +13,7 @@ function CollectionScanner:New()
 end
 
 function CollectionScanner:ResetCache(preserveSources, collections)
+    if not preserveSources then self.itemDataRequests = nil end
     if not collections or collections.mounts then self.mountSpellIndex = nil end
     if not collections or collections.pets then self.petSpeciesCounts = nil end
     if not preserveSources and PatchCatalog and PatchCatalog.ResetCollectionSourceCache then PatchCatalog:ResetCollectionSourceCache() end
@@ -187,7 +188,7 @@ end
 
 function CollectionScanner:GetPetState(entry)
     local speciesId = entry and tonumber(entry.speciesId)
-    local speciesInfo = speciesId and self:GetPetSpeciesCounts()[speciesId]
+    local speciesInfo
     local fallbackName, fallbackIcon
     local fallbackDisplayId
     local directCount
@@ -208,6 +209,9 @@ function CollectionScanner:GetPetState(entry)
         end
     end
 
+    -- The direct species count avoids walking every journal pet after each
+    -- PET_JOURNAL_LIST_UPDATE. Retain the index only for older API fallbacks.
+    if directCount == nil and speciesId then speciesInfo = self:GetPetSpeciesCounts()[speciesId] end
     local count = directCount or (speciesInfo and speciesInfo.count) or 0
     return {
         collected = count > 0,
@@ -271,7 +275,11 @@ function CollectionScanner:GetItemNameAndIcon(entry)
             end
         end
         if (not name or not icon) and type(C_Item.RequestLoadItemDataByID) == "function" then
-            self:Call(C_Item.RequestLoadItemDataByID, itemId)
+            self.itemDataRequests = self.itemDataRequests or {}
+            if not self.itemDataRequests[itemId] then
+                self.itemDataRequests[itemId] = true
+                self:Call(C_Item.RequestLoadItemDataByID, itemId)
+            end
         end
     end
 
@@ -444,7 +452,7 @@ function CollectionScanner:GetCosmeticState(entry)
     }
 end
 
-function CollectionScanner:GetAchievementState(achievementId)
+function CollectionScanner:GetAchievementState(achievementId, includeCriteria)
     achievementId = tonumber(achievementId)
     local name
     local icon
@@ -507,7 +515,7 @@ function CollectionScanner:GetAchievementState(achievementId)
             rewardText = reward
         end
 
-        if type(GetAchievementNumCriteria) == "function" and type(GetAchievementCriteriaInfo) == "function" then
+        if includeCriteria ~= false and type(GetAchievementNumCriteria) == "function" and type(GetAchievementCriteriaInfo) == "function" then
             local countOk, criteriaCount = self:Call(GetAchievementNumCriteria, achievementId)
             if countOk then
                 for criteriaIndex = 1, tonumber(criteriaCount) or 0 do
@@ -552,7 +560,7 @@ function CollectionScanner:GetAchievementState(achievementId)
     }
 end
 
-function CollectionScanner:GetState(collectionType, entry)
+function CollectionScanner:GetState(collectionType, entry, summaryOnly)
     if collectionType == "mounts" then
         return self:GetMountState(entry)
     elseif collectionType == "pets" then
@@ -562,7 +570,7 @@ function CollectionScanner:GetState(collectionType, entry)
     elseif collectionType == "cosmetics" then
         return self:GetCosmeticState(entry)
     elseif collectionType == "achievements" then
-        return self:GetAchievementState(entry)
+        return self:GetAchievementState(entry, not summaryOnly)
     end
 
     return {}

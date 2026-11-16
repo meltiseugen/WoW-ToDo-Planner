@@ -91,7 +91,7 @@ function Preview:GetCosmeticPreviewModel()
         self:BindPreviewModelInput(model)
         -- Model/outfit asset loads must not start another dressing pass.
         model:SetScript("OnModelLoaded", function()
-            if self.previewModel == model then self:ApplyPreviewModelTransform() end
+            if model:IsVisible() and self.previewModel == model then self:ApplyPreviewModelTransform() end
         end)
         model:RegisterEvent("ITEM_DATA_LOAD_RESULT")
         model:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
@@ -99,13 +99,14 @@ function Preview:GetCosmeticPreviewModel()
             if event == "UNIT_MODEL_CHANGED" and value == "player" then
                 self.cosmeticPreviewUnitInitialized = nil
                 self.cosmeticPreviewAppliedKey = nil
-                if self.previewModel == model and self.selectedRow then
+                if model:IsVisible() and self.previewModel == model and self.selectedRow then
                     self:RenderPreviewVisual(self.selectedRow)
                 end
             elseif event == "ITEM_DATA_LOAD_RESULT" and value == self.cosmeticPreviewPendingItemID then
                 self.cosmeticPreviewPendingItemID = nil
+                self.cosmeticPreviewAppliedKey = nil
+                if not model:IsVisible() then return end
                 if success then
-                    self.cosmeticPreviewAppliedKey = nil
                     self:ApplyCosmeticPreviewAppearance()
                 elseif self.previewModel == model then
                     self.previewModelMessage:SetText("This cosmetic cannot be previewed.")

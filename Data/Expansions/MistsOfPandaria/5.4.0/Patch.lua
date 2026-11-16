@@ -1,14 +1,6 @@
 local _, TDP = ...
 
 TDP.CatalogRegistry:RegisterPatch("5.4.0", {
-    cosmeticDetailGroups = {
-        pvpTabard = {
-            acquisition = "Earn the elite Grievous Gladiator's Tabard during Mists PvP Season 14.",
-            source = "Mists PvP Season 14",
-            sourceType = "Elite PvP season reward",
-            tips = "The original elite-season source is no longer obtainable.",
-        },
-    },
     label = "Patch 5.4: Siege of Orgrimmar",
     sourceNotes = {
         "This bucket covers Siege of Orgrimmar, the Timeless Isle, Celestial Tournament, Proving Grounds, the legendary-cloak finale, and Mists PvP Season 14.",

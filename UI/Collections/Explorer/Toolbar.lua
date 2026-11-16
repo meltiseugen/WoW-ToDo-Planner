@@ -174,11 +174,11 @@ function Explorer:BuildExplorerToolbar(body)
     end)
     self:BindExplorerHelp(self.expansionButton, "Expansion", function()
         return self.nearbySnapshot and "Nearby covers all expansions. Cancel Nearby to choose an expansion."
-            or "Choose General for expansion-neutral achievements, or choose an expansion to browse its content. All Patches includes only patches from the selected expansion."
+            or "Choose General for expansion-neutral collections and achievements, or choose an expansion to browse its content. All Patches includes only patches from the selected expansion."
     end)
     self:BindExplorerHelp(self.patchButton, "Patch", function()
         return self.nearbySnapshot and "Nearby covers all matching patches in the scanned area."
-            or self.selectedExpansion == "general" and "General achievements are grouped independently of expansion patches."
+            or self.selectedExpansion == "general" and "General collections are grouped independently of expansion patches."
             or "Choose a patch within the selected expansion."
     end)
     self:BindExplorerHelp(self.statusButton, "Collection status", "Missing shows uncollected, obtainable catalog entries. Collected shows owned entries, and All includes both.")

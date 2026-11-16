@@ -1,23 +1,148 @@
+-- Catalogue entries and complete Retail research for 2.4.
 local _, TDP = ...
 
--- Later achievements tied to this Burning Crusade content patch.
--- Retroactive records moved from Wrath are owned only by the 2.0 bucket.
-TDP.CatalogRegistry:RegisterCollection("2.4", "achievements", {
-    entries = {
-        ids = {
-            9824, -- Raiding with Leashes III: Drinkin' From the Sunwell
-            11709, -- Tough Threads
-            11749, -- Suns Out, Thori'dals Out
+local walkthroughs = {
+    [9824] = {
+        category = "Achievements",
+        source = "Raiding with Leashes III: Drinkin' From the Sunwell (9824)",
+        sourceAchievementId = 9824,
+        description = "Collect and learn the twelve required Burning Crusade raid species to receive the non-combat naaru.",
+        difficulty = "hard",
+        difficultyReason = "Twelve random weekly raid drops can take many clears; buying the missing cages is allowed.",
+        requirements = "All twelve species listed by achievement 9824",
+        cost = "No achievement fee; optional pet cage prices",
+        commentIDs = { 2141634, 6143551 },
+        references = {
+            "https://www.wowhead.com/achievement=9824",
+            "https://www.wowhead.com/npc=90215",
+            "https://www.wowhead.com/npc=90215#comments:id=2141634",
+            "https://www.wowhead.com/npc=90215#comments:id=6143551",
         },
-        rewardHighlights = {},
+        waypoints = {
+            {
+                mapID = 104,
+                x = 0.71,
+                y = 0.46399999999999997,
+                step = 2,
+                label = "Black Temple entrance - six required species",
+            },
+            { mapID = 75, x = 0.6459999999999999, y = 0.498, step = 3, label = "Caverns of Time - Hyjal Summit portal inside" },
+            {
+                mapID = 122,
+                x = 0.44299999999999995,
+                y = 0.456,
+                step = 4,
+                label = "Sunwell Plateau entrance - three required species",
+            },
+        },
+        npcId = 90215,
+        petNPCID = 90215,
+        name = "Raiding with Leashes III: Drinkin' From the Sunwell",
+        warlordsPetGuide = true,
+        sourceType = "Achievement",
+        stepCount = 5,
+        acquisition = "Difficulty: Hard - Twelve random weekly raid drops can take many clears; buying the missing cages is allowed.\n\n1. Track Raiding with Leashes III (9824) and check which of its twelve species your account already knows. Learned Auction House cages count; you do not have to personally loot every raid item or complete the earlier Raiding with Leashes achievements first.\n\n2. In Black Temple, Outland Shadowmoon Valley 71,46.4, collect Leviathan Hatchling from Naj'entus, Abyssius from Supremus, all three Fragments from Reliquary of Souls and Sister of Temptation from Mother Shahraz. Clear prerequisite bosses to reach the later encounters.\n\n3. Enter Hyjal Summit through the Caverns of Time and collect Stinkrot from Anetheron, Grotesque from Azgalor and Hyjal Wisp from Archimonde. Start each camp's waves with Jaina/Thrall; the Warlords Hellfire Citadel version of Archimonde is not the Wisp source.\n\n4. In Sunwell Plateau, Isle of Quel'Danas 44.3,45.6, collect Sunblade Micro-Defender from Brutallus, Wretched Servant from the Eredar Twins and Chaos Pup from M'uru/Entropius. Finish the full encounter before looting.\n\n5. Learn all required pets, repeat eligible raid lockouts on later weeks/alts or buy the missing cages, then claim K'ute from achievement mail. K'ute is intentionally a non-combat companion; it cannot battle even though the twelve prerequisite species can.",
+        reviewedAt = "2026-11-14",
+        tips = "",
+        wowheadUrl = "https://www.wowhead.com/npc=90215",
+        achievementId = 9824,
+        sourceURL = "https://www.wowhead.com/achievement=9824#comments",
+        separateQuestMap = true,
+        keepReferencePins = true,
     },
+    [11709] = {
+        achievementId = 11709,
+        name = "Tough Threads",
+        category = "Collections",
+        sourceType = "Achievement",
+        source = "Tough Threads",
+        acquisition = "Difficulty: Medium - Earn 12 Marks of Honor and learn an ordinary legacy armor ensemble; no historical Arena rating is required.\n\n1. Use a character with an original Burning Crusade class armor set and collect 12 Marks of Honor. These are the item currency from PvP rewards, not the Honor points on the currency tab. No original season rating or title is required.\n\n2. Visit Blaze Magmaburn inside Area 52's PvP-vendor building in Netherstorm (33.0, 64.2). Buy the Brutal Gladiator ARMOR Ensemble for your class. A weapon Arsenal does not finish the armor-set achievement.\n\n3. Use the Ensemble from your bags to permanently learn the complete set. If you already own most appearances, compare the price of the individual missing pieces before buying the ensemble; the full eight-piece individual purchase costs more than 12 Marks.\n\n4. Check the achievement after learning the set. For individual refundable purchases, wait for the refund timer to expire or permanently bind the items before expecting credit. Do not return them for a refund and assume the appearance remains collected.",
+        stepCount = 4,
+        waypoints = { { mapID = 109, x = 0.33, y = 0.642, step = 2, label = "Blaze Magmaburn - Brutal Gladiator armor Ensemble" } },
+        tips = "Monks, Death Knights, Demon Hunters and Evokers have no original Burning Crusade class tier; use an eligible original class to collect its class set.",
+        sources = { "https://www.wowhead.com/achievement=11709#comments:id=2477573" },
+        wowheadUrl = "https://www.wowhead.com/achievement=11709",
+        sourceURL = "https://www.wowhead.com/achievement=11709#comments",
+        difficultyReason = "Earn 12 Marks of Honor and learn an ordinary legacy armor ensemble; no historical Arena rating is required.",
+        difficulty = "medium",
+    },
+    [11749] = {
+        achievementId = 11749,
+        name = "Suns Out, Thori'dals Out",
+        category = "Collections",
+        sourceType = "Achievement",
+        source = "Suns Out, Thori'dals Out",
+        acquisition = "Difficulty: Hard - Collect a complete class appearance set through random weekly raid drops and the relevant token exchanges.\n\n1. Open Collections > Appearances > Sets and select a complete Sunwell Plateau appearance set for an original Burning Crusade class. Pin down its missing slots before farming; five tier pieces alone may leave required matching boots, belt or bracers unfinished.\n\n2. Take Shattrath's portal to the original Isle of Quel'Danas and enter Sunwell Plateau. Kill the raid bosses and loot their armor as well as the Forgotten tier-extension tokens.\n\n3. Sunwell tokens cover wrist, waist and feet: Kalecgos drops bracers, Brutallus belts, Felmyst boots, and the Eredar Twins can supply those tokens too. The other displayed Sunwell appearance slots come from boss drops or crafted items; collecting only the three tokens is not a full appearance set.\n\n4. Use eligible class tokens to create the armor, choosing the appropriate loot specialization. Where a token offers a choice, collect the PvE appearance, not its alternative PvP reward. A modern class with no original tier set cannot create that old class's tier pieces for itself.\n\n5. For every remaining slot in the SETS tab, inspect its specific appearance source and farm or craft that item. Matching off-pieces vary by class. Repeat after weekly resets for random drops; the armor set's visual checklist, not just its set-bonus count, is the goal.\n\n6. Permanently learn the final appearances. A trade/refund timer can delay credit. If all slots are learned but the achievement has not refreshed, relog; comments also report applying the complete set as a transmog refreshes credit. Do not buy or delete duplicate items before checking the actual missing slot.",
+        stepCount = 6,
+        waypoints = {
+            { mapID = 111, x = 0.489, y = 0.42100000000000004, step = 2, label = "Portal to original Isle of Quel'Danas" },
+            { mapID = 122, x = 0.4428, y = 0.4571, step = 2, label = "Sunwell Plateau - armor and extension tokens" },
+            { mapID = 335, x = 0.3062, y = 0.5108, step = 3, label = "Kalecgos - bracer tokens", mapName = "Sunwell Plateau" },
+            {
+                mapID = 335,
+                x = 0.659,
+                y = 0.8645999999999999,
+                step = 3,
+                label = "Brutallus - belt tokens",
+                mapName = "Sunwell Plateau",
+            },
+            { mapID = 335, x = 0.7277, y = 0.8262, step = 3, label = "Felmyst - boot tokens", mapName = "Sunwell Plateau" },
+            {
+                mapID = 335,
+                x = 0.6416,
+                y = 0.321,
+                step = 3,
+                label = "Eredar Twins - additional extension tokens",
+                mapName = "Sunwell Plateau",
+            },
+            {
+                mapID = 336,
+                x = 0.4672,
+                y = 0.23850000000000002,
+                step = 2,
+                label = "M'uru - later Sunwell armor drops",
+                mapName = "Sunwell Plateau - Shrine of the Eclipse",
+            },
+            {
+                mapID = 336,
+                x = 0.46,
+                y = 0.6169,
+                step = 2,
+                label = "Kil'jaeden - final Sunwell armor drops",
+                mapName = "Sunwell Plateau - Shrine of the Eclipse",
+            },
+        },
+        sources = {
+            "https://www.wowhead.com/achievement=11749#comments:id=2479723",
+            "https://www.wowhead.com/achievement=11749#comments",
+        },
+        wowheadUrl = "https://www.wowhead.com/achievement=11749",
+        sourceURL = "https://www.wowhead.com/achievement=11749#comments",
+        difficultyReason = "Collect a complete class appearance set through random weekly raid drops and the relevant token exchanges.",
+        difficulty = "hard",
+    },
+}
+
+TDP.CatalogRegistry:RegisterCollection("2.4", "achievements", {
+    entries = { ids = { 9824, 11709, 11749 }, rewardHighlights = {} },
     details = {
         [9824] = {
             name = "Raiding with Leashes III: Drinkin' From the Sunwell",
-            acquisition = "Collect all of the battle pets listed below from Black Temple, Hyjal Summit, and the Sunwell.",
+            acquisition = walkthroughs[9824]["acquisition"],
             sourceType = "Achievement",
-            source = "Burning Crusade collections",
-            sourceURL = "https://www.wowhead.com/achievement=9824",
+            source = "Raiding with Leashes III: Drinkin' From the Sunwell (9824)",
+            sourceURL = "https://www.wowhead.com/achievement=9824#comments",
+            tips = "",
+            requirements = "All twelve species listed by achievement 9824",
+            cost = "No achievement fee; optional pet cage prices",
+            waypoints = walkthroughs[9824]["waypoints"],
+            difficulty = "hard",
+            difficultyReason = "Twelve random weekly raid drops can take many clears; buying the missing cages is allowed.",
+            stepCount = 5,
+            reviewedAt = "2026-11-14",
+            wowheadUrl = "https://www.wowhead.com/npc=90215",
+            references = walkthroughs[9824]["references"],
+            walkthrough = walkthroughs[9824],
         },
         [11709] = {
             name = "Tough Threads",
@@ -26,6 +151,7 @@ TDP.CatalogRegistry:RegisterCollection("2.4", "achievements", {
             source = "Blaze Magmaburn / Area 52",
             sourceURL = "https://www.wowhead.com/achievement=11709",
             waypoints = { "/way #109 33.0 64.2 Blaze Magmaburn - Brutal Gladiator armor ensemble" },
+            walkthrough = walkthroughs[11709],
         },
         [11749] = {
             name = "Suns Out, Thori'dals Out",
@@ -34,11 +160,11 @@ TDP.CatalogRegistry:RegisterCollection("2.4", "achievements", {
             source = "Sunwell Plateau",
             sourceURL = "https://www.wowhead.com/achievement=11749",
             waypoints = { "/way #122 44.28 45.71 Sunwell Plateau entrance" },
+            walkthrough = walkthroughs[11749],
         },
     },
-    categories = {
-        [9824] = "Collections",
-        [11709] = "Collections",
-        [11749] = "Collections",
+    categories = { [9824] = "Collections", [11709] = "Collections", [11749] = "Collections" },
+    research = {
+        originalNotes = "-- Later achievements tied to this Burning Crusade content patch.\n-- Retroactive records moved from Wrath are owned only by the 2.0 bucket.\n            9824, -- Raiding with Leashes III: Drinkin' From the Sunwell\n            11709, -- Tough Threads\n            11749, -- Suns Out, Thori'dals Out",
     },
 })

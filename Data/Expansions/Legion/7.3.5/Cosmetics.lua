@@ -1,3 +1,4 @@
+-- Catalogue entries and complete Retail research for 7.3.5.
 local _, TDP = ...
 
 TDP.CatalogRegistry:RegisterCollection("7.3.5", "cosmetics", {
@@ -12,7 +13,12 @@ TDP.CatalogRegistry:RegisterCollection("7.3.5", "cosmetics", {
         { detailKey = "alliedRaceTabards", itemId = 157758, name = "Ren'dorei Tabard", subtype = "appearance" },
         { detailKey = "alliedRaceTabards", itemId = 157759, name = "Shal'dorei Tabard", subtype = "appearance" },
         { detailKey = "highmountainHeritage", itemId = 156668, name = "Highmountain Headdress", subtype = "appearance" },
-        { detailKey = "highmountainHeritage", itemId = 156669, name = "Highmountain Shoulderguards", subtype = "appearance" },
+        {
+            detailKey = "highmountainHeritage",
+            itemId = 156669,
+            name = "Highmountain Shoulderguards",
+            subtype = "appearance",
+        },
         { detailKey = "highmountainHeritage", itemId = 156670, name = "Highmountain Harness", subtype = "appearance" },
         { detailKey = "highmountainHeritage", itemId = 156684, name = "Highmountain Bracers", subtype = "appearance" },
         { detailKey = "highmountainHeritage", itemId = 156671, name = "Highmountain Gloves", subtype = "appearance" },
@@ -45,4 +51,5 @@ TDP.CatalogRegistry:RegisterCollection("7.3.5", "cosmetics", {
         { detailKey = "voidElfHeritage", itemId = 156695, name = "Ren'dorei Leggings", subtype = "appearance" },
         { detailKey = "voidElfHeritage", itemId = 156696, name = "Ren'dorei Boots", subtype = "appearance" },
     },
+    details = {},
 })

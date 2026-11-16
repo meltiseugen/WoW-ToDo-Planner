@@ -221,6 +221,7 @@ end
 
 function CollectionExplorerWindow:BuildVisibleRows()
     wipe(self.visibleRows)
+    self.visibleItemRows = {}
 
     local searchText = ""
     if self.searchEdit then
@@ -240,7 +241,7 @@ function CollectionExplorerWindow:BuildVisibleRows()
     for _, collectionType in ipairs(self:GetCollectionTypes()) do
         for _, patchKey in ipairs(selectedPatchKeys) do
             for _, entry in ipairs(self:GetEntriesForView(patchKey, collectionType)) do
-                local state = CollectionScanner:GetState(collectionType, entry)
+                local state = CollectionScanner:GetState(collectionType, entry, true)
                 local rewardEntry = collectionType == "achievements" and PatchCatalog:GetAchievementReward(patchKey, entry)
                 local name = CollectionScanner:GetDisplayName(collectionType, entry, state, patchKey)
                 local reward = (state and state.reward) or (rewardEntry and rewardEntry.reward)
@@ -251,16 +252,12 @@ function CollectionExplorerWindow:BuildVisibleRows()
                     and PatchCatalog:IsCollectionUnobtainable(collectionType, patchKey, entry) or false
                 local mountCategory = collectionType == "mounts" and PatchCatalog:GetMountCategory(patchKey, entry) or nil
                 local sourceCategory = self:HasSourceFilter(collectionType) and (mountCategory or self:GetSourceCategory(collectionType, patchKey, entry)) or nil
-                local mountSource = searchText ~= "" and collectionType == "mounts" and PatchCatalog:GetMountSourceSummary(patchKey, entry) or nil
-                local mountAcquisition = searchText ~= "" and collectionType == "mounts" and PatchCatalog:GetMountAcquisitionText(patchKey, entry) or nil
+                local mountSource = searchText ~= "" and collectionType == "mounts" and PatchCatalog:GetCollectionBrowseSourceSummary(collectionType, patchKey, entry) or nil
                 local achievementCategory = collectionType == "achievements" and self:GetAchievementCategoryForEntry(patchKey, entry, state) or nil
-                local petSource = searchText ~= "" and collectionType == "pets" and PatchCatalog:GetPetSourceSummary(patchKey, entry) or nil
-                local petAcquisition = searchText ~= "" and collectionType == "pets" and PatchCatalog:GetPetAcquisitionText(patchKey, entry) or nil
-                local toySource = searchText ~= "" and collectionType == "toys" and PatchCatalog:GetToySourceSummary(patchKey, entry) or nil
-                local toyAcquisition = searchText ~= "" and collectionType == "toys" and PatchCatalog:GetToyAcquisitionText(patchKey, entry) or nil
+                local petSource = searchText ~= "" and collectionType == "pets" and PatchCatalog:GetCollectionBrowseSourceSummary(collectionType, patchKey, entry) or nil
+                local toySource = searchText ~= "" and collectionType == "toys" and PatchCatalog:GetCollectionBrowseSourceSummary(collectionType, patchKey, entry) or nil
                 local toyEffect = searchText ~= "" and collectionType == "toys" and PatchCatalog:GetToyUseText(patchKey, entry) or nil
-                local cosmeticSource = searchText ~= "" and collectionType == "cosmetics" and PatchCatalog:GetCosmeticSourceSummary(patchKey, entry) or nil
-                local cosmeticAcquisition = searchText ~= "" and collectionType == "cosmetics" and PatchCatalog:GetCosmeticAcquisitionText(patchKey, entry) or nil
+                local cosmeticSource = searchText ~= "" and collectionType == "cosmetics" and PatchCatalog:GetCollectionBrowseSourceSummary(collectionType, patchKey, entry) or nil
                 local cosmeticSubtype = collectionType == "cosmetics" and type(entry) == "table" and entry.subtype or nil
                 local cosmeticType = collectionType == "cosmetics" and self:GetCosmeticType(entry) or nil
                 local faction = PatchCatalog:GetCollectionFaction(collectionType, patchKey, entry, state)
@@ -295,17 +292,13 @@ function CollectionExplorerWindow:BuildVisibleRows()
                         mountCategory or "",
                         sourceCategory or "",
                         mountSource or "",
-                        mountAcquisition or "",
                         achievementCategory or "",
                         state and state.categoryName or "",
                         state and state.parentCategoryName or "",
                         petSource or "",
-                        petAcquisition or "",
                         toySource or "",
-                        toyAcquisition or "",
                         toyEffect or "",
                         cosmeticSource or "",
-                        cosmeticAcquisition or "",
                         cosmeticSubtype or "",
                         cosmeticType and self:GetCosmeticTypeLabel(cosmeticType) or "",
                         unobtainable and "Unobtainable" or "",
@@ -318,6 +311,7 @@ function CollectionExplorerWindow:BuildVisibleRows()
                 end
 
                 if statusMatches and sourceCategoryMatches and cosmeticTypeMatches and achievementCategoryMatches and searchMatches then
+                    local itemID = type(entry) == "table" and tonumber(entry.itemId)
                     self.visibleRows[#self.visibleRows + 1] = {
                         patchKey = patchKey,
                         collectionType = collectionType,
@@ -336,6 +330,11 @@ function CollectionExplorerWindow:BuildVisibleRows()
                         achievementCategory = achievementCategory,
                         faction = faction,
                     }
+                    if itemID and (CollectionScanner.itemDataRequests and CollectionScanner.itemDataRequests[itemID] == true
+                        or self.cosmeticTypeRequests and self.cosmeticTypeRequests[itemID] == true) then
+                        self.visibleItemRows[itemID] = self.visibleItemRows[itemID] or {}
+                        table.insert(self.visibleItemRows[itemID], self.visibleRows[#self.visibleRows])
+                    end
                 end
             end
         end

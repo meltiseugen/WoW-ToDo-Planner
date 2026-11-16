@@ -17,6 +17,53 @@ function PatchCatalog:GetCollectionGuideText(collectionType, entry)
     return guides and field and type(entry) == "table" and guides[entry[field]] or nil
 end
 
+-- Keep numbered instructions addressable independently of the full walkthrough.
+-- Continuation paragraphs belong to their step, not to every map destination.
+function PatchCatalog:ParseCollectionGuideSteps(text)
+    local steps, current, lines = {}, nil, {}
+    local function finish()
+        if current then
+            steps[current] = table.concat(lines, "\n"):gsub("%s+$", "")
+        end
+        current, lines = nil, {}
+    end
+    text = tostring(text or ""):gsub("\r\n", "\n"):gsub("\r", "\n")
+    for line in (text .. "\n"):gmatch("(.-)\n") do
+        local number, body = line:match("^%s*(%d+)[%.)]%s+(.*)$")
+        if number then
+            finish()
+            current = tonumber(number)
+            lines[1] = body
+        elseif current then
+            local field = line:match("^([%a][%a ]+):")
+            if field == "Source" or field == "Tips" or field == "Requirements" or field == "Cost"
+                or field == "Effect" or field == "Quest progress" or field == "Description" then
+                finish()
+            else
+                lines[#lines + 1] = line
+            end
+        end
+    end
+    finish()
+    return steps
+end
+
+function PatchCatalog:GetCollectionOverviewText(collectionType, patchKey, entry, state)
+    local guide = self:GetCollectionWalkthrough(collectionType, entry)
+    local details = self:GetCollectionDetails(collectionType, patchKey, entry) or {}
+    local lines = {}
+    local function add(label, value)
+        if type(value) == "string" and value ~= "" then lines[#lines + 1] = label .. ": " .. value end
+    end
+    add("Description", collectionType == "achievements" and state and state.description
+        or guide and guide.description or details.description)
+    add("Source", self:GetCollectionBrowseSourceSummary(collectionType, patchKey, entry))
+    add("Effect", details.effect or details.use)
+    add("Reward", state and state.reward)
+    -- The full acquisition guide, costs and tips are assembled after Open Map.
+    return table.concat(lines, "\n\n")
+end
+
 function PatchCatalog:GetCollectionCostLines(collectionType, patchKey, entry)
     local details = self:GetCollectionDetails(collectionType, patchKey, entry) or {}
     local item = type(entry) == "table" and entry or {}
@@ -89,14 +136,12 @@ function PatchCatalog:GetCollectionSourceAchievementId(collectionType, patchKey,
     local linkId = source:match("achievement:(%d+)")
         or tostring(details.sourceUrl or item.sourceUrl or ""):match("/achievement=(%d+)")
     if positiveId(linkId) then return tonumber(linkId) end
-    local sourceInfo = self.GetCollectionSourceInfo and self:GetCollectionSourceInfo(collectionType, patchKey, entry)
-    if sourceInfo and sourceInfo.kind == "Achievements" and positiveId(sourceInfo.achievementID) then
-        return sourceInfo.achievementID
-    end
+    local kind, record = self:GetCollectionBrowseSourceKind(collectionType, patchKey, entry)
+    if kind == "Achievements" and record and positiveId(record.achievementID) then return record.achievementID end
     -- An achievement destination remains inspectable from the other faction.
     -- Keep acquisition eligibility in the source resolver; only use an
     -- unambiguous reward achievement when no source matches this character.
-    if not sourceInfo and self.GetCollectionSourceRecords then
+    if self.GetCollectionSourceRecords then
         local achievementId, ambiguous
         for _, record in ipairs(self:GetCollectionSourceRecords(collectionType, patchKey, entry)) do
             local id = record.kind == "Achievements" and positiveId(record.achievementID)

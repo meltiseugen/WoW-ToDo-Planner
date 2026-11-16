@@ -1,42 +1,5 @@
+-- Catalogue entries and complete Retail research for 7.0.0.
 local _, TDP = ...
-
-local shared = {}
-shared["Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar"] = {
-    acquisition = "Obtain this toy from the listed source: Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar.",
-    source = "Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar",
-    sourceType = "Toy Box Source",
-    tips = "Complete the prerequisite story or campaign chapters first; some follow-up quests unlock only after a reset or reputation gate.",
-    waypoints = { "/way #680 44.2 59.8 Shal'Aran / Suramar hub" },
-}
-
-shared["Profession: Jewelcrafting"] = {
-    acquisition = "Obtain this toy from the listed source: Profession: Jewelcrafting.",
-    source = "Profession: Jewelcrafting",
-    sourceType = "Toy Box Source",
-    tips = "Check the profession skill, recipe source, and any quest or research rotation before starting.",
-}
-
-shared["Profession: Leatherworking"] = {
-    acquisition = "Obtain this toy from the listed source: Profession: Leatherworking.",
-    source = "Profession: Leatherworking",
-    sourceType = "Toy Box Source",
-    tips = "Check the profession skill, recipe source, and any quest or research rotation before starting.",
-}
-
-shared["Legion (Initial Release)"] = {
-    acquisition = "Obtain this toy from the listed source: the in-game collection journal.",
-    source = "Legion (Initial Release)",
-    sourceType = "Toy Box Source",
-    tips = "Check prerequisites and the source's daily or weekly lockout before starting; several Legion collectibles require repeat attempts.",
-}
-
-shared["Vendor: Marin Bladewing / Zone: Azsuna / Faction: The Wardens - Honored / Cost: 200 curren"] = {
-    acquisition = "Obtain this toy from the listed source: Vendor: Marin Bladewing / Zone: Azsuna / Faction: The Wardens - Honored / Cost: 200 currency.",
-    source = "Vendor: Marin Bladewing / Zone: Azsuna / Faction: The Wardens - Honored / Cost: 200 currency",
-    sourceType = "Toy Box Source",
-    tips = "Confirm the required reputation, currency, and vendor phase before travelling.",
-    waypoints = { "/way #630 48.2 41.5 Azsuna collection hub" },
-}
 
 TDP.CatalogRegistry:RegisterCollection("7.0.0", "toys", {
     entries = {
@@ -536,8 +499,20 @@ TDP.CatalogRegistry:RegisterCollection("7.0.0", "toys", {
         },
     },
     details = {
-        ["Ancient Mana Basin"] = shared["Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar"],
-        ["Arcano-Shower"] = shared["Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar"],
+        ["Ancient Mana Basin"] = {
+            acquisition = "Obtain this toy from the listed source: Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar.",
+            source = "Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar",
+            sourceType = "Toy Box Source",
+            tips = "Complete the prerequisite story or campaign chapters first; some follow-up quests unlock only after a reset or reputation gate.",
+            waypoints = { "/way #680 44.2 59.8 Shal'Aran / Suramar hub" },
+        },
+        ["Arcano-Shower"] = {
+            acquisition = "Obtain this toy from the listed source: Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar.",
+            source = "Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar",
+            sourceType = "Toy Box Source",
+            tips = "Complete the prerequisite story or campaign chapters first; some follow-up quests unlock only after a reset or reputation gate.",
+            waypoints = { "/way #680 44.2 59.8 Shal'Aran / Suramar hub" },
+        },
         ["Barnacle-Encrusted Gem"] = {
             acquisition = "Obtain this toy from the listed source: Treasure: Treasure Chest / Zone: Stormheim.",
             source = "Treasure: Treasure Chest / Zone: Stormheim",
@@ -558,7 +533,12 @@ TDP.CatalogRegistry:RegisterCollection("7.0.0", "toys", {
             tips = "Confirm the required reputation, currency, and vendor phase before travelling.",
             waypoints = { "/way #650 46.2 61.4 Thunder Totem" },
         },
-        Chatterstone = shared["Profession: Jewelcrafting"],
+        Chatterstone = {
+            acquisition = "Obtain this toy from the listed source: Profession: Jewelcrafting.",
+            source = "Profession: Jewelcrafting",
+            sourceType = "Toy Box Source",
+            tips = "Check the profession skill, recipe source, and any quest or research rotation before starting.",
+        },
         ["Chef's Hat"] = {
             acquisition = "Obtain this toy from the listed source: Vendor: Derek Odds / Vendor: Misensi / Zone: Dalaran / Vendor: Mera Mistrunner / Zone: Icecrown.",
             source = "Vendor: Derek Odds / Vendor: Misensi / Zone: Dalaran / Vendor: Mera Mistrunner / Zone: Icecrown",
@@ -615,7 +595,13 @@ TDP.CatalogRegistry:RegisterCollection("7.0.0", "toys", {
             tips = "Confirm the required reputation, currency, and vendor phase before travelling.",
             waypoints = { "/way #634 60.2 51.0 Valdisdall" },
         },
-        ["Displacer Meditation Stone"] = shared["Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar"],
+        ["Displacer Meditation Stone"] = {
+            acquisition = "Obtain this toy from the listed source: Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar.",
+            source = "Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar",
+            sourceType = "Toy Box Source",
+            tips = "Complete the prerequisite story or campaign chapters first; some follow-up quests unlock only after a reset or reputation gate.",
+            waypoints = { "/way #680 44.2 59.8 Shal'Aran / Suramar hub" },
+        },
         ["Emerald Winds"] = {
             acquisition = "Obtain this toy from the listed source: Achievement: Hatchling of the Talon / Zone: Highmountain.",
             source = "Achievement: Hatchling of the Talon / Zone: Highmountain",
@@ -637,8 +623,19 @@ TDP.CatalogRegistry:RegisterCollection("7.0.0", "toys", {
             tips = "Check prerequisites and the source's daily or weekly lockout before starting; several Legion collectibles require repeat attempts.",
             waypoints = { "/way #634 60.2 51.0 Valdisdall" },
         },
-        ["Fal'dorei Egg"] = shared["Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar"],
-        ["Flaming Hoop"] = shared["Profession: Leatherworking"],
+        ["Fal'dorei Egg"] = {
+            acquisition = "Obtain this toy from the listed source: Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar.",
+            source = "Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar",
+            sourceType = "Toy Box Source",
+            tips = "Complete the prerequisite story or campaign chapters first; some follow-up quests unlock only after a reset or reputation gate.",
+            waypoints = { "/way #680 44.2 59.8 Shal'Aran / Suramar hub" },
+        },
+        ["Flaming Hoop"] = {
+            acquisition = "Obtain this toy from the listed source: Profession: Leatherworking.",
+            source = "Profession: Leatherworking",
+            sourceType = "Toy Box Source",
+            tips = "Check the profession skill, recipe source, and any quest or research rotation before starting.",
+        },
         ["Home Made Party Mask"] = {
             acquisition = "Obtain this toy from the listed source: Vendor: First Arcanist Thalyssra / Zone: Suramar / Faction: The Nightfallen - Revered / Cost: 500 currency.",
             source = "Vendor: First Arcanist Thalyssra / Zone: Suramar / Faction: The Nightfallen - Revered / Cost: 500 currency",
@@ -652,18 +649,49 @@ TDP.CatalogRegistry:RegisterCollection("7.0.0", "toys", {
             sourceType = "Toy Box Source",
             tips = "This is a historical PvP reward. Elite, Gladiator, and original Prestige rewards may no longer be obtainable from their original source.",
         },
-        ["Hunter's Call"] = shared["Legion (Initial Release)"],
-        JewelCraft = shared["Profession: Jewelcrafting"],
-        ["Kaldorei Light Globe"] = shared["Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar"],
+        ["Hunter's Call"] = {
+            acquisition = "Obtain this toy from the listed source: the in-game collection journal.",
+            source = "Legion (Initial Release)",
+            sourceType = "Toy Box Source",
+            tips = "Check prerequisites and the source's daily or weekly lockout before starting; several Legion collectibles require repeat attempts.",
+        },
+        JewelCraft = {
+            acquisition = "Obtain this toy from the listed source: Profession: Jewelcrafting.",
+            source = "Profession: Jewelcrafting",
+            sourceType = "Toy Box Source",
+            tips = "Check the profession skill, recipe source, and any quest or research rotation before starting.",
+        },
+        ["Kaldorei Light Globe"] = {
+            acquisition = "Obtain this toy from the listed source: Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar.",
+            source = "Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar",
+            sourceType = "Toy Box Source",
+            tips = "Complete the prerequisite story or campaign chapters first; some follow-up quests unlock only after a reset or reputation gate.",
+            waypoints = { "/way #680 44.2 59.8 Shal'Aran / Suramar hub" },
+        },
         ["Lava Fountain"] = {
             acquisition = "Obtain this toy from the listed source: Treasure: Maelstrom Chest / Zone: The Maelstrom.",
             source = "Treasure: Maelstrom Chest / Zone: The Maelstrom",
             sourceType = "Toy Box Source",
             tips = "Check prerequisites and the source's daily or weekly lockout before starting; several Legion collectibles require repeat attempts.",
         },
-        ["Leather Love Seat"] = shared["Profession: Leatherworking"],
-        ["Leather Pet Bed"] = shared["Profession: Leatherworking"],
-        ["Leather Pet Leash"] = shared["Profession: Leatherworking"],
+        ["Leather Love Seat"] = {
+            acquisition = "Obtain this toy from the listed source: Profession: Leatherworking.",
+            source = "Profession: Leatherworking",
+            sourceType = "Toy Box Source",
+            tips = "Check the profession skill, recipe source, and any quest or research rotation before starting.",
+        },
+        ["Leather Pet Bed"] = {
+            acquisition = "Obtain this toy from the listed source: Profession: Leatherworking.",
+            source = "Profession: Leatherworking",
+            sourceType = "Toy Box Source",
+            tips = "Check the profession skill, recipe source, and any quest or research rotation before starting.",
+        },
+        ["Leather Pet Leash"] = {
+            acquisition = "Obtain this toy from the listed source: Profession: Leatherworking.",
+            source = "Profession: Leatherworking",
+            sourceType = "Toy Box Source",
+            tips = "Check the profession skill, recipe source, and any quest or research rotation before starting.",
+        },
         ["Ley Spider Eggs"] = {
             acquisition = "Obtain this toy from the listed source: Treasure: Falanaar Treasure Chest / Zone: Suramar.",
             source = "Treasure: Falanaar Treasure Chest / Zone: Suramar",
@@ -747,7 +775,12 @@ TDP.CatalogRegistry:RegisterCollection("7.0.0", "toys", {
             tips = "Confirm the required reputation, currency, and vendor phase before travelling.",
             waypoints = { "/way #627 48.6 62.8 Dalaran collection vendors" },
         },
-        ["Raging Elemental Stone"] = shared["Legion (Initial Release)"],
+        ["Raging Elemental Stone"] = {
+            acquisition = "Obtain this toy from the listed source: the in-game collection journal.",
+            source = "Legion (Initial Release)",
+            sourceType = "Toy Box Source",
+            tips = "Check prerequisites and the source's daily or weekly lockout before starting; several Legion collectibles require repeat attempts.",
+        },
         ["Ravenbear Disguise"] = {
             acquisition = "Obtain this toy from the listed source: Quest: Masters of Disguise / Zone: Stormheim.",
             source = "Quest: Masters of Disguise / Zone: Stormheim",
@@ -801,8 +834,19 @@ TDP.CatalogRegistry:RegisterCollection("7.0.0", "toys", {
             sourceType = "Toy Box Source",
             tips = "Check prerequisites and the source's daily or weekly lockout before starting; several Legion collectibles require repeat attempts.",
         },
-        ["Syxsehnz Rod"] = shared["Vendor: Marin Bladewing / Zone: Azsuna / Faction: The Wardens - Honored / Cost: 200 curren"],
-        ["Tadpole Cloudseeder"] = shared["Legion (Initial Release)"],
+        ["Syxsehnz Rod"] = {
+            acquisition = "Obtain this toy from the listed source: Vendor: Marin Bladewing / Zone: Azsuna / Faction: The Wardens - Honored / Cost: 200 currency.",
+            source = "Vendor: Marin Bladewing / Zone: Azsuna / Faction: The Wardens - Honored / Cost: 200 currency",
+            sourceType = "Toy Box Source",
+            tips = "Confirm the required reputation, currency, and vendor phase before travelling.",
+            waypoints = { "/way #630 48.2 41.5 Azsuna collection hub" },
+        },
+        ["Tadpole Cloudseeder"] = {
+            acquisition = "Obtain this toy from the listed source: the in-game collection journal.",
+            source = "Legion (Initial Release)",
+            sourceType = "Toy Box Source",
+            tips = "Check prerequisites and the source's daily or weekly lockout before starting; several Legion collectibles require repeat attempts.",
+        },
         ["Tear of the Green Aspect"] = {
             acquisition = "Obtain this toy from the listed source: Vendor: Sylvia Hartshorn / Zone: Val'sharah / Faction: Dreamweavers - Honored / Cost: 200 currency.",
             source = "Vendor: Sylvia Hartshorn / Zone: Val'sharah / Faction: Dreamweavers - Honored / Cost: 200 currency",
@@ -831,9 +875,26 @@ TDP.CatalogRegistry:RegisterCollection("7.0.0", "toys", {
             tips = "Check prerequisites and the source's daily or weekly lockout before starting; several Legion collectibles require repeat attempts.",
             waypoints = { "/way #641 54.6 72.8 Lorlathil" },
         },
-        ["Trapped Treasure Chest Kit"] = shared["Vendor: Marin Bladewing / Zone: Azsuna / Faction: The Wardens - Honored / Cost: 200 curren"],
-        ["Unstable Powder Box"] = shared["Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar"],
-        ["Vol'jin's Serpent Totem"] = shared["Legion (Initial Release)"],
+        ["Trapped Treasure Chest Kit"] = {
+            acquisition = "Obtain this toy from the listed source: Vendor: Marin Bladewing / Zone: Azsuna / Faction: The Wardens - Honored / Cost: 200 currency.",
+            source = "Vendor: Marin Bladewing / Zone: Azsuna / Faction: The Wardens - Honored / Cost: 200 currency",
+            sourceType = "Toy Box Source",
+            tips = "Confirm the required reputation, currency, and vendor phase before travelling.",
+            waypoints = { "/way #630 48.2 41.5 Azsuna collection hub" },
+        },
+        ["Unstable Powder Box"] = {
+            acquisition = "Obtain this toy from the listed source: Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar.",
+            source = "Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar",
+            sourceType = "Toy Box Source",
+            tips = "Complete the prerequisite story or campaign chapters first; some follow-up quests unlock only after a reset or reputation gate.",
+            waypoints = { "/way #680 44.2 59.8 Shal'Aran / Suramar hub" },
+        },
+        ["Vol'jin's Serpent Totem"] = {
+            acquisition = "Obtain this toy from the listed source: the in-game collection journal.",
+            source = "Legion (Initial Release)",
+            sourceType = "Toy Box Source",
+            tips = "Check prerequisites and the source's daily or weekly lockout before starting; several Legion collectibles require repeat attempts.",
+        },
         ["Vrykul Toy Boat Kit"] = {
             acquisition = "Obtain this toy from the listed source: Vendor: Valdemar Stormseeker / Zone: Stormheim / Faction: Valarjar - Honored / Cost: 10 currency.",
             source = "Vendor: Valdemar Stormseeker / Zone: Stormheim / Faction: Valarjar - Honored / Cost: 10 currency",
@@ -841,7 +902,12 @@ TDP.CatalogRegistry:RegisterCollection("7.0.0", "toys", {
             tips = "Confirm the required reputation, currency, and vendor phase before travelling.",
             waypoints = { "/way #634 60.2 51.0 Valdisdall" },
         },
-        ["Waterspeaker's Totem"] = shared["Legion (Initial Release)"],
+        ["Waterspeaker's Totem"] = {
+            acquisition = "Obtain this toy from the listed source: the in-game collection journal.",
+            source = "Legion (Initial Release)",
+            sourceType = "Toy Box Source",
+            tips = "Check prerequisites and the source's daily or weekly lockout before starting; several Legion collectibles require repeat attempts.",
+        },
         ["Whitewater Carp"] = {
             acquisition = "Obtain this toy from the listed source: Vendor: Ransa Greyfeather / Zone: Highmountain / Faction: Highmountain Tribe - Friendly / Cost: 100 currency.",
             source = "Vendor: Ransa Greyfeather / Zone: Highmountain / Faction: Highmountain Tribe - Friendly / Cost: 100 currency",
@@ -849,7 +915,13 @@ TDP.CatalogRegistry:RegisterCollection("7.0.0", "toys", {
             tips = "Confirm the required reputation, currency, and vendor phase before travelling.",
             waypoints = { "/way #650 46.2 61.4 Thunder Totem" },
         },
-        ["Wisp in a Bottle"] = shared["Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar"],
+        ["Wisp in a Bottle"] = {
+            acquisition = "Obtain this toy from the listed source: Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar.",
+            source = "Treasure: Glimmering Falanaar Treasure Chest / Zone: Suramar",
+            sourceType = "Toy Box Source",
+            tips = "Complete the prerequisite story or campaign chapters first; some follow-up quests unlock only after a reset or reputation gate.",
+            waypoints = { "/way #680 44.2 59.8 Shal'Aran / Suramar hub" },
+        },
         ["Worn Doll"] = {
             acquisition = "Obtain this toy from the listed source: Drop: Henry / Zone: Val'sharah.",
             source = "Drop: Henry / Zone: Val'sharah",

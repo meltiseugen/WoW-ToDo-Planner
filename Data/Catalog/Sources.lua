@@ -76,10 +76,6 @@ function Catalog:ResetCollectionSourceCache(questsOnly)
         self.collectionSourceCacheCursor = nil
         self.collectionSourceCharacter = nil
     end
-    self.collectionCompletedQuests = nil
-    self.collectionCompletedQuestsKnown = nil
-    self.collectionSourceQuestFlags = nil
-    self.collectionActiveSourceQuests = nil
 end
 
 function Catalog:CacheCollectionSourceInfo(key, info)
@@ -99,83 +95,6 @@ function Catalog:CacheCollectionSourceInfo(key, info)
     end
     self.collectionSourceCache[key] = info or false
     return info
-end
-
-function Catalog:IsSourceQuestCompleted(id, seen)
-    seen = seen or {}
-    if seen[id] then return false end
-    seen[id] = true
-    if not self.collectionCompletedQuests then
-        self.collectionCompletedQuests = {}
-        -- Query only the quests used by these sources. Reading the entire quest
-        -- history on every collection refresh is needlessly expensive.
-        local completed = not (C_QuestLog and type(C_QuestLog.IsQuestFlaggedCompleted) == "function")
-            and call(C_QuestLog and C_QuestLog.GetAllCompletedQuestIDs) or nil
-        self.collectionCompletedQuestsKnown = type(completed) == "table"
-        for _, completedID in ipairs(self.collectionCompletedQuestsKnown and completed or {}) do
-            self.collectionCompletedQuests[completedID] = true
-        end
-    end
-    if self.collectionCompletedQuests[id] then return true end
-    if not self.collectionCompletedQuestsKnown then
-        self.collectionSourceQuestFlags = self.collectionSourceQuestFlags or {}
-        local complete = self.collectionSourceQuestFlags[id]
-        if complete == nil then
-            complete = call(C_QuestLog and C_QuestLog.IsQuestFlaggedCompleted, id) == true
-            self.collectionSourceQuestFlags[id] = complete
-        end
-        if complete then return true end
-    end
-    local quest = sourceQuest(id)
-    for _, alternateID in ipairs(quest and quest.altQuests or {}) do
-        if self:IsSourceQuestCompleted(alternateID, seen) then return true end
-    end
-    return false
-end
-
-function Catalog:IsSourceQuestActive(id)
-    self.collectionActiveSourceQuests = self.collectionActiveSourceQuests or {}
-    local active = self.collectionActiveSourceQuests[id]
-    if active == nil then
-        active = call(C_QuestLog and C_QuestLog.IsOnQuest, id)
-        if type(active) ~= "boolean" then active = (tonumber(call(C_QuestLog and C_QuestLog.GetLogIndexForQuestID, id)) or 0) > 0 end
-        self.collectionActiveSourceQuests[id] = active
-    end
-    return active
-end
-
-function Catalog:GetNextCollectionSourceQuest(rewardID, repeatableReward)
-    local visiting = {}
-    local function nextQuest(id, depth)
-        local quest = sourceQuest(id)
-        if not quest or not matchesCharacter(quest) or quest.isBreadcrumb or visiting[id] or depth > 80 then return nil end
-        if not (repeatableReward and id == rewardID) and self:IsSourceQuestCompleted(id) then return nil end
-        if self:IsSourceQuestActive(id) then
-            return quest, "active"
-        end
-        visiting[id] = true
-        local prerequisites, satisfied = {}, 0
-        for _, prerequisiteID in ipairs(quest.sourceQuests or {}) do
-            local prerequisite = sourceQuest(prerequisiteID)
-            if not prerequisite or not matchesCharacter(prerequisite) or prerequisite.isBreadcrumb
-                or self:IsSourceQuestCompleted(prerequisiteID) then
-                satisfied = satisfied + 1
-            else
-                prerequisites[#prerequisites + 1] = prerequisiteID
-            end
-        end
-        if satisfied < (tonumber(quest.sqreq) or #(quest.sourceQuests or {})) then
-            for _, prerequisiteID in ipairs(prerequisites) do
-                local prerequisite, status = nextQuest(prerequisiteID, depth + 1)
-                if prerequisite then visiting[id] = nil; return prerequisite, status end
-            end
-        end
-        visiting[id] = nil
-        return quest, "available"
-    end
-    local quest, status = nextQuest(rewardID, 0)
-    if quest then return quest, status end
-    return sourceQuest(rewardID), self:IsSourceQuestCompleted(rewardID) and "complete" or "unavailable"
 end
 
 function Catalog:GetCollectionSourceRecords(collectionType, patchKey, entry)
@@ -216,6 +135,28 @@ function Catalog:GetResearchedCollectionSourceKind(collectionType, patchKey, ent
     return selected
 end
 
+-- Browsing must not resolve quest prerequisites, objectives or destinations.
+function Catalog:GetCollectionBrowseSourceKind(collectionType, patchKey, entry)
+    local guide = self:GetCollectionWalkthrough(collectionType, entry)
+    if guide then return guide.category end
+    local selected, score, selectedRecord
+    for _, record in ipairs(self:GetCollectionSourceRecords(collectionType, patchKey, entry)) do
+        if matchesCharacter(record) then
+            local rank = METHOD_ORDER[record.kind] or 30
+            if not score or rank < score then selected, score, selectedRecord = record.kind, rank, record end
+        end
+    end
+    return selected, selectedRecord
+end
+
+function Catalog:GetCollectionBrowseSourceSummary(collectionType, patchKey, entry)
+    local guide = self:GetCollectionWalkthrough(collectionType, entry)
+    if guide then return guide.source end
+    local details = self:GetCollectionDetails(collectionType, patchKey, entry) or {}
+    local item = type(entry) == "table" and entry or {}
+    return details.source or item.source or self:GetCollectionBrowseSourceKind(collectionType, patchKey, entry)
+end
+
 function Catalog:GetCollectionSourceInfo(collectionType, patchKey, entry)
     if not FIELD_BY_TYPE[collectionType] or type(entry) ~= "table" then return nil end
     local key = collectionType .. ":" .. tostring(patchKey) .. ":" .. tostring(entry[FIELD_BY_TYPE[collectionType]])
@@ -250,50 +191,32 @@ function Catalog:GetCollectionSourceInfo(collectionType, patchKey, entry)
     local info = { kind = selected.kind, npcID = selected.npcID, npcName = selected.npcName, achievementID = selected.achievementID,
         source = recordedSource, waypoints = {}, areaMaps = {}, records = candidates, cost = selected.cost,
         instructions = selected.instructions, progressType = selected.progressType, repeatableReward = selected.repeatableReward }
-    local gateQuest, gateStatus
-    if selected.unlockQuestID then
-        gateQuest, gateStatus = self:GetNextCollectionSourceQuest(selected.unlockQuestID)
-    end
-    local unfinishedUnlock = gateQuest and gateQuest.questID ~= selected.unlockQuestID
-    if selected.progressQuestID or selected.kind == "Quest Rewards" and selected.questID or unfinishedUnlock then
-        local quest, status = gateQuest, gateStatus
-        if not unfinishedUnlock then quest, status = self:GetNextCollectionSourceQuest(selected.progressQuestID or selected.questID, selected.repeatableReward) end
-        info.rewardQuestID, info.questStatus = selected.questID, status
-        if quest and status ~= "unavailable" then
-            info.questID, info.questName = quest.questID, questName(quest.questID) or quest.name
-            info.npcID = (quest.qgs or {})[1]
-            info.npcName = quest.npcName
-            local action = status == "complete" and "Reward quest" or status == "active" and "Current quest" or "Next quest"
-            if selected.repeatableReward and quest.questID == selected.questID then action = "Repeatable quest" end
-            if selected.progressType == "secret" then action = status == "complete" and "Final secret step" or "Next secret step" end
-            info.source = action .. (info.questName and ": " .. info.questName or " in the quest chain")
-            if quest.instructions then info.instructions = quest.instructions end
-            info.waypoints = makeWaypoints(quest.coords, info.source, quest)
-            if status == "active" then
-                local mapID, x, y = call(C_QuestLog and C_QuestLog.GetNextWaypoint, quest.questID)
-                if tonumber(mapID) and tonumber(mapID) > 0 and tonumber(x) and tonumber(y)
-                    and x >= 0 and x <= 1 and y >= 0 and y <= 1 then
-                    info.waypoints = { { mapID = mapID, x = x, y = y, label = info.source,
-                        questID = quest.questID, npcID = info.npcID, locationType = "Quest objective" } }
-                end
+    -- Use recorded acquisition locations; never follow this character's quest
+    -- history, prerequisites or active objectives to choose a destination.
+    local seen, seenMaps = {}, {}
+    for _, record in ipairs(candidates) do
+        if record.kind == selected.kind then
+            local label = record.locationType or record.npcName or record.sourceName or recordedSource or record.kind
+            for _, waypoint in ipairs(makeWaypoints(record.coords, label, record)) do
+                local pinKey = string.format("%d:%.5f:%.5f", waypoint.mapID, waypoint.x, waypoint.y)
+                if not seen[pinKey] then info.waypoints[#info.waypoints + 1] = waypoint; seen[pinKey] = true end
             end
-            info.questComplete = status == "complete"
-            info.areaMaps = quest.maps or {}
+            for _, mapID in ipairs(record.maps or {}) do
+                if mapID > 0 and not seenMaps[mapID] then info.areaMaps[#info.areaMaps + 1] = mapID; seenMaps[mapID] = true end
+            end
         end
-    else
-        local seen = {}
-        local seenMaps = {}
-        for _, record in ipairs(candidates) do
-            if record.kind == selected.kind then
-                local label = record.locationType or record.npcName or record.sourceName or recordedSource or record.kind
-                for _, waypoint in ipairs(makeWaypoints(record.coords, label, record)) do
-                    local pinKey = string.format("%d:%.5f:%.5f", waypoint.mapID, waypoint.x, waypoint.y)
-                    if not seen[pinKey] then info.waypoints[#info.waypoints + 1] = waypoint; seen[pinKey] = true end
-                end
-                for _, mapID in ipairs(record.maps or {}) do
-                    if mapID > 0 and not seenMaps[mapID] then info.areaMaps[#info.areaMaps + 1] = mapID; seenMaps[mapID] = true end
-                end
-            end
+    end
+    if selected.kind == "Quest Rewards" and selected.questID then
+        local quest = sourceQuest(selected.questID)
+        info.questID = selected.questID
+        info.questName = questName(selected.questID) or quest and quest.name
+        info.source = recordedSource or info.questName or "Quest reward"
+        if quest then
+            info.npcID = info.npcID or (quest.qgs or {})[1]
+            info.npcName = info.npcName or quest.npcName
+            info.instructions = info.instructions or quest.instructions
+            if #info.waypoints == 0 then info.waypoints = makeWaypoints(quest.coords, info.source, quest) end
+            if #info.areaMaps == 0 then info.areaMaps = quest.maps or {} end
         end
     end
     info.npcName = info.npcName or NPC_NAMES[info.npcID]
@@ -324,37 +247,16 @@ function Catalog:GetResearchedCollectionAcquisition(collectionType, patchKey, en
 end
 
 function Catalog:GetActionableCollectionSourceSummary(collectionType, patchKey, entry)
-    local info = self:GetCollectionSourceInfo(collectionType, patchKey, entry)
-    return info and info.summary
+    return self:GetCollectionBrowseSourceSummary(collectionType, patchKey, entry)
 end
 
-function Catalog:GetCollectionSourceNotes(collectionType, patchKey, entry, requestData)
+function Catalog:GetCollectionSourceNotes(collectionType, patchKey, entry)
     local info = self:GetCollectionSourceInfo(collectionType, patchKey, entry)
     if not info then return {} end
-    -- Reviewed Source/How to get/Tips are already printed by both inspectors.
-    -- Reviewed mount, pet and toy descriptions and prerequisites need visible sections.
-    if info.walkthrough then
-        local guide = (collectionType == "mounts" or collectionType == "pets" or collectionType == "toys")
-            and self:GetCollectionWalkthrough(collectionType, entry)
-        local lines = {}
-        if guide and guide.description then lines[#lines + 1] = "Description: " .. guide.description end
-        if guide and guide.requirements then lines[#lines + 1] = "Requirements: " .. guide.requirements end
-        return lines
-    end
+    -- The map has dedicated description and requirements sections.
+    if info.walkthrough then return {} end
     local lines = {}
-    if info.questID then
-        if requestData and not info.questName and C_QuestLog and type(C_QuestLog.RequestLoadQuestByID) == "function" then
-            self.collectionSourceQuestRequests = self.collectionSourceQuestRequests or {}
-            if not self.collectionSourceQuestRequests[info.questID] then
-                self.collectionSourceQuestRequests[info.questID] = true
-                call(C_QuestLog.RequestLoadQuestByID, info.questID)
-            end
-        end
-        lines[#lines + 1] = (info.progressType == "secret" and "Secret chain: " or "Quest chain: ")
-            .. (info.repeatableReward and "Repeat eligible quests for a chance at the reward."
-                or info.questComplete and "Completed on this character. Check your bags or learned collection for the reward."
-                or "Continue from this character's first unfinished prerequisite.")
-    end
+    if info.questID then lines[#lines + 1] = "Reward quest: " .. (info.questName or tostring(info.questID)) end
     if info.npcName then lines[#lines + 1] = (info.questID and "Quest giver: " or info.kind == "Vendor" and "Vendor: " or "Source NPC: ") .. info.npcName end
     if info.location then lines[#lines + 1] = "Location: " .. info.location end
     if #info.waypoints > 1 then lines[#lines + 1] = "Locations: " .. #info.waypoints .. " recorded locations are available on the map." end

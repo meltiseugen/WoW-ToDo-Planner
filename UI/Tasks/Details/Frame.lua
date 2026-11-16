@@ -55,9 +55,6 @@ end
 
 function FrameMethods:UpdateTask(task)
     local ui = self.todoPlannerOwner.ui
-    if Achievements:AutoCompleteTask(task) then
-        Tasks:SortStable(TODOPlannerDB.tasks)
-    end
     local visibleStatus = Tasks:GetStatus(task, ui:GetSelectedBoardKey())
     local achievementId = Achievements:GetTaskAchievementId(task)
     local notesText = achievementId and Achievements:BuildDetailText(task) or Utils:Trim(task.notes or "")

@@ -78,6 +78,7 @@ function CollectionMapWindow:BuildDetailsText()
         end
         lines[#lines + 1] = "Locations:"
         for index, pinData in ipairs(visiblePins) do
+            if index > 1 then lines[#lines + 1] = "" end
             local mapName = pinData.mapName or self:GetMapName(pinData.mapID)
             local label = IsNonEmptyText(pinData.label) and pinData.label or (self.title or "Collection location")
             lines[#lines + 1] = pinData.steps and ("Steps " .. table.concat(pinData.steps, ", ") .. ": " .. label)

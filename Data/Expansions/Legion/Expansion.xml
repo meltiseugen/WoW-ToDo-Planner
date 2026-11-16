@@ -42,9 +42,6 @@
     <Script file="7.3.5/Cosmetics.lua"/>
     <Script file="7.3.5/Achievements.lua"/>
     <Script file="7.3.5/Availability.lua"/>
-    <Script file="7.0.0/Availability.lua"/>
-    <Script file="7.1.5/Availability.lua"/>
-    <Script file="7.1.0/Availability.lua"/>
     <Script file="7.2.0/Availability.lua"/>
     <Script file="7.2.5/Availability.lua"/>
     <Script file="7.3.0/Availability.lua"/>

@@ -182,7 +182,8 @@ function CollectionMapWindow:OpenProjectedDetails()
         return
     end
 
-    self:Open(self.projectedPayload)
+    local payload = self:GetCurrentProjectedCollectionPayload(self.projectedPayload) or self.projectedPayload
+    self:Open(payload)
 end
 
 function CollectionMapWindow:RefreshWorldMapProjection()

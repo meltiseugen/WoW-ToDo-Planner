@@ -38,17 +38,29 @@ function NearbyCollections:EntryMatches(collectionType, patchKey, entry, maps)
     if PatchCatalog:IsCollectionHiddenInUI(collectionType, patchKey, entry) then
         return false
     end
-    for _, waypoint in ipairs(PatchCatalog:GetCollectionWaypoints(collectionType, patchKey, entry) or {}) do
-        local pin = PatchCatalog:ParseWaypoint(waypoint)
-        if pin and maps[tonumber(pin.mapID)] then
-            return true
+    local function matchesWaypoints(waypoints)
+        for _, point in ipairs(waypoints or {}) do
+            local mapID = type(point) == "table" and (point.mapID or point.uiMapID)
+                or type(point) == "string" and point:match("^%s*/way%s+#(%d+)")
+            if maps[tonumber(mapID)] then return true end
         end
+        return false
     end
-    local source = PatchCatalog.GetCollectionSourceInfo and PatchCatalog:GetCollectionSourceInfo(collectionType, patchKey, entry)
+    local function matchesAreas(areas)
+        for _, mapID in ipairs(areas or {}) do if maps[mapID] then return true end end
+        return false
+    end
+    -- Nearby uses recorded habitats/vendors, not a live quest walk for every
+    -- item in the catalog. Character-specific destinations belong to Open Map.
+    local guide = PatchCatalog:GetCollectionWalkthrough(collectionType, entry)
+    if guide then return matchesWaypoints(guide.waypoints) or matchesAreas(guide.areaMaps) end
+    local details = PatchCatalog:GetCollectionDetails(collectionType, patchKey, entry) or {}
+    if matchesWaypoints(details.waypoints) then return true end
     local recorded = PatchCatalog:GetDescriptionMapLocations(collectionType, entry)
-    local areas = source and source.areaOnly and source.areaMaps or recorded and recorded.areaMaps
-    for _, mapID in ipairs(areas or {}) do
-        if maps[mapID] then return true end
+    if recorded and (matchesWaypoints(recorded.waypoints) or matchesAreas(recorded.areaMaps)) then return true end
+    for _, record in ipairs(PatchCatalog:GetCollectionSourceRecords(collectionType, patchKey, entry)) do
+        if matchesAreas(record.maps) then return true end
+        for _, point in ipairs(record.coords or {}) do if maps[point[1]] then return true end end
     end
     return false
 end

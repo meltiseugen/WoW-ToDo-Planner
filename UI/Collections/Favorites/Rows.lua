@@ -72,6 +72,7 @@ end
 
 function FavoritesWindow:BuildVisibleRows()
     wipe(self.visibleRows)
+    self.visibleItemRows = {}
 
     local allowedTypes = {}
     for _, collectionType in ipairs(self:GetCollectionTypes()) do
@@ -87,7 +88,7 @@ function FavoritesWindow:BuildVisibleRows()
     for _, favorite in ipairs(favorites) do
         if allowedTypes[favorite.collectionType] then
             local entry = self:GetCatalogEntry(favorite) or self:GetFallbackEntry(favorite)
-            local state = CollectionScanner:GetState(favorite.collectionType, entry)
+            local state = CollectionScanner:GetState(favorite.collectionType, entry, true)
             local rewardEntry = favorite.collectionType == "achievements" and PatchCatalog:GetAchievementReward(favorite.patchKey, entry)
             local name = CollectionScanner:GetDisplayName(favorite.collectionType, entry, state, favorite.patchKey)
             local reward = (state and state.reward) or (rewardEntry and rewardEntry.reward)
@@ -95,10 +96,8 @@ function FavoritesWindow:BuildVisibleRows()
             local mountCategory = favorite.collectionType == "mounts" and PatchCatalog:GetMountCategory(favorite.patchKey, entry) or nil
             local sourceCategory = favorite.collectionType ~= "achievements" and self:GetSourceCategory(favorite.collectionType, favorite.patchKey, entry) or nil
             local cosmeticType = favorite.collectionType == "cosmetics" and self:GetCosmeticType(entry) or nil
-            local mountSource = favorite.collectionType == "mounts" and PatchCatalog:GetMountSourceSummary(favorite.patchKey, entry) or nil
-            local mountAcquisition = favorite.collectionType == "mounts" and PatchCatalog:GetMountAcquisitionText(favorite.patchKey, entry) or nil
-            local cosmeticSource = favorite.collectionType == "cosmetics" and PatchCatalog:GetCosmeticSourceSummary(favorite.patchKey, entry) or nil
-            local cosmeticAcquisition = favorite.collectionType == "cosmetics" and PatchCatalog:GetCosmeticAcquisitionText(favorite.patchKey, entry) or nil
+            local mountSource = searchText ~= "" and favorite.collectionType == "mounts" and PatchCatalog:GetCollectionBrowseSourceSummary(favorite.collectionType, favorite.patchKey, entry) or nil
+            local cosmeticSource = searchText ~= "" and favorite.collectionType == "cosmetics" and PatchCatalog:GetCollectionBrowseSourceSummary(favorite.collectionType, favorite.patchKey, entry) or nil
             local cosmeticSubtype = favorite.collectionType == "cosmetics" and type(entry) == "table" and entry.subtype or nil
 
             local searchMatches = searchText == ""
@@ -108,9 +107,7 @@ function FavoritesWindow:BuildVisibleRows()
                     reward or "",
                     mountCategory or "",
                     mountSource or "",
-                    mountAcquisition or "",
                     cosmeticSource or "",
-                    cosmeticAcquisition or "",
                     cosmeticSubtype or "",
                     sourceCategory or "",
                     cosmeticType and self:GetCosmeticTypeLabel(cosmeticType) or "",
@@ -123,6 +120,7 @@ function FavoritesWindow:BuildVisibleRows()
             end
 
             if searchMatches and not PatchCatalog:IsCollectionHiddenInUI(favorite.collectionType, favorite.patchKey, entry) then
+                local itemID = type(entry) == "table" and tonumber(entry.itemId)
                 self.visibleRows[#self.visibleRows + 1] = {
                     favorite = favorite,
                     patchKey = favorite.patchKey,
@@ -139,6 +137,11 @@ function FavoritesWindow:BuildVisibleRows()
                     cosmeticSubtype = cosmeticSubtype,
                     addedAt = favorite.addedAt,
                 }
+                if itemID and (CollectionScanner.itemDataRequests and CollectionScanner.itemDataRequests[itemID] == true
+                    or self.cosmeticTypeRequests and self.cosmeticTypeRequests[itemID] == true) then
+                    self.visibleItemRows[itemID] = self.visibleItemRows[itemID] or {}
+                    table.insert(self.visibleItemRows[itemID], self.visibleRows[#self.visibleRows])
+                end
             end
         end
     end
@@ -222,7 +225,9 @@ function FavoritesWindow:BuildRow(parent)
 end
 
 function FavoritesWindow:UpdateRow(row, rowData, index, offsetY)
+    if row.rowData == rowData and row.boundGeometryVersion == self.rowGeometryVersion then return end
     row.rowData = rowData
+    row.boundGeometryVersion = self.rowGeometryVersion
     local _, mapHelp = self:GetCollectionMapActionHelp(rowData)
     row.mapButton.tooltipText = mapHelp
     row:SetParent(self.listContent)
@@ -230,7 +235,7 @@ function FavoritesWindow:UpdateRow(row, rowData, index, offsetY)
     row:SetPoint("TOPLEFT", self.listContent, "TOPLEFT", 0, -(offsetY or ((index - 1) * (ROW_HEIGHT + ROW_GAP))))
     row.icon:SetTexture(rowData.icon or "Interface\\Icons\\INV_Misc_QuestionMark")
     row.title:SetText(rowData.name)
-    self:SetRowMeta(row, string.format("%s - %s", self:GetRowMetaPrefix(rowData), rowData.collected and "Collected" or "Missing"), ROW_HEIGHT)
+    self:SetRowMeta(row, rowData.favoriteMeta, ROW_HEIGHT)
     Widgets:SetTextureColor(row.accent, rowData.collected and { 0.28, 0.82, 0.42, 0.74 } or "accentGold")
 
     local existingTask = self:FindTask(rowData)
@@ -262,27 +267,78 @@ function FavoritesWindow:UpdateRowSelection()
     end
 end
 
-function FavoritesWindow:BuildRows()
+function FavoritesWindow:ReleaseRows()
     for _, row in ipairs(self.rowPool) do
         row:Hide()
+        row.rowData = nil
+        row.title:SetText("")
+        row.meta:SetText("")
+        row.icon:SetTexture(nil)
     end
+    self.rowGeometry = nil
+    self.visibleItemRows = nil
+    wipe(self.visibleRows)
+end
 
-    local y = 0
-    for index, rowData in ipairs(self.visibleRows) do
-        local row = self.rowPool[index]
-        if not row then
-            row = self:BuildRow(self.listContent)
-            self.rowPool[index] = row
-        end
-        self:UpdateRow(row, rowData, index, y)
-        y = y + row:GetHeight() + ROW_GAP
+function FavoritesWindow:UpdateVisibleRows(scroll)
+    if not self.rowGeometry or self.updatingVisibleRows then return end
+    self.updatingVisibleRows = true
+    scroll = math.max(0, tonumber(scroll) or self.listScroll:GetVerticalScroll())
+    local bottom = scroll + self.listScroll:GetHeight()
+    local low, high = 1, #self.visibleRows
+    while low <= high do
+        local middle = math.floor((low + high) / 2)
+        local geometry = self.rowGeometry[middle]
+        if geometry.top + geometry.height < scroll then low = middle + 1 else high = middle - 1 end
     end
-
-    self.listContent:SetSize(LIST_CONTENT_WIDTH, math.max(self.listScroll:GetHeight() or 1, y + 6))
-    if #self.visibleRows == 0 then
-        self.emptyText:Show()
-    else
-        self.emptyText:Hide()
+    local poolIndex = 0
+    for index = math.max(1, low - 1), #self.visibleRows do
+        local geometry = self.rowGeometry[index]
+        if geometry.top > bottom + ROW_HEIGHT then break end
+        poolIndex = poolIndex + 1
+        local row = self.rowPool[poolIndex]
+        if not row then row = self:BuildRow(self.listContent); self.rowPool[poolIndex] = row end
+        self:UpdateRow(row, self.visibleRows[index], index, geometry.top)
+    end
+    for index = poolIndex + 1, #self.rowPool do
+        self.rowPool[index]:Hide()
+        self.rowPool[index].rowData = nil
     end
     self:UpdateRowSelection()
+    self.updatingVisibleRows = nil
+end
+
+function FavoritesWindow:BuildRows()
+    if self.buildingRows then return end
+    self.buildingRows = true
+    local scroll = self.listScroll:GetVerticalScroll()
+    if not self.rowMeasureTitle then
+        self.rowMeasureTitle = Widgets:CreateFontString(self.listContent, "OVERLAY", "GameFontNormal")
+        self.rowMeasureMeta = Widgets:CreateFontString(self.listContent, "OVERLAY", "GameFontHighlightSmall")
+        self.rowMeasureTitle:SetWordWrap(false)
+        self.rowMeasureMeta:SetWordWrap(true)
+        self.rowMeasureTitle:SetWidth(LIST_CONTENT_WIDTH - 258)
+        self.rowMeasureMeta:SetWidth(LIST_CONTENT_WIDTH - 258)
+        self.rowMeasureTitle:Hide()
+        self.rowMeasureMeta:Hide()
+    end
+    self.rowGeometryVersion = (self.rowGeometryVersion or 0) + 1
+    self.rowGeometry = {}
+    local y = 0
+    for index, rowData in ipairs(self.visibleRows) do
+        rowData.favoriteMeta = string.format("%s - %s", self:GetRowMetaPrefix(rowData), rowData.collected and "Collected" or "Missing")
+        self.rowMeasureTitle:SetText(rowData.name)
+        self.rowMeasureMeta:SetText(rowData.favoriteMeta)
+        local height = math.max(ROW_HEIGHT, math.ceil(self.rowMeasureTitle:GetStringHeight() + self.rowMeasureMeta:GetStringHeight()) + 20)
+        self.rowGeometry[index] = { top = y, height = height }
+        y = y + height + ROW_GAP
+    end
+    local viewport = math.max(1, self.listScroll:GetHeight())
+    self.listContent:SetSize(LIST_CONTENT_WIDTH, math.max(viewport, y + 6))
+    if self.listScroll.UpdateScrollChildRect then self.listScroll:UpdateScrollChildRect() end
+    scroll = math.max(0, math.min(scroll, y + 6 - viewport))
+    self.listScroll:SetVerticalScroll(scroll)
+    self:UpdateVisibleRows(scroll)
+    self.emptyText:SetShown(#self.visibleRows == 0)
+    self.buildingRows = nil
 end

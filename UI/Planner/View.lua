@@ -131,6 +131,8 @@ function MainWindow:Build()
         end
     end)
     frame:SetScript("OnHide", function()
+        self:CancelTaskDrag()
+        self:ReleaseColumnCards()
         self:HideChildWindows()
     end)
 

@@ -95,7 +95,9 @@ function CollectionExplorerWindow:SetSelectedExpansion(expansionKey)
     self.selectedExpansion = expansionKey
     if expansionKey == "general" then
         self.selectedPatch = "general"
-        self.selectedCollectionType = "achievements"
+        if PatchCatalog:GetCount("general",self.selectedCollectionType)==0 then
+            self.selectedCollectionType = "achievements"
+        end
     elseif self:GetExpansionForPatch(self.selectedPatch) ~= expansionKey then
         self.selectedPatch = ALL_PATCHES
     end

@@ -47,7 +47,8 @@ end
 
 function CollectionExplorerWindow:UpdateTypeTabs()
     for value, button in pairs(self.typeTabs) do
-        Widgets:SetButtonEnabled(button, self.nearbySnapshot ~= nil or self.selectedExpansion ~= "general" or value == "achievements")
+        Widgets:SetButtonEnabled(button, self.nearbySnapshot ~= nil or self.selectedExpansion ~= "general"
+            or TDP.PatchCatalog:GetCount("general",value)>0)
         if button.SetSelected then
             button:SetSelected(value == self.selectedCollectionType)
         end

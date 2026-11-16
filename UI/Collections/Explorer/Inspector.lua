@@ -2,10 +2,10 @@ local _, TDP = ...
 local Explorer = TDP.CollectionExplorerWindow
 local Widgets = TDP.Widgets
 
-local PRIMARY_ORDER = { "Availability", "Unobtainable", "Original acquisition", "How to get", "Source", "Quest chain", "Quest giver", "Location", "Locations",
+local PRIMARY_ORDER = { "Availability", "Unobtainable", "Quest progress", "Description", "Original acquisition", "How to get", "Source", "Quest chain", "Quest giver", "Location", "Locations",
     "Requirements", "Cost", "Cost guide", "Effect", "Appearance Progress", "Tips", "Reward" }
-local ACHIEVEMENT_ORDER = { "Availability", "Description", "Reward", "Criteria", "How to get", "Source", "Tips" }
-local FIELD_NAMES = { "Availability", "Unobtainable", "Original acquisition", "How to get", "Source", "Quest chain", "Quest giver", "Location", "Locations", "Requirements",
+local ACHIEVEMENT_ORDER = { "Availability", "Quest progress", "Description", "Reward", "Criteria", "How to get", "Source", "Tips" }
+local FIELD_NAMES = { "Availability", "Unobtainable", "Quest progress", "Original acquisition", "How to get", "Source", "Quest chain", "Quest giver", "Location", "Locations", "Requirements",
     "Cost", "Cost guide", "Effect", "Appearance Progress", "Tips", "Reward", "Description", "Criteria",
     "Cosmetic Type", "Achievement Type", "WoW Category", "WoW Parent Category", "Item notes", "Research notes" }
 local KNOWN_FIELDS = {}
@@ -166,7 +166,7 @@ function Explorer:UpdateExplorerInspectorText()
     self.previewMoreButton:SetText(self.previewDetailsExpanded and "Fewer details" or "Additional details")
     local text = primary
     if self.previewDetailsExpanded and additional ~= "" then text = text .. "\n\n" .. additional end
-    if self.selectedRow and text == "" then text = "Acquisition details are not recorded for this entry." end
+    if self.selectedRow and text == "" then text = "No item summary is recorded. Use Open Map for acquisition guides and quest progress." end
     local scroll = self.previewDetailsScroll:GetVerticalScroll()
     local preserve = self.inspectorTextRowKey == self:GetRowKey(self.selectedRow) and self.previewDetails.rawPreviewText == text
     self:LayoutExplorerInspector()

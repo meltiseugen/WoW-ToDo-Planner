@@ -36,14 +36,11 @@ function CollectionMapWindow:Open(options)
     self.title = options.title
     self.projectionKey = options.projectionKey
     self.collectionType = options.collectionType
-    self.sourceQuestID, self.sourcePatchKey, self.sourceEntry = options.sourceQuestID, options.sourcePatchKey, options.sourceEntry
+    self.sourcePatchKey, self.sourceEntry = options.sourcePatchKey, options.sourceEntry
     self.sourceNotes = options.sourceNotes
     self.areaOnly, self.sourceAreaMaps = options.areaOnly == true, options.sourceAreaMaps
     self.guideMaps = options.guideMaps
     self.sourceMapID = options.mapID
-    if self.sourceQuestID and self.sourceEntry then
-        TDP.PatchCatalog:GetCollectionSourceNotes(self.collectionType, self.sourcePatchKey, self.sourceEntry, true)
-    end
     self.sourceSummary = options.sourceSummary
     self.acquisition = options.acquisition
     self.effect = options.effect
@@ -78,6 +75,7 @@ function CollectionMapWindow:Open(options)
     self.frame:Show()
     Widgets:BringToFront(self.frame)
     self:RenderMap()
+    if projection and self.sourceEntry then self:RefreshProjectedCriteriaPins() end
 end
 
 function CollectionMapWindow:UpdateSourceAreaControl()
@@ -135,24 +133,6 @@ function CollectionMapWindow:GetSourceAreaLabel(mapID)
     table.sort(steps)
     local suffix = #steps > 0 and (" - " .. (#steps == 1 and "Step " or "Steps ") .. table.concat(steps, ", ")) or ""
     return (mapName or self:GetMapName(mapID)) .. suffix
-end
-
-function CollectionMapWindow:RefreshSourceDestination()
-    if not self.frame or not self.frame:IsShown() or not self.sourceQuestID or not self.sourceEntry then return end
-    local payload = TDP.PatchCatalog:GetCollectionMapPayload(self.collectionType, self.sourcePatchKey, self.sourceEntry)
-    if not payload then return end
-    local before, after = self.pins[1], payload.pins[1]
-    local samePin = (not before and not after) or (before and after and before.mapID == after.mapID and before.x == after.x and before.y == after.y)
-    if payload.sourceQuestID == self.sourceQuestID and samePin and payload.mapID == self.sourceMapID
-        and (payload.areaOnly == true) == self.areaOnly then
-        if payload.sourceSummary ~= self.sourceSummary or payload.sourceNotes ~= self.sourceNotes then
-            self.sourceSummary, self.sourceNotes, self.pins = payload.sourceSummary, payload.sourceNotes, payload.pins
-            self:RenderMap()
-        end
-        return
-    end
-    payload.title, payload.icon = self.title, self.icon
-    self:Open(payload)
 end
 
 function CollectionMapWindow:Build()
@@ -340,21 +320,6 @@ function CollectionMapWindow:Build()
         self:SetShowCompletedCriteriaPins(target:GetChecked() == true)
     end)
 
-    local criteriaEventFrame = CreateFrame("Frame")
-    pcall(criteriaEventFrame.RegisterEvent, criteriaEventFrame, "CRITERIA_UPDATE")
-    pcall(criteriaEventFrame.RegisterEvent, criteriaEventFrame, "ACHIEVEMENT_EARNED")
-    criteriaEventFrame:SetScript("OnEvent", function()
-        if not self.mapAchievementId then
-            return
-        end
-        self:RefreshCriteriaProgress()
-        self:UpdateCriteriaFilterControl()
-        self:RefreshProjectedCriteriaPins()
-        if self.frame and self.frame:IsShown() then
-            self:RenderMap()
-        end
-    end)
-
     self.frame = frame
     self.body = body
     self.mapTitle = mapTitle
@@ -375,7 +340,7 @@ function CollectionMapWindow:Build()
     self.projectButton = projectButton
     self.clearProjectButton = clearProjectButton
     self.completedPinsCheck = completedPinsCheck
-    self.criteriaEventFrame = criteriaEventFrame
+
 
     frame:Hide()
     self:UpdateProjectionControls()

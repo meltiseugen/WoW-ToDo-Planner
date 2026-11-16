@@ -2,7 +2,6 @@ local _, TDP = ...
 local MainWindow = TDP.MainWindow
 local Tasks = TDP.Tasks
 local Widgets = TDP.Widgets
-local Achievements = TDP.Achievements
 
 function MainWindow:ResetEditor()
     self.inputTitle:SetText("")
@@ -84,12 +83,6 @@ function MainWindow:HideChildWindows()
 end
 
 function MainWindow:OpenTaskDetail(task)
-    if Achievements and Achievements:AutoCompleteTask(task) then
-        Tasks:SortStable(TODOPlannerDB.tasks)
-        self:Render()
-        task = Tasks:FindById(task.id)
-    end
-
     if not self.detailWindow then
         self.detailWindow = TDP.TaskDetailWindow:New(self)
     end

@@ -48,11 +48,31 @@ function CollectionMapWindow:HideWorldMapPins()
     end
 end
 
+function CollectionMapWindow:GetPinStepInstructions(pin)
+    local instructions = type(pin.stepInstructions) == "table" and pin.stepInstructions or nil
+    -- Older saved projections only carry the full written guide.
+    if not instructions then
+        instructions = TDP.PatchCatalog:ParseCollectionGuideSteps(pin.acquisition)
+    end
+    local result, seen = {}, {}
+    for _, value in ipairs(pin.steps or (pin.step and { pin.step } or {})) do
+        local number = tonumber(value)
+        local text = instructions and (instructions[number] or instructions[tostring(number)])
+        if number and not seen[number] and IsNonEmptyText(text) then
+            seen[number] = true
+            result[#result + 1] = { number = number, text = text }
+        end
+    end
+    table.sort(result, function(a, b) return a.number < b.number end)
+    return result
+end
+
 function CollectionMapWindow:ShowWorldMapPinTooltip(pin)
+    local instructions = self:GetPinStepInstructions(pin)
     GameTooltip:SetOwner(pin, "ANCHOR_RIGHT")
     GameTooltip:SetText(pin.title or pin.label or "Collection location", 1, 0.82, 0.18)
     if IsNonEmptyText(pin.label) and pin.label ~= pin.title then
-        local prefix = pin.steps and ("Steps " .. table.concat(pin.steps, ", ") .. ": ")
+        local prefix = #instructions > 0 and "" or pin.steps and ("Steps " .. table.concat(pin.steps, ", ") .. ": ")
             or pin.step and ("Step " .. tostring(pin.step) .. ": ") or "Location: "
         GameTooltip:AddLine(prefix .. pin.label, 0.86, 0.88, 0.94, true)
     end
@@ -62,17 +82,10 @@ function CollectionMapWindow:ShowWorldMapPinTooltip(pin)
         GameTooltip:AddLine(marker .. criterionLabel, 0.72, 0.86, 0.72, true)
     end
     GameTooltip:AddLine(pin.coordinates or "", 0.82, 0.86, 0.92)
-    if IsNonEmptyText(pin.source) then
-        GameTooltip:AddLine("Source: " .. pin.source, 0.86, 0.88, 0.94, true)
-    end
-    if IsNonEmptyText(pin.acquisition) then
-        GameTooltip:AddLine("How to get: " .. pin.acquisition, 0.86, 0.88, 0.94, true)
-    end
-    if IsNonEmptyText(pin.effect) then
-        GameTooltip:AddLine("Effect: " .. pin.effect, 0.86, 0.88, 0.94, true)
-    end
-    if IsNonEmptyText(pin.tips) then
-        GameTooltip:AddLine("Tips: " .. pin.tips, 0.86, 0.88, 0.94, true)
+    for _, instruction in ipairs(instructions) do
+        GameTooltip:AddLine(" ")
+        GameTooltip:AddLine("Step " .. instruction.number, 1, 0.82, 0.18)
+        GameTooltip:AddLine(instruction.text, 0.86, 0.88, 0.94, true)
     end
     GameTooltip:AddLine("Click to set waypoint.", 1, 0.82, 0.18)
     GameTooltip:Show()

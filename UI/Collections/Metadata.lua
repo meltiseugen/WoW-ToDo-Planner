@@ -130,8 +130,8 @@ function Metadata:GetSourceCategory(collectionType, patchKey, entry)
     -- Imported journal records store the actual method in source rather than sourceType.
     local category = categoryFromSource(details.sourceType)
     if category then return category end
-    local sourceInfo = PatchCatalog.GetCollectionSourceInfo and PatchCatalog:GetCollectionSourceInfo(collectionType, patchKey, entry)
-    if sourceInfo then return sourceInfo.kind end
+    local sourceKind = PatchCatalog:GetCollectionBrowseSourceKind(collectionType, patchKey, entry)
+    if sourceKind then return sourceKind end
     return categoryFromSource(details.source or (type(entry) == "table" and entry.source)) or "Other"
 end
 
@@ -148,8 +148,8 @@ function Metadata:GetRowMetaPrefix(row)
         if guide then source = guide.category .. ": " .. guide.source end
         if not source or source == "Pet Journal Source" or source == "Toy Box Source" or source:find("Unknown", 1, true) then
             source = row.sourceCategory or self:GetSourceCategory(row.collectionType, row.patchKey, row.entry)
-            local sourceInfo = PatchCatalog.GetCollectionSourceInfo and PatchCatalog:GetCollectionSourceInfo(row.collectionType, row.patchKey, row.entry)
-            if sourceInfo then source = sourceInfo.summary
+            local summary = PatchCatalog:GetCollectionBrowseSourceSummary(row.collectionType, row.patchKey, row.entry)
+            if summary then source = summary
             elseif details.source and details.source ~= "" then source = details.source
             elseif source == "Other" then source = "Acquisition details not recorded" end
         end
@@ -171,8 +171,27 @@ end
 
 Metadata.COSMETIC_TYPE_LABELS = TYPE_LABELS
 
+-- Complete requested names/icons without refreshing ownership or quest state.
+function Metadata:RefreshLoadedCollectionItems(itemIDs)
+    local changed
+    for itemID in pairs(itemIDs) do
+        for _, row in ipairs(self.visibleItemRows[itemID] or {}) do
+            local name, icon = TDP.CollectionScanner:GetItemNameAndIcon(row.entry)
+            row.name, row.icon = name or row.name, icon or row.icon
+            if row.state then row.state.name, row.state.icon = row.name, row.icon end
+            if row.collectionType == "cosmetics" then row.cosmeticType = self:GetCosmeticType(row.entry) end
+            row.mapActionChecked = nil
+            changed = true
+        end
+    end
+    if changed then
+        self:BuildRows()
+        self:RenderPreview()
+    end
+end
+
 function Metadata:Install(windowClass)
-    for _, name in ipairs({ "GetSourceCategory", "GetCosmeticType", "GetCosmeticTypeLabel", "GetRowMetaPrefix", "SetRowMeta" }) do
+    for _, name in ipairs({ "GetSourceCategory", "GetCosmeticType", "GetCosmeticTypeLabel", "GetRowMetaPrefix", "SetRowMeta", "RefreshLoadedCollectionItems" }) do
         windowClass[name] = self[name]
     end
 end

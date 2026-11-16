@@ -20,13 +20,11 @@
     <Script file="5.3/Mounts.lua"/>
     <Script file="5.3/Pets.lua"/>
     <Script file="5.3/Toys.lua"/>
-    <Script file="5.3/Cosmetics.lua"/>
     <Script file="5.3/Achievements.lua"/>
     <Script file="5.4.0/Patch.lua"/>
     <Script file="5.4.0/Mounts.lua"/>
     <Script file="5.4.0/Pets.lua"/>
     <Script file="5.4.0/Toys.lua"/>
-    <Script file="5.4.0/Cosmetics.lua"/>
     <Script file="5.4.0/Achievements.lua"/>
     <Script file="5.4.1/Patch.lua"/>
     <Script file="5.4.1/Mounts.lua"/>
@@ -42,16 +40,10 @@
     <Script file="5.4.7/Mounts.lua"/>
     <Script file="5.4.7/Pets.lua"/>
     <Script file="5.4.7/Toys.lua"/>
-    <Script file="5.4.7/Cosmetics.lua"/>
     <Script file="5.4.7/Achievements.lua"/>
     <Script file="5.4.8/Patch.lua"/>
     <Script file="5.4.8/Mounts.lua"/>
     <Script file="5.4.8/Pets.lua"/>
     <Script file="5.4.8/Toys.lua"/>
     <Script file="5.4.8/Achievements.lua"/>
-    <Script file="5.0/Availability.lua"/>
-    <Script file="5.3/Availability.lua"/>
-    <Script file="5.2/Availability.lua"/>
-    <Script file="5.4.0/Availability.lua"/>
-    <Script file="5.4.7/Availability.lua"/>
 </Ui>

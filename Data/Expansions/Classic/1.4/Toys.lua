@@ -1,4 +1,82 @@
+-- Catalogue entries and complete Retail research for 1.4.
 local _, TDP = ...
+
+local walkthroughs = {
+    [18660] = {
+        difficulty = "medium",
+        difficultyReason = "Buy a finished toy, or obtain the rare BRD schematic, raise Gnomish Engineering and craft it; use has separate profession restrictions.",
+        name = "World Enlarger",
+        acquisition = "Difficulty: Medium - Buy a finished toy, or obtain the rare BRD schematic, raise Gnomish Engineering and craft it; use has separate profession restrictions.\n\n1. To collect without crafting, buy the finished World Enlarger (18660) from another player or the Auction House and continue at step 10. You can add it to the Toy Box without Engineering; activating it afterwards requires Gnomish Engineering.\n\n2. To craft it yourself, train Classic Engineering and raise it to 200 on a level 20 or higher character. If you are not already a Gnomish Engineer, take Gnomish Engineering (29477) from Lilliam Sparkspindle in Stormwind (62.8, 32.0) or Roxxik in Orgrimmar (56.8, 56.4). Hand that trainer 6 Mithril Tubes, 2 Advanced Target Dummies and 1 Accurate Scope. You can buy these finished quest items. Raise Classic Engineering to 260 before learning the toy's recipe.\n\n3. Obtain Schematic: World Enlarger (18661). You can buy the schematic instead of farming it; a recipe is not the finished toy. For the drop route, use Normal Blackrock Depths and the route in steps 4-8. Any character can loot the tradable schematic, even without Engineering.\n\n4. Enter Blackrock Mountain from Burning Steppes near 21.0, 38.0. Follow the chains and central tomb down to the lower passage near Lothos Riftwaker. Turn into the Grinding Quarry before his room and follow it to the Blackrock Depths portal at 38.9, 18.1 on the Blackrock Mountain: Blackrock Depths approach map. Enter the original dungeon, rather than a queued raid version.\n\n5. Inside the Detention Block, take the gate on the left, then the gate on the right. Go through the left-hand door beside the friendly NPC. Click the lever at the large hanging wheel, the Shadowforge Lock (41.3, 88.1 on the Detention Block floor). Return up the ramp and take the left corridor toward the West Garrison. Retail no longer requires the old Shadowforge Key.\n\n6. Follow the corridor left through the West Garrison. When the room opens up, take two right turns toward Golem Lord Argelmach. Kill and loot the Weapon Technicians down the ramps on both sides of the Manufactory near his room (36.4, 65.1 on the Shadowforge City floor). These technicians drop the schematic; you are not looking for a schematic vendor or farming Lower Blackrock Spire.\n\n7. For additional technicians, follow the bridge toward the Grim Guzzler and Plugger Spazzring (47.7, 65.7 on the Shadowforge City floor). Clear the bar's exit by defeating Plugger, Phalanx and the enemies that enter, then go through and down the ramp to check the next groups. The mole-machine shortcut to just past the bar is another option, but comments warn that those few groups can contain very few technicians.\n\n8. If the schematic has not dropped, use the mole machine to return to the entrance, leave and reset the dungeon. Repeat the technician route and pause at the hourly instance limit. Direbrew's Remote is optional; a reply warns that using it from outside may put you at the dungeon entrance instead of directly in the bar.\n\n9. On your Gnomish Engineer with Classic Engineering 260, learn Schematic: World Enlarger. Gather 1 Mithril Casing, 2 Thorium Widgets, 1 Gold Power Core, 1 Unstable Trigger and 1 Citrine, then craft World Enlarger. Buying the components avoids having to make their subcomponents yourself.\n\n10. Use the finished World Enlarger from your bags to collect it. To activate it from the Toy Box, use a Gnomish Engineer. The low Engineering requirement on the finished toy does not remove the specialization requirement.",
+        stepCount = 10,
+        source = "Gnomish Engineering; schematic from Weapon Technicians in Normal Blackrock Depths",
+        sourceType = "Professions",
+        category = "Professions",
+        tips = "Buying the finished toy is enough for collection credit. Buying only the schematic still requires a Gnomish Engineer to craft it. The schematic and the toy have different skill requirements. Do not change specialization merely to add a purchased toy to the collection.",
+        effect = "Makes you very small for up to 5 minutes, ending when you attack; 15-minute cooldown. Requires Gnomish Engineering to activate.",
+        requirements = "Collection: no profession. Crafting: Gnomish Engineer and Classic Engineering 260. Use: Gnomish Engineer; specialization unlock requires level 20 and Classic Engineering 200.",
+        cost = "1 Mithril Casing, 2 Thorium Widgets, 1 Gold Power Core, 1 Unstable Trigger, 1 Citrine; schematic and optional specialization quest items are extra.",
+        faction = "all",
+        wowheadUrl = "https://www.wowhead.com/item=18660",
+        waypoints = {
+            {
+                mapID = 84,
+                x = 0.628,
+                y = 0.32,
+                step = 2,
+                label = "Lilliam Sparkspindle - Alliance Gnomish specialization quest",
+                npcID = 5518,
+                locationType = "NPC",
+            },
+            {
+                mapID = 85,
+                x = 0.568,
+                y = 0.564,
+                step = 2,
+                label = "Roxxik - Horde Gnomish specialization quest",
+                npcID = 11017,
+                locationType = "NPC",
+            },
+            { mapID = 36, x = 0.21, y = 0.38, step = 4, label = "Blackrock Mountain - surface approach to the lower chains" },
+            {
+                mapID = 35,
+                mapName = "Blackrock Mountain: Blackrock Depths approach",
+                x = 0.389,
+                y = 0.181,
+                step = 4,
+                label = "Original Blackrock Depths dungeon portal",
+            },
+            {
+                mapID = 242,
+                mapName = "Blackrock Depths: Detention Block",
+                x = 0.413,
+                y = 0.881,
+                step = 5,
+                label = "Shadowforge Lock - click the lever below the hanging wheel",
+            },
+            {
+                mapID = 243,
+                mapName = "Blackrock Depths: Shadowforge City",
+                x = 0.364,
+                y = 0.651,
+                step = 6,
+                label = "Manufactory - search the technician ramps near Argelmach",
+                npcID = 8920,
+                locationType = "NPC",
+            },
+            {
+                mapID = 243,
+                mapName = "Blackrock Depths: Shadowforge City",
+                x = 0.477,
+                y = 0.657,
+                step = 7,
+                label = "Grim Guzzler - Plugger and the route to additional technicians",
+                npcID = 9499,
+                locationType = "NPC",
+            },
+        },
+        availabilityReviewedAt = "2026-11-04",
+    },
+}
 
 TDP.CatalogRegistry:RegisterCollection("1.4", "toys", {
     entries = {
@@ -10,6 +88,10 @@ TDP.CatalogRegistry:RegisterCollection("1.4", "toys", {
             source = "Gnomish Engineering",
             tips = "Farm the schematic from Weapon Technicians in Blackrock Depths, then craft it as a Gnomish Engineer. It was added in patch 1.4 and entered the Toy Box in patch 6.0.2.",
             waypoints = { "/way #36 21.0 38.0 Blackrock Mountain / Lower Blackrock Spire" },
+            difficulty = "medium",
+            difficultyReason = "Buy a finished toy, or obtain the rare BRD schematic, raise Gnomish Engineering and craft it; use has separate profession restrictions.",
+            availabilityReviewedAt = "2026-11-04",
+            walkthrough = walkthroughs[18660],
         },
     },
     details = {

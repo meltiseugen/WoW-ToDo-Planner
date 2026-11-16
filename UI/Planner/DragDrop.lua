@@ -46,24 +46,21 @@ end
 
 function MainWindow:GetDropAnchor(column, draggedTaskId)
     local _, cursorY = self:GetScaledCursorPosition()
-    local lastTaskId = nil
-
-    for _, card in ipairs(column.cards) do
-        if card.taskId ~= draggedTaskId then
-            local top = card:GetTop()
-            local bottom = card:GetBottom()
-            if top and bottom then
-                local midpoint = bottom + ((top - bottom) / 2)
-                if cursorY >= midpoint then
-                    return card.taskId, "before"
-                end
-                lastTaskId = card.taskId
-            end
-        end
+    local top = column.scroll:GetTop()
+    if not top then return nil, "end" end
+    local contentY = top - cursorY + column.scroll:GetVerticalScroll()
+    local tasks, geometry = column.tasks or {}, column.taskGeometry or {}
+    local low, high = 1, #tasks
+    while low <= high do
+        local middle = math.floor((low + high) / 2)
+        local position = geometry[middle]
+        if contentY > position.top + position.height / 2 then low = middle + 1 else high = middle - 1 end
     end
-
-    if lastTaskId then
-        return lastTaskId, "after"
+    for index = low, #tasks do
+        if tasks[index].id ~= draggedTaskId then return tasks[index].id, "before" end
+    end
+    for index = low - 1, 1, -1 do
+        if tasks[index].id ~= draggedTaskId then return tasks[index].id, "after" end
     end
 
     return nil, "end"
@@ -119,15 +116,11 @@ function MainWindow:GetIndicatorOffset(column, anchorTaskId, placement)
         return -6
     end
 
-    for _, card in ipairs(column.cards) do
-        if card.taskId == anchorTaskId then
-            local _, _, _, _, yOffset = card:GetPoint(1)
-            yOffset = yOffset or 0
-            if placement == "before" then
-                return yOffset + 4
-            end
-            return yOffset - card:GetHeight() - 4
-        end
+    local index = column.taskIndices and column.taskIndices[anchorTaskId]
+    local geometry = index and column.taskGeometry[index]
+    if geometry then
+        if placement == "before" then return -geometry.top + 4 end
+        return -geometry.top - geometry.height - 4
     end
 
     return -6
@@ -175,28 +168,16 @@ function MainWindow:BeginTaskDrag(card)
     self.dragSourceCard = card
     card:SetAlpha(0.72)
     self.frame:SetScript("OnUpdate", function()
+        if not IsMouseButtonDown("LeftButton") then
+            self:EndTaskDrag(self.dragSourceCard)
+            return
+        end
         self:UpdateDropIndicator()
     end)
     self:UpdateDropIndicator()
 end
 
-function MainWindow:EndTaskDrag(card)
-    if not card or not card.taskId or self.draggingTaskId ~= card.taskId then
-        if self.dragSourceCard then
-            self.dragSourceCard:SetAlpha(1)
-        end
-        self.frame:SetScript("OnUpdate", nil)
-        self:HideDropIndicator()
-        self.draggingTaskId = nil
-        self.dragSourceCard = nil
-        return
-    end
-
-    local targetColumn, anchorTaskId, placement = self:GetDropTarget(card.taskId)
-    if targetColumn and self:CanReorderSelectedBoard() then
-        Tasks:MoveRelative(card.taskId, targetColumn.status, self:GetSelectedBoardKey(), anchorTaskId, placement)
-    end
-
+function MainWindow:CancelTaskDrag()
     if self.dragSourceCard then
         self.dragSourceCard:SetAlpha(1)
     end
@@ -204,5 +185,17 @@ function MainWindow:EndTaskDrag(card)
     self:HideDropIndicator()
     self.draggingTaskId = nil
     self.dragSourceCard = nil
+end
+
+function MainWindow:EndTaskDrag(card)
+    if not card or not card.taskId or self.draggingTaskId ~= card.taskId then
+        self:CancelTaskDrag()
+        return
+    end
+    local targetColumn, anchorTaskId, placement = self:GetDropTarget(card.taskId)
+    if targetColumn and self:CanReorderSelectedBoard() then
+        Tasks:MoveRelative(card.taskId, targetColumn.status, self:GetSelectedBoardKey(), anchorTaskId, placement)
+    end
+    self:CancelTaskDrag()
     self:Render()
 end

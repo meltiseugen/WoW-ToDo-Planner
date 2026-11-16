@@ -76,11 +76,4 @@ TDP.CatalogRegistry:RegisterAvailability("7.2.0", {
         [147643] = shared["cosmetics 147621"],
         [147644] = shared["cosmetics 147621"],
     },
-    mounts = {
-        [227989] = {
-            reason = "The original rated Arena season has ended. Its Gladiator mount cannot be earned in a later season.",
-            reviewedAt = "2026-10-13",
-            sourceUrl = "https://www.warcraftmounts.com/retired.php",
-        },
-    },
 })

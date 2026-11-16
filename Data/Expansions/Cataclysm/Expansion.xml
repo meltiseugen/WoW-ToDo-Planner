@@ -21,14 +21,4 @@
     <Script file="4.3.0/Pets.lua"/>
     <Script file="4.3.0/Toys.lua"/>
     <Script file="4.3.0/Achievements.lua"/>
-    <Script file="MountGuides.lua"/>
-    <Script file="PetGuides.lua"/>
-    <Script file="ToyGuides.lua"/>
-    <Script file="CosmeticGuides.lua"/>
-    <Script file="AchievementDungeonGuides.lua"/>
-    <Script file="AchievementRaidGuides.lua"/>
-    <Script file="AchievementRatedGuides.lua"/>
-    <Script file="AchievementCollectionGuides.lua"/>
-    <Script file="AchievementProfessionGuides.lua"/>
-    <Script file="AchievementReputationGuides.lua"/>
 </Ui>

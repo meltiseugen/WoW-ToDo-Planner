@@ -6,10 +6,13 @@ local PAYLOAD_FIELDS = {
     "projectionKey", "title", "collectionType", "sourceSummary", "acquisition",
     "effect", "tips", "requirements", "cost", "costs", "availability", "notes",
     "researchNotes", "description", "criteria", "mapAchievementId", "waypoints", "icon", "guideMaps",
+    "sourcePatchKey", "sourceEntry", "sourceNotes",
 }
 local PIN_FIELDS = {
     "mapName", "label", "waypoint", "icon", "source", "acquisition", "effect", "tips",
     "criterionAchievementId", "criterionIndex", "criterionCompleted", "criterionText", "step", "steps",
+    "stepInstructions",
+    "questID", "npcID", "locationType",
 }
 
 -- SavedVariables must contain data only, independent of frames and catalog tables.
@@ -29,12 +32,14 @@ local function CopyData(value, depth)
     end
 end
 
-local function CopyPins(pins)
+local function CopyPins(pins, legacyQuestProgress)
     local result = {}
     for _, source in ipairs(type(pins) == "table" and pins or {}) do
         local mapID = type(source) == "table" and tonumber(source.mapID)
         local x, y = GetPinCoordinates(source)
-        if mapID and mapID > 0 and mapID < math.huge and mapID == math.floor(mapID)
+        local questPin = type(source) == "table" and (source.questDestination == true
+            or legacyQuestProgress and source.questDestination == nil and source.questID ~= nil)
+        if not questPin and mapID and mapID > 0 and mapID < math.huge and mapID == math.floor(mapID)
             and x and y and x == x and y == y then
             local pin = { mapID = mapID, x = x, y = y }
             for _, field in ipairs(PIN_FIELDS) do pin[field] = CopyData(source[field]) end
@@ -69,9 +74,19 @@ local function NormalizePayload(source)
     if type(source) ~= "table" then return nil end
     local payload = {}
     for _, field in ipairs(PAYLOAD_FIELDS) do payload[field] = CopyData(source[field]) end
-    payload.allPins = CopyPins(source.allPins or source.pins)
+    local legacyQuestProgress = source.sourceProgressSignature or source.sourceQuestID or source.guideMapDestinations
+    payload.allPins = CopyPins(source.allPins or source.pins, legacyQuestProgress)
     if #payload.allPins == 0 then return nil end
-    payload.mapID = tonumber(source.mapID) or payload.allPins[1].mapID
+    if legacyQuestProgress then
+        payload.sourceNotes = nil
+        payload.guideMaps = nil
+        payload.waypoints = CopyData(payload.allPins)
+        payload.mapID = payload.allPins[1].mapID
+    end
+    for _, pin in ipairs(payload.allPins) do
+        if pin.criterionIndex then payload.hasCriteriaPins = true; break end
+    end
+    payload.mapID = payload.mapID or tonumber(source.mapID) or payload.allPins[1].mapID
     payload.showCompletedCriteriaPins = source.showCompletedCriteriaPins == true
     payload.projectionKey = GetProjectionKey(payload)
     FilterPins(payload)
@@ -115,7 +130,10 @@ function CollectionMapWindow:SaveProjections()
     if type(TODOPlannerDB) ~= "table" then return end
     TODOPlannerDB.mapProjections = {}
     for _, payload in ipairs(self.projectedPayloads) do
-        TODOPlannerDB.mapProjections[#TODOPlannerDB.mapProjections + 1] = NormalizePayload(payload)
+        -- AddProjection / RestoreProjections already sanitize and detach these
+        -- records from catalog tables. Do not deep-copy every guide and pin
+        -- again whenever one projected criterion changes.
+        TODOPlannerDB.mapProjections[#TODOPlannerDB.mapProjections + 1] = payload
     end
 end
 
@@ -130,37 +148,31 @@ function CollectionMapWindow:AddProjection(payload)
     return true
 end
 
-local function RefreshPayloadCriteria(payload)
-    local snapshot = CollectionMapWindow:New()
-    snapshot.mapAchievementId = payload.mapAchievementId
-    snapshot.criteria = payload.criteria
-    snapshot.pins = payload.allPins
-    local previous = {}
-    for index, pin in ipairs(snapshot.pins) do
-        previous[index] = { pin.criterionCompleted, pin.criterionText }
-    end
-    snapshot:RefreshCriteriaProgress()
-    payload.criteria = snapshot.criteria
-    FilterPins(payload)
-    for index, pin in ipairs(snapshot.pins) do
-        if pin.criterionCompleted ~= previous[index][1] or pin.criterionText ~= previous[index][2] then
-            return true
+function CollectionMapWindow:GetCurrentProjectedCollectionPayload(payload)
+    local catalog = TDP.PatchCatalog
+    if not catalog then return nil end
+    local collectionType, id = tostring(payload.projectionKey):match("^([^:]+):(%d+)$")
+    local field = ({mounts="spellId", pets="speciesId", toys="itemId", cosmetics="itemId", achievements="achievementId"})[collectionType]
+    local sourceEntry, patchKey = payload.sourceEntry, payload.sourcePatchKey
+    if field and not sourceEntry then
+        for key, patch in pairs(catalog.patches) do
+            local entries = collectionType == "achievements" and patch.achievements and patch.achievements.ids or patch[collectionType]
+            for _, entry in ipairs(entries or {}) do
+                local entryID = type(entry) == "table" and entry[field] or entry
+                if tonumber(entryID) == tonumber(id) then sourceEntry, patchKey = entry, key; break end
+            end
+            if sourceEntry then break end
         end
     end
-    return false
+    if not sourceEntry or not patchKey then return nil end
+    local updated = catalog:GetCollectionMapPayload(collectionType or payload.collectionType, patchKey, sourceEntry)
+    if updated then
+        updated.title, updated.icon = payload.title, payload.icon
+        updated.showCompletedCriteriaPins = payload.showCompletedCriteriaPins
+    end
+    return updated
 end
 
-function CollectionMapWindow:RefreshSavedProjectionCriteria()
-    local changed = false
-    for _, payload in ipairs(self.projectedPayloads) do
-        if RefreshPayloadCriteria(payload) then changed = true end
-    end
-    if changed then
-        self:SaveProjections()
-        self:RefreshWorldMapProjection()
-        self:RefreshMinimapProjection()
-    end
-end
 
 function CollectionMapWindow:RestoreProjections()
     self:HideWorldMapPins()
@@ -169,9 +181,13 @@ function CollectionMapWindow:RestoreProjections()
     self.projectedPayload = nil
     local saved = type(TODOPlannerDB) == "table" and TODOPlannerDB.mapProjections
     for _, source in ipairs(type(saved) == "table" and saved or {}) do
+        -- Rebuild old quest projections from the written guide once. If a guide
+        -- is unavailable, normalization retains only ordinary recorded pins.
+        if type(source) == "table" and (source.sourceProgressSignature or source.sourceQuestID or source.guideMapDestinations) then
+            source = self:GetCurrentProjectedCollectionPayload(source) or source
+        end
         local payload = NormalizePayload(source)
         if payload then
-            RefreshPayloadCriteria(payload)
             -- Use the same update semantics for duplicate saved entries.
             local _, index = self:FindProjection(payload)
             if index then table.remove(self.projectedPayloads, index) end

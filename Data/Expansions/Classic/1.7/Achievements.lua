@@ -1,3 +1,4 @@
+-- Catalogue entries and complete Retail research for 1.7.
 local _, TDP = ...
 
-TDP.CatalogRegistry:RegisterCollection("1.7", "achievements", { entries = { ids = {}, rewardHighlights = { "Swift Razzashi Raptor", "Swift Zulian Tiger", "Arathi Basin faction tabards" } }, details = {}, categories = {} })
+TDP.CatalogRegistry:RegisterCollection("1.7", "achievements", { entries = { ids = {}, rewardHighlights = {} }, details = {}, categories = {} })

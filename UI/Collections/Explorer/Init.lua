@@ -51,7 +51,9 @@ function CollectionExplorerWindow:New(homeWindow)
     for _, collectionType in ipairs(TYPE_OPTIONS) do
         if saved.collectionType == collectionType then selectedType = collectionType end
     end
-    if saved.expansion == "general" then selectedType = "achievements" end
+    if saved.expansion == "general" and TDP.PatchCatalog:GetCount("general",selectedType)==0 then
+        selectedType = "achievements"
+    end
     local selectedStatus = settings.collectionStatusFilter
     if selectedStatus ~= "missing" and selectedStatus ~= "all" and selectedStatus ~= "collected" then
         selectedStatus = settings.collectionHideCollected == false and "all" or "missing"

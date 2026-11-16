@@ -17,8 +17,35 @@ local OWNERSHIP_BADGE_HEIGHT = 20
 local TITLE_WIDTH = CARD_WIDTH - (CARD_INSET * 2)
 local TITLE_MEASURE_HEIGHT = 120
 
+local function CardHeight(titleHeight, metaHeight, showOwnershipBadge)
+    local contentBottom = 10 + titleHeight + 6
+        + (showOwnershipBadge and OWNERSHIP_BADGE_HEIGHT + 5 or 0) + metaHeight
+    return math.max(MIN_CARD_HEIGHT, contentBottom + 10 + CARD_ACTION_HEIGHT + CARD_ACTION_GAP)
+end
+
 function TaskCardFactory:New()
     return setmetatable({}, self)
+end
+
+-- Measure task data with two reusable font strings, without constructing cards.
+function TaskCardFactory:MeasureHeight(task, width, showOwnershipBadge)
+    if not self.measureTitle then
+        self.measureTitle = Widgets:CreateFontString(UIParent, "OVERLAY", "GameFontNormal")
+        self.measureMeta = Widgets:CreateFontString(UIParent, "OVERLAY", "GameFontHighlightSmall")
+        self.measureTitle:SetWordWrap(true)
+        self.measureTitle:SetNonSpaceWrap(true)
+        self.measureTitle:SetMaxLines(0)
+        self.measureTitle:Hide()
+        self.measureMeta:Hide()
+    end
+    local textWidth = math.max(1, width - CARD_INSET * 2)
+    self.measureTitle:SetWidth(textWidth)
+    self.measureTitle:SetHeight(TITLE_MEASURE_HEIGHT)
+    self.measureTitle:SetText(task.title or "(Untitled)")
+    self.measureMeta:SetWidth(textWidth)
+    self.measureMeta:SetText("Category: " .. (task.category or "Other"))
+    return CardHeight(math.max(14, math.ceil(self.measureTitle:GetStringHeight() or 14)),
+        math.ceil(self.measureMeta:GetStringHeight() or 12), showOwnershipBadge)
 end
 
 function TaskCardFactory:ShouldShowOwnershipBadge(ui)
@@ -213,13 +240,8 @@ function TaskCardFactory:Update(card, task, status, ui)
         task.category or "Other"
     ))
 
-    local contentBottom = 10
-        + (card.titleText:GetHeight() or 14)
-        + 6
-        + (showOwnershipBadge and OWNERSHIP_BADGE_HEIGHT + 5 or 0)
-        + math.ceil(card.metaText:GetStringHeight() or 12)
-    local actionTop = 10 + CARD_ACTION_HEIGHT + CARD_ACTION_GAP
-    card:SetHeight(math.max(MIN_CARD_HEIGHT, contentBottom + actionTop))
+    card:SetHeight(CardHeight(card.titleText:GetHeight() or 14,
+        math.ceil(card.metaText:GetStringHeight() or 12), showOwnershipBadge))
 
     local canDrag = ui
         and type(ui.CanReorderSelectedBoard) == "function"

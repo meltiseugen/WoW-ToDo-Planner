@@ -1,32 +1,169 @@
+-- Catalogue entries and complete Retail research for 3.0.8.
 local _, TDP = ...
 
-local shared = {}
-shared["Wintergrasp"] = {
-    acquisition = "Complete the listed Wintergrasp vehicle or elemental-control criterion.",
-    source = "Wintergrasp",
-    sourceType = "Achievement",
-    tips = "Track the vehicle and elemental subcriteria across battles; control of the zone changes on the battle cycle.",
-    waypoints = { "/way #123 50.0 11.0 Wintergrasp Fortress" },
-}
-
-shared["Azeroth critters"] = {
-    acquisition = "Find and love or defeat every critter listed in the achievement criteria.",
-    source = "Azeroth critters",
-    sourceType = "Achievement",
-    tips = "Track the list zone by zone and use a targeting macro for small critters.",
+local walkthroughs = {
+    [2476] = {
+        achievementId = 2476,
+        name = "Destruction Derby",
+        category = "PvP",
+        sourceType = "Achievement",
+        source = "Destruction Derby",
+        acquisition = "Difficulty: Medium - Participate in destroying all four distinct Wintergrasp vehicle or cannon types across battles.\n\n1. For populated PvP, queue for Wintergrasp through the PvP Epic Battleground interface (or its specific battleground selection when available). This loads an INSTANCE. Outdoor Wintergrasp in Northrend is a separate copy that still has its own battle/control state; use the map dropdown to distinguish them.\n\n2. Track the FOUR separate Wintergrasp targets: Catapult, Siege Engine, Demolisher and Tower Cannon. You may accumulate their ticks across battles; driving these vehicles is not the same as destroying them.\n\n3. Follow enemy vehicle pushes from controlled workshops toward the fortress and help destroy each missing vehicle TYPE. Aim to participate through its final destruction and check the corresponding tick immediately.\n\n4. For Tower Cannon, attack a hostile cannon on an enemy-held tower/fortress wall until destroyed. This target is the cannon, not the entire tower building. Complete all four ticks on the version appropriate to your faction.",
+        stepCount = 4,
+        waypoints = {
+            {
+                mapID = 1334,
+                x = 0.493,
+                y = 0.21100000000000002,
+                step = 3,
+                label = "Fortress approaches - enemy siege pushes",
+                mapName = "Wintergrasp (Epic Battleground)",
+            },
+            {
+                mapID = 1334,
+                x = 0.32899999999999996,
+                y = 0.38799999999999996,
+                step = 3,
+                label = "Broken Temple - vehicle traffic",
+                mapName = "Wintergrasp (Epic Battleground)",
+            },
+            {
+                mapID = 1334,
+                x = 0.638,
+                y = 0.401,
+                step = 3,
+                label = "Sunken Ring - vehicle traffic",
+                mapName = "Wintergrasp (Epic Battleground)",
+            },
+            {
+                mapID = 1334,
+                x = 0.24,
+                y = 0.588,
+                step = 4,
+                label = "Hostile southern tower cannons",
+                mapName = "Wintergrasp (Epic Battleground)",
+            },
+            {
+                mapID = 1334,
+                x = 0.794,
+                y = 0.627,
+                step = 4,
+                label = "Hostile southern tower cannons",
+                mapName = "Wintergrasp (Epic Battleground)",
+            },
+            {
+                mapID = 123,
+                x = 0.493,
+                y = 0.21100000000000002,
+                step = 3,
+                label = "Fortress approaches - enemy siege pushes",
+                mapName = "Wintergrasp (Outdoor)",
+            },
+            {
+                mapID = 123,
+                x = 0.32899999999999996,
+                y = 0.38799999999999996,
+                step = 3,
+                label = "Broken Temple - vehicle traffic",
+                mapName = "Wintergrasp (Outdoor)",
+            },
+            {
+                mapID = 123,
+                x = 0.638,
+                y = 0.401,
+                step = 3,
+                label = "Sunken Ring - vehicle traffic",
+                mapName = "Wintergrasp (Outdoor)",
+            },
+            {
+                mapID = 123,
+                x = 0.24,
+                y = 0.588,
+                step = 4,
+                label = "Hostile southern tower cannons",
+                mapName = "Wintergrasp (Outdoor)",
+            },
+            {
+                mapID = 123,
+                x = 0.794,
+                y = 0.627,
+                step = 4,
+                label = "Hostile southern tower cannons",
+                mapName = "Wintergrasp (Outdoor)",
+            },
+        },
+        tips = "Retail reports still describe Siege Engine credit/UI problems. Check the live criterion after a kill and try another eligible enemy engine if missing. Old friendly-duel exploits are not presented as a guaranteed repair.",
+        sources = {
+            "https://www.wowhead.com/achievement=1737#comments",
+            "https://www.wowhead.com/achievement=2476#comments:id=5897587",
+        },
+        wowheadUrl = "https://www.wowhead.com/achievement=2476",
+        sourceURL = "https://www.wowhead.com/achievement=2476#comments",
+        difficultyReason = "Participate in destroying all four distinct Wintergrasp vehicle or cannon types across battles.",
+        difficulty = "medium",
+    },
+    [2557] = {
+        achievementId = 2557,
+        name = "To All The Squirrels Who Shared My Life",
+        category = "Exploration",
+        sourceType = "Achievement",
+        source = "To All The Squirrels Who Shared My Life",
+        acquisition = "Difficulty: Easy - Complete the short turkey-kill or critter-emote checklist; attempts can be repeated without a lockout.\n\n1. Track the current checklist and use /love with each required animal targeted. These are emotes, not kill objectives. Summoned matching battle pets can satisfy several criteria; check those first, then visit the missing wild species below.\n\n2. Borean Tundra: /love a Borean Marmot near 51, 73 and a Tundra Penguin on the coast near 62, 68. Dragonblight: find an Arctic Hare around 28, 50; a plain Hare is a different name and is not a current criterion here.\n\n3. Sholazar Basin: /love a Sholazar Tickbird around Nesingwary Base Camp (27, 60). Icecrown: look for Glacier Penguins on the northern coast near 65, 22; current replies confirm they are present again after the old invasion phasing issue.\n\n4. Grizzly Hills: /love a Grizzly Squirrel around 43, 48 and a Mountain Skunk around 57, 35. Target the exact species rather than another nearby squirrel/skunk.\n\n5. Howling Fjord: /love a Fjord Penguin on the southwest coast (20, 60), a Scalawag Frog at Scalawag Point (35, 80), and a Fjord Turkey near Explorers' League Outpost (69.2, 64.6).\n\n6. For Huge Toad, use the Zul'Drak search area around 44, 61 (also found in the southern fields). Then travel to Searing Gorge and /love a tiny Lava Crab beside the lava at Pyrox Flats (42, 38). Check all twelve current species.",
+        stepCount = 6,
+        waypoints = {
+            { mapID = 114, x = 0.51, y = 0.73, step = 2, label = "Borean Marmot" },
+            { mapID = 114, x = 0.62, y = 0.68, step = 2, label = "Tundra Penguin" },
+            { mapID = 115, x = 0.28, y = 0.5, step = 2, label = "Arctic Hare" },
+            { mapID = 119, x = 0.27, y = 0.6, step = 3, label = "Sholazar Tickbird" },
+            { mapID = 118, x = 0.65, y = 0.22, step = 3, label = "Glacier Penguin - northern coast" },
+            { mapID = 116, x = 0.43, y = 0.48, step = 4, label = "Grizzly Squirrel" },
+            { mapID = 116, x = 0.57, y = 0.35, step = 4, label = "Mountain Skunk" },
+            { mapID = 117, x = 0.2, y = 0.6, step = 5, label = "Fjord Penguin" },
+            { mapID = 117, x = 0.35, y = 0.8, step = 5, label = "Scalawag Frog" },
+            { mapID = 117, x = 0.6920000000000001, y = 0.6459999999999999, step = 5, label = "Fjord Turkey" },
+            { mapID = 121, x = 0.44, y = 0.61, step = 6, label = "Huge Toad - search nearby" },
+            { mapID = 32, x = 0.42, y = 0.38, step = 6, label = "Lava Crab - tiny critter beside lava" },
+        },
+        tips = "These are search areas, not guaranteed live spawns. The old temporary plain-Hare criterion and pre-Cataclysm Swamp of Sorrows coordinates are omitted.",
+        sources = {
+            "https://www.wowhead.com/achievement=2557#comments:id=574766",
+            "https://www.wowhead.com/achievement=2557#comments:id=1859107",
+            "https://www.wowhead.com/achievement=2557#comments:id=3139945",
+            "https://www.wowhead.com/achievement=2557#comments:id=3247577",
+        },
+        wowheadUrl = "https://www.wowhead.com/achievement=2557",
+        sourceURL = "https://www.wowhead.com/achievement=2557#comments",
+        difficultyReason = "Complete the short turkey-kill or critter-emote checklist; attempts can be repeated without a lockout.",
+        difficulty = "easy",
+    },
 }
 
 TDP.CatalogRegistry:RegisterCollection("3.0.8", "achievements", {
-    entries = { ids = {
-            2476, -- Destruction Derby
-            2557, -- To All The Squirrels Who Shared My Life
-        }, rewardHighlights = { "Little Fawn", "Blue Dragonhawk", "Red Dragonhawk" } },
+    entries = { ids = { 2476, 2557 }, rewardHighlights = {} },
     details = {
-        [2476] = shared["Wintergrasp"],
-        [2557] = shared["Azeroth critters"],
+        [2476] = {
+            acquisition = walkthroughs[2476]["acquisition"],
+            source = "Destruction Derby",
+            sourceType = "Achievement",
+            tips = walkthroughs[2476]["tips"],
+            waypoints = walkthroughs[2476]["waypoints"],
+            difficulty = "medium",
+            difficultyReason = "Participate in destroying all four distinct Wintergrasp vehicle or cannon types across battles.",
+            walkthrough = walkthroughs[2476],
+        },
+        [2557] = {
+            acquisition = walkthroughs[2557]["acquisition"],
+            source = "To All The Squirrels Who Shared My Life",
+            sourceType = "Achievement",
+            tips = "These are search areas, not guaranteed live spawns. The old temporary plain-Hare criterion and pre-Cataclysm Swamp of Sorrows coordinates are omitted.",
+            waypoints = walkthroughs[2557]["waypoints"],
+            difficulty = "easy",
+            difficultyReason = "Complete the short turkey-kill or critter-emote checklist; attempts can be repeated without a lockout.",
+            walkthrough = walkthroughs[2557],
+        },
     },
-    categories = {
-        [2476] = "PvP",
-        [2557] = "Exploration",
+    categories = { [2476] = "PvP", [2557] = "Exploration" },
+    research = {
+        originalNotes = "            2476, -- Destruction Derby\n            2557, -- To All The Squirrels Who Shared My Life",
     },
 })

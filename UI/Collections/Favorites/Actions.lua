@@ -61,7 +61,7 @@ function FavoritesWindow:CreateTask(row)
         return false
     end
 
-    local task = Tasks:CreateOnSelectedBoard({
+    Tasks:CreateOnSelectedBoard({
         title = row.name,
         notes = self:GetRowNotes(row),
         category = CATEGORY_BY_TYPE[row.collectionType] or "Collections",
@@ -69,10 +69,6 @@ function FavoritesWindow:CreateTask(row)
         sourceType = self:GetSourceType(row.collectionType),
         sourceId = self:GetSourceId(row),
     })
-    if TDP.CollectionTaskProgress and TDP.CollectionTaskProgress:AutoCompleteTask(task) then
-        Tasks:SortStable(TODOPlannerDB.tasks)
-    end
-
     return true
 end
 

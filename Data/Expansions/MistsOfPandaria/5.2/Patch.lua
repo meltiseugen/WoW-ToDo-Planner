@@ -2,12 +2,6 @@ local _, TDP = ...
 
 TDP.CatalogRegistry:RegisterPatch("5.2", {
     cosmeticDetailGroups = {
-        pvpTabard = {
-            acquisition = "Earn the elite Tyrannical Gladiator's Tabard during Mists PvP Season 13.",
-            source = "Mists PvP Season 13",
-            sourceType = "Elite PvP season reward",
-            tips = "The original elite-season source is no longer obtainable.",
-        },
         thunderTabards = {
             acquisition = "Reach Exalted with the matching faction and purchase its tabard.",
             source = "Isle of Thunder factions",

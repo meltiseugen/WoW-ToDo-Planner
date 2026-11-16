@@ -1,53 +1,12 @@
+-- Catalogue entries and complete Retail research for 7.1.0.
 local _, TDP = ...
-
-local shared = {}
-shared["Fearless Combatant"] = {
-    acquisition = "Win 100 Arena (3v3) or 40 Rated Battlegrounds in Legion Season 2.",
-    source = "Fearless Combatant",
-    sourceType = "Achievement",
-    tips = "This is a historical PvP reward. Elite, Gladiator, and original Prestige rewards may no longer be obtainable from their original source.",
-}
 
 TDP.CatalogRegistry:RegisterCollection("7.1.0", "achievements", {
     entries = {
         ids = {
-            11000,
-            11003,
-            11004,
-            11013,
-            11014,
-            11026,
-            11027,
-            11028,
-            11029,
-            11030,
-            11031,
-            11032,
-            11033,
-            11034,
-            11035,
-            11036,
-            11320,
-            11335,
-            11337,
-            11338,
-            11340,
-            11377,
-            11386,
-            11394,
-            11396,
-            11397,
-            11398,
-            11403,
-            11404,
-            11426,
-            11428,
-            11429,
-            11430,
-            11431,
-            11432,
-            11433,
-            11929,
+            11000, 11003, 11004, 11013, 11014, 11026, 11027, 11028, 11029, 11030, 11031, 11032, 11033, 11034,
+            11035, 11036, 11320, 11335, 11337, 11338, 11340, 11377, 11386, 11394, 11396, 11397, 11398, 11403,
+            11404, 11426, 11428, 11429, 11430, 11431, 11432, 11433, 11929,
         },
         rewardHighlights = {},
     },
@@ -58,8 +17,18 @@ TDP.CatalogRegistry:RegisterCollection("7.1.0", "achievements", {
             sourceType = "Achievement",
             tips = "This is a historical PvP reward. Elite, Gladiator, and original Prestige rewards may no longer be obtainable from their original source.",
         },
-        [11003] = shared["Fearless Combatant"],
-        [11004] = shared["Fearless Combatant"],
+        [11003] = {
+            acquisition = "Win 100 Arena (3v3) or 40 Rated Battlegrounds in Legion Season 2.",
+            source = "Fearless Combatant",
+            sourceType = "Achievement",
+            tips = "This is a historical PvP reward. Elite, Gladiator, and original Prestige rewards may no longer be obtainable from their original source.",
+        },
+        [11004] = {
+            acquisition = "Win 100 Arena (3v3) or 40 Rated Battlegrounds in Legion Season 2.",
+            source = "Fearless Combatant",
+            sourceType = "Achievement",
+            tips = "This is a historical PvP reward. Elite, Gladiator, and original Prestige rewards may no longer be obtainable from their original source.",
+        },
         [11013] = {
             acquisition = "End Legion PvP season 2 in the top 0.5% of the arena ladder (requires 50 games won in Legion Season 2).",
             source = "Gladiator: Legion Season 2",

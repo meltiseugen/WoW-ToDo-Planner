@@ -1,34 +1,5 @@
+-- Catalogue entries and complete Retail research for 7.2.5.
 local _, TDP = ...
-
-local shared = {}
-shared["Drop: Broken Isles Fishing"] = {
-    acquisition = "Obtain this toy from the listed source: Drop: Broken Isles Fishing.",
-    source = "Drop: Broken Isles Fishing",
-    sourceType = "Toy Box Source",
-    tips = "Check the source's loot lockout before farming. Argus rares rotate and many drops are not guaranteed, so use eligible alts when practical.",
-}
-
-shared["Vendor: Conjurer Margoss / Zone: Dalaran / Faction: Conjurer Margoss - Friend / Cost: 100 "] = {
-    acquisition = "Obtain this toy from the listed source: Vendor: Conjurer Margoss / Zone: Dalaran / Faction: Conjurer Margoss - Friend / Cost: 100 currency.",
-    source = "Vendor: Conjurer Margoss / Zone: Dalaran / Faction: Conjurer Margoss - Friend / Cost: 100 currency",
-    sourceType = "Toy Box Source",
-    tips = "Confirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.",
-    waypoints = { "/way #627 45.6 62.8 Krasus' Landing" },
-}
-
-shared["Vendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency"] = {
-    acquisition = "Obtain this toy from the listed source: Vendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency.",
-    source = "Vendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency",
-    sourceType = "Toy Box Source",
-    tips = "Confirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.",
-}
-
-shared["Vendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency"] = {
-    acquisition = "Obtain this toy from the listed source: Vendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency.",
-    source = "Vendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency",
-    sourceType = "Toy Box Source",
-    tips = "Confirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.",
-}
 
 TDP.CatalogRegistry:RegisterCollection("7.2.5", "toys", {
     entries = {
@@ -163,12 +134,44 @@ TDP.CatalogRegistry:RegisterCollection("7.2.5", "toys", {
             sourceType = "Toy Box Source",
             tips = "Check prerequisites and the source's daily or weekly lockout before starting; several Legion collectibles require campaign progress or repeat attempts.",
         },
-        ["Crate of Bobbers: Can of Worms"] = shared["Drop: Broken Isles Fishing"],
-        ["Crate of Bobbers: Cat Head"] = shared["Drop: Broken Isles Fishing"],
-        ["Crate of Bobbers: Murloc Head"] = shared["Vendor: Conjurer Margoss / Zone: Dalaran / Faction: Conjurer Margoss - Friend / Cost: 100 "],
-        ["Crate of Bobbers: Squeaky Duck"] = shared["Vendor: Conjurer Margoss / Zone: Dalaran / Faction: Conjurer Margoss - Friend / Cost: 100 "],
-        ["Crate of Bobbers: Tugboat"] = shared["Drop: Broken Isles Fishing"],
-        ["Crate of Bobbers: Wooden Pepe"] = shared["Drop: Broken Isles Fishing"],
+        ["Crate of Bobbers: Can of Worms"] = {
+            acquisition = "Obtain this toy from the listed source: Drop: Broken Isles Fishing.",
+            source = "Drop: Broken Isles Fishing",
+            sourceType = "Toy Box Source",
+            tips = "Check the source's loot lockout before farming. Argus rares rotate and many drops are not guaranteed, so use eligible alts when practical.",
+        },
+        ["Crate of Bobbers: Cat Head"] = {
+            acquisition = "Obtain this toy from the listed source: Drop: Broken Isles Fishing.",
+            source = "Drop: Broken Isles Fishing",
+            sourceType = "Toy Box Source",
+            tips = "Check the source's loot lockout before farming. Argus rares rotate and many drops are not guaranteed, so use eligible alts when practical.",
+        },
+        ["Crate of Bobbers: Murloc Head"] = {
+            acquisition = "Obtain this toy from the listed source: Vendor: Conjurer Margoss / Zone: Dalaran / Faction: Conjurer Margoss - Friend / Cost: 100 currency.",
+            source = "Vendor: Conjurer Margoss / Zone: Dalaran / Faction: Conjurer Margoss - Friend / Cost: 100 currency",
+            sourceType = "Toy Box Source",
+            tips = "Confirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.",
+            waypoints = { "/way #627 45.6 62.8 Krasus' Landing" },
+        },
+        ["Crate of Bobbers: Squeaky Duck"] = {
+            acquisition = "Obtain this toy from the listed source: Vendor: Conjurer Margoss / Zone: Dalaran / Faction: Conjurer Margoss - Friend / Cost: 100 currency.",
+            source = "Vendor: Conjurer Margoss / Zone: Dalaran / Faction: Conjurer Margoss - Friend / Cost: 100 currency",
+            sourceType = "Toy Box Source",
+            tips = "Confirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.",
+            waypoints = { "/way #627 45.6 62.8 Krasus' Landing" },
+        },
+        ["Crate of Bobbers: Tugboat"] = {
+            acquisition = "Obtain this toy from the listed source: Drop: Broken Isles Fishing.",
+            source = "Drop: Broken Isles Fishing",
+            sourceType = "Toy Box Source",
+            tips = "Check the source's loot lockout before farming. Argus rares rotate and many drops are not guaranteed, so use eligible alts when practical.",
+        },
+        ["Crate of Bobbers: Wooden Pepe"] = {
+            acquisition = "Obtain this toy from the listed source: Drop: Broken Isles Fishing.",
+            source = "Drop: Broken Isles Fishing",
+            sourceType = "Toy Box Source",
+            tips = "Check the source's loot lockout before farming. Argus rares rotate and many drops are not guaranteed, so use eligible alts when practical.",
+        },
         ["Demon Noggin"] = {
             acquisition = "Obtain this toy from the listed source: Vendor: Impus / Zone: Broken Shore / Profession: Fishing / Reputation: Impus - Best Friend.",
             source = "Vendor: Impus / Zone: Broken Shore / Profession: Fishing / Reputation: Impus - Best Friend",
@@ -201,15 +204,35 @@ TDP.CatalogRegistry:RegisterCollection("7.2.5", "toys", {
             sourceType = "Toy Box Source",
             tips = "Check prerequisites and the source's daily or weekly lockout before starting; several Legion collectibles require campaign progress or repeat attempts.",
         },
-        ["Surviving Kalimdor"] = shared["Vendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency"],
-        ["The Azeroth Campaign"] = shared["Vendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency"],
-        ["To Modernize the Provisioning of Azeroth"] = shared["Vendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency"],
+        ["Surviving Kalimdor"] = {
+            acquisition = "Obtain this toy from the listed source: Vendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency.",
+            source = "Vendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency",
+            sourceType = "Toy Box Source",
+            tips = "Confirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.",
+        },
+        ["The Azeroth Campaign"] = {
+            acquisition = "Obtain this toy from the listed source: Vendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency.",
+            source = "Vendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency",
+            sourceType = "Toy Box Source",
+            tips = "Confirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.",
+        },
+        ["To Modernize the Provisioning of Azeroth"] = {
+            acquisition = "Obtain this toy from the listed source: Vendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency.",
+            source = "Vendor: Krom Stoutarm / Zone: Ironforge / Cost: 10000 currency",
+            sourceType = "Toy Box Source",
+            tips = "Confirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.",
+        },
         ["Verdant Throwing Sphere"] = {
             acquisition = "Obtain this toy from the listed source: Vendor: Cupri / Zone: Shattrath City / Cost: 500 currency.",
             source = "Vendor: Cupri / Zone: Shattrath City / Cost: 500 currency",
             sourceType = "Toy Box Source",
             tips = "Confirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.",
         },
-        ["Walking Kalimdor with the Earthmother"] = shared["Vendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency"],
+        ["Walking Kalimdor with the Earthmother"] = {
+            acquisition = "Obtain this toy from the listed source: Vendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency.",
+            source = "Vendor: Estelle Gendry / Zone: Undercity / Cost: 10000 currency",
+            sourceType = "Toy Box Source",
+            tips = "Confirm the reputation, currency, and vendor phase before travelling. Some Legion rewards also require completion of the relevant campaign.",
+        },
     },
 })

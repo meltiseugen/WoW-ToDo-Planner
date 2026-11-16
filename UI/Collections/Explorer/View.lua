@@ -11,10 +11,10 @@ function Explorer:Render()
     local total, collected, missing, unobtainable = self:BuildVisibleRows()
     local isGeneral = not self.nearbySnapshot and self.selectedExpansion == "general"
     if self.patchLabel then self.patchLabel:SetText(isGeneral and "Scope" or "Patch") end
-    self.patchButton.explorerHelpTitle = isGeneral and "General achievements" or "Patch"
+    self.patchButton.explorerHelpTitle = isGeneral and "General collections" or "Patch"
     self.expansionButton:SetText(self.nearbySnapshot and "All Expansions"
         or self:GetExpansionLabel(self.selectedExpansion):gsub(" %(%d+%)$", ""))
-    self.patchButton:SetText(isGeneral and "All Achievements" or (self.nearbySnapshot and "All Patches" or self:GetPatchLabel(self.selectedPatch)))
+    self.patchButton:SetText(isGeneral and ("All "..self:GetTypeLabel(self.selectedCollectionType)) or (self.nearbySnapshot and "All Patches" or self:GetPatchLabel(self.selectedPatch)))
     self.statusButton:SetText(self:GetStatusLabel(self.selectedStatus))
     self:UpdateTypeTabs()
     self:UpdateExplorerFilters()
@@ -23,7 +23,7 @@ function Explorer:Render()
     self.sortButton:SetText("Sort: " .. SORT_LABELS[self.sortKey])
     local typeLabel = self.selectedCollectionType == "all" and "collections" or self.selectedCollectionType
     local scope = self.nearbySnapshot and ("Nearby in " .. (self.nearbySnapshot.mapName or "unknown area"))
-        or (isGeneral and "General achievements" or (self:GetExpansionLabel(self.selectedExpansion):gsub(" %(%d+%)$", "") .. " / " .. self:GetPatchLabel(self.selectedPatch)))
+        or (isGeneral and ("General "..self:GetTypeLabel(self.selectedCollectionType)) or (self:GetExpansionLabel(self.selectedExpansion):gsub(" %(%d+%)$", "") .. " / " .. self:GetPatchLabel(self.selectedPatch)))
     local summary = string.format("%d matching %s", #self.visibleRows, typeLabel)
     if self.nearbySnapshot then summary = scope .. ": " .. #self.visibleRows end
     self.summaryText:SetText(summary)
@@ -137,6 +137,7 @@ function Explorer:Build()
         self:SaveBrowserState()
     end)
     Widgets:HookFrameScript(frame, "OnHide", function(target)
+        TDP.Bootstrap:SetCollectionItemDataActive(self, false)
         target:StopMovingOrSizing()
         Widgets:SaveFramePosition(target, "explorer")
         self:SaveBrowserState()
@@ -144,12 +145,16 @@ function Explorer:Build()
         self:HideRowTooltip()
         Widgets:HideDropdownMenus()
     end)
+    Widgets:HookFrameScript(frame, "OnShow", function()
+        TDP.Bootstrap:SetCollectionItemDataActive(self, true)
+    end)
     frame:Hide()
     return self
 end
 
 function Explorer:Open()
     if not self.frame then self:Build() end
+    self.cosmeticTypeRequests = nil
     TDP.CollectionScanner:ResetCache()
     self.frame:Show()
     Widgets:BringToFront(self.frame)

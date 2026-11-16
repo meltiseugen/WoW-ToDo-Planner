@@ -18,8 +18,7 @@ function Preview:GetCollectionMapAchievementId(row)
         -- A reviewed route owns its map destinations, including an empty route
         -- for a queue reward. Keep the separate achievement action available.
         if TDP.PatchCatalog:GetCollectionWalkthrough(row.collectionType, row.entry) then return nil end
-        local info = TDP.PatchCatalog.GetCollectionSourceInfo and TDP.PatchCatalog:GetCollectionSourceInfo(row.collectionType, row.patchKey, row.entry)
-        if info and info.kind == "Vendor" then return nil end
+        if TDP.PatchCatalog:GetCollectionBrowseSourceKind(row.collectionType, row.patchKey, row.entry) == "Vendor" then return nil end
         return self:GetPreviewAchievementId(row)
     end
 end
@@ -33,17 +32,15 @@ function Preview:GetCollectionMapActionHelp(row)
     if details and details.automaticUnlock then
         return "Automatic Unlock", "Learned automatically on the required race and class. There is no vendor, quest giver or drop location to visit."
     end
-    local info = row and TDP.PatchCatalog.GetCollectionSourceInfo
-        and TDP.PatchCatalog:GetCollectionSourceInfo(row.collectionType, row.patchKey, row.entry)
+    local guide = row and TDP.PatchCatalog:GetCollectionWalkthrough(row.collectionType, row.entry)
+    local kind = row and TDP.PatchCatalog:GetCollectionBrowseSourceKind(row.collectionType, row.patchKey, row.entry)
     local recorded = row and TDP.PatchCatalog.GetDescriptionMapLocations
         and TDP.PatchCatalog:GetDescriptionMapLocations(row.collectionType, row.entry)
-    if info and info.areaOnly or recorded and recorded.areaMaps then
+    if guide and #(guide.waypoints or {}) == 0 and guide.areaMaps or recorded and recorded.areaMaps then
         return "Source Area", "Open the known source area. A precise NPC or object position is not recorded."
-    elseif info and info.progressType == "secret" then
-        return "Secret Map", "Open this character's next unfinished secret step."
-    elseif info and info.questID then
-        return "Quest Map", "Open this character's next unfinished quest or current quest objective."
-    elseif info and info.kind == "Vendor" then
+    elseif kind == "Quest Rewards" then
+        return "Quest Map", "Open the written quest guide and recorded acquisition locations."
+    elseif kind == "Vendor" then
         return "Vendor Map", "Open the seller's recorded location."
     end
     return "Open Map", self:IsCollectionMapRow(row) and "Open the recorded catalog locations for this collection."

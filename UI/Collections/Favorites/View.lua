@@ -7,7 +7,7 @@ local LIST_WIDTH = FavoritesWindow.Config.LIST_WIDTH
 local LIST_CONTENT_WIDTH = FavoritesWindow.Config.LIST_CONTENT_WIDTH
 
 function FavoritesWindow:Render()
-    if not self.frame then
+    if not self.frame or not self.frame:IsShown() then
         return
     end
 
@@ -174,8 +174,20 @@ function FavoritesWindow:Build()
 
     self:BindPreviewModelControls()
 
+    Widgets:HookFrameScript(listScroll, "OnVerticalScroll", function(_, offset)
+        if not self.buildingRows then self:UpdateVisibleRows(offset) end
+    end)
+    Widgets:HookFrameScript(listScroll, "OnSizeChanged", function()
+        if self.frame:IsShown() and self.rowGeometry then self:BuildRows() end
+    end)
+    Widgets:HookFrameScript(frame, "OnShow", function()
+        TDP.Bootstrap:SetCollectionItemDataActive(self, true)
+    end)
+    Widgets:HookFrameScript(frame, "OnHide", function()
+        TDP.Bootstrap:SetCollectionItemDataActive(self, false)
+        self:ReleaseRows()
+    end)
     frame:Hide()
-    self:Render()
     return self
 end
 
@@ -184,8 +196,9 @@ function FavoritesWindow:Open()
         self:Build()
     end
 
+    self.cosmeticTypeRequests = nil
     CollectionScanner:ResetCache()
-    self:Render()
     self.frame:Show()
+    self:Render()
     Widgets:BringToFront(self.frame)
 end

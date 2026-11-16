@@ -1,14 +1,6 @@
 local _, TDP = ...
 
 TDP.CatalogRegistry:RegisterPatch("5.3", {
-    cosmeticDetailGroups = {
-        brawlerShirts = {
-            acquisition = "Complete the matching original challenge-card encounter and obtain its shirt reward.",
-            source = "Original Brawler's Guild challenge cards",
-            sourceType = "Brawler's Guild reward",
-            tips = "These rewards are retained for historical tracking; original-season encounter and vendor availability has changed.",
-        },
-    },
     label = "Patch 5.3: Escalation",
     sourceNotes = {
         "This bucket covers Battlefield: Barrens, the Escalation campaign, Heroic Scenarios, Deepwind Gorge, the Brawler's Guild update, Raiding with Leashes II, and new Throne of Thunder and world pets.",

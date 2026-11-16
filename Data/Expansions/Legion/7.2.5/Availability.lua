@@ -9,11 +9,4 @@ shared["cosmetics 147338"] = {
 
 TDP.CatalogRegistry:RegisterAvailability("7.2.5", {
     cosmetics = { [147338] = shared["cosmetics 147338"], [147339] = shared["cosmetics 147338"] },
-    mounts = {
-        [227991] = {
-            reason = "The original rated Arena season has ended. Its Gladiator mount cannot be earned in a later season.",
-            reviewedAt = "2026-10-13",
-            sourceUrl = "https://www.warcraftmounts.com/retired.php",
-        },
-    },
 })

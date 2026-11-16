@@ -516,69 +516,6 @@ function AchievementIntegration:IsAchievementComplete(achievementId)
     return true
 end
 
-function AchievementIntegration:AutoCompleteTask(task)
-    if not task or Tasks:IsArchived(task) then
-        return false
-    end
-
-    local achievementId = self:GetTaskAchievementId(task)
-    if not achievementId or not self:IsAchievementComplete(achievementId) then
-        return false
-    end
-
-    local changed = false
-    if Tasks:GetStatus(task) ~= "DONE" then
-        Tasks:SetStatus(task, "DONE")
-        changed = true
-    end
-
-    if Tasks:IsGlobalTask(task) and type(task.statusByBoard) == "table" then
-        local boardKeys = {}
-        for boardKey in pairs(task.statusByBoard) do
-            boardKeys[#boardKeys + 1] = boardKey
-        end
-
-        for _, boardKey in ipairs(boardKeys) do
-            if Tasks:GetStatus(task, boardKey) ~= "DONE" then
-                Tasks:SetStatus(task, "DONE", boardKey)
-                changed = true
-            end
-        end
-    end
-
-    return changed
-end
-
-function AchievementIntegration:AutoCompleteTasks()
-    if type(TODOPlannerDB) ~= "table" or type(TODOPlannerDB.tasks) ~= "table" then
-        return false
-    end
-
-    local changed = false
-    for _, task in ipairs(TODOPlannerDB.tasks) do
-        if self:AutoCompleteTask(task) then
-            changed = true
-        end
-    end
-
-    if changed then
-        Tasks:SortStable(TODOPlannerDB.tasks)
-    end
-
-    return changed
-end
-
-function AchievementIntegration:ScheduleAutoCompleteRefresh()
-    if C_Timer and C_Timer.After then
-        C_Timer.After(0, function()
-            if self:AutoCompleteTasks() and self.addon.ui then
-                self.addon.ui:Render()
-            end
-        end)
-    elseif self:AutoCompleteTasks() and self.addon.ui then
-        self.addon.ui:Render()
-    end
-end
 
 function AchievementIntegration:FormatDate(info)
     if not info or not info.completed then
@@ -840,7 +777,6 @@ function AchievementIntegration:CreateTask(achievementId)
         sourceType = "achievement",
         sourceId = achievementId,
     })
-    self:AutoCompleteTask(task)
     Tasks:SortStable(TODOPlannerDB.tasks)
 
     if self.addon.ui then
@@ -897,14 +833,16 @@ function AchievementIntegration:UpdateTaskButton(row)
 end
 
 function AchievementIntegration:ScheduleTaskButtonUpdate(row)
+    if not row or row.TODOPlannerTaskUpdateQueued then return end
+    row.TODOPlannerTaskUpdateQueued = true
+    local refresh = function()
+        row.TODOPlannerTaskUpdateQueued = nil
+        if row:IsShown() then self:UpdateTaskButton(row) end
+    end
     if C_Timer and C_Timer.After then
-        C_Timer.After(0, function()
-            if row and row:IsShown() then
-                self:UpdateTaskButton(row)
-            end
-        end)
+        C_Timer.After(0, refresh)
     else
-        self:UpdateTaskButton(row)
+        refresh()
     end
 end
 
@@ -1101,12 +1039,18 @@ function AchievementIntegration:RefreshButtons()
 end
 
 function AchievementIntegration:ScheduleRefresh()
+    if self.refreshQueued then return end
+    self.refreshQueued = true
+    local refresh = function()
+        self.refreshQueued = nil
+        if AchievementFrame and AchievementFrame:IsShown()
+            or KrowiAF_AchievementsFrame and KrowiAF_AchievementsFrame:IsShown()
+            or KrowiAF_SummaryFrame and KrowiAF_SummaryFrame:IsShown() then self:RefreshButtons() end
+    end
     if C_Timer and C_Timer.After then
-        C_Timer.After(0, function()
-            self:RefreshButtons()
-        end)
+        C_Timer.After(0, refresh)
     else
-        self:RefreshButtons()
+        refresh()
     end
 end
 

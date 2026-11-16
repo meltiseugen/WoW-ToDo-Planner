@@ -24,7 +24,6 @@ Data/Persistence/Favorites.lua
 Integrations/CollectionScanner.lua
 UI/Widgets/Widgets.xml
 Integrations/Achievements.lua
-Integrations/CollectionTaskProgress.lua
 Integrations/NearbyCollections.lua
 UI/Windows.xml
 Core/SlashCommands.lua

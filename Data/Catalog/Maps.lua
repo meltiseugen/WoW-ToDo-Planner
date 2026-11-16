@@ -23,6 +23,11 @@ function PatchCatalog:ParseWaypoint(waypoint)
             x = x / 100
             y = y / 100
         end
+        local stepInstructions
+        if type(waypoint.stepInstructions) == "table" then
+            stepInstructions = {}
+            for step, instruction in pairs(waypoint.stepInstructions) do stepInstructions[step] = instruction end
+        end
         return {
             mapID = mapID,
             mapName = waypoint.mapName or waypoint.uiMapName,
@@ -31,6 +36,10 @@ function PatchCatalog:ParseWaypoint(waypoint)
             label = waypoint.label,
             waypoint = waypoint.waypoint,
             step = tonumber(waypoint.step),
+            stepInstructions = stepInstructions,
+            questID = tonumber(waypoint.questID),
+            npcID = tonumber(waypoint.npcID),
+            locationType = waypoint.locationType,
         }
     end
 
@@ -63,6 +72,10 @@ function PatchCatalog:GetCollectionMapPayload(collectionType, patchKey, entry, s
     if collectionType ~= "mounts" and collectionType ~= "pets" and collectionType ~= "toys" and collectionType ~= "cosmetics" and collectionType ~= "achievements" then
         return nil
     end
+    self:ResetCollectionSourceCache()
+    if collectionType == "achievements" and TDP.CollectionScanner then
+        state = TDP.CollectionScanner:GetAchievementState(type(entry) == "table" and entry.achievementId or entry)
+    end
     local guide = self:GetCollectionWalkthrough(collectionType, entry)
     local sourceInfo
     if not guide and self.GetCollectionSourceInfo then
@@ -78,6 +91,7 @@ function PatchCatalog:GetCollectionMapPayload(collectionType, patchKey, entry, s
 
     local sourceSummary = self:GetCollectionSourceSummary(collectionType, patchKey, entry)
     local acquisition = self:GetCollectionAcquisitionText(collectionType, patchKey, entry)
+    local guideSteps = self:ParseCollectionGuideSteps(guide and guide.acquisition or acquisition)
     local effect = self:GetCollectionUseText(collectionType, patchKey, entry)
     local tips = self:GetCollectionTips(collectionType, patchKey, entry)
     local details = self:GetCollectionDetails(collectionType, patchKey, entry)
@@ -86,8 +100,8 @@ function PatchCatalog:GetCollectionMapPayload(collectionType, patchKey, entry, s
 
     local entryDetails = type(entry) == "table" and entry or {}
     details = type(details) == "table" and details or {}
-    local requirements = entryDetails.requirements or details.requirements
-    local cost = entryDetails.cost or details.cost
+    local requirements = guide and guide.requirements or entryDetails.requirements or details.requirements
+    local cost = guide and guide.cost or entryDetails.cost or details.cost
     local notes = entryDetails.notes or details.notes
 
     if type(waypoints) == "table" then
@@ -101,6 +115,9 @@ function PatchCatalog:GetCollectionMapPayload(collectionType, patchKey, entry, s
                 pin.tips = tips
                 local waypointInfo = type(waypoint) == "table" and waypoint or {}
                 pin.questID, pin.npcID, pin.locationType = waypointInfo.questID, waypointInfo.npcID, waypointInfo.locationType
+                if not pin.stepInstructions and pin.step and guideSteps[pin.step] then
+                    pin.stepInstructions = { [pin.step] = guideSteps[pin.step] }
+                end
                 if not sourceWaypoints and type(details.waypointCriteria) == "table" then
                     local criterionMapping = details.waypointCriteria[waypointIndex]
                     if type(criterionMapping) == "table" then
@@ -113,10 +130,18 @@ function PatchCatalog:GetCollectionMapPayload(collectionType, patchKey, entry, s
                 local positionKey = guide and string.format("%d:%.6f:%.6f", pin.mapID, pin.x, pin.y)
                 local existing = positionKey and guidePositions[positionKey]
                 if existing then
-                    existing.steps = existing.steps or { existing.step }
-                    local found
-                    for _, step in ipairs(existing.steps) do if step == pin.step then found = true end end
-                    if not found then existing.steps[#existing.steps + 1] = pin.step end
+                    if pin.step and not existing.step then
+                        existing.step = pin.step
+                    elseif pin.step and pin.step ~= existing.step then
+                        existing.steps = existing.steps or { existing.step }
+                        local found
+                        for _, step in ipairs(existing.steps) do if step == pin.step then found = true end end
+                        if not found then existing.steps[#existing.steps + 1] = pin.step end
+                    end
+                    if pin.stepInstructions then
+                        existing.stepInstructions = existing.stepInstructions or {}
+                        for step, instruction in pairs(pin.stepInstructions) do existing.stepInstructions[step] = instruction end
+                    end
                 else
                     pins[#pins + 1] = pin
                     if positionKey then guidePositions[positionKey] = pin end
@@ -177,15 +202,15 @@ function PatchCatalog:GetCollectionMapPayload(collectionType, patchKey, entry, s
         mapAchievementId = not sourceWaypoints and tonumber(details.mapAchievementId) or nil,
         waypoints = waypoints,
         pins = pins,
-        mapID = pins[1] and pins[1].mapID or areaOnly and sourceAreas[1] or nil,
+        mapID = pins[1] and pins[1].mapID
+            or areaOnly and sourceAreas[1] or nil,
         areaOnly = areaOnly or nil,
         sourceAreaMaps = areaOnly and sourceAreas or nil,
         guideMaps = guide and guideMaps or nil,
         icon = state and state.icon,
-        sourceQuestID = sourceInfo and sourceInfo.questID,
         sourcePatchKey = sourceInfo and (sourceWaypoints or areaOnly) and patchKey or nil,
         sourceEntry = sourceInfo and (sourceWaypoints or areaOnly) and entry or nil,
-        sourceNotes = sourceInfo and table.concat(self:GetCollectionSourceNotes(collectionType, patchKey, entry), "\n")
+        sourceNotes = (guide or sourceInfo) and table.concat(self:GetCollectionSourceNotes(collectionType, patchKey, entry), "\n")
             or recordedLocations and recordedLocations.historical and "Original recorded acquisition location; the source is historical." or nil,
     }
 end
@@ -198,13 +223,12 @@ function PatchCatalog:HasCollectionMapPayload(collectionType, patchKey, entry)
         for _, point in ipairs(guide.waypoints or {}) do
             if self:ParseWaypoint(point) then return true end
         end
-        return type(guide.areaMaps) == "table" and tonumber(guide.areaMaps[1]) ~= nil
+        if type(guide.areaMaps) == "table" and tonumber(guide.areaMaps[1]) ~= nil then return true end
+        return false
     end
-    local info = self.GetCollectionSourceInfo and self:GetCollectionSourceInfo(collectionType, patchKey, entry)
     local recordedLocations = self:GetDescriptionMapLocations(collectionType, entry)
-    local sourceWaypoints = info and self:UseCollectionSourceWaypoints(collectionType, patchKey, entry, info)
-    if not sourceWaypoints and not recordedLocations and self:IsAchievementSourcedCollection(collectionType, patchKey, entry) then return false end
-    local waypoints = sourceWaypoints and info.waypoints or self:GetCollectionWaypoints(collectionType, patchKey, entry)
+    local details = self:GetCollectionDetails(collectionType, patchKey, entry) or {}
+    local waypoints = type(entry) == "table" and entry.waypoints or details.waypoints
     for _, point in ipairs(waypoints or {}) do
         if type(point) == "table" then
             if tonumber(point.mapID or point.uiMapID) and tonumber(point.x) and tonumber(point.y) then return true end
@@ -213,8 +237,15 @@ function PatchCatalog:HasCollectionMapPayload(collectionType, patchKey, entry)
             if map and tonumber(x) and tonumber(y) then return true end
         end
     end
-    return info ~= nil and info.areaOnly == true and tonumber(info.areaMaps[1]) ~= nil
-        or recordedLocations ~= nil and type(recordedLocations.areaMaps) == "table" and tonumber(recordedLocations.areaMaps[1]) ~= nil
+    if recordedLocations and (recordedLocations.waypoints and recordedLocations.waypoints[1]
+        or recordedLocations.areaMaps and recordedLocations.areaMaps[1]) then return true end
+    for _, record in ipairs(self:GetCollectionSourceRecords(collectionType, patchKey, entry)) do
+        if record.coords and record.coords[1] or record.maps and record.maps[1] then return true end
+        local id = record.kind == "Quest Rewards" and record.questID
+        local quest = id and TDP.CollectionSourceIndex and TDP.CollectionSourceIndex.quests[id]
+        if quest and (quest.coords and quest.coords[1] or quest.maps and quest.maps[1]) then return true end
+    end
+    return false
 end
 
 function PatchCatalog:GetWowheadUrl(collectionType, entry)

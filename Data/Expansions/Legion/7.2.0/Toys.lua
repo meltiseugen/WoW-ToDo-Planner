@@ -1,3 +1,4 @@
+-- Catalogue entries and complete Retail research for 7.2.0.
 local _, TDP = ...
 
 TDP.CatalogRegistry:RegisterCollection("7.2.0", "toys", {

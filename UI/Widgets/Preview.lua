@@ -13,6 +13,13 @@ local PREVIEW_FIELD_LABELS = {
     ["Criteria"] = "Criteria",
     ["Source"] = "Source",
     ["How to get"] = "How to Get",
+    ["Quest progress"] = "Quest Progress",
+    ["Quest chain"] = "Quest Chain",
+    ["Original acquisition"] = "Original Acquisition",
+    ["Source details"] = "Source Details",
+    ["Locations"] = "Locations",
+    ["Location"] = "Location",
+    ["Difficulty"] = "Difficulty",
     ["Effect"] = "Effect",
     ["Requirements"] = "Requirements",
     ["Cost"] = "Cost",
@@ -112,6 +119,11 @@ function Widgets:FormatPreviewNotes(text)
     local previewBodyColor = self:GetColorCode("previewBody", { 0.88, 0.90, 0.94, 1.0 })
     local previewMutedColor = self:GetColorCode("previewMuted", { 0.60, 0.64, 0.71, 1.0 })
     local previewSuccessColor = self:GetColorCode("previewSuccess", { 0.39, 0.84, 0.54, 1.0 })
+    local questStatuses = {
+        ["Done"] = previewSuccessColor, ["Account unlocked"] = previewSuccessColor,
+        ["Turn in"] = previewHeadingColor, ["In progress"] = previewHeadingColor,
+        ["Next"] = previewHeadingColor, ["Locked"] = previewMutedColor, ["Optional"] = previewMutedColor,
+    }
 
     local function addSpacer()
         if hasContent and formatted[#formatted] ~= "" then
@@ -120,6 +132,18 @@ function Widgets:FormatPreviewNotes(text)
     end
 
     local function addBodyLine(line)
+        local number, instruction = line:match("^(%d+)[%.)]%s+(.*)$")
+        if number then
+            addSpacer()
+            local heading = previewHeadingColor .. "STEP " .. number .. COLOR_END
+            local status, title = instruction:match("^%[([^%]]+)%]%s*(.*)$")
+            if status and questStatuses[status] then
+                heading = heading .. "    " .. questStatuses[status] .. string.upper(status) .. COLOR_END
+                instruction = title
+            end
+            formatted[#formatted + 1] = heading
+            line = instruction
+        end
         line = self:LinkifyPreviewCostText(line, text)
         local completedText = line:match("^%[Done%]%s*(.*)$")
         local pendingText = line:match("^%[ %]%s*(.*)$")
@@ -156,9 +180,14 @@ function Widgets:FormatPreviewNotes(text)
             else
                 addBodyLine(trimmed)
             end
+        else
+            -- Authored paragraph breaks are intentional, especially between
+            -- long guide steps and their quest/objective explanations.
+            addSpacer()
         end
     end
 
+    if formatted[#formatted] == "" then table.remove(formatted) end
     return table.concat(formatted, "\n")
 end
 

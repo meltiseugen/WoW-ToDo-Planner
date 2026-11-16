@@ -69,17 +69,30 @@ function PatchCatalog:GetCollectionFaction(collectionType, patchKey, entry, stat
         return explicitFaction
     end
 
+    -- Authored source text is immutable during a session. Do not concatenate
+    -- and search the full guide and every waypoint on each list refresh.
+    self.collectionFactionCache = self.collectionFactionCache or {}
+    local cacheKey = collectionType .. ":" .. tostring(patchKey)
+    local cache = self.collectionFactionCache[cacheKey]
+    if not cache then cache = {}; self.collectionFactionCache[cacheKey] = cache end
+    if entry ~= nil and cache[entry] then return cache[entry] end
+    local function remember(faction)
+        if entry ~= nil and state and state.name then cache[entry] = faction end
+        return faction
+    end
+
     local parts = {}
+    local guide = self:GetCollectionWalkthrough(collectionType, entry)
     if type(entry) == "table" then
         AppendFactionText(parts, entry.name)
         AppendFactionText(parts, entry.source)
-        AppendFactionText(parts, entry.acquisition)
+        if not guide then AppendFactionText(parts, entry.acquisition) end
         AppendFactionText(parts, entry.detailKey)
         AppendFactionText(parts, entry.waypoints)
     end
     if details then
         AppendFactionText(parts, details.source)
-        AppendFactionText(parts, details.acquisition)
+        if not guide then AppendFactionText(parts, details.acquisition) end
         AppendFactionText(parts, details.waypoints)
     end
     if rewardEntry then
@@ -100,17 +113,17 @@ function PatchCatalog:GetCollectionFaction(collectionType, patchKey, entry, stat
         or text:find("defeat horde players", 1, true)
         or text:find("horde slayer", 1, true)
     if targetsAlliance and not targetsHorde then
-        return "horde"
+        return remember("horde")
     elseif targetsHorde and not targetsAlliance then
-        return "alliance"
+        return remember("alliance")
     end
 
     local isAlliance = HasFactionMarker(text, ALLIANCE_FACTION_MARKERS)
     local isHorde = HasFactionMarker(text, HORDE_FACTION_MARKERS)
     if isAlliance ~= isHorde then
-        return isAlliance and "alliance" or "horde"
+        return remember(isAlliance and "alliance" or "horde")
     end
-    return "all"
+    return remember("all")
 end
 
 function PatchCatalog:IsAchievementSourcedCollection(collectionType, patchKey, entry)

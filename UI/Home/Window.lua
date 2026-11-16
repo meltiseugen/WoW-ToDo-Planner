@@ -41,8 +41,8 @@ function HomeWindow:OpenPlanner()
         self.favoritesWindow.frame:Hide()
     end
     if self.plannerWindow then
-        self.plannerWindow:Render()
         self.plannerWindow.frame:Show()
+        self.plannerWindow:Render()
         Widgets:BringToFront(self.plannerWindow.frame)
     end
 end

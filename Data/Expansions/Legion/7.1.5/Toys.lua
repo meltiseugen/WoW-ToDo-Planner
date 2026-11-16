@@ -1,13 +1,5 @@
+-- Catalogue entries and complete Retail research for 7.1.5.
 local _, TDP = ...
-
-local shared = {}
-shared["Vendor: Mistweaver Xia / Zone: Timeless Isle / Mists of Pandaria Timewalking"] = {
-    acquisition = "Obtain this toy from the listed source: Vendor: Mistweaver Xia / Zone: Timeless Isle / Mists of Pandaria Timewalking.",
-    source = "Vendor: Mistweaver Xia / Zone: Timeless Isle / Mists of Pandaria Timewalking",
-    sourceType = "Toy Box Source",
-    tips = "Confirm the required reputation, currency, and vendor phase before travelling.",
-    waypoints = { "/way #554 43.0 55.2 Mistweaver Xia" },
-}
 
 TDP.CatalogRegistry:RegisterCollection("7.1.5", "toys", {
     entries = {
@@ -45,7 +37,13 @@ TDP.CatalogRegistry:RegisterCollection("7.1.5", "toys", {
         },
     },
     details = {
-        ["Adopted Puppy Crate"] = shared["Vendor: Mistweaver Xia / Zone: Timeless Isle / Mists of Pandaria Timewalking"],
+        ["Adopted Puppy Crate"] = {
+            acquisition = "Obtain this toy from the listed source: Vendor: Mistweaver Xia / Zone: Timeless Isle / Mists of Pandaria Timewalking.",
+            source = "Vendor: Mistweaver Xia / Zone: Timeless Isle / Mists of Pandaria Timewalking",
+            sourceType = "Toy Box Source",
+            tips = "Confirm the required reputation, currency, and vendor phase before travelling.",
+            waypoints = { "/way #554 43.0 55.2 Mistweaver Xia" },
+        },
         ["Golden Hearthstone Card: Lord Jaraxxus"] = {
             acquisition = "Obtain this toy from the listed source: Drop: High Botanist Tel'arn / Raid: The Nighthold.",
             source = "Drop: High Botanist Tel'arn / Raid: The Nighthold",
@@ -53,7 +51,13 @@ TDP.CatalogRegistry:RegisterCollection("7.1.5", "toys", {
             tips = "Check the raid difficulty and weekly loot lockout before farming; use eligible alts where the source permits it.",
             waypoints = { "/way #680 44.2 59.8 Shal'Aran / Suramar hub" },
         },
-        ["Portable Yak Wash"] = shared["Vendor: Mistweaver Xia / Zone: Timeless Isle / Mists of Pandaria Timewalking"],
+        ["Portable Yak Wash"] = {
+            acquisition = "Obtain this toy from the listed source: Vendor: Mistweaver Xia / Zone: Timeless Isle / Mists of Pandaria Timewalking.",
+            source = "Vendor: Mistweaver Xia / Zone: Timeless Isle / Mists of Pandaria Timewalking",
+            sourceType = "Toy Box Source",
+            tips = "Confirm the required reputation, currency, and vendor phase before travelling.",
+            waypoints = { "/way #554 43.0 55.2 Mistweaver Xia" },
+        },
         ["Skull of Corruption"] = {
             acquisition = "Obtain this toy from the listed source: Drop: Gul'dan / Raid: The Nighthold.",
             source = "Drop: Gul'dan / Raid: The Nighthold",

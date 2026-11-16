@@ -1,21 +1,5 @@
+-- Catalogue entries and complete Retail research for 7.3.0.
 local _, TDP = ...
-
-local shared = {}
-shared["Drop: Instructor Tarahna / Zone: Mac'Aree"] = {
-    acquisition = "Obtain this toy from the listed source: Drop: Instructor Tarahna / Zone: Mac'Aree.",
-    source = "Drop: Instructor Tarahna / Zone: Mac'Aree",
-    sourceType = "Toy Box Source",
-    tips = "Check the source's loot lockout before farming. Argus rares rotate and many drops are not guaranteed, so use eligible alts when practical.",
-    waypoints = { "/way #882 40.5 69.8 Eredath collection route" },
-}
-
-shared["Drop: Vixx the Collector / Zone: The Seat of the Triumvirate"] = {
-    acquisition = "Obtain this toy from the listed source: Drop: Vixx the Collector / Zone: The Seat of the Triumvirate.",
-    source = "Drop: Vixx the Collector / Zone: The Seat of the Triumvirate",
-    sourceType = "Toy Box Source",
-    tips = "Check the source's loot lockout before farming. Argus rares rotate and many drops are not guaranteed, so use eligible alts when practical.",
-    waypoints = { "/way #882 22.3 56.4 Seat of the Triumvirate entrance" },
-}
 
 TDP.CatalogRegistry:RegisterCollection("7.3.0", "toys", {
     entries = {
@@ -166,7 +150,13 @@ TDP.CatalogRegistry:RegisterCollection("7.3.0", "toys", {
             tips = "Check the source's loot lockout before farming. Argus rares rotate and many drops are not guaranteed, so use eligible alts when practical.",
             waypoints = { "/way #831 43.5 25.0 Vindicaar collection hub" },
         },
-        ["Blue Conservatory Scroll"] = shared["Drop: Instructor Tarahna / Zone: Mac'Aree"],
+        ["Blue Conservatory Scroll"] = {
+            acquisition = "Obtain this toy from the listed source: Drop: Instructor Tarahna / Zone: Mac'Aree.",
+            source = "Drop: Instructor Tarahna / Zone: Mac'Aree",
+            sourceType = "Toy Box Source",
+            tips = "Check the source's loot lockout before farming. Argus rares rotate and many drops are not guaranteed, so use eligible alts when practical.",
+            waypoints = { "/way #882 40.5 69.8 Eredath collection route" },
+        },
         ["Crystalline Campfire"] = {
             acquisition = "Obtain this toy from the listed source: Vendor: Toraan the Revered / Zone: Argus / Faction: Argussian Reach - Honored / Cost: 75 currency.",
             source = "Vendor: Toraan the Revered / Zone: Argus / Faction: Argussian Reach - Honored / Cost: 75 currency",
@@ -193,7 +183,13 @@ TDP.CatalogRegistry:RegisterCollection("7.3.0", "toys", {
             tips = "Check the source's loot lockout before farming. Argus rares rotate and many drops are not guaranteed, so use eligible alts when practical.",
             waypoints = { "/way #885 54.8 62.0 Antoran Wastes collection route" },
         },
-        ["Red Conservatory Scroll"] = shared["Drop: Instructor Tarahna / Zone: Mac'Aree"],
+        ["Red Conservatory Scroll"] = {
+            acquisition = "Obtain this toy from the listed source: Drop: Instructor Tarahna / Zone: Mac'Aree.",
+            source = "Drop: Instructor Tarahna / Zone: Mac'Aree",
+            sourceType = "Toy Box Source",
+            tips = "Check the source's loot lockout before farming. Argus rares rotate and many drops are not guaranteed, so use eligible alts when practical.",
+            waypoints = { "/way #882 40.5 69.8 Eredath collection route" },
+        },
         ["S.F.E. Interceptor"] = {
             acquisition = "Obtain this toy from the listed source: Drop: Squadron Commander Vishax.",
             source = "Drop: Squadron Commander Vishax",
@@ -213,8 +209,20 @@ TDP.CatalogRegistry:RegisterCollection("7.3.0", "toys", {
             tips = "Check the source's loot lockout before farming. Argus rares rotate and many drops are not guaranteed, so use eligible alts when practical.",
             waypoints = { "/way #830 55.5 66.5 Krokuun collection route" },
         },
-        ["Unstable Portal Emitter"] = shared["Drop: Vixx the Collector / Zone: The Seat of the Triumvirate"],
-        ["Vixx's Chest of Tricks"] = shared["Drop: Vixx the Collector / Zone: The Seat of the Triumvirate"],
+        ["Unstable Portal Emitter"] = {
+            acquisition = "Obtain this toy from the listed source: Drop: Vixx the Collector / Zone: The Seat of the Triumvirate.",
+            source = "Drop: Vixx the Collector / Zone: The Seat of the Triumvirate",
+            sourceType = "Toy Box Source",
+            tips = "Check the source's loot lockout before farming. Argus rares rotate and many drops are not guaranteed, so use eligible alts when practical.",
+            waypoints = { "/way #882 22.3 56.4 Seat of the Triumvirate entrance" },
+        },
+        ["Vixx's Chest of Tricks"] = {
+            acquisition = "Obtain this toy from the listed source: Drop: Vixx the Collector / Zone: The Seat of the Triumvirate.",
+            source = "Drop: Vixx the Collector / Zone: The Seat of the Triumvirate",
+            sourceType = "Toy Box Source",
+            tips = "Check the source's loot lockout before farming. Argus rares rotate and many drops are not guaranteed, so use eligible alts when practical.",
+            waypoints = { "/way #882 22.3 56.4 Seat of the Triumvirate entrance" },
+        },
         ["Wormhole Generator: Argus"] = {
             acquisition = "Obtain this toy from the listed source: Profession: Engineering.",
             source = "Profession: Engineering",
@@ -222,6 +230,12 @@ TDP.CatalogRegistry:RegisterCollection("7.3.0", "toys", {
             tips = "Check prerequisites and the source's daily or weekly lockout before starting; several Legion collectibles require campaign progress or repeat attempts.",
             waypoints = { "/way #831 43.5 25.0 Vindicaar collection hub" },
         },
-        ["Yellow Conservatory Scroll"] = shared["Drop: Instructor Tarahna / Zone: Mac'Aree"],
+        ["Yellow Conservatory Scroll"] = {
+            acquisition = "Obtain this toy from the listed source: Drop: Instructor Tarahna / Zone: Mac'Aree.",
+            source = "Drop: Instructor Tarahna / Zone: Mac'Aree",
+            sourceType = "Toy Box Source",
+            tips = "Check the source's loot lockout before farming. Argus rares rotate and many drops are not guaranteed, so use eligible alts when practical.",
+            waypoints = { "/way #882 40.5 69.8 Eredath collection route" },
+        },
     },
 })

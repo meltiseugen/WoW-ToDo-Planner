@@ -1,4 +1,101 @@
+-- Catalogue entries and complete Retail research for 2.1.
 local _, TDP = ...
+
+local walkthroughs = {
+    [32782] = {
+        source = "Terokk - summoned with a Time-Lost Offering at Terokk's Rest, Skettis",
+        category = "Rare Drops",
+        faction = "all",
+        npcId = 21838,
+        requirements = "A Time-Lost Offering for each summon. Buying an offering bypasses the farming unlock; making your own requires the Skettis quest chain. No Exalted reputation requirement for the toy.",
+        cost = "Per repeat farmed offering: 40 Time-Lost Scrolls to summon four descendants, then trade their four tokens to Hazzik. Elixirs of Shadows cost 6 Shadow Dust each. Alternatively buy Time-Lost Offerings; prices vary.",
+        tips = "Sha'tari Skyguard reputation is a useful byproduct, not the toy's purchase requirement. Use Terokkar Forest in Outland, not Talador in Draenor. The cosmetic disguise does not prevent enemy aggression. You can keep farming between Terokk summons.",
+        effect = "Transforms you into an arakkoa for 5 minutes; 30-minute cooldown. This is a cosmetic effect, not friendly standing with Skettis.",
+        waypoints = {
+            {
+                mapID = 108,
+                x = 0.64,
+                y = 0.6679999999999999,
+                step = 2,
+                label = "Severin / Adaris - shadow quests, elixirs and Almanac",
+            },
+            { mapID = 108, x = 0.693, y = 0.7859999999999999, step = 3, label = "Talonpriest Ishaal - loot Ishaal's Almanac" },
+            { mapID = 108, x = 0.698, y = 0.82, step = 3, label = "Talonpriest Skizzik" },
+            { mapID = 108, x = 0.701, y = 0.745, step = 3, label = "Talonpriest Zellek" },
+            {
+                mapID = 108,
+                x = 0.64,
+                y = 0.6679999999999999,
+                step = 4,
+                label = "Adaris - Ishaal's Almanac and Lower City delivery",
+            },
+            { mapID = 111, x = 0.526, y = 0.20800000000000002, step = 4, label = "Rilak the Redeemed - An Ally in Lower City" },
+            { mapID = 108, x = 0.64, y = 0.6679999999999999, step = 5, label = "Adaris - Countdown to Doom" },
+            {
+                mapID = 108,
+                x = 0.642,
+                y = 0.6679999999999999,
+                step = 5,
+                label = "Hazzik - unlock quests and offering exchange",
+            },
+            { mapID = 108, x = 0.748, y = 0.802, step = 6, label = "Hazzik's Package - inside the hut" },
+            { mapID = 108, x = 0.67, y = 0.7959999999999999, step = 7, label = "Sahaak - use quest disguise and buy the book" },
+            {
+                mapID = 108,
+                x = 0.642,
+                y = 0.6679999999999999,
+                step = 8,
+                label = "Hazzik - accept Adversarial Blood BEFORE the kills",
+            },
+            {
+                mapID = 108,
+                x = 0.6970000000000001,
+                y = 0.747,
+                step = 9,
+                label = "Skettis - Time-Lost scroll farm and small Skull Pile",
+            },
+            { mapID = 108, x = 0.62, y = 0.746, step = 10, label = "Small Skull Pile - choose a different descendant" },
+            {
+                mapID = 108,
+                x = 0.614,
+                y = 0.7809999999999999,
+                step = 10,
+                label = "Small Skull Pile - choose a different descendant",
+            },
+            {
+                mapID = 108,
+                x = 0.6970000000000001,
+                y = 0.747,
+                step = 10,
+                label = "Small Skull Pile - choose a different descendant",
+            },
+            { mapID = 108, x = 0.701, y = 0.794, step = 10, label = "Small Skull Pile - choose a different descendant" },
+            { mapID = 108, x = 0.642, y = 0.6679999999999999, step = 11, label = "Hazzik - collect or exchange for offerings" },
+            {
+                mapID = 108,
+                x = 0.6609999999999999,
+                y = 0.7759999999999999,
+                step = 12,
+                label = "Ancient Skull Pile / Terokk - summon and loot",
+            },
+            {
+                mapID = 108,
+                x = 0.6609999999999999,
+                y = 0.7759999999999999,
+                step = 13,
+                label = "Terokk - toy drop and repeatable attempts",
+            },
+        },
+        itemId = 32782,
+        name = "Time-Lost Figurine",
+        stepCount = 14,
+        acquisition = "Difficulty: Medium - Unlock Terokk, gather or buy summoning materials and repeat summons for a random toy drop.\n\n1. Choose the shortcut or the self-farmed route before travelling. For the shortcut, buy a Time-Lost Offering (32720) on the Auction House and continue at step 12: it can summon Terokk without farming dust, scrolls or the quest unlock. The Figurine itself is a bound drop, not the tradable offering. For the full route, follow steps 2-11; if you already unlocked Hazzik's repeatable turn-in, resume at step 8.\n\n2. Fly to Blackwind Landing north of Skettis in Terokkar Forest. Speak to Severin at 64.0, 66.8 and take World of Shadows (11004). Kill the ordinary arakkoa around Skettis for 6 Shadow Dust, then return to Severin for an Elixir of Shadows. Additional elixirs come from the repeatable More Shadow Dust, also at 6 dust per elixir. Turn on Trivial Quests if the low-level quests are hidden.\n\n3. Take Secrets of the Talonpriests (11005) from Sky Commander Adaris beside Severin. Drink the elixir to see the hidden enemies for 20 minutes. Kill Talonpriest Ishaal around 69.3, 78.6, Skizzik at 69.8, 82.0 and Zellek around 70.1, 74.5 on Skettis's raised platforms/huts. LOOT Ishaal's Almanac from Ishaal and use it to start its quest. Return to Adaris with the three kills and the book; drink another elixir if your visibility buff expires.\n\n4. Turn in Ishaal's Almanac (11021) to Adaris and accept An Ally in Lower City (11024). Take the book to Rilak the Redeemed in northern Lower City, Shattrath (52.6, 20.8). Take his follow-up Countdown to Doom (11028); leaving after delivering the book does not unlock Hazzik's offering exchange.\n\n5. Return to Adaris at Blackwind Landing (64.0, 66.8) and turn in Countdown to Doom. Speak to Hazzik, the arakkoa in the cage at 64.2, 66.8, and accept Hazzik's Bargain (11056). The caged arakkoa is the quest NPC; Grella, the nearby mount quartermaster, does not provide the toy or its summoning item.\n\n6. Collect Hazzik's Package from the box inside the hut at Upper Veil Shil'ak (74.8, 80.2). Look inside the ground-level hut by the small summoning circle, rather than searching the tops of every tree platform. Return the package to Hazzik at 64.2, 66.8.\n\n7. Take A Shabby Disguise (11029). Go to Sahaak in the hut on Terokk's Rest, the island in Blackwind Lake (67.0, 79.6). Use the quest's Shabby Arakkoa Disguise, speak to him and buy Adversarial Bloodlines, then bring the book back to Hazzik. Carry a few gold for the book. The disguise is for this interaction; it does not make the other Skettis enemies friendly.\n\n8. FIRST FARMED OFFERING: accept Adversarial Blood (11885) from Hazzik BEFORE summoning the four descendants. This first quest requires their kills while it is active. If you kill them first, holding their four drops will not complete that initial kill objective. Once this unlock is complete, use Hazzik's repeatable Tokens of the Descendants (11074) for later offerings.\n\n9. While affected by Elixir of Shadows, kill the shadowy Time-Lost Skettis Reavers, High Priests and Worshippers for 40 Time-Lost Scrolls. Look on the raised platforms and around the purple summoning circles. Ordinary visible arakkoa provide dust; the Time-Lost enemies provide the scrolls. Refill the elixir with 6 dust if the 20-minute buff runs out. Scrolls, dust and the four descendant tokens can also be bought on the Auction House to shorten this part.\n\n10. Use the SMALL Skull Piles in Skettis's purple summoning circles: convenient ones are at 62.0, 74.6; 61.4, 78.1; 69.7, 74.7; and 70.1, 79.4. Spend 10 scrolls at each to summon a DIFFERENT descendant: Darkscreecher Akkarai (Akkarai's Talons), Karrog (Karrog's Spine), Gezzarak the Huntress (Gezzarak's Claws) and Vakkiz the Windrager (Vakkiz's Scale). Kill and loot each. Move to another pile after using one; repeating the same descendant leaves you short of a required token.\n\n11. Return to Hazzik at 64.2, 66.8. For the first round, finish Adversarial Blood for its Time-Lost Offering and keep the four tokens you looted. The repeatable Tokens of the Descendants trades a complete set of those tokens for another offering. For later rounds, farm 40 more scrolls and one of each token, then repeat that exchange. Keep the tokens when vendoring; they are needed even when their icons look like ordinary junk.\n\n12. Go to the LARGE green summoning circle on Terokk's Rest (66.1, 77.6). Click the Ancient Skull Pile in its centre and choose the option to use one Time-Lost Offering to summon Terokk. If the pile is absent, wait: another summon has used it. Coordinate with nearby farmers so you do not spend several offerings on the same spawn.\n\n13. Defeat and loot Terokk for a chance at Time-Lost Figurine. A strong legacy-farming character can usually kill him immediately; if he becomes immune, move him onto the blue flare/fire dropped by the Skyguard until the shield is removed, then finish him. There is no daily toy-drop lockout. The Ancient Skull Pile returns roughly 15 minutes after his death; buy another offering or repeat steps 9-12 for another attempt. A long unlucky streak does not mean the drop has been removed.\n\n14. When the Figurine drops, use it from your bags to add it to the account-wide Toy Box. Learn your own drop before selling or deleting duplicates; do not rely on the old comments claiming another player's bound toy can always be traded to you.",
+        sourceType = "Rare Drops",
+        wowheadUrl = "https://www.wowhead.com/item=32782",
+        difficultyReason = "Unlock Terokk, gather or buy summoning materials and repeat summons for a random toy drop.",
+        difficulty = "medium",
+    },
+}
 
 TDP.CatalogRegistry:RegisterCollection("2.1", "toys", {
     entries = {
@@ -11,6 +108,7 @@ TDP.CatalogRegistry:RegisterCollection("2.1", "toys", {
             source = "Terokk in Skettis",
             tips = "Buy a Time-Lost Offering or make one through the Skettis quest chain, summon Terokk at the Ancient Skull Pile on Terokk's Rest, and loot him for the rare toy. The figurine transforms you into an arakkoa. The quartermaster does not sell it, and there is no daily drop lockout.",
             waypoints = { "/way #108 66.1 77.6 Ancient Skull Pile / Terokk" },
+            walkthrough = walkthroughs[32782],
         },
     },
     details = {

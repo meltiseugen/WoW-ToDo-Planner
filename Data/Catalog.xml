@@ -15,7 +15,9 @@
     <Include file="Expansions/TheWarWithin/Expansion.xml"/>
     <Include file="Expansions/Midnight/Expansion.xml"/>
     <Script file="General/Achievements.lua"/>
-    <Script file="General/AchievementGuides.lua"/>
+    <Script file="General/Mounts.lua"/>
+    <Script file="General/Pets.lua"/>
+    <Script file="General/Toys.lua"/>
     <Script file="Catalog/Policy.lua"/>
     <Script file="Catalog/Queries.lua"/>
     <Script file="Catalog/Acquisition.lua"/>

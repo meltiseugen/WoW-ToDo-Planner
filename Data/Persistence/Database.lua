@@ -18,6 +18,8 @@ function Database:Init()
     end
 
     TODOPlannerDB = Utils:CopyDefaults(TODOPlannerDB, C.DEFAULT_DB)
+    -- Character quest observations are no longer collected or retained.
+    TODOPlannerDB.collectionQuestProgress = nil
     Utils:EnsureChatLoggingSettings()
 
     if type(TODOPlannerDB.tasks) ~= "table" then
@@ -84,6 +86,12 @@ function Database:Init()
             if collectionType == "achievements" then
                 local contentPatch = TDP.PatchCatalog:GetAchievementContentPatch(patchKey, entryId)
                 task.sourceId = contentPatch .. ":achievements:" .. entryId
+            elseif collectionType == "mounts" then
+                local contentPatch = TDP.LegionMountContentPatches and TDP.LegionMountContentPatches[tonumber(entryId)]
+                if contentPatch then task.sourceId = contentPatch .. ":mounts:" .. entryId end
+            elseif collectionType == "toys" then
+                local contentPatch = TDP.WarlordsToyContentPatches and TDP.WarlordsToyContentPatches[tonumber(entryId)]
+                if contentPatch then task.sourceId = contentPatch .. ":toys:" .. entryId end
             end
         end
         task.createdAt = task.createdAt or time()
@@ -139,6 +147,15 @@ function Database:Init()
             and favorite.entryId ~= nil then
             if favorite.collectionType == "achievements" and TDP.PatchCatalog then
                 favorite.patchKey = TDP.PatchCatalog:GetAchievementContentPatch(favorite.patchKey, favorite.entryId)
+            elseif favorite.collectionType == "mounts" then
+                favorite.patchKey = TDP.LegionMountContentPatches and TDP.LegionMountContentPatches[tonumber(favorite.entryId)] or favorite.patchKey
+            elseif favorite.collectionType == "toys" then
+                -- Retain saved favorites when researched toys move to General.
+                -- The existing normalization below preserves the earliest date
+                -- if an old patch key and a General key already coexist.
+                local id = tonumber(favorite.entryId)
+                favorite.patchKey = TDP.WarlordsToyContentPatches and TDP.WarlordsToyContentPatches[id]
+                    or TDP.PandariaToyContentPatches and TDP.PandariaToyContentPatches[id] or favorite.patchKey
             end
             favorite.key = string.format("%s:%s:%s", favorite.patchKey, favorite.collectionType, tostring(favorite.entryId))
             favorite.addedAt = type(favorite.addedAt) == "number" and favorite.addedAt or time()
