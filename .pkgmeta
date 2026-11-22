@@ -1,0 +1,14 @@
+# Release archive exclusions; workflow paths-ignore only controls build triggers.
+ignore:
+  - .codex
+  - .github
+  - .idea
+  - .vscode
+  - Tests
+  - BACKLOG.md
+  - PROMPTS.md
+  - README.md
+  - release.ps1
+  - Assets/Theme/README.md
+  - Data/README.md
+  - UI/README.md
